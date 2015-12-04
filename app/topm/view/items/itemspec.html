@@ -1,0 +1,28 @@
+<{if $item.valid}>
+  <{if $item.spec_desc}>
+  <div class="standard-area stable-standard cur">
+      <div class="standard-info" id="spec_select">
+        <{foreach from=$item.spec_desc item=spec key=spec_id}>
+          <div class="color parameter">
+            <span class="tit">
+              <{$item.spec.specName.$spec_id}>：
+            </span>
+            <ul>
+              <{foreach from=$spec item=spec_value key=spec_value_id }>
+              <li>
+
+                <{if $spec_value.spec_image_url}>
+                  <a href="<{$spec_value_id}>"><img src="<{$spec_value.spec_image_url}>" width="25" height="25"></a>
+                  <{else}>
+                  <a href="<{$spec_value_id}>"><{$spec_value.spec_value}></a>
+                <{/if}>
+
+              </li>
+              <{/foreach}>
+            </ul>
+          </div>
+         <{/foreach}>
+      </div>
+  </div>
+  <{/if}>
+<{/if}>

@@ -1,0 +1,107 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <{if $verifyType=='mobile'}>
+      绑定手机
+      <{else}>
+      绑定邮箱
+      <{/if}>
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="safe-box">
+        <div class="status-bar">
+          <div>1身份验证<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div class="on"><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>2设置绑定信息<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3绑定完成</div>
+        </div>
+          <input  type="hidden" name="verifyType" value="email">
+          <ul>
+            <{if $type && $type="update"}>
+            <li class="form-row">
+                <label for="" class="form-label">原有邮箱地址</label>
+              <span class="form-act">
+                <{$userInfo.email}>
+              </span>
+            </li>
+            <li class="form-row">
+                <label for="" class="form-label">新的邮箱地址</label>
+              <span class="form-act">
+                <input class="input-ln" type="text" id="uname" name="uname">
+                <input type="hidden" name="type" value="reset">
+              </span>
+            </li>
+            <{else}>
+            <li class="form-row">
+            <label for="" class="form-label">邮箱地址</label>
+            <span class="form-act">
+              <{if $userInfo.email}>
+              <{$userInfo.email}>
+              <input type="hidden" name="uname" value="<{$userInfo.email}>">
+              <{else}>
+                <input class="input-ln" type="text" id="uname" name="uname">
+              <{/if}>
+              <input type="hidden" name="type" value="reset">
+            </span>
+          </li>
+            <{/if}>
+
+
+            <li class="form-item last">
+              <label for="" class="form-label"></label>
+              <span class="form-act">
+                <a href="<{url action=topc_ctl_member@sendVcode}>" class="btn btn-simple action-get-vcode"><span><span>发送验证邮件</span></span></a>
+              </span>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  (function(){
+
+    $('.action-get-vcode').on('click', function(e) {
+      e.preventDefault();
+      var email = $('input[name=uname]').val();
+      var type = $('input[name=type]').val();
+      var verifyType = $('input[name=verifyType]').val();
+
+      if($(this).hasClass('disabled')) return false;
+      if($(this).text().indexOf('发送验证邮件(') > -1 ) return false;
+      if($(this).text().indexOf('重发验证邮件(') > -1 ) return false;
+      if(!email){
+        Message.error('请输入邮箱！');
+        return false;
+      }
+      sendVerify(this, 'uname=' + email + '&type=' + type + '&verifyType=' + verifyType);
+    })
+
+    function sendVerify(el, data) {
+      var url = el.href;
+      var textCont = $(el).find('span span');
+      $(el).addClass('disabled');
+      textCont.html($(el).text() + '(<i>0</i>)');
+      var cd = new countdown(textCont.find('i'), {
+        start: 5,
+          secondOnly: true,
+          callback: function(e) {
+            $(el).removeClass('disabled');
+            textCont.html('重发验证邮件');
+          }
+      });
+
+      $.post(url, data, function(rs) {
+        $(el).removeClass('disabled');
+        if(rs.error) {
+          cd.stop();
+          Message.error(rs.message);
+          textCont.html('重发验证邮件');
+        }else{
+          Message.success(rs.message);
+        }
+      });
+    }
+  })();
+</script>

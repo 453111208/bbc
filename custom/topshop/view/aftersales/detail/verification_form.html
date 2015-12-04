@@ -1,0 +1,48 @@
+<form action="<{url action=topshop_ctl_aftersales@verification}>" method="post" class="bg-white" data-validate-onsuccess="ajaxSubmit">
+  <input type='hidden' name='aftersales_bn' value="<{$info.aftersales_bn}>">
+  <div class="border-box">
+    <div class="form-group">
+      <span class="order-form-w1 pull-left"><em class="text-red">*</em>选择处理结果：</span>
+      <div class="col-xs-8 radio">
+        <label>
+          <input type="radio" name="check_result" checked id="" value="true">
+          接受处理
+        </label>
+        <label>
+          <input type="radio" name="check_result" id="" value="false">
+          不同意
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <span class="order-form-w1 pull-left"><em class="text-red">*</em>处理说明：</span>
+      <div class="col-xs-8">
+        <textarea class="form-control" name="shop_explanation"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="">
+    <span class="order-form-w1">&nbsp;</span>
+    <button type="submit" class="btn btn-primary">提交审核</button>
+  </div>
+
+</form>
+<script>
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        setTimeout(function(){location.href=rs.redirect;}, 800);
+      }
+    });
+  }
+</script>

@@ -1,0 +1,18 @@
+<div class="filter">
+  <div class="filter-title">
+    <span class="highlight"><{$screen.keyword}></span>-商品筛选
+  </div>
+  <div class="filter-list">
+
+    <{if $screen.brand}>
+    <!-- 品牌 -->
+    <{include file="topc/list/filter/brand.html"}>
+    <{/if}>
+
+    <{if $screen.props}>
+    <!-- 自然属性 -->
+    <{include file="topc/list/filter/props.html"}>
+    <{/if}>
+
+  </div>
+</div>

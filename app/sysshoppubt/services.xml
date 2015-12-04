@@ -1,0 +1,25 @@
+<services>
+    <service id="desktop_finder.sysshoppubt_mdl_sprodrelease">
+        <class>sysshoppubt_finder_sprodrelease</class>
+    </service>
+    <service id="desktop_finder.sysshoppubt_mdl_biddings">
+        <class>sysshoppubt_finder_biddings</class>
+    </service>
+    <service id="desktop_finder.sysshoppubt_mdl_tender">
+        <class>sysshoppubt_finder_tender</class>
+    </service>
+    <service id="desktop_finder.sysshoppubt_mdl_tenderule">
+        <class>sysshoppubt_finder_tenderule</class>
+    </service>
+      <service id="desktop_finder.sysshoppubt_mdl_consultation">
+        <class>sysshoppubt_finder_consultation</class>
+    </service>
+    <service id="desktop_finder.sysshoppubt_mdl_tradeorder">
+        <class>sysshoppubt_finder_tradeorder</class>
+    </service>
+    <service id="desktop_finder.sysshoppubt_mdl_tenderenter">
+        <class>sysshoppubt_finder_tenderenter</class>
+    </service> 
+</services>
+
+

@@ -1,0 +1,41 @@
+<form id="propForm" class="tableform" action="?app=syscase&ctl=admin_essaycat&act=save" method="POST">
+<{input type="hidden"  name="essaycat_id" id="essaycat_id" value=$essaycatInfo.essaycat_id }>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+          <th><em class="red">*</em><{t}>类型：<{/t}></th>
+          <td>
+          <{input type="text" name="essaycat" vtype="required"  value=$essaycatInfo.essaycat maxlength='20'}>
+          </td>
+      </tr>
+    </table>
+   </div>
+   <div class="table-action">
+    <{button label="保存"|t:'syscase' type="submit" class="btn-primary"}>
+  </div>
+</form>
+
+<script type="text/javascript">
+$('propForm').store('target',
+{
+  onComplete:function(rs)
+   {
+   if(!rs) return;
+   rs = JSON.decode(rs);
+   if(rs.success)
+     {
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog'))
+        {
+          var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update)
+            {
+             Dlg.update.retrieve('instance').initContent();
+            }
+          Dlg.close();
+        }
+     }
+   }
+});
+  
+</script>

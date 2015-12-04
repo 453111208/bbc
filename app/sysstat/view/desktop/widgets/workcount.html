@@ -1,0 +1,38 @@
+
+<div class="clearfix dashbd-row">
+
+    <h4><{t}>商户：<{/t}></h4>
+    <table cellpadding="0" cellspacing="0"><tr>
+        <td class="<{if $applayShop==0}> figure-zero<{/if}>">
+            <a href="?app=sysshop&ctl=admin_enterapply&act=index"><{t}>待审核商家<{/t}><span class="dashbd-figure">(<{$applayShop}>)</span></a>
+        </td>
+        <td class="<{if $applyActive==0}> figure-zero<{/if}>">
+            <a href="?app=sysshop&ctl=admin_enterapply&act=index&view=1"><{t}>待开启店铺<{/t}></a><span class="dashbd-figure">(<{$applyActive}>)
+        </span>
+        </td>
+    </tr></table>
+
+</div>
+
+
+<div class="clearfix dashbd-row">
+
+    <h4><{t}>订单：(最近7日)<{/t}></h4>
+    <table cellpadding="0" cellspacing="0"><tr>
+        <td class="<{if $newTrade==0}> figure-zero<{/if}>">
+            <a href="?app=systrade&ctl=admin_trade&act=index&view=1"><{t}>待支付<{/t}><span class="dashbd-figure">(<{$newTrade}>)</span></a>
+        </td>
+        <td class="<{if $newReadyTrade==0}> figure-zero<{/if}>">
+            <a href="?app=systrade&ctl=admin_trade&act=index&view=2"><{t}>待发货<{/t}></a><span class="dashbd-figure">(<{$newReadyTrade}>)
+        </span>
+        </td>
+        <td class="<{if $newAlreadyTrade==0}> figure-zero<{/if}>">
+            <a href="?app=systrade&ctl=admin_trade&act=index&view=3"><{t}>待收货<{/t}><span class="dashbd-figure">(<{$newAlreadyTrade}>)</span></a>
+        </td>
+        <td class="<{if $newCompleteTrade==0}> figure-zero<{/if}>">
+            <a href="?app=systrade&ctl=admin_trade&act=index&view=4"><{t}>已完成<{/t}></a><span class="dashbd-figure">(<{$newCompleteTrade}>)
+        </span>
+        </td>
+    </tr></table>
+
+</div>

@@ -1,0 +1,45 @@
+<div class="summary-outbox">
+  <ul class="summary">
+    <li>
+      <div class="dt del"><{if $activityDetail}><del>价  格：</del><{else}>价  格：<{/if}></div>
+      <div class="dd"><span class="<{if !$activityDetail}>price<{/if}> action-update-price"><{if $activityDetail}><del><{$item.price|cur}></del><{else}><{$item.price|cur}><{/if}></span></div>
+    </li>
+    <!-- 活动价，单品活动促销 -->
+    <{if $activityDetail}>
+
+    <li>
+      <div class="dt red"><{$activityDetail.activity_info.activity_tag}>价：</div>
+      <div class="dd"><span class="price"><{$activityDetail.activity_price|cur}></span></div>
+    </li>
+    <{/if}>
+    <li>
+      <div class="dt">销  量：</div><div class="dd"><em><{$item.sold_quantity|default:'0'}></em></div>
+    </li>
+
+    <{if $promotionDetail}>
+    <li>
+      <div class="dt">优惠信息：</div>
+      <div class="dd discount">
+        <div class="discount-in">
+          <div class="discount-tips">共<{$promotion_count}>条促销 <i class="icon icon-arrow-down-b"></i></div>
+          <ul>
+            <{foreach from=$promotionDetail item=promotionDetail}>
+            <li>
+              <span class="label label-danger"><{$promotionDetail.promotion_tag}></span>
+              <div class="discount-txt">
+                <a href="<{url action=topc_ctl_promotion@getPromotionItem promotion_id=$promotionDetail.promotion_id}>">
+                  <{$promotionDetail.promotion_name}>
+                </a>
+              </div>
+              <!-- <a href="#" title="<{$promotionDetail.promotion_desc}>">详情 &gt;</a> -->
+            </li>
+            <{/foreach}>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <{/if}>
+  </ul>
+  <div class="goods-qrcode">手机购买<br><img src="<{$item.qrCodeData}>"></div>
+</div>
+

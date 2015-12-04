@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+
+function get_cmd_gate_path()
+{
+    
+    $self = $_SERVER['argv'][0];
+    $cwd = getcwd();
+    $realpath = realpath($self);
+    chdir('/');
+    if(realpath($self)!=$realpath){
+        $self = $cwd.'/'.$self;
+    }
+    chdir($cwd);
+
+    while(is_link($self)){
+        $link = readlink($self);
+        if($link{0}=='/'){
+            $self = $link;
+        }else{
+            $self = dirname($self).'/'.$link;
+        }
+    }
+
+    $path_arr = explode('/',$self);
+
+    for($i=count($path_arr)-1;$i>-1;$i--){
+        if($path_arr[$i]=='.'){
+            unset($path_arr[$i]);
+        }elseif($path_arr[$i]=='..'){
+            unset($path_arr[$i--], $path_arr[$i]);
+        }
+    }
+    $self = implode('/',$path_arr);
+    return $self;
+}
+// todo: 因为没有container, 所以目前按照此方法处理 
+define('COMMAND_MODE', true);
+
+require __DIR__.'/../../bootstrap/start.php';
+
+$shell = new base_shell_loader;
+$shell->run();

@@ -1,0 +1,119 @@
+
+<div class="maxM-right">
+<div class="max-menber-title Bid">
+			<h2>企业评标列表</h2>
+			<a href="javascript:;">所有企业投标价格一览表</a>
+		</div>
+<input type="hidden" id="tender_id" value="<{$tender_id}>">
+		<div class="maxB-menber-list">
+			<dl>
+			<!----企业评标列表标题---->
+				<dt class="maxB-title">
+					<ul>
+						<li class="item1" style="width:200px;"><span>投标企业</span></li>
+						<li class="item2"><span>投标总价</span></li>
+						<li class="item3"><span>投标时间</span></li>
+						<li class="item6" style="width:114px"><span>平台警示</span></li>
+						<li class="item4"><span>一键评分</span></li>
+						<li class="item5"><span>操作</span></li>
+					</ul>
+				</dt>
+			<!----企业评标列表内容---->
+				<dd>
+				<{foreach from=$tenderget item=row key=key}>
+					<div class="maxB-List">	
+
+							<div class="maxB-company" style="width:200px;">
+								<a href="javascript:;" title="<{$row.tender_man}>"><label style="width:120px;"><{$row.tender_man}></label></a>
+								<!-- <a class="item-1"><img src="member/b1.png"></a>
+								<a class="item-2"><img src="member/b2.png"></a>
+								<a class="item-3"><img src="member/b3.png"></a> -->
+								<a href="<{url action=topc_ctl_shopcenter@index shop_id=$row.tender_man_id}>" class="max-into">进入展台</a>
+							</div>
+							<div class="maxB-Total" style="text-align: center">
+								<label class="max-del" ><{$row.price|cur}></label>
+							</div>
+							<div class="maxB-Time"><span><{$row.tender_time|cdate}></span></div>
+							<div class="maxB-Time" style="text-align:center;width:140px;height:60px;" title="<{$row.worncontent}>"><{$row.worncontent}></div>
+							<div class="maxB-Score">
+								<span class="max-c-Number">
+									<input type="text"  id="forever" value="<{$row.score}>" class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</span>
+							</div>
+							<div class="maxB-O-but">
+								<a href="javascript:;" class="maxD-but textfunc" id="<{$row.tender_man_id}>">投标详情</a>
+								<input type="hidden" id="<{$row.tender_id}>" class="<{$row.tender_man_id}>">
+								<{if $row.winornot==2}>
+								<a href="javascript:;" class="maxS-but win" id="winid_<{$key}>">设为中标</a>
+								<{else}>
+								<a href="javascript:;" class="maxS-but win" <{if $row.winornot==1}>style="background-color:#DDDDDD"<{/if}> id="winid_<{$key}>"><{if $row.winornot==1}>未中标<{else}>已中标<{/if}></a>
+								<{/if}>
+								 
+							</div>
+					</div>
+					<{/foreach}>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="max-pageview">
+			<span class="prev">上一页</span>
+			<{foreach from=$countnum item=row key=key}>
+			<a class="flip" href="<{url action=topc_ctl_member_shoppubt@select page=$row tender_id=$tender_id}>"><{$row}></a>
+			<{/foreach}>
+			<a class="next">下一页</a>
+		</div>
+
+	</div>
+<script type="text/javascript">
+	$(".textfunc").click(function(){
+		var i = $(this).attr("id");
+		$(this).prev()
+		$.dialog.ajax('<{url action=topc_ctl_member_shoppubt@detail tender_id=$tender_id $tender_man_id=}>'+i,{
+        width: 990,
+        height: 'auto',
+        title:'投标列表页',
+        asyncOptions:{
+        	type:'post',
+            callback: function() {
+            	 	this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                    	update: '.maxB-List',
+                        callback: $.proxy(function(rs) {
+                            this.hide();
+                            window.location.reload();
+                        }, this)
+                    });
+                }
+        	}
+    	});
+	});
+
+	$(".win").click(function(){
+		if(!$(this).hasClass("winover")){
+		var winid = $(this).attr("id");
+		var id = $(this).prev('input').attr("id");
+		var cls = $(this).prev('input').attr("class");
+		$.ajax('<{url action=topc_ctl_member_shoppubt@win}>',{
+        type:'post',
+        data:{"tender_man_id":cls,"tender_id":id},
+        error: function(rs) { alert("中标已设置，操作失败！");},
+        success: function(rs) {
+      		if(rs) {
+      			$(".win").html("未中标");
+        		$(".win").css({"background-color":"#DDDDDD"});
+        		$("#"+winid).css({"background-color":"#ff6600"});
+        		$("#"+winid).html("已中标");
+      			$(".win").addClass("winover");
+      		}
+    	}
+    	});
+	};
+	});
+</script>

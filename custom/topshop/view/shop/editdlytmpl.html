@@ -1,0 +1,389 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">
+  <{t}>新增运费模板<{/t}>
+  </div -->
+
+  <div class="panel-body">
+
+    <form  action="<{url action=topshop_ctl_shop_dlytmpl@savetmpl}>" method="post" class="form-horizontal" data-validate-onsuccess="ajaxSubmit" id="form_delivery" role="form">
+      <{if $tmplData.template_id}><input type="hidden" name="template_id" value=<{$tmplData.template_id}>><{/if}>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>模板名称<{/t}>：</label>
+        <div class="col-sm-3">
+          <input type="text" name="name" class="form-control" value="<{$tmplData.name}>" required maxlength="20">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>排序<{/t}>：</label>
+        <div class="col-sm-1">
+          <input type="text" name="order_sort" value="<{$tmplData.order_sort|default:0}>"  class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>快递公司<{/t}>：</label>
+        <div class="col-sm-3">
+          <select name="corp_id" class="form-control">
+            <{foreach from=$corpData item=item}>
+            <{if $tmplData.corp_id == $item.corp_id }>
+            <option value="<{$item.corp_id}>" selected><{$item.corp_name}></option>
+            <{else}>
+            <option value="<{$item.corp_id}>" ><{$item.corp_name}></option>
+            <{/if}>
+            <{/foreach}>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>物流保价<{/t}>：</label>
+        <label class="checkbox-inline pull-left">
+          <input type="checkbox" class="act-checkprotect" name="protect" value="1" <{if $tmplData.protect}> checked <{/if}> ><{t}>支持物流保价<{/t}>
+        </label>
+        <div id="protect_checke" style="display:none;">
+          <div class="form-inline pull-left">
+            <label class="control-label pull-left">&nbsp;&nbsp;&nbsp;费率：</label>
+            <div class="pull-left">
+              <input type="text" name="protect_rate" size="5" value="<{$tmplData.protect_rate}>" class="form-control">
+            </div>
+          </div>
+          <span class="pull-left express-word">%</span>
+          <div class="form-inline pull-left">
+            <label class="control-label pull-left">&nbsp;&nbsp;&nbsp;最低保价费：</label>
+            <div class="pull-left">
+              <input type="text" name="minprice" size="4" value="<{$tmplData.minprice}>" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>计价方式<{/t}>：</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="valuation" value="1" checked="checked"><{t}>按重量<{/t}>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>是否启用<{/t}>：</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="status" value="on" <{if $tmplData.status == 'on' || !$tmplData.status}> checked <{/if}> ><{t}>启用<{/t}>
+          </label>
+          <label>
+            <input type="radio" name="status" value="off" <{if $tmplData.status == 'off'}> checked <{/if}> ><{t}>禁用<{/t}>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">运费计算：</label>
+        <div class="col-sm-10">
+          <div class="well well-sm clearfix">
+            <div class="form-inline">
+              <div class="form-label">默认运费：</div>
+              <div class="clearfix">
+                重量（kg以内）：<input type="text" name="fee_conf[0][start_standard]" size="1" value="<{$tmplData.fee_conf.0.start_standard}>" class="form-control">　
+                运费（元）：<input type="text" name="fee_conf[0][start_fee]" size="1" value="<{$tmplData.fee_conf.0.start_fee}>" class="form-control">
+              </div>
+            </div>
+            <div class="form-inline">
+              <div class="form-label">增重运费：</div>
+              <div class="clearfix">
+                每增加（kg内）：<input type="text" size="1" name="fee_conf[0][add_standard]" value="<{$tmplData.fee_conf.0.add_standard}>" class="form-control">　
+                增加（元）：<input type="text" name="fee_conf[0][add_fee]" size="1" value="<{$tmplData.fee_conf.0.add_fee}>" class="form-control">
+              </div>
+            </div>
+            <!--p><input type="checkbox" name="" value=""> 全区域配送</p-->
+          </div>
+          <div class="well well-sm">
+            <h5>为指定地区城市设置运费</h5>
+            <table class="table table-bordered table-valign-middle bg-white">
+              <col class="col-md-3">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              <col class="col-md-2">
+              <thead>
+                <tr>
+                  <td><{t}>运送到<{/t}></td>
+                  <td><{t}>首重<{/t}>(kg)</td>
+                  <td><{t}>首费<{/t}>(元)</td>
+                  <td><{t}>续重<{/t}>(kg)</td>
+                  <td><{t}>续费<{/t}>(元)</td>
+                  <td><{t}>操作<{/t}></td>
+                </tr>
+              </thead>
+              <tbody id="data_grid">
+                <{foreach from=$tmplData.fee_conf item=row name=name key=key}>
+                <{if !$row.area }><{continue}><{/if}>
+                <tr>
+                  <td>
+                    <a href="#" class="pull-right action-edit" data-toggle="modal" data-target="#areaselect_modal">编辑</a><span><{$tmplData.fee_conf.$key.area|areaNameById}></span>
+                    <input type="hidden" name="fee_conf[<{$key}>][area]" required value="<{$tmplData.fee_conf.$key.area}>">
+                  </td>
+                  <td><input type="text" name="fee_conf[<{$key}>][start_standard]" size="2" required data-validate-required-message="请填写重量。" min="0" data-validate-group="td" value="<{$tmplData.fee_conf.$key.start_standard}>" class="form-control"></td>
+                  <td><input type="text" name="fee_conf[<{$key}>][start_fee]" size="2" required data-validate-required-message="请填写运费。" min="0" data-validate-group="td" value="<{$tmplData.fee_conf.$key.start_fee}>" class="form-control"></td>
+                  <td><input type="text" name="fee_conf[<{$key}>][add_standard]" size="2" value="<{$tmplData.fee_conf.$key.add_standard}>" class="form-control"></td>
+                  <td><input type="text" name="fee_conf[<{$key}>][add_fee]" size="2" value="<{$tmplData.fee_conf.$key.add_fee}>" class="form-control"></td>
+                  <td><a href="javascript:void(0);" class="action-del">删除</a></td>
+                </tr>
+                <{/foreach}>
+              </tbody>
+            </table>
+            <button class="btn btn-default act-addrule" data-toggle="modal" data-target="#areaselect_modal"><i class="fa fa-plus"></i> <{t}>添加地区<{/t}></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">保存并返回</button>
+    </div>
+    <a href="javascript:void(0);" class="pull-left btn-cancel">取消</a>
+  </div>
+</form>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="areaselect_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog modal-lg">
+    <div class="panel-heading clearfix">
+      选择区域
+      <div class="pull-right">
+        <button type="button" class="btn btn-primary action-save">保存</button>
+        <button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+    <div class="panel-body" id="area_list">
+    </div>
+  </div>
+</div>
+<textarea class="sr-only" id="addrule_template">
+  <tr>
+    <td><a href="javascript:void(0);" class="pull-right action-edit" data-toggle="modal" data-target="#areaselect_modal">编辑</a><span>{areas}</span><input type="hidden" name="fee_conf[{key}][area]" value="{values}"></td>
+    <td><input type="text" name="fee_conf[{key}][start_standard]" size="1" min="0" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][start_fee]" size="1" min="0" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][add_standard]" size="1" value="" class="form-control"></td>
+    <td><input type="text" name="fee_conf[{key}][add_fee]" size="1" value="" class="form-control"></td>
+    <td><a href="javascript:void(0);" class="action-del">删除</a></td>
+  </tr>
+</textarea>
+<textarea class="sr-only" id="addarea_template">
+  <dl class="row">
+    <dt class="col-md-2"><label for="{id}"><input type="checkbox" name="{name}" id="{id}" value="{id}"> {value}</label></dt>
+    <dd class="row col-md-10">
+    <div class="col-md-3">
+      <label for="{id}"><input type="checkbox" name="{name}" id="{id}" value="{id}"> {value}</label> <span class="caret"></span>
+    </div>
+    </dd>
+  </dl>
+</textarea>
+<{script app="topshop" src="jquery.jsonlist.js"}>
+<script>
+
+$('#form_delivery').Validator({
+    fields: {
+        'fee_conf[0][start_standard]': {
+            group: '.clearfix',
+            validators: {
+                required: {
+                    message: '请填写重量。'
+                },
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][start_fee]': {
+            group: '.clearfix',
+            validators: {
+                required: {
+                    message: '请填写运费。'
+                },
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][add_standard]': {
+            group: '.clearfix',
+            validators: {
+                gt: {
+                    value: 0
+                }
+            }
+        },
+        'fee_conf[0][add_fee]': {
+            group: '.clearfix',
+            validators: {
+                gt: {
+                    value: 0
+                }
+            }
+        }
+    }
+});
+
+var tpl = $('#addrule_template').val();
+var tbody = $('#data_grid');
+var area_list = $('#area_list');
+var input = tbody.find('tr:last input[type=text]');
+var dialog = $('#areaselect_modal');
+var key;
+if(input.size()) {
+    key = input.attr('name').match(/^fee_conf\[(\d*)\].*/)[1] || 0;
+}
+else {
+    key = 0;
+}
+
+$('.act-addrule').on('click', function(e) {
+    e.preventDefault();
+    var self = area_list.data('JSONList');
+    if(!self) return;
+
+    if(self.changeStatus(self.data, getDisabled()).isDisabled()) {
+        e.stopPropagation();
+        return $('#messagebox').message('地区已经添加完毕。');
+    }
+
+    self.rebuild(null, getChecked());
+});
+
+tbody.on('click', '.action-edit', function(e) {
+    $(this).parents('td').addClass('editing');
+    var self = area_list.data('JSONList');
+    self && self.rebuild(getDisabled(this), getChecked(this));
+})
+.on('click', '.action-del', function(e) {
+    var parent = $(this).parents('tr').eq(0);
+    $('#form_delivery')
+        .Validator('removeField', parent.find('.form-control').eq(0))
+        .Validator('removeField', parent.find('.form-control').eq(1));
+    parent.remove();
+});
+
+function getChecked(element) {
+    var chk;
+    if(element) {
+        chk = $(element).nextAll('input[type=hidden]').val().split(',');
+    }
+    else {
+        chk = [];
+    }
+    // console.log(chk);
+    return chk;
+}
+function getDisabled(element) {
+    var dis = [];
+    tbody.find('tr').each(function (i) {
+        var disid;
+        if(element) {
+            var parent = $(element).parents('tr');
+            if(parent[0] == this) {
+                return;
+            }
+        }
+        disid = $(this).find('input[type=hidden]').val();
+        if(disid) {
+            dis = dis.concat(disid.split(','));
+        }
+    });
+    // console.log(dis);
+    return dis;
+}
+
+area_list.jsonList({
+    url: '<{$env.statics_host_url}>/ectools/statics/scripts/region.json',
+    type: '',
+    items: 'children',
+    label: 'value',
+    name: 'areas',
+    success: function(self) {
+        dialog.on('click', '.action-save', function(e){
+            if(!self.container.find('input[type=checkbox]:checked')[0]) {
+                return $('#messagebox').message('请至少选择一个地区。');
+            }
+
+            var selected = self.getChecked(['value', 'id']);
+            var value = selected[0].join() || '未选择地区';
+            var id = selected[1].join();
+
+            if(tbody.find('.editing').length) {
+                tbody.find('.editing').removeClass('editing').find('span').html(value).next().val(id);
+            }
+            else {
+                key++;
+
+                var rule = {
+                    key: key,
+                    areas: value,
+                    values: id
+                };
+                var row = $(substitute(tpl, rule));
+
+                row.appendTo(tbody);
+
+                $('#form_delivery')
+                    .Validator('addField', 'fee_conf[' + key + '][start_standard]', {
+                        group: 'td',
+                        validators: {
+                            required: {
+                                message: '请填写重量。'
+                            },
+                            gt: {
+                                value: 0
+                            }
+                        }
+                    })
+                    .Validator('addField', 'fee_conf[' + key + '][start_fee]', {
+                        group: 'td',
+                        validators: {
+                            required: {
+                                message: '请填写运费。'
+                            },
+                            gt: {
+                                value: 0
+                            }
+                        }
+                    });
+            }
+
+            dialog.modal('hide');
+        })
+        .on('click', '.action-cancel', function(e) {
+            tbody.find('.editing').removeClass('editing');
+        });
+    }
+});
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+
+$('.act-checkprotect').on('change', function(e) {
+  if(this.checked){
+    $("#protect_checke").css('display','');
+  }
+  else{
+    $("#protect_checke").css('display','none');
+  }
+}).trigger('change');
+
+</script>

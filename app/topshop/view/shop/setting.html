@@ -1,0 +1,79 @@
+<form  action="<{url action=topshop_ctl_shop_setting@saveSetting}>" method="post" class="form-horizontal" data-validate-onsuccess="ajaxSubmit" role="form">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <{if $shop.shop_id}><input type="hidden" name="shop_id" value="<{$shop.shop_id}>"><{/if}>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>店铺名称<{/t}>：</label>
+        <div class="col-sm-3">
+          <label class="control-label"><a href="<{url action=topc_ctl_shopcenter@index shop_id=$shop.shop_id}>" target="_blank"><{t}><{$shop.shop_id|shopname}><{/t}></a></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>店铺LOGO<{/t}>：</label>
+        <div class="col-sm-5">
+          <a class="select-image" data-toggle="modal" href="<{url action=topshop_ctl_shop_image@loadImageModal}>" data-target="#gallery_modal">
+            <input type="hidden" name="shop_logo" value="<{$shop.shop_logo}>">
+            <div class="img-put">
+              <img src="<{$shop.shop_logo}>">
+              <i class="glyphicon glyphicon-picture"></i>
+            </div>
+          </a>
+          <span class="help-block">LOGO尺寸标准：100*100 px。</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>店铺描述<{/t}>：</label>
+        <div class="col-sm-3">
+          <textarea class="form-control" name="shop_descript" style="margin: 0px; height: 138px; width: 594px;"><{$shop.shop_descript}></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>QQ<{/t}>：</label>
+        <div class="col-sm-8">
+          <label class="control-label">
+            <input type=text name='qq' value=<{$shop.qq}> > <a target="_blank" class="block" href="http://shang.qq.com/v3/widget.html">初次使用需要激活QQ推广</a>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"><{t}>旺旺<{/t}>：</label>
+        <div class="col-sm-3">
+          <label class="control-label">
+            <input type=text name='wangwang' value=<{$shop.wangwang}> >
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-2">
+      <button type="submit" class="btn btn-primary btn-lg btn-block">保存</button>
+    </div>
+  </div>
+</form>
+
+<script>
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        setTimeout(function(){location.href=rs.redirect;}, 800);
+      }
+    });
+  }
+</script>
+<script>
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-cog");
+    }
+  );
+</script>

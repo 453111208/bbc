@@ -1,0 +1,31 @@
+<div style="text-align:right;padding:3px 18px"><{help docid="102" type="link"}><{t}>点击查看帮助<{/t}><{/help}></div>
+<h3 class="head-title"><{t}>商品图片配置 <{/t}></h3>
+<div class="tableform notice"><{t}>一张商品图片上传后，会自动生成三张图片，分别出现在商店的三类页面，如下：<{/t}><br>1：<{t}>显示在商品列表页、首页商品版块内的图片，我们称为“列表页缩略图”；<{/t}><br>2：<{t}>显示在商品详细页内的图片，我们称为“商品页详细图”；<{/t}><br>3：<{t}>显示在商品相册页内的图片，我们称为“商品相册图”；<{/t}><br /><br /><{t}>注意：如果尺寸修改过大，可能导致前台页面显示不正常!<{/t}></div>
+
+<form method="post" action="<{$this_url}>&act=imageset" id="imageset" class="tableform">
+  <{foreach from=$allsize key=size item=item}>
+  <h4><{t}><{$item.title}>设定<{/t}></h4>
+  <div class="division">
+    <table class="<{if $item.wm_type=='none'}>watermark-none<{elseif $item.wm_type=='image'}>watermark-image<{elseif $item.wm_type=='text'}>watermark-text<{/if}>" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t}>默认图：<{/t}></th>
+        <td>
+          <div class="dft_image">
+            <{assign var="image_id" value=$image_set.$size.default_image|default:$item.default_image}>
+            <span class="lnk"><{input type="image" name="pic[{$size}][default_image]" value=$image_id width=$minsize['width'] height=$minsize['height']}></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>尺寸：<{/t}></th>
+        <td><{t}>宽 <{/t}><{input id="pic[{$size}][width]" type="number" name="pic[{$size}][width]" value=$image_set.$size.width|default:$item.width size="2"}>&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;<{t}>高<{/t}> <{input id="pic[{$size}][height]" type="number" name="pic[{$size}][height]" value=$image_set.$size.height|default:$item.height size="2"}>
+        </td>
+      </tr>
+    </table>
+  </div>
+<{/foreach}>
+<div class="table-action">
+  <{button label="保存"|t:'image' class="btn-primary" type="submit"}>
+</div>
+</form>
+

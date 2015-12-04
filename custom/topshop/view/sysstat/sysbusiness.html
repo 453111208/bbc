@@ -1,0 +1,362 @@
+<div class="report">
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="report-filter bg-info">
+        <div class="pull-left">
+          <span class="report-filter-1">
+            <a href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype='yesterday'}>" <{if $sendtype=='yesterday'|| $sendtype==''}>class="active"<{/if}> >昨日</a>
+            <a href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype='beforday'}>" <{if $sendtype=='beforday'}>class="active"<{/if}>>前日</a>
+            <a href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype='week'}>" <{if $sendtype=='week'}>class="active"<{/if}>>最近7天</a>
+            <a href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype='month'}>" <{if $sendtype=='month'}>class="active"<{/if}>>最近30天</a>
+          </span>
+
+          <div class="date-picker" id="start">
+            <div class="input-group input-group-sm">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right reservation" name="starttime" id="starttime" <{if $sendtype=='selecttime'}> value="<{$pagetime.before}>"<{else}> value="<{$pagetime}>"<{/if}>>
+            </div>
+          </div>
+          <button type="button" class="btn btn-default btn-sm" onclick ="selecttime()">查询</button>
+          <label><input type="checkbox" id="checkbox" <{if $compare=="compare"}>checked<{/if}> name="compare" id="compare" value="compare">对比</label>
+          <div class="date-picker" id="end" <{if $compare!="compare"}>style="display:none"<{/if}>>
+            <div class="input-group input-group-sm">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right reservation" name="endtime" id="endtime" <{if $sendtype=='selecttime'}> value="<{$pagetime.after}>"<{/if}>>
+
+            </div>
+          </div>
+          <button id ='bu' <{if $compare!="compare"}>style="display:none"<{/if}> type="button" class="btn btn-default btn-sm" onclick ="businessTrade()">查询</button>
+          <!-- <span class="report-filter-2">
+            <a href="#" class="active">按时</a>
+            <a href="#">按日</a>
+            <a href="#">按周</a>
+            <a href="#">按月</a>
+          </span> -->
+        </div>
+        <!-- <a href="#" class="pull-right"><i class="icon icon-arrow-end-a"></i>下载报表</a> -->
+      </div>
+      <div class="report-deal-total">
+        <{if $sendtype=='selecttime'}>
+       
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>新增订单数量(笔)</div>
+            <h3><{$sysstat.before.new_trade|default:0}></h3>
+            <p>对比<{$sysstat.after.new_trade|default:0}></p>
+          </div>
+        </div>
+       
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待付款订单数量(笔)</div>
+            <h3><{$sysstat.before.ready_trade|default:0}></h3>
+            <p>对比<{$sysstat.after.ready_trade|default:0}></p>
+          </div>
+        </div>
+
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待发货订单数量(笔)</div>
+            <h3><{$sysstat.before.ready_send_trade|cur}></h3>
+            <p>对比<{$sysstat.after.ready_send_trade|cur}></p>
+          </div>
+        </div>
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待收货订单数量(笔)</div>
+            <h3><{$sysstat.before.already_send_trade|cur}></h3>
+            <p>对比<{$sysstat.after.already_send_trade|cur}></p>
+          </div>
+        </div>
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>已完成订单数量(笔)</div>
+            <h3><{$sysstat.before.complete_trade|cur}></h3>
+            <p>对比<{$sysstat.after.complete_trade|cur}></p>
+          </div>
+        </div>
+
+        <{else}>
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>新增订单数量(笔)</div>
+            <h3><{$sysstat.new_trade|default:0}></h3>
+
+          </div>
+        </div>
+       
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待付款订单数量(笔)</div>
+            <h3><{$sysstat.ready_trade|default:0}></h3>
+
+          </div>
+        </div>
+
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待发货订单数量(笔)</div>
+            <h3><{$sysstat.ready_send_trade|default:0}></h3>
+          </div>
+        </div>
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>待收货订单数量(笔)</div>
+            <h3><{$sysstat.already_send_trade|default:0}></h3>
+          </div>
+        </div>
+        <div class="small-box bg-gray col-lg-2">
+          <div class="inner">
+            <div>已完成订单数量(笔)</div>
+            <h3><{$sysstat.complete_trade|default:0}></h3>
+          </div>
+        </div>
+
+        <{/if}>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="checkbox">
+            <label>
+              <input type="radio" name="radio" id="trade" value="new_trade" checked onchange="businessTrade()">新增订单数量
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="ready_trade" onchange="businessTrade()">待付款订单数量
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="ready_send_trade" onchange="businessTrade()">待发货订单数量
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="already_send_trade" onchange="businessTrade()">待收货订单数量
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="complete_trade" onchange="businessTrade()">已完成订单数量
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="cancle_trade" onchange="businessTrade()">已取消订单数量
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="demo-container">
+            <div id="placeholder" class="demo-placeholder" style="width:100%;height:300px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="report-title">业务数据</div>
+      <table class="table table-primary table-bordered text-center">
+        <thead>
+          <tr>
+            <td></td>
+            <td>日期</td>
+            <td>新增订单数量</td>
+            <td>待付款订单数量</td>
+            <td>待发货订单数量</td>
+            <td>待收货订单数量</td>
+            <td>已完成订单数量</td>
+            <td>已取消订单数量</td>
+        </thead>
+        <tbody>
+         <{if $sysTradeData && $sendtype!='selecttime'}>
+          <{foreach from=$sysTradeData item=sysdataday key=name}>
+          <tr>
+            <td> <{($pages-1)*$limits+$name+1}></td>
+            <td>
+              <div><{$sysdataday.createtime|date_format:'%Y/%m/%d'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.new_trade|default:'-'}></div> 
+            </td>
+            <td>
+              <div><{$sysdataday.ready_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.ready_send_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.already_send_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.complete_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.cancle_trade|default:'-'}></div>
+            </td>
+          </tr>
+          <{/foreach}>
+          <{elseif $sendtype=='selecttime'}>
+          <{foreach from=$sysTradeData item=sysdataday key=name}>
+          <tr>
+            <td> <{($pages-1)*$limits+$name+1}></td>
+            <td>
+              <div><{$sysdataday.before.createtime|date_format:'%Y/%m/%d'}></div>
+              <div>
+                  <{if $sysdataday.mid.createtime}>
+                    <{$sysdataday.mid.createtime|date_format:'%Y/%m/%d'}>
+                    <{else}>
+                    -
+                  <{/if}>
+              </div>
+              <div>变化率</div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.new_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.new_trade|default:'-'}></div>
+              <div><{$sysdataday.last.new_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.ready_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.ready_trade|default:'-'}></div>
+              <div><{$sysdataday.last.ready_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.ready_send_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.ready_send_trade|default:'-'}></div>
+              <div><{$sysdataday.last.ready_send_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.already_send_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.already_send_trade|default:'-'}></div>
+              <div><{$sysdataday.last.already_send_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.complete_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.complete_trade|default:'-'}></div>
+              <div><{$sysdataday.last.complete_trade|default:'-'}></div>
+            </td>
+            <td>
+              <div><{$sysdataday.before.cancle_trade|default:'-'}></div>
+              <div><{$sysdataday.mid.cancle_trade|default:'-'}></div>
+              <div><{$sysdataday.last.cancle_trade|default:'-'}></div>
+            </td>
+
+          </tr>
+          <{/foreach}>
+          <{else}>
+           <tr>
+            <td algin='center' colspan='11'>
+              <p class="text-muted well no-shadow text-center">暂无数据</p>
+            </td>
+           </tr>
+          <{/if}>
+        </tbody>
+      </table>
+      <div class="page-bar bg-gray"> 
+        <{pagers data=$pagers}>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+<script type="text/javascript">
+$('.report input[type=radio]:checked').trigger('change');
+$('.reservation').daterangepicker({
+  format: 'YYYY/MM/DD',
+  opens: 'right'
+});
+
+function sysstatment(rs)
+{
+    var options = {
+      series: {
+        lines: { show: true},
+        points: { show: true },
+        shadowSize:0
+      },
+      clickable: true,
+      hoverable: true,
+      xaxis:{
+        //tickSize:1,
+        minTickSize: [1, 'day'],
+        mode: 'time',
+        timeformat: "%Y/%m/%d"
+      }
+
+    };
+    $.plot("#placeholder", rs, options);
+}
+
+function selecttime()
+{
+  var start=$("#starttime").val();
+  if(start)
+  {
+     var type = $(":radio:checked").val();
+     window.location.href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype=select }>&starttime="+start;
+  }else
+  {
+    $('#messagebox').message("时间不能为空");
+    return false;
+  }
+}
+
+
+function businessTrade()
+{
+
+  var type = $(":radio:checked").val();
+  var sendtype = "<{$sendtype}>";
+  var compare = $('input[name="compare"]:checked').val();
+  var start=$("#starttime").val();
+
+  var url = "<{url action=topshop_ctl_sysstat_sysbusiness@ajaxTrade}>";
+  if ($("#checkbox").is(":checked")){
+          var start=$("#starttime").val();
+          var end=$("#endtime").val();
+          if(!end)
+          {
+            return false;
+          }
+          var sendtype='selecttime';
+      }
+
+  var datainfo = "trade="+type+"&sendtype="+sendtype+"&compare="+compare+"&starttime="+start+"&endtime="+end;
+  $.ajax({
+    type:'POST',
+    url:url,
+    data:datainfo,
+    success:function(rs){
+
+      sysstatment(rs);
+    }
+  });
+
+}
+
+$(function(){
+    $("#checkbox").change(function() {
+      if ($("#checkbox").is(":checked")){
+          $("#end").show();
+          $("#bu").show();
+      }else{
+          $("#end").hide();
+          $("#bu").hide();
+      }
+    });
+   
+});
+
+ $("#bu").click(function() {
+      if ($("#starttime").val()){
+          var starttimes=$("#starttime").val();
+          var endtimes=$("#endtime").val();
+          var compare = $("#checkbox").val()
+          if(!endtimes){return false;}
+          window.location.href="<{url action=topshop_ctl_sysstat_sysbusiness@index sendtype=selecttime }>&starttime="+starttimes+"&endtime="+endtimes+"&compare="+compare;
+      }else{
+          var type = $(":radio:checked").val();
+          var sendtype = "yesterday";
+          window.location.href="<{url action=topshop_ctl_sysstat_sysbusiness@index}>?type="+type+"&sendtype="+sendtype;
+      }
+    });
+
+</script>

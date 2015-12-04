@@ -1,0 +1,176 @@
+<div class="find-two">
+  <{if $send_status == 'true'}>
+  <!-- <div class="int">
+    <span>选择您的验证方式</span>
+  </div> -->
+  <form action="<{url action=topm_ctl_passport@findPwdThree}>
+    " method="post" id="ajaxForm" class="form-tip-horizontal">
+    <input type="hidden" name="type" value="forgot">
+    <ul>
+      <{if $data.email || $data.mobile}>
+      <li class="form-row choose">
+        <label for="" class="form-label">选择验证方式</label>
+        <span class="form-act">
+          <{if $data.mobile}>
+          <input type="radio" name="uname" id="for_mobile" class="action-account" checked data-sendtype="mobile" value="<{$data.mobile}>">
+          <label for="for_mobile">手机验证</label>
+          <{/if}>
+          <{if $data.email}>
+          <input type="radio" name="uname" id="for_email" class="action-account" data-sendtype="email" value="<{$data.email}>" <{if !$data.mobile}>checked<{/if}>>
+          <label for="for_email">邮箱验证</label>
+          <{/if}>
+        </span>
+      </li>
+      <{/if}>
+
+      <{if $data.mobile && $data.email}>
+      <li class="form-row mobile">
+        <label for="" class="form-label">手机号</label>
+        <span><{$data.mobile}></span>
+        <a href="<{url action=topm_ctl_passport@sendVcode}>" class="ui-btn-warning action-get-vcode">获取验证码</a>
+      </li>
+      <li class="form-row code mobile">
+        <label for="" class="form-label">验证码</label>
+        <input class="input-ln" type="text" name="vcode" id="" required>
+      </li>
+      <li class="form-row commit mobile">
+        <button type="submit" class="btn ui-btn-warning action-next" rel="_request">下一步</button>
+      </li>
+
+      <li class="form-row email" style="display:none">
+        <label for="" class="form-label">邮箱地址</label>
+        <span><{$data.email}></span>
+      </li>
+      <li class="form-row email" style="display:none">
+        <a href="<{url action=topm_ctl_passport@sendVcode}>" class="ui-btn-warning action-get-email">发送验证邮件</a>
+      </li>
+      <{elseif $data.mobile}>
+      <li class="form-row mobile">
+        <label for="" class="form-label">手机号</label>
+        <span><{$data.mobile}></span>
+        <a href="<{url action=topm_ctl_passport@sendVcode}>" class="ui-btn-warning action-get-vcode">获取验证码</a>
+      </li>
+      <li class="form-row code mobile">
+        <label for="" class="form-label">验证码</label>
+        <input class="input-ln" type="text" name="vcode" id="" required>
+      </li>
+      <li class="form-row commit mobile">
+        <button type="submit" class="btn ui-btn-warning action-next" rel="_request">下一步</button>
+      </li>
+      <{elseif $data.email}>
+      <li class="form-row email">
+        <label for="" class="form-label"><span><span>邮箱地址</span></span></label>
+        <span><{$data.email}></span>
+      </li>
+      <li class="form-row">
+        <a href="<{url action=topm_ctl_passport@sendVcode}>" class="ui-btn-warning action-get-email">发送验证邮件</a>
+      </li>
+      <{/if}>
+    </ul>
+  </form>
+  <{else}>
+  <div class="fail-info">
+    <i class="icon icon-information-a" data-icon="\2887"></i>
+    由于您并未验证手机或者邮箱，无法自助找回密码，请联系网站客服！
+  </div>
+  <{/if}>
+</div>
+<script>
+  (function(){
+
+    var form = $('#ajaxForm');
+    var account = form.find('.action-account');
+
+    form.find('button[type=submit]').data('ajaxConfig', {
+      "update": "#forgot_pass",
+      callback: function(rs){
+        updateStep(2);
+      }
+    });
+
+    $('ul .choose #for_mobile').click(function(){
+      $('ul li.mobile').show();
+      $('ul li.email').hide();
+    });
+
+    $('ul .choose #for_email').click(function(){
+      $('ul li.email').show();
+      $('ul li.mobile').hide();
+    });
+
+    $(document).on('click', '.action-get-vcode', function(e) {
+      e.preventDefault();
+      var mobile;
+      if (account.attr('type') == 'radio') {
+        mobile = account.filter(':checked');
+      }
+      var type = form.find('input[name=type]').val();
+      if($(this).hasClass('disabled')) return false;
+      sendVerify(this, mobile.attr('name') + '=' + mobile.val() + '&type=' + type);
+    })
+    .on('click', '.action-get-email', function(e) {
+      e.preventDefault();
+      var email;
+      if (account.attr('type') == 'radio') {
+        email = account.filter(':checked');
+      }
+      var type = form.find('input[name=type]').val();
+      if($(this).hasClass('disabled')) return false;
+      sendEmailVerify(this, email.attr('name') + '=' + email.val() + '&type=' + type);
+    });
+
+    function sendVerify(el, data) {
+      var url = el.href;
+      var textCont = $(el);
+      $(el).addClass('disabled');
+      textCont.html($(el).text() + '(<i>0</i>)');
+      var cd = new countdown(textCont.find('i'), {
+        start: 120,
+          secondOnly: true,
+          callback: function(e) {
+            $(el).removeClass('disabled');
+            textCont.html('重发验证码');
+          }
+      });
+      $.post(url, data, function(rs) {
+        if(rs.error) {
+          cd.stop();
+          Message.error(rs.message);
+          $(el).removeClass('disabled');
+          textCont.html('重发验证码');
+        }
+        else if(rs.redirect) {
+          Message.success(rs.message, function() {
+            location.href = rs.redirect;
+          });
+        }
+      });
+    }
+
+    function sendEmailVerify(el, data) {
+      var url = el.href;
+      var textCont = $(el);
+      $(el).addClass('disabled');
+      textCont.html($(el).text() + '(<i>0</i>)');
+      var cd = new countdown(textCont.find('i'), {
+        start: 30,
+          secondOnly: true,
+          callback: function(e) {
+            $(el).removeClass('disabled');
+            textCont.html('重发验证码');
+          }
+      });
+      $.post(url, data, function(rs) {
+        $(el).removeClass('disabled');
+        if(rs.error) {
+          Message.error(rs.message);
+          textCont.html('重发验证邮件');
+        }else{
+          Message.success(rs.message);
+        }
+      });
+    }
+
+  })();
+</script>
+

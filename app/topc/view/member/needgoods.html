@@ -1,0 +1,61 @@
+<div class="col-lg-13 box">
+
+    <a class="btn btn-simple btn-sm act-mergepay " href="<{url action=topc_ctl_member@editGoods}>" style="cursor: pointer"><span>增加</span></a>
+</div>
+<{if !$goosList}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">没有发布供应信息</span></span>
+    </div>
+     <{else}>
+      <span class="num">企业可以发布100条，已发布<em><{$goodCounts}></em>条，剩余<{100-$goodCounts}>条</span>
+      <table class="item-table table-goods">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+          </colgroup>
+        <thead>
+            <tr>
+              <td>查看</td>
+              <td>发布人</td>
+              <td>发布内容</td>
+              <td>发布状态</td>
+              <td>发布时间</td>
+              <td>说明</td>
+              <td>操作</td>
+              <td>操作</td>
+            </tr>
+        </thead>
+         <{foreach from=$goosList item=goods}>
+            <tbody>
+                <tr>
+                  <td></td>
+                  <td><{$goods.user_id}></td>
+                  <td><{$goods.product_intro}></td>
+                  <td>
+                    <{if $goods.show_stats==false}>
+                      未上架
+                      <{else}>
+                      已上架
+                      <{/if}>
+                  </td>
+                  <td><{$goods.create_time|cdate}></td>
+                  <td></td>
+                  <td><{if $goods.show_stats == false}>
+                              <button>上架</button>
+                              <{else}>
+                              <button>下架</button>
+                              <{/if}>
+                  </td>
+                  
+                  <td><button>编辑</button></td>
+                </tr>
+            </tbody>
+          <{/foreach}>
+      </table>
+        <{/if}>

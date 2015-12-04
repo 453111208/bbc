@@ -1,0 +1,37 @@
+<div class="orderInfo tableform" id="comment_gask_<{$comment.comment_id}>" >
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动名称：<{/t}></h3></th><td><{t}><{$activity_name}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动标签：<{/t}></h3></th><td><{t}><{$activity_tag}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>创建时间：<{/t}></h3></th><td><{t}><{$create_time|cdate}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>每人限购数量：<{/t}></h3></th><td><{t}><{$buy_limit}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>店铺商品限量：<{/t}></h3></th><td><{t}><{$enroll_limit}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动发布时间：<{/t}></h3></th><td><{t}><{$release_time|cdate}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>店铺类型：<{/t}></h3></th><td><{t}><{foreach from=$shoptype item=name key=type}><{$name}>&nbsp;&nbsp;&nbsp;<{/foreach}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>适用类目：<{/t}></h3></th><td colspan="3"><{t}><{foreach from=$limit_cat item=catname key=id}><{$catname}>&nbsp;&nbsp;&nbsp;<{/foreach}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>商品折扣范围：<{/t}></h3></th><td><{t}><{$discount_min}>% ~ <{$discount_max}>%<{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>是否为主推活动：<{/t}></h3></th><td colspan="3"><{t}><{if $mainpush}>已主推<{else}>未主推<{/if}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动开始时间：<{/t}></h3></th><td ><{t}><{$start_time|cdate}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动结束时间：<{/t}></h3></th><td colspan="3"><{t}><{$end_time|cdate}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>申请开始时间：<{/t}></h3></th><td colspan="1"><{t}><{$apply_begin_time|cdate}><{/t}></td>
+      <th><h3 style="padding:0 0 0 15px"><{t}>申请结束时间：<{/t}></h3></th><td colspan="3"><{t}><{$apply_end_time|cdate}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动描述：<{/t}></h3></th><td colspan="4"><{t}><{$activity_desc}><{/t}></td>
+      <td><{t}><{/t}></td>
+    </tr>
+    <tr>
+      <th><h3 style="padding:0 0 0 15px"><{t}>活动轮播图片：<{/t}></h3></th><td colspan="5"><{t}><{foreach from=$slide_images item=url}><img src="<{$url|storager:"s"}>" width="88" height="88"><{/foreach}><{/t}></td>
+    </tr>
+  </table>
+</div>

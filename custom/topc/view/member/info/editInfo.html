@@ -1,0 +1,104 @@
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="images/test/demo.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg-editor.js"></script>
+    <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="images/css/wysiwyg-editor.css" />
+</head>
+<form action="<{url action=topc_ctl_member_info@saveInfo}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+    <div class="maxM-right">
+        <div class="col-lg-12 box  main_page" style="margin-left: 0px">
+        <div class="max-menber-title">
+            <h2>资讯信息</h2>
+        </div>
+        <input type="hidden"  name="article_id"/>
+        <div class="max-menber-mod">
+        <ul class="editGoods">
+            <li class="form-row">
+                <span><font color="red">*</font><{t}>资讯标题：<{/t}></span>
+                <{input type="text" name="title" required="true" vtype="required" style="width:80%;"}>
+            </li>
+            <li class="form-row">
+                <span><{t}>副标题：<{/t}></span>
+                <{input type="textarea" name="subhead" style="width:80%;" cols="50" rows="5"}>
+            </li>
+<!--            <li class="form-row">
+          	<span><{t}>客户端：<{/t}></span>
+          	<input type="radio" name="article[platform]" value="pc">电脑端
+                <input type="radio" name="article[platform]" value="wap">移动端
+            </li>-->
+            <li class="form-row">
+                <span><{t}>资讯logo：<{/t}></span>
+                <span class="form-act">
+                    <div class="images-uploader">
+                      <div class="handle img-thumbnail action-upload">
+                        <input type="file" name="article_logo[]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>">
+                        <span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+                      </div>
+                    </div>
+                </span>
+                <span style="margin-left: -90px;width: 450px"><{t}>建议图片尺寸108px * 108px,提高用户体验，增强品牌宣传效果。<{/t}></span>
+            </li>
+            <li class="form-row">
+                <span style="width: 90px"><font color="red">*</font><{t}>所属资讯类目：<{/t}></span>
+                <select name="node_id" vtype='required' class="x-input">
+                    <{if $article.node_id < 1}>
+                    <option value="" ><{t}>请选择所属类目<{/t}></option>
+                    <{/if}>
+                    <{foreach from=$selectmaps item=maps}>
+                    <option class="optionlevels optionlevel_<{math equation='x' x=$maps.step|default:1}>
+                    " value="<{$maps.node_id}>"  depth="<{$maps.step}>" parent_id="<{$maps.parent_id}>" 
+                    style="<{if $maps.node_name=='资讯中心'}>display:none;<{else}>display:block;<{/if}>"
+                    <{if $maps.node_id==$article.node_id}>selected<{/if}>><{$space|paddingleft:$maps.step:'&nbsp;&nbsp;&nbsp;&nbsp;'}>
+                    <{$maps.node_name}>
+                    </option>
+                    <{/foreach}>
+                </select>
+            </li>
+            </ul>
+        </div>
+        <div class="max-menber-title">
+            <h2>资讯内容</h2>
+        </div>
+        <div class="max-menber-mod">
+            <textarea id="editor1" name="content" placeholder="Type your text here..."></textarea>
+        </div>
+        <div class="maxM-buttom">
+            <!-- <button type="submit" class="btn btns" rel="_request"><span>提交平台审核</span></button> -->
+            <button type="submit" class="btn btnp"><span>保 存</span></button>
+            <button type="button" class="btn btnc"  onclick="javascript:history.go(-1);"><span>取 消</span></button>
+        </div>
+        </div>
+    </div>
+</form>
+
+<script>
+  (function(){
+    var _form = $('aEditor');
+    var btn =$('brand-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>

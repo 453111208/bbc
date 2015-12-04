@@ -1,0 +1,192 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">
+  <{t}>新增运费模板<{/t}>
+  </div -->
+  <div class="panel-heading">
+    <a href="http://localhost/bbc/public/index.php/shop/wuliu/logis/templates/create.html" data-toggle="modal" data-target="#areaselect_modal" class="btn btn-default text-blue act-dlytmpl">
+      <i class="glyphicon glyphicon-plus"></i>添加图片</a>
+  </div>
+  <div class="panel-body">
+    <div class="gallery-condition clearfix">
+      排序：
+      <span class="active"><i class="glyphicon glyphicon-sort-by-alphabet"></i>名称</span>
+      <span class="time"><i class="glyphicon glyphicon-arrow-up"></i>时间</span>
+      <div class="gallery-search"><input type="text" name="fullminus_name" required="" value="" class="form-control input-sm" data-validate-field="fullminus_name"></div>
+      <button type="button" class="btn btn-warning btn-sm">搜索</button>
+    </div>
+    <div class="nav-tabs-custom" id="tabs">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="http://localhost/bbc/public/index.php/shop/trade/search.html#tab_0" data-toggle="tab">产品图片</a></li>
+        <li><a href="http://localhost/bbc/public/index.php/shop/trade/search.html#tab_1" data-toggle="tab">店铺图片</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_0">
+          <p class="text-muted well no-shadow text-center">暂无数据</p>
+          <script>
+          $('#orderCancel,#orderEdit').on('hide.bs.modal', function(e) {
+            $(this).removeData('bs.modal');
+          })
+          </script>
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_1">
+          <div class="row gallery">
+            <{foreach from=$arr item=val}>
+              <div class="col-sm-3 col-md-2">
+                <div class="thumbnail show-pics">
+                  <div class="del"><i class="glyphicon glyphicon-trash"></i></div>
+                  <a href="#"><img data-src="holder.js/100%x200" alt="100%x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTRlNDI3MDMwN2EgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNGU0MjcwMzA3YSI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTE1NjI1IiB5PSIxMDUuMzYyNSI+MjQyeDIwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="height: auto; width: 100%; display: block;"></a>
+                  <div class="caption" data-name="">
+                    <p class="image-name">xxx.jpg</p>
+                    <input type="text" class="form-control image-name-input" name="" value="xxx.jpg">
+                  </div>
+                </div>
+              </div>
+              <{/foreach}>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.tab-content -->
+  </div>
+</div>
+<div class="select-image"  data-toggle="modal" data-target="#gallery_modal">
+  <i class="glyphicon glyphicon-picture"></i>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="areaselect_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog">
+    <div class="panel-heading clearfix">
+      上传图片
+      <div class="pull-right">
+        <!-- <button type="button" class="btn btn-primary action-save">保存</button> -->
+        <button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+    <div class="panel-body text-center">
+      <div class="gallery-upload-icon">
+        <input type="file" class="hide action-file-input" name="shop_logo" multiple="multiple" data-remote="http://localhost/bbc/public/index.php/shop/util/upload_images.html?from=shop" accept="image/*">
+        <i class="glyphicon glyphicon-open action-upload"></i>
+      </div>
+      <hr>
+      <p>图片单张大小支持3M以下，超过系统会自动压缩</p>
+      <p>自动压缩和宽度调整可能会使图片失真</p>
+      <p>支持图片格式：jpg、jepg、png、gif</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gallery_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog modal-lg">
+    <div class="panel-heading">
+      <div class="clearfix">
+        <div class="pull-left">
+          <input type="file" class="hide action-file-input" name="shop_logo" multiple="multiple" data-remote="http://localhost/bbc/public/index.php/shop/util/upload_images.html?from=shop" accept="image/*">
+          <button class="btn btn-default text-blue act-dlytmpl  action-upload"><i class="glyphicon glyphicon-open"></i>上传图片</button>
+        </div>
+        <div class="pull-right">
+          <button type="button" class="btn btn-primary action-save">确定</button>
+          <button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="nav-tabs-custom" id="tabs">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="http://localhost/bbc/public/index.php/shop/trade/search.html#modal_tab_0" data-toggle="tab">产品图片</a></li>
+          <li><a href="http://localhost/bbc/public/index.php/shop/trade/search.html#modal_tab_1" data-toggle="tab">店铺图片</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="modal_tab_0">
+            <p class="text-muted well no-shadow text-center">暂无数据</p>
+            <script>
+            $('#orderCancel,#orderEdit').on('hide.bs.modal', function(e) {
+              $(this).removeData('bs.modal');
+            })
+            </script>
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="modal_tab_1">
+            <div class="row gallery">
+              <{foreach from=$arr item=val}>
+                <div class="col-sm-4 col-md-3">
+                  <div class="thumbnail">
+                    <img data-src="holder.js/100%x200" alt="100%x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTRlNDI3MDMwN2EgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNGU0MjcwMzA3YSI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTE1NjI1IiB5PSIxMDUuMzYyNSI+MjQyeDIwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="height: auto; width: 100%; display: block;">
+                    <div class="caption" data-name="">
+                      <p>xxx.jpg</p>
+                    </div>
+                  </div>
+                </div>
+                <{/foreach}>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.tab-content -->
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="img_show_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog modal-lg">
+    <div class="panel-heading">
+      <div class="clearfix">
+        <div class="pull-right">
+          <i class="glyphicon glyphicon-remove" data-dismiss="modal"></i>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body text-center">
+      <img src="http://www.wallcoo.com/cartoon/Kitsunenoir_Design_Illustration_V/images/broken-social-scene-matias-palacios-hardy.jpg" alt="">
+      <div class="caption">
+        <dl class="dl-horizontal">
+          <dt>图片地址：</dt>
+          <dd>http://www.wallcoo.com/cartoon/Kitsunenoir_Design_Illustration_V/images/broken-social-scene-matias-palacios-hardy.jpg</dd>
+          <dt>图片尺寸：</dt>
+          <dd>大 中 小</dd>
+          <dt>图片大小：</dt>
+          <dd>123Kb</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<{script app="topshop" src="jquery.jsonlist.js" }>
+<script>
+  $('.image-name').click(function(){
+    var nameInput = $(this).siblings('.image-name-input');
+    nameInput.show().focus();
+    nameInput.blur(function(){
+      nameInput.hide();
+    })
+  })
+
+  var flag = false;
+
+  $('.gallery-condition span').click(function(){
+    $('.gallery-condition span').removeClass('active');
+    $(this).addClass('active');
+    if(!$(this).hasClass('time')){
+      $('.time').find('i').addClass('glyphicon-arrow-up').removeClass('glyphicon-arrow-down');
+      flag = false;
+    }
+  })
+  
+  $('.time').click(function(){
+    if(flag==true){
+      $(this).find('i').addClass('glyphicon-arrow-down').removeClass('glyphicon-arrow-up');
+      flag = false;
+    }else{
+      $(this).find('i').addClass('glyphicon-arrow-up').removeClass('glyphicon-arrow-down');
+      flag = true;
+    }
+  })
+
+  $('.gallery').on('click','.del',function(){
+    if(confirm('确定删除该图片')){
+      $(this).parent().parent().remove();
+    }
+  })
+</script>

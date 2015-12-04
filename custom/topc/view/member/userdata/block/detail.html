@@ -1,0 +1,564 @@
+<form action="<{url action=topc_ctl_member_userdata@saveShop}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+<input type="hidden"  name="seller[seller_id]" value="<{$sellerInfo.seller_id}>">
+<input type="hidden"  name="seller[name]" value="<{$sellerInfo.name}>">
+<input type="hidden"  name="shop[shop_id]" value="<{$shopInfo.shop_id}>">
+<input type="hidden"  name="shop_info[info_id]" value="<{$shop_info.info_id}>">
+	
+<div class="max-menber-data">
+	<h3>企业基本信息</h3>
+	<ul>
+		<li><div class="item form-row ">
+			<label class="max-data-left"> <em>*</em>
+				用户名：
+			</label>
+			<span>
+				<input type="text" class="maxUser" readonly="readonly" value="<{$userInfo.login_account}>">
+			</span></div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left"> <em>*</em>
+				公司名称：
+			</label>
+			<span>
+				<input type="text" class="maxUser" required name="shop[shop_name]"  value="<{$sellerInfo.name}>" /></span></div>
+		</li>
+		<li>
+			<label class="max-data-left">企业类型：</label>
+			<div class="max-data-right">
+			<span>
+			<{if $sellerInfo.seller_type==0}>
+			通用企业
+			<{elseif $sellerInfo.seller_type==1}>
+			回收处置企业
+			<{elseif $sellerInfo.seller_type==2}>
+			生产加工企业	
+			<{else}>	
+			<{/if}>
+			</span>
+				<!-- <span>
+					<input type="radio" disabled="true"  class="sellertype" name="seller[seller_type]" value="0">
+					<label>通用企业</label>
+				</span>
+				<span>
+					<input type="radio" disabled="true"  class="sellertype" name="seller[seller_type]" value="1">
+					<label>回收处置企业</label>
+				</span>
+				<span>
+					<input type="radio" disabled="true"   class="sellertype" name="seller[seller_type]" value="2">
+					<label>生产加工企业</label>
+				</span> -->
+
+			</div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left">
+				<em>*</em>
+				公司位置：
+			</label>
+			<span id="area" data-validate="area"></span></div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left">
+				<em>*</em>
+				公司地址：
+			</label>
+			<span>
+				<input type="text" class="maxUser" required name="shop_info[company_addr]" value="<{$shop_info.company_addr}>"></span></div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left">
+				<em>*</em>
+				联系人：
+			</label>
+			<span>
+				<input type="text" class="maxUser" required name="shop_info[company_contacts]" value="<{$shop_info.company_contacts}>"></span></div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left">
+				<em>*</em>
+				固定电话：
+			</label>
+			<span>
+				<input type="text" class="maxUser" required name="shop_info[company_phone]" value="<{$shop_info.company_phone}>"></span></div>
+		</li>
+		<li><div class="item form-row ">
+			<label class="max-data-left">
+				<em>*</em>
+				电子邮件：
+			</label>
+			<span>
+				<input type="text" class="maxUser" required name="shop_info[company_email]" value="<{$shop_info.company_email}>"></span></div>
+		</li>
+	</ul>
+</div>
+
+<!----通用企业信息---->
+<div class="max-menber-data to">
+	<h3>通用企业信息</h3>
+	<ul>
+		<li>
+			<label class="max-data-left Up">企业logo上传：</label>
+			<div class="max-data-right">
+				<div class="images-uploader">
+					<{if $shopInfo.shop_logo != "" && $shopInfo.shop_logo != null}>
+					<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shopInfo.shop_logo}>"></a><input type="hidden" name="shop[shop_logo][]" value="<{$shopInfo.shop_logo}>"></div>
+					<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop[shop_logo][]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>"/>
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+				<!-- <label class="maxNote">注：图片大小不大于500kb</label> -->
+			</div>
+		</li>
+		<!-- <li>
+			<label class="max-data-left">企业类型：</label>
+			<div class="max-data-right">
+				<{foreach from=$shoptype item=type}>
+					<span>
+						<input type="radio" class="shop_type" name="shop[shop_type]" value="<{$type.name}>
+						">
+						<label>
+							<{$type.name}></label>
+						</span>
+						<{/foreach}>
+						<div class="shoptype"  style="float: left">
+							<{if $shoptype_self == 1}>
+								<input name='shop[shop_type_use]' class='max-up-input' value="<{$shopInfo.shop_type}>"/>
+							<{else}>
+							<button type="button" class="maxCu ">
+								<span>
+									<em>+</em>
+									自定义
+								</span>
+							</button>
+							<{/if}>
+						</div>
+							
+						</div>
+					</li> -->
+					<{if $sellerInfo.seller_type!=1}>
+					<li>
+						<label class="max-data-left">所属行业：</label>
+						<div class="max-data-right">
+						<{foreach from=$shophangye item=type}>
+							<span>
+							<input type="radio" class="shop_hangye" name="shop_info[shop_hangye]" value="<{$type.name}>">
+						<label>
+							<{$type.name}></label>
+						</span>
+						<{/foreach}>
+							
+							<div class="shophangye"  style="float: left">
+							<{if $shophangye_self == 1}>
+								<input name='shop_info[shop_hangye_use]' class='max-up-input' value="<{$shop_info.shop_hangye}>"/>
+							<{else}>
+							<button type="button" class="maxCu ">
+								<span>
+									<em>+</em>
+									自定义
+								</span>
+							</button>
+							<{/if}>
+						</div>
+						</div>
+					</li>
+					<{/if}>
+					<li>
+						<label class="max-data-left">公司性质：</label>
+						<div class="max-data-right">
+							<select class="maxlocus" id="shopxingzhi" name="shop_info[shop_xingzhi]">
+							<option value="null">请选择</option>
+							<{foreach from=$shopxingzhi item=type}>
+								<option value="<{$type.name}>"><{$type.name}></option>
+							<{/foreach}>
+							<option value="use_xingzhi">自定义</option>
+							</select>
+							<input type="text" id="zdy_xingzhi" name="shop_info[shop_xingzhi_use]" value="" class="max-up-input hide" />
+						</div>
+					</li>
+					<li>
+						<label class="max-data-left">主要产品：</label>
+						<div class="max-data-right">
+							<{if $ishas_shopchanping == 0}>
+							<{foreach from=$shopchanping item=type}>
+							<span>
+							<input class="shopchanping" type="checkbox" name="product[product_name][]" value="<{$type.name}>" />
+							<label><{$type.name}></label>
+							</span>
+							<{/foreach}>
+							<{else}>
+								<{foreach from=$product_name item=type}>
+								<input type="text" value="<{$type.product_name}>" readOnly="true" />
+								<{/foreach}>
+							<{/if}>
+							<br>
+							<div class="shopchanpingdiv"  style="float: left">
+							<button type="button" class="maxCu ">
+								<span>
+									<em>+</em>
+									自定义
+								</span>
+							</button>
+							<{foreach from=$shopchanping_self item=type}>
+								<input name='product[shop_chanping_use][]' class='max-up-input' value="<{$type}>"/>&nbsp;&nbsp;
+							<{/foreach}>
+						</div>
+						</div>
+					</li>
+					<li><div class="item form-row ">
+						<label class="max-data-left"><em>*</em>成立年份：</label>
+						<div class="max-data-right">
+						<{if $shop_info.shop_id>0}>
+							<input type="date" id="start" required name="shop_info[establish_date]" value="<{$shop_info.establish_date}>" />
+							<{else}>
+							<input type="date" id="start" required name="shop_info[establish_date]" value="" />
+							<{/if}>
+						</div></div>
+					</li>
+					<li>
+						<label class="max-data-left">公司规模：</label>
+						<div class="max-data-right">
+						<select class="maxlocus" id="shop_guimo"
+						name="shop_info[shop_guimo]">
+							<option value="null">请选择</option>
+							<{foreach from=$shopguimo item=type}>
+								<option value="<{$type.name}>"><{$type.name}></option>
+							<{/foreach}>
+							
+							</select>
+							
+						</div>
+					</li>
+					<li><div class="item form-row ">
+						<label class="max-data-left"><em>*</em>注册资本：</label>
+						<div class="max-data-right">
+							<input type="text" class="maxUser" required name="shop_info[shop_ziben]" value="<{$shop_info.shop_ziben}>">
+						</div></div>
+					</li>
+					<li>
+						<label class="max-data-left">注册原因：</label>
+						<div class="max-data-right">
+							<{if $ishas_shopyuanyin == 0}>
+							<{foreach from=$shopyuanyin item=type}>
+							<span>
+							<input type="checkbox" name="shop_yaunyin[shopyuanyin][]" value="<{$type.name}>">
+							<label><{$type.name}></label>
+							</span>
+							<{/foreach}>
+							<{else}>
+								<{foreach from=$shop_yuanyin item=type}>
+									<input type="text" value="<{$type.yuanyin}>" readOnly="true">
+								<{/foreach}>
+							<{/if}>
+							<br>
+							<div class="shopyuanyin"  style="float: left">
+							<button type="button" class="maxCu ">
+								<span>
+									<em>+</em>
+									自定义
+								</span>
+							</button>
+						</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!----企业三证及信息上传---->
+			<div class="max-menber-data to1">
+				<h3>企业三证及信息上传</h3>
+				<ul>
+					<li>
+						<label class="max-data-left Up">法人身份证反面复印件：</label>
+						<div class="max-data-right">
+							<div class="images-uploader">
+							<{if $shop_info.corporate_identity_img != "" && $shop_info.corporate_identity_img != null}>
+							<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shop_info.corporate_identity_img}>"></a><input type="hidden" name="shop_info[corporate_identity_img][]" value="<{$shop_info.corporate_identity_img}>"></div>
+							<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop_info[corporate_identity_img][]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						">
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+				<!-- <label class="maxNote">注：图片大小不大于500kb</label> -->
+						</div>
+					</li>
+					<li>
+						<label class="max-data-left Up">营业执照副本复印件：</label>
+						<div class="max-data-right">
+							<div class="images-uploader">
+							<{if $shop_info.license_img != "" && $shop_info.license_img != null}>
+							<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shop_info.license_img}>"></a><input type="hidden" name="shop_info[license_img][]" value="<{$shop_info.license_img}>"></div>
+							<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop_info[license_img][]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						">
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div></div>
+				<!-- <label class="maxNote">注：图片大小不大于500kb</label>
+			-->						
+					</li>
+					<li>
+						<label class="max-data-left Up">组织机构代码证复印件：</label>
+						<div class="max-data-right">
+							<div class="images-uploader">
+							<{if $shop_info.tissue_code_img != "" && $shop_info.tissue_code_img != null}>
+							<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shop_info.tissue_code_img}>"></a><input type="hidden" name="shop_info[tissue_code_img][]" value="<{$shop_info.tissue_code_img}>"></div>
+							<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop_info[tissue_code_img][]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						">
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!----资质证照上传---->
+			<div class="max-menber-data to2">
+				<h3>资质证照上传</h3>
+				<div class="images-uploader">
+				<{if $shop_certificate_ishas == 1}>
+					<{foreach from=$shop_certificate item=certificate}>
+							<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$certificate.certificate_img}>"></a><input type="hidden" name="shop_certificate[certificate_img][]" value="<{$certificate.certificate_img}>"></div>
+					<{/foreach}>
+				<{/if}>
+				<script type="text/javascript" src="images/test/swfupload.js"></script>
+<script type="text/javascript" src="images/test/swfupload.queue.js"></script>
+<script type="text/javascript" src="images/test/js/fileprogress.js"></script>
+<script type="text/javascript" src="images/test/js/handlers.js"></script>
+
+<script type="text/javascript">
+    var swfu;
+
+    window.onload = function() {
+      var settings = {
+        flash_url : "http://127.0.0.1:8066/themes/huanjing/images/test/swfupload.swf",
+        flash9_url : "http://127.0.0.1:8066/themes/huanjing/images/test/swfupload_fp9.swf",
+        upload_url: "<{url action=toputil_ctl_image@uploadImages from=user}>",
+        post_params: {"PHPSESSID" : "<?php echo session_id(); ?>"},
+        file_size_limit : "100 MB",
+        file_types : "*.*",
+        file_types_description : "All Files",
+        file_upload_limit : 100,
+        file_queue_limit : 0,
+        custom_settings : {
+          progressTarget : "fsUploadProgress",
+          cancelButtonId : "btnCancel"
+        },
+        debug: false,
+
+        // Button settings
+        button_image_url: "images/TestImageNoText_65x29.png",
+        button_width: "65",
+        button_height: "29",
+        button_placeholder_id: "spanButtonPlaceHolder",
+        button_text: '<span class="theFont">上传</span>',
+        button_text_style: ".theFont { font-size: 16; }",
+        button_text_left_padding: 12,
+        button_text_top_padding: 3,
+        
+        // The event handler functions are defined in handlers.js
+        swfupload_preload_handler : preLoad,
+        swfupload_load_failed_handler : loadFailed,
+        file_queued_handler : fileQueued,
+        file_queue_error_handler : fileQueueError,
+        file_dialog_complete_handler : fileDialogComplete,
+        upload_start_handler : uploadStart,
+        upload_progress_handler : uploadProgress,
+        upload_error_handler : function(err){
+        	console.log(err)
+        },
+        upload_success_handler : function(rs,server){
+          console.log(11);
+          console.log(rs);
+          console.log(server);
+          server = eval("("+server+")");
+         var html  = '<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="'+server.data.Filedata.url+'"></a><input type="hidden" name="shop_certificate[certificate_img][]" value="'+server.data.Filedata.url+'"></div>' ;
+        alert(server.data.Filedata.url);
+        $("#imagelist").append(html);
+
+        } // Queue plugin event
+      };
+
+      swfu = new SWFUpload(settings);
+       };
+  </script>
+ 
+
+      
+      <div>
+        <span id="spanButtonPlaceHolder"></span>
+    
+      </div>
+			</div>
+			<!----回收处置企业特有信息---->
+			<{if $sellerInfo.seller_type==1}>
+
+				<div class="max-menber-data to3">
+					<h3>回收处置企业特有信息</h3>
+					<ul>
+						<li>
+							<label class="max-data-left">处置能力：</label>
+							<div class="max-data-right">
+							<{foreach from=$shopcat item=cat}>
+								<span>
+									<input class="cznl" type="checkbox" name="shop_rel_lv1cat[]" value="<{$cat.cat_id}>">
+									<label><{$cat.cat_name}></label>
+								</span>
+							<{/foreach}>
+							</div>
+						</li>
+						<li>
+							<label class="max-data-left Up">处置能力证书：</label>
+							<div class="max-data-right">
+								<div class="images-uploader">
+								<{if $shop_manage_ishas == 1}>
+								<{foreach from=$shop_manage item=manage}>
+										<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$manage.manage_img}>"></a><input type="hidden" name="shop_manage[manage_img][]" value="<{$manage.manage_img}>"></div>
+								<{/foreach}>
+								<{/if}>
+							<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop_manage[manage_img][]" data-max="10" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						">
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+
+							</div>
+						</li>
+					</ul>
+				</div>
+				<{/if}>
+					<!----生产加工企业特有信息---->
+					<{if $sellerInfo.seller_type==2}>
+						<div class="max-menber-data to3">
+							<h3>生产加工企业特有信息</h3>
+							<ul>
+								<li>
+									<label class="max-data-left">废料产出种类：</label>
+									<div class="max-data-right">
+										<{foreach from=$shopcat item=cat}>
+								<span>
+									<input class="cznl" type="checkbox" name="shop_rel_lv1cat[]" value="<{$cat.cat_id}>">
+									<label><{$cat.cat_name}></label>
+								</span>
+							<{/foreach}>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<{/if}>
+							<!----公司简介---->
+							<div class="max-menber-data">
+								<h3>公司简介</h3>
+								<!------富文本框---->
+								<div class="max-menber-Pr" style="width: 100%;height:auto">
+									 <textarea id="editor1" style="height:600px;" name="shop[shop_descript]" placeholder="Type your text here..." style="width:100%" ></textarea>
+								</div>
+							</div>
+
+							<!------保存----按钮---->
+							<div class="maxM-buttom">
+								<div class="max-btnp-data" >
+									<button type="submit" class="btn btnp-data" rel="_request">
+										<span>保 存</span>
+									</button>
+								</div>
+							</div>
+						</form>
+
+<script type="text/javascript">
+
+//alert(<{$shopInfo.shop_area}>);
+<{if $shopInfo.shop_area != null && $shopInfo.shop_area != ""}>
+	new AreaWidget({
+        dataUrl: '<{$env.base_url}>/app/ectools/statics/scripts/region.json',
+        select: $('#area'),
+        initData:'<{$shopInfo.shop_area}>'
+    });
+<{else}>
+	new AreaWidget({
+	    dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+	    select:$('#area')
+	});
+<{/if}>
+$(".area  input[type=hidden]").attr("required");
+$("input[type='radio'][class='sellertype'][value=<{$sellerInfo.seller_type}>]").attr("checked",true);
+
+// $("input[type='radio'][class='shop_type'][value=<{$shopInfo.shop_type}>]").attr("checked",true);
+<{if $shop_info != null}>
+$("input[type='radio'][class='shop_hangye'][value='<{$shop_info.shop_hangye}>']").attr("checked",true);
+$("#shop_guimo option[value='<{$shop_info.shop_guimo}>']").attr("selected", true);
+// $("#shop_guimo").val(<{$shop_info.shop_guimo}>);
+<{/if}>
+
+<{foreach from=$shop_rel_lv1cat item=shopcat}>
+$("input[type='checkbox'][class='cznl'][value=<{$shopcat.cat_id}>]").attr("checked",true);
+<{/foreach}>
+
+$("#editor1").val('<{$shopInfo.shop_descript}>');
+
+<{if $shop_info.shop_xingzhi != null && $shop_info.shop_xingzhi != ""}>
+	<{if $shopxingzhi_self == 1}>
+		$("#shopxingzhi").val('use_xingzhi');
+		$("#zdy_xingzhi").val('<{$shop_info.shop_xingzhi}>');
+		$("#zdy_xingzhi").removeClass("hide");
+	<{else}>
+		$("#shopxingzhi").val('<{$shop_info.shop_xingzhi}>');
+		$("#zdy_xingzhi").addClass("hide");
+	<{/if}>
+<{/if}>
+
+
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+var checkin = $('#start').datepicker({
+  onRender: function(date) {
+  	//debugger;
+    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  }
+}).data('datepicker');
+
+$(".shoptype").click(function(){
+	$(this).find("button").remove();
+	if($(".shoptype:has(input)").length==0) {    
+	var input="<input name='shop[shop_type_use]' class='max-up-input' />";
+	$(this).append(input);
+}
+});
+$(".shophangye").click(function(){
+	$(this).find("button").remove();
+	if($(".shophangye:has(input)").length==0) {    
+	var input="<input name='shop_info[shop_hangye_use]' class='max-up-input' />";
+	$(this).append(input);
+}
+});
+$(".shopchanpingdiv").click(function(){
+	// $(this).find("button").remove();
+	// if($(".shopchanping:has(input)").length==0) {    
+	var input="<input name='product[shop_chanping_use][]' class='max-up-input' />&nbsp;&nbsp;";
+	$(this).before(input);
+	// $(this).prepend(input);
+});
+$(".shopyuanyin").click(function(){
+	// $(this).find("button").remove();
+	// if($(".shopyuanyin:has(input)").length==0) {    
+	var input="<input name=shop_yaunyin[shopyuanyin_use][]' class='max-up-input' />&nbsp;&nbsp;";
+	$(this).before(input);
+	// }
+});
+$("#shopxingzhi").change(function() {
+	if($(this).val()=="use_xingzhi"){
+		$("#zdy_xingzhi").removeClass("hide");
+	}
+	else{
+		$("#zdy_xingzhi").val($("this").val());
+		$("#zdy_xingzhi").addClass("hide");
+	}
+	
+});
+</script>

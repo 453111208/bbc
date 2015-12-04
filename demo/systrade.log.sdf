@@ -1,0 +1,12 @@
+a:8:{s:6:"log_id";i:1;s:6:"rel_id";i:1509171324330014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442467493;}
+a:8:{s:6:"log_id";i:2;s:6:"rel_id";i:1509171325320014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442467524;}
+a:8:{s:6:"log_id";i:3;s:6:"rel_id";i:1509171325070014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442467538;}
+a:8:{s:6:"log_id";i:4;s:6:"rel_id";i:1509171325170014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442467547;}
+a:8:{s:6:"log_id";i:5;s:6:"rel_id";i:1509171327120014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442467665;}
+a:8:{s:6:"log_id";i:6;s:6:"rel_id";i:1509171324330014;s:5:"op_id";i:0;s:7:"op_name";s:6:"系统";s:7:"op_role";s:6:"system";s:8:"behavior";s:7:"payment";s:8:"log_text";s:21:"订单付款成功！";s:8:"log_time";i:1442467800;}
+a:8:{s:6:"log_id";i:7;s:6:"rel_id";i:1509171325320014;s:5:"op_id";i:0;s:7:"op_name";s:6:"系统";s:7:"op_role";s:6:"system";s:8:"behavior";s:7:"payment";s:8:"log_text";s:21:"订单付款成功！";s:8:"log_time";i:1442467828;}
+a:8:{s:6:"log_id";i:8;s:6:"rel_id";i:1509171325070014;s:5:"op_id";i:0;s:7:"op_name";s:6:"系统";s:7:"op_role";s:6:"system";s:8:"behavior";s:7:"payment";s:8:"log_text";s:21:"订单付款成功！";s:8:"log_time";i:1442467853;}
+a:8:{s:6:"log_id";i:9;s:6:"rel_id";i:1509171324330014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:6:"member";s:8:"behavior";s:7:"confirm";s:8:"log_text";s:21:"确认订单失败！";s:8:"log_time";i:1442468110;}
+a:8:{s:6:"log_id";i:10;s:6:"rel_id";i:1509171327120014;s:5:"op_id";i:14;s:7:"op_name";s:4:"test";s:7:"op_role";s:6:"member";s:8:"behavior";s:6:"cancel";s:8:"log_text";s:21:"取消订单成功！";s:8:"log_time";i:1442468117;}
+a:8:{s:6:"log_id";i:11;s:6:"rel_id";i:1509181432500011;s:5:"op_id";i:11;s:7:"op_name";s:6:"sylvia";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442557938;}
+a:8:{s:6:"log_id";i:12;s:6:"rel_id";i:1509181432180011;s:5:"op_id";i:11;s:7:"op_name";s:6:"sylvia";s:7:"op_role";s:5:"buyer";s:8:"behavior";s:6:"create";s:8:"log_text";s:21:"订单创建成功！";s:8:"log_time";i:1442557970;}

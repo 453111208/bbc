@@ -1,0 +1,39 @@
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">活动信息</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>活动ID：</dt>
+      <dd><{$activity_id}></dd>
+      <dt>活动名称：</dt>
+      <dd><{$activity_name}></dd>
+      <dt>活动类型：</dt>
+      <dd><{$activity_tag}></dd>
+      <dt>规则描述：</dt>
+      <dd><{$activity_desc}></dd>
+      <dt>发布时间：</dt>
+      <dd><{$release_time|cdate:FDATE_STIME}></dd>
+      <dt>申请开始时间：</dt>
+      <dd><{$apply_begin_time|cdate:FDATE_STIME}></dd>
+      <dt>申请结束时间：</dt>
+      <dd><{$apply_end_time|cdate:FDATE_STIME}></dd>
+      <dt>活动开始时间：</dt>
+      <dd><{$start_time|cdate:FDATE_STIME}></dd>
+      <dt>活动结束时间：</dt>
+      <dd><{$end_time|cdate:FDATE_STIME}></dd>
+      <dt>每人每件限购：</dt>
+      <dd><{$buy_limit}></dd>
+      <dt>店铺可报名商品数量：</dt>
+      <dd><{$enroll_limit}></dd>
+      <dt>可报名店铺类型：</dt>
+      <dd><{$shoptype}></dd>
+      <dt>参加活动的类目：</dt>
+      <dd><{$limit_cat}><dd>
+      <dt>店铺设置商品折扣范围：</dt>
+      <dd><{$discount_min}>% ~ <{$discount_max}>%</dd>
+    </dl>
+  </div>
+</div>
+
+

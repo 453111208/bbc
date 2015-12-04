@@ -1,0 +1,120 @@
+<deploy>
+
+    <licence file="license.txt" />
+
+    <product_name>商派ONex 多用户在线商城</product_name>
+    <product_version>3.0.12</product_version>
+    <business_version>common-cluster-source</business_version>
+    <publish_version>b2b2c</publish_version>
+    <product_key>ecos.b2b2c.stdsrc</product_key>
+    <product_desc></product_desc>
+
+    <installer>
+
+        <title>招财猫 安装</title>
+
+        <banner><![CDATA[
+            <h1 id="B2B2C-ver">商派ONex 多用户在线商城<sup style="color:red;font-size:12px"></sup></h1>
+            ]]></banner>
+
+        <style><![CDATA[
+            ]]></style>
+
+        <finish>
+            <message><![CDATA[
+                <div>安装顺利完成！
+                    <p style="margin-top:20px;">访问网店:</p>
+                    <p><a href="%BASE_URL%/index.php">%BASE_URL%/index.php</a></p>
+                    <p>管理网店:</p>
+                    <p><a href="%BASE_URL%/index.php/shopadmin">%BASE_URL%/index.php/shopadmin</a></p>
+                </div>
+
+                ]]></message>
+        </finish>
+
+        <check>
+            <writeable show_name="目录权限">
+                <dir>config</dir>
+                <dir>data</dir>
+                <dir>public/images</dir>
+                <dir>public/themes</dir>
+            </writeable>
+
+            <version show_name="版本号">
+                <php name="php" value="5.4" sign=">=" exec_function="base_system_composite@check_php_version"/>
+            </version>
+
+            <php_configure show_name="在php.ini中的配置值">
+                <list name="max_input_vars" description="" value="1000" sign=">=" />
+                <list name="safe_mode" description="" value="OFF" />
+            </php_configure>
+
+            <extension_library show_name="扩展库">
+                <list name="gd" status="active"/>
+                <list name="zlib" status="active"/>
+                <list name="mcrypt" status="active"/>
+                <list name="iconv" status="active"/>
+                <list name="openssl" status="active"/>
+                <list name="mysql" status="active"/>
+                <list name="xml" status="active"/>
+                <list name="mbstring" status="active"/>
+                <list name="bcmath" status="active"/>
+                <!--<list name="pcntl" status="active" exec_function="base_system_composite@check_web_pcntl"/>-->
+                <list name="shmop" status="active"/>
+                <list name="simplexml" status="active"/>
+            </extension_library>
+            <common_function show_name="必用函数">
+                <list name="proc_open" description="ecsote2.0 queue must be used"/>
+                <list name="fsockopen" description="ecsote2.0 queue must be used" exec_function="base_system_composite@check_web_ping" />
+            </common_function>
+            <other show_name="其他重要检测">
+                <list name="flock" exec_function="base_system_composite@check_file_flock"/>
+            </other>
+        </check>
+    </installer>
+
+    <package>
+        <app id="system" default="true" locked="true" hidden="false" />
+        <app id="importexport" default="true" locked="true" hidden="false" />
+        <app id="tags" default="true" locked="true" hidden="false" />
+        <app id="syscategory" default="true" locked="false" hidden="false" />
+        <app id="syslogistics" default="true" locked="false" hidden="false" />
+        <app id="sysshop" default="true" locked="false" hidden="false" />
+        <app id="sysitem" default="true" locked="false" hidden="false" />
+        <app id="syscontent" default="true" locked="false" hidden="false" />
+        <app id="sysuser" default="true" locked="false" hidden="false" />
+        <app id="topshop" default="true" locked="false" hidden="false" />
+        <app id="toputil" default="true" locked="false" hidden="false" />
+        <app id="topc" default="true" locked="false" hidden="false" />
+        <app id="systrade" default="true" locked="false" hidden="false" />
+        <app id="ectools" default="true" locked="false" hidden="false" />
+        <app id="logisticstrack" default="false" locked="false" hidden="false" />
+        <app id="search" default="false" locked="false" hidden="false" />
+        <app id="searchrule" default="false" locked="false" hidden="false" />
+        <app id="sysstat" default="true" locked="false" hidden="false" />
+        <app id="topm" default="true" locked="false" hidden="false" />
+        <app id="sysaftersales" default="true" locked="false" hidden="false" />
+        <app id="syspromotion" default="true" locked="false" hidden="false" />
+        <app id="sysrate" default="true" locked="false" hidden="false" />
+        <app id="sysopen" default="true" locked="false" hidden="false" />
+
+    </package>
+
+    <demodatas>
+        <demodata>
+            <name>商派ONex 多用户在线商城</name>
+            <type>select</type>
+            <default>2</default>
+            <vtype>required</vtype>
+            <required>true</required>
+            <options key="1" value="不安装体验数据"></options>
+            <options key="2" value="安装体验数据"></options>
+            <title>是否安装体验数据</title>
+        </demodata>
+    </demodatas>
+
+    <setting app="desktop" key="banner">商派ONex 多用户在线商城</setting>
+    <setting app="desktop" key="logo">商派ONex 多用户在线商城</setting>
+    <setting app="desktop" key="logo_desc"></setting>
+
+</deploy>

@@ -1,0 +1,27 @@
+
+   <!-- 头部版块END --> 
+    <div class="maxPath">
+        <dl class="basic-ex-breadcrumbs clearfix">
+          <dt>当前位置：</dt>
+          <dd><a class="beb-nav" href="/"><span>首页</span></a>
+              <span class="beb-raquo">></span>
+              <a class="beb-nav" href="third"><span>第三方服务</span></a>
+        <span class="beb-raquo">></span>
+              <span class="beb-current"><{$thirdinfo.title}></span></dd>
+        </dl>
+    </div>
+
+   
+         <!-- 左面板块 -->
+         <div class="maxleft">
+            <div class="maxresources">
+         <h3><{$thirdinfo.title}></h3>
+      </div>
+      <div style="text-align: center;font-size: 14px;">
+          <{$thirdinfo.pubtime|date_format:'%Y-%m-%d'}>
+      </div>
+            <{$thirdinfo.content}>
+        </div> 
+     <!-- end左面板块 -->
+         
+        

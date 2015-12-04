@@ -1,0 +1,89 @@
+<style type="text/css">
+  #dataList {
+    border: 1px solid #dfdfdf;
+  }
+  #dataList th{
+    background-color: #efefef;
+    font-size: 14px;
+  }
+</style>
+<{if $rows}>
+    <input type="hidden" name="deliveryaddr_id" value="">
+    <input type="hidden" name="uniqid" value="" class="goods_uniqid">
+    <input type="hidden" name="bidding_goods" value="" class="bidding_goods">
+<table id="dataList" width="100%"  border="1">
+   <thead>
+      <tr>
+    <th scope="col">操作</th>
+ <!--    <th scope="col">ID</th> -->
+    <th scope="col">名称</th>
+<!--     <th scope="col">价格</th> -->
+<!--     <th scope="col">货号</th> -->
+  </tr>   
+   </thead>
+<tbody >
+  <{foreach from=$rows item=item}>
+      <tr class="itemrow">
+    <td align="center"><input type="checkbox" name="is_check[]" value="0" /></td>
+
+    <input type="hidden" name="item_id[]" value="<{$item.item_id}>"  />
+    <input type="hidden" name="price[]" value="<{$item.price}>"  />
+    <input type="hidden" name="bn[]" value="<{$item.bn}>"  />
+    <input type="hidden" name="title[]" value="<{$item.title}>"  />
+    <input type="hidden" name="num[]" value="<{$item.store}>"  />
+   
+    <td align="center"><{$item.title}></td>
+<!--     <td><{$item.price}></td> -->
+<!--     <td><{$item.bn}></td> -->
+  </tr>
+  <{/foreach}>  
+
+</tbody>
+ 
+  <tr>
+    <td colspan="5"><a href="javascript:void(0)" class="selectAll" >全选</a> / <a href="javascript:void(0)" class="revSelectAll" >反选</a>  / <a href="javascript:void(0)" class="delSelectAll">全不选</a></td>
+  </tr>
+</table>
+
+<{/if}>
+<script>
+
+
+	// $('#dataList tbody input:[name=is_check]:checked');
+
+$("#dataList  input").change(function(){
+ if($(this)[0].checked){
+	$(this)[0].value=1;
+ }else{
+ 	$(this)[0].value=0;
+ }
+});
+
+	//选中全部
+  $('.selectAll').click(function(){
+    $('#dataList tbody').find('tr').each(function(e){
+      $(this).find('[type=checkbox]')[0].checked=true;
+      $(this).find('[type=checkbox]')[0].value=1;
+    });
+    });
+
+    //反选
+    $('.revSelectAll').click(function(){
+    $('#dataList tbody').find('tr').each(function(){
+      if($(this).find(':checkbox')[0].checked){
+        $(this).find('[type=checkbox]')[0].checked=false;
+         $(this).find('[type=checkbox]')[0].value=0;
+      }else{
+         $(this).find('[type=checkbox]')[0].checked=true;
+         $(this).find('[type=checkbox]')[0].value=1;
+      }
+    });
+    });
+
+    //全不选
+    $('.delSelectAll').click(function(){
+    $('#dataList tbody').find('tr').each(function(){
+       $(this).find('[type=checkbox]')[0].checked=false;
+    });
+    });
+</script>

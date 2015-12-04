@@ -1,0 +1,13 @@
+<desktop>
+
+    <permissions>
+        <permission id="itemlist" display='true' parent='0' workground='sysitem.workground.item'>商品列表</permission>
+    </permissions>
+
+    <workground name="商品" id="sysitem.workground.item" controller="admin_item" action="index" order='90'>
+        <menugroup name="商品列表">
+             <menu controller='admin_item' action='index' permission='itemlist' display='true' order='1'>商品列表</menu>
+        </menugroup>
+    </workground>
+
+</desktop>

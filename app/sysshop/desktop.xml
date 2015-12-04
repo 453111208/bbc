@@ -1,0 +1,30 @@
+<desktop>
+    <permissions>
+        <permission id="shoptypelist" display='true' parent='0' workground='sysshop.workground.shoptype'>店铺类型列表</permission>
+        <permission id="enterapplylist" display='true' parent='0' workground='sysshop.workground.shoptype'>入驻申请列表</permission>
+        <permission id="shoplist" display='true' parent='0' workground='sysshop.workground.shoptype'>店铺列表</permission>
+        <permission id="sellerList" display='true' parent='0' workground='sysshop.workground.shoptype'>商家账号列表</permission>
+        <permission id="shopNotice" display='true' parent='0' workground='sysshop.workground.shoptype'>商家通知</permission>
+    </permissions>
+
+    <workground name="商家" id="sysshop.workground.shoptype" controller="admin_shoptype" action="index" order='90'>
+        <menugroup name="商家账号">
+            <menu controller='admin_seller' action='index' permission='sellerList' display='true' order='10'>账号列表</menu>
+            <menu controller='admin_enterapply' action='license' permission='enterapplylist' display='true' order='20'>商家注册协议</menu>
+        </menugroup>
+        <menugroup name="商家设置">
+             <menu controller='admin_shoptype' action='index' permission='shoptypelist' display='true' order='20'>店铺类型列表</menu>
+        </menugroup>
+        <menugroup name="入驻申请">
+             <menu controller='admin_enterapply' action='index' permission='enterapplylist' display='true' order='30'>入驻申请列表</menu>
+        </menugroup>
+        <menugroup name="商家店铺">
+             <menu controller='admin_shop' action='index' permission='shoplist' display='true' order='40'>店铺列表</menu>
+        </menugroup>
+        <menugroup name="商家通知">
+             <menu controller='admin_shopnotice' action='index' permission='shopNotice' display='true' order='41'>商家通知列表</menu>
+        </menugroup>
+    </workground>
+
+</desktop>
+

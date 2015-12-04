@@ -1,0 +1,28 @@
+<{foreach from=$spec_props item=p_item}>
+<div class="form-group form-inline typelist">
+  <label for="" class="col-sm-2 control-label"><{$p_item.prop_name}>：</label>
+  <div class="col-sm-10 speclist" data-spec-id="<{$p_item.prop_id}>" data-spec-type="<{$p_item.show_type}>" data-spec-name="<{$p_item.prop_name}>">
+    <{foreach from=$p_item.prop_value key=prop_value_id item=pv_item}>
+    <label class="checkbox-inline" for="for_<{$p_item.prop_id}>_<{$prop_value_id}>">
+      <input type="checkbox" title="<{$pv_item.prop_value}>" id="for_<{$p_item.prop_id}>_<{$prop_value_id}>" value="<{$pv_item.prop_value_id}>" <{if $pv_item.select}>checked<{/if}>>
+      <{if $p_item.show_type=='image'}>
+      <span class="spec-colorbox">
+        <input type="hidden" key="spec_image_<{$pv_item.prop_value_id}>" value="<{$pv_item.prop_image}>">
+        <img key="spec_img_<{$pv_item.prop_value_id}>" src="<{$pv_item.prop_image|storager:"s"}>">
+      </span>
+      <{/if}>
+      <input class="form-control edit-spec-name<{if !$pv_item.select}> hide<{/if}>" type="text" name="spec_value[<{$p_item.prop_id}>_<{$pv_item.prop_value_id}>]" value="<{$pv_item.prop_value}>">
+      <span class="spec-name<{if $pv_item.select}> hide<{/if}>"><{$pv_item.prop_value}></span>
+    </label>
+    <{/foreach}>
+  </div>
+</div>
+<{/foreach}>
+
+<div class="spec-img">
+</div>
+
+<div class="col-sm-offset-2 action-btns">
+  <button class="btn btn-primary btn-createallgoods" type="button"><span><span>生成所有货品</span></span></button>
+</div>
+

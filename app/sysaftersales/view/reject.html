@@ -1,0 +1,48 @@
+<form id="cancelForm" action="?app=sysaftersales&ctl=refunds&act=doTeject"  method="POST" >
+  <ul>
+    <li class="form-row">
+      <label for="" class="form-label">售后编号：</label>
+      <input type="hidden" name="data[aftersales_bn]" value="<{$aftersalesBn}>">
+      <input type="hidden" name="data[refunds_id]" value="<{$refundsId}>">
+      <span class="form-act"><{$aftersalesBn}></span>
+    </li>
+    <li class="form-row">
+      <label for="" class="form-label"><em>*</em>取消原因</label>
+      <textarea name="data[explanation]" cols="5" rows="3" placeholder="请填写取消订单原因" style="margin: 0px; height: 90px; width: 292px;" ></textarea>
+    </li>
+  </ul>
+  <div class="table-action">
+    <{button type="submit" id='cancel-form-submit' label="确定取消"}>
+    <{button type="button" isclosedialogbtn="1" label="放弃取消"}>
+  </div>
+</form>
+
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

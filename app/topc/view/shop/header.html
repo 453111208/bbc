@@ -1,0 +1,76 @@
+<!--shop header-->
+<div class="shopheader">
+  <div class="shopheader-bg" style="background-image:url(<{$background_image.image_id|storager}>);"></div>
+  <div class="wrap-lg shopheader-content" >
+    <div class="row">
+      <div class="col-lg-4 shop-logo">
+        <{if $background_image.show_shop_logo != 'off' }>
+        <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopdata.shop_id}>">
+          <img src="<{$shopdata.shop_logo|storager}>">
+        </a>
+        <{/if}>
+        <{if $background_image.show_shop_name != 'off'}>
+        <div><{$shopdata.shop_id|shopname}></div>
+        <{/if}>
+      </div>
+      <div class="col-lg-9 shop-slogan"><{if $background_image.show_shop_desc != 'off'}><{$shopdata.shop_descript}><{/if}></div>
+
+      <{if $nologin!=1}>
+      <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="shop-favorite" ><i class="icon icon-star"></i>收藏店铺</a>
+      <{else}>
+      <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" data-ajax-data="shop_id=<{$shopdata.shop_id}>" class="shop-favorite" rel='_request'><i class="icon icon-star"></i>收藏店铺</a>
+      <{/if}>
+
+      <{im qq=$shopdata.qq wangwang=$shopdata.wangwang}>
+
+    </div>
+  </div>
+</div>
+
+<!-- nav -->
+<div id="nav" class="nav">
+  <div class="wrap-lg">
+    <div class="row shop-nav">
+      <div class="col-lg-13 nav-main">
+        <div class="menu">
+          <div class="shop-category">
+            <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopdata.shop_id}>" class="on">店铺首页</a>
+          </div>
+          <{foreach from=$navdata item=item}>
+          <div class="shop-category">
+            <{if $item.menu}>
+            <a class="link" href="<{url action=topc_ctl_shopcenter@search shop_id=$shopdata.shop_id shop_cat_id=$item.cat_id}>"><{$item.menu}></a>
+            <{else}>
+            <a class="link" href="<{$item.url}>"><{$item.name}></a>
+            <{/if}>
+            <{if $item.children}>
+            <i class="icon icon-arrow-down-b" data-icon="\2808"></i>
+            <div class="category4 category4-col1">
+              <div class="category-item">
+                <div class="category-item">
+                  <div class="category-sub">
+                    <div class="category-sub-col">
+                      <{foreach from=$item.children item=cat}>
+                      <a class="link" href="<{url action=topc_ctl_shopcenter@search shop_id=$shopdata.shop_id shop_cat_id=$cat.cat_id}>"><{$cat.menu}></a>
+                      <{/foreach}>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <{/if}>
+          </div>
+          <{/foreach}>
+        </div>
+      </div>
+      <div class="col-lg-3 searchbar-small">
+        <form action="<{url action=topc_ctl_shopcenter@search}>" method="get" id="shop_search" data-async="false">
+          <input type="text" name="n" id="item_title" required>
+          <input type="hidden" id="shop_id" name="shop_id" value="<{$shopdata.shop_id}>">
+          <button type="submit" class="btn icon icon-search-a shop-search"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

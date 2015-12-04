@@ -1,0 +1,88 @@
+<div class="tableform" id="paymoney">
+	<form action="?app=sysuser&ctl=admin_user&act=premoney"  method="post" enctype="multipart/form-data">
+	<div class="division">
+	    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	      <tbody>		
+	        <tr>
+	          	<th><{t}>当前预存款：<{/t}></th>
+	          	<td><span class="price0"><{if $premoney>0}><{$premoney|cur}><{else}>0<{/if}></span></td>
+	        </tr>
+	        <tr>
+	          	<th ><{t}>充值金额：<{/t}></th>
+	          	<td><{input type="number" vtype="required&&number" maxlength="10" name="changemoney" }><span class="notice-inline"><{t}>此处可输入负值，负值表示减预存款<{/t}></span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>户名：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="username"></span></td>
+	        </tr>
+
+			<tr>
+	          	<th><{t}>账号：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="cardnum"></span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>开户行：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="bank"></span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>联系人：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="likeman"></span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>联系电话：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="phone"></span></td>
+	        </tr>
+	        <tr>
+	          	<th><{t}>支付日期：<{/t}></th>
+	          	<td><span class="price0"><input style="width:166px;" class="inputstyle" type="datetime-local" name="paytime"></span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>说明：<{/t}></th>
+	          	<td><span class="price0"><input class="inputstyle" type="text" name="explain"></span></td>
+	        </tr>
+			<tr>
+				<th><{t}>备注：<{/t}></th>
+				<input type="hidden" name="user_id" value="<{$userid}>">
+	          	<td><textarea class="inputstyle" rows="3" cols="24" name="text"></textarea></td>
+			</tr>
+			<tr>
+	          	<th><{t}>凭证：<{/t}></th>
+	          	<td>
+	          	<span class="price0">
+	          	<input class="inputstyle" type="file" name="ensurence">
+	          	</span></td>
+	        </tr>
+			<tr>
+	          	<th><{t}>支付方式：<{/t}></th>
+	          	<td><span class="price0"><input type="radio" name="payway" value="0">汇票</span></td>
+	          	<td><span class="price0"><input type="radio" name="payway" value="1">微信</span></td>
+	          	<td><span class="price0"><input type="radio" name="payway" value="2">银行卡</span></td>
+	          	<td><span class="price0"><input type="radio" name="payway" value="3">支付宝</span></td>
+	          	<td><span class="price0"><input type="radio" name="payway" value="4">其他</span></td>
+	        </tr>
+			
+<!-- 			<tr>
+	          	<th><{t}>类型：<{/t}></th>
+	          	<td><span class="price0"><input type="radio" name="pay" value="0">充值</span></td>
+	          	<td><span class="price0"><input type="radio" name="pay" value="1">消费</span></td>
+	          	<td><span class="price0"><input type="radio" name="pay" value="2">保证金提现</span></td>
+	        </tr> -->
+<!-- 			<tr>
+	          	<th><{t}>类型：<{/t}></th>
+	          	<td><span class="price0"><input type="radio" name="types" value="0">竞价</span></td>
+	          	<td><span class="price0"><input type="radio" name="types" value="1">招标</span></td>
+	          	<td><span class="price0"><input type="radio" name="types" value="2">其他</span></td>
+	        </tr> -->
+	      </tbody>
+	    </table>
+	</div>
+	<div class="table-action"><{button type="submit" label=$___b2c="保存"|t:'b2c' }></div>
+	</form>
+</div>
+<div>
+</div>
+<style type="text/css">
+	#paymoney td{
+		float: left;
+	}
+</style>

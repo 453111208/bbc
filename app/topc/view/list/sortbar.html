@@ -1,0 +1,27 @@
+<div class="sortbar">
+  <div class="left">
+    排序：&nbsp;&nbsp;
+    <a href="<{url action=topc_ctl_list@index _params=$filter  r_sort='sold_quantity desc' operationtype=replace}>" class="btn btn-flat is-desc <{if $activeFilter.orderBy == 'sold_quantity desc' || !$activeFilter.orderBy}>on<{/if}>"><span><span>销量<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+    <{if $activeFilter.orderBy == 'price asc' }>
+    <a href="<{url action=topc_ctl_list@index _params=$filter  r_sort='price desc' operationtype=replace }>" class="btn btn-flat is-asc <{if $activeFilter.orderBy == 'price asc' }>on<{/if}>"><span><span>价格<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+    <{else}>
+    <a href="<{url action=topc_ctl_list@index  _params=$filter r_sort='price asc' operationtype=replace }>" class="btn btn-flat is-desc <{if $activeFilter.orderBy == 'price desc' }>on<{/if}>"><span><span>价格<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+    <{/if}>
+    <a href="<{url action=topc_ctl_list@index  _params=$filter r_sort='list_time desc' operationtype=replace }>" class="btn btn-flat is-desc <{if $activeFilter.orderBy == 'list_time desc' }>on<{/if}>"><span><span>上架时间<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+
+    <input type="checkbox"  name="isself" id="isself" <{if $isself==0}> checked <{/if}>>自营
+
+  </div>
+  <div class="right">
+    <span class="num">共<em><{$count}></em>件商品</span>
+    <{pagers data=$pagers type="mini"}>
+  </div>
+</div>
+
+<script>
+  
+  $('#isself').change(function(){
+      location.href = '<{url action=topc_ctl_list@index  _params=$filter r_sf=$isself operationtype=replace}>';
+  });
+  
+</script>

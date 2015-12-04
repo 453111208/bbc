@@ -1,0 +1,65 @@
+
+<{foreach from=$trades item=tradeitem}>
+<div class="inner-wrap">
+  <div class="select-store">
+    <div class="store-n">
+      <label for="name">
+        <a href="<{url action=topm_ctl_shopcenter@index shop_id=$tradeitem.shop_id}>">
+          <{$tradeitem.shop_id|shopname}>
+        </a>
+      </label>
+    </div>
+    <div class="store-g">
+      <ul>
+        <{foreach from=$tradeitem.order item=orderitem name=orderlist}>
+        <li>
+          <div class="g-info">
+            <div class="info-l">
+              <a href="<{url action=topm_ctl_member_trade@detail tid=$tradeitem.tid}>" class="g-pic">
+                <img src="<{$orderitem.0.pic_path|storager:'s'}>" alt="">
+              </a>
+            </div>
+            <div class="info-m">
+              <div class="code">订单号:<{$tradeitem.tid}></div>
+              <a class="g-name" href="<{url action=topm_ctl_member_trade@detail tid=$tradeitem.tid}>">
+                <{if $orderitem.0.promotion_tag}><span class="activity-tag"><{$orderitem.0.promotion_tag}></span><{/if}><{$orderitem.0.title}>
+              </a>
+              <span class="real"> 实付款: <i><{$tradeitem.payment}></i> </span>
+              <span class="num">共<i><{$tradeitem.itemnum}></i>件</span>
+              <div class="action">
+                <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+                <a class="ui-btn ui-btn-danger pay" href="<{url action=topm_ctl_paycenter@createPay tid=$tradeitem.tid}>" rel="_request">付款</a>
+                <a class="ui-btn default cancel" href="<{url action=topm_ctl_member_trade@cancel tid=$tradeitem.tid}>">取消订单</a>
+                <{elseif $tradeitem.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+                <a class="ui-btn confirm" href="<{url action=topm_ctl_member_trade@confirmReceipt tid=$tradeitem.tid}>" rel="_request" data-ajax-type="post" target="confirm::是否确认已收到货？">确认收货
+                </a>
+                <a class="ui-btn default flow" href="<{url action=topm_ctl_member_trade@detail tid=$tradeitem.tid}>">查看物流</a>
+                <{/if}>
+                <{if $tradeitem.is_buyer_rate }>
+                <a class="ui-btn evaluation flow" href="<{url action=topm_ctl_member_rate@createRate tid=$tradeitem.tid}>">去评价</a>
+                <{/if}>
+              </div>
+            </div>
+            <div class="info-r">
+              <div class="g-price">
+                <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+                <span class="notpaid ui-badge-danger ui-badge-inverted">待付款</span>
+                <{elseif $tradeitem.status == "WAIT_SELLER_SEND_GOODS"}>
+                <span class="notsend ui-badge-danger ui-badge-inverted" >待发货</span>
+                <{elseif $tradeitem.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+                <span class="out">已发货</span>
+                <{elseif $tradeitem.status == "TRADE_FINISHED"}>
+                <span class="out">已完成</span>
+                <{elseif $tradeitem.status == "TRADE_CLOSED_BY_SYSTEM" || $tradeitem.status == "TRADE_CLOSED"}>
+                <span class="out">已关闭</span>
+                <{/if}>
+              </div>
+            </div>
+          </div>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+  </div>
+</div>
+<{/foreach}>

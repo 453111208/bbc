@@ -1,0 +1,118 @@
+<div class="store-n">
+  <span><a href="<{url action=topm_ctl_shopcenter@index shop_id=$trade.shop_id}>"><{$trade.shop_id|shopname}></a></span>
+</div>
+<div class="store-g">
+  <ul>
+    <{foreach from=$trade.orders item=item key=key}>
+    <li>
+      <div class="g-info">
+        <div class="info-l">
+          <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>" class="g-pic">
+            <img src="<{$item.pic_path|storager:'s'}>" alt=""></a>
+        </div>
+        <div class="info-m">
+          <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>" class="g-name"><{if $item.promotion_tag}><span class="activity-tag"><{$item.promotion_tag}></span><{/if}> <{$item.title}></a>
+          <div class="info-status">
+          <{if $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+
+          <{if $item.aftersales_status == "WAIT_SELLER_AGREE"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">售后处理中</a>
+          <{elseif $item.aftersales_status == "SUCCESS"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款完成</a>
+          <{elseif $item.aftersales_status == "SELLER_REFUSE_BUYER"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">卖家拒绝退款</a>
+          <{elseif $item.aftersales_status == "CLOSED"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款关闭</a>
+          <{elseif $item.aftersales_status == "REFUNDING"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款中</a>
+          <{else}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@aftersalesApply tid=$trade.tid oid=$item.oid type=ONLY_REFUND}>">申请退款</a>
+          <{/if}>
+          <{elseif $trade.status != "WAIT_BUYER_PAY" && $trade.status != "TRADE_CLOSED_BY_SYSTEM" && $trade.status != "TRADE_CLOSED"  }>
+
+          <{if $item.aftersales_status == "WAIT_SELLER_AGREE"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款处理中</a>
+          <{elseif $item.aftersales_status == "WAIT_BUYER_RETURN_GOODS"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">同意退款,请退货</a>
+          <{elseif $item.aftersales_status == "WAIT_SELLER_CONFIRM_GOODS"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">待卖家确认收货</a>
+          <{elseif $item.aftersales_status == "SUCCESS"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款完成</a>
+          <{elseif $item.aftersales_status == "SELLER_REFUSE_BUYER"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">卖家拒绝退款</a>
+          <{elseif $item.aftersales_status == "SELLER_SEND_GOODS"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">换货完成</a>
+          <{elseif $item.aftersales_status == "CLOSED"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款关闭</a>
+          <{elseif $item.aftersales_status == "REFUNDING"}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@goAftersalesDetail id=$item.oid}>">退款中</a>
+          <{else}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_aftersales@exchange tid=$trade.tid oid=$item.oid status=$trade.status}>">申请售后</a>
+          <{/if}>
+          <{/if}>
+
+          <{if $item.complaints_status == 'NOT_COMPLAINTS'}>
+          <{if $item.aftersales_status == 'SELLER_REFUSE_BUYER' }>
+          <a  class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_complaints@complaintsView oid=$item.oid}>">投诉商家</a>
+          <{/if}>
+          <{elseif $item.complaints_status == 'WAIT_SYS_AGREE'}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_complaints@detail oid=$item.oid}>">投诉处理中</a>
+          <{elseif $item.complaints_status == 'FINISHED'}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_complaints@detail oid=$item.oid}>">投诉已成功</a>
+          <{elseif $item.complaints_status == 'BUYER_CLOSED'}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_complaints@detail oid=$item.oid}>">投诉已撤销</a>
+          <{elseif $item.complaints_status == 'CLOSED'}>
+          <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_complaints@detail oid=$item.oid}>">投诉已关闭</a>
+          <{/if}>
+          </div>
+        </div>
+        <div class="info-r">
+          <div class="g-price">
+            <span class="after"><{$item.price|cur}></span>
+            <br>
+            <span class="num">
+              x <i class="n"><{$item.num}></i>
+            </span>
+            <br>
+          </div>
+        </div>
+      </div>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+<{if $trade.is_buyer_rate }>
+<div class="order-appraisal">
+  <a class="ui-btn ui-btn-warning ui-btn-outlined" href="<{url action=topm_ctl_member_rate@createRate tid=$trade.tid}>">去评价</a>
+</div>
+<{/if}>
+<div class="sale-del">
+  <div class="charges">
+    <table>
+      <tr>
+        <td class="t">商品额:</td>
+        <td class="c warm"><{$trade.total_fee|cur}></td>
+      </tr>
+      <tr>
+        <td class="t">运费:</td>
+        <td class="c warm"><{$trade.post_fee|cur}></td>
+      </tr>
+      <{if $trade.discount_fee>0}>
+      <tr>
+        <td class="t">优惠:</td>
+        <td class="c warm"><{$trade.discount_fee|cur}></td>
+      </tr>
+      <{/if}>
+      <{if $trade.adjust_fee>0}>
+      <tr>
+        <td class="t">手工调价:</td>
+        <td class="c warm"><{$trade.adjust_fee|cur}></td>
+      </tr>
+      <{/if}>
+      <tr class="total-c">
+        <td class="t">实付款（含运费）:</td>
+        <td class="c warm"><{$trade.payment|cur}></td>
+      </tr>
+    </table>
+  </div>
+</div>

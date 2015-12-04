@@ -1,0 +1,57 @@
+<div class="apply shop order-detail">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <form action="<{url action=topm_ctl_member_complaints@complaintsCi}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+      <input type="hidden" name="oid" value="<{$oid}>">
+      <div class="apply-info">
+        <div class="info">
+          <span class="complaints-type">
+            <input type="hidden" class="complaints-type-val" name='complaints_type' value="<{$text}>">
+            投诉类型 <span class="text"></span>
+            <i class="icon icon-down"></i>
+          </span>
+          <ul class="res-con">
+            <{foreach from=$complaintsType item=text}>
+            <li><i class="icon icon-ok"></i><span><{$text}></span></li>
+            <{/foreach}>
+          </ul>
+        </div>
+        <div class="info">
+          <label>联系方式</label>
+          <span class="form-act">
+            <input class="x-input input-xln" type="text" name="tel" id="">
+          </span>
+        </div>
+        <div class="msg">
+          <span class="hd">描述问题</span>
+          <textarea name="content" rows="3" minlength="5" maxlength='150' placeholder="请输入投诉的原因，5-150字"></textarea>
+        </div>
+        <span>您还可以，登录电脑端上传图片，增加投诉成功几率</span>
+      </div>
+      <div class="buy-action">
+        <button type="submit" class="ui-btn-warning">提交投诉</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--返回顶部-->
+<div id="gotop"></div>
+<script>
+  $('.info .complaints-type').click(function(){
+    $(this).next().toggle();
+    if($(this).children('i').hasClass('icon-down')){
+      $(this).css('border-bottom','none').children('i').removeClass('icon-down').addClass('icon-up');
+    }else{
+      $(this).css('bordere-bottom','1px dashed #dad9de').children('i').removeClass('icon-up').addClass('icon-down');
+    }
+  });
+$('.res-con li').tap(function(){
+  $('.res-con li').removeClass('active')
+  var txt = $(this).find('span').text();
+$(this).addClass('active');
+$(this).parent().hide();
+$('.complaints-type .text').text('： ' + txt);
+$('.complaints-type-val').val(txt)
+})
+</script>

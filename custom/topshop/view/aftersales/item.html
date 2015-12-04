@@ -1,0 +1,70 @@
+<{if $list}>
+<{foreach from=$list item=row }>
+<div class="row" style="margin-bottom:10px">
+  <div class="col-lg-4">退换货编号：<{$row.aftersales_bn}></div>
+  <div class="col-lg-3">
+    退换货类型：
+    <{if $row.aftersales_type == 'ONLY_REFUND'}>
+    仅退款
+    <{elseif $row.aftersales_type == 'REFUND_GOODS'}>
+    退货退款
+    <{elseif $row.aftersales_type == 'EXCHANGING_GOODS'}>
+    换货
+    <{/if}>
+  </div>
+  <div class="col-lg-3">申请时间：<{$row.created_time|cdate:'FDATE_FTIME'}></div>
+</div>
+<table class="table table-primary table-hover table-goods">
+  <thead>
+    <tr>
+      <td class="col-name">商品名称</td>
+      <td>订单编号</td>
+      <td>数量</td>
+      <td>价格</td>
+      <td>申请处理进度</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody id="">
+    <tr>
+      <td>
+        <div class="goods">
+          <a href="<{url action=topc_ctl_item@index item_id=$row.sku.item_id}>" target="_blank">
+            <img src="<{$row.sku.pic_path|storager:"s"}>" alt="">
+            <{$row.sku.title}>&nbsp;&nbsp;<{$row.sku.spec_nature_info}></a>
+        </div>
+      </td>
+      <td><{$row.tid}></td>
+      <td><{$row.num}></td>
+      <td><span class="text-orange"><{$row.sku.price|cur}></span></td>
+      <td>
+        <{if $row.progress == '0'}>
+        等待企业处理
+        <{elseif $row.progress == '1'}>
+        等待回寄
+        <{elseif $row.progress == '2'}>
+        等待收货确认
+        <{elseif $row.progress == '3'}>
+        企业已驳回
+        <{elseif $row.progress == '4'}>
+        企业已处理
+        <{elseif $row.progress == '5'}>
+        等待平台处理
+        <{elseif $row.progress == '6'}>
+        平台已驳回
+        <{elseif $row.progress == '7'}>
+        平台已处理
+        <{/if}>
+      </td>
+      <td>
+        <div>
+          <a href="<{url action=topshop_ctl_aftersales@detail bn=$row.aftersales_bn}>">查看详情</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<{/foreach}>
+<{else}>
+<p class="text-muted well no-shadow text-center">暂无数据</p>
+<{/if}>

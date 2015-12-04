@@ -1,0 +1,49 @@
+<form id="cancelForm" action="?app=sysshoppubt&ctl=sprodrelease&act=info"  method="POST" >
+  <ul>
+    <li class="form-row">
+    <input type="hidden" name="standard_id" value="<{$standard_id}>">
+    <input type="hidden" name="info_uniqid" value="<{$info_uniqid}>">
+      <label for="" class="form-label">通知标题</label>
+      <input type="text" name="title" value="<{$tid}>">
+    </li>
+    <li class="form-row">
+      <label for="" class="form-label">通知内容</label>
+      <{input type=html name='content' value=$article.content}>
+      <!-- <textarea name="content" cols="5" rows="3" placeholder="请填写通知內容" style="margin: 0px; height: 90px; width: 292px;" ></textarea> -->
+    </li>
+  </ul>
+  <div class="table-action">
+    <button type="submit" id='cancel-form-submit'>发送</button>
+    <button type="button" isclosedialogbtn="1">取消</button>
+</form>
+  </div>
+
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

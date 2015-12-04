@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="images/member/member.css" />
+<div class="maxM-right supers1">
+    <div class="maxM-Perfect">
+        <a><img src="images/member/ad1.jpg"></a>
+    </div>
+    <div class="maxM-greet">
+        <div class="maxM-g-title">
+            <h3>你好，<em><{$shopInfo.name}></em>,欢迎来到东方循环！</h3>
+            <span>
+                您有 <!-- <a><a href="<{url action=topc_ctl_member_trade@tradeList status='WAIT_BUYER_PAY'}>"><em><{$nupay}></em></a></a> 个订单未处理； -->
+                <a href="<{url action=topc_ctl_member_notice@index}>"><{$shopnotice}></a>  条未读消息；
+                您的预存款余额：<a><{$userInfo.hjadvance|cur}></a>
+            </span>
+        </div>
+        <{if $seller_type==3}>
+        <ul >
+        <{else}>
+        <ul style="width:650px">
+                <{/if}>
+            <li class="item-1"><a href="<{url action=topc_ctl_member_biddings@addBidding}>"><i></i>一键出售</a></li>
+            <li class="item-2"><a><i></i>产品管理</a></li>
+            <li class="item-3"><a><i></i>确认出货</a></li>
+            <li class="item-4"><a><i></i>账户动态</a></li>
+            <{if $seller_type!=3}>
+            <{if $shopInfo.shop_id}>
+            <li class="item-5"><a href="shopcenter.html?shop_id=<{$shopInfo.shop_id}>"><i></i>企业展台</a></li>
+            <{else}>
+              <li class="item-5"><a  href="<{url action=topc_ctl_member_userdata@index}>" onclick="alert('请先完善您的企业信息');"><i></i>企业展台</a></li>
+            <{/if}>
+            <{/if}>
+
+        </ul>
+    </div>
+    <div class="maxM-C-infor">
+        <h3>
+            <span>定制信息</span>
+        </h3>
+        <div class="maxM-Infor">
+            <{include file="topc/member/index/otherdata.html"}>
+        </div>
+        <div class="maxM-Infor">
+            <{include file="topc/member/index/supplyinfo.html"}>
+        </div>
+        <div class="maxM-Infor">
+            <{include file="topc/member/index/newsinfo.html"}>
+        </div>
+        <div class="maxM-Infor">
+            <{include file="topc/member/index/tradeinfo.html"}>
+        </div>
+    </div>
+</div>
+<script src="images/member/member.js"></script>

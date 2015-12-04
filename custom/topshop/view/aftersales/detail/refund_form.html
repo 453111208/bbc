@@ -1,0 +1,81 @@
+<form action="<{url action=topshop_ctl_aftersales@verification}>" method="post" class="bg-white" data-validate-onsuccess="ajaxSubmit">
+  <input type='hidden' name='aftersales_bn' value="<{$info.aftersales_bn}>">
+  <input type='hidden' name='aftersales_type' value="<{$info.aftersales_type}>">
+  <{if $info.progress == '0'}>
+  <div class="border-box">
+    <div class="form-group">
+      <span class="order-form-w1 pull-left"><em class="text-red">*</em>选择处理结果：</span>
+      <div class="col-xs-8 radio">
+        <label>
+          <input type="radio" name="check_result" checked id="" class="results" value="true">
+          接受处理
+        </label>
+        <label>
+          <input type="radio" name="check_result" id="" class="results" value="false">
+          不同意
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <span class="order-form-w1 pull-left"><em class="text-red">*</em>处理说明：</span>
+      <div class="col-xs-8">
+        <textarea class="form-control" name="shop_explanation"></textarea>
+      </div>
+    </div>
+  </div>
+  <{else}>
+     <input type="hidden" name="check_result" value="true">
+  <{/if}>
+
+  <div class="accept" style="display:show">
+  <div class="border-box">
+    <div class="form-group">
+      <em class="text-red">*</em>商品赔付及金额调整：
+    </div>
+    <div class="form-group">
+      ￥
+      <input type="text" name='total_price' required="true" size="5">
+      <span class="text-gray">金额最大不能超过(订单总金额-涉及退换货商品款项-退还运费)</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <span class="order-form-w1 pull-left"><em class="text-red">*</em>申请说明：</span>
+    <div class="col-xs-8">
+      <textarea class="form-control" name="refunds_reason" required="true"></textarea>
+    </div>
+  </div>
+</div>
+
+  <div class="">
+    <span class="order-form-w1">&nbsp;</span>
+    <button type="submit" class="btn btn-primary">提交平台审核</button>
+  </div>
+
+</form>
+<script>
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        setTimeout(function(){location.href=rs.redirect;}, 800);
+      }
+    });
+  }
+
+$('.results').on('click',function(){
+  if(this.value == "false"){
+    $('.accept').hide();
+  }
+  else{
+    $('.accept').show();
+  }
+});
+</script>

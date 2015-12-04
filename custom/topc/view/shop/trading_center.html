@@ -1,0 +1,146 @@
+<div class="maxmain-right r">
+			<div class="maxpr-solid  maxproduct">
+				<div class="max-p-title t3" style="margin-bottom:0">
+					<div class="xian"></div>
+					<div class="h3">交易信息</div>
+					<div class="max-tabs-top more">
+						<ul>
+							 <li class="active first" ><span>供应</span></li>
+							 <li class=""><span>求购</span></li>
+							 <li class=""><span>竞价</span></li>
+							 <li class="last"><span>招标</span></li>
+						</ul>
+					</div>
+					
+					<i></i>
+					<!-- <div class="maxmore"><a href="" title="">更多></a></div> -->
+				</div>
+
+				<div class="maxtext" style="padding-bottom:20px;display:none">共有供应数量 <i><{$supplylistnum}></i> 个</div>
+				<div class="maxtext" style="padding-bottom:20px;display:none">共有求购数量 <i><{$requirelistnum}></i> 个</div>
+				<div class="maxtext" style="padding-bottom:20px;display:none">共有竞价数量 <i><{$biddingslistnum}></i> 个</div>
+				<div class="maxtext" style="padding-bottom:20px;display:none">共有投标数量 <i><{$tenderlistnum}></i> 个</div>
+
+				<div class="max-tabs-body">
+					<!-- 切换 -->
+					<div class="maxcomon maxbox item-list">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+							<colgroup>
+							  <col class="col-6">
+							  <col class="col-3">
+							  <col class="col-3">
+							  <col class="col-2">
+							</colgroup>
+							
+							<tbody>
+								<{foreach from=$supplylist item=data}>
+								<tr class="odd first">
+									<td>
+										<div class="n">
+											<div class="shu" style="left:140px"></div>
+											<div class="time" style="width: 170px"><{$data.create_time}></div>
+											<i class="q"></i>
+											<div class="max-text">	<{$data.variety_name}></div>
+										</div>
+									</td>
+									<!-- <td>报价还剩<i class="color">2</i>天</td> -->
+									<td>已有报价数<i class="color"><{$data.enquirenum}></i>条</td>
+								</tr>
+								<{/foreach}>
+							</tbody>
+						</table>
+					</div>
+					<!-- 切换END -->
+					<!-- 切换 -->
+					<div class="maxcomon maxbox item-list">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+							<colgroup>
+							  <col class="col-6">
+							  <col class="col-3">
+							  <col class="col-3">
+							  <col class="col-2">
+							</colgroup>
+							
+							<tbody>
+								<{foreach from=$requirelist item=data}>
+								<tr class="odd first">
+									<td>
+										<div class="n">
+											<div class="shu" style="left:140px"></div>
+											<div class="time" style="width: 170px"><{$data.create_time}></div>
+											<i class="q"></i>
+											<div class="max-text">	<{$data.variety_name}></div>
+										</div>
+									</td>
+									<!-- <td>报价还剩<i class="color">2</i>天</td> -->
+									<td>已有报价数<i class="color"><{$data.enquirenum}></i>条</td>
+								</tr>
+								<{/foreach}>
+							</tbody>
+						</table>
+					</div>
+					<!-- 切换END -->
+					<!-- 切换 -->
+					<div class="maxcomon maxbox item-list">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+							<colgroup>
+							  <col class="col-6">
+							  <col class="col-3">
+							  <col class="col-3">
+							  <col class="col-2">
+							</colgroup>
+							
+							<tbody>
+								<{foreach from=$biddingslist item=data}>
+								<tr class="odd first">
+									<td>
+										<div class="n">
+											<div class="shu" style="left:140px"></div>
+											<div class="time" style="width: 170px"><{$data.create_time}></div>
+											<i class="q"></i>
+											<div class="max-text">	<{$data.trading_title}></div>
+										</div>
+									</td>
+									<!-- <td>报价还剩<i class="color">2</i>天</td> -->
+									<td>已有报价数<i class="color"><{$data.enquirenum}></i>条</td>
+								</tr>
+								<{/foreach}>
+							</tbody>
+						</table>
+					</div>
+					<!-- 切换END -->
+					<!-- 切换 -->
+					<div class="maxcomon maxbox item-list">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+							<colgroup>
+							  <col class="col-6">
+							  <col class="col-3">
+							  <col class="col-3">
+							  <col class="col-2">
+							</colgroup>
+							
+							<tbody>
+								<{foreach from=$tenderlist item=data}>
+								<tr class="odd first">
+									<td>
+										<div class="n">
+											<div class="shu" style="left:140px"></div>
+											<div class="time" style="width: 170px"><{$data.create_time}></div>
+											<i class="q"></i>
+											<div class="max-text">	<{$data.trading_title}></div>
+										</div>
+									</td>
+									<!-- <td>报价还剩<i class="color">2</i>天</td> -->
+									<td>已有报价数<i class="color"><{$data.enquirenum}></i>条</td>
+								</tr>
+								<{/foreach}>
+							</tbody>
+						</table>
+					</div>
+					<!-- 切换END -->
+
+
+				</div>
+			</div>
+				
+		</div>

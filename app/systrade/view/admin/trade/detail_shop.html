@@ -1,0 +1,42 @@
+<div class="tableform">
+  <div class="division">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <th><label><{t}>店铺名称：<{/t}></label></th>
+        <td><{$shop.shop_name|escape:'html'}></td>
+        <th><label><{t}>店主姓名：<{/t}></label></th>
+        <td><{$shop.shopuser_name}></td>
+        <th><label><{t}>开店时间：<{/t}></label></th>
+        <td><{if $shop.open_time}><{$shop.open_time|cdate}><{/if}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>店铺类型：<{/t}></label></th>
+        <td><{$shop.shoptype}></td>
+        <th><label><{t}>经营类目：<{/t}></label></th>
+        <td>
+          <{foreach from=$cat item=catitem}>
+          <{$catitem.cat_name}>
+          <{/foreach}>
+        </td>
+        <th><label><{t}>经营品牌：<{/t}></label></th>
+        <td>
+          <{foreach from=$brand item=branditem}>
+          <{$branditem.brand_name}>
+          <{/foreach}>
+        </td>
+      </tr>
+      <tr>
+        <th><label><{t}>店主邮箱：<{/t}></label></th>
+        <td><{$shop.email}></td>
+        <th><label><{t}>店主电话：<{/t}></label></th>
+        <td><{$shop.mobile}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>公司联系人手机：<{/t}></label></th>
+        <td><{$shop_info.company_cmobile}></td>
+        <th><label><{t}>公司联系人：<{/t}></label></th>
+        <td><{$shop_info.company_contacts}></td>
+      </tr>
+    </table>
+  </div>
+</div>

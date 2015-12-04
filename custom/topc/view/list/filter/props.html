@@ -1,0 +1,16 @@
+<{foreach from=$screen.props item=row name=name}>
+<div class="filter-attr">
+  <div class="filter-attr-title"><{$row.prop_name}>：</div>
+  <div class="filter-attr-list">
+    <{foreach from=$row.prop_value item=item }>
+
+    <{if $item.prop_index == $activeFilter.prop_index || in_array( $item.prop_index,$activeFilter.prop_index)}>
+    <a href="<{url action=topc_ctl_list@index _params=$filter d_prop_index=$item.prop_index operationtype=remove }>" class="on" ><{$item.prop_value}><i class="icon icon-close"></i></a>
+    <{else}>
+    <a href="<{url action=topc_ctl_list@index _params=$filter a_prop_index=$item.prop_index operationtype=add }>"><{$item.prop_value}><i class="icon icon-close"></i></a>
+    <{/if}>
+    <{/foreach}>
+
+  </div>
+</div>
+<{/foreach}>

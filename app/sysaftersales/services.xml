@@ -1,0 +1,7 @@
+<services>
+
+    <service id="desktop_finder.sysaftersales_mdl_refunds">
+        <class>sysaftersales_finder_refunds</class>
+    </service>
+
+</services>

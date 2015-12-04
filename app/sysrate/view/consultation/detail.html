@@ -1,0 +1,100 @@
+<div class="orderInfo tableform" id="comment_gask_<{$comment.comment_id}>" >
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2"><h3 style="padding:0 0 0 15px"><{t}>咨询商品<{/t}></h3></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div class="discuss-pro">
+          <table width="100%" cellpadding="0" cellspacing="0" style=" border:1px solid #ddd; border-left:none; border-right:none" border="0">
+            <tr>
+              <td style="padding:8px; width:20%">
+                <div class="discuss-pro-pic">
+                  <a href="<{$comment.item_url}>" target="_blank" style="width:150px; height:200px;overflow:hidden;" >
+                    <img style="overflow:hidden;" src="<{$comment.image_default_id|storager:'s'}>" /> </a>
+                </div>
+              </td>
+              <td style="padding:5px; width:80%">
+                <ul>
+                  <li>
+                    <b>
+                      <label><{t}>商品名称：<{/t}></label>
+                      <a href="<{$comment.item_url}>" target="_blank"><{$comment.item_title}></a>
+                    </b>
+                  </li>
+                  <li>
+                    <b>
+                      <label><{t}>所属店铺：<{/t}></label>
+                      <a href="<{$comment.shop_url}>" target="_blank"><{$comment.shop_name}></a>
+                    </b>
+                  </li>
+                  <li>  <{t}>商品链接<{/t}>
+                    <a href="<{$comment.item_url}>" target="_blank"><{$comment.item_url}></a>
+                  </li>
+                  <label><{t}>发表人：<{/t}></label>
+                  <{if $comment.author_id}>
+                  <{$comment.author}>
+                  <{else}>
+                  游客
+                  <{/if}>
+                </li>
+                <li>
+                  <label><{t}>联系方式：<{/t}></label>
+                  <a href="" target="_self"><{$comment.contact}></a>
+                </li>
+                <li>
+                  <label><{t}>发表时间：<{/t}></label>
+                  <{$comment.create_time|cdate:SDATE_STIME}>
+                </li>
+                <li>
+                  <label><{t}>发表人IP：<{/t}></label>
+                  <{$comment.ip}>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="right"><{t}>咨询内容<{/t}></td>
+          <td>
+            [<a href="?app=sysrate&ctl=consultation&act=to_display&id=<{$comment.consultation_id}>&display=<{$comment.is_display}>&finder_id=<{$env.get._finder.finder_id}>"><{if $comment.is_display=='true'}><{t}>关闭显示<{/t}><{else}><{t}>显示到商品页<{/t}><{/if}></a>]
+            [<a href="?app=sysrate&ctl=consultation&act=to_delete&id=<{$comment.consultation_id}>&type=consultation&finder_id=<{$env.get._finder.finder_id}>" target="{update:'main'}"><{t}>删除<{/t}></a>]
+          </td>
+        </tr>
+        <{if $comment.consultation_type}>
+        <tr>
+          <td align="right"><{t}>咨询项目：<{/t}></td>
+          <td><{$comment.consultation_type}> </td>
+        </tr>
+        <{/if}>
+        <tr>
+          <td align="right"><{t}>内容：<{/t}></td>
+          <td><{$comment.content}> </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <{if count($reply) > 0}>
+            <{foreach from=$reply item=items}>
+            <h5 style="font-weight:normal; padding-left:0">
+              <{$items.author}><{if $items.levelname!=""}> [<{$items.levelname}>]<{/if}><{t}>于<{/t}><span class="assis" style="margin:0 3px; color:#333">
+                [<{$items.time|cdate:SDATE_STIME}>]
+              </span>
+              <{t}>回复：<{/t}>
+              <span>
+                [<a href="?app=sysrate&ctl=consultation&act=to_display&id=<{$items.consultation_id}>&display=<{$items.is_display}>&finder_id=<{$env.get._finder.finder_id}>"><{if $items.is_display=='true'}><{t}>关闭显示<{/t}><{else}><{t}>显示到商品页<{/t}><{/if}></a>]
+                [<a href="?app=sysrate&ctl=consultation&act=to_delete&id=<{$items.consultation_id}>&type=reply&finder_id=<{$env.get._finder.finder_id}>"><{t}>删除<{/t}></a>]
+              </span>
+            </h5>
+            <{t}>内容：<{/t}><{$items.content}>
+            <{/foreach}>
+            <{/if}>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>

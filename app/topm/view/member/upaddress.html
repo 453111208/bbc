@@ -1,0 +1,88 @@
+<div class="address-edit shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <form action="<{url action=topm_ctl_member@saveAddress}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+      <input type="hidden" name="addr_id" id="addr_id" value="<{$addrInfo.addr_id}>">
+      <ul>
+        <li class="form-row">
+          <label for="" class="form-label">收货人</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="name" value="<{$addrInfo.name}>" id="name" required>
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">手机号码</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="mobile" data-validate="mobile" data-caution="手机格式不正确" value="<{$addrInfo.mobile}>" id="mobile">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">邮政编码</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="zip" value="<{$addrInfo.zip}>" id="zip">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">所在地区</label>
+          <span class="form-act">
+            <span class="area" id="area" data-validate="area"></span>
+          </span>
+          <!-- <span class="icon icon-forward"></span> -->
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">地址</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="addr" value="<{$addrInfo.addr}>" id="addr" required>
+          </span>
+        </li>
+        <{if $addrdetail!='/'}>
+        <li class="form-row">
+          <label for="" class="form-label">详细地址</label>
+          <span class="form-act">
+            <input class="input-ln" type="text"  value="<{$addrdetail}>" id="detail" required>
+          </span>
+        </li>
+        <{/if}>
+      </ul>
+      <div class="set-defualt">
+        <input  id="defualt" type="checkbox" name="def_addr" value="1" <{if $addrInfo.def_addr==1}> checked <{/if}>>
+        <label for="defualt">设为默认地址</label>
+      </div>
+      <div class="save-action">
+        <button type="submit" class="ui-btn-warning">保 存</button>
+        <span class="icon icon-recycle" id='deladdr'></span>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+
+new AreaWidget({
+  dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+  select:$('#area'),
+  initData:'<{$addrInfo.region_id}>'
+});
+
+  //会员地址删除操作
+$('#deladdr').click(function(){
+  var Message = new gmu.Message();
+  if(confirm("确定要删除吗？")){
+    var url = "<{url action=topm_ctl_member@ajaxDelAddr}>";
+    var addrId='<{$addrInfo.addr_id}>';
+    if(addrId) {
+      $.post(url,'addr_id='+addrId,function(rs){
+        if(rs.success){
+          Message.success(rs.message, {
+            hide: function() {
+              location.href = rs.redirect;
+            }
+          });
+        }else{
+          Message.error(rs.message);
+        }
+      });
+    }
+  }
+});
+</script>
+

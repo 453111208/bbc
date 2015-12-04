@@ -1,0 +1,47 @@
+<div class="member shop member-detail">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <div class="info-hd">
+      <div class="grow-grade">
+        <div class="left">
+          <h2>会员等级：</h2>
+          <div class="grow-grade-current"><i class="icon icon-grade"></i><{$grade.userlist.gradename}></div>
+          <div><a href="<{url action=topm_ctl_member_experience@grade }>">成长值详情></a></div>
+        </div>
+        <div class="right">
+          <div class="grow-grade-number">
+            <p>
+              <span class="l1">当前成长值：<{$userpoint.experience}></span>
+              <span class="l2">到下一等级：<{$grade.userlist.lackExp}></span>
+            </p>
+            <i class="icon-location"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-bd2">
+      <div class="grow-table-hd">成长记录</div>
+      <ul class="grow-value-table">
+        <li>
+          <div class="box">
+            <div>记录时间</div>
+            <div>行为</div>
+            <div>成长值</div>
+            <div>备注</div>
+          </div>
+        </li>
+        <{foreach from=$pointdata item=point}>
+        <li>
+          <div class="box">
+            <div><{$point.modified_time|cdate}> </div>
+            <div><{$point.behavior}></div>
+            <div><{if $point.behavior_type == "obtain"}>+<{elseif $point.behavior_type == "consume"}>-<{/if}><{$point.point}>
+            </div>
+            <div><{$point.remark}></div>
+          </div>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+  </div>
+</div>

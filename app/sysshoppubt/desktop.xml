@@ -1,0 +1,39 @@
+<desktop>
+    <permissions>
+        <permission id="sysshoppubt_sprodrelease"  workground='sysshoppubt.sprodrelease.manage' display='true' >交易管理</permission>
+        <permission id="sysshoppubt_biddings"  workground='sysshoppubt.sprodrelease.manage' display='true' >竞价管理</permission>
+        <permission id="sysshoppubt_tender"  workground='sysshoppubt.sprodrelease.manage' display='true' >招标管理</permission>
+        <permission id="sysshoppubt_sample"  workground='sysshoppubt.sprodrelease.manage' display='true' >看样列表</permission>
+        <permission id="sysshoppubt_tradeorder"  workground='sysshoppubt.sprodrelease.manage' display='true' >交易单列表</permission>
+        <permission id="sysshoppubt_consultation"  workground='sysshoppubt.sprodrelease.manage' display='true' >交易咨询</permission>
+    </permissions>
+
+    <workground name="交易管理" id="sysshoppubt.sprodrelease" controller="sprodrelease" action="index" order='90'>
+        <menugroup name="交易发布列表">
+            <menu controller="sprodrelease" action="index" permission="sysshoppubt_sprodrelease" display="true" order="1010">交易发布(标准商品)</menu>
+        </menugroup>
+        <menugroup name="竞价列表">
+            <menu controller="biddings" action="index" permission="sysshoppubt_biddings" display="true" order="1011">竞价商品信息</menu>
+            <menu controller="biddingsitems" action="index" permission="sysshoppubt_biddings" display="true" order="1012">竞价信息</menu>
+        </menugroup>
+        <menugroup name="招标管理">
+            <menu controller="tender" action="index" permission="sysshoppubt_tender" display="true" order="1011">招标商品信息</menu>
+            <menu controller="tenderule" action="index" permission="sysshoppubt_tender" display="true" order="1012">招标规则维护</menu>
+        </menugroup>
+
+
+        <menugroup name="看样列表">
+            <menu controller="sample" action="index" permission="sysshoppubt_sample" display="true" order="1011">看样列表</menu>
+        </menugroup>
+        
+        <menugroup name="交易单列表">
+            <menu controller="tradeorder" action="index" permission="sysshoppubt_tradeorder" display="true" order="1011">交易单列表</menu>
+        </menugroup>
+        <menugroup name="交易咨询">
+            <menu controller="consultation" action="index" permission="sysshoppubt_consultation" display="true" order="1014">咨询列表</menu>
+        </menugroup>
+
+    </workground>
+</desktop>
+
+

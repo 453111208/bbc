@@ -1,0 +1,48 @@
+<div class="address">
+    <div class="ui-mask"></div>
+    <header>
+        <div class="list-hd">
+            <div class="backto icon-back ">
+                <input type="button" name="returnBcak" onclick="history.back()">
+            </div>
+            <div class="tit">我的收货地址</div>
+            <div class="edit"><a href="<{url action=topm_ctl_cart@getAddrList ifedit=true}>">编辑管理</a></div>
+        </div>
+    </header>
+    <div class="main" id="main">
+        <form action="<{url action=topm_ctl_cart@checkout}>" method="post" id="seladdr_form">
+            <{foreach from=$userAddrList item=addrList}>
+                <div class="address-info">
+                    <label for="for_addr_<{$addrList.addr_id}>">
+                        <table>
+                            <tr class="name">
+                                <td class="con">
+                                    <{$addrList.name}> <i class="r"><{$addrList.mobile}></i></td>
+                            </tr>
+                            <tr class="ads">
+                                <td class="con"><i class="defualt"><{if $addrList.def_addr}>[默认地址]<{/if}></i>
+                                    <{$addrList.area|region}>&nbsp;
+                                        <{$addrList.addr|cut:75}>
+                                </td>
+                            </tr>
+                        </table>
+                    </label>
+                    <input type="radio" id="for_addr_<{$addrList.addr_id}>" name="addr_id" class="action-select-address" value="<{$addrList.addr_id}>" <{if $addrList.addr_id==$selectedAddr}>checked
+                    <{/if}>>
+                </div>
+                <{/foreach}>
+        </form>
+    </div>
+</div>
+<script>
+$('.address-info').tap(function() {
+    $(this).addClass('cur').siblings().removeClass('cur');
+});
+
+var form = document.querySelector('#seladdr_form');
+form.action += '?' + localStorage.getItem('_cart_params');
+$('.address-info').on('click', function(e) {
+    $(this).find('.action-select-address').trigger('tap');
+    form.submit();
+});
+</script>

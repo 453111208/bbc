@@ -1,0 +1,17 @@
+<ul class="itemslist">
+  <{foreach from=$items item=item}>
+  <li>
+    <div class="item">
+      <div class="pic">
+        <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>">
+          <img width="210" height="230" src="<{$item.image_default_id|default:$image_default_id.M.default_image|storager:'m'}>" data-haszoom="700">
+        </a>
+      </div>
+      <a class="name" href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"> <{if $item.activity.activity_tag}><span class="item-describe-tag"><{$item.activity.activity_tag}></span><{/if}><{$item.title}></a>
+      <div class="price"><{$item.price|cur}>
+        <{if $item.promotion.ids}><span class="discount-tag">惠</span><{/if}>
+      </div>
+    </div>
+  </li>
+  <{/foreach}>
+</ul>

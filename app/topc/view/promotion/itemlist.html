@@ -1,0 +1,122 @@
+<div class="section col-lg-16">
+  <div class="purchase-category">
+    <input type="hidden" id="lv1" value="">
+    <input type="hidden" id="lv3" value="">
+    <ul class="purchase-category-ul clearfix">
+      <li class="active"><a href="<{url action=topc_ctl_activity@index}>" class="purchase-category-item">全部商品</a>
+      </li>
+      <{foreach from=$catlist item=cat key=id}>
+      <li class="cat-lv1"><a href="<{url action=topc_ctl_activity@itemlist lv1=$cat.cat_id id=$filter.id}> " data-lv1="<{$cat.cat_id}>" data-id="<{$filter.id}>" class="purchase-category-item"><{$cat.cat_name}></a>
+        <div class="purchase-category-sub-item">
+          <ul class="clearfix">
+            <{foreach from=$cat.lv3 item=lv3cat}>
+            <li class="cat-lv3" data-lv3="<{$lv3cat.cat_id}>" data-id="<{$filter.id}>"><{$lv3cat.cat_name}></li>
+            <{/foreach}>
+          </ul>
+        </div>
+      </li>
+      <{/foreach}>
+    </ul>
+  </div>
+</div>
+<!-- 团购商品列表 -->
+<div class="section col-lg-16 search-content" >
+  <div class="search-category" id="search-category">
+    <ul>
+      <li class="active"><a href="javascript:void(0);" data-id="item_id asc">默认</a></li>
+      <li class="contition" data-key="sales_count" data-order="desc"><a href="javascript:void(0);">销量<i class="icon icon-arrow-down-a"></i></a></li>
+      <li class="price" data-key="activity_price" data-order="asc"><a href="javascript:void(0);">价格<i class="icon icon-arrow-up-a"></i></a></li>
+    </ul>
+  </div>
+  <span class="page-mini">共<span class="page-total"><{$total}></span>条  <{pagers data=$pagers type="mini"}></span>
+  <div class="search-list" id="data_list">
+    <{include file="topc/promotion/list.html"}>
+  </div>
+  <{pagers data=$pagers}>
+</div>
+
+<script>
+  $('.purchase-category-ul>li').mouseover(function(e) {
+    $(this).addClass('active').siblings('li').removeClass('active');
+    $(this).children('.purchase-category-sub-item').stop().fadeIn();
+  }).mouseout(function(e) {
+    $(this).children('.purchase-category-sub-item').stop().fadeOut();
+  });
+
+$('.cat-lv1 a').on('click',function(e){
+  e.preventDefault();
+  var aHref = $(this).attr('href');
+  $('#lv1').val($(this).attr('data-lv1'));
+  $.ajax({
+    url: aHref,
+    type: 'get',
+    dataType: 'html',
+    success: function(rs) {
+      $('#data_list').html(rs);
+    }
+  });
+});
+
+$('.purchase-category-sub-item li').on('click',function(){
+  var aHref = "<{url action=topc_ctl_activity@itemlist}>";
+  var catLv3 = $(this).attr('data-lv3');
+  var id = $(this).attr('data-id');
+  $.ajax({
+    url: aHref,
+    type: 'get',
+    dataType: 'html',
+    data:{
+      'lv3':catLv3,
+    'id':id
+    },
+    success: function(rs) {
+      $('#data_list').html(rs);
+      $('#lv3').val(catLv3);
+    }
+  });
+});
+
+$('#search-category li').mouseover(function(e) {
+  $(this).addClass('active').siblings().removeClass('active');
+});
+$('#search-category li').on('click', function() {
+  var iconArrow = $(this).find('i');
+  iconArrow.toggleClass('icon icon-arrow-down-a').toggleClass('icon icon-arrow-up-a');
+  if(iconArrow.hasClass('icon-arrow-down-a')) {
+    $(this).attr('data-order', 'desc');
+  }else if(iconArrow.hasClass('icon-arrow-up-a')) {
+    $(this).attr('data-order', 'asc');
+  }
+  var dataKey = $(this).attr('data-key');
+  var order = $(this).attr('data-order');
+  var orderBy = dataKey + ' ' + order;
+  var lv1 = $('#lv1').val();
+  var lv3 = $('#lv3').val();
+  var id = $('#activity_id').val();
+  getList(orderBy,lv3,lv1,id);
+});
+function getList(orderBy,lv3,lv1,id) {
+  $.ajax({
+    url: '<{url action=topc_ctl_activity@itemlist}>', //请求地址
+    type: 'get',
+    dataType: 'html',
+    data: {
+      'orderBy': orderBy,
+    'lv3':lv3,
+    'lv1':lv1,
+    'id':id
+    },
+    success: function(rs) {
+      if(rs) {
+        $('#data_list').html(rs);
+      }
+    }
+  });
+}
+$('#search-list>li').mouseover(function() {
+  $(this).addClass('active').siblings('li').removeClass('active');
+}).mouseout(function() {
+  $(this).removeClass('active');
+});
+
+</script>

@@ -1,0 +1,30 @@
+<h4>配送信息</h4>
+<dl class="dl-horizontal">
+  <dt>物流公司：</dt><dd><{$logi.logi_name}></dd>
+  <dt>配送单号：</dt><dd><{$logi.logi_no}></dd>
+</dl>
+
+<h4>物流信息</h4>
+<{if $logi.tracker}>
+<table class="table">
+  <thead>
+    <tr>
+      <td>操作时间</td>
+      <td>物流日志</td>
+    </tr>
+  </thead>
+  <tbody>
+    <{foreach from=$logi.tracker item=tracker}>
+    <tr>
+      <td><{$tracker.AcceptTime}></td>
+      <td><{$tracker.AcceptStation}></td>
+    </tr>
+    <{/foreach}>
+  </tbody>
+</table>
+<{else}>
+<dl class="dl-horizontal">
+  <dt><{$logi.logmsg}></dt><dd></dd>
+
+</dl>
+<{/if}>

@@ -1,0 +1,113 @@
+<{if !$favshop_info}>
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">我的店铺收藏</div>
+  <div class="no-content">
+    <span class="txt">暂无收藏店铺</span>
+  </div>
+</div>
+<{else}>
+<div id="batch_box" class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">我的店铺收藏 </div>
+    <div class="membercenter-box-right">
+
+      <div class="batch-operation">
+        <span class="batch-expand">
+          <input type="checkbox" name="" id="select_all"><label for="">全选</label>
+          <a id="delete_btn" onclick="deleteMembercnterBox()" href="javascript:void(0);">删除</a>
+        </span>
+        <a id="batch_btn" href="javascript:void(0);" class="btn btn-simple btn-sm"><span class="batch-expand-txt"><span>批量管理</span></span><span class="batch-unexpand-txt"><span>取消管理</span></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="membercenter-box-bd">
+
+    <div class="membercenter-favorit">
+      <{foreach from=$favshop_info item=fav}>
+      <div class="membercenter-favorite-item">
+        <input type="hidden" value="<{$fav.shop_id}>" name="shop_id[]"/>
+        <div class="pic"><a href="<{url action=topc_ctl_shopcenter@index shop_id=$fav.shop_id}>"><img width="140" height="140" src="<{$fav.shop_logo|default:$defaultImageId.S.default_image|storager:'s'}>"></a></div>
+        <div class="name"><a href="<{url action=topc_ctl_shopcenter@index shop_id=$fav.shop_id}>"><{$fav.shop_name}></a></div>
+
+        <div class="operate">
+          <a href="javascript:void(0);" class="btn-square favShopDel" data-shopId="<{$fav.shop_id}>"><i class="icon icon-trash-a" ></i></a>
+        </div>
+        <div class="operate2">
+          <a href="#" class="btn-select"><i class="icon icon-checkmark" data-icon="\2841"></i></a>
+        </div>
+
+        <div class="item-mask"></div>
+      </div>
+      <{/foreach}>
+    </div>
+  </div>
+</div>
+<div class="pager">
+  <div class="page-action">
+
+    <span class="flip prev over"><i class="ico prev">‹</i></span>
+    <{pagers data=$pagers}>
+  </div>
+</div>
+<script>
+  $(".more-btn").click(function(){
+    $(this).parent(".expand-panel").toggleClass("is-expand");
+  });
+$("#batch_btn").click(function(){
+  $("#batch_box").toggleClass("is-batch-operate");
+  if("#batch_box:not([is-batch-operate])"){
+    $(".membercenter-favorite-item").removeClass("on");
+    $("#select_all").prop("checked",false);
+  }
+});
+$("#select_all").change(function(){
+  $("#batch_box .membercenter-favorite-item")[$(this).prop("checked") ? 'addClass' : 'removeClass']('on');
+});
+$(".membercenter-favorite-item").click(function(){
+  $(this).toggleClass("on");
+});
+//店铺批量操作
+function deleteMembercnterBox(){
+  if(!$("#batch_box .membercenter-favorite-item").hasClass("on")){
+    Message.error("请选择要删除的商品");
+  }
+  else{
+    if(confirm("确定要删除吗？")){
+      var data = $("#batch_box .membercenter-favorite-item.on input[type=hidden]").appendTo($('<form></form>')).serialize();
+      var url = '<{url action=topc_ctl_collect@ajaxFavshopDel}>';
+      $.ajax({
+        type:'POST',
+        url:url,
+        data:data,
+        success:function(rs){
+
+          if(rs.success){
+            $('#batch_box .membercenter-favorite-item.on').remove();
+            Message.success(rs.message);
+          }
+        }
+      });
+    };
+  }
+}
+//店铺收藏删除操作
+$('.favShopDel').on('click',function(){
+  if(confirm("确定要删除吗？")){
+
+    var url = "<{url action=topc_ctl_collect@ajaxFavshopDel}>";
+    var el = $(this),
+shopId=$(this).attr("data-shopId");
+if(shopId) {
+  $.post(url,'shop_id='+shopId,function(rs){
+
+    if(rs.success){
+      el.parents('.membercenter-favorite-item').remove();
+      Message.success(rs.message);
+    }
+  });
+}
+}
+
+});
+</script>
+<{/if}>

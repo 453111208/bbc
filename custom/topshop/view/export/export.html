@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">导出</h4>
+</div>
+<form action="<{url action='topshop_ctl_export@export'}>" method="post" class="form-horizontal bg-white clearfix" id="export_form">
+  <input type="hidden" name="model" value="<{$model}>" id='input_export_model'>
+  <input type="hidden" name="app" value="<{$app}>" id='input_export_app' >
+  <input type="hidden" name="filter" value="" id="input_export_filter">
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="col-sm-4 control-label" >选择导出文件类型：</label>
+      <div class="col-sm-6">
+          <select id='filetype' name="filetype"><{foreach from=$export_type key=k item=v}><option value='<{$k}>'><{$v}></option><{/foreach}></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label" >导出描述：</label>
+      <div class="col-sm-6">
+          <input id='name' name='name' type='text' value='' placeholder="必填" required>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <button type="submit" class="btn btn-primary">导出</button>
+  </div>
+</div>
+
+<script>
+
+  String.prototype.getQueryValue = function(key){
+    var q = this,
+        keyValuePairs = new Array();
+
+    if (q.length > 1){
+      var idx = q.indexOf('?');
+      q = q.substring(idx+1, q.length);
+    }else{
+      q = null;
+    }
+
+    if (q) {
+      for (var i = 0; i < q.split("&").length; i++) {
+        keyValuePairs[i] = q.split("&")[i];
+      }
+    }
+
+    for (var j = 0; j < keyValuePairs.length; j++) {
+      if (keyValuePairs[j].split("=")[0] == key){
+        //这里需要解码，url传递中文时location.href获取的是编码后的值
+        //但FireFox下的url编码有问题
+        return decodeURI(keyValuePairs[j].split("=")[1]);
+      }
+    }
+    return '';
+  };
+
+  $('#exportDialog').on('shown.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var url = button.attr('href');
+
+    var app_val = url.getQueryValue('app');
+    var model_val = url.getQueryValue('model');
+    $('#input_export_app').val(app_val);
+    $('#input_export_model').val(model_val);
+
+    $('#name').val('');
+    var filter = $('.export-filter').attr('data-value');
+    $('#input_export_filter').val(filter);
+  });
+
+  $('#export_form').submit(function(e) {
+    $('#exportDialog').modal('hide');
+  })
+</script>

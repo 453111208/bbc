@@ -1,0 +1,12 @@
+<services>
+    <service id="cart_object_apps">
+        <class>systrade_cart_object_item</class>
+    </service>
+    <service id="desktop_finder.systrade_mdl_trade">
+        <class>systrade_finder_trade</class>
+    </service>
+    <service id="desktop_finder.systrade_mdl_order_complaints">
+        <class>systrade_finder_complaints</class>
+    </service>
+
+</services>

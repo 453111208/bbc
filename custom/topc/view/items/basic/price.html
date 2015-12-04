@@ -1,0 +1,43 @@
+
+<ul class="summary">
+<{if $requireItem.price_method=='gongkai'}>
+    <li>
+        <div class="dt">供应价格：</div>
+        <div class="dd"><span class="price action-update-price"><{$requireItem.price}></span></div>
+    </li>
+                    <!--
+  <li>
+    <div class="dt">商品评分：</div>
+    <div class="dd">
+      <a href="#" class="icon icon-star"></a>
+      <a href="#" class="icon icon-star"></a>
+      <a href="#" class="icon icon-star"></a>
+      <a href="#" class="icon icon-star"></a>
+      <a href="#" class="icon icon-star disabled"></a>
+      <a href="#">（已有1人评价）</a>
+    </div>
+  </li>
+  -->
+    <li>
+        <div class="dt">供应数量：</div>
+        <div class="dd"><{$requireItem.countnum}>/<{$requireItem.company}></div>
+    </li>
+    <{else}>
+      <li>
+        <div class="dt">供应价格：价格面议</div>
+        </li>
+  <{/if}>
+<!--     <li>
+        <div class="dt">供应情况：</div>
+        <div class="dd"><{$requireItem.effective_time}></div>
+    </li> -->
+ 
+    <li>
+        <div class="dt">发布日期：</div>
+        <div class="dd"> <{$requireItem.create_time|cdate}> </div>
+    </li>
+    <li>
+        <div class="dt">有效日期：</div>
+        <div class="dd"> <{$requireItem.effective_time}> </div>
+    </li>
+</ul>

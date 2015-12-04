@@ -1,0 +1,11 @@
+<desktop>
+    <panelgroup id="currency" icon="panel-currency.png" order="20">支付与货币</panelgroup>
+
+    <adminpanel group="ectools_currency" controller="setting" action="index" permission='currency' order="30" display='true'>价格精度及货币设置</adminpanel>
+    <adminpanel group="ectools_currency" controller="payment_cfgs" action="index" permission='currency' order="10" display='true'>支付方式管理</adminpanel>
+
+    <permissions>
+        <permission id="currency" display="true" parent='0'>支付,货币管理</permission>
+    </permissions>
+
+</desktop>

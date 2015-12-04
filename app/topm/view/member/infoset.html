@@ -1,0 +1,234 @@
+
+<div class="member-detail shop">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">会员中心</div>
+      <a class="edit"><i class="icon-edit"></i></a>
+    </div>
+  </header>
+  <div class="main">
+    <div class="info-hd">
+      <table>
+        <{if $userInfo.login_account}>
+          <tr class="hd-name">
+            <td>用户名:</td>
+            <td class="have"><{$userInfo.login_account}></td>
+          </tr>
+          <{else}>
+          <tr class="hd-name">
+            <td>用户名:</td>
+            <td class="not">
+              <a href="javascript:void(0);" id="btn1"  class="set-username">设置用户名</a>
+            </td>
+          </tr>
+        <{/if}>
+        <{if $userInfo.mobile}>
+          <tr class="hd-mobile">
+            <td>绑定手机:</td>
+            <td>
+              <{$userInfo.mobile}><{*<a href="#">修改</a><i>(已绑定)</i>*}>
+            </td>
+          </tr>
+        <{*
+         <{else}>
+          <tr class="hd-mobile">
+            <td>绑定手机:</td>
+            <td class="not">
+              <a href="#">立即验证</a><i>(未绑定)</i>
+            </td>
+          </tr>
+        *}>
+        <{/if}>
+        <{if $userInfo.email && $userInfo.email_verify}>
+          <tr class="hd-mail">
+            <td>绑定邮箱:</td>
+            <td class="have"><{$userInfo.email}></td>
+            <td class="modify">
+              <{*<a href="#">修改</a>
+              <i>(已绑定)</i>*}>
+            </td>
+          </tr>
+        <{*
+        <{else}>
+          <tr class="hd-mail">
+            <td>绑定邮箱:</td>
+            <td class="not">
+              <a href="#">去绑定</a>
+              <i>(未绑定)</i>
+            </td>
+          </tr>
+        *}>
+        <{/if}>
+      </table>
+      <div class="info-exit">
+        <a href="<{url action=topm_ctl_passport@logout}>">
+          <i class="icon icon-exit"></i>
+          退出登录
+        </a>
+      </div>
+      <div class="bound">
+        <span class="re">
+          解除绑定，修改密码请去
+          <a href="<{url action=topm_ctl_member@security}>">安全设置</a>
+        </span>
+      </div>
+    </div>
+    <div class="info-bd">
+      <form action="<{url action=topm_ctl_member@saveInfoSet}>" method="post" id="ajax_form">
+        <table>
+          <tr class="bd-name">
+            <td class="tit">姓名:</td>
+            <td class="have"><{$userInfo.username}></td>
+            <td class="not">
+              <input class="input-ln" type="text" name="user[username]" id="" placeholder="最多20个英文字符或10个中文字符" maxlength="20" value="<{$userInfo.username}>" required data-caution="请输入姓名">
+            </td>
+          </tr>
+          <tr class="bd-nick">
+            <td class="tit">昵称:</td>
+            <td class="have"><{$userInfo.name}></td>
+            <td class="not">
+              <input class="input-ln" type="text" name="user[name]" placeholder="4-20个字符" id="for_name" value="<{$userInfo.name}>" required minlength="4" maxlength="20" data-caution="请输入昵称&&昵称不能少于4个字符">
+            </td>
+          </tr>
+          <tr class="bd-sex">
+            <td class="tit">性别:</td>
+            <td class="have">
+              <{if $userInfo.sex==1}>男<{/if}>
+              <{if $userInfo.sex==0}>女<{/if}>
+              <{if $userInfo.sex==2}>保密<{/if}>
+            </td>
+            <td class="not">
+              <input type="radio" name="user[sex]" id="for_gender_male" value="1" <{if $userInfo.sex==1}>checked<{/if}>>
+              <label for="for_gender_male">男</label>
+              <input type="radio" name="user[sex]" id="for_gender_female" value="0" <{if $userInfo.sex==0}>checked<{/if}>>
+              <label for="for_gender_female">女</label>
+              <input type="radio" name="user[sex]" id="for_gender_privacy" value="2" <{if $userInfo.sex==2}>checked<{/if}>>
+              <label for="for_gender_privacy">保密</label>
+            </td>
+          </tr>
+          <tr class="bd-birth">
+            <td class="tit">生日:</td>
+            <td class="have"><{$userInfo.birthday|date_format:'%Y-%m-%d'}></td>
+            <td class="not">
+              <input type="date" name="user[birthday]" value="<{$userInfo.birthday|date_format:'%Y-%m-%d'}>">
+            </td>
+          </tr>
+          <tr class="bd-locate">
+            <td class="tit">所在地:</td>
+            <td class="have"><{$userInfo.area}></td>
+            <td class="not">
+              <div id="area" class="mod-bottom" data-validate="area"></div>
+            </td>
+          </tr>
+          <tr class="bd-address">
+            <td class="tit">详细地址:</td>
+            <td class="have"><{if $addrdetail!='/'}><{$addrdetail}><{/if}></td>
+            <td class="not">
+              <input type="text" name="user[addr]" placeholder="请输入详细地址" value="<{$userInfo.addr}>">
+            </td>
+          </tr>
+        </table>
+        <div class="save-info">
+          <button type="submit" class="ui-btn-warning">保 存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<form action="">
+<div class="ui-dialog" style="">
+  <div class="ui-dialog-content">
+    <div id="dialog1" style="display: block;">
+      <table style="margin-top: 10px;">
+        <tbody>
+          <tr>
+            <td>
+              <div class="user-pop">
+                <input style="border: 1px solid #ccc;padding: 0 10px;font-size: 14px;" class="input-ln input-has-bg" type="text" name="login_account" id="login_account" placeholder="输入用户名">
+                <div class="username-hint" style="color:#999;font-size: 12px;margin-top: 10px;">用户名设置成功将不可修改</div>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="ui-dialog-btns"><a class="ui-btn ui-btn-1" data-key="取消" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">取消</a><a class="ui-btn ui-btn-2" data-key="确定" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">确定</a>
+  </div>
+
+</div>
+</form>
+
+<script>
+var changed = false;
+
+$('#area').multiSelect({
+    dataUrl: '<{$env.base_url}>/app/ectools/statics/scripts/region.json',
+    initData: '<{$userInfo.region_id}>',
+    initCallback: function() {
+        changed = false;
+    }
+});
+
+// 编辑按钮功能
+$('header .edit').click(function(){
+  $(this).hide();
+  $('.info-exit').hide();
+  $('.info-bd .have').hide().siblings('.not').show();
+  $('.save-info').show();
+  $('.info-bd table tr:last-child').css('border-bottom','1px solid #E4E4E4');
+});
+
+$('#ajax_form').on('change', function (e) {
+    changed = true;
+})
+.find('button[type=submit]').data('ajaxCallback', function (rs) {
+    if(rs.success) changed = false;
+});
+window.onbeforeunload = function (e) {
+    if(changed) e.returnValue = '信息还未保存，确定离开当前页面吗？';
+}
+
+//用户名设置
+
+var Message = new gmu.Message();
+$('#dialog1').dialog({
+    autoOpen: false,
+    closeBtn: false,
+    buttons: {
+        '取消': function(){
+            this.close();
+        },
+        '确定': function(){
+          var login_account = $('#login_account').val();
+          var url = "<{url action=topm_ctl_member@saveUserAccount}>";
+          $.post(url,'login_account='+login_account, function(rs){
+            console.log(rs);
+              if(rs.error) {
+                Message.error(rs.message);
+              }
+              if(rs.success) {
+                Message.success(rs.message);
+                function loc(){
+                  location.href=rs.redirect;
+                }
+                setTimeout(loc,2000);
+              }
+            });
+
+        }
+    }
+});
+
+$('#btn1').click(function(){
+    $('#dialog1').dialog('open');
+});
+
+
+</script>

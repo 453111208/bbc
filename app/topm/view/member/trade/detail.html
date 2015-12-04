@@ -1,0 +1,109 @@
+<div class="order-detail shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <div class="status-info info-area">
+      <div class="info-l info">
+        <span class="icon icon-book"></span>
+      </div>
+      <div class="info-m">
+        <{if $trade.status == "WAIT_BUYER_PAY"}>
+        <span class="status">未付款</span>
+        <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+        <span class="status">未发货</span>
+        <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+        <span class="status">待收货</span>
+        <{elseif $trade.status == "TRADE_FINISHED"}>
+        <span class="status">已完成</span>
+        <{elseif $trade.status == "TRADE_CLOSED_BY_SYSTEM" || $trade.status == "TRADE_CLOSED"}>
+        <span class="status">已关闭</span>
+        <{/if}>
+        <table>
+          <tr class="theme">
+            <td class="tit">商品金额：</td>
+            <td class="con"> <{$trade.payment|cur}></td>
+          </tr>
+          <tr class="more">
+            <td class="tit">运费：</td>
+            <td class="con"><{$trade.post_fee|cur}></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="address-info info-area">
+      <div class="address">
+        <div class="info-l info">
+          <span class="icon icon-place"></span>
+        </div>
+        <div class="info-m">
+          <table>
+            <tr class="theme">
+              <td class="tit">收货人：</td>
+              <td class="con"><{$trade.receiver_name}><br><{$trade.receiver_mobile}></td>
+            </tr>
+            <{if $trade.ziti_addr }>
+            <tr class="more">
+              <td class="tit">自提地址：</td>
+              <td class="con"><{$trade.ziti_addr}></td>
+            </tr>
+            <{else}>
+            <tr class="more">
+              <td class="tit">收货地址：</td>
+              <td class="con"><{$trade.receiver_state}><{$trade.receiver_city}> <{$trade.receiver_district}>&nbsp;<{$trade.receiver_address}></td>
+            </tr>
+            <{/if}>
+          </table>
+        </div>
+      </div>
+      <div class="buyer-msg">
+        <div class="info-l info">
+          <span class="icon icon-diary"></span>
+        </div>
+        <div class="more">
+          <span class="tit">买家留言：</span><br>
+          <span class="inn"><{$trade.trade_memo}></span>
+        </div>
+      </div>
+      <div class="logistics" id="logistics">
+      </div>
+    </div>
+    <div class="select-store">
+      <{include file="topm/member/trade/items.html"}>
+    </div>
+    <div class="buy-action">
+      <div class="action-btn-group">
+      <{if $trade.status == "WAIT_BUYER_PAY"}>
+      <a href="<{$trade.tid}>" class="buy-now act-pay ui-btn-warning">付 款</a>
+      <a href="<{url action=topm_ctl_member_trade@cancel tid=$trade.tid}>" class="cancel-now ui-btn-grey">取消订单</a>
+      <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+      <a href="<{url action=topm_ctl_member_trade@confirmReceipt tid=$trade.tid}>" rel="_request" data-ajax-type="post" target="confirm::是否确认已收到货？" class="check-flow ui-btn-outlined ui-btn-warning">确认收货</a>
+      <{/if}>
+      </div>
+    </div>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+</div>
+
+<script>
+
+$(".act-pay").on('click',function(e){
+  e.preventDefault();
+  $.post('<{url action=topm_ctl_paycenter@createPay}>', {tid: $(this).attr('href'), merge: false}, function(rs){
+    if( rs.error ){
+      return alert(rs.message);
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  })
+})
+
+$.post('<{url action=topm_ctl_member_trade@ajaxGetLogi}>',{tid: <{$trade.tid}>},function(rs){
+  if(rs.error){
+     return alert(rs.message);
+  }
+  $('#logistics').html(rs);
+})
+</script>
+
+

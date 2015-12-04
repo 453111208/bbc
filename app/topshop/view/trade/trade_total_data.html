@@ -1,0 +1,27 @@
+<h4>发票信息</h4>
+<{if $trade.need_invoice == 'false'}>
+无发票
+<{else}>
+<dl class="dl-horizontal">
+  <dt>是否要发票：</dt><dd><{if $trade.need_invoice}>是<{else}>否<{/if}></dd>
+  <dt>发票类型：</dt><dd><{if $trade.invoice_type=='normal'}>普通发票<{/if}></dd>
+  <dt>发票抬头：</dt><dd><{if $trade.invoice_name=='individual'}>个人<{else}>单位<{/if}>-<{$trade.invoice_main}></</</dd>
+  <dt>发票内容：</dt><dd>由商家直接开具</dd>
+</dl>
+<{/if}>
+
+
+<h4>收货信息</h4>
+<dl class="dl-horizontal">
+  <dt>会员用户名：</dt><dd><{$trade.login_account}></dd>
+  <dt>收货人：</dt><dd><{$trade.receiver_name}></dd>
+  <dt>收货人手机：</dt><dd><{$trade.receiver_mobile}></dd>
+  <{if $trade.receiver_phone}><dt>收货人电话：</dt><dd><{$trade.receiver_phone}></dd><{/if}>
+  <{if !$trade.ziti_addr}>
+  <dt>收货地区：</dt><dd><{$trade.receiver_state}><{$trade.receiver_city}><{$trade.receiver_district}></dd>
+  <dt>收货地址：</dt><dd><{$trade.receiver_address}></dd>
+  <{else}>
+  <dt>自提地址：</dt><dd><{$trade.ziti_addr}></dd>
+  <{/if}>
+</dl>
+

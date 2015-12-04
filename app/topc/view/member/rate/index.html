@@ -1,0 +1,105 @@
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    我的评价管理
+  </div>
+  <div class="membercenter-box-bd">
+    <{if $rate}>
+    <div class="switchable section" data-toggle="switchable" data-switchable-config='{"events":"click"}'>
+      <div class="switch-condition">
+        <form action="<{url action=topc_ctl_member_rate@ratelist}>"  method="post" id="ajaxForm" class="form-tip-horizontal">
+          <label class="checkbox-inline"><input type="checkbox" class="condition" name="content" <{if $filter.content}>checked<{/if}>  id="hasContent"> 有内容</label>
+          <label class="checkbox-inline"><input type="checkbox" class="condition" name="picture" <{if $filter.picture}>checked<{/if}>  id="hasPics"> 有晒图</label>
+          <label class="checkbox-inline"><input type="checkbox" class="condition" name="is_reply" <{if $filter.is_reply}>checked<{/if}> id="hasReply">有回复</label>
+          <select name="result" class="input-sm condition">
+            <option value="">全部</option>
+            <option value="good" <{if $filter.result == 'good'}>selected<{/if}> >好评</option>
+            <option value="neutral" <{if $filter.result == 'neutral'}>selected<{/if}> >中评</option>
+            <option value="bad" <{if $filter.result == 'bad'}>selected<{/if}> >差评</option>
+          </select>
+        </form>
+      </div>
+      <ul class="switchable-nav">
+        <li class="active">我的评价</li>
+      </ul>
+      <div class="switchable-content">
+        <div id="rate" style="display: block;">
+          <{include file="topc/member/rate/list.html" }>
+        </div>
+      </div>
+    </div>
+    <{else}>
+    <div class="no-content">未找到评价</div>
+    <{/if}>
+  </div>
+</div>
+<div id="dialog" style="display:none">
+</div>
+<script>
+  $(function(){
+    var condition = $('#ajaxForm');
+    function submitForm() {
+      $('#rate').load(condition.attr('action'),condition.serialize());
+    }
+
+    $('.condition').change(function() {
+      if($(this).attr('type')=='checkbox'){
+        $(this).val($(this).prop('checked'));
+      };
+      submitForm();
+    });
+
+    var itemId, itemDom;
+
+    $('.name-hide').click(function(e) {
+      itemId = $('#edit_id').val();
+      itemDom = $(this);
+      $.dialog($('<div><div class="name-hide-dialog"><h4>确认修改为匿名评价？</h4><div class="action"><button id="nameHide" class="btn btn-import dialog-btn-close"><span><span>确定</span></span></button><button class="btn btn-cancel dialog-btn-close"><span><span>取消</span></span></button></div></div></div>'), {
+        width: 500,
+        modal: true,
+        title: '修改提示',
+        onShow: function(){
+          $('#nameHide').click(function(){
+            $.get('<{url action=topc_ctl_member_rate@setAnony}>', {
+                'rate_id': itemId
+              }, function(data){
+                if(data.error==true){
+                  Message.error(data.message, 3);
+                }else{
+                  Message.success(data.message, 3);
+                  itemDom.remove();
+                  $(this).parent().parent().parent().find('.name-view').text('匿名');
+                }
+              }
+            );
+          });
+        }
+      });
+    });
+
+    $('.del-item').click(function(e) {
+      e.preventDefault();
+      itemId = $(this).parent().find('#edit_id').val();
+      if(confirm('确认是否删除')){
+        $.ajax({
+          url: '<{url action=topc_ctl_member_rate@doDelete}>',
+          type: 'get',
+          dataType: 'json',
+          data: {
+            'rate_id': itemId
+          },
+          success: function (data, textStatus, jqXHR) {
+            if(data.error==true){
+              Message.error(data.message, 3);
+            }else{
+              Message.success(data.message, 3);
+              submitForm()
+            }
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            Message.error('操作失败，请重试！', 3);
+          }
+        });
+      }
+    });
+  });
+</script>

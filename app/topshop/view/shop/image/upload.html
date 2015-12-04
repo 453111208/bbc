@@ -1,0 +1,127 @@
+<div class="panel-heading">
+	<div class="clearfix">
+		<div class="pull-left">
+			<input type="file" class="hide action-file-input" name="" data-ismodal="true" multiple="multiple" data-remote="" accept="image/*">
+			<button class="btn btn-default text-blue act-gallery action-upload"><i class="glyphicon glyphicon-open"></i>上传图片</button>
+		</div>
+		<div class="pull-right">
+			<button type="button" class="btn btn-primary action-save note-image-btn">确定</button>
+			<button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+		</div>
+	</div>
+</div>
+<div class="panel-body">
+	<div class="gallery-condition clearfix">
+		排序：
+		<span class="time active" data-order="last_modified" data-sort="desc"><i class="glyphicon glyphicon-arrow-down"></i>时间</span>
+		<span data-order="image_name asc"><i class="glyphicon glyphicon-sort-by-alphabet"></i>名称</span>
+		<div class="gallery-search"><input type="text" name="image_name" value="" class="form-control input-sm name-search-val"></div>
+		<button type="button" class="btn btn-warning btn-sm name-search">搜索</button>
+	</div>
+	<div class="nav-tabs-custom" id="tabs">
+		<ul class="nav nav-tabs gallery-modal-tabs">
+			<li class="active" data-type="item"><a href="<{url action=topshop_ctl_shop_image@search imageModal=true img_type=item}>">产品图片</a></li>
+			<li data-type="shop"><a href="<{url action=topshop_ctl_shop_image@search imageModal=true img_type=shop}>">店铺图片</a></li>
+			<li data-type="other"><a href="<{url action=topshop_ctl_shop_image@search imageModal=true img_type=other}>">未分类图片</a></li>
+		</ul>
+		<div class="tab-content gallery-modal-content">
+			<{include file='topshop/shop/image/list.html'}>
+		</div>
+	</div>
+	<!-- /.tab-content -->
+</div>
+<script>
+  var flag = true;
+
+  $('.gallery-condition span').click(function(){
+    $('.gallery-condition span').removeClass('active');
+    $(this).addClass('active');
+    var type = $('.gallery-modal-tabs .active').attr('data-type');
+    if($('.has-searched')){
+      var name = $('.has-searched').val();
+    }else{
+      var name = '';
+    }
+
+    if(!$(this).hasClass('time')){
+      $('.time').find('i').addClass('glyphicon-arrow-down').removeClass('glyphicon-arrow-up');
+      var orderBy = $(this).attr('data-order');
+      flag = false;
+    }else{
+      if(flag==true){
+        $(this).find('i').addClass('glyphicon-arrow-up').removeClass('glyphicon-arrow-down');
+        $(this).attr('data-sort','asc');
+        flag = false;
+      }else{
+        $(this).find('i').addClass('glyphicon-arrow-down').removeClass('glyphicon-arrow-up');
+        $(this).attr('data-sort','desc');
+        flag = true;
+      }
+      var orderBy = $(this).attr('data-order') + ' ' + $(this).attr('data-sort');
+    }
+
+    getList(type,orderBy,name)
+  })
+
+  $('.gallery-modal-tabs li a').click(function(e){
+    e.preventDefault();
+    $('.gallery-modal-tabs li').removeClass('active');
+    $(this).parent().addClass('active');
+    var urlData = $(this).attr('href');
+    $.post(urlData, function(data) {
+      $('.gallery-modal-content').empty().append(data);
+    });
+  })
+
+  $('.name-search').click(function(){
+    var type = $('.gallery-modal-tabs .active').attr('data-type');
+    if($('.gallery-condition .active').hasClass('time')){
+      var orderBy = $('.gallery-condition .active').attr('data-order') + ' ' + $('.gallery-condition .active').attr('data-sort');
+    }else{
+      var orderBy = $('.gallery-condition .active').attr('data-order');
+    }
+    var name = $('.name-search-val').val();
+    if($('.name-search-val').val()!=''){
+      getList(type,orderBy,name)
+    }else{
+      $('#messagebox').message('请填写关键词');
+    }
+  })
+
+  function getList(type,orderBy,name) {
+    $.post('<{url action=topshop_ctl_shop_image@search imageModal=true}>', {'img_type': type, 'orderBy': orderBy, 'image_name': name}, function(data) {
+      $('.gallery-modal-content').empty().append(data);
+    });
+  }
+
+  $('body').on('click', '.show-pics a', function(e) {
+      e.preventDefault();
+  });
+
+  $('.gallery-modal-content').on('click','.pagination li a',function(e){
+    e.preventDefault();
+    var urlData = $(this).attr('href');
+    $.post(urlData, function(data) {
+      $('.gallery-modal-content').empty().append(data);
+    });
+  })
+
+$('#gallery_modal').on('click', '.act-gallery', function (e) {
+	var type = $('.gallery-modal-tabs .active').attr('data-type');
+
+	if( type != 'other'){
+		var url = "<{url action=toputil_ctl_image@uploadImages from=shop}>&type=" + type;
+		$('#gallery_modal').find('.action-file-input').attr('data-remote',url)
+	}
+})
+
+$('.note-image-dialog').on('click', '.act-gallery', function (e) {
+  var type = $('.gallery-modal-tabs .active').attr('data-type');
+
+  if( type != 'other'){
+    var url = "<{url action=toputil_ctl_image@uploadImages from=shop}>&type=" + type;
+    $('.note-image-dialog').find('.action-file-input').attr('data-remote',url)
+  }
+})
+
+</script>

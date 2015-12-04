@@ -1,0 +1,70 @@
+<div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+        <dt>当前位置：</dt>
+        <dd>
+            <a class="beb-nav" href="/index.php/market"><span>行情中心</span></a><span class="beb-raquo">></span>
+            <a class="beb-nav" href="<{url action=topc_ctl_market@getList secondSort=$artList.second_sort}>"><span><{$artList.second_sort}></span></a>
+            <span class="beb-raquo">></span>
+            <span class="beb-current"><{$date}><{$artList.area}><{$artList.third_sort}>价格</span>
+        </dd>
+    </dl>
+</div>
+<div class="maxpart"> 
+    <div class="maxleft-title">
+        <div class="maxcontent_caption"><h1><{$date}><{$artList.area}><{$artList.third_sort}>价格</h1></div>
+        <div class="maxcontent_txt">
+            <span>发布时间：<{$artList.date}>　</span>
+        </div>
+    </div>
+    <div class="maxtab">
+        <table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td class="zb-tab-td0">时间</td>
+                    <td class="zb-tab-td1">品名</td>
+                    <td class="zb-tab-td2">地区</td>
+                    <td class="zb-tab-td2">牌号</td>
+                    <td class="zb-tab-td2">价格（元/吨）</td>
+                    <td class="zb-tab-td2">历史价格</td>
+                    <td class="zb-tab-td2">国标</td>
+                </tr> 
+                <{foreach from=$dataList item=item key=key}>
+                    <tr>
+                        <td class="zb-tab-td_"><{$item.date}></td>
+                        <td class="zb-tab-td_"><{$item.title}></td>
+                        <td class="zb-tab-td_"><{$item.area}></td>
+                        <td class="zb-tab-td_"><{$item.mark}></td>
+                        <td class="zb-tab-td_"><{$item.price}></td>
+                        <td class="zb-tab-td_"><a href="<{url action=topc_ctl_market@marketTrend third_sort=$item.third_sort title=$item.title date=$item.date price_run=$item.price_run}>" target="_blank"><{$item.price_run}></a></td>
+                        <td class="zb-tab-td_"><{$item.nation}></td>
+                    </tr> 
+                <{/foreach}>
+            </tbody>
+        </table>
+    </div>
+    <div class="maxread">相关报价</div>
+    <div class="maxarticles">
+        <ul>
+           <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+           <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+           <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+        </ul>
+    </div>
+</div>

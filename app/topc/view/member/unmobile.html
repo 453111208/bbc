@@ -1,0 +1,118 @@
+<div class="col-lg-13 box">
+
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <{if $verifyType=='mobile'}>
+        解绑手机
+        <{else}>
+        解绑邮箱
+      <{/if}>
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="safe-box">
+        <div class="status-bar">
+          <div>1发送短信验证<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div class="on"><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>2设置解绑信息<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3解绑完成</div>
+        </div>
+        <form action="<{url action=topc_ctl_member@unVerifyMobile}>" method="post" id="ajaxForm">
+        <ul>
+            <{if $userInfo.login_account}>
+            <input  type="hidden"  name="verifyType" value="<{$verifyType}>">
+            <input type="hidden" name="type"  value="unreset" id="type">
+            <input type="hidden" name="op"  value="<{$op}>">
+            <input type="hidden" class="x-input action-account-check" id="uname" name="uname" value="<{$userInfo.mobile}>">
+            <li class="form-row">
+                <label for="" class="form-label">已绑定手机号码</label>
+                <span class="form-act">
+                 <{$userInfo.mobile}>
+                </span>
+            </li>
+
+            <li class="form-row verify-code">
+                <label for="" class="form-label">请输入短信验证码</label>
+                <span class="form-act">
+                  <input type="text" class="verify-input input-st" name="vcode" id="" required="" size="4" maxlength="6">
+                  <a href="<{url action=topc_ctl_member@sendVcode}>" class="btn btn-simple action-get-vcode"><span><span>获取验证码</span></span></a>
+                </span>
+            </li>
+
+            <li class="form-item last">
+                <label for="" class="form-label"></label>
+                <span class="form-act">
+                  <{button type="submit" class="btn btn-import" label="下一步"}>
+                </span>
+            </li>
+            <{else}>
+            <li class="form-row">
+                <label for="" class="form-label">已绑定手机号码<{$userInfo.mobile}></label>
+                <span class="form-act">
+                        您还没有设置用户名，请先<a href="<{url action=topc_ctl_member@pwdSet}>">设置用户名！ </a>
+                </span>
+            </li>
+            <{/if}>
+        </ul>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript">
+
+ (function(){
+    var form = $('#ajaxForm');
+    form.find('button[type=submit]').data('ajaxConfig', {
+        callback: function(rs) {
+            console.log(rs);
+            if(rs.error){
+                Message.error(rs.message);
+            }
+            if(rs.redirect){
+             location.href = rs.redirect;
+            }
+        }
+    })
+
+    $(document).on('click', '.action-get-vcode', function(e) {
+        e.preventDefault();
+        var mobile = form.find('input[name=uname]').val();
+        var type = form.find('input[name=type]').val();
+
+        if($(this).hasClass('disabled')) return false;
+        if(!mobile) {
+          Message.error('请输入手机号码！');
+          return false;
+        }
+        sendVerify(this, 'uname=' + mobile + '&type=' + type);
+    })
+
+    function sendVerify(el, data) {
+        var url = el.href;
+        var textCont = $(el).find('span span');
+        $(el).addClass('disabled');
+        textCont.html($(el).text() + '(<i>0</i>)');
+        var cd = new countdown(textCont.find('i'), {
+            start: 120,
+            secondOnly: true,
+            callback: function(e) {
+                $(el).removeClass('disabled');
+                textCont.html('重发验证码');
+            }
+        });
+        $.post(url, data, function(rs) {
+            if(rs.error) {
+                cd.stop();
+                Message.error(rs.message);
+                $(el).removeClass('disabled');
+                textCont.html('重发验证码');
+            }
+            else if(rs.redirect) {
+                Message.success(rs.message, function() {
+                    location.href = rs.redirect;
+                });
+            }
+        });
+    }
+})();
+</script>

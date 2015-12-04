@@ -1,0 +1,381 @@
+<style type="text/css">
+.maxFlash{width: 175px;}
+.maxFlash .slider{width: 175px; position:relative;}
+.maxFlash .slider-pic{width:175px; height:135px;overflow:hidden;position:relative;}
+.maxFlash .slider-pic li{width:175px; height:135px;}
+.maxFlash .slider-pic li img{display:block;}
+.maxFlash .switchable-nav{position:absolute;bottom: 8px; width:100%; text-align: center;}
+.maxFlash .switchable-nav a{font-size:25px;color:#aaa;}
+.maxFlash .switchable-nav a.active{color:#f60;}
+.maxFlash .maxad{padding-top:10px;}
+.maxFlash .ad-shopmax-group li{float:left;padding-right: 10px;}
+.item2 em{font-size: 15px;}
+</style>
+<div class="bread-crumbs"> </div>
+<!-- main container -->
+<div class="mod-bottom">
+    <div class="row max-row-box" style="padding-left:0">
+        <div class=" box">
+            <div class="detail-panel">
+                <div class="detail-panel-bd">
+                    <form action="<{url action=topc_ctl_standard@save}>" method="post" id="items_action_form">
+                        <input type="hidden" name="standard_id" value="<{$row.standard_id}>" />
+                        <input type="hidden" name="shop_id" value="<{$row.shop_id}>" />
+                        <input type="hidden" name="totalbid" value="<{$totalPrice}>">
+                        <input type="hidden" name="title" value="<{$row.trading_title}>">
+                        <input type="hidden" name="type" value="<{$type}>">
+                        <div class="max-bidding-main">
+                            <!-- 版块头部 -->
+                            <div class="biddin-head">
+                                <div class="title-icon">标准</div>
+                                <div class="l">
+                                    <div class="title"><{$row.trading_title}></div>
+                                    <div class="info-item clearfix">
+                                        <!-- <div class="item">保证金：￥50,000</div> -->
+                                        <!-- <div class="item"> 延时周期：5分钟/次</div> -->
+                                        <!-- <div class="item">交割方式：线下交割</div> -->
+                                        <!-- <div class="item last"> 出货类型：多次出货</div> -->
+                                        <!-- <div class="help"><a href="" title="">&nbsp;</a></div> -->
+                                    </div>
+                                </div>
+                                <div class="r">
+                                    <div class="zt">正在进行中</div>
+                                    <div id="remainSeconds" style="display:none">18000</div>
+                                    <!-- <div id="remainTime" style="font-size:20px;font-weight:800;color:black"></div> -->
+                                    <!-- <div class="maxtime lxftime" nowtime="2016-10-17 12:39:57" endtime="<{$row.stop_time|cdate}>" col="0" lxfday="yes">
+                                        <span>距结束</span><b>00</b><span>天</span><b>22</b><span>时</span><b>59</b><span>分</span><b>47.7</b><span>秒</span>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <!-- 版块头部END -->
+                            <!-- 版块内容区 -->
+                            <div class="biddin-body">
+                                <!-- 项目一 -->
+                                <{foreach from=$standard_items item=item}>
+                                <div class="biddin-item ">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+                                        <colgroup>
+                                        <col class="col-5">
+                                        <col class="col-4">
+                                        <col class="col-4">
+                                        <col class="col-4">
+                                        <col class="col-3">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td class="name"><div class="icon">&nbsp;</div><{$item.title}></td>
+                                                <td>货量:<{$item.num}><{$item.unit}></td>
+                                                <td>当前价：<em><{$item.net_price|cur}></em> / <{$item.unit}></td>
+                                                <td>
+                                                    <div class="goods-buy">
+                                                        <div class="t">总价:&nbsp;&nbsp;
+                                                            <{$item.goods_total_price|cur}>
+                                                        </div>
+                                                        <!--              <span class="p-quantity">
+                                                        <a href="javascript:void(0);" class="btn-decrease">-</a>
+                                                        <input type="text"  class="action-quantity-input" value="1">
+                                                        <a href="javascript:void(0);" class="btn-increase">+</a>
+                                                        </span> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 弹出层 -->
+                                    <div class="max-bd-popup" >
+                                        <div class="arrow arrow-bottom" ><i class="below">◆</i><i class="above">◆</i></div>
+                <div class="max-pic"><a href="javascript:void()" title=""><img style="width:90px;height:90px;" src="<{$item.item.image_default_id}>" alt=""></a></div>
+                                        <div class="max-info">
+                                            <div class="goods-name"><a href="" title=""><{$item.item.title}></a></div>
+                                            <ul class="detailinfo-list">
+                                                <{foreach from=$item.prop item=propitem}>
+                                                     <li><{$propitem.item_prop_name}>：<{$propitem.item_prop_value}></li>
+                                                <{/foreach}>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <{/foreach}>
+                            </div>
+                            <!-- 版块内容区END -->
+                            <!-- 版块底部 -->
+                            <div class="biddin-footer">
+                                <!--           <div class="tishi">
+                                    <div class="item-1"><div class="icon"></div>
+                                提示：出价后支付保证金方成为有效出价更新至前台，</div>
+                                <div class="item-1">如果有相同的出价，保证金到账时间为准，交易结束前2小时，结束保证金缴纳</div>
+                            </div> -->
+                            <div class="max-buy-box">
+                                <div class="l product-concern">
+                                    <!-- <div class="item">当前价：￥68800 / 吨</div> -->
+                                    <div class="item item2" style="margin-top:18px">我的总价：<em><{$totalPrice|cur}></em></div>
+                                    <!-- <div class="item">总一口价：97800 / 吨</div> -->
+                                </div>
+                                <div class="r">
+                                    <!--                 <div class="item item1" >您还未缴纳保证金，<a href="" title="">去缴纳></a></div>
+                                    <div class="item item2" style="display:none">您已缴纳保证金，提交报价将立即生效</div> -->
+                                    <button type="submit" class="btn btn-standard" style="margin-top:20px;">
+                                    提交报价
+                                    </button>
+                                    <!-- <a href="" title="" class="btn btn-r" >一口价购买</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 版块底部END -->
+                    </div>
+                    <ul class="seller">
+                        <li>
+                            <div class="maxbrand-logo" >
+                                <a href="" target="_blank">
+                                <img style="width:120px;height: 60px;"  src="<{$shop.shop_logo}>" title="">
+                                </a>
+                            </div>
+                        </li>
+                        <li class="btnw"><a href="/index.php/shopcenter.html?shop_id=<{$shop.shop_id}>"><{$shop.shop_name}></a> <div class="btn">&nbsp;</div>
+                        <div class="maxinfo " style="display:none">
+                        <div class="item item1 clearfix"><span>综合评分：</span><em class="jd"><div class="n" style="width:<{$shop.score*10}>%"></div></em><i><{$shop.score}>分</i></div>
+                            <!-- 修改进度条长度改class="n"宽度即可 -->
+                          <!--   <div class="item item2"><span>细则评分：</span><em>9.94<i class="s"><img src="images/p_s.png" alt="" /></i></em><em>9.84<i class="z"><img src="images/p_z.png" alt="" /></i></em><em>9.81<i class="x"><img src="images/p_x.png" alt="" /></i></em></div>
+                        </div> -->
+                        </div>
+                    </li>
+                    <li class="maxsubmenu">
+                        <!--  <div class="item1 item"><img src="images/p_dfh.png" alt="" /> <span>第<i>3</i>年</span></div> -->
+                        <div class="item3 item">
+                            <div class="n"><a href="/index.php/shopcenter.html?shop_id=<{$shop.shop_id}>" title="">进入展台</a>
+                             <{if $nologin!=1}>
+            <a href="<{url action=topc_ctl_passport@signin}>" title="">
+            <{else}>
+            <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" data-ajax-data="shop_id=<{$shop.shop_id}>" rel="_request">
+            <{/if}>
+            关注展台</a>
+                                <{if $nologin!=1}>
+                                <a href="<{url action=topc_ctl_passport@signin}>">申请看样</a>
+                                <{else}>
+                                <a href="javascript:" data-ajax-data="standard_id=<{$row.standard_id}>" class="seegoods_btn">申请看样</a>
+                                <{/if}>
+                              <!--   <a href="" title="">申请检测</a> -->
+                            </div>
+                        </div>
+                    </li>
+                    <li style="font-size:14px">购买记录</li>
+                    <li>
+                        <table style="width:90%;margin:0 auto" border="0" cellspacing="0" cellpadding="0" aling="left" class="cj">
+                            <thead>
+                                <tr>
+                                    <th>状态</th>
+                                    <th>购买人</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <{foreach from=$tradeList item=trade }>
+                                <{if $trade.state!=2}>
+                                <tr >
+                                    <td><{if $trade.state==1}>成功<{else}>待观察<{/if}></td>
+                                    <td><div style="display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width:90px;"><{$trade.user_name}></div></td>
+                                </tr>
+                                <{/if}>
+                                <{/foreach}>
+                                <tr>
+                                    <td colspan="3"><a href="" title="">查看详细>></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<SCRIPT>
+$('.seegoods_btn').click(function(e){
+if("<{$sample_end}>" ==1){
+Message.success('看样结束');
+return;
+}else if("<{$sample_end}>" ==0){
+Message.success('看样暂未开始');
+return;
+}
+$.dialog.ajax(
+'<{url action=topc_ctl_sample@sample_dialog }>',
+{
+width: 500,
+title:'申请看样',
+asyncOptions:{
+type: 'post',
+callback: function(xhr) {
+$('.type').val('<{$type}>');
+$('.shop_id').val('<{$row.shop_id}>');
+$('.shop_name').val('<{$row.shop_name}>');
+$('.standard_id').val('<{$row.standard_id}>');
+$('.title').val('<{$row.trading_title}>');
+$('.name').val('<{$row.trading_title}>');
+$('.seegood').val('<{$row.seegoods_stime|cdate}>');
+this.body.find('form').data('validateConfig', {
+tips: {
+form: 'block'
+}
+})
+.find('[type=submit]').data('ajaxConfig', {
+callback: $.proxy(function(rs) {
+/*Message.success('提交成功');*/
+this.hide();
+}, this)
+});
+}
+}
+});
+});
+//lxfEndtime();
+//VIP倒计时
+    //    function lxfEndtime() {
+            //            $(".lxftime").each(function () {
+                //                var lxfday = $(this).attr("lxfday"); //用来判断是否显示天数的变量
+                //                var endtime = new Date($(this).attr("endtime")).getTime(); //取结束日期(毫秒值)
+                        //                var nowtime = new Date($(this).attr("nowtime")).getTime();        //今天的日期(毫秒值)服务器时间
+                //                var youtime = endtime - nowtime; //还有多久(毫秒值)
+                //                var seconds = youtime / 1000;
+                //                var minutes = Math.floor(seconds / 60);
+                //                var hours = Math.floor(minutes / 60);
+                //                var days = Math.floor(hours / 24);
+                //                var CDay = days;
+                //                var CHour = hours % 24;
+                //                var CMinute = minutes % 60;
+                //                var CSecond = Math.floor(seconds % 60); //"%"是取余运算，可以理解为60进一后取余数，然后只要余数。
+                //                var CMSecond = Math.floor(seconds*10%10);// 计算10毫秒
+                //                if (endtime <= nowtime) {
+                    //                    $(this).html(""); //如果结束日期小于当前日期就提示过期啦
+                    //                    $('.zt').html("已结束");
+                    //                    $('.btn-standard').css('display','none');
+
+
+                //                } else {
+                    //                    if ($(this).attr("lxfday") == "no") {
+                        //                        $(this).html("<span>距结束</span><b>" + CHour + "</b><span>时</span><b>" + CMinute + "</b><span>分</span><b>" + CSecond +"."+CMSecond+"</b><span>秒</span>"); //输出没有天数的数据
+                    //                    } else {
+
+                        //                        $(this).html("<span>距结束</span><b>"+CDay +"</b><span>天</span><b>" + CHour + "</b><span>时</span><b>" + CMinute + "</b><span>分</span><b>" + CSecond +"."+CMSecond+"</b><span>秒</span>"); //输出有天数的数据
+                    //                    }
+                    //                    // <span>距结束</span><b>00</b><span>天</span><b>22</b><span>时</span><b>59</b><span>分</span><b>47.7</b><span>秒</span>
+                    //                    //当前时间变化
+                    //                    $(this).attr("nowtime", zhtime(nowtime+100));
+                //                }
+            //            });
+            //             setTimeout("lxfEndtime()", 100);
+    //    }
+    //    //js时间戳格式转05/20/2014 20:54:40
+    //    function zhtime(needtime) {
+        //        var oks = new Date(needtime);
+        //        var year = oks.getFullYear();
+        //        var month = oks.getMonth() + 1;
+        //        var date = oks.getDate();
+        //        var hour = oks.getHours();
+        //        var minute = oks.getMinutes();
+        //        var second = oks.getSeconds();
+        //        var msecond=oks.getMilliseconds()
+        //        return month + '/' + date + '/' + year + ' ' + hour + ':' + minute + ':' + second+'.'+msecond;
+    //    }
+// var SysSecond;
+// var InterValObj;
+// $(document).ready(function() {
+//  SysSecond = parseInt($("#remainSeconds").html());
+//  InterValObj = window.setInterval(SetRemainTime, 1000);
+// });
+// //代理,接单的时间+1小时减去当前时间的秒数
+// function SetRemainTime() {
+//  if (SysSecond > 0) {
+//   //alert(SysSecond);
+//   SysSecond = SysSecond - 1;
+//   var second = Math.floor(SysSecond % 60);
+//   var minite = Math.floor((SysSecond / 60) % 60);
+//   var hour = Math.floor((SysSecond / 3600) % 24);
+//   var day = Math.floor((SysSecond / 3600) / 24);
+//   $("#remainTime").html(day + "天" + hour + "小时" + minite + "分" + second + "秒");
+//  } else {
+//   window.clearInterval(InterValObj);
+//  }
+// }
+</SCRIPT>
+<div class="col-lg-13 box max-box-right" style="margin-left: 10px;">
+<div class="tab1" data-toggle="switchable" data-switchable-config="{&quot;events&quot;:&quot;click&quot;}">
+<ul class="switchable-nav">
+    <li class="active">产品详情</li>
+    <li>竞买须知</li>
+    <li id="eval_tab">商品评价</li>
+    <li id="consult_tab">咨询</li>
+</ul>
+<div class="switchable-content">
+    <div class="switchable-panel" style="display: block;">
+        <{$row.desc}>
+    </div>
+    <div class="switchable-panel" style="display: none;"> 2</div>
+    <div id="eval_con" class="switchable-panel" style="display: none;"> 载入中....</div>
+    <div id="consult_con" class="switchable-panel" style="display: none;">载入中....</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function tabEval(url) {
+var cur = 0;
+var condition = $('#condition_form');
+$('.evaluation-nav li').click(function(){
+var that = $(this);
+var data = that.attr('data-type');
+var dataObj = {
+'result': data
+}
+condition.find('input[name="result"]').val(data);
+cur = that.index();
+$(this).addClass('active').siblings().removeClass('active');
+$('.evaluation-content>div').eq(cur).css('display','block').siblings().css('display','none');
+if(!$('.evaluation-content>div').eq(cur).html()){
+$.get(url,dataObj,function(data){
+$('.evaluation-content>div').eq(cur).html(data);
+})
+}
+});
+$('.condition').change(function() {
+if($(this).attr('type')=='checkbox'){
+$(this).val($(this).prop('checked'));
+}
+console.log($('.evaluation-content>div').eq(cur))
+$('.evaluation-content>div').eq(cur).load(condition.attr('action'),condition.serialize());
+});
+}
+$('#eval_tab').click(function() {
+if(!$('#eval_con').html()){
+}else{
+$('#eval_con').load('<{url action=topc_ctl_comment@getItemRate standard_id=$row.standard_id}>',function(){
+tabEval('<{url action=topc_ctl_comment@getItemRateList standard_id=$row.standard_id}>');
+})
+}
+});
+function tabConsult(url) {
+var cur = 0;
+$('.item-consult-nav li').click(function(){
+var that = $(this);
+var data = that.attr('data-type');
+var dataObj = {
+'result': data
+}
+cur = that.index();
+$(this).addClass('active').siblings().removeClass('active');
+$('.item-consult-con>div').eq(cur).css('display','block').siblings().css('display','none');
+if(!$('.item-consult-con>div').eq(cur).html()){
+$.get(url,dataObj,function(data){
+$('.item-consult-con>div').eq(cur).html(data);
+})
+}
+});
+}
+$('#consult_tab').click(function(){
+/*if(!$('#consult_con').html()){alert(1);
+}else{*/
+$('#consult_con').load('<{url action=topc_ctl_standard@getItemConsultation standard_id=$row.standard_id}>',function(){
+tabConsult('<{url action=topc_ctl_standard@getItemConsultationList standard_id=$row.standard_id}>');
+})
+/* }*/
+});
+</script>

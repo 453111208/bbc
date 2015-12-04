@@ -1,0 +1,28 @@
+<div class="filter-attr">
+  <div class="filter-attr-title"><{t}>品牌<{/t}>：</div>
+  <div class="filter-attr-list expand-panel">
+    <{foreach from=$screen.brand item=brand_row name=name}>
+
+    <{if $env.foreach.name.iteration == 11}>
+    <span>
+      <{/if}>
+
+      <{if $brand_row.brand_id == $activeFilter.brand_id || in_array( $brand_row.brand_id,$activeFilter.brand_id)}>
+      <a href="<{url action=topc_ctl_list@index _params=$filter d_b=$brand_row.brand_id operationtype=remove}>" class="on" > <{$brand_row.brand_name}>  <i class="icon icon-close"></i></a>
+      <{else}>
+      <a href="<{url action=topc_ctl_list@index _params=$filter a_b=$brand_row.brand_id operationtype=add }>"> <{$brand_row.brand_name}>  <i class="icon icon-close"></i></a>
+      <{/if}>
+
+      <{if $env.foreach.name.iteration > 10 && $env.foreach.name.last }>
+    </span>
+    <{/if}>
+
+    <{/foreach}>
+    <{if count($screen.brand)>10}>
+    <div class="more-btn">
+      <a href="javascript:void(0);" class="btn btn-link expand-btn">更多<i class="icon icon-arrow-down"></i></a>
+      <a href="javascript:void(0);" class="btn btn-link unexpand-btn">收起<i class="icon icon-arrow-up"></i></a>
+    </div>
+    <{/if}>
+  </div>
+</div>

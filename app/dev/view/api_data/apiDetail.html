@@ -1,0 +1,45 @@
+# <{$title1}>
+
+
+## <{$title2}>
+
+
+* 接口参数
+
+- 支持的版本号：<{foreach from=$api_conf.version item="v" }><{$v}>,<{/foreach}>
+
+<{if $api_conf.oauth}>
+
+
+- 是否需要Oauth支持：是
+
+<{/if}>
+
+
+
+* 系统参数
+
+| *字段* | *标题* | *数据类型* | *验证条件* | *示例值* | *默认值* | *详细说明* |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+<{foreach from=$system_params item="column" key="columnName"}>
+| <{$column.field}> | <{$column.title}> | <{$column.type}> | <{$column.validate}> | <{$column.example}> | <{$column.default}> | <{$column.description}> |
+<{/foreach}>
+
+
+* 业务参数
+
+| *字段* | *标题* | *数据类型* | *验证条件* | *示例值* | *默认值* | *详细说明* |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+<{foreach from=$params item="column" key="columnName"}>
+| <{$column.field}> | <{$column.title}> | <{$column.type}> | <{$column.validate}> | <{$column.example}> | <{$column.default}> | <{$column.description}> |
+<{/foreach}>
+
+
+*返回内容示例
+
+```
+
+<{$response}>
+
+```
+

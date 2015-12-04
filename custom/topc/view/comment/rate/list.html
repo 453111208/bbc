@@ -1,0 +1,20 @@
+<div id="all">
+  <table class="item-table table-evaluation">
+    <colgroup>
+      <col class="table-col-1" width="75%">
+      <col class="table-col-2" width="25%">
+    </colgroup>
+    <tbody>
+    <{foreach from=$comm item=item key=key}>
+      <tr>
+        <td style="float:left;font-size:16px;font-weight:bold;">
+        <{$item.user_name}>：
+        </td>
+        <td style="float:left;">
+        <{$item.content}>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+</div>

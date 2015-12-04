@@ -1,0 +1,30 @@
+<div class="row">
+  <{include file="topc/items/basic/pic.html"}>
+  <div class="col-lg-11 box">
+    <div class="detail-panel">
+      <div class="detail-panel-bd">
+        <form action="<{url action=topc_ctl_cart@add mode=fastbuy}>" method="post" id="items_action_form">
+          <div class="detail-panel-info">
+            <div class="detail-panel-hd">
+              <h1>
+  
+                <em>
+                  <{if $type==2}>
+                  [求购]
+                  <{else}>
+                  [供应]
+                  <{/if}>
+            
+
+                </em><{$requireItem.variety_name}></h1>
+              
+            </div>
+            <{include file="topc/items/basic/price.html"}>
+            <{include file="topc/items/basic/buy.html"}>
+          </div>
+          <{include file="topc/items/basic/shop.html"}>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

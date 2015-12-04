@@ -1,0 +1,60 @@
+<div class="col-lg-13 box">
+
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      安全中心
+    </div>
+    <div class="membercenter-box-bd">
+      <div>建议您开启全部安全设置，以保障账户及资金安全</div>
+      <div class="safe-setting">
+        <div class="safe-setting-row">
+          <i class="icon icon-checkmark-c" data-icon="\2840"></i>
+          <span class="safe-setting-title">登录密码</span>
+          <span class="safe-setting-intro">请经常更换您的登录密码，且不要和其他账号共用一个密码</span>
+          <a href="<{url action=topc_ctl_member@modifyPwd}>">修改密码</a>
+        </div>
+        <div class="safe-setting-row">
+          <{if $userInfo.mobile}>
+            <i class="icon icon-checkmark-c" data-icon="\2840"></i>
+          <{else}>
+            <i class="icon icon-alert" data-icon="\2803"></i>
+          <{/if}>
+          <span class="safe-setting-title">手机绑定</span>
+          <span class="safe-setting-intro">进行手机验证后  ，可以用户快速找回账号密码和身份验证操作，保护您的账号安全 ，以及及时获取订单发货等通知类信息  </span>
+          <div class="operate">
+            <{if $userInfo.mobile}>
+            <a href="<{url action=topc_ctl_member@verify verifyType=mobile type=update}>">修改手机</a>
+            <a class="unbind-btn " href="<{url action=topc_ctl_member@unVerifyOne verifyType=mobile type=delete}>">解除绑定</a>
+            <{else}>
+            <a href="<{url action=topc_ctl_member@verify verifyType=mobile}>">绑定手机</a>
+            <{/if}>
+          </div>
+        </div>
+        <div class="safe-setting-row">
+          <{if $userInfo.email && $userInfo.email_verify}>
+            <i class="icon icon-checkmark-c" data-icon="\2840"></i>
+          <{else}>
+            <i class="icon icon-alert" data-icon="\2803"></i>
+          <{/if}>
+          <span class="safe-setting-title">邮箱绑定</span>
+          <{if $userInfo.email}>
+          <span class="safe-setting-intro">您的验证邮箱：<{$userInfo.email}></span>
+          <{else}>
+          <span class="safe-setting-intro">您的邮箱未验证</span>
+          <{/if}>
+          <div class="operate">
+            <{if $userInfo.email && $userInfo.email_verify}>
+              <a href="<{url action=topc_ctl_member@verify verifyType=email type=update}>">修改邮箱</a>
+              <a class="unbind-btn " href="<{url action=topc_ctl_member@unVerifyTwo verifyType=email op=delete}>">解除绑定</a>
+              <{else}>
+              <a href="<{url action=topc_ctl_member@verify verifyType=email}>">绑定邮箱</a>
+              <{if $userInfo.email}>
+             或  <a href="<{url action=topc_ctl_member@verify verifyType=email type=update}>">修改邮箱</a>
+             <{/if}>
+            <{/if}>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<header>
+  <div class="list-hd">
+    <div class="backto icon-back">
+      <input type="button" name="returnBcak" onclick="history.back()">
+    </div>
+    <div class="tit ">发表评价</div>
+  </div>
+</header>
+<form action="<{url action=topm_ctl_member_rate@doCreateRate}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+  <input type='hidden' name="tid" value=<{$tradeInfo.tid}> >
+  <section class="container">
+    <section class="appraisal">
+      <h1>店铺评分</h1>
+      <ul class="rate">
+        <li>
+          <div class="rate-caption">商品与描述相符</div>
+          <div class="rate-view">
+            <input id="goods" type="hidden" name="tally_score" value="">
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+          </div>
+        </li>
+        <li>
+          <div class="rate-caption">商家的服务态度</div>
+          <div class="rate-view">
+            <input id="server" type="hidden" name="attitude_score" value="">
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+          </div>
+        </li>
+        <li>
+          <div class="rate-caption">商家的发货速度</div>
+          <div class="rate-view">
+            <input id="send" type="hidden" name="delivery_speed_score" value="">
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+          </div>
+        </li>
+        <li>
+          <div class="rate-caption">物流发货的速度</div>
+          <div class="rate-view">
+            <input id="logistics" type="hidden" name="logistics_service_score" value="">
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+            <i class="icon icon-collect"></i>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="appraisal-list ui-refresh">
+      <ul class="data-list">
+        <{foreach from=$tradeInfo.orders item=orderitem}>
+        <{if $orderitem.buyer_rate != '0' }><{continue}><{/if}>
+        <input type="hidden" name="rate_data[<{$orderitem.oid}>][oid]" value="<{$orderitem.oid}>" >
+        <li>
+          <div class="list-caption">
+            <div class="caption-thumb"><img src="<{$orderitem.pic_path|storager:'s'}>" alt=""></div>
+            <div class="caption-title"><a href="<{url action=topm_ctl_item@index item_id=$orderitem.item_id}>"><{$orderitem.title}></a></div>
+            <div class="caption-price"><mark><{$orderitem.price|cur}></mark><br>&times;<{$orderitem.num|default:1}></div>
+          </div>
+          <div class="appraisal-level">
+            <input type="hidden" name="rate_data[<{$orderitem.oid}>][result]" value="good">
+            <div><button type="button" class="good active" data-value="good" ><i class="icon icon-flower"></i>好评</button></div>
+            <div><button type="button" class="neutral" data-value="neutral" ><i class="icon icon-flower"></i>中评</button></div>
+            <div><button type="button" class="bad" data-value="bad"><i class="icon icon-flower"></i>差评</button></div>
+          </div>
+          <div class="appraisal-comment">
+            <textarea name="rate_data[<{$orderitem.oid}>][content]" id="" cols="" rows="1" placeholder="您得评价对其他买家很有帮助哦"></textarea>
+          </div>
+        </li>
+        <{/foreach}>
+      </ul>
+      <div class="ui-refresh-handle">
+        <div class="ui-refresh-down"></div>
+      </div>
+    </section>
+    <section class="appraisal-submit">
+      <div>
+        <label><input type="checkbox" name="anony" <{if $tradeInfo.anony == '1'}>checked<{/if}> value="true"> 匿名评价</label>
+      </div>
+      <div>
+        <button type="submit" class="ui-btn ui-btn-negative">发表评价</button>
+      </div>
+    </section>
+  </section>
+</form>
+<script>
+  setStars('#goods', 0);setStars('#server', 0);setStars('#send', 0);setStars('#logistics', 0);
+
+  //店铺评星级
+  function setStars(starDom, defaultVal){
+    var stars = $(starDom).parent().find('i');
+    $(starDom).val(defaultVal);
+
+    $(stars).tap(function(){
+      var n = $(this).index();
+      $(starDom).val(n);
+      defaultVal = $(this).index();
+      for (var i = 0; i < stars.length; i++) {
+        if(i >= defaultVal){
+          $(stars[i]).removeClass('icon-star active').addClass('icon-collect');
+        }else{
+          $(stars[i]).removeClass('icon-collect').addClass('icon-star active');
+        }
+      }
+      checkSubmit()
+    });
+
+    $('.appraisal-list').on('tap','.appraisal-level button',function(){
+      var data = $(this).attr('data-value');
+      $(this).addClass('active').parent().siblings().find('button').removeClass('active');
+      $(this).parent().parent().find('input').val(data);
+      checkSubmit()
+    }).on('keyup','.appraisal-comment textarea',function(){
+      if($(this).scrollTop() > 10) {
+        $(this).parent().addClass('foucus');
+      }
+    })
+
+    function checkSubmit(){
+      var goods = $('#goods').val(),
+          server = $('#server').val(),
+          send = $('#send').val(),
+          logistics = $('#logistics').val();
+          bad = $('.bad');
+
+      if( goods!='0' && server!='0' && send!='0' && logistics!='0'){
+        $('.appraisal-submit').addClass('visible');
+      }
+    };
+  };
+</script>

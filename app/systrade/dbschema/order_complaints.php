@@ -1,0 +1,131 @@
+<?php
+
+return  array(
+    'columns' => array(
+        'complaints_id' => array(
+            'type' => 'bigint',
+            'unsigned' => true,
+            'required' => true,
+            'autoincrement' => true,
+            'comment' => app::get('systrade')->_(' 订单投诉ID'),
+        ),
+        'shop_id' => array(
+            'type' => 'bigint',
+            'default' => '0',
+            'required' => true,
+            'comment' => app::get('systrade')->_('被投诉店铺ID'),
+        ),
+        'user_id' => array(
+            'type' => 'bigint',
+            'unsigned' => true,
+            'default' => '0',
+            'required' => true,
+            'comment' => app::get('systrade')->_('发起投诉用户ID'),
+        ),
+        'tid'=>array(
+            'type' => 'bigint',
+            'in_list' => true,
+            'width' => '300',
+            'default_in_list' => true,
+            'searchtype' => 'has',
+            'filtertype' => false,
+            'filterdefault' => 'true',
+            'required' => true,
+            'label' => app::get('systrade')->_('投诉订单号'),
+            'comment' => app::get('systrade')->_('投诉订单号'),
+        ),
+        'oid'=>array(
+            'type' => 'bigint',
+            'required' => true,
+            'comment' => app::get('systrade')->_('投诉子订单号'),
+        ),
+        'status' => array(
+            'type' => array(
+                'WAIT_SYS_AGREE' => '等待处理',
+                'FINISHED' => '已完成',
+                'BUYER_CLOSED' => '买家撤销投诉',
+                'CLOSED' => '平台关闭投诉',
+            ),
+            'default' => 'WAIT_SYS_AGREE',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => false,
+            'label' => app::get('systrade')->_('状态'),
+        ),
+        'tel' => array(
+            'type' => 'string',
+            'length' => 100,
+            'default' => 0,
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => false,
+            'label' => app::get('systrade')->_('投诉人电话'),
+            'order' => 20,
+        ),
+        'image_url' => array(
+            'type' => 'string',
+            'default' => '',
+            'length' => 1500,
+            'label' => app::get('systrade')->_('投诉凭证图片'),
+            'order' => 30,
+        ),
+        'complaints_type' => array(
+            'type' => 'string',
+            'default' => '',
+            'in_list' => true,
+            'width' => '300',
+            'default_in_list' => true,
+            'label' => app::get('systrade')->_('投诉类型'),
+            'order' => 40,
+        ),
+        'content' => array(
+            'type' => 'text',
+            'default' => '',
+            'in_list' => true,
+            'width' => '300',
+            'label' => app::get('systrade')->_('问题描述'),
+            'order' => 40,
+        ),
+        'memo' => array(
+            'type' => 'string',
+            'default' => '',
+            'in_list' => true,
+            'width' => '300',
+            'label' => app::get('systrade')->_('处理备注'),
+            'order' => 50,
+        ),
+        'buyer_close_reasons' => array(
+            'type' => 'string',
+            'default' => '',
+            'in_list' => true,
+            'width' => '300',
+            'label' => app::get('systrade')->_('投诉撤销原因'),
+            'order' => 50,
+        ),
+        'created_time' => array(
+            'type' => 'time',
+            'label' => app::get('systrade')->_('投诉时间'),
+            'in_list' => true,
+            'default_in_list' => true,
+            'width' => '100',
+            'order' => 60,
+        ),
+        'modified_time' => array(
+            'type' => 'last_modify',
+            'label' => app::get('systrade')->_('最后修改时间'),
+            'in_list' => true,
+            'default_in_list' => true,
+            'width' => '100',
+            'order' => 60,
+        ),
+    ),
+    'primary' => 'complaints_id',
+    'index' => array(   //索引名称
+        'ind_oid' => [
+            'columns' => ['oid'], // 需要建立索引的字段名
+            'prefix' => 'unique' // 目前只支持unqiue, 或者不填写
+        ],
+    ),
+    'comment' => app::get('systrade')->_('订单投诉表'),
+);
+

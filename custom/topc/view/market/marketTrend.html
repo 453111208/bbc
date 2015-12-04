@@ -1,0 +1,108 @@
+<link href="images/jqplot/jquery.jqplot.min.css" rel="stylesheet" type="text/css"/>
+<script src="images/jqplot/jquery.jqplot.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.barRenderer.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.cursor.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.highlighter.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.dragable.js"></script>
+<script type="text/javascript" src="images/jqplot/plugins/jqplot.trendline.js"></script>
+
+<div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+        <dt>当前位置：</dt>
+        <dd>
+            <a class="beb-nav" href="/index.php/market"><span>行情中心</span></a><span class="beb-raquo">></span>
+            <a class="beb-nav" href="<{url action=topc_ctl_market@getList secondSort=$second_sort}>"><span><{$second_sort}></span></a>
+            <span class="beb-raquo">></span>
+            <span class="beb-current"><{$date}><{$area}><{$third_sort}>价格趋势图</span></dd>
+    </dl>
+</div>
+<div class="maxpart"> 
+    <div class="maxleft-title">
+        <div class="maxcontent_caption"><h1><{$date}><{$area}><{$third_sort}>价格趋势图</h1></div>
+        <div class="maxcontent_txt"><span>发布时间：<{$realdate}></span></div>
+    </div>
+    <div class="maxtrend" id="chart1" width="500px" height="500px"></div>
+    <div class="maxread">相关报价</div>
+    <div class="maxarticles">
+        <ul>
+            <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+        </ul>
+    </div> 
+    <div class="maxlabel"><span>本文标签：</span></div>
+    <div class="maxstatement">免责声明:本信息仅供参考，东方循环网力求准确可靠，但不作为您投资决策的唯一因素!</div>
+</div>
+
+<script>
+
+
+$(document).ready(function(){
+    var run_type = "<{$run_type}>";
+    $.jqplot.config.enablePlugins = true;
+    var s1=new Array();
+    var ticks=new Array();
+    var z1 = new Array();
+    <{foreach from=$data item=item key=key}> 
+        s1.push(<{$item.price}>);
+        ticks.push("<{$item.dates}>");
+        z1.push(['<{$item.dates}>',<{$item.price}>]);
+    <{/foreach}>
+    if( run_type== "1"){
+  plot1 = $.jqplot('chart1',[z1],{
+     axes: {
+         xaxis: {
+             renderer: $.jqplot.CategoryAxisRenderer
+         },
+         yaxis: {
+             tickOptions: {
+                 
+             }
+         }
+     }
+  });
+    } else if( run_type== "2") {
+        plot1 = $.jqplot('chart1', [s1], {
+        // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+        animate: !$.jqplot.use_excanvas,
+        seriesDefaults:{
+            renderer:$.jqplot.BarRenderer,
+            pointLabels: { show: true }
+        },
+        axes: {
+            xaxis: {
+                renderer: $.jqplot.CategoryAxisRenderer,
+                ticks: ticks
+            }
+        },
+        highlighter: { show: false }
+    });
+    }
+
+    $('#chart1').bind('jqplotDataClick', 
+        function (ev, seriesIndex, pointIndex, data) {
+            $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+        }
+    );
+});
+
+</script>

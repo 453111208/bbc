@@ -1,0 +1,30 @@
+<div class="col-lg-3 box">
+  <ul class="dropmenu-list">
+    <{foreach from=$nodeList item=nodelist}>
+    <li>
+      <div class="dropmenu"><{$nodelist.node_name}><span class="icon icon-arrow-right"></span></div>
+      <ul class="dropmenu-items">
+        <{foreach from=$nodelist.children item=nodechildren}>
+        <li><a href="<{url action=topc_ctl_content@index node_id=$nodechildren.node_id}>" <{if $nodeInfo.node_id==$nodechildren.node_id}>class="active"<{/if}> href="javascript:void(0);"><{$nodechildren.node_name}></a></li>
+        <{/foreach}>
+      </ul>
+    </li>
+    <{/foreach}>
+  </ul>
+  <script>
+    $('.dropmenu').click(
+      function(){                
+        if($(this).hasClass('cur')){
+          $(this).removeClass('cur');
+          $(this).next().hide();
+          $(this).children('.icon').removeClass('icon-arrow-down').addClass('icon-arrow-right');
+        }else{
+          $(this).addClass('cur');
+          $(this).next().show();
+          $(this).children('.icon').removeClass('icon-arrow-right').addClass('icon-arrow-down');
+        }
+      }
+    );
+  </script>
+</div>
+

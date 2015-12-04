@@ -1,0 +1,4 @@
+a:7:{s:2:"id";i:1;s:7:"shop_id";i:1;s:11:"activity_id";i:1;s:13:"verify_status";s:5:"agree";s:12:"valid_status";i:1;s:13:"refuse_reason";s:0:"";s:13:"modified_time";i:1442559581;}
+a:7:{s:2:"id";i:2;s:7:"shop_id";i:2;s:11:"activity_id";i:1;s:13:"verify_status";s:5:"agree";s:12:"valid_status";i:1;s:13:"refuse_reason";s:0:"";s:13:"modified_time";i:1442559630;}
+a:7:{s:2:"id";i:3;s:7:"shop_id";i:18;s:11:"activity_id";i:1;s:13:"verify_status";s:5:"agree";s:12:"valid_status";i:1;s:13:"refuse_reason";s:0:"";s:13:"modified_time";i:1442559763;}
+a:7:{s:2:"id";i:4;s:7:"shop_id";i:7;s:11:"activity_id";i:1;s:13:"verify_status";s:5:"agree";s:12:"valid_status";i:1;s:13:"refuse_reason";s:0:"";s:13:"modified_time";i:1442559812;}

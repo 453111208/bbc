@@ -1,0 +1,127 @@
+   <div class="maxM-right">
+<{if !$catInfo}>
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">收藏的商品</div>
+  <div class="no-content">
+    <span class="txt">暂无收藏商品</span>
+  </div>
+</div>
+<{else}>
+<div id="batch_box" class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">收藏的商品 </div>
+    <div class="membercenter-box-right">
+      <div class="batch-operation">
+        <span class="batch-expand">
+          <input type="checkbox" name="" id="select_all"><label for="">全选</label>
+          <a id="delete_btn" onclick="deleteMembercnterBox()" href="javascript:void(0);">删除</a>
+        </span>
+        <a id="batch_btn" href="javascript:void(0);" class="btn btn-simple btn-sm"><span class="batch-expand-txt"><span>批量管理</span></span><span class="batch-unexpand-txt"><span>取消管理</span></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="membercenter-box-bd">
+  <div class="favorite-category expand-panel">
+      <a class="favorite-category-all" href="<{url action=topc_ctl_member@itemsCollect}>" class="on">全部商品</a>
+      <div class="favorite-category-list">
+        <{foreach from=$catInfo item=cat}>
+          <a href="#" ><{$cat.cat_name}>&nbsp;<{$cat.num}></a>
+        <{/foreach}>
+
+      </div>
+      <div class="more-btn">
+        <a href="javascript:void(0);" class="btn btn-link expand-btn">更多<i class="icon icon-arrow-down"></i></a>
+        <a href="javascript:void(0);" class="btn btn-link unexpand-btn">收起<i class="icon icon-arrow-up"></i></a>
+      </div>
+    </div>
+    <div class="membercenter-favorit">
+      <{foreach from=$fav_info item=fav}>
+      <div class="membercenter-favorite-item">
+        <input type="hidden" value="<{$fav.item_id}>" name="item_id[]"/>
+        <div class="pic"><img width="140" height="140" src="<{$fav.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>"><div class="item-mask"></div>
+      </div>
+        <div class="name"><{$fav.goods_name}></div>
+        <!-- <div><{$fav.goods_price|cur}></div> -->
+        <div class="operate">
+          <!-- <i class="icon icon-cart-a" data-icon="\2829"></i> -->
+          <a href="javascript:void(0);" class="btn-square favDel" data-itemId="<{$fav.item_id}>"><i class="icon icon-trash-a" ></i></a>
+        </div>
+        <div class="operate2">
+          <a href="#" class="btn-select"><i class="icon icon-checkmark" data-icon="\2841"></i></a>
+        </div>
+      </div>
+      <{/foreach}>
+    </div>
+  </div>
+</div>
+<div class="pager">
+  <div class="page-action">
+
+    <span class="flip prev over"><i class="ico prev">‹</i></span>
+    <{pagers data=$pagers}>
+  </div>
+</div>
+  
+<script>
+  $(".more-btn").click(function(){
+    $(this).parent(".expand-panel").toggleClass("is-expand");
+  });
+  $("#batch_btn").click(function(){
+    $("#batch_box").toggleClass("is-batch-operate");
+    if("#batch_box:not([is-batch-operate])"){
+      $(".membercenter-favorite-item").removeClass("on");
+      $("#select_all").prop("checked",false);
+    }
+  });
+  $("#select_all").change(function(){
+    $("#batch_box .membercenter-favorite-item")[$(this).prop("checked") ? 'addClass' : 'removeClass']('on');
+  });
+  $(".membercenter-favorite-item").click(function(){
+    $(this).toggleClass("on");
+  });
+  //商品收藏批量删除
+  function deleteMembercnterBox(){
+    if(!$("#batch_box .membercenter-favorite-item").hasClass("on")){
+      Message.error("请选择要删除的商品");
+    }
+    else{
+      if(confirm("确定要删除吗？")){
+        var data = $("#batch_box .membercenter-favorite-item.on input[type=hidden]").appendTo($('<form></form>')).serialize();
+          var url = '<{url action=topc_ctl_collect@ajaxFavDel}>';
+          $.ajax({
+            type:'POST',
+            url:url,
+            data:data,
+            success:function(rs){
+              if(rs.success){
+                 $('#batch_box .membercenter-favorite-item.on').remove();
+                 Message.success(rs.message);
+              }
+            }
+          });
+      };
+    }
+  }
+//商品收藏删除
+  $('.favDel').on('click',function(){
+     if(confirm("确定要删除吗？")){
+        var url = "<{url action=topc_ctl_collect@ajaxFavDel}>";
+        var el = $(this),
+            itemId=$(this).attr("data-itemId");
+        if(itemId) {
+            $.post(url,'item_id='+itemId,function(rs){
+                //rs = JSON.parse(rs);
+                if(rs.success){
+                  el.parents('.membercenter-favorite-item').remove();
+                  Message.success(rs.message);
+                }
+            });
+        }
+
+     }
+
+    });
+
+</script>
+<{/if}>
+</div>

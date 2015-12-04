@@ -1,0 +1,37 @@
+<div class="waybill-info">
+  <i class="icon icon-flow"></i>
+  <div class="info-txt">
+    <span>物流跟踪</span>
+  </div>
+</div>
+<{if $logi.tracker}>
+  <i class="icon icon-down items"></i>
+  <ul>
+    <{foreach from=$logi.tracker item=tracker}>
+    <li>
+      <div class="dot"></div>
+      <div class="step-con">
+        <div><{$tracker.AcceptStation}></div>
+        <div><{$tracker.AcceptTime}></div>
+      </div>
+    </li>
+    <{/foreach}>
+  </ul>
+<{else}>
+  <{$logi.logmsg}>
+<{/if}>
+<script>
+var flag = false;
+$('.logistics li:first-child').tap(function(){
+  $(this).siblings('li').toggle();
+  if(flag==false){
+    $(this).parent().parent().find('.icon-down').addClass('list-open');
+    flag = true;
+  }else{
+    $(this).parent().parent().find('.icon-down').removeClass('list-open');
+    flag = false;
+  }
+  console.log(flag);
+})
+</script>
+

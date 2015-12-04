@@ -1,0 +1,47 @@
+<div class="form-box" id="login-box">
+  <div class="header">登录商家中心</div>
+  <form action="<{url action=topshop_ctl_passport@login}>" method="post" class="bg-white" data-validate-onsuccess="ajaxSubmit">
+    <div class="body">
+      <div class="form-group">
+        <label for="userid" class="sr-only"><{t}>用户名<{/t}>：</label>
+        <input type="text" name="login_account" id="userid" class="form-control" placeholder="<{t}>账号<{/t}>" required>
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only"><{t}>密码<{/t}>：</label>
+        <input type="password" name="login_password" id="password" class="form-control" placeholder="<{t}>密码<{/t}>" required>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+        <button type="submit" class="btn bg-teal btn-block btn-lg"><{t}>登录<{/t}></button>
+      </p>
+      <p class="fl">
+        <a href="<{url action=topshop_ctl_passport@signup}>" class="text-center"><{t}>注册新用户<{/t}></a>
+      </p>
+      <div class="fr">
+        <label><input type="checkbox" name="remember_me"> <{t}>记住我<{/t}></label>
+      </div>
+      <div class="cl"></div>
+    </div>
+  </form>
+</div>
+<script>
+    $('#login-box').parent().css('height', 1);
+
+    function ajaxSubmit(e) {
+        var form = e.target;
+        e.preventDefault();
+        $.post(form.action, $(form).serialize(), function(rs) {
+            if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+            }
+            if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+            }
+            if(rs.redirect) {
+                setTimeout(function(){location.href=rs.redirect;}, 1000);
+            }
+        });
+    }
+</script>

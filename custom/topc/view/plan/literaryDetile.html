@@ -1,0 +1,86 @@
+
+    <div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+            <dt>当前位置：</dt>
+            <dd><a class="beb-nav" href="./"><span>首页</span></a><span class="beb-raquo">></span>
+            <a class="beb-nav" href="<{url action=topc_ctl_plan@index}>"><span>成功案例</span></a>
+            <span class="beb-raquo">></span>
+            <span class="beb-current"><{$literaryRow.title}></span>
+            </dd>
+    </dl>
+    </div>
+
+<div class="maxmain">
+<!-- 左面板块 -->
+        <div class="maxleft maxcelebrity">
+		<div class="maxdetail">
+        <div class="maxdetail-title">
+              <h2><{$literaryRow.title}></h2>
+        </div>
+              <div class="maxdetail-time">
+                 <!--   <{$literarycatRow.literarycat}><br /> -->
+                   <{$literaryRow.pubtime|date_format:'%Y-%m-%d'}>
+              </div>
+
+           <div class="maxcase">
+            <div class="maxattribute"><h3>案例属性</h3><!-- <a href="#">我要提交案例 ></a> --></div>
+            <div class="maxgenre">
+              <dl>
+               <dt class="filters">案例类型：</dt>
+               <dd class="filters"> 
+               <{foreach from=$literarycatList item=cat}>
+               <!-- <span><a href="#" class="active">环境管理</a></span>
+               <span><a href="#">固废处置</a></span>
+               <span><a href="#">其他</a></span> -->
+               <{if $cat.literarycat_id==$literaryRow.literarycat_id}>
+               <span style="width:90px;"><a class="active" style="padding-right:0px;"><{$cat.literarycat}></a><img style="position:relative;top:5px;" src="images/topc/articles/maxhandle.png"></span>
+               <{else}>
+               <span style="width:90px;"><a><{$cat.literarycat}></a></span>
+               <{/if}>
+               <{/foreach}>
+               </dd>
+            </dl>
+            <dl>
+               <dt class="filters">案例分类：</dt>
+               <dd class="filters">
+               <{foreach from=$literaryclassList item=cat}>
+               <!-- <span><a href="#">水</a></span>
+               <span><a href="#">大气</a></span>
+               <span><a href="#"  class="active">危险废物</a></span>
+               <span><a href="#">废金属</a></span>
+               <span><a href="#">废塑料</a></span>
+               <span><a href="#">其它</a></span> -->
+               <{if $cat.literaryclass_id==$literaryRow.literaryclass_id}>
+               <span style="width:90px;"><a class="active" style="padding-right:0px;"><{$cat.literaryclass}></a><img style="position:relative;top:5px;" src="images/topc/articles/maxhandle.png"></span>
+               <{else}>
+               <span style="width:90px;"><a ><{$cat.literaryclass}></a></span>
+               <{/if}>
+               <{/foreach}>
+               </dd>
+            </dl>
+            <dl>
+               <dt class="filters">案例目标：</dt>
+               <dd class="filters"> 
+               <{foreach from=$literarytargetList item=cat}>
+               <!-- <span><a href="#">再生再用</a></span>
+               <span style="width:90px;"><a href="#"  class="active">无害化处置</a></span>
+               <span><a href="#">其它</a></span> -->
+               <{if $cat.literarytarget_id==$literaryRow.literarytarget_id}>
+               <span style="width:90px;"><a class="active" style="padding-right:0px;"><{$cat.literarytarget}></a><img style="position:relative;top:5px;" src="images/topc/articles/maxhandle.png"></span>
+               <{else}>
+               <span style="width:90px;"><a><{$cat.literarytarget}></a></span>
+               <{/if}>
+               <{/foreach}>
+               </dd>
+            </dl>
+
+            </div>
+        </div>
+
+
+              <div class="maxdetail-content">
+                   <p><{$literaryRow.context}></p>
+			  </div>
+        </div>   
+		</div>
+</div>

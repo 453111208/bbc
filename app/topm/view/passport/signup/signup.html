@@ -1,0 +1,146 @@
+<div class="signup">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">用户注册</div>
+    </div>
+  </header>
+
+  <!-- main container -->
+  <div class="main">
+    <div class="form-up">
+      <form action="<{url action=topm_ctl_passport@create}>" method="post" id="form_signup" class="form-tips-horizontal">
+        <input type="hidden" name="key" value="topm_signup">
+        <ul>
+          <li class="form-row u-line">
+            <label class="form-label">账号:</label>
+            <input type="text" class="input-block action-account-check" name="pam_user[account]" id="for_account" placeholder="用户名/邮箱/手机号，最少4个字符" required minlength="4" data-caution="请填写登录帐号，最少4个字符" data-remote="<{url action=topm_ctl_passport@checkLoginAccount}>" autofocus>
+          </li>
+          <li class="form-row u-line">
+            <label class="form-label">密码:</label>
+            <input type="password" class="input-block auto-password-check-handle" name="pam_user[password]" placeholder="请输入新密码，6~20位" required minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符&&输入不正确，最多20个字符">
+          </li>
+          <li class="form-row u-line">
+            <label class="form-label">确认密码:</label>
+            <input type="password" class="input-block" name="pam_user[pwd_confirm]" id="" maxlength="20" placeholder="再次填写密码" required data-equalto="pam_user[password]" data-caution="密码与确认密码不相符，请重新填写">
+          </li>
+          <li class="form-row verify-code action-verifycode u-line">
+            <label class="form-label">验证码:</label>
+            <input type="text" class="verify-input" name="verifycode" id="" required maxlength="4" placeholder="点击验证码可刷新">
+            <img align="absmiddle" class="auto-change-verify-handle" id="membervocde" src="<{url action=toputil_ctl_vcode@gen_vcode key=topm_signup}>" alt="验证码" width="100" height="30">
+          </li>
+          <li class="form-row verify-code action-mobile-verify hide u-line">
+            <label class="form-label">验证码:</label>
+              <input type="text" name="vcode" id="" class="verify-input">
+              <a href="<{url action=topm_ctl_passport@sendVcode}>" class="ui-btn action-get-verifycode">发送验证码</a>
+          </li>
+          <li class="form-row agree">
+            <!-- <label class="form-label">&nbsp;</label> -->
+            <input type="checkbox" checked name="license" id="for_license" data-validate="onerequired" data-caution="请选择同意">
+            <label for="for_license">我已阅读并同意<a href="<{url action=topm_ctl_passport@license}>">《会员注册协议》</a></label>
+          </li>
+          <li class="form-row">
+            <label class="form-label">&nbsp;</label>
+            <button type="submit" class="ui-btn-warning" rel="_request">立即注册</button>
+          </li>
+        </ul>
+      </form>
+      <a href="<{url action=topm_ctl_passport@signin}>" class="in-link">已有账号，<i>立即登录</i></a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var form = $('#form_signup');
+var account = form.find('.action-account-check');
+
+form.find('button[type=submit]').data('ajaxConfig', {
+    callback: function(rs) {
+        if(rs.error) {
+            changeCode($('img.auto-change-verify-handle'));
+        }
+    }
+});
+
+account.data('remoteCallback', function(rs) {
+    var parent = this.closest('.form-row');
+    var Message = new gmu.Message();
+    if(rs.error) {
+        parent.removeClass('has-success').addClass('has-error');
+        return Message.error(rs.message);
+    }
+    else {
+        parent.removeClass('has-error');
+        if(rs.success) {
+            parent.addClass('has-success');
+            Message.success(rs.message);
+        }
+
+        if(validatorMap.mobile[1](this, this.val())) {
+            if(rs.needVerify == 'mobile') {
+                form.find('.action-mobile-verify').removeClass('hide');
+                form.find('.action-verifycode').addClass('hide');
+            }
+            return;
+        }
+        form.find('.action-mobile-verify').addClass('hide');
+        form.find('.action-verifycode').removeClass('hide');
+    }
+});
+
+$(document).on('click', '.action-get-verifycode', function(e) {
+    e.preventDefault();
+    if($(this).hasClass('disabled')) return false;
+    sendVerify(this, 'uname=' + account[0].value + '&type=signup');
+});
+
+function sendVerify(el, data) {
+    var url = el.href;
+    var textCont = $(el);
+    $(el).addClass('disabled');
+    textCont.html($(el).text() + '(<i>0</i>)');
+    var cd = new countdown(textCont.find('i'), {
+        start: 120,
+        secondOnly: true,
+        callback: function(e) {
+            $(el).removeClass('disabled');
+            textCont.html('重发验证码');
+        }
+    });
+    $.post(url, data, function(rs) {
+        if(rs.error) {
+            cd.stop();
+            Message.error(rs.message);
+            $(el).removeClass('disabled');
+            textCont.html('重发验证码');
+        }
+        else if(rs.redirect) {
+            Message.success(rs.message, {
+                hide: function() {
+                    location.href = rs.redirect;
+                }
+            });
+        }
+    });
+}
+
+  $('#tabs').tabs({
+        ajax: {
+            dataType: 'json'
+        },
+        beforeRender: function(e, response, panel, index){
+            var html = '';
+            $.each(response, function(){
+                html += '<p>'+this.text+'</p>';
+            });
+            panel.html(html);
+            //需要阻止，否则会把response原文写入到div里面。
+            e.preventDefault();
+        }
+    });
+
+
+</script>

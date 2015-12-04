@@ -1,0 +1,38 @@
+<div class='tableform'>
+  <table class='gridlist'>
+    <div class='finder-title'>
+      <h2 class='head-title span-auto'>
+        应用和请求prismKey对照表
+        <span class='num'>(共<em class='count2'><{$count}></em>条)</span>
+      </h2>
+    </div>
+    <thead>
+    <tr>
+      <th style='width:20%'>项目</th>
+      <th style='width:20%'>Key</th>
+      <th style='width:40%'>Secret</th>
+      <th style='width:20%'>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+      <{foreach from=$keys key=key item=item }>
+      <tr>
+        <td><{$key}></td>
+        <td><{$item.key}></td>
+        <td class='prism-secret' sercret='<{$item.secret}>'>********************</td>
+        <td onclick="new Dialog('?app=system&ctl=admin_prism&act=editKey&key=<{$key}>',{height:150,width:500,title:'修改prism连通key-<{$key}>'})" ><a>修改</a></td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+</div>
+<script>
+$$('.prism-secret').addEvents({
+  'mouseover': function(event){
+    this.innerHTML = this.get('sercret');
+  },
+  'mouseout': function(event){
+    this.innerHTML = '********************';
+  }
+});
+</script>

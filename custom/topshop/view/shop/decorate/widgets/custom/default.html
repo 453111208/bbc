@@ -1,0 +1,51 @@
+<form  action="<{url action=topshop_ctl_shop_decorate@save widgets=custom dialog=default}>" method="post" id="custom_html_form" class="form-horizontal" data-validate-onsuccess="ajaxSubmitCustom" role="form">
+  <input type="hidden" name='widgets_id' value=<{$widgets_id}> >
+  <div class="modal-body">
+    <div class="form-group">
+      <textarea name="params[custom]" style="width:100%;" class="rich-editor"><{if $data.custom}><{$data.custom}><{/if}></textarea>
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary">保存</button>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal">取消</button>
+  </div>
+</form>
+<script>
+var editor = $('.rich-editor');
+editor.summernote({
+    height: 400,
+    tabsize: 2,
+    uploadURI: '<{url action=toputil_ctl_image@uploadImages from=shop}>',
+    uploadPerfix: 'upload_file'
+});
+editor.parents('.modal').on('hidden', function(){
+    editor.destroy();
+});
+
+$('#custom_html_form').Validator({
+    icons: {
+        valid:      'icon icon-checkmark-a',
+        invalid:    'icon icon-alert',
+        validating: 'icon icon-loading-c'
+    }
+});
+
+$('.cancel').click(function(){
+  location.href = "<{url action=topshop_ctl_shop_decorate@index}>";
+})
+
+function ajaxSubmitCustom (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.href=rs.redirect;}, 500);
+      }
+    });
+}
+</script>

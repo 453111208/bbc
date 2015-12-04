@@ -1,0 +1,106 @@
+<div class="coupons">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">我的优惠券</div>
+      <!-- <div class="del-edit">编辑</div> -->
+    </div>
+  </header>
+  <section class="container">
+    <div class="coupon-list">
+      <ul class="tab-nav">
+        <li class="active"><a href="<{url action=topm_ctl_member_coupon@couponList is_valid=no}>">未使用</a></li>
+        <li><a href="<{url action=topm_ctl_member_coupon@couponList is_valid=al}>">已使用</a></li>
+        <li><a href="<{url action=topm_ctl_member_coupon@couponList is_valid=ex}>">已过期</a></li>
+      </ul>
+      <div class="coupon-list">
+        <section class="coupon-section ui-refresh">
+          <ul class="sub-list data-list" id="content">
+            <{include file="topm/member/coupon/list.html"}>
+          </ul>
+          <div class="ui-refresh-handle">
+            <div class="ui-refresh-down"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="coupon-submit">
+    <div class="check-all" id="check-all"><input name="" id="checkAll" type="checkbox" > 全部</div>
+    <div class="coupon-del"><button type="button" class="ui-btn ui-btn-negative">删 除</button></div>
+  </section> -->
+</div>
+  <script>
+    $('#tabs').tabs({
+      active: 0,
+      url:"<{url action=topm_ctl_member_coupon@couponList}>",
+    });
+
+    // 全部选中
+    $('#checkAll').change(function(){
+        $('#content input[type=checkbox]').prop('checked', this.checked);
+    });
+
+    var pagers = <{$pagers|json_encode}>;
+    pagers.next = pagers.current + 1;
+    $('.ui-refresh').refresh({
+      init: function () {
+        if(pagers.current == pagers.total) {
+          this.disable();
+        }
+      },
+      load: function (dir, type) {
+        var self = this;
+        var $list = $('.data-list');
+        $.get('<{url action=topm_ctl_member_coupon@ajaxCouponData json=true}>', location.search.slice(1) + '&pages=' + pagers.next, function (rs) {
+          if(rs.success) {
+            pagers.next = +rs.pagers.current + 1;
+            $list[dir == 'up' ? 'prepend' : 'append'](rs.html);
+          }
+          self.afterDataLoading();
+          if(rs.pagers.current == rs.pagers.total) {
+            self.disable();
+          }
+        });
+      }
+    });
+
+    $('.del-edit').tap(function(){
+      if($('.coupons').hasClass('editing')){
+        $('.coupons').removeClass('editing');
+        $('.action-check').hide();
+        $(this).text('编辑');
+      }else{
+        $('.coupons').addClass('editing');
+        $('.action-check').show();
+        $(this).text('');
+      }
+    })
+
+    $('.coupon-del').tap(function(){
+      var items = $('#content li');
+      var editId = []
+      for (var i = 0; i < items.length; i++) {
+        var inputs = $(items[i]).find('input');
+        if($(inputs).prop('checked')==true){
+          editId.push($(inputs).val());
+        }
+      };
+
+      $.ajax({
+        url: '<{url action="topm_ctl_member_coupon@deleteCoupon"}>',
+        type: 'post',
+        dataType: 'json',
+        data: {'coupon_code': editId},
+        success: function(rs){
+          if(rs.success == true){
+            location.reload();
+          }else{
+            Message.error(rs.message);
+          }
+        }
+      })
+    })
+  </script>

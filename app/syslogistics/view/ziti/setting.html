@@ -1,0 +1,23 @@
+<div class="tableform">
+  <{tabber}>
+  <{tab name="自提配置"|t:'syslogistics'}>
+  <form action="<{url route='shopadmin' app='syslogistics' ctl='admin_ziti' act='setting'}>" method="post">
+    <div class="clear division">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th><{t}>是否启用自营点自提配送:<{/t}></th>
+          <td>
+            <input type="radio" value="true"  name='open' <{if $open == 'true'}>checked="checked"<{/if}>  />
+            <label for="bool-t"><{t}>开启<{/t}></label>
+            <input  type="radio" value="false" name='open' <{if $open != 'true'}>checked="checked"<{/if}> />
+            <label for="bool-t"><{t}>关闭<{/t}></label>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="table-action"><{button type="submit" label="保存"|t:'syslogistics' }></div>
+    </form>
+  <{/tab}>
+  <{/tabber}>
+</div>
+

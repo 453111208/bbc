@@ -1,0 +1,121 @@
+<form id="checkForm" class="tableform complain"  action="?app=systrade&ctl=admin_complaints&act=doComplaints"  method="POST" >
+  <input type="hidden" name='complaints_id' value=<{$complaints_id}>>
+  <div class="division">
+    <h4>投诉信息</h4>
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <th>投诉订单:</th>
+          <td><{$oid}></td>
+        </tr>
+        <tr>
+          <th>联系电话:</th>
+          <td><{$tel}></td>
+        </tr>
+        <tr>
+          <th>投诉时间:</th>
+          <td><{$created_time|cdate}></td>
+        </tr>
+        <tr>
+          <th>投诉类型:</th>
+          <td><{$complaints_type}></td>
+        </tr>
+        <tr>
+          <th>投诉具体描述:</th>
+          <td><{$content|default:"暂无详细描述"}></td>
+        </tr>
+        <{if $image_url}>
+        <tr>
+          <th>投诉凭证:</th>
+          <td>
+            <ul class="thumb">
+              <{foreach from=$image_url item=pic}>
+              <li><img src="<{$pic|storager:'s'}>"></li>
+              <{/foreach}>
+            </ul>
+          </td>
+        </tr>
+        <{/if}>
+      </tbody>
+    </table>
+  </div>
+  <{if $status == 'WAIT_SYS_AGREE'}>
+  <div class="division">
+    <div class="reject-edit">
+      <table width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <th>处理结果:</th>
+            <td>
+              <div class="prop_type">
+                <label><input type="radio" name="status" id="pass" value="FINISHED" checked>投诉处理完成</label>
+                &nbsp; &nbsp;
+                <label><input type="radio" name="status" id="no_pass" value="CLOSED">关闭投诉</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>处理备注:</th>
+            <td><textarea type="textarea" name='memo' cols="60" rows="5" required maxlength="200" placeholder="请填写处理投诉的备注，已供查看,最少5个字，最多200个字"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="table-action">
+    <{button type="submit" id='check-form-submit' label="提交"}>
+    <{button type="button btn-secondary" isclosedialogbtn="1" label="关闭"}>
+  </div>
+</form>
+<{else}>
+<div class="division">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <th>处理结果:</th>
+        <td>
+          <{if $status == 'FINISHED'}>
+          投诉处理完成
+          <{elseif $status == 'BUYER_CLOSED' }>
+          买家撤销订单投诉
+          <{else}>
+          订单投诉关闭
+          <{/if}>
+        </td>
+      </tr>
+      <tr>
+        <{if $status == 'BUYER_CLOSED'}>
+        <th>买家撤销投诉原因:</th>
+        <td><{$buyer_close_reasons|default:'未填写原因'}></td>
+        <{else}>
+        <th>处理备注:</th>
+        <td><{$memo|default:'未填写备注'}></td>
+        <{/if}>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="table-action">
+  <{button type="button btn-secondary" isclosedialogbtn="1" label="关闭"}>
+</div>
+<{/if}>
+<script>
+
+  $('checkForm').store('target',{
+    onComplete:function(rs){
+      if(!rs) return;
+      rs = JSON.decode(rs);
+      if(rs.success){
+        if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+        if($('checkForm').getParent('.dialog')){
+          var Dlg = $('checkForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update){
+            Dlg.update.retrieve('instance').initContent();
+          }
+          Dlg.close();
+        }
+      }
+    }
+  });
+
+</script>

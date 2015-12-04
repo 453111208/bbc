@@ -1,0 +1,60 @@
+<div class="find-one find-password">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">找回密码</div>
+      <div class="clicks">
+        <a href="<{url action=topm_ctl_passport@signin}>">退出</a>
+      </div>
+    </div>
+  </header>
+  <div class="main" id="main">
+    <div class="status-bar" id="forgot_step">
+      <div class="on"> <i class="icon icon-arrow-right-b icon-first"></i>
+        1 身份验证 <i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i>
+      </div>
+      <div>
+        <i class="icon icon-arrow-right-b icon-first"></i>
+        2  验证方式
+        <i class="icon icon-arrow-right-b icon-last"></i>
+      </div>
+      <div>
+        <i class="icon icon-arrow-right-b icon-first"></i>
+        3 重设密码
+      </div>
+    </div>
+    <div id="forgot_pass" class="forgot_pass">
+      <span>为保障您的账户安全，请先验证您的身份</span>
+      <form action="<{url action=topm_ctl_passport@findPwdTwo}>
+        " method="post" id="ajaxForm" class="form-tip-horizontal">
+        <ul>
+          <li class="form-row">
+            <label for="" class="form-label">账户名</label>
+              <input class="input-ln action-account-check" type="text" name="username" id="" required placeholder="用户名/邮箱地址/手机号码">
+          </li>
+          <li class="form-row commit">
+            <button type="submit" class="ui-btn-warning action-next" rel="_request">下一步</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+  <script>
+  var Message = new gmu.Message();
+
+  $('#ajaxForm').find('button[type=submit]').data('ajaxConfig', {
+    "update": "#forgot_pass",
+    callback: function(rs){
+      updateStep(1);
+    }
+  });
+
+  function updateStep(i) {
+    var step = $('#forgot_step');
+    step.children().eq(i).addClass('on').siblings('.on').removeClass('on');
+  };
+
+  </script>
+</div>

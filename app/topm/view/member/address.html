@@ -1,0 +1,45 @@
+<div class="address shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <{foreach from=$userAddrList item=addr}>
+    <a href="<{url action=topm_ctl_member@addrUpdate addr_id=$addr.addr_id}>" class="address-info cur">
+      <table>
+        <tr class="name">
+          <td class="con"><{$addr.name}><i class="r"><{$addr.mobile}></i></td>
+        </tr>
+        <tr class="ads">
+          <td class="con">
+            <i class="defualt"><{if $addr.def_addr}>[默认地址]<{/if}></i>
+            <{$addr.area}>/<{$addr.addr}>
+          </td>
+        </tr>
+      </table>
+    </a>
+    <{/foreach}>
+    <div class="add-action">
+        <a href="<{url action=topm_ctl_member@addrUpdate}>" class="ui-btn ui-btn-warning"><i class="icon-add"></i>添加新地址</a>
+    </div>
+  </div>
+</div>
+<script>
+  $('.address-info').click(
+    function(){
+      $(this).addClass('cur').siblings().removeClass('cur');
+    }
+  );
+  $('.action-delete').on('click', function(e) {
+    return confirm('是否确认删除此地址？');
+  });
+  $('.action-default').data('ajaxConfig', {
+    showMessage: false,
+    callback: function(rs, sponsor) {
+        sponsor
+            .hide()
+            .prev('.op-default').show()
+        .parents('tr').siblings()
+            .find('.action-default').show()
+            .prev('.op-default').hide();
+    }
+});
+</script>

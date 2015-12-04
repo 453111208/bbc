@@ -1,0 +1,23 @@
+<div class="panel panel-outter">
+
+  <{foreach from=$config item=viewSetting key=key }>
+  <div class="panel-heading">
+    <h4><{$viewSetting.title}></h4>
+  </div>
+  <div class="panel-body">
+    <{foreach from=$viewSetting.params item=widgets  key=widgetsName }>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <{$widgets.title}>
+        <div class="pull-right">
+          <a href="<{url action=topshop_ctl_shop_decorate@dialog widgets=$widgetsName dialog=$widgets.dialog.0}>">
+            <i class="fa fa-edit"></i>编辑
+          </a>
+        </div>
+      </div>
+    </div>
+    <{/foreach}>
+  </div>
+  <{/foreach}>
+
+</div>

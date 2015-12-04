@@ -1,0 +1,75 @@
+
+<h3><{t}>商家通知<{/t}></h3>
+<div id="x-g-basic" class="goods-detail">
+    <div class="tableform">
+        <form action="?app=sysshop&ctl=admin_shopnotice&act=saveNotice" method="post" name="aEditor" id="aEditor">
+        <{input type="hidden"  name="notice[notice_id]"  value=$notice.notice_id }>
+        <{input type="hidden"  name="notice[shop_id]"  value=$notice.shop_id }>
+        <div class="division">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>通知标题：<{/t}></th>
+                    <td>
+                        <{input type="text" id="notice_title" name="notice[notice_title]" required="true" vtype='required' value=$notice.notice_title }>
+                    </td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>商家通知类型：<{/t}></th>
+                    <td>
+                        <select name="notice[notice_type]" vtype='required' class="x-input" id="notice_type">
+                            <{foreach from=$noticetype item=datatype}>
+                              <option  value="<{$datatype}>"  <{if $notice.notice_type==$datatype}>selected
+                                <{/if}> >
+                                <{$datatype}>
+                              </option>
+                            <{/foreach}>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>商家通知内容:<{/t}></th>
+                    <td>
+                       <{input type=html name='notice[notice_content]' value=$notice.notice_content}>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-action">
+            <{button type="submit" id='brand-form-submit' label="保存"|t:'sysshop'}>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+  (function(){
+    var _form = $('aEditor');
+    var btn =$('brand-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+        onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+            if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+              try{
+                var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+              }catch(e){}
+
+              if(_dialogIns){
+                _dialogIns.close();
+                window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+              }
+            }
+        }
+    });
+
+    btn.addEvent('click',function(){
+        if( $('notice_type').value == '' ){
+            alert('通知类型不能为空！');
+            return false;
+        }
+        _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>

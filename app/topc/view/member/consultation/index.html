@@ -1,0 +1,103 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <span class="col-goods">我的咨询管理</span>
+    </div>
+    <{if $gask}>
+    <form id="consult_form" action="<{url action=topc_ctl_member_consultation@doDelete}>" method="post">
+      <input type="hidden" id="ids" name="id">
+      <div class="membercenter-box-bd">
+        <div class="membercenter-box-row">
+          <input type="checkbox" id="selectAll"><label for="">全选</label>
+          <button type="button" class="btn consult-btn-delete" id="action-remove"><span><span><i class="icon icon-trash-a"></i>删除咨询</span></span></button>
+        </div>
+        <table class="item-table table-consult">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-2">
+            <col class="table-col-3">
+            <col class="table-col-4">
+          </colgroup>
+          <thead class="<{if $tradeitem.status == 'WAIT_BUYER_PAY' || $tradeitem.status == 'WAIT_BUYER_CONFIRM_GOODS'}>ifallcheck <{/if}>">
+            <tr class="membercenter-box-hd memberconter-consult-hd">
+              <td colspan="2">
+                <span>咨询商品</span>
+              </td>
+              <td>
+                <span>商品名称</span>
+              </td>
+              <td>
+                <span>咨询回复</span>
+              </td>
+            </tr>
+          </thead>
+          <tbody id="data_node">
+            <{foreach from=$gask item=item}>
+            <tr>
+              <td class="border-right-none">
+                <input type="checkbox" class="sel" name="id[<{$item.consultation_id}>]" value="<{$item.consultation_id}>" />
+              </td>
+              <td class="border-left-none">
+                <div class="table-goods-pic"><img width="67" height="67" src="<{$item.image_default_id|storager:'s'}>"></div>
+              </td>
+              <td>
+                <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.item_title}></a>
+              </td>
+              <td class="col-reply">
+                <div class="clearfix"><span>咨询内容：<{$item.content}></span><span class="col-reply-time"><{$item.create_time|cdate}></span></div>
+                <div class="clearfix">卖家回答：
+                  <{if $item.is_reply}>
+                  <{$item.reply.content}>
+                  <{else}>
+                  <span class="col-reply-content no-reply">卖家暂无回复，请耐心等待。</span>
+                  <{/if}>
+                </div>
+              </td>
+            </tr>
+            <{/foreach}>
+          </tbody>
+        </table>
+      </div>
+    </form>
+    <{else}>
+          <div class="no-content">您还没有咨询记录</div>
+    <{/if}>
+  </div>
+</div>
+<div id="dialog" style="display:none">
+</div>
+<script>
+  $('#selectAll').change(function(){
+    $('#data_node input[type=checkbox]').prop('checked', this.checked);
+  });
+$('#action-remove').on('click',function(){
+  var itemIds = new Array();
+  //循环获取选中行的id值放入数组中
+  $($("#data_node input[name='item-id']:checked")).each(function(){
+    itemIds.push($(this).val());
+  });
+});
+
+$('#action-remove').click(function(e) {
+  var form = $('#consult_form');
+  var list = $('#data_node tr');
+  var ids = [];
+  for(var i=0;i<list.length;i++){
+    var id = $(list[i]).find('.sel');
+    if(id.prop('checked') == true){
+      ids.push(id.val());
+    }
+  }
+  $('#ids').val(ids);
+  $.post('<{url action=topc_ctl_member_consultation@doDelete}>',form.serialize(),function(rs){
+    if(rs.error) {
+      return Message.error(rs.message);
+    }
+     Message.success(rs.message);
+     if( rs.redirect ){
+       location.href = rs.redirect;
+     }
+  })
+});
+</script>
+

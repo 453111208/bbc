@@ -1,0 +1,47 @@
+<div class="orderdtl-hd">商品信息  <{im shop_id=$trade.shop_id}></div>
+<div class="orderdtl-bd">
+  <div>订单编号 <{$trade.tid}>  下单时间 <{$trade.created_time|cdate:'FDATE_FTIME'}></div>
+  <table class="item-table table-orderdtl">
+    <colgroup>
+      <col class="table-col-1">
+      <col class="table-col-2">
+      <col class="table-col-3">
+      <col class="table-col-4">
+      <col class="table-col-5">
+    </colgroup>
+    <thead>
+      <tr>
+        <td colspan="2">商品</td>
+        <td>单价(元)</td>
+        <td>数量</td>
+        <td>总金额</td>
+        <td>手工调价</td>
+      </tr>
+    </thead>
+    <tbody>
+      <{foreach from=$trade.orders item=item key=key}>
+      <tr>
+        <td>
+          <div class="table-goods-pic"><img width="64" height="64" src="<{$item.pic_path|storager:'s'}>"></div>
+        </td>
+        <td>
+          <{if $item.promotion_tag}><span class="item-describe-tag"><{$item.promotion_tag}></span><{/if}><{$item.title}><{$item.spec_nature_info}>
+        </td>
+        <td>
+          <{$item.price|cur}>
+        </td>
+        <td>
+          <{$item.num}>
+        </td>
+        <td>
+          <{$item.total_fee|cur}>
+        </td>
+        <td>
+          <{$item.adjust_fee|cur}>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+</div>
+

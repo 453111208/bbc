@@ -1,0 +1,7 @@
+<cronentries>
+<!--   <cron id="syspromotion_tasks_coupon">
+    <description>定时修改已过期优惠券状态</description>
+    <schedule>* 1-7/1 * * *</schedule>
+    <enabled>true</enabled>
+  </cron> -->
+</cronentries>

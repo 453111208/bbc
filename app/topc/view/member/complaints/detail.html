@@ -1,0 +1,76 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      订单投诉详情
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="orderdtl-box complain-form" >
+        <div class="orderdtl-hd">订单投诉信息</div>
+        <div class="orderdtl-bd">
+          <div class="row">
+            <div class="col-lg-1">被投诉方</div>
+            <div class="col-lg-5">
+              <{$shop_id|shopname}>
+              <{im shop_id=$shop_id type="small"}>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">联系电话</div>
+            <div class="col-lg-5">
+              <{$tel}>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">订单号</div>
+            <div class="col-lg-5"><{$tid}></div>
+            <div class="col-lg-1">投诉时间</div>
+            <div class="col-lg-5"><{$created_time|cdate:'FDATE_FTIME'}></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">投诉类型</div>
+            <div class="col-lg-5">
+              <{$complaints_type}>
+            </div>
+            <div class="col-lg-1">处理状态</div>
+            <div class="col-lg-5">
+              <{if $status == 'WAIT_SYS_AGREE'}>
+              订单投诉处理中
+              <{elseif $status == 'FINISHED'}>
+              订单投诉处理成功
+              <{elseif $status == 'BUYER_CLOSED'}>
+              订单投诉已撤销
+              <{elseif $status == 'CLOSED'}>
+              订单投诉已关闭
+              <{/if}>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">投诉商品</div>
+            <div class="col-lg-11">
+              <a href="<{url action=topc_ctl_item@index item_id=$orders.item_id}>"><{$orders.title}></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">投诉内容</div>
+            <div class="col-lg-5">
+              <{$content}>
+            </div>
+          </div>
+          <{if $image_url}>
+          <div class="row">
+            <div class="col-lg-1">投诉凭证</div>
+            <div class="col-lg-11">
+                <div class="refund-img-box">
+                  <{foreach from=$image_url item=pic}>
+                  <div class="table-goods-pic"><img width="64" height="64" src="<{$pic|storager:'s'}>"></div>
+                  <{/foreach}>
+                </div>
+            </div>
+          </div>
+          <{/if}>
+        </div>
+      </div>
+      <{include file="topc/member/complaints/close.html"}>
+    </div>
+  </div>
+</div>

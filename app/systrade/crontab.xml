@@ -1,0 +1,12 @@
+<cronentries>
+  <cron id="systrade_tasks_trade_finish">
+    <description>交易自动完成</description>
+    <schedule>*/10 * * * *</schedule>
+    <enabled>false</enabled>
+  </cron>
+  <cron id="systrade_tasks_trade_cancel">
+    <description>交易自动取消</description>
+    <schedule>*/10 * * * *</schedule>
+    <enabled>false</enabled>
+  </cron>
+</cronentries>

@@ -1,0 +1,19 @@
+<{if $wangwang}>
+<a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=<{$wangwang|escape:'url'}>&site=cntaobao&s=11&charset=utf-8">
+  <{if $type == 'large'}>
+  <img border="0" src="<{$res_full_url}>/images/ww.jpg" height="15" width="72" title=""/>
+  <{else}>
+    <img border="0" src="<{$res_full_url}>/images/ww_s.png" height="15" width="15" title=""/>&nbsp;
+  <{/if}>
+</a>
+<{/if}>
+
+<{if $qq}>
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<{$qq}>&site=qq&menu=yes">
+  <{if $type == 'large'}>
+  <img border="0" src="<{$res_full_url}>/images/qq.jpg" height="15" width="54" alt="" title="">
+  <{else}>
+    <img border="0" src="<{$res_full_url}>/images/qq_s.png" height="15" width="15" alt="" title="">
+  <{/if}>
+</a>
+<{/if}>

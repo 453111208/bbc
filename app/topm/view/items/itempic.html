@@ -1,0 +1,20 @@
+<div class="prd-pic shop">
+    <{include file="topm/common/top.html"}>
+    <div class="main" id="main">
+      <div class="goods-pic">
+        <{$itemPic.wap_desc|stripslashes}>
+      </div>
+    </div>
+</div>
+
+
+<script>
+	$(window).scroll(function(){
+			var winwidth = $(window).width();
+			var img = $('.goods-pic img');
+			img.each(function(){$(this).width()});
+			if($(img).width() > winwidth){
+				$(img).width(winwidth);
+			}
+		});
+</script>

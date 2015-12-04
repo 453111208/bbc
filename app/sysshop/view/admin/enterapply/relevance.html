@@ -1,0 +1,65 @@
+<{if !$brand}>
+<form action="?app=sysshop&ctl=admin_enterapply&act=goBrand" id="shoptypeForm" class="tableform" method="POST">
+    <div class="division">
+        请手动 添加商户提交的品牌“<em class="red"><{$new_brand}>”</em>到品牌列表，<br>并和类目“<em class="red"><{$cat.cat_name}></em>”关联
+    </div>
+    <div class="table-action">
+        <button class="btn btn-primary" type="submit"><span><span><{t}>前往品牌列表<{/t}></span></span></button>
+    </div>
+</form>
+<{else}>
+<form id="shoptypeForm" class="tableform" action="?app=sysshop&ctl=admin_enterapply&act=goRelevance" method="POST">
+    <input type="hidden" name="shop[enterapply_id]" value="<{$shop.enterapply_id}>">
+    <input type="hidden" name="shop[shop_cat]" value="<{$shop.shop_cat}>">
+    <input type="hidden" name="shop[shop_brand]" value="<{$brand.brand_id}>">
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th><em class="red"></em><{t}>店铺名称：<{/t}></th>
+                <td><{$shop.shop_name}></td>
+            </tr>
+            <tr>
+                <th><em class="red"></em><{t}>所选类目：<{/t}></th>
+                <td>
+                    <{$cat.cat_name}>
+                </td>
+            </tr>
+            <tr>
+                <th><em class="red"></em><{t}>新增品牌：<{/t}></th>
+                <td>
+                    <{$new_brand}>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <{if $isrel}>
+    <div class="table-action">
+        <button class="btn btn-primary" type="submit"><span><span><{t}>确认关联<{/t}></span></span></button>
+    </div>
+    <{else}>
+    <div>
+      <a target="_blank" href="?app=syscategory&ctl=admin_cat&act=index">前往类目做关联</a>
+    </div>
+    <{/if}>
+</form>
+<{/if}>
+
+<script>
+
+    $('shoptypeForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('shoptypeForm').getParent('.dialog')){
+                    var Dlg = $('shoptypeForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

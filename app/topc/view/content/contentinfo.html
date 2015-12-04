@@ -1,0 +1,23 @@
+<div class="section">
+    <{include file="topc/content/nodelist.html"}>
+    <div class="row">
+        <div class="col-lg-13 box">
+          <div class="membercenter-box">
+            <div class="membercenter-box-hd">
+              <div class="membercenter-box-left"><{$contentInfo.title}></div>
+            </div>
+            <div class="membercenter-box-bd">
+              <div class="artical-detail">
+                <div class="artical-detail-hd">
+                 <h2><{$contentInfo.title}></h2>
+                 <div class="time">发布日期：<{$contentInfo.modified|cdate}></div>
+                </div>
+                <p>
+                 <{$contentInfo.content}>
+                </p>
+             </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

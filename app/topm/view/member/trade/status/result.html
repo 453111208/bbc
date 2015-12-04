@@ -1,0 +1,40 @@
+<div class="cancel-cof">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">确认取消</div>
+    </div>
+  </header>
+  <div class="main">
+    <div class="inn">
+<!--       <div class="icon">
+        <img src="images/icon-fail.png" alt="">
+      </div> -->
+      <{if $cancelerror}>
+      <p><{$msg}></p>
+      <{else}>
+      <p>交易自动关闭</p>
+      <{/if}>
+    </div>
+    <div class="order-skip">
+      <a href="<{url action=topm_ctl_member_trade@index}>">
+        <i>3</i> 秒钟后，跳转至订单列表
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+   window.onload =function() {
+     var i = 2;
+     setInterval(function(){
+     if(i == 0) {
+       location.href = "<{url action=topm_ctl_member_trade@index}>";
+     }
+       $('.order-skip a i').text(i--);
+     },1000);
+     };
+</script>

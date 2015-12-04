@@ -1,0 +1,43 @@
+
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit ">领券</div>
+    </div>
+  </header>
+  <section class="container">
+      <{foreach from=$shopCouponList item=item}>
+      <section class="get-coupon-list coupon-detail">
+        <div class="coupon-item">
+          <div class="init">
+            <div class="coupon-price"><{$item.deduct_money|cur}></div>
+            <div class="coupon-info">
+              <{$item.coupon_name}>
+            </div>
+            <a href="javascript:void(0);" data-couponid="<{$item.coupon_id}>" data-shopid="<{$shopdata.shop_id}>" class="get-coupon-btn">立即领取</a>
+          </div>
+        </div>
+      </section>
+      <{/foreach}>
+  </section>
+<script>
+$(".get-coupon-btn").click(function(e){
+  e.preventDefault();
+  var url = '<{url action=topm_ctl_shopcenter@getCouponCode}>';
+  var coupon_id = $(this).attr('data-couponid');
+  var shop_id = $(this).attr('data-shopid');
+  var data = 'shop_id='+shop_id+'&coupon_id='+coupon_id;
+  $.post(url, data, function(rs){
+      if(rs.error)
+      {
+        alert(rs.message);
+      }else{
+        if(rs.redirect){
+          location.href = rs.redirect;
+        }
+      }
+  })
+})
+</script>

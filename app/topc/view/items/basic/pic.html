@@ -1,0 +1,50 @@
+<div class="col-lg-5 box">
+  <div class="thumbnail-slider" data-toggle="switchable" data-switchable-config='{
+    "circle": true,
+    "hasFlips": true
+  }'>
+    <ol class="switchable-content">
+      <{if !$item.list_image}>
+      <li><img src="<{$image_default_id.L.default_image|storager:'l'}>" /></li>
+      <{else}>
+      <{foreach from=$item.list_image item=image_id}>
+      <li><img src="<{$image_id|storager:'l'}>" /></li>
+      <{/foreach}>
+      <{/if}>
+    </ol>
+    <div class="clearfix">
+      <span class="prev icon icon-arrow-left"></span>
+      <div class="switchable-nav-wrap">
+        <ul class="switchable-nav">
+          <{if !$item.list_image}>
+          <li class="active"><img src="<{$image_default_id.S.default_image|storager:'s'}>" /></li>
+          <{else}>
+          <{foreach from=$item.list_image item=image_id}>
+          <{if $image_id == $item.image_default_id}>
+          <li class="active"><img src="<{$image_id|storager:'s'}>" /></li>
+          <{else}>
+          <li><img src="<{$image_id|storager:'s'}>" /></li>
+          <{/if}>
+          <{/foreach}>
+          <{/if}>
+        </ul>
+      </div>
+      <span class="next icon icon-arrow-right"></span>
+    </div>
+  </div>
+  <div class="pro-like">
+    <{if $nologin!=1}>
+    <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+    <{else}>
+    <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$item.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+    <{/if}>
+    <span class="favorite-btn hide"><i class="icon icon-heart"></i>已收藏</span>
+    <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style pro-share">
+      <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">更多</a>
+    </div>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+<!-- 样式：E:\huanjing\b2b2c\public\themes\huanjing\images\topc\articles -->
+
+
+<!-- 当前位置栏 -->
+		    <div class="maxPath">
+		    <dl class="basic-ex-breadcrumbs clearfix">
+		          <dt>当前位置：</dt>
+		          <dd><a class="beb-nav" href="./"><span>首页</span></a>
+		              <span class="beb-raquo">></span>
+		              <span  class="beb-current">成功案例</span>
+		          </dd>
+		    </dl>
+		    </div>
+
+<div class="maxsection" style="min-height:1000px;">
+    <div class="maxlist">
+        <div class="maxcomon" style="display: block;">
+            <ul>
+                <{foreach from=$literary item=item key=key}>
+                    <li>
+                        <div class="maxpic"><a href="<{url action=topc_ctl_plan@literary literaryid=$item.literary_id}>"><img src="<{$item.literary_logo}>"></a></div>
+                        <div class="maxlist-content">
+                            <div class="maxlist-title"><a href="<{url action=topc_ctl_plan@literary literaryid=$item.literary_id}>"><{$item.title}></a></div>
+                            <div class="maxlist-subhead"><{$item.abstract}></div>
+                        </div>
+                        <div class="click_rate">
+                            点击量：<i class="maxicon-see"><em><{$item.click_count}></em></i>
+                        </div>
+                    </li>
+                <{/foreach}>
+            </ul>
+        </div>
+    </div>
+</div>   
+
+    <div class="cb maxpag" style="margin-left: 300px;"> 
+        <{if $pageNow>1}>
+        <div class="pageUp" style="float:left;margin-left:5px;"><a  style="display:block" href="<{url action=topc_ctl_plan@index pageNow=$pageNow-1 }>">上一页</a></div>
+        <{else}>
+        <div class="pageUp" style="float:left;margin-left:5px;"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList" >
+            <ul>
+                <{foreach from=$literaryAllList item=item key=key}>
+                    <{if $key<$pageCount}>
+                        <li style="float:left;margin-left:10px;"><a style="display:block" href="<{url action=topc_ctl_plan@index pageNow=$key+1}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}>
+        <div class="pageDown" style="float:left;margin-left:5px;"><a style="display:block" href="<{url action=topc_ctl_plan@index pageNow=$pageNow+1 }>">下一页</a></div>
+        <{else}>
+        <div class="pageDown" style="float:left;margin-left:5px;"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+    </div> 

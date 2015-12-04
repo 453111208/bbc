@@ -1,0 +1,14 @@
+<ul class="detailinfo-list">
+  <li>商品编号：<{$item.bn}></li>
+  <li>上架时间：<{$item.list_time|cdate:'FDATE'}></li>
+  <li>商品毛重：<{if $item.weight > 1000 }><{$item.weight/1000}>kg<{else}><{$item.weight}>kg<{/if}></li>
+  <{foreach from=$item.natureProps item=row}>
+  <li><{$row.prop_name}>：<{$row.prop_value}></li>
+  <{/foreach}>
+</ul>
+<div class="goods-info">
+  <div class="hd">产品信息</div>
+  <div class="bd">
+    <textarea cols="30" rows="10" class="action-lazyload hide"><{$item.pc_desc|stripslashes}></textarea>
+  </div>
+</div>

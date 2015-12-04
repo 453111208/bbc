@@ -1,0 +1,22 @@
+<{if $screen.shopInfo.shop_name}>
+<div class="store-info">
+  <a class="store-hd" href="<{url action=topm_ctl_shopcenter@index shop_id=$screen.shopInfo.shop_id}>">
+    <span class="store-logo">
+    <img src="<{$screen.shopInfo.shop_logo|storager}>" alt="<{$screen.shopInfo.shop_name}>">
+    </span>
+    <span class="store-n">
+      <span class="tit"> <{$screen.shopInfo.shop_name}> </span>
+      <span class="txt"><{$screen.shopInfo.shop_descript}></span>
+    </span>
+    <span class="icon-forward"></span>
+  </a>
+  <div class="store-mark">
+    <ul>
+      <li>商品评分：<i><{$shopDsrData.countDsr.tally_dsr}></i></li>
+      <li>服务评分：<i><{$shopDsrData.countDsr.attitude_dsr}></i></li>
+      <li>配送评分：<i><{$shopDsrData.countDsr.delivery_speed_dsr}></i></li>
+    </ul>
+  </div>
+</div>
+<{/if}>
+

@@ -1,0 +1,34 @@
+<desktop>
+	<widgets id="sysstat_desktop_widgets_exstatistics" order='30'>平台订单额</widgets>
+	<widgets id="sysstat_desktop_widgets_workcount" order='30'>待处理事项</widgets>
+	<widgets id="sysstat_desktop_widgets_stats" order='30'>平台业务概览</widgets>
+	<permissions>
+		<permission id="analysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>经营概况</permission>
+		<permission id="saleanalysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>销售收入统计</permission>
+		<permission id="advanceanalysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>预存款统计</permission>
+		<permission id="shopsaleanalysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>店铺销售情况</permission>
+		<permission id="productsaleanalysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>商品排行</permission>
+		<permission id="memberanalysis" display='false' parent='0' workground='sysstat.wrokground.analysis'>会员排行</permission>
+	</permissions>
+
+	<workground name="报表" id="sysstat.wrokground.analysis" controller="admin_analysis" action="index" order="60">
+		<menugroup name="经营概况">
+			<menu controller='admin_analysis' action='index' permission='analysis' display='false' order='10'>经营概况</menu>
+		</menugroup>
+
+		<menugroup name="账款统计">
+			<menu controller='admin_analysis' action='sale' permission='saleanalysis' display='false' order='20'>销售收入统计</menu>
+			<!-- <menu controller='admin_analysis' action='advance' permission='advanceanalysis' display='false' order='30'>预存款统计</menu> -->
+		</menugroup>
+
+		<menugroup name="销售统计">
+			<menu controller='admin_analysis' action='shopsale' permission='shopsaleanalysis' display='false' order='40'>店铺销售情况</menu>
+			<menu controller='admin_analysis' action='productsale' permission='productsaleanalysis' display='false' order='50'>商品销售排行</menu>
+		</menugroup>
+
+		<menugroup name="会员统计">
+			<menu controller='admin_analysis' action='member' permission='memberanalysis' display='false' order='60'>会员排行</menu>
+		</menugroup>
+
+	</workground>
+</desktop>

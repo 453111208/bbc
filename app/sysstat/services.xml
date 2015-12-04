@@ -1,0 +1,12 @@
+<services>
+    <service id="ectools_analyse_day">
+        <class>sysstat_analysis_shopsale</class>
+        <class>sysstat_analysis_sale</class>
+    </service>
+    <service id="desktop.widgets">
+        <!-- <class>sysstat_desktop_widgets_orderaccount</class> -->
+        <class>sysstat_desktop_widgets_exstatistics</class>
+        <class>sysstat_desktop_widgets_workcount</class>
+        <class>sysstat_desktop_widgets_stats</class> 
+    </service>
+</services>

@@ -1,0 +1,60 @@
+<style type="text/css">
+.maxB-List{height:auto;}
+.uniq li{float:left;padding-left: 40px;padding-right: 40px;text-align: center;width: 55px;text-align: center;overflow: hidden;}
+.uniq{overflow: hidden;height: 60px;}
+.quick{overflow: hidden;background-color: #DADADA;}
+.slow{border :1px solid #E9E9E9;overflow: hidden;}
+.uniqsee{cursor: pointer;}
+.up{display:none;}
+
+</style>
+<div class="maxM-right">
+    <div class="max-menber-title Bid">
+        <h2>我的商品类型列表</h2>
+        <a href="<{url action=topc_ctl_member_configcat@add}>">增加自定义商品分类</a>
+    </div>
+    <div class="maxB-menber-list">
+        <dl>
+            <dt class="maxB-title">
+            <ul>
+                <li class="item1" style="width:310px;"><span>一级分类名称</span></li>
+            </ul>
+            </dt>
+        </dl>
+        <dd>
+        <{foreach from=$catList item=row key=key}>
+        <div class="maxB-List uniqsee" style="border-bottom:1px dashed #DDDDDD;">
+            <div style="float:left;width: 16px;height:16px;" class="bidgoods"><div class="btn_down">&nbsp;</div><!-- <span class="down">∨</span> --><span class="up">∧</span></div>
+            <div class="maxB-company">
+                <label><{$row.cat_name}></label>
+                <!-- <a href="<{url action=topc_ctl_bidding@index bidding_id=$row.bidding_id}>" class="max-into">进入</a> -->
+            </div>
+        </div>
+        <{if $row.config}>
+        <div class="maxB-List uniqhid" style="display:none">
+            <ul class="uniq quick">
+                <li style="width:62px;">
+                    自定义分类
+                </li>
+            </ul>
+             <{foreach from=$row.config item=configitem }>
+            <ul class="uniq slow">
+                <li><{$configitem.cat_name}></li>
+            </ul>
+            <{/foreach}>
+        </div>
+        <{/if}>
+        <{/foreach}>
+        </dd>
+    </div>
+</div>
+<script type="text/javascript">
+$('.uniqsee').click(function(){
+//$('.uniqhid').hide();
+//$('.down').show();
+//$('.up').hide();
+$(this).next('.uniqhid').toggle();
+// $(this).children('.down').toggle();
+// $(this).children('.up').toggle();
+});
+</script>

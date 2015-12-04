@@ -1,0 +1,144 @@
+<div class="cart shop">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">购物车</div>
+      <div class="menu">
+        <a href="<{url action=topm_ctl_default@index}>">
+          <button class="btn icon-home" id="menu"></button>
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class="main" id="main">
+    <{include file="topm/cart/cart_main.html"}>
+  </div>
+</div>
+<script>
+
+  $('.button').button();
+
+  // 显示隐藏规格
+  $('.g-standard').click(
+      function(){
+        $(this).parent().parent().siblings('.standard-area').toggleClass('cur');
+
+        // 判断是否有cur
+        if($('.standard-area').hasClass('cur')){
+          $(this).children('.icon-up').removeClass('icon-up').addClass('icon-down');
+        }else{
+          $('.icon-down').removeClass('icon-down').addClass('icon-up');
+        }
+      }
+      );
+
+
+var Message = new gmu.Message();
+
+  // 选框状态
+$('#main')
+.on('change', '.action-checkall', function() {
+    checkAll(this, '.check input[type=checkbox]');
+    $('.action-checkitem-off').prop('checked', !this.checked);
+    updateItem();
+})
+.on('change', '.action-checkshop', function() {
+    checkAll(this, $(this).parents('.select-store').find('.action-checkitem-on'));
+    $(this).parents('.select-store').find('.action-checkitem-off').prop('checked', !this.checked);
+    updateItem();
+})
+.on('change', '.action-checkitem-on', function() {
+    $(this).parent().find('.action-checkitem-off').prop('checked', !this.checked);
+    updateItem(this);
+})
+.on('change','.goods-discount',function(e){
+    updateItem(this);
+})
+.on('change', '.action-modify', function() {
+    updateItem(this);
+})
+.on('click', '.action-delete', function() {
+    var form = $('#cart_submit');
+    var id = $(this).data('cartId');
+    var data;
+    if(id) {
+        msg = '是否删除此商品？';
+        data = 'cart_id[' + id + ']=1';
+    }
+    else {
+        msg = '是否删除所选商品？';
+        data = form.serialize();
+        if(!form.find('input[type=checkbox]:checked').length) {
+            return Message.error('请选择需要删除的商品');
+        }
+    }
+    confirm(msg) && updateCart(data);
+})
+.on('click', '.action-settle', function(e) {
+    if(!$('#cart_submit .action-checkitem-on').filter(function(){
+        return this.checked;
+    })[0]) {
+        alert('还未选择要购买的商品！');
+        return false;
+    }
+});
+
+function updateItem(el) {
+    // var parent　= $(el).parents('.cart-row-num');
+    // var cartId = parent.find('.action-checkitem-off');
+    // var cartCheckedId = parent.find('.action-checkitem-on');
+    // var number = parent.find('.cart-num');
+    // var cartDiscount = parent.find('.goods-discount');
+
+    // var form_cartId = cartId.attr('name') + '=' + cartId.val();
+    // if(cartDiscount.val())
+    // {
+    //   var form_cartDiscount = '&' + cartDiscount.attr('name') + '=' + cartDiscount.val();
+    // }else{
+    //   var form_cartDiscount = '';
+    // }
+    // var form_cartNum = '&' + number.attr('name') + '=' + number.val();
+
+    // if(cartCheckedId.prop('checked')){
+    //     var form_cartCheckedId = '&' + cartCheckedId.attr('name') + '=1';
+    // }else{
+    //     var form_cartCheckedId = '&' + cartCheckedId.attr('name') + '=0';
+    // }
+    var form = $('#cart_submit');
+
+    $.post('<{url action=topm_ctl_cart@updateCart}>', form.serialize(), function(rs) {
+        if(rs.error) return Message.error(rs.message);
+        // parent.html(rs.message);
+        // updateAll();
+        $('#main').html(rs.message)
+        .find('.action-settle').data('ajaxCallback', function(rs, target) {
+            localStorage.setItem('_cart_params', form.serialize());
+        });
+    });
+}
+
+function updateAll() {
+    var form = $('#cart_submit');
+    $.post('<{url action=topm_ctl_cart@ajaxBasicCart}>', form.serialize(), function(rs) {
+        $('#main').html(rs.message)
+        .find('.action-settle').data('ajaxCallback', function(rs, target) {
+            localStorage.setItem('_cart_params', target.parents('form').serialize());
+        });
+    });
+}
+
+function updateCart(data) {
+    $.post('<{url action=topm_ctl_cart@removeCart}>', data, function(rs){
+        if(rs.error) {
+            return Message.error(rs.message);
+        }
+        updateAll();
+    });
+}
+
+$('.action-addfav').data('ajaxCallback', function(rs, target){
+    target.addClass('cur');
+});
+</script>

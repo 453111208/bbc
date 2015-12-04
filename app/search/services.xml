@@ -1,0 +1,8 @@
+<services>
+    <service id="desktop_finder.search_mdl_policy">
+        <class>search_finder_policy</class>
+    </service>
+    <service id="desktop_finder.search_mdl_index">
+        <class>search_finder_index</class>
+    </service>
+</services>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>ECSTORE激活码</title>
+<link rel="shortcut icon" href="<{$env.base_full_url}>/favicon.gif" type="image/gif">
+<link rel="stylesheet" href="<{$res_url}>/stylesheets/default/login.css" media="screen, projection">
+</head>
+<body>
+<style>
+.signup-activation { height: 348px; }
+.activation-main { width: 748px; height: 348px; background: url(images/login/activation_05.gif) repeat-x; }
+.activation { width: 448px; padding: 38px 0 0 0; margin: 0 auto; }
+.activation .window-main { width: 350px; height: 200px; float: left; padding: 30px 68px 0px 68px; border: 1px solid #CCD7EC; margin: 0 0 25px 0; }
+.activation .blank-line { width: 310px; line-height: normal; border-bottom: 1px solid #CCD7EC; margin: 26px 0 20px 0; *margin: 10px 0 20px 0; }
+.activation-input { border: 1px solid #91A7D5; width: 200px; height: 22px; line-height: 160%; }
+.activation .btn { float: left; padding: 0 0 0 168px; }
+</style>
+
+<div class="passport-bd">
+    <div class="activation">
+        <div class="window-main">
+
+            <ul>
+                <li style="padding-bottom:12px;">
+                    <font color="red">
+                    <{if $msg != "" }>
+                        <{$msg}>
+                    <{else}>
+                        如果您已经输入过激活码，但是还是回到此页面，请确认<br />
+                        1、是否更换了后台登录域名，如果更换了域名请使用原域名进行登录，或者提交域名变更申请到服务商<br />
+                        2、如果没有更换域名，请参考如下地址，联系您的服务商排查服务器问题<br />
+                        3、如果排查完成未发现服务器问题，请通过服务商/销售联系商派！<br />
+                        参考地址：<a href="http://www.ec-os.net/ecstore_faq/faq.html#id3">http://www.ec-os.net/ecstore_faq/faq.html#id3</a>
+                    <{/if}>
+                    </font>
+                </li>
+                <li style="padding-bottom:12px;">
+                    请<a href='<{$url}>'/>重新登录</a>,或者   <a href='<{$code_url}>' />重新输入激活码</a>激活
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<div class="tabs-wrap">
+  <ul>
+    <li class="tab current"><span><{t}>wap端基本配置<{/t}></span></li>
+  </ul>
+</div>
+  <form method="post" action="?app=sysconf&ctl=admin_setting&act=saveSet" id="whitelist">
+    <div style="text-align:right;padding:3px 30px"></div>
+    <table class="tableform" style="width:99%;">
+    <tbody>
+      <tr>
+        <th><{t}>wap端商城logo：<{/t}></th>
+        <td>
+          <{input type="image" name='wap_logo' value=$wap_logo width=100 height=100}>
+          <span class="notice-inline">
+            <{t}>建议图片尺寸100px * 100px,提高用户体验，增强品牌宣传效果。<{/t}></span>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>苹果桌面图标：<{/t}></th>
+        <td>
+          <{input type="image" name='wapmac_logo' value=$wapmac_logo width=100 height=100}>
+          <span class="notice-inline">
+            <{t}>图片为正方形。可为苹果用户在桌面建立一个图标，是一个快速进入商城的途径。<{/t}></span>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>wap端商城名称：<{/t}></th>
+        <td>
+          <{input type="text" name='wap_name' value=$wap_name size="20"}>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>是否开启触屏端自动跳转功能：<{/t}></th>
+        <td>
+          <{input type="bool" name='wap_isopen' value=$wap_isopen id="bool"}>
+           <span class="notice-inline">
+            <{t}>开启状态下，访客使用手机访问网站域名直接跳转至手机平台。手机平台关闭状态下，访客使用手机访问网站域名直接跳转至PC端商城官网。<{/t}></span>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>wap端商城底部信息：<{/t}></th>
+        <td>
+          <{input type=html name='wap_description' value=$wap_description}>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>wap端会员注册协议：<{/t}></th>
+        <td>
+          <{input type=html name='wap_license' value=$wap_license}>
+          <span class="notice-inline"><br>
+            <{t}>会员注册协议<{/t}>
+            </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="table-action">
+    <{button type="submit"  label=$___desktop="保存"|t:'site'}>
+  </div>
+</form>
+<!--
+<script type="text/javascript">
+function check_all(o) {
+  o.getParent().getNext('span').getElements('input[type=checkbox]').set('checked', o.checked);
+}
+</script>
+-->

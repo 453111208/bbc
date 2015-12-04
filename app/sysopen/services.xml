@@ -1,0 +1,5 @@
+<services>
+    <service id="desktop_finder.sysopen_mdl_keys">
+        <class>sysopen_finder_keys</class>
+    </service>
+</services>

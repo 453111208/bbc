@@ -1,0 +1,15 @@
+
+<div class="coupon">
+  <{foreach from=$homeCouponList item=homecoupon name=homecouponname}>
+  <{if $env.foreach.homecouponname.iteration > 3}> <{break}> <{/if}>
+  <div class="coupon-item">
+    <div class="init">
+      <div class="coupon-price"><{$homecoupon.deduct_money}></div>
+      <div class="coupon-info">
+        <{$homecoupon.coupon_name}>
+      </div>
+      <a href="<{url action=topm_ctl_shopcenter@shopCouponList shop_id=$shopdata.shop_id}>" class="get-coupon-btn">立即领取</a>
+    </div>
+  </div>
+  <{/foreach}>
+</div>

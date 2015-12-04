@@ -1,0 +1,25 @@
+<div class="row">
+  <{include file="topc/items/basic/pic.html"}>
+  <div class="col-lg-11 box">
+    <div class="detail-panel">
+      <div class="detail-panel-bd">
+        <form action="<{url action=topc_ctl_cart@add mode=fastbuy}>" method="post" id="items_action_form">
+          <div class="detail-panel-info">
+            <div class="detail-panel-hd">
+              <h1>
+                <{if $activityDetail}>
+                <span class="item-describe-tag"><{$activityDetail.activity_info.activity_tag}></span>
+                <{/if}>
+                <{$item.title}>
+              </h1>
+              <div><{$item.sub_title}></div>
+            </div>
+            <{include file="topc/items/basic/price.html"}>
+            <{include file="topc/items/basic/buy.html"}>
+          </div>
+          <{include file="topc/items/basic/shop.html"}>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

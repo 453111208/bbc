@@ -1,0 +1,170 @@
+<div class="order-status shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main aftersale">
+    <div class="status-list">
+      <ul>
+        <li>
+          <{if $info.aftersales_type == 'ONLY_REFUND'}>
+          <i class="icon icon-refund"></i>
+          <span>仅退款</span>
+          <{elseif $info.aftersales_type == 'REFUND_GOODS'}>
+          <i class="icon icon-found"></i>
+          <span>退货退款</span>
+          <{elseif $info.aftersales_type == 'EXCHANGING_GOODS'}>
+          <i class="icon icon-return"></i>
+          <span>申请换货</span>
+          <{/if}>
+        </li>
+        <li>
+          售后状态：
+          <span>
+            <{if $info.status == '0'}>
+            等待商家处理
+            <{elseif $info.status == '1'}>
+            售后处理中
+            <{elseif $info.status == '2'}>
+            售后成功
+            <{elseif $info.status == '3'}>
+            售后驳回
+            <{/if}>
+          </span>
+        </li>
+        <li>
+          申请时间：<span><{$info.created_time|cdate:'FDATE_FTIME'}></span>
+        </li>
+        <li>
+          售后编号：<span><{$info.aftersales_bn}></span>
+        </li>
+        <li>
+          申请理由：<span><{$info.reason}></span>
+        </li>
+        <li>
+          详细描述：<span class="txt"><{$info.description|default:"无详细描述"}></span>
+        </li>
+        <{if $info.evidence_pic}>
+        <li clas="regoods">
+          <span class="txt">
+            <{foreach from=$info.evidence_pic item=pic}>
+            <img width="64" height="64" src="<{$pic|storager:'s'}>">
+            <{/foreach}>
+          </span>
+        </li>
+        <{/if}>
+        <{if $info.shop_explanation || $info.admin_explanation }>
+        <{if $info.admin_explanation}>
+        <li>
+          平台处理说明
+          <span class="txt"><{$info.admin_explanation}><span>
+        </li>
+        <{/if}>
+        <{if $info.shop_explanation}>
+        <li>
+          商家处理说明
+          <span class="txt"><{$info.shop_explanation}></span>
+        </li>
+        <{/if}>
+        <{/if}>
+      </ul>
+    </div>
+
+   <{if $info.aftersales_type != 'ONLY_REFUND' && $info.sendback_data && $info.progress >= '2' }>
+    <div class="logistics">
+      <div class="waybill-info">
+        <i class="icon icon-flow"></i>
+        <div class="info-txt">
+          <span>寄送的物流信息</span>
+          <div>
+              物流公司：<{$info.sendback_data.logi_name}>
+              <br>运单号码：<{$info.sendback_data.logi_no}>
+          </div>
+        </div>
+      </div>
+      <{if $tracker}>
+      <i class="icon icon-down"></i>
+      <ul>
+        <{foreach from=$tracker item=row}>
+        <li>
+          <div class="dot"></div>
+          <div class="step-con">
+            <div><{$row.AcceptStation}></div>
+            <div><{$row.AcceptTime}></div>
+          </div>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <{/if}>
+    <{if $info.aftersales_type == 'EXCHANGING_GOODS' && $info.sendconfirm_data}>
+    <div class="logistics">
+      <div class="waybill-info">
+        <i class="icon icon-flow"></i>
+        <div class="info-txt">
+          <span>商家寄送物流信息</span>
+          <{if $info.sendconfirm_data}>
+          <div>
+              物流公司：<{$info.sendconfirm_data.logi_name}>
+              <br>运单号码：<{$info.sendconfirm_data.logi_no}>
+          </div>
+          <{/if}>
+        </div>
+      </div>
+      <{if $sendTracker}>
+        <i class="icon icon-down"></i>
+        <ul>
+          <{foreach from=$sendTracker item=row}>
+          <li>
+            <div class="dot"></div>
+            <div class="step-con">
+              <div><{$row.AcceptStation}></div>
+              <div><{$row.AcceptTime}></div>
+            </div>
+          </li>
+          <{/foreach}>
+        </ul>
+      </div>
+      <{/if}>
+    </div>
+    <{/if}>
+   </div>
+   <{/if}>
+
+    <!--如果是退货退款，商家同意则填写回寄商品-->
+    <{if $info.progress == '1'}>
+    <div class="send-back-info">
+      <div class="form-title">请填写回寄物流信息</div>
+      <{include file="topm/member/aftersales/sendback.html"}>
+    </div>
+    <{/if}>
+
+    <{if $info.sku.complaints_status == 'NOT_COMPLAINTS' && $info.sku.aftersales_status == 'SELLER_REFUSE_BUYER'}>
+    <div class="buy-action btn-center-box">
+      <a href="<{url action=topm_ctl_member_complaints@complaintsView oid=$info.sku.oid}>" class="ui-btn-warning ui-btn-outlined">投诉商家</a>
+    </div>
+    <{/if}>
+  </div>
+
+<!--返回顶部-->
+<div id="gotop"></div>
+
+<script>
+  document.addEventListener('WeixinJSBridgeReady', function onBridgeReady(){
+    var mytopbar = document.getElementById("topFix");
+    var myfixhd = document.getElementById("fixhd");
+    WeixinJSBridge.call('hideToolbar');
+    mytopbar.style.display="none";
+    myfixhd.style.margin="0";
+  });
+
+  var flag = false;
+  $('.logistics li:first-child').tap(function(){
+    $(this).siblings('li').toggle();
+    if(flag==false){
+      $(this).parent().parent().find('.icon-down').addClass('list-open');
+      flag = true;
+    }else{
+      $(this).parent().parent().find('.icon-down').removeClass('list-open');
+      flag = false;
+    }
+    console.log(flag);
+  })
+</script>

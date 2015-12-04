@@ -1,0 +1,24 @@
+<div id="slider" class="ui-slider">
+  <div class="ui-slider-group">
+    <{if !$item.list_image}>
+    <div class="ui-slider-item" >
+        <img src="<{$image_default_id.L.default_image|storager:'l'}>">
+    </div>
+    <{else}>
+      <{foreach from=$item.list_image item=image_id}>
+      <div class="ui-slider-item" >
+        <img src="<{$image_id|storager:'l'}>" />
+      </div>
+      <{/foreach}>
+    <{/if}>
+  </div>
+  <p class="ui-slider-dots"> 
+  <{if !$item.list_image}>
+  <b class=""></b>
+  <{else}>
+      <{foreach from=$item.list_image item=image_id}>
+      <b class=""></b>
+      <{/foreach}>
+  <{/if}>
+  </p>
+</div>

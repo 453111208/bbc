@@ -1,0 +1,24 @@
+<div class="prd-list shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <div class="article-hd"><{$nodeInfo.node_name}></div>
+    <div class="list-inn article-list article-link">
+      <ul>
+        <{foreach from=$contentList item=content}>
+          <li>
+            <a class="dropmenu" href="<{url action=topm_ctl_content@getContentInfo article_id=$content.article_id}>"><{$content.title}><span class="icon icon-forward"></span></a>
+          </li>
+        <{/foreach}>
+      </ul>
+      <script>
+        $('.dropmenu').click(
+          function(){
+            $(this).addClass('cur').parent().siblings().children().removeClass('cur');
+            $(this).next().show().parent().siblings().children('.ui-dropmenu').hide();
+          }
+        );
+      </script>
+    </div>
+    <{pagers data=$pagers}>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<!--填写物流信息弹框-->
+<div id="dialog">
+  <form action="<{url action=topc_ctl_member_aftersales@sendback}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+    <input type='hidden' name='aftersales_bn' value='<{$aftersales_bn}>'>
+    <ul class="membercenter-address">
+      <li class="form-row">
+        <label for="" class="form-label"><em class="text-danger">*</em>选择物流公司</label>
+        <span class="form-act">
+          <p>
+            <select name="corp_code" class="form-control" id="logi_select">
+              <option value="">请选择</option>
+              <{foreach from=$corpData item=item}>
+              <option value="<{$item.corp_code}>-<{$item.corp_name}>" ><{$item.corp_name}></option>
+              <{/foreach}>
+              <option value="other">其他</option>
+            </select>
+          </p>
+          <p id="other" style="display:none">
+            <em class="text-danger">*</em><input type="text" name='logi_name' class="input-ln" placeholder="选择其他填写物流公司名称">
+          </p>
+        </span>
+      </li>
+      <li class="form-row">
+        <label for="" class="form-label"><em class="text-danger">*</em>填写物流单号</label>
+        <span class="form-act">
+          <input type="text" name='logi_no' class="input-ln" required >
+        </span>
+      </li>
+      <li class="form-row">
+        <label for="" class="form-label"><em class="text-danger">*</em>填写收货手机号</label>
+        <span class="form-act">
+          <input type="text" name='mobile' class="input-ln" required>
+        </span>
+      </li>
+      <li class="form-row">
+        <label for="" class="form-label"><em class="text-danger">*</em>填写收货地址</label>
+        <span class="form-act">
+          <input type="text" name='receiver_address' class="input-ln" required>
+        </span>
+      </li>
+    </ul>
+    <div class="orderdtl-box">
+      <div class="orderdtl-bd text-center">
+        <button type="submit" class="btn btn-import act-cancel"><span><span>提交物流信息</span></span></button>
+      </div>
+    </div>
+  </form>
+</div>
+

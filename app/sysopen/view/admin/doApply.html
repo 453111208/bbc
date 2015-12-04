@@ -1,0 +1,79 @@
+<div class=''>
+  <form id='create-open-key' action='?app=sysopen&ctl=admin_shop&act=doCreate' method='post'>
+    <table>
+      <tr>
+        <th>
+          <label> 商户id: </label>
+        </th>
+        <td>
+          <input type='text' readonly='readonly' name='shop_id' id='sysopen_shop_id' value='<{$shop_id}>'>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label> 商户名称: </label>
+        </th>
+        <td>
+          <input type='text' readonly='readonly' name='shop_name' value='<{$shop_name}>'>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label> 店铺描述: </label>
+        </th>
+        <td>
+          <input type='text' readonly='readonly' name='shop_descript' value='<{$shop_descript}>'>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label> 开放类型: </label>
+        </th>
+        <td>
+          <select name='type'>
+            <{foreach from=$modes item=mode}>
+            <option value='<{$mode.app_id}>'><{$mode.app_name}></option>
+            <{/foreach}>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label> 备注消息: </label>
+        </th>
+        <td>
+          <input type='text' name='mark' id='sysopen_shop_mark' value=''>
+        </td>
+      </tr>
+      <tr>
+        <td colspan='2'>
+          <div class="table-action">
+            <{button id='not-allow-pass' type="button"  label="禁止通过"}>
+            <{button id='submit-create-open-key' type="submit" label="同意开放"}>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<script>
+  $('not-allow-pass').addEvent('click',function(e){
+    var shop_id = $('sysopen_shop_id').get('value');
+    var shop_mark = $('sysopen_shop_mark').get('value');
+
+    var u = '?app=sysopen&ctl=admin_shop&act=doSuspend&shop_id='+shop_id+'&shop_mark='+shop_mark;
+    var myRequest = new Request({
+      url: u,
+      onSuccess: function(){
+      }
+    });
+    myRequest.send();
+    this.getParent('.dialog').retrieve('instance').close();
+    window.finderGroup['<{$env.get.finder_id}>'].refresh();
+  });
+
+$('submit-create-open-key').addEvent('click', function(e){
+  $('create-open-key').fireEvent('submit',{stop:$empty});
+  this.getParent('.dialog').retrieve('instance').close();
+});
+</script>

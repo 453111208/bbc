@@ -1,0 +1,86 @@
+<form class="form-horizontal" action="<{url action=topshop_ctl_shop_decorate@save widgets=showitems dialog=default}>" method="post" role="form" id="itemstab_form" data-validate-onsuccess="ajaxSubmitItemstab" >
+  <input type="hidden" name='widgets_id' value=<{$widgets_id}> >
+  <div class="modal-body">
+    <a href="<{url action=topshop_ctl_shop_decorate@dialog widgets=showitems dialog=add }>" class="btn btn-primary">
+      新增商品展示
+    </a>
+    <hr>
+    <div data-spy="scroll" data-target="#navbar-example" data-offset="0">
+      <table class="table table-bordered table-shopcat">
+        <colgroup>
+          <col class="col-md-8">
+          <col class="col-md-2">
+          <col class="col-md-2">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>商品展示名称</td>
+            <td><{t}>排序<{/t}></td>
+            <td><{t}>操作<{/t}></td>
+          </tr>
+        </thead>
+        <{if $data}>
+        <tbody>
+          <{foreach from=$data item=item name='name' key=key}>
+          <tr>
+            <td><{$key}></td>
+            <td><input type="text" name="params[data][<{$key}>][order_sort]" value="<{$item.order_sort|default:'0'}>" class="form-control" ></td>
+            <td>
+              <a href="<{url action=topshop_ctl_shop_decorate@dialog widgets=showitems dialog=add key=$key}>">编辑</a>
+              <a href="" class="remove text-danger" >删除</a>
+            </td>
+          </tr>
+          <{/foreach}>
+        </tbody>
+        <{else}>
+        <tbody id="none_goods">
+          <tr class="none-information">
+            <td colspan="5"><{t}>请先添加商品展示<{/t}></td>
+          </tr>
+        </tbody>
+        <{/if}>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary"><{t}>保存<{/t}></button>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal"><{t}>取消<{/t}></button>
+  </div>
+</form>
+<script>
+  $('#itemstab_form').Validator({
+    icons: {
+        valid:      'icon icon-checkmark-a',
+        invalid:    'icon icon-alert',
+        validating: 'icon icon-loading-c'
+      }
+  });
+
+  $(document).on('click', '.remove', function(e) {
+    e.preventDefault();
+    var parent = $(this).parents('tr');
+
+    if(confirm('确定要删除该商品展示栏目吗？') ){
+      parent.remove();
+    }
+  });
+
+  $('.cancel').click(function(){
+    location.href= "<{url action=topshop_ctl_shop_decorate@index}>"
+  })
+
+  function ajaxSubmitItemstab(e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.href=rs.redirect;}, 500);
+      }
+  });
+}
+</script>

@@ -1,0 +1,25 @@
+<{if $itemsList}>
+  <{foreach from=$itemsList item=itemslist}>
+    <div class="item-filter-row items">
+      <div class="item-check">
+        <input type="checkbox" name="item_id[]" value="<{$itemslist.item_id}>" class="action-checkitem" style="display: none;">
+      </div>
+      <div class="item-name">
+        <div class="goods">
+          <a href="<{url action=topc_ctl_item@index item_id=$itemslist.item_id}>" target="_blank">
+            <img src="<{$itemslist.image_default_id|default:$image_default_id.S.default_image|storager:'s'}>" alt="">
+            <{$itemslist.title}>
+          </a>
+        </div>
+      </div>
+      <{*<div class="item-cate"><{$itemslist.title}></div>
+      <div class="item-brand">商品品牌</div>*}>
+      <div class="item-price"><{$itemslist.price|cur}></div>
+      <div class="item-check del"><a class="item-del" href="#">删除</a></div>
+    </div>
+  <{/foreach}>
+<{else}>
+  <div class="item-filter-row">
+    <div align="center">暂未添加商品</div>
+  </div>
+<{/if}>

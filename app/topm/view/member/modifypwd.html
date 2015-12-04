@@ -1,0 +1,24 @@
+<div class="passport shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <form action="<{url action=topm_ctl_member@saveModifyPwd}>" method="post" id="ajaxForm" >
+      <ul>
+        <li class="form-row">
+          <label class="form-label" for="for-normal">原密码:</label>
+          <input class="x-input" type="password" name="old_password" id="for-normal" required maxlength="20" placeholder="请输入原密码" data-caution="请输入原密码">
+        </li>
+        <li class="form-row">
+          <label for="for-new" class="form-label">新密码:</label>
+          <input type="password" placeholder="请输入新密码,6~22位" value="" id="for-new" class="x-input auto-password-check-handle" type="password" name="new_password" required minlength="6" maxlength="20" data-caution="请输入新密码，6-20个字符&&输入不正确，最少6个字符">
+        </li>
+        <li class="form-row">
+          <label for="for-confirm">确认密码:</label>
+          <input type="password" class="x-input" name="confirm_password" id="for-confirm" placeholder="请重新输入新密码" required data-equalto="new_password" data-caution="请再次输入新密码">
+        </li>
+        <li class="form-row confirm">
+          <button type="submit" class="ui-btn-warning">确认修改</button>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>

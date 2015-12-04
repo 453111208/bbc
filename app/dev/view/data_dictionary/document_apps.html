@@ -1,0 +1,44 @@
+<{foreach from=$apps item="appTables" key="appId"}>
+<{if $appTables}>
+
+<a name="app-<{$appId}>-define"></a>
+## app:<{$appId}> tables
+
+<{foreach from=$appTables item="table" key="tableName"}>
+  
+<a name="table-<{$tableName}>-define"></a>
+## <{$tableName}>
+
+> **<{$table.comment}>**
+
+- 表结构
+
+| ColumnName | Comment | Type | Not null | Default | Autoincrement |
+| ------------- |-------------|-------------|-------------|-------------|-------------|
+<{foreach from=$table.columns item="column" key="columnName"}>
+|  <{$column.name}> | <{$column.comment}> |  <{$column.type}> | <{$column.notnull}> | <{$column.default}> | <{$column.autoincrement}> |
+<{/foreach}>
+<{if $table.primary}>
+
+- 主键
+
+| columnName |
+| ------------- |
+<{foreach from=$table.primary item="keyName"}>
+| <{$keyName}> |
+<{/foreach}>
+<{/if}>
+
+<{if $table.index}>
+
+- 索引
+
+| Key name | Column names | Unique | Comment |
+| ------------- |-------------|-------------|-------------|
+<{foreach from=$table.index item="index" key="indexName"}>
+| <{$indexName}> | <{$index.columns}> | <{$index.isUnique}> | <{$index.comment}> |
+<{/foreach}>
+<{/if}>
+<{/foreach}>
+<{/if}>
+<{/foreach}>

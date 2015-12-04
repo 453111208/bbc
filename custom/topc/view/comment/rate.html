@@ -1,0 +1,50 @@
+<div class="goods-info">
+      <form action="<{url action=topc_ctl_comment@save}>" id="form1" method="post">
+
+      <input type="hidden" name="user_id" value="<{$user_id}>">
+      <input type="hidden" name="user_name" value="<{$user_name}>">
+      <input type="hidden" name="item_id" value="<{$item_id}>">
+      <input type="hidden" name="shop_id" value="<{$rowinfo.shop_id}>">
+      <input type="hidden" name="type" value="<{$type}>">
+      <input type="hidden" name="item_title" value="<{$rowinfo.trading_title}>">
+      <div style="padding-left:20px;">
+      <textarea rows="3" maxlength="200" cols="120" name="content"></textarea>
+      </div>
+      <div style="padding-left:20px;font-size:16px;">
+      <input type="submit" id="ss" value="发表" style="padding: 0px 10px;color:red;cursor: pointer;">
+      </div>
+      </form>
+  <div id="evaluation" data-toggle="switchable" class="bd">
+    <div class="evaluation section">
+      <div class="evaluation-condition">
+      </div>
+      <ul class="evaluation-nav">
+        <li data-type="all" class="active">评论列表</li>
+      </ul>
+      <div class="evaluation-content">
+
+        <{include file="topc/comment/rate/list.html"}>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  /*$(document).ready(function(){
+    $('#form1').bind('submit', function(){
+        $.ajax({
+        url: "<{url action=topc_ctl_comment@save}>",
+        type: 'post',
+        data: {'id':1},
+        success: function(){
+          alert(1);
+        }
+    });
+        return false;
+    });
+});*/
+$('#ss').click(function(){
+  window.location.reload()
+});
+</script>

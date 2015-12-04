@@ -1,0 +1,65 @@
+  <div class="maxM-right">
+<div class="col-lg-12 box main_page">
+<div class="add_title"> 
+<{if $sellertype==3}>
+<div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">个人会员无法发布供求</span></span>
+    </div>
+    <{elseif $shopInfo.shop_id<0}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">你还未完善企业信息</span></span>
+    </div>
+    <{elseif $shopInfo.status=="dead"}>
+     <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">您的企业还未通过我们的审核，请耐心等待</span></span>
+    </div>
+    <{else}>
+    <a class="btn btnf"  href="<{url action=topc_ctl_member_supplyman@eidtRequireGoods}>" style="cursor: pointer"><span>增加求购信息</span></a>
+<span class="num">企业可以发布<{$shopInfo.qiugou_count}>条，已发布<em><{$goodCounts}></em>条，剩余<{$shopInfo.qiugou_count-$goodCounts}>条</span>
+<{if !$goosList}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">没有发布求购信息</span></span>
+    </div>
+     <{else}>
+      
+    </div>
+      <table class="item-table table-goods">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+   
+          </colgroup>
+        <thead>
+            <tr>
+              <td>查看</td>
+              <td>发布人</td>
+              <td>发布时间</td>
+      
+  
+              <td>操作</td>
+            </tr>
+        </thead>
+         <{foreach from=$goosList item=goods}>
+            <tbody>
+                <tr>
+                  <td>
+                    <a class="btnp" href="<{url action=topc_ctl_require@index require_id=$goods.require_id type=2}>" style="cursor: pointer"><span>查看</span></a>
+                  </td>
+                  <td><{$shopInfo.shop_name}></td>
+      
+                  <td><{$goods.create_time|cdate}></td>
+              
+       
+                  
+                  <td><a href="<{url action=topc_ctl_member_supplyman@eidtRequireGoods require_id=$goods.require_id}>" ><span>编辑</span></a></td>
+                </tr>
+            </tbody>
+          <{/foreach}>
+      </table>
+        <{/if}>
+        <{/if}>
+        </div>
+      </div>

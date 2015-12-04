@@ -1,0 +1,114 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      个人信息
+    </div>
+    <form action="<{url action=topc_ctl_member@saveInfoSet}>" method="post" id="ajax_form">
+      <div class="membercenter-box-bd">
+        <div class="row">
+          <div class="col-lg-8 membercenter-userinfo">
+            <ul>
+              <li class="form-row">
+                <label class="form-label" for="for_name"><em>*</em>昵称</label>
+                <span class="form-act">
+                  <input class="input-ln" type="text" name="user[name]" value="<{$userInfo.name}>" id="for_name" required minlength="4" maxlength="20">
+                  <span class="help-block">4-20个字符，可由中英文、数字、“_”、“-”组成</span>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label"><em>*</em>性别</label>
+                <span class="form-act">
+                  <input type="radio" name="user[sex]" id="for_gender_male" value="1" <{if $userInfo.sex==1}>checked<{/if}>>
+                    <label for="for_gender_male">男</label>
+                  <input type="radio" name="user[sex]" id="for_gender_female" value="0" <{if $userInfo.sex==0}>checked<{/if}>>
+                    <label for="for_gender_female">女</label>
+                  <input type="radio" name="user[sex]" id="for_gender_privacy" value="2" <{if $userInfo.sex==2}>checked<{/if}>>
+                    <label for="for_gender_privacy">保密</label>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label">生日</label>
+                <span class="form-act input-comb date" data-toggle="datepicker">
+                  <input type="date" name="user[birthday]" value="<{$userInfo.birthday|date_format:'%Y-%m-%d'}>"><span class="input-comb-addon"><i class="icon-calendar"></i></span>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label"><em>*</em>姓名</label>
+                <span class="form-act">
+                  <input class="input-ln" type="text" name="user[username]" id="" value="<{$userInfo.username}>" required maxlength="25">
+                  <span class="help-block">请输入20个英文或10个汉字</span>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label">所在地</label>
+                <span class="form-act">
+                  <div id="area" class="mod-bottom" data-validate="area"></div>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label">详细地址</label>
+                <span class="form-act">
+                  <input class="input-ln" type="text" name="user[addr]" value="<{$userInfo.addr}>" id="" maxlength="100">
+                </span>
+              </li>
+              <li class="form-row last">
+                <label for="" class="form-label"></label>
+                <span class="form-act">
+                  <button type="submit" class="btn btn-import" rel="_request"><span><span>保存</span></span></button>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 txt-list">
+            <ul>
+              <li>
+              <span class="title">用户名</span>
+              <span>
+                <{$userInfo.login_account}>
+              </span>
+              </li>
+              <li>
+
+              <{if $userInfo.mobile}>
+                <span class="title">手机</span>
+                <span>
+                  <{$userInfo.mobile}><a href="<{url action=topc_ctl_member@verify verifyType=mobile type=update}>">修改</a><span class="status">(已绑定)</span>
+                </span>
+                <{else}>
+                <span class="title">手机</span>
+                <span>
+                  <a href="<{url action=topc_ctl_member@verify verifyType=mobile}>">立即验证</a><span class="status">(未绑定)</span>
+                </span>
+              <{/if}>
+
+              </li>
+              <li>
+              <{if $userInfo.email}>
+                <span class="title">邮箱</span>
+                <span>
+                  <{$userInfo.email}><a href="<{url action=topc_ctl_member@verify verifyType=email type=update}>">修改</a><span class="status">(已绑定)</span>
+                </span>
+                <{else}>
+                <span class="title">邮箱</span>
+                <span>
+                  <a href="<{url action=topc_ctl_member@verify verifyType=email}>">立即验证</a><span class="status">(未绑定)</span>
+                </span>
+               <{/if}>
+              </li>
+              <li>
+              注：修改密码、手机等信息请到<a href="<{url action=topc_ctl_member@security}>">安全设置</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+$('#area').multiSelect({
+    dataUrl: '<{$env.base_url}>/app/ectools/statics/scripts/region.json',
+    initData: '<{$userInfo.region_id}>'
+});
+</script>

@@ -1,0 +1,90 @@
+<form method="post" action="?app=syslogistics&ctl=admin_ziti&act=save" class="tableform" id="ziti_add_form">
+  <input type='hidden' name='id' value='<{$data.id}>'/>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t}>自提点名称:<{/t}></th>
+        <td>
+          <input type='text' name="name" vtype=required maxlength="20" value='<{$data.name}>'/>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>选择地区:<{/t}></th>
+        <td>
+          <span class="region" id="area" vtype=required>
+            <input type="hidden" name="area_id" value="<{$data.area}>">
+            <{if $selectArea}>
+            <{foreach from=$selectArea item=item key=key}>
+            <select class="x-select">
+              <option value="_NULL_">请选择</option>
+              <{foreach from=$item item=row}>
+              <option value="<{$row}>" <{if $row == $key}>selected<{/if}>><{$areaData.$row.value}></option>
+              <{/foreach}>
+            </select>
+            <{/foreach}>
+            <{else}>
+            <select class="x-select">
+              <option value="_NULL_">请选择</option>
+              <{foreach from=$areaLv1 item=item}>
+              <option value="<{$item}>"><{$areaData.$item.value}></option>
+              <{/foreach}>
+            </select>
+            <{/if}>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>详细地址:<{/t}></th>
+        <td>
+          <input type='text' name="addr" vtype=required maxlength="50" value='<{$data.addr}>'/>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>联系方式:<{/t}></th>
+        <td>
+          <input type='text' name="tel" vtype=required maxlength="50" value='<{$data.tel}>'/><span class="notice">手机或电话号码</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="table-action">
+    <{button label=$___syslogistics="保存"|t:'syslogistics' type="submit"}>
+    <{button label=$___syslogistics="取消"|t:'syslogistics' isCloseDialogBtn="true"}>
+  </div>
+</form>
+<script>
+$('ziti_add_form').store('target',{
+  onComplete:function(rs){
+    if(!rs) return;
+    rs = JSON.decode(rs);
+    if(rs.success){
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('ziti_add_form').getParent('.dialog')){
+        var Dlg = $('ziti_add_form').getParent('.dialog').retrieve('instance');
+        if(Dlg.update){
+          Dlg.update.retrieve('instance').initContent();
+        }
+        Dlg.close();
+      }
+    }
+  }
+});
+
+(function() {
+  var path ='<{$env.statics_host_url}>/ectools/statics/scripts/';
+
+  var container = $('area');
+  var areaData = '<{$areaData|json_encode}>';
+  var areaPath = '<{$areaPath|json_encode}>';
+
+  // var validate_area;
+  var loadRegion = function(region){
+    region.init(container, areaData, areaPath);
+  };
+
+  Ex_Loader(path + 'region.js', function(){loadRegion(region_sel);});
+
+})();
+
+</script>

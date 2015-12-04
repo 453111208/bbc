@@ -1,0 +1,45 @@
+<div class="tableform">
+	<form id="updateShopPwd" action="?app=sysshop&ctl=admin_seller&act=update_shop_pwd"  method="post">
+	<div class="division">
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+			<input type="hidden" name="seller_id" value="<{$data.seller_id}>">
+			<tbody>
+				<tr>
+					<th><{t}>会员名称：<{/t}></th>
+					<td><span class="price0"><{ $data.login_account}></span></td>
+				</tr>
+				<tr>
+					<th ><{t}>请输入新密码：<{/t}></th>
+					<td><{input type="password" vtype="required" maxlength="20" name="login_password"}></td>
+				</tr>
+				<tr>
+				<th><{t}>请确认新密码：<{/t}></th>
+					<td><{input type="password" vtype="required" maxlength="20" name="psw_confirm"}></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-action"><{button type="submit" label="保存"|t:'sysshop' }></div>
+	</form>
+</div>
+
+
+<script>
+
+    $('updateShopPwd').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('updateShopPwd').getParent('.dialog')){
+                    var Dlg = $('updateShopPwd').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

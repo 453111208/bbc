@@ -1,0 +1,23 @@
+<app>
+    <name>店铺中心系统</name>
+    <type>service</type>
+    <description>提供店铺基本功能</description>
+
+    <author>
+        <name>shopex开发团队</name>
+        <email>dev@shopex.cn</email>
+        <url>http://www.shopex.cn</url>
+    </author>
+
+    <parent_model_class>dbeav_model</parent_model_class>
+
+    <version>0.7</version>
+    <license>shopex license</license>
+
+    <depends>
+		<app>desktop</app>
+        <app>pam</app>
+        <app>sysuser</app>
+	</depends>
+
+</app>

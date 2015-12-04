@@ -1,0 +1,35 @@
+<div class="btn-wrap">
+   <{if $nologin!=1}>
+  <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+  <{else}>
+  <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$item.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+  <{/if}>
+  <!-- <a href="javascript:void(0);" class="btn_nohead btn btn-link favorite-btn on"><i class="icon icon-heart" data-icon="\2881"></i>收藏商品</a> -->
+  <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style pro-share">
+      <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">更多</a>
+    </div>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+</div>
+<!--收藏商品弹框 收藏成功-->
+<div id="" style="display:none;">
+  <div class="favorite-hint successed">
+    <i class="icon icon-checkmark-b"></i>
+    <div class="favorite-text">
+      <div class="title">成功收藏该商品</div><a href="#">查看我的收藏夹></a>
+    </div>
+    <button type="button" class="dialog-btn-close" title="关闭" hidefocus=""><i>×</i></button>
+  </div>
+</div>
+<!--收藏商品弹框 已收藏过-->
+<div id="dialog" style="display:none;">
+  <div class="favorite-hint already">
+    <i class="icon icon-tip" data-icon="\2887"></i>
+    <div class="favorite-text">
+      <div class="title">您已收藏过该商品</div><a href="#">查看我的收藏夹></a>
+    </div>
+    <button type="button" class="dialog-btn-close" title="关闭" hidefocus=""><i>×</i></button>
+  </div>
+</div>
+

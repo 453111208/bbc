@@ -1,0 +1,16 @@
+<desktop>
+    
+     <permissions>
+        <permission id="sysplan_info" display='true' workground='sysinfo.wrokground.theme'>成功案例页面管理</permission>
+    </permissions>
+    
+    <workground name="文章管理" id="sysinfo.wrokground.theme" controller="admin_module" action="index" order='30'>
+        <menugroup name="成功案例页面管理"> 
+            <menu controller='admin_literary' action='index' permission='sysplan_info' display='true' order="20">案例管理</menu>
+            <menu controller='admin_literarycat' action='index' permission='sysplan_info' display='true' order="30">案例类型管理</menu>
+            <menu controller='admin_literaryclass' action='index' permission='sysplan_info' display='true' order="40">案例分类管理</menu>
+            <menu controller='admin_literarytarget' action='index' permission='sysplan_info' display='true' order="50">案例目标管理</menu>
+        </menugroup>
+    </workground>
+     
+</desktop>

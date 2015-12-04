@@ -1,0 +1,14 @@
+<desktop>
+
+    <permissions>
+        <permission id="notice" display='false' workground='sysnotice.workground.affiche'>公告列表</permission>
+    </permissions>
+
+    <workground name="公告系统" id="sysnotice.workground.affiche" controller="admin_affiche" action="index" order='130'>
+        <menugroup name="公告管理">
+        	<menu controller='admin_affiche' action='index' permission='notice' display='true' order='10'>公告列表</menu>
+            <menu controller='admin_affiche' action='typeindex' permission='notice' display='true' order='20'>公告类型列表</menu>
+        </menugroup>
+    </workground>
+
+</desktop> 

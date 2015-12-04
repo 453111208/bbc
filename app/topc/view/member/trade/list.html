@@ -1,0 +1,277 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <span class="col-goods">商品</span>
+      <span class="col-price">单价</span>
+      <span class="col-number">数量</span>
+      <span class="col-operate2">商品操作</span>
+      <span class="col-total">订单总金额</span>
+      <span class="col-status">交易订单状态</span>
+      <span class="col-operate">操作</span>
+    </div>
+    <{if !$trades}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">暂无订单</span></span>
+    </div>
+    <{else}>
+    <div class="left membercenter-box-bd">
+      <form id="payment_form" action="<{url action=topc_ctl_paycenter@createPay}>" method="post">
+        <div class="membercenter-box-row clearfix">
+          <div class="membercenter-box-left">
+            <input type="checkbox" id="selectAll"><label for="">全选</label>
+            <button type="button" class="btn btn-simple btn-sm act-mergepay"><span><span>合并付款</span></span></button>
+          </div>
+          <div class="membercenter-box-right">
+            <span class="num">共<em><{$count}></em>条订单</span>
+            <{pagers data=$pagers type="mini"}>
+          </div>
+        </div>
+        <{foreach from=$trades item=tradeitem}>
+        <table class="item-table table-goods">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-2">
+            <col class="table-col-3">
+            <col class="table-col-4">
+            <col class="table-col-5">
+            <col class="table-col-6">
+            <col class="table-col-7">
+            <col class="table-col-8">
+          </colgroup>
+          <thead class="<{if $tradeitem.status == 'WAIT_BUYER_PAY'}>ifallcheck <{/if}>">
+            <tr>
+              <td colspan="8">
+                <input type="checkbox" name="tid[]" value="<{$tradeitem.tid}>" <{if $tradeitem.status != "WAIT_BUYER_PAY"}> disabled<{/if}>>
+                <span><{$tradeitem.created_time|cdate}></span>
+                <span>订单编号：<{$tradeitem.tid}></span>
+                <a href="<{url action=topc_ctl_shopcenter@index shop_id=$tradeitem.shop_id}>"><{$tradeitem.shop_id|shopname}></a>
+                <{im shop_id=$tradeitem.shop_id type=small}>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <{assign var=orderItemCount value=$tradeitem.order|count}>
+            <{foreach from=$tradeitem.order item=orderitem name=orderlist}>
+            <tr>
+              <td>
+                <div class="table-goods-pic"><img width="64" height="64" src="<{$orderitem.pic_path|storager:'s'}>"></div>
+              </td>
+              <td>
+                <a href="<{url action=topc_ctl_item@index item_id=$orderitem.item_id}>"><{if $orderitem.promotion_tag}><span class="item-describe-tag"><{$orderitem.promotion_tag}></span><{/if}><{$orderitem.title}></a>
+                <{$orderitem.spec_nature_info}>
+              </td>
+              <td>
+                <div class="price item-price"><{$orderitem.price|cur}></div>
+              </td>
+              <td>
+                <{$orderitem.num}>
+              </td>
+              <td class="nowrap">
+                <{if $tradeitem.status == "WAIT_SELLER_SEND_GOODS"}>
+
+                <{if $orderitem.aftersales_status == "WAIT_SELLER_AGREE"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">售后处理中</a>
+                <{elseif $orderitem.aftersales_status == "SUCCESS"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款完成</a>
+                <{elseif $orderitem.aftersales_status == "SELLER_REFUSE_BUYER"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">卖家拒绝退款</a>
+                <{elseif $orderitem.aftersales_status == "CLOSED"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款关闭</a>
+               <{elseif $orderitem.aftersales_status == "REFUNDING"}>
+                  <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款中</a>
+                <{elseif $tradeitem.pay_type=="online"}>
+                <a href="<{url action=topc_ctl_member_aftersales@aftersalesApply tid=$tradeitem.tid oid=$orderitem.oid}>">申请退款</a>
+                <{/if}>
+
+                <{elseif $tradeitem.status != "WAIT_BUYER_PAY" && $tradeitem.status != "TRADE_CLOSED_BY_SYSTEM" && $tradeitem.status != "TRADE_CLOSED"  }>
+
+                <{if $orderitem.aftersales_status == "WAIT_SELLER_AGREE"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款处理中</a>
+                <{elseif $orderitem.aftersales_status == "WAIT_BUYER_RETURN_GOODS"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">已同意退款，请退货</a>
+                <{elseif $orderitem.aftersales_status == "WAIT_SELLER_CONFIRM_GOODS"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>"> 等待卖家确认收货</a>
+                <{elseif $orderitem.aftersales_status == "SUCCESS"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款完成</a>
+                <{elseif $orderitem.aftersales_status == "SELLER_REFUSE_BUYER"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">卖家拒绝退款</a>
+                <{elseif $orderitem.aftersales_status == "SELLER_SEND_GOODS"}>
+                <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">换货完成</a>
+                <{elseif $orderitem.aftersales_status == "CLOSED"}>
+                  <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款关闭</a>
+                <{elseif $orderitem.aftersales_status == "REFUNDING"}>
+                  <a href="<{url action=topc_ctl_member_aftersales@goAftersalesDetail id=$orderitem.oid}>">退款中</a>
+                <{else}>
+                  <a href="<{url action=topc_ctl_member_aftersales@aftersalesApply tid=$tradeitem.tid oid=$orderitem.oid}>">申请退换货</a>
+                <{/if}>
+
+                <{/if}>
+
+                <!--订单完成，并且售后为商家关闭，买家则可以对商家进行投诉-->
+                <{if $orderitem.complaints_status == 'NOT_COMPLAINTS'}>
+                  <{if $orderitem.aftersales_status == 'SELLER_REFUSE_BUYER' }>
+                  <a href="<{url action=topc_ctl_member_complaints@complaintsView oid=$orderitem.oid}>">投诉卖家</a>
+                  <{/if}>
+                <{elseif $orderitem.complaints_status == 'WAIT_SYS_AGREE'}>
+                  <a href="<{url action=topc_ctl_member_complaints@detail oid=$orderitem.oid}>">投诉处理中</a>
+                <{elseif $orderitem.complaints_status == 'FINISHED'}>
+                  <a href="<{url action=topc_ctl_member_complaints@detail oid=$orderitem.oid}>">投诉已成功</a>
+                <{elseif $orderitem.complaints_status == 'BUYER_CLOSED'}>
+                  <a href="<{url action=topc_ctl_member_complaints@detail oid=$orderitem.oid}>">投诉已撤销</a>
+                <{elseif $orderitem.complaints_status == 'CLOSED'}>
+                  <a href="<{url action=topc_ctl_member_complaints@detail oid=$orderitem.oid}>">投诉已关闭</a>
+                <{/if}>
+              </td>
+              <{if $env.foreach.orderlist.iteration==1}>
+              <td rowspan="<{$orderItemCount}>">
+                <div class="price text-center">
+                  <{$tradeitem.payment|cur}>
+                  <div>
+                    (含运费：<{$tradeitem.post_fee|cur}>)
+                  </div>
+                  <{if $tradeitem.discount_fee>0}>
+                  <div>
+                    (促销优惠：-<{$tradeitem.discount_fee|cur}>)
+                  </div>
+                  <{/if}>
+                  <{if $tradeitem.adjust_fee!=0}>
+                  <div>
+                    (含手工调价：<{$tradeitem.adjust_fee|cur}>)
+                  </div>
+                  <{/if}>
+                </div>
+              </td>
+              <td class="col-operate" rowspan="<{$orderItemCount}>">
+                <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+                <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">等待买家付款</a>
+                <{elseif $tradeitem.status == "WAIT_SELLER_SEND_GOODS"}>
+                <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">买家已付款</a>
+                <{elseif $tradeitem.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+                <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">卖家已发货</a>
+                <{elseif $tradeitem.status == "TRADE_FINISHED"}>
+                <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">订单已完成</a>
+                <{elseif $tradeitem.status == "TRADE_CLOSED_BY_SYSTEM" || $tradeitem.status == "TRADE_CLOSED"}>
+                <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">订单已关闭</a>
+                <{/if}>
+              </td>
+              <td class="col-operate" rowspan="<{$orderItemCount}>">
+                <{if $tradeitem.is_buyer_rate }>
+                <a href="<{url action=topc_ctl_member_rate@createRate tid=$tradeitem.tid}>" target="_blank"  class="btn btn-simple"><span><span>去评价</span></span></a>
+                <{/if}>
+                <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+                <a href="<{$tradeitem.tid}>" class="btn btn-import act-pay"><span><span>付款</span></span></a>
+                <{elseif $tradeitem.status == "WAIT_SELLER_SEND_GOODS"}>
+                <span><span>等待卖家发货</span></span>
+                <{elseif $tradeitem.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+                <{if $tradeitem.pay_type=="online"}>
+                <a href="javascript:void(0);" id="<{$tradeitem.tid}>" class="btn btn-import btn-confirm">
+                  <span><span>确认收货</span></span>
+                </a>
+                <{elseif $tradeitem.pay_type=="offline"}>
+                <span><span>商品已发货</span></span>
+                <{/if}>
+                <{/if}>
+                <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+                <div>
+                  <a href="javascript:void(0);" id="<{$tradeitem.tid}>" class="btn_dialog">
+                    <span><span>取消订单</span></span>
+                  </a>
+                </div>
+                <{/if}>
+                <div>
+                  <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">查看订单详情</a>
+                </div>
+              </td>
+              <{/if}>
+            </tr>
+            <{/foreach}>
+          </tbody>
+        </table>
+        <{/foreach}>
+
+      </form>
+      <{pagers data=$pagers}>
+    </div>
+    <{/if}>
+  </div>
+</div>
+
+<script>
+  //多选框
+$("#selectAll").on('change',function(){
+  $(".ifallcheck input[type=checkbox]").prop("checked",this.checked);
+});
+
+//交易合并支付
+$(".act-mergepay").on('click',function(e){
+  e.preventDefault();
+  $.post($("#payment_form").attr('action'), $("#payment_form").serialize(), function(rs){
+    if( rs.error ){
+      alert(rs.message)
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  })
+});
+
+//单笔支付
+$(".act-pay").on('click',function(e){
+  e.preventDefault();
+  $.post($("#payment_form").attr('action'), {tid: $(this).attr('href'), merge: false}, function(rs){
+    if( rs.error ){
+      alert(rs.message)
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  })
+})
+
+//订单取消
+$('.btn_dialog').click(function (e) {
+  var _this = this;
+  var dialog = new Dialog('<{url action="topc_ctl_member_trade@ajaxCancelTrade"}>', {
+    width: 500,
+      title:'订单取消',
+      async: 'ajax',
+      asyncOptions: {
+        type: 'get',
+      data: {tid: _this.id},
+      callback: function(){
+        $('#cancel_reason_select').change(function(e) {
+          if(this.value == 'other') {
+            $('#other').show().find('textarea')[0].required = true;
+          }
+          else {
+            $('#other').hide().find('textarea')[0].required = false;
+          }
+        });
+        dialog.content.find('.act-cancel').on('click', function(e){
+          dialog.hide();
+        });
+      }
+      }
+  });
+});
+
+//订单确认收货
+$('.btn-confirm').click(function (e) {
+  var _this = this;
+  var dialog = new Dialog('<{url action="topc_ctl_member_trade@ajaxConfirmTrade"}>', {
+    width: 500,
+      title:'订单确认收货',
+      async: 'ajax',
+      asyncOptions: {
+        type: 'get',
+      data: {tid: _this.id},
+      callback: function(){
+        dialog.content.find('.act-confirm').on('click', function(e){
+          dialog.hide();
+        });
+      }
+      }
+  });
+});
+
+</script>

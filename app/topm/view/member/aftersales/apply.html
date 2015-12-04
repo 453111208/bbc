@@ -1,0 +1,64 @@
+<div class="apply shop order-detail">
+    <{include file="topm/common/top.html"}>
+    <div class="main">
+      <form action="<{url action=topm_ctl_member_aftersales@commitAftersalesApply}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+      <input type="hidden" name='tid' value=<{$tid}>>
+      <input type="hidden" name='oid' value=<{$oid}>>
+      <div class="apply-info">
+        <div class="info">
+          <span class="service">申请服务:</span>
+          <input type="hidden" name="aftersales_type" value="<{$aftersales_type}>">
+          <{if $aftersales_type == 'ONLY_REFUND'}>
+            <span class="txt">仅退款</span>
+          <{elseif $aftersales_type == 'REFUND_GOODS'}>
+            <span class="txt">退货退款</span>
+          <{elseif $aftersales_type == 'EXCHANGING_GOODS'}>
+            <span class="txt">换货</span>
+          <{/if}>
+        </div>
+        <div class="info">
+          <span class="reason">
+            <input type="hidden" class="reason-val" name='reason' value="<{$text}>">
+            请选择退货原因 <span class="text"></span>
+            <i class="icon icon-down"></i>
+          </span>
+          <ul class="res-con">
+            <{foreach from=$reason item=text}>
+            <li><i class="icon icon-ok"></i><span><{$text}></span></li>
+            <{/foreach}>
+          </ul>
+        </div>
+        <div class="msg">
+          <span class="hd">详细描述:</span>
+          <span class="max">最多200字</span>
+          <textarea rows="3" maxlength='200' name="description" placeholder="原因描述"></textarea>
+        </div>
+        <span>您还可以，登录电脑端上传图片，增加售后成功几率</span>
+      </div>
+      <div class="buy-action">
+        <button type="submit" class="ui-btn-warning">提交售后申请</button>
+      </div>
+    </div>
+    </form>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+
+  <script>
+    $('.info .reason').click(function(){
+      $(this).next().toggle();
+      if($(this).children('i').hasClass('icon-down')){
+        $(this).css('border-bottom','none').children('i').removeClass('icon-down').addClass('icon-up');
+      }else{
+        $(this).css('bordere-bottom','1px dashed #dad9de').children('i').removeClass('icon-up').addClass('icon-down');
+      }
+    });
+    $('.res-con li').tap(function(){
+        $('.res-con li').removeClass('active')
+        var txt = $(this).find('span').text();
+        $(this).addClass('active');
+        $(this).parent().hide();
+        $('.reason .text').text('： ' + txt);
+        $('.reason-val').val(txt)
+    })
+  </script>

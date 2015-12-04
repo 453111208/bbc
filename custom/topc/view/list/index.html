@@ -1,0 +1,28 @@
+<div class="row mod-bottom">
+  <div class="col-lg-16 box">
+
+    <{if $screen.shopInfo}>
+      <!--根据搜索条件推荐的店铺信息-->
+      <{include file="topc/list/shop.html"}>
+    <{/if}>
+
+    <!--筛选条件-->
+    <div class="mod-bottom">
+      <{include file="topc/list/filter.html"}>
+    </div>
+
+    <!--排序-->
+    <div class="mod-bottom">
+      <{include file="topc/list/sortbar.html"}>
+    </div>
+
+    <!--显示搜索商品-->
+    <div class="mod-bottom">
+      <{include file="topc/list/item.html"}>
+    </div>
+
+    <{pagers data=$pagers}>
+
+  </div>
+</div>
+

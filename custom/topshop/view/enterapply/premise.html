@@ -1,0 +1,39 @@
+<form action="<{url action=topshop_ctl_enterapply@apply}>" method="post" class="form-horizontal" role="form">
+    <div class="panel panel-outter">
+        <div class="panel-heading text-center">
+            <h4>商城入驻协议</h4>
+        </div>
+        <div class="panel-body agreement-panel">
+            <div>
+                <{$content}>
+            </div>
+            <div class="checkbox text-center form-group">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="license" value="true" required>我已阅读并同意以上协议
+                </label>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-width-md">下一步</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    function ajaxSubmit (e) {
+        var form = e.target;
+        e.preventDefault();
+        $.post(form.action, $(form).serialize(), function(rs) {
+            rs = JSON.parse(rs);
+            if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+            }
+            if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+            }
+            if(rs.redirect) {
+                location.href = rs.redirect;
+            }
+        });
+    }
+</script>

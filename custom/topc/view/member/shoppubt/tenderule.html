@@ -1,0 +1,375 @@
+<!-- <{foreach from=$project item=row key=key}>
+	<input type="checkbox" name="project_<{$key}>">
+	<{$row.project}></br>
+	<input type="checkbox" name="detail_<{$key}>">
+	<{$row.detail}></br></br>
+<{/foreach}>  -->
+<form action="<{url action=topc_ctl_member_tenderule@save}>" method="post">
+<div class="max-Pands-box">
+	<div class="max-Pands-up">
+		<div class="max-Close-up"><span  onclick="$(this).getParent().hide()"></span></div>
+		<!--温馨提示 -->
+		<div class="max-Prompt-up">
+			<span class="max-span">温馨提示：</span>
+			<span>
+				<label >1.评标规则分为五部分，服务各项分数加上价格的分数应为100分；</label>
+				<label >2.您设定的分值将作为附件，允许投标企业下载；</label>
+			</span>
+		</div>
+		<input type="hidden" name="uniqid" value="<{$uniqid}>">
+		<!--价格与服务比重设置 -->
+		<!-- <div class="max-Price-up">
+			<h3>价格与服务比重设置</h3>
+			<div class="max-Pricebox">
+				<div class="max-c-price">
+					<label>价格所占评标比重分值：</label>
+					<span>
+						<input tyep="text" value="23" class="max-Number">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</span>
+				</div>
+				<div class="max-c-price"> 
+					<label>服务所占评标比重分值：</label>
+					<span>
+						<input tyep="text" value="77" class="max-Number">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</span>
+				</div>
+			</div>
+		</div> -->
+		<!--服务细则分值设置 -->
+		<div class="max-serve-up">
+			<h3>服务细则分值设置</h3>
+			<div class="max-text-up">
+				<label>请勾选您需要企业提供的资质，填写各项分值</label>
+				<span class="max-i-right">
+					<input value="选择一个最近使用过的设置">
+					<a href="javascript:;" class="max-i-down"></a>
+				</span>
+			</div>
+			<!--必要资质 -->
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>必要资质</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sums}>" readonly="true" class="max-Number needed">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$pro item=row key=key}>
+							<{if $row.category == '必要资质'&&$row.state == 1}>
+							
+							<li>
+								<span><input type="checkbox" <{if $row.score}>checked="true"<{else}><{if $row.is_checkbox}>checked="true"<{/if}><{/if}> name="<{$row.tenderrule_id}>" value="check"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" <{if !$row.score}>value="0"<{else}> value="<{$row.score}>"<{/if}> name="a<{$row.tenderrule_id}>" class="max-Number" id="needed<{$key}>">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+							</li>
+							<{/if}>
+							<{/foreach}>
+							<{foreach from=$newpro item=row key=key}>
+							<{if $row.category == '必要资质'&&$row.state == 1}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<{foreach from=$row.detail item=rows key=keys}>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" <{if $row.is_checkbox}>checked="true"<{/if}> name="<{$row.tenderrule_id}>_<{$keys}>_<{$rows.detail}>">
+										<label><{$rows.detail}></label>
+									</span>
+								</div>
+								<{/foreach}>
+							</li>
+							
+							<{/if}>
+							<{/foreach}>
+						</ul>
+						<div class="max-button-up">
+							<span class="max-i-right to">
+								<input value="从列表选择新项目">
+								<a href="javascript:;" class="max-i-down"></a>
+							</span>
+							<button class="maxCu to" type="button">
+								<span>
+									<em>+</em>
+									<i>新增自定义项</i>
+								</span>
+							</button>
+						</div>
+					</dd>
+				</dl>
+			</div>
+						<div class="max-Set-up to">
+			<dl>
+				<dt>
+					<span><label>可选资质</label></span>
+					<div class="max-c-price">
+						<label>分值：</label>
+						<input tyep="text" value="<{$sumc}>" readonly="true" class="max-Number canch">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</div>
+				</dt>
+				<dd>
+					<ul>
+					<{foreach from=$pro item=row key=key}>
+						<{if $row.category == '可选资质'&&$row.state == 1}>
+						<li>
+							<span><input type="checkbox" <{if $row.score}>checked="true"<{else}><{if $row.is_checkbox}>checked="true"<{/if}><{/if}> name="<{$row.tenderrule_id}>" value="check"><label><{$row.project}></label></span>
+							<div class="max-c-price">
+								<input tyep="text" <{if !$row.score}>value="0"<{else}> value="<{$row.score}>"<{/if}> class="max-Number" name="a<{$row.tenderrule_id}>" id="needed<{$key}>">
+								<a href="javascript:;" class="max-c-plus"></a>
+								<a href="javascript:;" class="max-c-minus"></a>
+							</div>
+						</li>
+						<{/if}>
+							<{/foreach}>
+							<{foreach from=$newpro item=row key=key}>
+							<{if $row.category == '可选资质'&&$row.state == 1}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<{foreach from=$row.detail item=rows key=keys}>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" <{if $row.is_checkbox}>checked="true"<{/if}> name="<{$row.tenderrule_id}>_<{$keys}>_<{$rows.detail}>">
+										<label><{$rows.detail}></label>
+									</span>
+								</div>
+								<{/foreach}>
+							</li>
+							
+							<{/if}>
+							<{/foreach}>
+					</ul>
+					<div class="max-button-up">
+						<span class="max-i-right">
+							<input value="从列表选择新项目">
+							<a href="javascript:;" class="max-i-down"></a>
+						</span>
+						<button class="maxCu" type="button">
+							<span>
+								<em>+</em>
+								<i>新增自定义项</i>
+							</span>
+						</button>
+					</div>
+				</dd>
+			</dl>
+						</div>
+						<div class="max-Set-up to1">
+			<dl>
+				<dt>
+					<span><label>设备能力<label></span>
+					<div class="max-c-price">
+						<label>分值：</label>
+						<input tyep="text" value="<{$summ}>"  readonly="true" class="max-Number">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</div>
+				</dt>
+				<dd>
+					<ul>
+					<{foreach from=$pro item=row key=key}>
+						<{if $row.category == '设备能力'&&$row.state == 1}>
+						<li>
+							<span><input type="checkbox" <{if $row.score}>checked="true"<{else}><{if $row.is_checkbox}>checked="true"<{/if}><{/if}> name="<{$row.tenderrule_id}>" value="check"><label><{$row.project}></label></span>
+							<div class="max-c-price">
+								<input tyep="text" <{if !$row.score}>value="0"<{else}> value="<{$row.score}>"<{/if}> name="a<{$row.tenderrule_id}>" class="max-Number" id="needed<{$key}>">
+								<a href="javascript:;" class="max-c-plus"></a>
+								<a href="javascript:;" class="max-c-minus"></a>
+							</div>
+						</li>
+						<{/if}>
+							<{/foreach}>
+							<{foreach from=$newpro item=row key=key}>
+							<{if $row.category == '设备能力'&&$row.state == 1}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<{foreach from=$row.detail item=rows key=keys}>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" <{if $row.is_checkbox}>checked="true"<{/if}> name="<{$row.tenderrule_id}>_<{$keys}>_<{$rows.detail}>">
+										<label><{$rows.detail}></label>
+									</span>
+								</div>
+								<{/foreach}>
+							</li>
+							
+							<{/if}>
+							<{/foreach}>
+					</ul>
+					<div class="max-button-up">
+						<span class="max-i-right">
+							<input value="从列表选择新项目">
+							<a href="javascript:;" class="max-i-down"></a>
+						</span>
+						<button class="maxCu" type="button">
+							<span>
+								<em>+</em>
+								<i>新增自定义项</i>
+							</span>
+						</button>
+					</div>
+				</dd>
+			</dl>
+						</div>
+						<div class="max-Set-up">
+			<dl>
+				<dt>
+					<span><label>处置能力</label></span>
+					<div class="max-c-price">
+						<label>分值：</label>
+						<input tyep="text" value="<{$sumd}>" readonly="true" class="max-Number">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</div>
+				</dt>
+				<dd>
+					<ul>
+					<{foreach from=$pro item=row key=key}>
+						<{if $row.category == '处置能力'&&$row.state == 1}>
+						<li>
+							<span><input type="checkbox" <{if $row.score}>checked="true"<{else}><{if $row.is_checkbox}>checked="true"<{/if}><{/if}> name="<{$row.tenderrule_id}>" value="check"><label><{$row.project}></label></span>
+							<div class="max-c-price">
+								<input tyep="text" <{if !$row.score}>value="0"<{else}> value="<{$row.score}>"<{/if}> name="a<{$row.tenderrule_id}>" class="max-Number" id="needed<{$key}>">
+								<a href="javascript:;" class="max-c-plus"></a>
+								<a href="javascript:;" class="max-c-minus"></a>
+							</div>
+						</li>
+						<{/if}>
+							<{/foreach}>
+							<{foreach from=$newpro item=row key=key}>
+							<{if $row.category == '处置能力'&&$row.state == 1}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<{foreach from=$row.detail item=rows key=keys}>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" <{if $row.is_checkbox}>checked="true"<{/if}> name="<{$row.tenderrule_id}>_<{$keys}>_<{$rows.detail}>">
+										<label><{$rows.detail}></label>
+									</span>
+								</div>
+								<{/foreach}>
+							</li>
+							
+							<{/if}>
+							<{/foreach}>
+					</ul>
+					<div class="max-button-up">
+						<span class="max-i-right">
+							<input value="从列表选择新项目">
+							<a href="javascript:;" class="max-i-down"></a>
+						</span>
+						<button class="maxCu" type="button">
+							<span>
+								<em>+</em>
+								<i>新增自定义项</i>
+							</span>
+						</button>
+					</div>
+				</dd>
+			</dl>
+						</div>
+						<div class="max-Set-up">
+			<dl>
+				<dt>
+					<span><label>服务能力</label></span>
+					<div class="max-c-price">
+						<label>分值：</label>
+						<input tyep="text" value="<{$sumsv}>" readonly="true" class="max-Number">
+						<a href="javascript:;" class="max-c-plus"></a>
+						<a href="javascript:;" class="max-c-minus"></a>
+					</div>
+				</dt>
+				<dd>
+					<ul>
+					
+			
+					<{foreach from=$pro item=row key=key}>
+						<{if $row.category == '服务能力'&&$row.state == 1}>
+						<li>
+							<span><input type="checkbox" <{if $row.score}>checked="true"<{else}><{if $row.is_checkbox}>checked="true"<{/if}><{/if}> name="<{$row.tenderrule_id}>" value="check"><label><{$row.project}></label></span>
+							<div class="max-c-price">
+								<input tyep="text" <{if !$row.score}>value="0"<{else}> value="<{$row.score}>"<{/if}> name="a<{$row.tenderrule_id}>" class="max-Number" id="needed<{$key}>">
+								<a href="javascript:;" class="max-c-plus"></a>
+								<a href="javascript:;" class="max-c-minus"></a>
+							</div>
+						</li>
+						<{/if}>
+							<{/foreach}>
+							<{foreach from=$newpro item=row key=key}>
+							<{if $row.category == '服务能力'&&$row.state == 1}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<{foreach from=$row.detail item=rows key=keys}>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" <{if $row.is_checkbox}>checked="true"<{/if}> name="<{$row.tenderrule_id}>_<{$keys}>_<{$rows.detail}>">
+										<label><{$rows.detail}></label>
+									</span>
+								</div>
+								<{/foreach}>
+							</li>
+							
+							<{/if}>
+							<{/foreach}>
+					</ul>
+					<div class="max-button-up">
+						<span class="max-i-right">
+							<input value="从列表选择新项目">
+							<a href="javascript:;" class="max-i-down"></a>
+						</span>
+						<button class="maxCu" type="button">
+							<span>
+								<em>+</em>
+								<i>新增自定义项</i>
+							</span>
+						</button>
+					</div>
+				</dd>
+			</dl>
+						</div> 
+			
+			<!------提交----按钮---->
+			<div class="maxM-buttom">
+				<button type="submit" class="btn btns" ><span>提 交</span></button>
+				<button type="button" class="btn btnc dialog-btn-close"><span>取 消</span></button>
+			</div>
+
+		</div>
+	</div>
+  </div>
+  </form>
+
+ 
+<script type="text/javascript">
+for (i = 0;i < <{$num}>; i++) {
+$('#needed'+i).bind('input propertychange', function () {
+	var sum = 0;
+	for (j = 0;j < <{$num}>; j++) {
+	sum += parseFloat($('#needed'+j).val());
+	};
+	if(sum>100){
+		alert('当前总分数超过100分，请重新填写');
+	}
+	});
+};
+/*for (i = 0;i < <{$canch}>; i++) {
+$('#canch'+i).bind('input propertychange', function () {
+	var sum = 0;
+	for (j = 0;j < <{$canch}>; j++) {
+	sum = parseFloat($('#canch'+j).val()) + parseFloat(sum);
+	};
+	$('.canch').val(sum);
+	});
+};*/
+</script>

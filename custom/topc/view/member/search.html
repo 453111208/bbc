@@ -1,0 +1,105 @@
+<form action="<{url action=topc_ctl_member@saveInfo}>" method="post" >
+    <div id="goods_exshow_config" class="tableform">
+        <input id="positionid" name="order_sort" type="hidden" value="<{$order_sort}>">
+        <input id="instrid" name="instr_id" type="hidden" value="<{$instr_id}>">
+        <div class="division">
+            <div class="goods-selector-handle clearfix">
+                <p>
+                    <label for="">选择一级分类：</label>
+                    <select name="instr_catparent">
+                        <option value="null">请选择类别</option>
+                        <{foreach from=$first item=option}>
+                        <option name="first_sort" value="<{$option}>"><{$option}></option>
+                        <{/foreach}>
+                    </select>
+                </p>
+            </div>
+        </div>
+        <div id="twodiv" class="division">
+            <div class="span-auto">
+                <label>选择二级分类：</label>
+            </div>
+            <div class="division goods-selector">
+               
+                <div id="twosort" class="secondsort">
+                <!-- <label></label><input type="radio"  name="instr_cat" value="" /> -->
+                </div>
+            </div>
+        </div>
+
+<!--            <div id="infoitems"></div>-->
+        <button type="submit" class="btn btn-import"  ><span><span>保存</span></span></button>
+
+    </div>
+</form>
+<script>
+//$('.secondsort').hide();
+$('select').change(function(){ 
+    var aa = $(this).val();
+    var type;
+    if(aa=="行情信息"){
+        type=1;
+        document.getElementById("twodiv").style.display = "block";
+    }else if(aa == "供求信息"){
+        type=3;
+        document.getElementById("twodiv").style.display = "none";
+    }else if(aa == "资讯信息"){
+        type=2;
+        document.getElementById("twodiv").style.display = "block";
+    }else if(aa == "交易信息"){
+        type=4;
+        document.getElementById("twodiv").style.display = "none";
+    }else if(aa == "名人专家"){
+        type=5;
+        document.getElementById("twodiv").style.display = "block";
+    }
+    $("#twosort").empty();
+    var data = {'type': type};
+    var url = '<{url action=topc_ctl_member@getupsort}>';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: data,
+        success:function(rs){
+            if(rs.success){
+                for(var i=0;i<rs.message.length;i++){
+                    $("#twosort").append('<input type="radio"  name="instr_cat" value="'+rs.message[i].id+'" /><label>'+rs.message[i].name+'</label><br>');
+                }
+            }
+            // alert(rs);
+        }
+    });
+
+    // $('.secondsort label').each(function(){
+    //     if($(this).text()==aa){
+    //         $(this).parent('.secondsort').show();
+    //     }else{
+    //         $(this).parent('.secondsort').hide();
+    //     }
+    // });
+});
+
+//$("#save_info").click(function() {
+//     $("#infoitems").find('input[type=radio][value="0"]').each(function(){
+//        var parent =$(this).parent().parent();
+//        parent.remove();
+//      });
+//  // body...
+//});
+
+function toVaild(){
+    alert(123);
+    var firstsort = document.getElementsByName("instr_catparent").value;
+    var twosort = document.getElementsByName("instr_catparent").value;
+    alert("firstsort:"+firstsort);
+    alert("twosort:"+twosort);
+    if(firstsort == "行情信息" || firstsort == "资讯信息" || firstsort == "名人专家"){
+        if(twosort == null || twosort == "" || twosort == undefined){
+            alert("请填写二级分类");
+            return false;
+        }
+    }
+    return true;
+}
+</script>

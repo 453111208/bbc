@@ -1,0 +1,24 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <{if $sendType=='mobile'}>
+      解绑手机
+      <{/if}>
+      <{if $sendType=='email'}>
+        解绑邮箱
+      <{/if}>
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="safe-box">
+        <div class="status-bar">
+          <div>1身份验证<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>2设置解绑信息<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+          <div class="on"><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3解绑完成</div>
+        </div>
+        <div class="success-info">
+          <div class="success-info-l1"><i class="icon icon-checkmark-c"></i>恭喜您，您的<{if $sendType=='mobile'}>手机<{/if}><{if $sendType=='email'}>邮箱<{/if}>已经解绑完成</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

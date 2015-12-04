@@ -1,0 +1,256 @@
+<form action="<{url action=topc_ctl_member_rate@doCreateRate}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+  <input type='hidden' name="tid" value=<{$tradeInfo.tid}>>
+  <div class="box">
+    <div class="membercenter-box">
+      <div class="membercenter-box-hd">
+        <span class="col-goods">店铺动态评分</span>
+      </div>
+      <div class="membercenter-box-bd">
+        <div class="rating-tip">需完成店铺评分才可提交哦</div>
+        <div class="rating">
+          <div class="rating-type">商品与描述相符</div>
+          <div class="rating-star">
+            <input id="goods" type="hidden" name="tally_score" value="">
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+          </div>
+          <div class="rating-val">4分</div>
+          <div class="rating-dec">质量不错，与卖家描述基本一致，还是挺满意的</div>
+        </div>
+        <div class="rating">
+          <div class="rating-type">商家的服务态度</div>
+          <div class="rating-star">
+            <input id="server" type="hidden" name="attitude_score" value="">
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+          </div>
+          <div class="rating-val">5分</div>
+          <div class="rating-dec">卖家的服务太棒了，考虑非常周到，完全超出期望值</div>
+        </div>
+        <div class="rating">
+          <div class="rating-type">商家的发货速度</div>
+          <div class="rating-star">
+            <input id="send" type="hidden" name="delivery_speed_score" value="">
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+          </div>
+          <div class="rating-val">5分</div>
+          <div class="rating-dec">卖家发货速度非常快，包装非常仔细、严实</div>
+        </div>
+        <div class="rating">
+          <div class="rating-type">物流发货的速度</div>
+          <div class="rating-star">
+            <input id="logistics" type="hidden" name="logistics_service_score" value="">
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+            <i class="icon icon-star-a"></i>
+          </div>
+          <div class="rating-val">3分</div>
+          <div class="rating-dec">物流公司服务态度一般，运送速度一般</div>
+        </div>
+      </div>
+    </div>
+    <!--无订单-->
+    <div class="membercenter-box goods-comment">
+      <div class="comment-header">
+        <span><{$tradeInfo.created_time|cdate}></span>
+        <span>订单编号：<{$tradeInfo.tid}></span>
+        <span><{$tradeInfo.shop_id|shopname}></span>
+      </div>
+      <div class="membercenter-box-bd">
+        <{foreach from=$tradeInfo.orders item=orderitem}>
+        <{if $orderitem.buyer_rate != '0'}><{continue}><{/if}>
+        <input type="hidden" name="rate_data[<{$orderitem.oid}>][oid]" value="<{$orderitem.oid}>" >
+        <div class="goods-score">
+          <div class="score-level">
+            <div class="goods-infor">
+              <div class="goods-img"><img width="64" height="64" src="<{$orderitem.pic_path|storager:'s'}>"></div>
+              <div class="goods-title"><a href="<{url action=topc_ctl_item@index item_id=$orderitem.item_id}>"><{$orderitem.title}></a></div>
+            </div>
+            <div class="goods-price">
+              <div class="">成交价：<{$orderitem.price|cur}></div>
+            </div>
+          </div>
+          <div class="choose-level">
+            <div class="level-key">商品评分：</div>
+            <div class="level-item">
+              <input id="score_good" name="rate_data[<{$orderitem.oid}>][result]" type="radio" value="good" checked>
+              <label for="score_good">
+                <i class="icon icon-flower good-color"></i>
+                好评
+              </label>
+            </div>
+            <div class="level-item">
+              <input id="score_normal" name="rate_data[<{$orderitem.oid}>][result]" value="neutral" type="radio">
+              <label for="score_normal">
+                <i class="icon icon-flower normal-color"></i>
+                中评
+              </label>
+            </div>
+            <div class="level-item">
+              <input id="score_bad" name="rate_data[<{$orderitem.oid}>][result]" value="bad" type="radio">
+              <label for="score_bad">
+                <i class="icon icon-flower bad-color"></i>
+                差评
+              </label>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="score-comment">
+            <textarea class="comment" name="rate_data[<{$orderitem.oid}>][content]" placeholder="写点评价吧，你的评价对其他买家很有帮助哦～"></textarea>
+            <div class="letter-limit">还可以输入<span>300</span>字</div>
+          </div>
+          <div class="score-imgs">
+            <div class="imgs-key">晒图仅限5张</div>
+            <div class="images-uploader">
+              <div class="handle img-thumbnail action-upload">
+                <input type="file" name="rate_data[<{$orderitem.oid}>][rate_pic][]" multiple accept="image/*" data-size="2048000" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" class="action-file-input">
+                <span class="icon-add"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <{/foreach}>
+      </div>
+    </div>
+    <div class="evaluation-submit">
+      <div class="anonymous"><input id="anonymous" type="checkbox" name="anony" <{if $tradeInfo.anony == '1'}>checked<{/if}> value="true"> <label for="anonymous">匿名评论</label></div>
+      <div><button id="submitForm" type="submit" class="btn btn-import"><span><span>确认提交</span></span></button></div>
+      <div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  $(function(){
+    var goodsStarDec = {
+      0: '实物和描述文字及图片相符',
+      1: '差的太离谱，与卖家描述的严重不符，非常不满',
+      2: '部分有破损，与卖家描述的不符，不满意',
+      3: '质量一般，没有卖家描述的那么好',
+      4: '质量不错，与卖家描述的基本一致，还是挺满意的',
+      5: '质量非常好，与卖家描述的完全一致，非常满意'
+    };
+
+    var serverStarDec = {
+      0: '卖家在与买家沟通时的服务态度',
+      1: '卖家态度很差，还骂人、说脏话，简直不把顾客当回事',
+      2: '卖家有点不耐烦，承诺的服务也兑现不了',
+      3: '卖家回复很慢，态度一般，谈不上沟通顺畅',
+      4: '卖家服务挺好的，沟通挺顺畅的，总体满意',
+      5: '卖家的服务太棒了，考虑非常周到，完全超出期望值'
+    };
+
+    var sendStarDec = {
+      0: '买家付款后卖家的发货速度',
+      1: '再三提醒下，卖家才发货，耽误我的时间，包装也很马虎',
+      2: '卖家发货有点慢的，催了几次终于发货了',
+      3: '卖家发货速度一般，提醒后才发货的',
+      4: '卖家发货挺及时的，运费收取很合理',
+      5: '卖家发货速度非常快，包装非常仔细、严实'
+    }
+
+    var logisticsStarDec = {
+      0: '物流公司在处理订单及配送货物时的服务',
+      1: '物流公司态度非常差，送货慢，外包装有破损',
+      2: '物流公司服务态度挺差，运送速度太慢',
+      3: '物流公司服务态度一般，运送速度一般',
+      4: '物流公司态度还好吧，送货速度挺快的',
+      5: '物流公司服务态度很好，运送速度很快'
+    }
+
+    setStars('#goods', 0, goodsStarDec);setStars('#server', 0, serverStarDec);setStars('#send', 0, sendStarDec);setStars('#logistics', 0, logisticsStarDec)
+
+    //店铺评星级
+    function setStars(starDom, defaultVal, starDec){
+      var stars = $(starDom).parent().find('i');
+      var valView = $(starDom).parent().parent().find('.rating-val');
+      var decView = $(starDom).parent().parent().find('.rating-dec');
+      $(starDom).val(defaultVal);
+      if(defaultVal!=0){
+        valView.text(defaultVal+'分');
+      }else{
+        valView.text('');
+      }
+      decView.text(starDec[defaultVal]);
+
+      $(stars).mouseover(function(){
+        var n = $(this).index();
+        for (var i = 0; i < stars.length; i++) {
+          if(i < n){
+            $(stars[i]).removeClass('icon-star-a').addClass('icon-star');
+          }else{
+            $(stars[i]).removeClass('icon-star').addClass('icon-star-a');
+          }
+        }
+        valView.text(n+'分');
+        decView.text(starDec[n]);
+      });
+
+      $(stars).mouseout(function(){
+        for (var i = 0; i < stars.length; i++) {
+          if(i >= defaultVal){
+            $(stars[i]).removeClass('icon-star').addClass('icon-star-a');
+          }else{
+            $(stars[i]).removeClass('icon-star-a').addClass('icon-star');
+          }
+        }
+        if(defaultVal!=0){
+          valView.text(defaultVal+'分');
+        }else{
+          valView.text('');
+        }
+        decView.text(starDec[defaultVal]);
+      });
+
+      $(stars).click(function(){
+          var n = $(this).index();
+          $(starDom).val(n);
+          defaultVal = $(this).index();
+      });
+    };
+
+    limitContent('.comment', 300);
+
+    //限制评论输入字数
+    function limitContent(content, length) {
+      $('.letter-limit').find('span').text(length);
+      $(content).keydown(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+        numView.text(remaining);
+      });
+
+      $(content).keyup(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        numView.text(remaining);
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+      });
+    };
+  });
+</script>

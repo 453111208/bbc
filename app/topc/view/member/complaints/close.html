@@ -1,0 +1,43 @@
+<{if $status == 'WAIT_SYS_AGREE'}>
+<div id="dialog">
+    <form action="<{url action=topc_ctl_member_complaints@closeComplaints}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+        <input type='hidden' name='complaints_id' value='<{$complaints_id}>'>
+        <input type='hidden' name='oid' value='<{$oid}>'>
+        <ul class="membercenter-address">
+            <li class="form-row">
+                <label for="" class="form-label"><em class="text-danger">*</em>撤销投诉原因</label>
+                <span class="form-act">
+                    <div class="score-comment2">
+                        <textarea name="buyer_close_reasons" maxlength="200" minlength="5" cols="50" rows="4" class="comment" required placeholder="请输入撤销投诉的原因，5-200字"></textarea>
+                        <div class="letter-limit pull-right">还可以输入<span>200</span>字</div>
+                    </div>
+                </span>
+            </li>
+        </ul>
+        <div class="orderdtl-box">
+            <div class="orderdtl-bd text-center">
+                <button type="submit" class="btn btn-import act-cancel"><span><span>撤销投诉</span></span></button>
+            </div>
+        </div>
+    </form>
+</div>
+<{elseif $status == 'BUYER_CLOSED'}>
+<div class="row">
+    <div class="col-lg-12 txt-list">
+        投诉撤销原因： <{$buyer_close_reasons}>
+    </div>
+</div>
+<{/if}>
+<script>
+    function commentWords (str, min, max) {
+      var length = str.length;
+      return str.length >= min && str.length <= max;
+    }
+    $(".comment").blur(function(){
+      if(!commentWords($('.comment').val(), 3, 250)) {
+        $(this).parent().addClass('wrong');
+      }else{
+        $(this).removeClass('error');
+      }
+    })
+</script>

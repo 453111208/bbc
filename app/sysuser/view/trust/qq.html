@@ -1,0 +1,71 @@
+<form id="trustlogin" name="trustlogin"  method='post' action='?app=sysuser&ctl=admin_trustlogincfg&act=saveCfg'>
+<div id="x-g-basic" class="goods-detail">
+        <input type="hidden" name="libclass" value="<{$libclass}>">
+        <div class="tableform">
+            <table border="0" cellpadding="0" cellspacing="0">
+
+                <tr>
+                  <th><em class="red">*</em><{t}>appid：<{/t}></th>
+                  <td><{input type="text" name="data[appid]"  required="true" vtype='required' value=$data.appid}></td>
+                </tr>
+
+                <tr>
+                  <th><em class="red">*</em><{t}>appkey：<{/t}></th>
+                  <td><{input type="text" name="data[appkey]" required="true" vtype='required' value=$data.appkey}></td>
+                </tr>
+
+                <tr>
+                  <th><em><font color='red'>*</font></em><{t}>启用状态：<{/t}></th>
+                  <td><{input type="bool" name="data[status]" value=$data.status}></td>
+                </tr>
+
+            </table>
+
+        </div>
+</div>
+
+
+<table cellspacing="0" cellpadding="0" class="table-action">
+      <tbody><tr valign="middle">
+        <td>
+                <{assign var="___a"  value="关  闭"}>
+                <{assign var="___c"  value=$___trustlogin='确定退出?'|t:'trustlogin'}>
+
+                <{button label=$___trustlogin="保存并关闭窗口"|t:'trustlogin' class="btn-primary" type="button" isclosedialogbtn="1" onclick="submitForm(event,2)"}>
+
+                <!--<{button label="保  存" class="btn-primary" onclick="submitForm(event,1)"}>-->
+                <{button label=$___trustlogin=$___a|t:'trustlogin' class="btn-secondary" type="button" isclosedialogbtn="1"}>
+        </td>
+        </tr>
+        </tbody></table>
+
+</form>
+<script>
+      var submitForm = function (event,sign){
+        var _form=$('trustlogin');
+
+        switch (sign){
+            case 1:
+            var target={
+                onComplete:function(){
+                    location.reload();
+            }};
+            break;
+            case 2:
+            var target={
+                onComplete:function(rs){
+                    if(rs&&!!JSON.decode(rs).success){
+                        try{
+                            window.opener.finderGroup['<{$env.get.finder_id}>'].refresh();
+                            window.close();
+                        }catch(e){}
+                    }
+            }};
+            break;
+        }
+        _form.store('target',target);
+        _form.fireEvent('submit',new Event(event));
+    };
+</script>
+
+

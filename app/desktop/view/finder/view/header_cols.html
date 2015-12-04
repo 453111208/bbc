@@ -1,0 +1,7 @@
+<{if $use_buildin_selectrow}><col class="col-select"></col><{/if}>
+<{if $detail_url}><col class="col-opt"></col><{/if}>
+<{foreach from=$showColumnsDefines key="columnName" item="columnDefine"}>
+<{capture assign="col_set_class"}><{if $columnDefine.orderby}>class="orderCell"<{/if}><{/capture}>
+<col style="width:<{$columnDefine.width}>px" <{$col_set_class}>></col>
+<{/foreach}>
+<col></col>   

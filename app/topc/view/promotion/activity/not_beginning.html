@@ -1,0 +1,63 @@
+<!--活动详情页面：未开始的内容-->
+<div class="detail-panel-info prechase-detail-panel-info">
+  <div class="panel-info-top clearfix">
+    <div class="info-top">【<{$activity.activity_name}>】
+      <!-- 活动三个状态 -->
+      <span>活动即将开始...</span>
+    </div>
+    <!-- 状态为活动已结束时隐藏更多活动商品，否则不隐藏  style="display:none;"-->
+    <a href="<{url action=topc_ctl_activity@index id=$group_item.activity_id}>" class="more"><span>更多活动商品<i class="icon icon-arrow-right-b"></i></span></a>
+  </div>
+  <h1><span><{$activity.activity_tag}></span><{$group_item.title}></h1>
+  <!-- 状态为活动即将开始时隐藏已有134人购买，否则不隐藏 -->
+  <div class="info-show clearfix"><span style="display:none;">已有<strong>0</strong>人购买</span>
+    <a href="<{url action=topc_ctl_shopcenter@index shop_id=$group_item.shop_id}>"><i class="icon"></i>进入店铺</a></div>
+  <!-- 活动未开始和进行中时间提醒,活动已结束则隐藏该div -->
+  <div class="info-time">
+    <span>
+      <i class="icon"></i>
+      <!-- 活动状态为即将开始则加载第二个label，活动状态为进行中则加载第一个label -->
+      <label>距活动开始还有：</label>
+      <strong class="activity-time"></strong>
+    </span>
+  </div>
+  <div class="operation-panel-wrap">
+    <div class="operation-panel">
+      <!-- 活动暂未开始 -->
+      <div class="info-operation rightnow-buy">
+        <div class="operation-left">
+          <p class="price"><i class="icon icon icon-pricetags-a" data-icon="\2925"></i><{$group_item.activity_price}></p>
+          <p class="suggest-price">建议价格：<del><{$group_item.price}></del></p>
+        </div>
+        <a href="javascript:void(0);" class="btn btn-remind">即将开售</a>
+        <div class="triangle_border_nw"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // 全setup方式调用
+  countdown('.activity-time',{
+    'start': <{$activity.start_time-$now_time}>,
+    'secondOnly': false,
+    'callback': null
+  });
+</script>
+
+<div id="mini_cart_dialog" class="popup-container mini-cart-dialog col-lg-6 begin-remind-dialog" tabindex="0" style="display: none;">
+  <div class="popup-body">
+    <div class="popup-header clearfix">
+      <h2>订阅开团提醒</h2>
+      <span><button type="button" title="关闭" class="popup-btn-close" hidefocus=""><i>×</i></button></span>
+    </div>
+    <div class="popup-content clearfix">
+      <div class="minicart-infos">
+        <p><label for="txt-phone">电子邮件：</label><input type="text" id="txt-phone" name="txt-phone" placeholder="请输入电子邮箱"></p>
+        <div class="actions">
+          <button class="btn popup-btn-close popup-btn-course">确&nbsp;定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

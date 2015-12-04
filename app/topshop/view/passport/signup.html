@@ -1,0 +1,92 @@
+<div class="signup-flow">
+    <div class="signup-flow-title"><{t}>商家入驻流程<{/t}></div>
+    <ul class="signup-flow-list">
+        <li class="on"><{t}>1账户注册/登录<{/t}><span class="arrow"></span></li>
+        <li><{t}>2提交申请资料<{/t}><span class="arrow"></span></li>
+        <li><{t}>3审核通过/签约<{/t}><span class="arrow"></span></li>
+        <li><{t}>4店铺开通<{/t}><span class="arrow"></span></li>
+        <li><{t}>5店铺设置<{/t}><span class="arrow"></span></li>
+    </ul>
+</div>
+<div class="form-box" id="login-box">
+    <div class="header">申请注册</div>
+    <form action="<{url action=topshop_ctl_passport@create}>" method="post" class="bg-white" role="form" data-validate-onsuccess="ajaxSubmit">
+        <div class="body">
+            <div class="form-group">
+                <label for="userid" class="control-label">账户名：</label>
+                <input type="text" name="login_account" id="userid" class="form-control" placeholder="注册账号必填，最少4个字符 不能纯数字或中文" required maxlength="50" data-validate-length-min="4" pattern="^(?!\d+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能用纯数字或中文" data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=account}>" data-validate-remote-name="login_account" data-validate-remote-message="此帐号已被注册过，请换一个重试">
+            </div>
+            <div class="form-group">
+                <label for="login_password" class="control-label">请设置密码：</label>
+                <input type="password" name="login_password" id="login_password" class="form-control" placeholder="密码，6-20个字符，不能纯数字、字母" required maxlength="20" data-validate-length-min="6" pattern="^(?!\d+$|[a-zA-Z]+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能纯数字、字母">
+            </div>
+            <div class="form-group">
+                <label for="psw_confirm" class="control-label">请确认密码：</label>
+                <input type="password" name="psw_confirm" id="psw_confirm" class="form-control" placeholder="请再次输入密码" required maxlength="20" data-validate-equalto-field="login_password" data-validate-equalto-message="两次密码输入不一致">
+            </div>
+            <div class="form-group">
+                <label for="username" class="control-label">联系人姓名：</label>
+                <input type="text" name="name" id="username" class="form-control" placeholder="请输入联系人姓名，最多10个字" maxlength="10" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="control-label">联系人手机：</label>
+                <input type="text" name="mobile" id="mobile" class="form-control" placeholder="请输入联系人手机" maxlength="11" required data-validate-mobile data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=mobile}>"  data-validate-remote-message="此手机号已被注册过，请换一个重试">
+            </div>
+            <div class="form-group">
+                <label for="email" class="control-label">联系人邮箱：</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="请输入联系人邮箱，最多50个字符" required maxlength="50" data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=email}>"  data-validate-remote-message="此邮箱已被注册过，请换一个重试">
+            </div>
+            <div class="checkbox form-group">
+                <label class="checkbox">
+                    <input type="checkbox" required name="license"> 我已阅读并同意 <a href="#" data-toggle="modal" data-target="#myModal">《商城用户注册协议》</a>
+                </label>
+            </div>
+        </div>
+        <div class="footer">
+            <p>
+                <button type="submit" class="btn bg-teal btn-block btn-lg">申请注册</button>
+            </p>
+            <p>
+                <a href="<{url action=topshop_ctl_passport@signin}>" class="text-center">已有帐户？去登录 ></a>
+            </p>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">商城用户注册协议</h4>
+      </div>
+      <div class="modal-body">
+        <{$license}>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+//$('#example').popover(options);
+
+function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+        if(rs.error) {
+            $('#messagebox').message(rs.message);
+            return;
+        }
+        if(rs.success) {
+            $('#messagebox').message(rs.message, 'success');
+        }
+        if(rs.redirect) {
+            setTimeout(function(){location.href=rs.redirect;}, 500);
+        }
+    });
+}
+</script>

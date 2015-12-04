@@ -1,0 +1,28 @@
+<desktop>
+    <permissions>
+        <!--会员-->
+        <permission id="user" display='true' parent='0' workground='sysuser.wrokground.user'>查看会员列表</permission>
+        <permission id="grade" display='true' parent='0' workground='sysuser.wrokground.grade'>查看会员等级</permission>
+        <permission id="point" display='true' parent='0' workground='sysuser.wrokground.grade'>修改会员积分</permission>
+        <permission id="editpoint" display='true' parent='0' workground='sysuser.wrokground.grade'>修改会员积分</permission>
+        <permission id="experience" display='true' parent='0' workground='sysuser.wrokground.grade'>查看会员经验值</permission>
+        <permission id="editexp" display='true' parent='0' workground='sysuser.wrokground.grade'>修改会员经验值</permission>
+        <permission id="editpwd" display='true' parent='0' workground='sysuser.wrokground.grade'>修改会员密码</permission>
+        <permission id="user_license" display='true' parent='edituser' workground='sysuser.wrokground.license"'>注册协议</permission>
+    </permissions>
+
+    <workground name="会员" id="sysuser.wrokground.user" controller="admin_user" action="index" order='30'>
+        <menugroup name="会员管理">
+            <menu controller='admin_user' action='index' permission='user' display='true' order='20'>会员列表</menu>
+            <menu controller='admin_grade' action='index' permission='grade' display='true' order='20'>会员等级</menu>
+            <menu controller='admin_experience' action='index' permission='experience' display='false' order='20'>会员经验值</menu>
+            <menu controller='admin_point' action='index' permission='point' display='false' order='20'>会员积分值</menu>
+            <menu controller='admin_user' action='license' permission='user_license' display='true' order='30'>注册协议</menu>
+        </menugroup>
+    </workground>
+
+    <adminpanel group="desktop_other" permission="other" controller="admin_trustlogincfg" action='index' display='true'>
+        信任登录配置
+    </adminpanel>
+
+</desktop>

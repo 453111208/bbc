@@ -1,0 +1,121 @@
+<form method="POST" id="setting_form" action="?app=sysconf&ctl=admin_setting&act=index">
+  <div class="tableform tableform-tabs">
+    <div class="tabs-wrap clearfix">
+      <ul>
+        <li id="_dom_el_feacc20" class="tab current" onclick="setTab(['dom_el_feacc20',['dom_el_feacc20','dom_el_feacc21']],['current'])">
+          <span>商城基本设置</span>
+        </li>
+        <li id="_dom_el_feacc21" class="tab" onclick="setTab(['dom_el_feacc21',['dom_el_feacc20','dom_el_feacc21']],['current'])">
+          <span>交易设置</span>
+        </li>
+      </ul>
+      <table>
+      <tr>
+        <th>
+          <label for="dom_el_feacc22">商城Logo</label>
+        </th>
+        <td>
+          <div class="image-input clearfix" style="width:224px;" gid="dom_el_feacc23">
+            <div class="flt">
+              <div class="image-input-view" style="font-size:12px;text-align:center;width:200px;line-height:95px;height:95px;overflow:hidden;">
+                <{img app="desktop" src="transparent.gif" onload="$(this).zoomImg(200,95,function(mw,mh,v){this.setStyle(&quot;marginTop&quot;,(mh-v.height)/2)});"}>
+              </div>
+            </div>
+            <div class="image-input-handle" onclick="Ex_Loader(&quot;modedialog&quot;,function(){new imgDialog(&quot;?app=desktop&act=alertpages&goto=%3Fapp%3Dimage%26ctl%3Dadmin_manage%26act%3Dimage_broswer&quot;,{handle:this});}.bind(this));" style="width:20px;height:95px;">选择
+              <{img src="bundle/arrow-down.gif" app="desktop"}>
+            </div>
+            <input type="hidden" name="set[site.logo]" value=""/>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="dom_el_feacc24">商城名称</label>
+        </th>
+        <td>
+          <input class="x-input" title="商城名称" type="text" name="set[site.name]" vtype="maxLength" id="dom_el_feacc24" default="点此设置您商店的名称" />
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="dom_el_feacc25">登录注册页左侧大图</label>
+        </th>
+        <td>
+          <div class="image-input clearfix" style="width:224px;" gid="dom_el_feacc26">
+            <div class="flt">
+              <div class="image-input-view" style="font-size:12px;text-align:center;width:200px;line-height:95px;height:95px;overflow:hidden;">
+                <{img app="desktop" src="transparent.gif" onload="$(this).zoomImg(200,95,function(mw,mh,v){this.setStyle(&quot;marginTop&quot;,(mh-v.height)/2)});"}>
+              </div>
+            </div>
+            <div class="image-input-handle" onclick="Ex_Loader(&quot;modedialog&quot;,function(){new imgDialog(&quot;?app=desktop&act=alertpages&goto=%3Fapp%3Dimage%26ctl%3Dadmin_manage%26act%3Dimage_broswer&quot;,{handle:this});}.bind(this));" style="width:20px;height:95px;">选择
+              <{img src="bundle/arrow-down.gif" app="desktop"}>
+            </div>
+            <input type="hidden" name="set[site.loginlogo]" value=""/>
+          </div>
+          <label class="help"><span class='notice-inline'>图片标准宽度为600*600</span>
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="dom_el_feacc27">交易关闭间隔时间</label>
+          </th><td>
+          <input class="x-input" title="交易关闭间隔时间" type="text" name="set[trade.cancel.spacing.time]" helpinfo="<span class='notice-inline'>单位：小时(h)</span>" vtype="number" id="dom_el_feacc27" default="72" />
+          <label class="help">
+            <span class='notice-inline'>单位：小时(h)</span>
+          </label>
+        </td>
+        </tr>
+        <tr>
+        <th>
+          <label for="dom_el_feacc28">交易完成间隔时间</label>
+          </th>
+          <td>
+          <input class="x-input" title="交易完成间隔时间" type="text" name="set[trade.finish.spacing.time]" helpinfo="<span class='notice-inline'>单位：天(d)</span>" vtype="number" id="dom_el_feacc28" default="7" />
+          <label class="help"><span class='notice-inline'>单位：天(d)</span>
+          </label>
+        </td>
+      </tr>
+    </table>
+    </div>
+  <div class="division" id="dom_el_feacc20" >
+    <table width="100%" cellspacing="0" cellpadding="0">
+    </table>
+  </div>
+  <div class="division" id="dom_el_feacc21" style="display:none">
+    <table width="100%" cellspacing="0" cellpadding="0"></table>
+  </div>
+  <div class="table-action">
+    <button type="submit" class="btn btn-primary">
+      <span>
+        <span>确定</span>
+      </span>
+    </button>
+  </div>
+</div>
+</div>
+</form>
+
+<script type="text/javascript">
+  window.addEvent('domready',function(){
+    validatorMap.set("maxLength",["最大长度32个字",function(el,v){
+      return v.length < 33;
+    }
+    ]);
+    $("main").addEvent("click",function(el){
+      el = el.target || el;
+      if ($(el).get("id")){
+        var _id = $(el).get("id");
+        var _class_name = "";
+        if (_id.indexOf("-t") > -1){
+          _class_name = _id.substr(0, _id.indexOf("-t"));
+          $$("."+_class_name).getParent("tr").show();
+        }
+        if (_id.indexOf("-f") > -1){
+          _class_name = _id.substr(0, _id.indexOf("-f"));
+          var _destination_node = $$("."+_class_name);
+          _destination_node.getParent("tr").hide();
+          _destination_node.each(function(item){if (item.getNext(".caution") && item.getNext(".caution").hasClass("error")) item.getNext(".caution").remove();});
+        }
+      }
+});});</script>

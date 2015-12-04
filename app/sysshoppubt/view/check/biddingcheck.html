@@ -1,0 +1,13 @@
+<div class="tableform">
+<form action="?app=sysshoppubt&ctl=biddings&act=check" method="post"> 
+是否通过审核？<br/><br/> 
+<label><input name="is_through" type="radio" value="1" />是 </label> 
+<label><input name="is_through" id="show" type="radio" value="2" />否 </label> <br/><br/><h3>回馈意见：</h3>
+<br/>
+<textarea cols="80" rows="5" name="text"></textarea>
+<input type="hidden" name="ideas" value="<{$id}>"><br/><br/>
+<input type="submit" value="保存">
+<input type="hidden" name="biddings_id" value="<{$sprodrelease_id}>">
+<input type="hidden" name="sprodrelease_uniqid" value="<{$sprodrelease_uniqid}>">
+</form> 
+</div>

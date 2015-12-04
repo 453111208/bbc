@@ -1,0 +1,14 @@
+<desktop>
+
+    <permissions>
+        <permission id="settlement" display='true' workground='sysclearing.wrokground.settlement'>结算管理</permission>
+    </permissions>
+
+    <workground name="商家" id="sysshop.workground.shoptype" controller="admin_settlement" action="index" order='90'>
+        <menugroup name="结算管理">
+            <menu controller='admin_settlement' action='index' permission='settlement' display='true' order="100" >结算汇总</menu>
+            <menu controller='admin_settlement' action='detail' permission='settlement' display='true' order="110" >结算明细</menu>
+        </menugroup>
+    </workground>
+
+</desktop>

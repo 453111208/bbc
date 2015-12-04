@@ -1,0 +1,20 @@
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title">业务提醒</h3>
+  </div><!-- /.box-header -->
+  <div class="box-body">
+    <div class="">
+      <span class="text-gray">待处理业务信息：</span>
+      <a href="<{url action=topshop_ctl_trade_list@index}>?status=1" >未付款订单(<span class="text-orange"><{$countUnTradeFee}></span>)</a>
+      <a href="<{url action=topshop_ctl_trade_list@index}>?status=2" >待发货订单(<span class="text-orange"><{$countReadysSend}></span>)</a>
+      <a href="<{url action=topshop_ctl_trade_list@index}>?status=3" >待收货订单(<span class="text-orange"><{$countReadyRec}></span>)</a>
+      <a href="<{url action=topshop_ctl_trade_list@index}>" class="pull-right">管理订单></a>
+    </div>
+    <div class="">
+      <span class="text-gray">商品信息：</span>
+      <a href="<{url action=topshop_ctl_item@itemList status=instock}>">未上架商品数量(<span class="text-orange"><{$countShopInstockItem}></span>)</a>
+      <a href="<{url action=topshop_ctl_item@itemList status=onsale}>">上架商品数量(<span class="text-orange"><{$countShopOnsaleItem}></span>)</a>
+      <a href="<{url action=topshop_ctl_item@itemList}>" class="pull-right">维护商品></a>
+    </div>
+  </div>
+</div>

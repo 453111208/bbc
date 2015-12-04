@@ -1,0 +1,137 @@
+<?php
+/**
+ * ShopEx licence
+ *
+ * @copyright  Copyright (c) 2005-2010 ShopEx Technologies Inc. (http://www.shopex.cn)
+ * @license  http://ecos.shopex.cn/ ShopEx License
+ */
+ 
+
+return array (
+    'columns' =>
+    array (
+        'data_id' =>array (
+            'type' => 'number',
+            'required' => true,
+            'comment'=> app::get('sysinfo')->_('数据ID'),
+            'autoincrement' => true,
+            'width' => 50,
+            'order'=>1,
+        ),
+        'first_sort' =>array (
+            'type' => 'string',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('一级分类'),
+            'order'=>2,
+        ),
+        'second_sort' =>array (
+            'type' => 'string',
+            'searchtype' => 'has',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('二级分类'),
+            'order'=>3,
+        ),
+        'third_sort' =>array (
+            'type' => 'string',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('三级分类'),
+            'order'=>3,
+        ),
+        'title' =>array (
+            'type' => 'string',
+            'searchtype' => 'has',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('品名'),
+            'order'=>4,
+        ),
+        'mark' =>array (
+            'type' => 'string',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('牌号'),
+            'order'=>5,
+        ),
+        'attribute' =>array (
+            'type' => 'string',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('属性'),
+            'order'=>6,
+        ),
+        'area' =>array (
+            'type' => 'string',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('地区'),
+            'order'=>7,
+        ),
+        'nation' =>array (
+            'type' => 'string',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('国标'),
+            'order'=>8,
+        ),
+        'price_run' =>array (
+            'type' => 'string',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('历史价格表现形式'),
+            'order'=>9,
+        ),
+        'price' =>array (
+            'type' => 'string',
+            'filterdefault' => 'true',
+            'required' => true,
+            'in_list' => true,
+            'default_in_list' => true,
+            'label' => app::get('sysinfo')->_('价格'),
+            'order'=>10,
+        ),
+        'date' =>array (
+            'type' => 'string',
+            'searchtype' => 'has',
+            'filtertype' => 'normal',
+            'filterdefault' => 'true',
+            'required' => true,
+            'label' => app::get('sysinfo')->_('日期'),
+            'editable' => false,
+            'width' => 130,
+            'in_list' => true,
+            'default_in_list' => true,
+            'order'=>11,
+        ),
+        
+  ),
+    'primary' => 'data_id',
+    'comment' => app::get('sysinfo')->_('行情数据主表'),
+);

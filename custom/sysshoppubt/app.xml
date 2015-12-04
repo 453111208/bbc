@@ -1,0 +1,20 @@
+<app>
+    <name>发布交易</name>
+    <type>service</type>
+    <description>提供发布交易基本功能</description>
+
+    <author>
+        <name>融为开发团队</name>
+        <email>luohaoyuan@irongwei.com</email>
+        <url>http://www.irongwei.com/</url>
+    </author>
+
+    <version>0.1</version>
+    <license>shopex license</license>
+    <parent_model_class>dbeav_model</parent_model_class>
+    <depends>
+        <app>desktop</app>
+        <app>pam</app>
+    </depends>
+
+</app>

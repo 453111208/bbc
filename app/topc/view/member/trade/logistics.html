@@ -1,0 +1,24 @@
+<div class="orderdtl-hd">物流信息</div>
+<div class="orderdtl-bd">
+  <div class="row">
+    <div class="col-lg-1">物流公司：</div>
+    <div class="offset-lg-1"><{$logi.logi_name}></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1">运单号码：</div>
+    <div class="offset-lg-1"><{$logi.logi_no}></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-1">物流跟踪：</div>
+    <div class="offset-lg-1">
+      <{if $logi.tracker}>
+      <{foreach from=$logi.tracker item=tracker}>
+      <div><{$tracker.AcceptTime}>&nbsp;<{$tracker.AcceptStation}></div>
+      <{/foreach}>
+      <{else}>
+      <{$logi.logmsg}>
+      <{/if}>
+    </div>
+  </div>
+</div>
+

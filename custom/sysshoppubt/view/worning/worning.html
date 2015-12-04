@@ -1,0 +1,43 @@
+<form id="cancelForm" action="?app=sysshoppubt&ctl=tenderenter&act=worning"  method="POST" >
+  <ul>
+    <input type="hidden" name="tenderenter_id" value="<{$tenderenter_id}>">
+    <li class="form-row">
+      <label for="" class="form-label">警示内容</label>
+      <{input type=html name='worncontent' value=$worncontent}>
+    </li>
+  </ul>
+  <div class="table-action">
+    <button type="submit" id='cancel-form-submit'>确定</button>
+    <button type="button" isclosedialogbtn="1">取消</button>
+</form>
+  </div>
+
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

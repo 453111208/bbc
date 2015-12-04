@@ -1,0 +1,96 @@
+<!-- 样式：E:\huanjing\b2b2c\public\themes\huanjing\images\topc\articles -->
+
+<!-- 添加名人专家文章类型 -->
+		    <div class="maxsub first">
+			<div class="maxsubmenu second">
+			    <{foreach from=$literarycatList item=cats}>
+			    <a href="/index.php/expert?literarycatid=<{$cats.literarycat_id}>" class="item1"><{$cats.literarycat}></a>
+			    <!-- href="<{url action=topc_ctl_expert@index literarycatid=$cats.literarycat_id}>" -->
+		        <{/foreach}>
+			</div>
+			</div>
+<!-- 当前位置栏 -->
+		    <div class="maxPath">
+		    <dl class="basic-ex-breadcrumbs clearfix">
+		          <dt>当前位置：</dt>
+		          <dd><a class="beb-nav" href="./"><span>首页</span></a>
+		              <span class="beb-raquo">></span>
+		              <span  class="beb-current">名人专家</span>
+		          </dd>
+		    </dl>
+		    </div>
+<!-- 专家列表页 -->
+    <div class="maxfull">
+        <div class="maxback"><img src="images/topc/articles/maxback.jpg"></div>
+    </div>
+    <div class="maxexpertlist maxcharacter" style="padding-bottom: 20px;">
+		<div class="maxhot-content" style="width:1150px;">
+			 <ul>
+			 <{foreach from=$expertList item=expert key=key}>
+			 <{if $key<9}>
+			   <li class="frist">
+				    <div style="float:left;">
+				        <div>
+						    <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>" class="expertphoto">
+						        <img src="<{$expert.image_logo}>" width="120" height="120">
+						    </a>
+					    </div>
+					    <div class="expert_nickname">
+						    <a style="color:#999;width:120px;" href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>">
+						        <p><{$expert.nickname}></p>
+						    </a>
+					    </div>
+					</div>
+
+					<div class="maxpaper">
+						<div>
+						    <h3><a style="margin-left:55px;" href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>"><{$expert.name}></a></h3>
+						</div><br/>
+						<div>
+						    <p>
+							    <a style="width:200px; color:#999;" href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>"><{$expert.summary}>
+							    </a>
+						    </p>
+						</div>
+					</div>
+			   </li>
+			<{/if}>
+			<{/foreach}>
+			 </ul>
+		</div>
+	    <!-- <div id="pageGro" class="cb maxpag" style="overflow:hidden;clear: both;padding-bottom: 50px;">
+	        <div class="pageUp">上一页</div>
+	                <div class="pageList">
+	                     <ul><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul>
+	                </div>
+	                <div class="pageDown">下一页</div>
+	            </div> -->
+
+	    <div id="pageGro" class="cb maxpag" style="position:absolute;bottom:-12px;right:430px;"> 
+        <{if $pageNow>1}>
+        <div class="pageUp"><a  style="display:block" href="<{url action=topc_ctl_expert@expertList pageNow=$pageNow-1 }>">上一页</a></div>
+        <{else}>
+        <div class="pageUp"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList">
+            <ul>
+                <{foreach from=$expertAllList item=item key=key}>
+                    <{if $key<$pageCount}>
+                        <li><a style="display:block" href="<{url action=topc_ctl_expert@expertList pageNow=$key+1}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}>
+        <div class="pageDown"><a style="display:block" href="<{url action=topc_ctl_expert@expertList pageNow=$pageNow+1 }>">下一页</a></div>
+        <{else}>
+        <div class="pageDown"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+        </div> 
+
+
+	</div>
+
+<script> 
+
+</script>

@@ -1,0 +1,86 @@
+
+    <div class="bread-crumbs"> </div>
+<!-- main container -->
+<div class="mod-bottom">
+  <{include file="topc/items/basic.html"}>
+</div>
+
+    <div class="col-lg-13 box max-box-right" style="margin-left: 10px;">
+      <div class="tab1" data-toggle="switchable" data-switchable-config="{&quot;events&quot;:&quot;click&quot;}">
+        <ul class="switchable-nav">
+          <li class="active">   <{if $type==2}>
+                  求购
+                  <{else}>
+                  供应
+                  <{/if}>详情</li>
+         <!--  <{if $item.params}>
+          <li>规格参数</li>
+          <{/if}> -->
+<!--          <li id="eval_tab">产品评论(<span><{$item.rate_count|default:"0"}></span>)</li>-->
+          <li id="consult_tab">询价记录(<span><{$item.rate_count|default:"0"}></span>)</li>
+        </ul>
+        <div class="switchable-content">
+          <div class="switchable-panel" style="display: block;">
+            <{include file="topc/items/detail.html"}>
+          </div>
+          <{if $item.params }>
+            <div class="switchable-panel" style="display: none;">
+              <{include file="topc/items/params.html"}>
+            </div>
+          <{/if}>
+<!--          <div id="eval_con" class="switchable-panel" style="display: none;">
+          </div>-->
+          <div id="consult_con" class="switchable-panel" style="display: none;">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+<!--   右侧悬浮客服 -->
+  <div class="maxkf">
+    <div class="item item1">
+    <div class="j-icon"></div>
+      <div class="n">
+        <div class="icon"></div>
+        <span>在线咨询</span>
+      </div>
+      <div class="maxpopup">
+        <a class="kf1" href="" title="">客服东东</a>
+        <a class="kf2" href="" title="">客服芳芳</a>
+      </div>
+    </div>
+    <div class="item item2">
+    <div class="j-icon"></div>
+      <div class="n">
+        <div class="icon"></div>
+        <span>咨询热线</span>
+      </div>
+      <div class="maxpopup">
+        <div class="maxRside">
+        <div class="n">400-898-9797<br>7x24小时 全年无休</div>
+      </div>
+      </div>
+    </div>
+    <div class="item item3">
+    <div class="j-icon"></div>
+      <div class="n">
+        <div class="icon"></div>
+        <span>二维码</span>
+      </div>
+      <div class="maxpopup">
+        <img src="images/images/ewm.png" alt="" />
+      </div>
+    </div>
+    <div class="item item4">
+      <div class="n">
+        <div class="icon"></div>
+        <span>返回顶部</span>
+      </div>
+    </div>
+    
+  </div>
+<!--   右侧悬浮客服END -->

@@ -1,0 +1,15 @@
+<div id="slider" class="ui-slider">
+  <div class="ui-slider-group">
+    <{foreach from=$slider item=items}>
+      <div class="ui-slider-item" data-index="0">
+        <a href="<{$items.link}>">
+          <img src="<{$items.sliderImage|storager:'l'}>"></a>
+      </div>
+     <{/foreach}>
+  </div>
+  <p class="ui-slider-dots">
+    <{foreach from=$slider item=item}>
+      <b></b> 
+    <{/foreach}>
+  </p>
+</div>

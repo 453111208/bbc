@@ -1,0 +1,85 @@
+<form id="brandForm" action="?app=sysshoppubt&ctl=tradeorder&act=update"  method="POST" >
+  <div class="tableform">
+    <div class="division">
+      <input type="hidden" name="tradeorder_id" value="<{$tradeorderInfo.tradeorder_id}>">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <th><{t}>标题：<{/t}></th>
+          <td>
+            <{$tradeorderInfo.title}>
+          </td>
+        </tr>
+
+         <tr>
+          <th><{t}>类型：<{/t}></th>
+          <td>
+            <{if $tradeorderInfo.type==0}>标准<{elseif $tradeorderInfo.type==1}>竞价<{elseif $tradeorderInfo.type==2}>招标<{/if}>
+          </td>
+        </tr>
+
+
+        <tr>
+          <th><{t}>卖方：<{/t}></th>
+          <td>
+           <{$tradeorderInfo.shop_name}>
+          </td>
+        </tr>
+
+        <tr>
+          <th><{t}>买方：<{/t}></th>
+          <td>
+           <{$tradeorderInfo.user_name}>
+          </td>
+        </tr>
+
+        <tr>
+          <th><{t}>总价：<{/t}></th>
+          <td>
+             <{$tradeorderInfo.totalbid}>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="division">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <th>状态：</th>
+          <td>
+<input type="radio" name="state" value="0" <{if $tradeorderInfo.state=="0" }>checked="checked" <{/if}>  />待观察 
+<input type="radio" name="state" value="2" <{if $tradeorderInfo.state=="2" }>checked="checked" <{/if}> />失败 
+<input type="radio" name="state" value="1" <{if $tradeorderInfo.state=="1" }>checked="checked" <{/if}> />成功
+
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+  </div>
+
+  <div class="table-action">
+    <{button type="submit" id='brand-form-submit' label="保存"|t:'syscategory'}>
+  </div>
+
+</form>
+<script>
+  $('brandForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('brandForm').getParent('.dialog')){
+                    var Dlg = $('brandForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+
+</script>

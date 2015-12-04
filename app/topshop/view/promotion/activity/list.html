@@ -1,0 +1,150 @@
+<form action="" method="post" role="form">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation">
+        <a href="<{url action=topshop_ctl_promotion_activity@registered_activity}>">我的报名</a>
+    </li>
+    <li role="presentation" class="active">
+        <a href="<{url action=topshop_ctl_promotion_activity@activity_list}>">活动列表</a>
+    </li>
+    <li role="presentation" >
+        <a href="<{url action=topshop_ctl_promotion_activity@historyregistered_activity}>">历史报名</a>
+    </li>
+  </ul>
+
+  <br>
+  <table class="table table-primary table-hover table-goods">
+    <thead>
+      <tr>
+        <td class="col-name">活动名称</td>
+        <td>报名时间</td>
+        <td>活动时间</td>
+        <td>活动类型</td>
+        <td>可否参与</td>
+        <td class="text-center">操作</td>
+      </tr>
+    </thead>
+    <{if $activityList}>
+    <tbody id="data_node">
+      <{foreach from=$activityList item=aitem}>
+      <tr>
+        <td>
+          <span class="text-orange"><{$aitem.activity_name}></span>
+        </td>
+        <td>
+          <{$aitem.apply_begin_time|cdate:FDATE_STIME}> ~ <{$aitem.apply_end_time|cdate:FDATE_STIME}>
+        </td>
+        <td>
+          <{$aitem.start_time|cdate:FDATE_STIME}> ~ <{$aitem.end_time|cdate:FDATE_STIME}>
+        </td>
+        <td>
+          <{$aitem.activity_tag}>
+        </td>
+        <{if $aitem.isactivity}>
+          <td>可参与</td>
+          <td class="text-center">
+            <{if $now>$aitem.apply_begin_time && $now<$aitem.apply_end_time}>
+              <{if $aitem.verify_status && $aitem.verify_status!='refuse'}>
+                已报名
+              <{else}>
+              <a href="<{url action=topshop_ctl_promotion_activity@canregistered_apply activity_id=$aitem.activity_id}>">
+                报名
+              </a>
+              <{/if}>
+            <{else}>
+            <a href="<{url action=topshop_ctl_promotion_activity@noregistered_detail activity_id=$aitem.activity_id}>">查看详情</a>
+            <{/if}>
+          </td>
+          <{else}>
+          <td>不可参与</td>
+          <td class="text-center">
+            <a href="<{url action=topshop_ctl_promotion_activity@noregistered_detail activity_id=$aitem.activity_id}>">查看详情</a>
+          </td>
+        <{/if}>
+      </tr>
+      <{/foreach}>
+    </tbody>
+    <{else}>
+    <tbody id="data_node">
+      <tr>
+        <td algin="center" colspan="11">
+          <p class="text-muted well no-shadow text-center">暂无数据</p>
+        </td>
+      </tr>
+    </tbody>
+    <{/if}>
+  </table>
+
+  <{pagers data=$pagers}>
+  <{if $total > 0 }>
+  <span class="page-number">共&nbsp;<em class="text-aqua"><{$total}></em>&nbsp;条记录</span>
+  <{/if}>
+
+</form>
+
+<script type="text/javascript">
+    $('#selectAll').change(function(){
+        $('#data_node input[type=checkbox]').prop('checked', this.checked);
+    });
+
+    $('#action-onsale').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@setItemStatus}>', 'type=tosale&item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+            // itemIds.push($(this).val());//向数组中添加商品id
+        });
+        // if(itemIds.length>0){
+        //     var itemIdsStr=itemIds.join(',');//将商品id数组元素连接起来以构建一个字符串
+        // }else{
+        //     return false;
+        // }
+    });
+    $('#action-instock').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@setItemStatus}>', 'type=tostock&item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+        });
+    });
+
+    $('#action-remove').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@deleteItem}>', 'item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+        });
+    });
+
+</script>
+
+<script>
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-edit");
+    }
+  );
+</script>

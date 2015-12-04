@@ -1,0 +1,17 @@
+<table width="100%" border="0" class="detail-table">
+  <tbody>
+    <{foreach from=$item.params item=row key=key}>
+    <tr>
+      <th class="tdTitle" colspan="2"><{$key}></th>
+    </tr>
+
+    <{foreach from=$row item=params key=paramsName}>
+    <tr>
+      <td class="tdTitle"><{$paramsName}></td>
+      <td><{$params}></td>
+    </tr>
+    <{/foreach}>
+
+    <{/foreach}>
+  </tbody>
+</table>

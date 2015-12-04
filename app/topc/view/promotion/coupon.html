@@ -1,0 +1,11 @@
+<div class="section">
+    <div class="coupon-img">
+      <img width="1190" height="180" src="images/demo_coupon_goods.jpg" alt="">
+      <div class="txt">
+        <h3><{$promotionInfo.coupon_name}></h3>
+        <p class="content"><{$promotionInfo.coupon_desc}></p>
+        <p class="time">优惠卷领取时间：<{$promotionInfo.cansend_start_time|cdate:'FDATE'}> 至 <{$promotionInfo.cansend_end_time|cdate:'FDATE'}></p>
+        <p class="time">优惠卷生效时间：<{$promotionInfo.canuse_start_time|cdate:'FDATE'}> 至 <{$promotionInfo.canuse_end_time|cdate:'FDATE'}></p>
+      </div>
+    </div>
+</div>

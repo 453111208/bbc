@@ -1,0 +1,28 @@
+<desktop>
+    <permissions>
+        <!--会员-->
+        <permission id="rate" display='true' parent='0' workground='sysuser.wrokground.rate'>评价系统管理</permission>
+        <!--意见反馈-->
+        <permission id="feedback" display='true' parent='0' workground='sysshop.workground.shoptype'>意见反馈管理</permission>
+    </permissions>
+
+    <workground name="会员" id="sysuser.wrokground.user" controller="admin_user" action="index" order='30'>
+        <menugroup name="评价管理">
+            <menu controller='traderate' action='index' permission='rate' display='true' order='30'>评论列表</menu>
+            <menu controller='appeal' action='index' permission='rate' display='true' order='30'>申诉列表</menu>
+        </menugroup>
+    </workground>
+
+    <workground name="商家" id="sysshop.workground.shoptype" controller="admin_shoptype" action="index" order='90'>
+        <menugroup name="意见反馈">
+            <menu controller='feedback' action='index' permission='feedback' display='true' order='10'>意见反馈</menu>
+        </menugroup>
+    </workground>
+
+    <workground name="商品" id="sysitem.workground.item" controller="admin_item" action="index" order='90'>
+        <menugroup name="商品咨询">
+            <menu controller='consultation' action='index' permission='rate' display='true' order='30'>咨询列表</menu>
+        </menugroup>
+    </workground>
+
+</desktop>

@@ -1,0 +1,34 @@
+<!-- 回复开始 -->
+<form action="<{url action=topshop_ctl_rate@reply}>" method="post" class="form-horizontal" data-validate-onsuccess="ajaxSubmitReply" role="form">
+  <input type="hidden" name="rate_id" value="<{$rate.rate_id}>" >
+  <div class="form-group comment">
+    <textarea class="form-control" data-validate-required="true" name="reply_content" placeholder="说点什么把～"></textarea>
+    <div class="letter-limit">至少5个字符，还可以输入<span>300</span>字</div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">回复</button>
+    <button type="reset" class="btn btn-default form-cancel">取消回复</button>
+  </div>
+</form>
+
+<script>
+  function ajaxSubmitReply (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.href=rs.redirect;}, 800);
+      }
+    });
+  }
+  $(function(){
+    $('.form-cancel').click(function(){
+      history.go(-1);
+    });
+  })
+</script>

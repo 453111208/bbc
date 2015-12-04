@@ -1,0 +1,7 @@
+<cronentries>
+    <cron id="sysclearing_tasks_settlement">
+        <description>分析统计更新每月结算汇总单</description>
+        <schedule> 0 1 1 * *</schedule>
+        <enabled>true</enabled>
+    </cron>
+</cronentries>

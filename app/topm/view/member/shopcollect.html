@@ -1,0 +1,141 @@
+<div class="col-stores shop">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">选择收藏</div>
+      <a class="edit"> <i class="icon-edit"></i>
+      </a>
+      <div class="menu">
+        <button type="button" class="btn icon-more" id="menu"></button>
+        <script type="text/javascript">
+          $('#menu').dropmenu({
+            content: [
+              {
+                text: '首页',
+                icon: 'home',
+                href: '<{url action=topm_ctl_default@index}>'
+              },
+    
+              {
+                text: '商品类目',
+                icon: 'catalog',
+                href: '<{url action=topm_ctl_category@index}>'
+              },
+
+              {
+                text: '购物车',
+                icon: 'barrow',
+                href: '<{url action=topm_ctl_cart@index}>'
+              },
+
+              {
+                text: '会员中心',
+                icon: 'man',
+                href: '<{url action=topm_ctl_member@index}>'
+              },
+            ]
+          });
+        </script>
+      </div>
+    </div>
+  </header>
+  <div class="main">
+    <div class="showarea">
+      <section class="col-list lazyload">
+        <ul>
+          <{foreach from=$favshop_info item=fav}>
+          <li>
+            <input type="hidden" value="<{$fav.shop_id}>" name="shop_id[]"/>
+            <a href="<{url action=topm_ctl_shopcenter@index shop_id=$fav.shop_id}>">
+              <span class="info-l">
+                <img  class="preload" src="<{$fav.shop_logo|default:$defaultImageId.S.default_image|storager:'s'}>" alt="">
+              </span>
+              <span class="info-m">
+                <span class="store-n"><{$fav.shop_name}></span><br>
+               
+              </span>
+              <span class="info-r">
+                <span class="icon-forward"></span>
+              </span>
+            </a>
+          </li>
+          <{/foreach}>
+        </ul>
+      </section>
+      <{pagers data=$pagers}>
+    </div>
+    <div class="delete-action">
+      <button type="button" class="ui-btn-warning">删 除</button>
+    </div>
+  </div>
+    <!--返回顶部-->
+    <div id="gotop"></div>
+
+  <script>
+    //创建slider组件
+    $('#slider').slider( { imgZoom: true });
+    //创建返回顶部组件
+    $('#gotop').gotop();
+    // 全setup方式调用
+    $('#backtop').backTop();
+    // 全setup方式调用
+    $('#menu').click(
+      function(){
+        $('.hd-menu .ui-mark-temp').removeClass('ui-in');
+      }
+    );
+
+  // 收藏商品
+    $('.info-p .p-rt').click(
+      function(){
+        // 替换icon
+        $('.add-col .icon').removeClass('icon-star').addClass('icon-favor');
+
+        // 判断是否有cur
+        if($(this).hasClass('cur')){
+          $('.add-col .txt').html('您已收藏');
+        }else{
+          $('.add-col .txt').html('收藏成功！');
+        }
+        $(this).addClass('cur');
+        collect();
+      }
+    );
+
+
+    // 编辑按钮
+    $('.edit').click(function(){
+      $(this).hide();
+      $('.showarea').addClass('in');
+      $('.delete-action').addClass('in');
+      $('footer').hide();
+    });
+    
+    // 展示区域
+    $('.showarea ul li').click(function(){
+      $(this).toggleClass('cur');
+    });
+    
+    // 删除功能
+    $('.delete-action button').click(function(){
+      var Message = new gmu.Message();
+      if(!$('.showarea ul li').hasClass('cur')){
+        Message.error('请选择删除对象');    
+      }else{
+        if(confirm("确认要删除吗？")){
+          var el = $('.showarea ul li.cur input[type=hidden]');
+          el.each(function(){$(this).val();});
+          var url = '<{url action=topm_ctl_collect@ajaxFavshopDel}>';
+          $.post(url,el,function(rs){
+            if(rs.success){
+              $('.showarea ul li.cur').remove();
+            }
+          });
+        }
+      }
+    });
+  </script>
+</div>
+

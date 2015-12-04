@@ -1,0 +1,362 @@
+
+<link rel="stylesheet" href="images/max.css">
+<link rel="stylesheet" href="images/product.css">
+<!-- 导航菜单 -->
+
+
+<!-- 导航菜单END -->
+<!-- 头部版块END -->
+<!-- 面包屑 -->
+
+<!-- 面包屑END -->
+
+
+    <div class="bread-crumbs"> </div>
+    <!-- main container -->
+    <div class="mod-bottom">
+      <div class="row max-row-box" style="padding-left:0">
+       
+        <div class=" box">
+          <div class="detail-panel">
+            <div class="detail-panel-bd">
+           
+        <div class="max-bidding-main">
+        <!-- 版块头部 -->
+      <{include file="topc/bidding/block/margin.html"}>
+          <!-- 版块底部END -->
+        </div>
+                <ul class="seller">
+          <li>
+            <div class="maxbrand-logo" >
+            <a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>" target="_blank">
+             <img style="width:120px;height: 60px;" src="<{$shopinfo.shop_logo}>" title="">
+            </a>
+            </div>
+          </li>
+                  <li class="btnw"><a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>"><{$shopinfo.shop_name}></a> <div class="btn">&nbsp;</div>
+          <div class="maxinfo " style="display:none">
+             <div class="item item1 clearfix"><span>综合评分：</span><em class="jd"><div class="n" style="width:<{$shopinfo.score*10}>%"></div></em><i><{$shopinfo.score}>分</i></div>
+                            <!-- 修改进度条长度改class="n"宽度即可 -->
+            <!-- <div class="item item2"><span>细则评分：</span><em>9.94<i class="s"><img src="images/images/p_s.png" alt="" /></i></em><em>9.84<i class="z"><img src="images/images/p_z.png" alt="" /></i></em><em>9.81<i class="x"><img src="images/images/p_x.png" alt="" /></i></em></div> -->
+          
+          </div>
+          
+          </li>
+                  
+                  <li class="maxsubmenu">
+        <!--   <div class="item1 item"><img src="images/images/p_dfh.png" alt="" /> <span>第<i>3</i>年</span></div> -->
+          <div class="item3 item">
+            <div class="n"><a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>" target="_blank" title="">进入展台</a>
+            <{if $nologin!=1}>
+            <a href="<{url action=topc_ctl_passport@signin}>" title="">
+            <{else}>
+            <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" data-ajax-data="shop_id=<{$shopinfo.shop_id}>" rel="_request">
+            <{/if}>
+            关注展台</a>
+            <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin}>">申请看样</a>
+            <{else}>
+               <a href="javascript:" data-ajax-data="bidding_id=<{$rows.bidding_id}>" class="seegoods_btn">申请看样</a>
+            <{/if}>
+            <!-- <a href="" title="">申请检测</a></div> -->
+          </div>
+             
+                    
+                  </li>
+          <li style="font-size:14px">出价记录<font style="font-size:12px;">(<{$tendercount}>次出价)</font></li>
+                 <li>
+          <table style="width:90%;margin:0 auto" border="0" cellspacing="0" cellpadding="0" aling="left" class="cj">
+            <thead>
+              <tr>
+           
+                <th>出价人</th>
+                <th>价格</th>
+              </tr>
+            </thead>
+            <tbody>
+              <{foreach from=$pm item=pmUser  key=parentId  name="slider"}>
+              <tr class="<{if $env.foreach.slider.first}>active<{/if}> a">
+               
+                <td ><div style="display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;width:90px;"><{$pmUser.user_name}></div></td>
+                <td class="item3">￥<{$pmUser.totalbid}></td>
+              </tr>
+             <{/foreach}>
+              <tr>  
+                <td colspan="3"><a href="" title="">查看详细>></a></td>
+              </tr>
+            </tbody>
+
+          </table>
+          
+         </li>
+                </ul>
+         
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="module">
+  <div class="auction-process-container">
+    <div class="auction-process">
+      <h3><a href="#" target="_blank">竞拍流程</a></h3>
+      <div class="auction-process-help">
+        <a href="#" target="_blank">更多帮助</a>
+      </div>
+    </div>
+    <div class="auction-process-step-container">
+      <div class="auction-process-step J_Step">
+        <div>
+          <a href="#" target="_blank"><span>1</span>阅读重要提醒</a>
+        </div>
+        <ul>
+          <li><a href="#" target="_blank">不阅读公告的后果</a></li>
+          <li><a href="#" target="_blank" style="color:#f60">拍前准备（重要）</a></li>
+        </ul>
+      </div>
+      <div class="auction-process-step J_Step">
+        <div>
+          <a href="#" target="_blank"><span>2</span>出价竞拍</a>
+        </div>
+        <ul>
+          <li><a href="#" target="_blank" style="color:#f60">网拍用什么浏览器</a></li>
+          <li><a href="#" target="_blank">出价成交规则</a></li>
+        </ul>
+      </div>
+      <div class="auction-process-step J_Step">
+        <div>
+          <a href="#" target="_blank"><span>3</span>交保证金</a>
+        </div>
+        <ul>
+          <li><a href="#" target="_blank">如何缴纳大额保证金</a></li>
+          <li><a href="#" target="_blank">出局如何退回保证金</a></li>
+        </ul>
+      </div>
+      <div class="auction-process-step J_Step">
+        <div>
+          <a href="#" target="_blank"><span>4</span>竞拍成功</a>
+        </div>
+        <ul>
+          <li><a href="#" target="_blank">如何支付尾款？</a></li>
+          <li><a href="#" target="_blank" style="color:#f60">拍下不要了的后果</a></li>
+        </ul>
+      </div>
+      <div class="auction-process-step auction-process-step-last J_Step">
+        <div>
+          <a href="#" target="_blank"><span>5</span>线下提货</a>
+        </div>
+        <ul>
+          <li><a href="#" target="_blank">如何完成后续手续</a></li>
+          <li><a href="#" target="_blank">售后问题怎么办？</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-13 box max-box-right" style="margin-left: 10px;width:922px;float:right;">
+<div class="tab1" data-toggle="switchable" data-switchable-config="{&quot;events&quot;:&quot;click&quot;}">
+            <ul class="switchable-nav">
+              <li class="active">产品详情</li>
+        <li>竞买须知</li>
+        <li id="eval_tab">商品评价(<{$commentnum}>)</li>
+        <li id="consult_tab">咨询</li>
+        <li>竞价记录(<span><{$tendercount}></span>)</li>
+             
+            </ul>
+
+            <div class="switchable-content">
+         <div class="switchable-panel" style="display: block;">
+        <div class="goods-info">
+        <div class="title-zy"><h3>重要提醒</h3><div class="xian"></div></div>
+        <div class="bd">
+          <div class="item">1.招标商品为含税价格，卖方提供普票；</div>
+          <div class="item">2.中标后3日内完成交易商品交割；</div>
+          <div class="item">3.提货前中标方需先支付货款的50%至卖方指定账户（见合同）</div>
+          <div class="item">4.遵守厂区内规章制度，进出车辆驾驶员需要服从现场工作人员安排 ；</div>
+        </div>
+        </div>
+           
+                <!-- <ul class="detailinfo-list">
+                  <li>商品编号：md001</li>
+                  <li>上架时间：2015-07-23</li>
+                  <li>商品毛重：0.100kg</li>
+                </ul> -->
+            <div class="goods-info">
+            <div class="hd">产品信息</div>
+            <div class="bd" style="line-height:30px;padding-bottom:20px">
+              <div class="item">联系人：<{$shopinfo.shopuser_name}></div>
+              <div class="item">手机：<{$shopinfo.mobile}></div>
+              <div class="item">E-Mail:<{$shopinfo.email}></div>
+            
+            </div>
+          </div>
+                <div class="goods-info">
+                  <div class="hd">产品信息</div>
+                  <div class="bd">
+              <{$requireItem.desc}>
+ </div>
+                </div>
+              </div>
+              <div class="switchable-panel" style="display: none;">2 </div>
+               <div id="eval_con" class="switchable-panel" style="display: none;">加载中... </div>
+                <div id="consult_con" class="switchable-panel" style="display: none;">加载中...</div>
+                 <div class="switchable-panel" style="display: none;">
+                    <table style="width:90%;margin:0 auto" border="0" cellspacing="0" cellpadding="0" class="cj">
+            <thead>
+              <tr>
+                <th>出价人</th>
+                <th>价格</th>
+              </tr>
+            </thead>
+            <tbody>
+              <{foreach from=$pm item=pmUser  key=parentId  name="slider"}>
+              <tr class="<{if $env.foreach.slider.first}>active<{/if}> a">
+                
+                <td style="text-align: center;"><{$pmUser.user_name}></td>
+                <td class="item3" style="text-align: center;"><{$pmUser.totalbid|cur}></td>
+              </tr>
+             <{/foreach}>
+            </tbody>
+
+          </table>
+                  </div>
+            </div>
+          </div>
+    
+        
+      <!-- 该企业发布的其他交易 -->
+      <div class="max-moregoods">
+        <div class="border-top">该企业发布的其他交易</div>
+        <div class="border-body">
+          <ul>
+          <{foreach from=$otherList item=item}>
+            <li>
+              <div class="max-pic"><a href="<{url action=topc_ctl_bidding@index bidding_id=$item.bidding_id}>" title=""><img style="width: 200px;height: 160px"src="<{$item.image_default_id}>" alt="" /></a></div>
+              <div class="max-info"><em>[竞价]</em><{$item.trading_title}></div>
+            </li>
+            <{/foreach}>
+          </ul>
+          
+        </div>
+      </div>
+ </div>
+
+<script type="text/javascript">
+    function tabConsult(url) {
+        var cur = 0;
+        $('.item-consult-nav li').click(function(){
+        var that = $(this);
+        var data = that.attr('data-type');
+        var dataObj = {
+          'result': data
+        }
+        cur = that.index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.item-consult-con>div').eq(cur).css('display','block').siblings().css('display','none');
+        if(!$('.item-consult-con>div').eq(cur).html()){
+          $.get(url,dataObj,function(data){
+            $('.item-consult-con>div').eq(cur).html(data);
+          })
+        }
+      });
+    }
+
+    $('#consult_tab').click(function(){
+            /*if(!$('#consult_con').html()){alert(1);
+            }else{*/
+              $('#consult_con').load('<{url action=topc_ctl_standard@getItemConsultation bidding_id=$rows.bidding_id}>',function(){
+                  tabConsult('<{url action=topc_ctl_standard@getItemConsultationList bidding_id=$rows.bidding_id}>');
+                      })
+                 /* }*/
+    });
+</script>
+
+<script src="images/images/max.js"></script>
+<script src="images/images/product.js"></script>
+<script type="text/javascript">
+  $('.seegoods_btn').click(function(e){
+if("<{$sample_end}>" ==1){
+    Message.success('看样结束');
+    return;
+}else if("<{$sample_end}>" ==0){
+    Message.success('该交易不支持看样');
+    return;
+}
+
+        $.dialog.ajax(
+          '<{url action=topc_ctl_sample@sample_dialog }>', 
+        {
+            width: 500,
+            title:'申请看样',
+            asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+$('.type').val('<{$type}>');
+$('.shop_id').val('<{$rows.shop_id}>');
+$('.shop_name').val('<{$rows.shop_name}>');
+$('.bidding_id').val('<{$rows.bidding_id}>');
+$('.title').val('<{$rows.trading_title}>');
+$('.name').val('<{$rows.trading_title}>');
+$('.seegood').val('<{$rows.seegoods_stime|cdate}>');
+
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        callback: $.proxy(function(rs) {
+                             /*Message.success('提交成功');*/
+                            this.hide();
+                        }, this)
+                    });
+
+                }
+            }
+        });
+ }); 
+
+function tabEval(url) {
+      var cur = 0;
+      var condition = $('#condition_form');
+
+      $('.evaluation-nav li').click(function(){
+        var that = $(this);
+        var data = that.attr('data-type');
+        var dataObj = {
+          'result': data
+        }
+        condition.find('input[name="result"]').val(data);
+
+        cur = that.index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.evaluation-content>div').eq(cur).css('display','block').siblings().css('display','none');
+
+        if(!$('.evaluation-content>div').eq(cur).html()){
+          $.get(url,dataObj,function(data){
+            $('.evaluation-content>div').eq(cur).html(data);
+          })
+        }
+      });
+
+      $('.condition').change(function() {
+        if($(this).attr('type')=='checkbox'){
+          $(this).val($(this).prop('checked'));
+        }
+        console.log($('.evaluation-content>div').eq(cur))
+        $('.evaluation-content>div').eq(cur).load(condition.attr('action'),condition.serialize());
+      });
+    }
+
+    $('#eval_tab').click(function() {
+      if(!$('#eval_con').html()){
+
+      }else{
+        $('#eval_con').load('<{url action=topc_ctl_comment@getItemRate bidding_id=$rows.bidding_id}>',function(){
+          tabEval('<{url action=topc_ctl_comment@getItemRateList bidding_id=$rows.bidding_id}>');
+        })
+      }
+    }); 
+</script>

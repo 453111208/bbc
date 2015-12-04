@@ -1,0 +1,70 @@
+<form id="brandForm" action="?app=syscategory&ctl=admin_brand&act=saveBrand"  method="POST" >
+  <input type="hidden" name="brand_id" value="<{$brandInfo.brand_id}>">
+  <div class="tableform">
+    <div class="division">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <th><{t}>品牌名称：<{/t}></th>
+          <td><{input type="text" name="brand_name" style="width:120px" vtype="required" value=$brandInfo.brand_name}><em><font color='red'>*</font></em></td>
+        </tr>
+        <tr>
+          <th><{t}>排序：<{/t}></th>
+          <td><{input style="width:50px;" type="unsigned" name="order_sort"  value=$brandInfo.order_sort|default:'0'}></td>
+        </tr>
+
+        <tr>
+          <th><{t}>品牌别名：<{/t}></th>
+          <td><{input type="text" name="brand_alias" value=$brandInfo.brand_alias}></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="division">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <th>LOGO：</th>
+          <td>
+            <{input type="image" name="brand_logo" value=$brandInfo.brand_logo width=160 height=90}>
+            <span class="notice-inline"><{t}>请上传品牌logo图片<{/t}></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="table-action">
+    <{button type="submit" id='brand-form-submit' label="保存"|t:'syscategory'}>
+  </div>
+
+</form>
+
+<script>
+  (function(){
+    var _form = $('brandForm');
+    var btn =$('brand-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>

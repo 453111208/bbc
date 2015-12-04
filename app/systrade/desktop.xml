@@ -1,0 +1,15 @@
+<desktop>
+
+    <permissions>
+        <permission id="tradeList" display='false' parent='0' workground='systrade.workground.trades'>交易列表</permission>
+        <permission id="complaints" display='false' parent='0' workground='systrade.workground.complaints'>在线投诉</permission>
+    </permissions>
+    <workground name="交易" id="systrade.workground.trades" controller="admin_trade" action="index" order='80'>
+        <menugroup name="交易信息">
+            <menu controller='admin_trade' action='index' permission='tradeList' display='false' order="1">交易列表</menu>
+        </menugroup>
+        <menugroup name="在线投诉">
+            <menu controller='admin_complaints' action='index' permission='complaints' display='false' order="1">订单投诉</menu>
+        </menugroup>
+    </workground>
+</desktop>

@@ -1,0 +1,181 @@
+<div class="panel panel-outter">
+
+  <{include file='topshop/aftersales/detail/progress.html'}>
+
+  <div class="panel-body">
+    <h4>退换货基本信息</h4>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <span class="order-form-w1">退换货编号：</span><{$info.aftersales_bn}>
+      </div>
+      <div class="col-xs-4">
+        <span class="order-form-w1">申请时间：</span><{$info.created_time|cdate}>
+      </div>
+      <div class="col-xs-4">
+        <span class="order-form-w1">申请处理进度：</span>
+        <span class="text-red">
+          <{if $info.progress == '0'}>
+          等待企业处理
+          <{elseif $info.progress == '1'}>
+          接受申请，待回寄
+          <{elseif $info.progress == '2'}>
+          等待收货确认
+          <{elseif $info.progress == '3'}>
+          企业已驳回
+          <{elseif $info.progress == '4'}>
+          企业已处理
+          <{elseif $info.progress == '5'}>
+          等待平台处理
+          <{elseif $info.progress == '6'}>
+          平台已驳回
+          <{elseif $info.progress == '7'}>
+          平台已处理
+          <{/if}>
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <span class="order-form-w1">退换货类型：</span>
+        <{if $info.aftersales_type == 'ONLY_REFUND'}>
+        仅退款
+        <{elseif $info.aftersales_type == 'REFUND_GOODS'}>
+        退货退款
+        <{elseif $info.aftersales_type == 'EXCHANGING_GOODS'}>
+        换货
+        <{/if}>
+      </div>
+    </div>
+    <h4>订单信息</h4>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <span class="order-form-w1">订单编号：</span><{$info.tid}>
+      </div>
+      <div class="col-xs-4">
+        <span class="order-form-w1">企业名称：</span><{$info.shop_id|shopname}>
+      </div>
+      <div class="col-xs-4">
+        <span class="order-form-w1">订单状态：</span>
+        <{if $info.trade.status == "WAIT_BUYER_PAY"}>
+        等待买家付款
+        <{elseif $info.trade.status == "WAIT_SELLER_SEND_GOODS"}>
+        买家已付款
+        <{elseif $info.trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+        卖家已发货
+        <{elseif $info.trade.status == "TRADE_FINISHED"}>
+        订单已完成
+        <{elseif $info.trade.status == "TRADE_CLOSED_BY_SYSTEM" || $tradeitem.status == "TRADE_CLOSED"}>
+        订单已关闭
+        <{/if}>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-xs-4">
+        <span class="order-form-w1">会员名称：</span><{$userName}>
+      </div>
+      <div class="col-xs-4">
+        <span class="order-form-w1">下单时间：</span><{$info.trade.created_time|cdate}>
+      </div>
+      <div class="col-xs-4">
+        <span class="pull-left order-form-w1">收货信息：</span>
+        <span class="pull-left"><{$info.trade.receiver_name}>&nbsp;<{if $info.trade.receiver_mobile}><{$info.trade.receiver_mobile}><{else}><{$info.trade.receiver_phone}><{/if}> <br/>
+          <{$info.trade.receiver_state}><{$info.trade.receiver_city}><{$info.trade.receiver_district}><{$info.trade.receiver_address}>
+        </span>
+      </div>
+    </div>
+    <h4>退换货商品数量</h4>
+    <table class="table table-primary table-hover table-goods">
+      <thead>
+        <tr>
+          <td class="col-name">商品</td>
+          <td>单价（元）</td>
+          <td>数量</td>
+          <td>总金额</td>
+        </tr>
+      </thead>
+      <tbody id="">
+        <tr>
+          <td>
+            <div class="goods">
+              <a href="<{url action=topc_ctl_item@index item_id=$info.sku.item_id}>" target="_blank">
+                <img src="<{$info.sku.pic_path|storager:'s'}>" alt="">
+                <{$info.sku.title}>&nbsp;&nbsp;<{$info.sku.spec_nature_info}></a>
+            </div>
+          </td>
+          <td>
+            <{$info.sku.price|cur}>
+          </td>
+          <td>
+            <{$info.num}>
+          </td>
+          <td>
+            <span class="text-orange">
+              <{$info.sku.payment|cur}>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="form-horizontal">
+      <div class="border-box">
+        <div class="form-group">
+          <span class="order-form-w1">退换货理由：</span><{$info.reason}>
+        </div>
+        <div class="form-group">
+          <span class="order-form-w1">问题描述：</span>
+          <{$info.description|default:"未提供详细描述"}>
+        </div>
+        <div class="form-group">
+          <span class="order-form-w1 pull-left">图片信息：</span>
+          <span class="col-xs-8">
+            <{if $info.evidence_pic}>
+            <{foreach from=$info.evidence_pic item=pic}>
+            <span class="goods pull-left">
+              <a href="<{url action=topc_ctl_item@index item_id=$info.sku.item_id}>" target="_blank"><img src="<{$pic|storager:'s'}>" alt=""></a>
+            </span>
+            <{/foreach}>
+            <{else}>
+            无图片信息
+            <{/if}>
+          </span>
+        </div>
+      </div>
+
+      <{if $info.shop_explanation}>
+      <div class="form-group">
+        <span class="order-form-w1 pull-left">企业处理申请说明：</span>
+        <span class="col-xs-8">
+          <span class="col-xs-8"><{$info.shop_explanation}></span>
+        </span>
+      </div>
+      <{/if}>
+
+      <{if $info.progress == '0'}>
+        <{if $info.aftersales_type == 'ONLY_REFUND' }>
+          <{include file='topshop/aftersales/detail/refund_form.html'}>
+        <{else}>
+          <{include file='topshop/aftersales/detail/verification_form.html'}>
+        <{/if}>
+      <{/if}>
+
+      <{if $info.aftersales_type != 'ONLY_REFUND' && $info.progress >= '2' }>
+          <{include file='topshop/aftersales/logistics.html'}>
+      <{/if}>
+
+      <{if $info.aftersales_type == 'REFUND_GOODS' && $info.progress == '2' }>
+          <{include file='topshop/aftersales/detail/refund_form.html'}>
+      <{/if}>
+
+      <{if $info.admin_explanation}>
+      <div class="form-group">
+        <span class="order-form-w1 pull-left">平台审核意见：</span>
+        <span class="col-xs-8">
+          <span class="col-xs-8"><{$info.admin_explanation}></span>
+        </span>
+      </div>
+      <{/if}>
+
+    </div>
+  </div>
+</div>

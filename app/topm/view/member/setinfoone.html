@@ -1,0 +1,114 @@
+<div class="mobile-bound shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <form action="<{url action=topm_ctl_member@saveSetInfo}>" method="post">
+        <input  type="hidden" id="verifyType" name="verifyType" value="<{$verifyType}>">
+        <input type="hidden" name="type"  value="reset" id="sendType">
+
+        <ul class="form-vertical">
+          <{if $verifyType == 'mobile'}>
+          <{if $type && $type == "update"}>
+          <li class="form-row email">
+            <span class="form-act">
+               原有号码 ：<{$userInfo.mobile}>
+            </span>
+          </li>
+          <{/if}>
+
+          <li class="form-row mobile">
+            <span class="form-act">
+              <input class="input-ln action-account-check input-vcode" type="text" id="uname" name="uname" required maxlength="11" placeholder="请输入手机号码">
+            </span>
+          </li>
+          <li class="form-row mobile">
+            <span class="form-act">
+              <input class="input-ln action-account-check input-vcode" type="text" name="vcode" id="for_code" required size="6" maxlength="6" placeholder="请填写验证码">
+              <a href="<{url action=topm_ctl_member@sendVcode}>" class="able get-vcode action-get-vcode verify-btn">获取验证码</a>
+            </span>
+          </li>
+          <li class="form-row commit">
+            <button type="submit" class="ui-btn-warning">确认绑定</button>
+          </li>
+        <{/if}>
+        <{if $verifyType == 'email'}>
+        <{if $type && $type == "update"}>
+        <li class="form-row email">
+          <span class="form-act">
+           原有邮箱地址 ：<{$userInfo.email}>
+          </span>
+        </li>
+        <li class="form-row email">
+          <span class="form-act">
+             新邮箱地址 ：<input class="input-ln action-account-check" type="email" name="pam_user[account]" id="uname" required placeholder="请输入邮箱地址">
+          </span>
+        </li>
+        <{else}>
+        <li class="form-row email">
+          <span class="form-act">
+            <{if $userInfo.email}>
+            邮箱地址 ：<{$userInfo.email}>
+            <input class="input-ln action-account-check" type="hidden" name="pam_user[account]" id="uname" value="<{$userInfo.email}>">
+            <{else}>
+             邮箱地址 ：<input class="input-ln action-account-check" type="email" name="pam_user[account]" id="uname" required placeholder="请输入邮箱地址">
+            <{/if}>
+          </span>
+        </li>
+
+        <{/if}>
+          <li class="form-row ">
+            <a href="<{url action=topm_ctl_member@sendVcode}>" class="btn-block ui-btn ui-btn-warning action-get-vcode">发送邮件</a>
+          </li>
+        <{/if}>
+      </ul>
+    </form>
+  </div>
+</div>
+<script>
+    var Message = new gmu.Message();
+    $('.action-get-vcode').on('click',function(e){
+      var uname = $('#uname').val();
+      var verifyType=$("#verifyType").val();
+      e.preventDefault();
+      if(uname!=''){
+        var $el = $(this);
+        var textCont = $el;
+        
+        var url = this.href;
+        //var uname=$("#uname").val();
+
+        var sendType=$("#sendType").val();
+        if(uname && verifyType && !$(this).hasClass('disabled')) {
+          $(this).addClass('disabled');
+          textCont.html($el.text() + ' (<i>0</i>)');
+          var cd = new countdown(textCont.find('i'), {
+            start: 120,
+            secondOnly: true,
+            callback: function(e) {
+              $el.removeClass('disabled');
+              textCont.html('重发验证码');
+            }
+          });
+          $.post(url,'uname='+uname + '&type='+sendType,function(rs){
+                if(rs.error) {
+                  cd.stop();
+                  Message.error(rs.message);
+                  $el.removeClass('disabled');
+                  textCont.html('重发验证码');
+                }else{
+                  Message.success(rs.message);
+                }
+            });
+        }
+      }else{
+        if(verifyType=='email')
+        {
+          Message.success('请输入邮箱号！');
+        }else if(verifyType=='mobile'){
+          Message.success('请输入手机号！');
+        }else{
+          Message.success('数据错误!');
+        }
+      }
+    });
+</script>

@@ -1,0 +1,426 @@
+<!-- main container -->
+<div class="mod-bottom">
+  <{include file="topc/items/basic.html"}>
+</div>
+<div class="mod-bottom">
+  <div class="row">
+    <div class="col-lg-3 box">
+      <{include file="topc/items/left.html"}>
+    </div>
+    <div class="col-lg-13 box">
+      <div class="tab1" data-toggle="switchable" data-switchable-config="{&quot;events&quot;:&quot;click&quot;}">
+        <ul class="switchable-nav">
+          <li class="active">产品介绍</li>
+          <{if $item.params}>
+          <li>规格参数</li>
+          <{/if}>
+          <li id="eval_tab">产品评论(<span><{$item.rate_count|default:"0"}></span>)</li>
+          <li id="consult_tab">商品咨询</li>
+        </ul>
+        <div class="switchable-content">
+          <div class="switchable-panel" style="display: block;">
+            <{include file="topc/items/detail.html"}>
+          </div>
+          <{if $item.params }>
+            <div class="switchable-panel" style="display: none;">
+              <{include file="topc/items/params.html"}>
+            </div>
+          <{/if}>
+          <div id="eval_con" class="switchable-panel" style="display: none;">
+          </div>
+          <div id="consult_con" class="switchable-panel" style="display: none;">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mini-cart-dialog" id="minicart_dialog" style="display:none;">
+  <p>商品成功加入购物车！</p>
+  <div class="actions">
+    <button class="btn btn-sm btn-flat popup-btn-close" type="button"><span><span>继续购物</span></span></button>
+    <a class="btn btn-sm btn-major" href="<{url action=topc_ctl_cart@index}>"><span><span>进入购物车</span></span></a>
+  </div>
+</div>
+
+<script>
+  var spec_select = $('#spec_select');
+  var specSkuJson = '<{$item.spec.specSku|json_encode}>';
+  var specSku = $.parseJSON(specSkuJson);
+  var spec_size = spec_select.find('.choose-item-wrap').length;
+  spec_select.on('click', '.choose-item', function (e) {
+    e.preventDefault();
+    var parent = $(this).parent('.choose-item-wrap');
+    $(this).addClass('on').siblings('.on').removeClass('on');
+    var selected = spec_select.find('.on');
+    if(selected.length == spec_size) {
+      var key = [];
+      selected.each(function (i, spec) {
+        key.push(spec.querySelector('a').getAttribute('href'));
+      });
+      key = key.join('_');
+
+      var specinfo = specSku[key];
+
+      processSpec(specinfo);
+    }
+
+  });
+
+function processSpec(rs) {
+  $('input[name="item[sku_id]"]').val(rs['sku_id']);
+  $('.action-update-price').text(priceControl.format(rs['price']));
+  $('.action-update-quantity').text(rs['store']);
+  var quantity = $('.action-quantity-input').attr('max', rs['store']);
+  if(quantity.val() > rs['store']) {
+    quantity.val(rs['store']);
+  }
+  if(rs.valid && rs.store >>> 0) {
+    $('.btn-fastbuy, .btn-addcart').removeClass('hide');
+    $('.action-notify').addClass('hide');
+    $('.action-open-dialog').addClass('hide');
+    quantity.val(quantity.attr('min'));
+  }
+  else if(rs.valid && rs.store == 0) {
+    $('.btn-fastbuy, .btn-addcart').addClass('hide');
+    $('.action-notify').addClass('hide');
+    $('.action-open-dialog').removeClass('hide');
+  }
+  else{
+    $('.btn-fastbuy, .btn-addcart').addClass('hide');
+    $('.action-open-dialog').addClass('hide');
+    $('.action-notify').removeClass('hide');
+  }
+}
+
+bindQuantityEvent('#main', setQuantity);
+
+//== 为数量选择框绑定事件
+function bindQuantityEvent(elements, callback) {
+  elements = $(elements);
+  if(!elements && !elements.length) return;
+  var value = '';
+  //= 数量按钮
+  elements.on('click', '.btn-decrease,.btn-increase', function (e) {
+    var input = $(this).parent().find('.action-quantity-input');
+    value = + input.val();
+    input.val($(this).hasClass('btn-decrease') ? value - 1 : value + 1);
+    callback && callback(input, value);
+  })
+  //= 数量输入框
+  .on('focus', '.action-quantity-input', function(e){
+    value = +this.value;
+  })
+  .on('change', '.action-quantity-input', function(e) {
+    callback && callback($(this), value);
+  });
+}
+//== 获取商品数量值
+function getQuantity(el, type) {
+  return el.find('input[name=' + type + ']').val();
+}
+//== 设置商品数量
+function setQuantity(input, value) {
+  var type = 'product';
+  var p = input.parent('li');
+  inputCheck(input, {min: input.attr('min'), max: input.attr('max'), 'default': value, store: getQuantity(p, 'stock'), callback: window.quantityCallback});
+}
+//== 商品数量输入框正确性检测
+function inputCheck(input, options) {
+  if(!input && !input.length) return false;
+
+  if(spec_select.find('.on').size() < spec_size) {
+    return Message.error('请先选择完整规格。');
+  }
+
+  options = options || {};
+  if(isNaN(options.min)) options.min = 1;
+  if(isNaN(options.max)) options.max = 999999;
+  options['default'] = options['default'] || options.min;
+  var value = +input.val();
+  // var tips = new Tips(input);
+  var pre = '';
+  var msg = '';
+  if(options.store && options.store - value <= 0) {
+    pre = '库存有限，';
+  }
+  if(value < options.min) {
+    input.val(options.min);
+    msg = '此商品的最小购买数量为' + options.min + '件';
+  }
+  else if(value > options.max){
+    input.val(options.max);
+    msg = pre + '此商品最多只能购买' + options.max + '件';
+  }
+  else if(isNaN(value)) {
+    input.val(options['default']);
+    msg = '只允许输入数字';
+  }
+  if (msg) {
+    // tips.show(msg);
+    Message.error(msg);
+    return false;
+  }
+  // tips.hide();
+  if(options.callback) options.callback(input, options['default']);
+  return true;
+}
+
+(function(){
+  
+  var reg = /^[1-9]*[1-9][1-9]*$/;
+  var i = 320;
+  var nav = $('.thumbnail-slider').find('.switchable-nav');
+  var thumb = nav.find('li');
+  var len = thumb.length;
+  var val = Math.floor(len/5);
+
+  $('.thumbnail-slider .next').click(function() {
+    var idx = $(this).parent().find('.active').index();
+    idx = idx + 1;
+    if(idx==len){
+      nav.css('left', '0');
+    }
+    if(reg.test(idx/5) && idx!=len){
+      nav.css('left', -i*(idx/5));
+    }
+  });
+
+  $('.thumbnail-slider .prev').click(function() {
+    var idx = $(this).parent().find('.active').index();
+    idx = idx + 1;
+    if(idx==1){
+      nav.css('left', -i*(val-1));
+    }
+    console.log((idx-1)/5);
+    if(reg.test((idx-1)/5) && idx!=len ){
+      nav.css('left', -i*((Math.floor((idx-1)/5))-1));
+    }
+  });
+
+  // $('.thumbnail-slider').on('beforeSwitch.switchable',function(){
+  //   var nav = $(this).parent().find('.switchable-nav');
+  //   var thumb = nav.find('li');
+  //   var ondix = $(this).find('.active').index();
+  //   ondix = ondix + 1;
+  //   console.log(ondix);
+  //   if(ondix==thumb.length){
+  //     $(this).find('.icon-arrow-right').removeClass('next');
+  //   }
+  //   if(ondix==0){
+  //     $(this).find('.icon-arrow-left').removeClass('prev');
+  //   }
+  // })
+})()
+
+$('#main').on('click', '.action-fastbuy', function (e) {
+  e.preventDefault();
+  if(spec_select.find('.on').size() < spec_size) {
+    return Message.error('请先选择完整规格。');
+  }
+})
+.on('click', '.action-addcart', function (e) {
+  e.preventDefault();
+  var form = $('#items_action_form');
+  var $this = $(this);
+  if(spec_select.find('.on').size() < spec_size) {
+    return Message.error('请先选择完整规格。');
+  }
+  $.post(this.href, form.serialize(), function (rs) {
+      if(rs.error) {
+        return Message.error(rs.message);
+      }
+      // Message.success('商品成功加入购物车');
+      $('#minicart_dialog').dialog({
+        width: 200,
+        title: '加入购物车',
+        single: true,
+        id: '_minicart_dialog',
+        component: {
+          container: 'popup-container',
+          body: 'popup-body',
+          header: 'popup-header',
+          close: 'popup-btn-close',
+          content: 'popup-content'
+        },
+        locate: {
+          relative: $this,
+          x: 'left',
+          y: 'top',
+          offset: 'bottom'
+        }
+      });
+      updateCartNumber();
+    });
+});
+
+  //记录浏览历史
+  withBrowserStore(function(browserStore){
+    browserStore.get('history_b2b2c_<{$user_id}>', function(history){
+      history = $.parseJSON(history);
+      if(!history || $.type(history) !== 'array') history = [];
+      if(history.length >= 40) history.pop();
+      var newHst = {
+        'item_id':'<{$item.item_id}>',
+      'title':'<{$item.title|replace:"'":"\'"}>',
+      'itemImg':'<{$item.image_default_id ? $item.image_default_id : $image_default_id.M.default_image|storager:"s"}>',
+      'price':'<{$item.price|cur}>',
+      'viewTime':+new Date()
+      };
+      if(history.length) {
+        for(var i = history.length; i --;) {
+          if(history[i]['item_id'] == newHst['item_id']) {
+            history.splice(i, 1);
+            break;
+          }
+        }
+      }
+      history.unshift(newHst);
+
+      browserStore.set('history_b2b2c_<{$user_id|default:"visitor"}>', JSON.stringify(history));
+    });
+  });
+
+
+  //展示历史记录
+  withBrowserStore(function(browserStore){
+    var box = $('#view_history<{$widgets_id}>');
+    browserStore.get('history_b2b2c_<{$user_id|default:"visitor"}>', function(rs) {
+      rs = $.parseJSON(rs);
+      var min = 1;
+      if (!rs || rs.length <= min) return box.hide();
+
+      var html = '';
+      var template = '<div class="item clearfix {last}">';
+      template += '<div class="pic">';
+      template += '<a href="<{url action=topc_ctl_item@index item_id="{item_id}"}>" target="_blank" title="{title}" data-gid="{item_id}"><img width="210" height="230" src="{itemImg}" alt="{title}" /></a>'.replace('%7B', '{').replace('%7D', '}');
+      template += '</div>';
+      template +='<div class="item-info">';
+      template +='<a class="name" href="<{url action=topc_ctl_item@index item_id="{item_id}"}>" target="_blank" title="{title}">{title}</a>';
+      template += '<div class="price">{price}</div>';
+      template += '</div>';
+      template += '</div>';
+
+      var max = Math.min(rs.length, 5);
+
+      $.each(rs, function(index, goods){
+        if(index >= min && index <= max){
+          if(index == max - 1){
+            goods['last'] = 'last';
+          }
+          html += substitute(template, goods);
+        }
+      });
+
+      box.find('.bd').html(html);
+
+      box.find('.pic a').each(function(index, item) {
+        var img = $(item).find('img');
+        img.on('error', function(){
+          imgRequest(item, img, rs, min, max);
+          img.off('error');
+        });
+        if (!img.attr('src')) {
+          imgRequest(item, img, rs, min, max);
+        }
+      });
+    });
+
+    function imgRequest(el, img, rs, min, max) {
+      var itemId = el.getAttribute('data-gid');
+      $.getJSON('<{url action=toputil_ctl_image@getItemPic}>', 'itemIds=' + itemId, function(data) {
+        var pic = new Image();
+        pic.src = data.url;
+        pic.onload = function(e) {
+          img.src = data.url;
+        }
+        pic.onerror = function(e) {
+          el.innerHTML = '<{t}>图片加载失败<{/t}>';
+        }
+
+        $.map(rs, function(index, goods) {
+          if (index >= min && index <= max && goods['item_id'] == gid) return goods['itemImg'] = data;
+        });
+
+        browserStore.set('history_b2b2c_<{$user_id|default:"visitor"}>', JSON.stringify(rs));
+      });
+    }
+
+    function tabEval(url) {
+      var cur = 0;
+      var condition = $('#condition_form');
+
+      $('.evaluation-nav li').click(function(){
+        var that = $(this);
+        var data = that.attr('data-type');
+        var dataObj = {
+          'result': data
+        }
+        condition.find('input[name="result"]').val(data);
+
+        cur = that.index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.evaluation-content>div').eq(cur).css('display','block').siblings().css('display','none');
+
+        if(!$('.evaluation-content>div').eq(cur).html()){
+          $.get(url,dataObj,function(data){
+            $('.evaluation-content>div').eq(cur).html(data);
+          })
+        }
+      });
+
+      $('.condition').change(function() {
+        if($(this).attr('type')=='checkbox'){
+          $(this).val($(this).prop('checked'));
+        }
+        console.log($('.evaluation-content>div').eq(cur))
+        $('.evaluation-content>div').eq(cur).load(condition.attr('action'),condition.serialize());
+      });
+    }
+
+    $('#eval_tab').click(function() {
+      if(!$('#eval_con').html()){
+
+      }else{
+        $('#eval_con').load('<{url action=topc_ctl_item@getItemRate item_id=$item.item_id}>',function(){
+          tabEval('<{url action=topc_ctl_item@getItemRateList item_id=$item.item_id}>');
+        })
+      }
+    });
+
+    function tabConsult(url) {
+      var cur = 0;
+
+      $('.item-consult-nav li').click(function(){
+        var that = $(this);
+        var data = that.attr('data-type');
+        var dataObj = {
+          'result': data
+        }
+
+        cur = that.index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.item-consult-con>div').eq(cur).css('display','block').siblings().css('display','none');
+
+        if(!$('.item-consult-con>div').eq(cur).html()){
+          $.get(url,dataObj,function(data){
+            $('.item-consult-con>div').eq(cur).html(data);
+          })
+        }
+      });
+    }
+
+    $('#consult_tab').click(function() {
+      if(!$('#consult_con').html()){
+
+      }else{
+        $('#consult_con').load('<{url action=topc_ctl_item@getItemConsultation item_id=$item.item_id}>',function(){
+          tabConsult('<{url action=topc_ctl_item@getItemConsultationList item_id=$item.item_id}>');
+        })
+      }
+    });
+  });
+</script>

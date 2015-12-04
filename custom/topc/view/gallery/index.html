@@ -1,0 +1,184 @@
+
+    <!-- 筛选项 --> 
+    <div id="filter_container" class="filter-container"> 
+     <div class="filter-title clearfix"> 
+      <h3>商家筛选</h3> 
+      <div class="gallery-total-info">
+        (共 
+       <b class="op-search-result"><{$shopAllList|count}></b>个商家) 
+      </div> 
+      <div class="filter-clean"> 
+       <a href="<{url action=topc_ctl_gallery@index  sellertype=99 sorttype=-1 catid=-1 }>">重置筛选项<i class="icon">&gt;</i></a> 
+      </div> 
+     </div> 
+     <!-- 筛选条件 --> 
+     <div id="gallery_filter" class="gallery-filter"> 
+      <div id="filter_selected" class="filter-selected clearfix"> 
+       <dl class="filter-selected-list clearfix"> 
+        <dt class="filter-selected-title">
+         您已选择：
+        </dt> 
+        <dd class="filter-selected-values"> 
+          <{if $sellertype==1}>回收处置企业<{elseif $sellertype==2}>生产加工企业<{elseif $sellertype==-1}>第三方企业<{else}><{/if}>&nbsp;&nbsp;
+          <{foreach from=$catList item=item key=key}>
+          <{if $item.cat_id==$catid }><{$item.cat_name }><{/if}>
+          <{/foreach}>
+        </dd> 
+       </dl> 
+      </div> 
+      <div id="filter_lists" class="filter-lists-container"> 
+       <!-- 分类 --> 
+       <dl class="filter-entries clearfix"> 
+        <dt class="filter-entries-label">
+         企业类型：
+        </dt> 
+        <dd class="filter-entries-values"> 
+         <span class="filter-item <{if $sellertype==99}>active<{/if}>">
+         <a href="<{url action=topc_ctl_gallery@index  sellertype=99 sorttype=$sorttype catid=$catid searchContent=$searchContent}>" class="handle action-select-unlimit">不限</a></span> 
+         <span class="filter-item <{if $sellertype==2}>active<{/if}>">
+         <a href="<{url action=topc_ctl_gallery@index  sellertype=2 sorttype=$sorttype catid=$catid searchContent=$searchContent}>" class="handle action-cat-filter">产废企业</a></span> 
+         <span class="filter-item <{if $sellertype==1}>active<{/if}>">
+         <a href="<{url action=topc_ctl_gallery@index  sellertype=1 sorttype=$sorttype catid=$catid searchContent=$searchContent}>" class="handle action-cat-filter">回收处置企业</a></span> 
+         <span class="filter-item <{if $sellertype==-1}>active<{/if}>">
+         <a href="<{url action=topc_ctl_gallery@index  sellertype=-1 sorttype=$sorttype catid=$catid searchContent=$searchContent}>" class="handle action-cat-filter">第三方企业</a></span> 
+        </dd> 
+       </dl> 
+       <dl class="filter-entries clearfix"> 
+        <dt class="filter-entries-label">
+         经营品类：
+        </dt> 
+        <dd class="filter-entries-values">
+        <span class="filter-item <{if $catid==-1}>active<{/if}>"><a href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=$sorttype catid=-1 searchContent=$searchContent}>" class="handle action-select-unlimit">不限</a></span> 
+          <{foreach from=$catList item=item key=key}>
+          <span class="filter-item <{if $item.cat_id==$catid}>active<{/if}>"><a href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=$sorttype catid=$item.cat_id searchContent=$searchContent}>" class="handle action-cat-filter"><{$item.cat_name}></a></span>
+          <{/foreach}>
+
+        </dd> 
+       </dl> 
+       <!-- 地区 --> 
+<!--        <dl class="filter-entries clearfix" data-label="brand_id"> 
+        <dt class="filter-entries-label">
+         所属地区：
+        </dt> 
+        <dd class="filter-entries-values"> 
+         <span class="filter-item active"><a href="#" class="handle action-select-unlimit">不限</a></span> 
+         <span class="filter-item "><a href="#" class="handle action-select-filter">北京</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item "><a href="#" class="handle action-select-filter">上海</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item "><a href="#" class="handle action-select-filter">天津</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item "><a href="#" class="handle action-select-filter">重庆</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">内蒙古自治区</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">吉林省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">辽宁省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">陕西省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">四川省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">海南省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">湖南省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">台湾省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+         <span class="filter-item"><a href="#" class="handle action-select-filter">江西省</a><a href="#" class="icon action-delete-filter">&times;</a></span> 
+        </dd> 
+       </dl>  -->
+       <!-- 分类 --> 
+      </div> 
+     </div> 
+    </div> 
+    <!-- 筛选项END --> 
+    <!-- main container --> 
+
+      <!-- 左边版块 --> 
+      
+      <!-- 左边版块END --> 
+      <!-- 右边版块 --> 
+      <div class="col-lg-13 box max-box-right"> 
+       <!-- 排序 --> 
+       <div class="mod-bottom max-mod-list"> 
+        <div class="sortbar"> 
+         <div class="left">
+           排序：&nbsp;&nbsp; 
+          <a href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=-1 catid=$catid searchContent=$searchContent }>" class="btn btn-flat is-desc <{if $sorttype==-1}>on<{/if}>"><span><span>默认<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span> </a> 
+          <a href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=1 catid=$catid searchContent=$searchContent}>" class="btn btn-flat is-desc <{if $sorttype==1}>on<{/if}>"> <span> <span>绿色指数<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span> </span> </a> 
+          <a href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=2 catid=$catid searchContent=$searchContent}>" class="btn btn-flat is-desc <{if $sorttype==2}>on<{/if}>"> <span> <span>成交量<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span> </span> </a> 
+         </div> 
+         <div class="mini-pageview"> 
+          <span class="page-count"><span class="page-current"></span><span class="page-total"></span></span> 
+          <span class="page-action"><a href="javascript:void(0);" class="flip prev over"><i class="icon">4</i></a><a href="javascript:void(0);" class="flip next"><i class="icon">5</i></a></span> 
+         </div> 
+        </div> 
+       </div> 
+       <!-- 排序END --> 
+       <div class="max-product-box"> 
+        <div class="maxthead"> 
+         <div class="l">
+          公司名称
+         </div> 
+         <div class="right">
+          <span class="maxdiqv">地区</span>
+          <span class="mun">绿色指数</span>
+         </div> 
+        </div> 
+        <div class="maxtbody"> 
+         <ul> 
+         <{foreach from=$shopList item=item key=key}>
+          <li> 
+           <div class="title">
+            <h3><a href="/index.php/shopcenter.html?shop_id=<{$item.shop_id}>" title=""><{$item.shop_name}></a></h3>
+            <div class="max-menu-img">
+             <img src="images/bao.png" alt="" />
+             <img src="images/cheng.png" alt="" />
+             <img src="images/dun.png" alt="" />
+            </div>
+            <div class="right">
+             <span class="maxdiqv"><{$item.shop_area}></span>
+             <span class="mun"><{$item.green}></span>
+            </div>
+           </div> 
+           <div class="maxinfow"> 
+            <div class="maxpic">
+             <a href="" title=""><img src="<{$item.shop_logo}>" alt="" /></a>
+            </div> 
+            <div class="maxinfo"> 
+             <div class="list-1">
+              <span>产废品种：</span>
+              <{foreach from=$shopCat item=item2 key=key2}>
+              <{if $item2.shop_id == $item.shop_id }><{$item2.cat_name}><{/if}>
+              <{/foreach}>
+             </div> 
+             <div class="list-2">
+              <span>公司简介：</span><{$item.shop_descript}>
+             </div> 
+            </div> 
+           </div> </li> 
+         <{/foreach}>	
+         </ul> 
+        </div> 
+       </div> 
+    <div id="pageGro" class="cb maxpag"> 
+        <{if $pageNow>1}>
+        <div class="pageUp"><a  style="display:block" href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=$sorttype catid=$catid pageNow=$pageNow-1 searchContent=$searchContent }>">上一页</a></div>
+        <{else}>
+        <div class="pageUp"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList">
+            <ul>
+                <{foreach from=$shopAllList item=item key=key}>
+                    <{if $key<$pageCount}>
+                        <li  style="<{if $pageNow==$key+1}>background-color: #e1711b;<{/if}>" ><a style="display:block" href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=$sorttype catid=$catid pageNow=$key+1 searchContent=$searchContent}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}>
+        <div class="pageDown"><a style="display:block" href="<{url action=topc_ctl_gallery@index  sellertype=$sellertype sorttype=$sorttype catid=$catid pageNow=$pageNow+1 searchContent=$searchContent }>">下一页</a></div>
+        <{else}>
+        <div class="pageDown"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+    </div> 
+      </div> 
+      <{if $searchContent}>
+      <script>
+      $("input[name=keyword]").val('<{$searchContent}>');
+      $("input[name=searchtype]").val('shop');
+$(".seachbtn a").removeClass("active");
+$("a[search-type=shop]").addClass("active");
+      </script>
+      <{/if}>
+

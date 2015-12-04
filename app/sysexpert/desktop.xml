@@ -1,0 +1,15 @@
+<desktop>
+    
+     <permissions>
+        <permission id="sysexpert_info" display='true' workground='sysexpert.wrokground.theme'>名人专家页面管理</permission>
+    </permissions>
+    
+    <workground name="名人专家管理" id="sysexpert.wrokground.theme" controller="admin_module" action="index">
+        <menugroup name="名人专家页面管理"> 
+            <menu controller='admin_expert' action='index' permission='sysexpert_info' display='true' order="10">专家管理</menu>
+            <menu controller='admin_literary' action='index' permission='sysexpert_info' display='true' order="20">专家文章管理</menu>
+            <menu controller='admin_literarycat' action='index' permission='sysexpert_info' display='true' order="30">专家文章类型管理</menu>
+        </menugroup>
+    </workground>
+    
+</desktop>

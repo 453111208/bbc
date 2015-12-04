@@ -1,0 +1,10 @@
+<services>
+    <service id="desktop_finder.sysinfo_mdl_article">
+        <class>sysinfo_finder_article</class>
+    </service>
+    
+    <service id="desktop_finder.sysinfo_mdl_marketArticle">
+        <class>sysinfo_finder_marketArticle</class>
+    </service>
+
+</services>

@@ -1,0 +1,26 @@
+<{foreach from=$rate item=rateInfo}>
+<li>
+  <div class="comment-user">
+    <span class="<{$rateInfo.result}>"><i class="icon icon-flower"></i><{if $rateInfo.result == 'good'}>好评<{elseif $rateInfo.result=='bad'}>差评<{else}>中评<{/if}></span>
+    <{if $rateInfo.anony}><{$userName[$rateInfo.user_id]|hidden_show}><{else}><{$userName[$rateInfo.user_id]}><{/if}>
+  </div>
+  <div class="comment-txt"><{if $rateInfo.content}><{$rateInfo.content}><{else}>默认评价。<{/if}></div>
+  <{if $rateInfo.rate_pic}>
+  <div class="comment-thumbs">
+    <{foreach from=$rateInfo.rate_pic item=pic}>
+    <a href="<{$pic|storager}>"><img src="<{$pic|storager:'s'}>" alt=""></a>
+    <{/foreach}>
+  </div>
+  <{/if}>
+  <div class="comment-date"><{$rateInfo.created_time|cdate}></div>
+  <{if $rateInfo.is_reply}>
+  <div class="feedback">
+    <div class="feedback-tit">卖家回复</div>
+    <div class="feedback-txt">
+      <p><{$rateInfo.reply_content}></p>
+      <span><{$rateInfo.reply_time|cdate}></span>
+    </div>
+  </div>
+  <{/if}>
+</li>
+<{/foreach}>

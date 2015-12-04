@@ -1,0 +1,19 @@
+<{assign var="paramsItem" value="0"}>
+<{foreach from=$params item=param key=group}>
+<{if $group}>
+<div class="form-group">
+  <label for="" class="col-sm-2 control-label"><{$group}>：</label>
+  <div class="col-sm-3">
+      <{foreach from=$param item=value key=item}>
+      <{assign var="paramsItem" value=$paramsItem+1}>
+      <div>
+        <label><{$item}>:</label>
+        <input type="text" name="item[params][<{$paramsItem}>]" value="<{$params[$group][$item]}>" }>
+        <input type='hidden' name='itemParams[group][<{$paramsItem}>]' value='<{$group}>'/>
+        <input type='hidden' name='itemParams[item][<{$paramsItem}>]' value='<{$item}>'/>
+      </div>
+      <{/foreach}>
+  </div>
+</div>
+<{/if}>
+<{/foreach}>

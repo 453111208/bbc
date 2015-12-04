@@ -1,0 +1,63 @@
+<form action="?app=sysinfo&ctl=admin_node&act=save" method="POST" id="node_add_form">
+    <div class="tableform">
+    <div class="division">
+    <{input type='hidden' name='node[node_id]' value=$node.node_id}>
+    <h4><{t}>资讯类目信息<{/t}></h4>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>  <th><{t}>资讯类目名称：<{/t}></th>
+      <td> <{input type='text' name='node[node_name]' vtype='required&&text' caution=$__sysinfo='请填写资讯类目名称'|t:'sysinfo' value=$node.node_name }>  </td>
+      </tr>
+
+      <tr>  <th><{t}>上级类目：<{/t}></th>
+      <td> <{input type='select' name='node[parent_id]' value=$node.parent_id required='true' vtype='required' caution=$__sysinfo='请选择上级类目'|t:'sysinfo' rows=$selectmaps valueColumn="node_id" labelColumn="node_name"}> <span class="notice-inline"><{t}>顶级类目请选'无'<{/t}></span> </td>
+      </tr>
+
+      <tr>  <th><{t}>排序：<{/t}></th>
+      <td> <{input type='text' name='node[order_sort]' size='20' size='3' vtype='required&&number' value='0' caution=$__sysinfo='请填写排序值'|t:'sysinfo' value=$node.order_sort }> <span class="notice-inline"><{t}>数字越小越靠前<{/t}> </span></td>
+      </tr>
+
+      </table>
+      </div>
+
+     <{if $node.homepage=='true'}>
+          <div class="division">
+                <div id="show-edit-view">
+                    <{foreach from=$sections item=section}>
+                      <{include file=$section.file}>
+                    <{/foreach}>
+                </div>
+          </div>
+       <{/if}>
+    </div>
+</form>
+<{area inject='.mainFoot'}>
+    <div class="table-action">
+      <{button type="button" label=$__sysinfo="保存"|t:'sysinfo' class="btn-primary" id="node_add_form_submit_btn"}>
+      <{button type="button" label=$__sysinfo="取消"|t:'sysinfo' isCloseDialogBtn="true" class="btn-secondary"}>
+    </div>
+<{/area}>
+
+<script>
+(function(){
+
+    $('node_add_form').store('target',{
+        onComplete:function(){
+            var dialog;
+            if(dialog = $('node_add_form').getParent('.dialog')){
+                dialog  = dialog.retrieve('instance');
+                dialog.close();
+            }
+            
+        }
+    });
+    
+    $('node_add_form_submit_btn').addEvent('click',function(){
+        
+            $('node_add_form').fireEvent('submit',{stop:$empty});
+    });
+    
+})();
+
+ 
+</script>

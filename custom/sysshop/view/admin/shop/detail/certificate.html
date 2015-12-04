@@ -1,0 +1,47 @@
+<style type="text/css">
+	.save{
+		margin: 0 auto;
+		text-align: center;
+	}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="tableform">
+<form action="?app=sysshop&ctl=admin_shop&act=savecertificate" method="post" onsubmit="return checkinput()"> 
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+<thead>
+<tr>
+<th>资质名称</th>
+<th>资质类型</th>
+<th>资质图片</th>
+</tr></thead><tbody>
+
+<{foreach from=$shop_certificate item=row key=key}>
+<tr>
+<td>
+<input type="text" name="shop_certificate[name][]" id="ids[]" value="<{$row.certificate}>">
+<input type="hidden" name="shop_certificate[id][]" id="ids[]" value="<{$row.certificate_id}>">
+</td>
+<td>普通资质</td>
+<td><a   href="javascript:void();" onclick="window.open ('?app=sysshop&ctl=admin_shop&act=imgBig&id=<{$row.certificate_id}>&type=certificate', 'newwindow', 'height=400, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no') ;">查看图片</a></td>
+</tr>
+<{/foreach}>
+<{if $shop_manage}>
+<{foreach from=$shop_manage item=row key=key}>
+<tr>
+<td>
+<input type="text" name="shop_manage[name][]" id="ids[]" value="<{$row.manage}>">
+<input type="hidden" name="shop_manage[id][]" id="ids[]" value="<{$row.manage_id}>">
+</td>
+<td>回收处置资质</td>
+<td><a   href="javascript:void();" onclick="window.open ('?app=sysshop&ctl=admin_shop&act=imgBig&id=<{$row.manage_id}>&type=manage', 'newwindow', 'height=400, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no') ;">查看图片</a></td>
+</tr>
+<{/foreach}>
+<{/if}>
+</tbody>
+</table>
+<div class="save">
+	<input type="submit" value="保存">
+</div>
+
+	</form>
+</div>  

@@ -1,0 +1,54 @@
+
+<form id="sysshopform" class="tableform" name="sysshopform"  method='post' action='?app=sysshop&ctl=admin_shopnotice&act=saveNoticeType' >
+    <h3><{t}>添加通知类型<{/t}></h3>
+    <div class="division">
+        <{foreach from=$notice item=notice key=key}>
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+                <th><em class="red">*</em><label for="dlycorp_name"><{t}>类型名称:<{/t}></label></th>
+                <td>
+                    <{input type="text" name="notice[$key]" value=$notice}>
+                </td>
+                <td>
+                   <span onclick="$(this).getParent('table').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___sysshop="删除"|t:'b2c' title=$___sysshop="删除"|t:'b2c' app="desktop"}></span>
+                </td>
+            </tr>
+        </table>
+        <{/foreach}>
+    </div>
+    <div class="table-action">
+        <{button label=$___sysshop="添加"|t:'b2c' class="addtype" app="desktop" icon="btn_add.gif"}>
+        <button class="btn btn-primary" type="submit"><span><span><{t}>保存<{/t}></span></span></button>
+    </div>
+    
+</form>
+
+<script>
+    var i = '<{$count}>' || 0;
+    document.getElement(".addtype").addEvent('click',function(){
+        var tag_type='table';
+        var tpl='\
+          <tr><th><em class="red">*</em><label for="dlycorp_name"><{t}>类型名称:<{/t}></label></th>\
+          <td><input name="notice['+i+']"></td>\
+          <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___sysshop="删除"|t:'sysshop' title=$___sysshop="删除"|t:'sysshop' app="desktop"}></span></td>\
+          </tr>';
+        $('sysshopform').getElement('.division').adopt(new Element(tag_type,{'html':tpl,'width':'100%'}));
+        i++;
+    });
+    $('sysshopform').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('sysshopform').getParent('.dialog')){
+                    var Dlg = $('sysshopform').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

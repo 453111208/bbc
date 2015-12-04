@@ -1,0 +1,20 @@
+<div class="email-bound shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <form action="<{url action=topm_ctl_member@CheckSetInfo}>" method="post" id="ajax_form">
+      <ul class="form-vertical">
+        <li class="form-row mobile">
+          <span class="form-act">
+            <input class="input-ln action-account-check" type="password" name="password" required placeholder="请输入登录密码">
+            <input type="hidden" name="verifyType" value="<{$verifyType}>">
+            <input type="hidden" name="type" value="<{$type}>">
+          </span>
+        </li>
+        <li class="form-row commit">
+          <button type="submit" class="ui-btn-warning">下一步</button>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>

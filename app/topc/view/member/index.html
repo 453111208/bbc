@@ -1,0 +1,92 @@
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">会员中心</div>
+  </div>
+  <div class="membercenter-box-bd">
+    <{include file="topc/member/index/userdata.html"}>
+  </div>
+</div>
+
+<div class="membercenter-box-wrap">
+  <div class="membercenter-box-title">近期订单</div>
+  <div class="membercenter-box">
+    <{include file="topc/member/index/tradelist.html"}>
+  </div>
+</div>
+
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">收藏的商品</div>
+    <div class="membercenter-box-right"><{if $favList}><a href="<{url action=topc_ctl_member@itemsCollect}>">更多></a><{/if}></div>
+  </div>
+  <div class="membercenter-box-bd">
+    <{include file="topc/member/index/itemscollect.html"}>
+  </div>
+</div>
+
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">收藏的店铺</div>
+    <div class="membercenter-box-right"><{if $favShopList}><a href="<{url action=topc_ctl_member@shopsCollect}>">更多></a><{/if}></div>
+  </div>
+  <div class="membercenter-box-bd">
+    <{include file="topc/member/index/shopscollect.html"}>
+  </div>
+</div>
+
+<script>
+  //商品收藏删除
+$('.favDel').on('click',function(){
+    if(confirm("确定要删除吗？")){
+        var url = "<{url action=topc_ctl_collect@ajaxFavDel}>";
+        var el = $(this),
+            itemId=$(this).attr("data-itemId");
+        if(itemId) {
+            $.post(url,'item_id='+itemId,function(rs){
+
+              if(rs.success){
+                el.parents('.membercenter-favorite-item').remove();
+                Message.success(rs.message);
+              }
+            });
+        }
+
+    }
+
+});
+
+//店铺收藏删除操作
+$('.favShopDel').on('click',function(){
+    if(confirm("确定要删除吗？")){
+
+        var url = "<{url action=topc_ctl_collect@ajaxFavshopDel}>";
+        var el = $(this),
+            shopId=$(this).attr("data-shopId");
+        if(shopId) {
+            $.post(url,'shop_id='+shopId,function(rs){
+
+              if(rs.success){
+                  el.parents('.membercenter-favorite-item').remove();
+                   Message.success(rs.message);
+              }
+            });
+        }
+    }
+
+});
+
+//订单列表中支付按钮操作
+//$(".act-pay").on('click',function(e){
+//  e.preventDefault();
+//  $.post($("#payment_form").attr('action'), {tid: $(this).attr('href'), merge: false}, function(rs){
+//    var rs = $.parseJSON(rs)
+//    if( rs.error ){
+//      alert(rs.message)
+//    }
+//  if(rs.redirect) {
+//    location.href = rs.redirect;
+//  }
+//  })
+//})
+
+</script>

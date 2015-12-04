@@ -1,0 +1,52 @@
+
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit ">领取成功</div>
+    </div>
+  </header>
+  <section class="container">
+    <section class="coupon coupon-detail">
+      <div class="coupon-item">
+        <div class="init">
+          <div class="coupon-price"><{$couponInfo.deduct_money|cur}></div>
+          <div class="coupon-info"><{$couponInfo.coupon_name}></div>
+        </div>
+      </div>
+    </section>
+    <section class="base-section coupon-caption">
+      <ul>
+        <li>
+          <div class="key-name">优惠券规则：</div>
+          <div class="key-value"><{$couponInfo.coupon_desc}></div>
+        </li>
+        <li>
+          <div class="key-name">使用店铺：</div>
+          <div class="key-value"><{$couponInfo.shop_id|shopname}></div>
+        </li>
+        <li>
+          <div class="key-name">使用期限：</div>
+          <div class="key-value"><{$couponInfo.canuse_start_time|cdate:'FDATE'}> <br>至 <{$couponInfo.canuse_end_time|cdate:'FDATE'}></div>
+        </li>
+        <li>
+          <div class="key-name">使用平台：</div>
+          <div class="key-value"><{$couponInfo.used_platform|json2value:'{"0":"手机、电脑端通用","1":"电脑端","2":"手机端"}'}></div>
+        </li>
+        <li>
+          <div class="key-name">使用会员：</div>
+          <div class="key-value"><{$couponInfo.valid_grade_name}></div>
+        </li>
+      </ul>
+      <section class="dec">
+        <div class="dec-title">说明：</div>
+        只能购买指定店铺内商品。使用店铺优惠券提交订单时，订单中所有商品必须都是该店铺所售，否则不能使用，例如：50元的Jack Jones店铺优惠券，所下订单的商品必须均为Jack Jones店铺商品才可以使用。单张订单可使用多张同店铺优惠券
+      </section>
+    </section>
+  </section>
+  <section class="coupon-submit">
+    <div class="coupon-gap"></div>
+    <div class="coupon-use-now"><button type="button" class="ui-btn ui-btn-negative"><a href="<{url action=topm_ctl_shopcenter@index shop_id=$shopdata.shop_id}>" class="btn btn-danger btn-lg"><span><span>马上使用</span></span></a></button></div>
+    <div class="coupon-gap"></div>
+  </section>

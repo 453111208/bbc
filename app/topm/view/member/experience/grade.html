@@ -1,0 +1,33 @@
+<div class="member shop member-detail">
+  <{include file="topm/common/top.html"}>
+  <section class="container">
+    <div class="grow-system-txt">
+      会员成长体系包含<{$count}>个会员等级，会员等级由“成长值”决定。成长值越高，会员等级越高。
+    </div>
+    <ul class="grow-system-list">
+
+    </ul>
+  </section>
+</div>
+<script>
+  var sysdata = <{$grade|json_encode}>;
+  var total = sysdata.length;
+var base = 100/(total-1);
+
+var result = '';
+
+for (var i = total-1; i >= 0; i--) {
+  var color;
+  if(i==0) color = '#f7eb00';
+  if(i==1) color = '#f5b105';
+  if(i==2) color = '#f48400';
+  if(i==3) color = '#f36300';
+  if(i==4) color = '#f24a00';
+  if(i==5) color = '#f54f37';
+  if(i==6) color = '#c840f5';
+  if(i==7) color = '#573bef';
+  result += '<li><div class="level-name" style="background:'+ color +'">V'+ sysdata[i].name +'</div><div class="level-value"><div class="color-bar" style="background:'+ color +'; width: '+ i*base +'%"></div><div class="value-number">'+ sysdata[i].number +'</div></div></li>';
+};
+
+$('.grow-system-list').append(result);
+</script>

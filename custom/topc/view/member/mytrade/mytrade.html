@@ -1,0 +1,73 @@
+<div class="maxM-right">
+		<div class="max-menber-title Bid">
+			<h2>我的参与的交易</h2>
+			<a href="javascript:;">我参与的交易一览表</a>
+		</div>
+		<div class="maxB-menber-list">
+			<dl>
+				<dt class="maxB-title">
+					<ul class="uniqtittle">
+						<li ><span>交易类型</span></li>
+						<li ><span>交易标题</span></li>
+						<li ><span>所属企业</span></li>
+						<li ><span>总价</span></li>
+						<li ><span>状态</span></li>
+						<li ><span>提交时间</span></li>
+					</ul>
+				</dt>
+				<dd>
+				<{foreach from=$allorder item=row key=key}>
+					<div class="maxB-List" style="margin-left:42px;">	
+							<div class="maxB-Time">
+								<label><{if $row.type==0}>标准交易<{elseif $row.type==1}>竞价交易<{elseif $row.type==2}>招标交易<{/if}></label>
+							</div>
+							<div class="maxB-Time">
+								<label style="max-width:100px;" title="<{$row.title}>"><{$row.title}></label>
+								<a href="<{if $row.type==0}><{url action=topc_ctl_standard@index standard_id=$row.standard_id}><{elseif $row.type==1}><{url action=topc_ctl_bidding@index bidding_id=$row.bidding_id}><{elseif $row.type==2}><{url action=topc_ctl_tender@index tender_id=$row.tender_id}><{/if}>" class="max-into">进入</a>
+							</div>
+							<div class="maxB-Time">
+								<label><{$row.shop_name}></label>
+							</div>
+							<div class="maxB-Time">
+								<label><{$row.totalbid}></label>
+							</div>
+							<div class="maxB-Time"><span><{if $row.state==0}>待观察<{elseif $row.state==1}>成功<{elseif $row.state==2}>失败<{/if}></span></div>
+							<div class="maxB-Time"><span><{$row.create_time|cdate}></span></div>
+					</div>
+					<{/foreach}>
+					<{foreach from=$tenderorder item=row key=key}>
+					<div class="maxB-List" style="margin-left:42px;">	
+							<div class="maxB-Time">
+								<label>招标交易</label>
+							</div>
+							<div class="maxB-Time">
+								<label style="max-width:100px;" title="<{$row.tender_title}>"><{$row.tender_title}></label>
+								<a href="<{url action=topc_ctl_tender@index tender_id=$row.tender_id}>" class="max-into">进入</a>
+							</div>
+							<div class="maxB-Time">
+								<label><{$row.tender_man}></label>
+							</div>
+							<div class="maxB-Time">
+								<label><{$row.price}></label>
+							</div>
+							<div class="maxB-Time"><span><{if $row.winornot==0}>中标<{elseif $row.winornot==1}>未中标<{elseif $row.winornot==2}>尚未确定<{/if}></span></div>
+							<div class="maxB-Time"><span><{$row.create_time|cdate}></span></div>
+					</div>
+					<{/foreach}>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="max-pageview">
+			<span class="prev">上一页</span>
+			<{foreach from=$countnum item=row key=key}>
+			<a class="flip" href="<{url action=topc_ctl_member_mytrade@mytrade page=$row}>"><{$row}></a>
+			<{/foreach}>
+			<a class="next">下一页</a>
+		</div>
+</div>
+<style type="text/css">
+	.uniqtittle li{float:left;padding-left: 30px;padding-right: 30px;text-align: center;width: 72px;text-align: center;overflow: hidden;}
+	.uniqtittle{overflow: hidden;height: 60px;}
+	.maxB-Time{width:132px;}
+</style>

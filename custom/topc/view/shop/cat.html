@@ -1,0 +1,11 @@
+<div class="side-box">
+  <div class="hd">相关分类</div>
+  <{foreach from=$shopCat item=data}>
+  <div class="bd">
+    <h5><{$data.cat_name}></h5>
+  <{foreach from=$data.children item=cat}>
+  <a class="link" href="<{url action=topc_ctl_shopcenter@search shop_id=$cat.shop_id shop_cat_id=$cat.cat_id}>"><{$cat.cat_name}></a>
+    <{/foreach}>
+  </div>
+  <{/foreach}>
+</div>

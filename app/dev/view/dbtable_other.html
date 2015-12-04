@@ -1,0 +1,15 @@
+<div>platform: <{$platform}></div>
+<table>
+  <tr style="border-bottom:1px solid #9DAFC3">
+    <th width="35px">&nbsp;</th>
+    <th width="250px">Table</th>
+    <th>&nbsp;</th>
+  </tr>
+  <{foreach from=$tables key="key" item="table"}>
+  <tr style='background:<{if $key is odd}>#F4F7FB<{else}>#fff<{/if}>'>
+     <td>&nbsp;<{$key+1}></td>
+     <td style='padding-right:10px'><{$table.Name}></td>
+     <td></td>
+  </tr>
+  <{/foreach}>
+</table>

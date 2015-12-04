@@ -1,0 +1,55 @@
+<form id="_new_wg_cfg" action='?app=site&ctl=admin_theme_widget&act=insert_widget' method='post'>
+<{include file="site/admin/theme/widget/widget_header.html"}>
+<div class="table-action">
+    <{button type="submit" id="on_submit" label="添加"|t:'site'}>
+</div>
+</form>
+<script>
+$('_new_wg_cfg').addEvent('submit',function(e){
+    e.stop();
+    if(!validate(this))return;
+    //<{t}>指向框架内对象<{/t}>
+    //<{t}>验证输入<{/t}>
+    //<{t}>暂时不验证<{/t}>2010/5/14 edwin todo
+    //if(!this.bindValidator('_x_ipt'))return;
+    $ES('textarea[ishtml=true]',this).getValue();
+    var frameWin=$('themeFrame').contentWindow;
+    var shopWidgets=frameWin.shopWidgets;
+    var wg=frameWin.document.createElement('div');
+
+    var temId=+new Date + Math.random(100,999);
+    if(!wg) return;
+    wg.id = 'wg' + (+new Date);
+    this.action+='&widgets=<{$widgets_type}>&domid='+temId+'&widgets_app=<{$widgets_app}>&widgets_theme=<{$widgets_theme}>&theme=<{$theme}>';
+
+    new Request({
+      url:this.action,
+      data:this,
+      method:this.get('method'),
+      onRequest:function(){
+        $('on_submit').set('disabled',true).getElement('span span').set('html','请稍等...');
+      },
+      onSuccess:function(re){
+        $('on_submit').set('disabled',false).getElement('span span').set('html','保存');
+        wg.innerHTML = re;
+        wg = wg.firstElementChild;
+        // wg = $(wg).getFirst();
+        wg.id = temId;
+        wg.setAttribute('widgets_id', 'tmp_' + '<{$i}>');
+
+        var sw_curDrop=shopWidgets.injectBox || shopWidgets.curDrop;
+        var where = shopWidgets.injectWhere || 'append';
+
+        // wg = frameWin.$(wg);
+
+        sw_curDrop[where](wg);
+        shopWidgets.drags.add(wg);
+        shopWidgets.initDrags([wg]);
+        shopWidgets.checkEmptyDropPanel(sw_curDrop[0]);
+        // frameWin.$.Switchable.autoRender(null, shopWidgets.injectBox);
+        shopWidgets.curdialog.close();
+        $('btn_save')&&($('btn_save').disabled = false);
+      }
+    }).send();
+});
+</script>

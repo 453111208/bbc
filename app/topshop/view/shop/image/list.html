@@ -1,0 +1,52 @@
+<{if !$imagedata}>
+<div class="tab-pane active">
+  <p class="text-muted well no-shadow text-center">暂无数据</p>
+  <script>
+    $('#orderCancel,#orderEdit').on('hide.bs.modal', function(e) {
+      $(this).removeData('bs.modal');
+    })
+  </script>
+</div>
+<{else}>
+
+<{if !$imageModal}>
+<!-- /.tab-pane -->
+<div class="tab-pane active">
+  <div class="row gallery">
+    <{foreach from=$imagedata item=data}>
+    <div class="col-sm-3 col-md-2">
+      <div class="thumbnail show-pics" data-param='<{$data|json_encode}>'>
+        <div class="img-show"><a href="<{$data.url}>" data-img-l="<{$data.url|storager:'l'}>" data-img-m="<{$data.url|storager:'m'}>" data-img-s="<{$data.url|storager:'s'}>" ><img src="<{$data.url|storager:'s'}>"></a></div>
+        <div class="caption" data-name="<{$data.url}>">
+          <p class="image-name"><{$data.image_name}></p>
+          <input type="text" class="form-control image-name-input" name="image_name" value="<{$data.image_name}>">
+        </div>
+      </div>
+    </div>
+    <{/foreach}>
+  </div>
+</div>
+<{else}>
+<!-- /.tab-pane -->
+<div class="tab-pane active">
+  <div class="row gallery">
+    <{foreach from=$imagedata item=data}>
+    <div class="col-sm-3">
+      <div class="thumbnail show-pics">
+        <div class="img-show"><a href="<{$data.url}>"><img src="<{$data.url|storager:'s'}>"></a></div>
+        <div class="caption" data-name="<{$data.url}>">
+          <p class="image-name"><{$data.image_name}></p>
+        </div>
+      </div>
+    </div>
+    <{/foreach}>
+  </div>
+</div>
+<{/if}>
+
+<{/if}>
+<{if $image_name}>
+<input type="hidden" name="image_name" class="has-searched" value="<{$image_name}>">
+<{/if}>
+
+<{pagers data=$pagers}>

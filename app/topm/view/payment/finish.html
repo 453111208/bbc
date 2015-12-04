@@ -1,0 +1,67 @@
+<div class="order-msg">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">订单状态</div>
+    </div>
+  </header>
+  <div class="main" id="main">
+    <div class="order-fin">
+      <div class="center">
+       <{if $payment.status == "succ" || $payment.status == "progress"}>
+        <div class="fin-icon fail">
+          <img src="images/order-icon.png" alt="">
+        </div>
+        <div class="success-info">
+          <span class="info-su">订单支付成功！</span>
+          <span class="thanks">感谢您的支持</span>
+        </div>
+        <{else}>
+        <div class="fin-icon fail">
+          <img src="images/icon-fail.png" alt="">
+        </div>
+        <div class="fail-info">
+          <span class="info-fa">系统原因，订单支付失败</span>
+          <span class="repay">请重新支付</span>
+        </div>
+        <{/if}>
+      </div>
+    </div>
+    <div class="order-info">
+      <table>
+        <tr>
+          <td class="n">创建时间：</td>
+          <td class="c">
+            <span><{$payment.payed_time|cdate}></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="n">支付时间：</td>
+          <td class="c">
+            <span><{$payment.created_time|cdate}></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="order-skip">
+      <a href="<{url action=topm_ctl_member_trade@index}>">
+        <i>5</i> 秒钟后，跳转至订单列表
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.onload =function() {
+    var i = 4;
+    setInterval(function(){
+    if(i == 0) {
+      location.href = "<{url action=topm_ctl_member_trade@index}>";
+    }
+      $('.order-skip a i').text(i--);
+    },1000);
+    };
+</script>
+

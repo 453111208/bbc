@@ -1,0 +1,9 @@
+Product-Name = b2b2c-common-cluster-source
+Registered-To = developer
+Max-Concurrent = 5
+Lease-Expiration = 60
+Wait-For-Lease = no
+Expires = Never
+Hardware-Locked = No
+Produced-By = 180410
+Verification-Code = wA4KYGoAICLBvL0WU4byb9Qy7+IdAhQgWT0FsJ/yiRWBjQoebx1fLaWqiA==

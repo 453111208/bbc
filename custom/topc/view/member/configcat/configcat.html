@@ -1,0 +1,53 @@
+<form action="<{url action=topc_ctl_member_configcat@save}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+<div class="maxM-right">
+    <div class="max-menber-title">
+        <h2>自定义商品类型</h2>
+    </div>
+    <div class="max-menber-mod">
+        <ul>
+            <li>
+            <span>选择一级分类：</span>
+                <select id="selectOption" class="maxfic">
+                    <option value="null"> 分类不限 </option>
+                    <{foreach from=$catList item=cat}>
+                    <option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+                    <{/foreach}>
+                </select>
+                <input type="hidden" name="parentcat">
+            </li>
+            <li>二级分类：
+                <input type="text" readonly="readonly" value="其他">
+            </li>
+           <li  id="lv2">
+           	<span><i style="color: red">*</i>自定义分类：</span>
+           	<input type="text" required name="lv3cat">
+           </li>
+        </ul>
+    </div>
+    <div class="maxM-buttom">
+			<button type="submit" class="btn btnp" rel="_request"><span>保 存</span></button>
+			<!-- <button type="submit" class="btn btnc" rel="_request"><span>取 消</span></button> -->
+		</div>
+</div>
+</form>
+
+<script type="text/javascript">
+    $("#lv2").hide();
+    $("#selectOption").change(function(e){
+        var value=$(this).val();
+        $("input[name=parentcat]").val(value);
+        if(value!="null"){
+             $("#lv2").show();
+        }        
+        else
+        {
+             $("#lv2").hide();
+             $("input[name=lv3cat]").val("");
+        }
+    });
+    $("button[type=submit]").click(function(event) {
+        /* Act on the event */
+        $(this).disabled("true");        
+        //$("#ajaxForm").submit();
+    });
+</script>

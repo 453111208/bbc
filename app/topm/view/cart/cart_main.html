@@ -1,0 +1,96 @@
+<{if $aCart}>
+<form action="<{url action=topm_ctl_cart@checkout}>" method="post" id="cart_submit" class="cart-submit-form">
+  <div class="select-goods">
+    <div class="select-all">
+      <div class="all">
+        <label><input class="action-checkall" type="checkbox" name="cart_all" <{if $selectAll == true}>checked<{/if}>> 全部</label>
+      </div>
+      <div class="move">
+        <!--
+        <button type="button" class="action-collect">收藏</button>
+        -->
+        <button type="button" class="action-delete">删除</button>
+      </div>
+    </div>
+    <{foreach from=$aCart item=item name='name' key=shop_id}>
+    <div class="select-store">
+      <div class="store-n check">
+        <input id="name" type="checkbox" class="action-checkshop" name="cart_shop[<{$shop_id}>]" <{if $selectShop[$shop_id] == true}>checked<{/if}>>
+        <label for="name"><{$item.shop_name}></label>
+        <{if $item.hasCoupon}>
+        <div class="cart-promotion dis-inline">
+          <a href="<{url action=topm_ctl_shopcenter@shopCouponList shop_id=$shop_id}>" class="ui-btn ui-btn-negative">领券</a>
+        </div>
+        <{/if}>
+      </div>
+      <div class="store-g">
+        <ul>
+          <{foreach from=$item.cartByPromotion item=itemPromotion key=key}>
+          <{if $key!='0'}>
+            <{if in_array($key, $item.usedCartPromotion)}>
+            <div class="cart-promotion cart-promotion-list">
+              <section>
+                <div class="promotion-info">
+                  <button type="button" class="ui-btn ui-btn-negative"><{$item.basicPromotionListInfo[$key].promotion_tag}></button>
+                  <a href="<{url action=topm_ctl_promotion@getPromotionItem promotion_id=$item.basicPromotionListInfo[$key].promotion_id}>">
+                    <{$item.basicPromotionListInfo[$key].promotion_name}>
+                  </a>
+                </div>
+                <!-- <div class="get-promotion">
+                  去凑单 <i class="icon icon-forward"></i>
+                </div> -->
+              </section>
+            </div>
+            <{/if}>
+            <{foreach from=$item.object item=goods key=key}>
+              <{if in_array($goods.cart_id,$itemPromotion.cart_ids)}>
+              <li class="cart-row-num <{if !$goods.valid}>is-disabled<{/if}>" data-cart-id="<{$goods.cart_id}>">
+                <{if $goods.valid}>
+                <{include file="topm/cart/cart_item.html"}>
+                <{else}>
+                <{include file="topm/cart/fail_cart_item.html"}>
+                <{/if}>
+              </li>
+              <{/if}>
+            <{/foreach}>
+          <{else}>
+            <{foreach from=$item.object item=goods key=key}>
+            <{if in_array($goods.cart_id,$itemPromotion.cart_ids)}>
+            <li class="cart-row-num <{if !$goods.valid}>is-disabled<{/if}>" data-cart-id="<{$goods.cart_id}>">
+              <{if $goods.valid}>
+              <{include file="topm/cart/cart_item.html"}>
+              <{else}>
+              <{include file="topm/cart/fail_cart_item.html"}>
+              <{/if}>
+            </li>
+            <{/if}>
+            <{/foreach}>
+          <{/if}>
+          <{/foreach}>
+        </ul>
+      </div>
+    </div>
+    <{/foreach}>
+    <div class="total-price">
+      <div class="price">
+        <span>
+          <i class="tp"><{if $totalCart.totalAfterDiscount}><{$totalCart.totalAfterDiscount|cur}><{else}><{0|cur}><{/if}></i> <i class="delivery">（不含运费）</i>
+        </span>
+      </div>
+      <div class="confirm">
+        <button type="submit" class="ui-btn-warning action-settle">结算</button>
+      </div>
+    </div>
+  </div>
+</form>
+<{else}>
+<div class="icon-area">
+  <i class="icon-empty"></i>
+  <span>你的购物车还没有商品哦</span>
+</div>
+<div class="link-area">
+  <a href="<{url action=topm_ctl_default@index}>" class="ui-btn-warning">
+    去挑选
+  </a>
+</div>
+<{/if}>

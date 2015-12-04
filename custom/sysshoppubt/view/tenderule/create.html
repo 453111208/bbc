@@ -1,0 +1,154 @@
+<form id="cancelForm" class="tableform" action="?app=sysshoppubt&ctl=tenderule&act=save"  method="POST" >
+    <div class="division">
+<input  name="tenderrule_id" type="hidden" value="<{$row.tenderrule_id}>">
+        <table width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                      <th><{t}>大类：<{/t}></th>
+                      <td><span class="price0">
+                      <select name="category">
+                        <option <{if $row.category=="必要资质"}> selected = 'selected' <{/if}>>
+                        必要资质
+                        </option>
+                        <option <{if $row.category=="可选资质"}> selected = 'selected' <{/if}>>
+                        可选资质
+                        </option>
+                        <option <{if $row.category=="设备能力"}> selected = 'selected' <{/if}>>
+                        设备能力
+                        </option>
+                        <option <{if $row.category=="处置能力"}> selected = 'selected' <{/if}>>
+                        处置能力
+                        </option>
+                        <option <{if $row.category=="服务能力"}> selected = 'selected' <{/if}>>
+                        服务能力
+                        </option>
+                      </select>
+                      </span></td>
+                </tr>
+
+                <!--  <tr>
+                      <th><{t}>科目：<{/t}></th>
+                      <td><span class="price0"><input type="text" name="subject" value="<{$row.subject}>"></span></td>
+                      </span></td>
+                </tr> -->
+
+                 <tr>
+                      <th><{t}>项目：<{/t}></th>
+                      <td><span class="price0"><input type="text" name="project" value="<{$row.project}>"></span></td>
+                </tr>
+                </table>
+                <table id="details">
+                <{if !$row}>
+                      <th></th>
+                      <td>*注：填写细分即为选择型资质</td>
+                <tr>
+                      <th><{t}>细分：<{/t}></th>
+                      <td><span class="price0"><input type="text" name="detail_old<{$key}>" 
+></span></td>
+                </tr>
+                <{else}>
+                <{foreach from=$rowdetail item=rows}>
+                <tr>
+                      <th><{t}>细分：<{/t}></th>
+                      <td><span class="price0"><input type="text" name="detail" value="<{$rows.detail}>"></span></td>
+                </tr>
+                <{/foreach}>
+                <{/if}>
+                </table>
+                <table>
+                <{if !$row}>
+                <tr>
+                  <th></th>
+                  <td><h1 style="margin:0 0 0 0;line_height:1;cursor:pointer;width:30px;float:left;" id="cursor">+</h1><h5 style="line-height:54px;;float:left;height:54px;">点击“+”增加细分类目</h5></td>
+                </tr>
+                <{elseif $rowdetail}>
+                <tr>
+                  <th></th>
+                  <td><h1 style="margin:0 0 0 0;line-height:1;cursor:pointer;width:100px;float:left;" id="cursor">+</h1></td>
+                </tr>
+                <{/if}>
+                <tr>
+                      <th><{t}>是否有勾选：<{/t}></th>
+                      <td><span class="price0">
+                        <input type="radio" name="is_checkbox" value="0" <{if $row.is_checkbox=="0" }>checked="checked" <{/if}> />否 
+                        <input type="radio" name="is_checkbox" value="1" <{if $row.is_checkbox=="1" }>checked="checked" <{/if}> />是 
+                      </span></td>
+                </tr>
+<!-- 
+                <tr>
+                      <th><{t}>是否有分数：<{/t}></th>
+                      <td><span class="price0">
+                      <input type="radio" name="is_score" value="0" <{if $row.is_score=="0" }>checked="checked" <{/if}>  />否 
+                      <input type="radio" name="is_score" value="1" <{if $row.is_score=="1" }>checked="checked" <{/if}> />是 
+                      </span></td>
+
+                </tr> -->
+                
+
+                <tr>
+                      <th><{t}>企业是否必选：<{/t}></th>
+                      <td><span class="price0">
+                      <input type="radio" name="is_required" value="0" <{if $row.is_required=="0" }>checked="checked" <{/if}>  />否 
+                      <input type="radio" name="is_required" value="1" <{if $row.is_required=="1" }>checked="checked" <{/if}> />是 
+                      </span></td>
+                </tr>
+
+
+                <tr>
+                      <th><{t}>类型：<{/t}></th>
+                      <td><span class="price0">
+                      <input type="radio" name="type" value="0" <{if $row.type=="0" }>checked="checked" <{/if}>  />文件 
+                      <input type="radio" name="type" value="1" <{if $row.type=="1" }>checked="checked" <{/if}> />文本框 
+                      </span></td>
+                </tr>
+
+                <tr>
+                      <th><{t}>状态：<{/t}></th>
+                      <td><span class="price0">
+                      <input type="radio" name="state" value="1" <{if $row.state=="1" }>checked="checked" <{/if}>  />发布 
+                      <input type="radio" name="state" value="2" <{if $row.state=="2" }>checked="checked" <{/if}> />作废 
+                      <input type="radio" name="state" value="3" <{if $row.state=="2" }>checked="checked" <{/if}> />未发布 
+                      
+                      </span></td>
+                </tr>
+
+                </table>
+                <tr>
+                      <span class="price0">
+                      <div class="table-action">
+                        <button class="btn btn-primary" type="submit"><span><span><{t}>保存<{/t}></span></span></button>
+                        <button class="btn btn-primary" isclosedialogbtn="1"><span><span><{t}>取消<{/t}></span></span></button>
+                      </div></span>
+                </tr>
+    </div>
+</form>
+
+
+
+
+<script>
+
+var i=0;
+
+$('cursor').addEvent('click', function(){  
+    /*$('details').set('href', 'http://www.aspxhome.com');*/
+i++;
+var details = "detail_"+i;
+var el = new Element('tr').set('html', '<th></th><td><span class="price0"><input type="text" name='+details+' value="<{$row.detail}>"></span></td>').inject($('details'));
+  });  
+$('cancelForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('cancelForm').getParent('.dialog')){
+                    var Dlg = $('cancelForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

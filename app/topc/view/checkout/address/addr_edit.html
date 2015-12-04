@@ -1,0 +1,19 @@
+<{foreach from=$userAddrList item=addrList}>
+<li class="form-row">
+  <input type="radio" name="addr" value="<{$addrList.addr_id}>" data-validate="onerequired" <{if $addrList.def_addr}>checked<{/if}>>
+  <label data-region-id="<{$addrList.region_id}>" data-addr-id="<{$addrList.addr_id}>" data-addr="<{$addrList.addr}>" data-name="<{$addrList.name}>" data-mobile="<{$addrList.mobile}>" data-zip="<{$addrList.zip}>">
+    <{$addrList.area|region}>&nbsp;<{$addrList.addr|cut:75}> （<{$addrList.name}> 收） <{$addrList.mobile}>
+  </label>
+  <a href="javascript:void(0);" class="action-edit-address addr-edit">修改本地址</a>
+  <{if $addrList.def_addr}>
+  <span class="address-default">默认地址</span>
+  <{/if}>
+</li>
+<{/foreach}>
+<li class="form-row">
+  <input type="radio" name="addr" id="for_newaddr" class="action-edit-address">
+  <label for="for_newaddr">使用新地址</label>
+</li>
+<li class="form-row last">
+  <button type="button" class="btn btn-import step1-close"><span><span>保存收货信息</span></span></button>
+</li>

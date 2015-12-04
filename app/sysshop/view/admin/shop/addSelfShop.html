@@ -1,0 +1,102 @@
+<div class="tableform">
+  <form id="sysshop_form" name="sysshop_form" action="?app=sysshop&ctl=admin_shop&act=saveSelfShop"  method="post">
+    <input type="hidden" name="shop[shop_id]" value="<{$shop.shop_id}>">
+    <div class="division">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <th><em class="red">店铺信息</em></th>
+          </tr>
+          <tr>
+            <th><{t}>店铺名称：<{/t}></th>
+            <td>
+              <{if $shop.shop_name}>
+                <{$shop.shop_name}>
+              <{else}>
+                 <{input type="text" vtype="required"  name="shop[shop_name]" value=$shop.shop_name}>
+              <{/if}>
+            </td>
+          </tr>
+          <tr>
+            <th><{t}>店铺描述：<{/t}></th>
+            <td><{input type="textarea" vtype="required"  name="shop[shop_descript]" value=$shop.shop_descript}> </td>
+          </tr>
+          <tr>
+            <th><{t}>店铺Logo：<{/t}></th>
+            <td><{input type="image" vtype="required"  name="shop[shop_logo]" value=$shop.shop_logo}> </td>
+          </tr>
+          <tr>
+            <th><{t}>店主姓名：<{/t}></th>
+            <td><{input type="text" vtype="required"  name="shop[shopuser_name]" value=$shop.shopuser_name}> </td>
+          </tr>
+          <tr>
+            <th><{t}>店主身份证号：<{/t}></th>
+            <td><{input type="text" vtype="required"  name="shop[shopuser_identity]" value=$shop.shopuser_identity}> </td>
+          </tr>
+          <tr>
+            <th><{t}>店主身份证电子版：<{/t}></th>
+            <td><{input type="image" vtype="required" name="shop[shopuser_identity_img]" value=$shop.shopuser_identity_img width=100 height=100}> </td>
+          </tr>
+          <tr>
+            <th><{t}>所在地区：<{/t}></th>
+            <td><{input type="text" vtype="required"  name="shop[shop_area]" value=$shop.shop_area}> </td>
+          </tr>
+          <tr>
+            <th><{t}>详细地址：<{/t}></th>
+            <td><{input type="text" vtype="required"  name="shop[shop_addr]" value=$shop.shop_addr}> </td>
+          </tr>
+          <tr>
+            <th><{t}>手机号码：<{/t}></th>
+            <td><{input type="mobile" vtype="required"  name="shop[mobile]" value=$shop.mobile}> </td>
+          </tr>
+          <tr>
+            <th><{t}>邮箱：<{/t}></th>
+            <td><{input type="email" vtype="email"  name="shop[email]" value=$shop.email}> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <table cellspacing="0" cellpadding="0" class="table-action">
+      <tbody>
+        <tr valign="middle">
+          <td>
+            <{assign var="___c"  value='确定退出?'|t:'sysshop'}>
+
+            <{button label="保存并关闭窗口"|t:'sysshop' class="btn-primary" type="button"  onclick="submitForm(event,2)"}>
+
+            <{button label="关  闭"|t:'content' class="btn-secondary" type="button" isclosedialogbtn="1"}>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<script>
+  var submitForm = function (event,sign){
+    var _form=$('sysshop_form');
+    switch (sign){
+      case 1:
+        var target={
+          onComplete:function(){
+                       location.reload();
+                     }};
+        break;
+      case 2:
+        var target={
+          onComplete:function(rs){
+                       if(rs&&!!JSON.decode(rs).success){
+                           window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                           _form.getParent('.dialog').retrieve('instance').close();
+                       }
+                     }};
+        break;
+    }
+    _form.store('target',target);
+    if(confirm('是否保存?')) {
+      _form.fireEvent('submit',new Event(event));
+    }
+  };
+
+</script>

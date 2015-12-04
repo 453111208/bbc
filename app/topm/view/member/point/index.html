@@ -1,0 +1,59 @@
+<div class="member shop member-detail">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <div class="info-hd">
+      <div class="grow-grade integral">
+        <div class="left">
+          <h2>可用积分</h2>
+          <div class="grow-grade-current"><{if $userpoint.point_count}> <{$userpoint.point_count}><{else}>0 <{/if}></div>
+        </div>
+        <div class="right">
+          <h2>将要过期积分</h2>
+          <div class="number"><{if $userpoint.expired_point}><{$userpoint.expired_point}> <{else}>0 <{/if}></div>
+          <p>
+            有效期至<br>
+            <{$userpoint.expired_time|cdate}>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-bd2">
+      <div class="grow-table-hd">积分明细</div>
+      <ul class="grow-value-table">
+        <li>
+          <div class="box">
+            <div>来源/用途</div>
+            <div>积分变化</div>
+            <div>备注</div>
+          </div>
+        </li>
+        <{if !$pointdata}>
+        <li>
+
+          <div>
+            <div class="empty-area">
+              <i class="icon icon-order"></i>
+              <span class="empty-txt">你还没有积分明细~</span>
+            </div>
+
+          </div>
+        </li>
+
+        <{else}>
+        <{foreach from=$pointdata item=point}>
+        <li>
+          <div class="box">
+            <div><{$point.behavior}> </div>
+            <div><{$point.remark}></div>
+            <div class="up"><{if $point.behavior_type == "obtain"}>+<{elseif $point.behavior_type == "consume"}>-<{/if}><{$point.point}>
+            </div>
+          </div>
+          <p class="time"><{$point.modified_time|cdate}></p>
+        </li>
+        <{/foreach}>
+        <{/if}>
+      </ul>
+    </div>
+  </div>
+</div>

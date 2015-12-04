@@ -1,0 +1,11 @@
+\#*
+.\#*
+.*
+!.gitignore
+*.swp
+*~
+*.swo
+$.swn
+config/certi.php
+.sass-cache
+vendor/routes.php

@@ -1,0 +1,51 @@
+<ul>
+  <li class="<{if $activeFilter.orderBy == ''}>cur<{/if}>">
+    <{assign var= value=$filter}>
+    <a href="<{url action=topm_ctl_list@index _params=$filter r_sort='' operationtype=replace }>">
+      <span>默认</span>
+    </a>
+  </li>
+
+  <{if $activeFilter.orderBy == 'price desc' }>
+  <li class="<{if $activeFilter.orderBy == 'order_sort desc'}>cur<{/if}>">
+    <a href="<{url action=topm_ctl_list@index _params=$filter  r_sort='order_sort desc' operationtype=replace}>" class="is-desc">
+      <span> 排序</span>
+    </a>
+  </li>
+  <{else}>
+  <li class="<{if $activeFilter.orderBy == 'order_sort asc'}>cur<{/if}>">
+    <a href="<{url action=topm_ctl_list@index _params=$filter  r_sort='order_sort asc' operationtype=replace}>" class="is-desc">
+      <span> 排序</span>
+    </a>
+  </li>
+  <{/if}>
+
+  <{if $activeFilter.orderBy == 'price desc' }>
+  <li class=" <{if $activeFilter.orderBy == 'price desc' }>cur <{/if}>">
+    <a href="<{url action=topm_ctl_list@index _params=$filter  r_sort='price desc' operationtype=replace }>" class="is-asc">
+      <span>价格</span>
+    </a>
+  </li>
+  <{else}>
+  <li class=" <{if $activeFilter.orderBy == 'price asc' }>cur <{/if}>">
+    <a href="<{url action=topm_ctl_list@index  _params=$filter r_sort='price asc' operationtype=replace }>" class="is-desc">
+      <span>价格</span>
+    </a>
+  </li>
+  <{/if}>
+
+  <li class="<{if $activeFilter.orderBy == 'list_time desc' }>cur<{/if}>">
+    <a href="<{url action=topm_ctl_list@index  _params=$filter r_sort='list_time desc' operationtype=replace }>" class="is-desc">
+      <span>上架时间</span>
+    </a>
+  </li> 
+
+</ul>
+<input type="checkbox" class="check-item" name="isself" id="isself" <{if $isself==0}> checked <{/if}>>自营
+<script>
+  
+  $('#isself').change(function(){
+      location.href = '<{url action=topm_ctl_list@index  _params=$filter r_sf=$isself operationtype=replace}>';
+  });
+  
+</script>

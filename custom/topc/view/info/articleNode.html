@@ -1,0 +1,59 @@
+<div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+        <dt>当前位置：</dt>
+        <dd>
+            <a class="beb-nav" href="/index.php/articles"><span>资讯中心</span></a><span class="beb-raquo">></span>
+            <a class="beb-nav" href=""><span><{$nodeList.node_name}></span></a>
+        </dd>
+    </dl>
+</div>
+<div class="maxsection"> 
+    <div class="maxlist">
+        <div class="maxcomon" style="display: block;">
+            <ul>
+                <{foreach from=$List item=item key=key}>
+                    <li>
+                        <div class="maxpic"><a href="<{url action=topc_ctl_info@getInfo articleId=$item.article_id}>"><img src="<{$item.article_logo}>"></a></div>
+                        <div class="maxlist-content">
+                            <div class="maxlist-title"><a href="<{url action=topc_ctl_info@getInfo articleId=$item.article_id}>"><{$item.title}></a></div>
+                            <div class="maxlist-subhead"><{$item.subhead}></div>
+                        </div>
+                        <div class="click_rate">
+                            点击量：<i class="maxicon-see"><em><{$item.click_rate}></em></i>
+                        </div>
+                    </li>
+                <{/foreach}>
+            </ul>
+        </div>
+    </div>
+    <div class="page">
+        <{if $pageNow>1}> <!-- 是否是第一页 -->
+        <div class="pageUp"><a href="<{url action=topc_ctl_info@getNode pageNow=$pageNow-1 nodeId=$nodeId}>">上一页</a></div>
+        <{else}>
+        <div class="pageUp"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList">
+            <ul>
+                <{foreach from=$artList item=item key=key}>
+                    <{if $key<$pageCount}>
+                    <li><a href="<{url action=topc_ctl_info@getNode pageNow=$key+1 nodeId=$item.node_id}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}> <!-- 是否是尾页  -->
+        <div class="pageDown"><a href="<{url action=topc_ctl_info@getNode pageNow=$pageNow+1 nodeId=$nodeId}>">下一页</a></div>
+        <{else}>
+        <div class="pageDown"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+    </div>
+</div>   
+<script>
+    $(".pageList").find("a").each(function(){
+        if($(this).text()==<{$pageNow}>){
+            $(this).addClass("a_active");
+        }
+    });
+</script>
+
+   

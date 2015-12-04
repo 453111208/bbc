@@ -1,0 +1,56 @@
+<table class="table table-primary table-hover table-goods">
+  <thead>
+    <tr>
+      <td>货号</td>
+      <td class="col-name">商品名称</td>
+      <td>单价</td>
+      <td>数量</td>
+      <td>原价</td>
+      <td>手工调价</td>
+      <td>状态</td>
+    </tr>
+  </thead>
+  <tbody>
+    <{foreach from=$trade.orders item=item}>
+    <tr>
+      <td><{$item.bn}></td>
+      <td>
+        <div class="goods">
+          <img src="<{$item.pic_path|storager:'s'}>" alt="<{$item.title}>">
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a>
+        </div>
+      </td>
+      <td>
+        <{$item.price|cur}>
+      </td>
+      <td>
+        <{$item.num}>
+      </td>
+      <td>
+        <span class="text-orange"><{$item.total_fee|cur}></span>
+      </td>
+      <td>
+        <span class="text-orange"><{$item.adjust_fee|cur}></span>
+      </td>
+      <td>
+        <span class="text-orange">
+          <{if $item.status == "WAIT_BUYER_PAY"}>等待买家付款
+          <{elseif $item.status == "WAIT_SELLER_SEND_GOODS"}>买家已付款,请发货
+          <{elseif $item.status == "WAIT_BUYER_CONFIRM_GOODS"}>已发货，等待买家确认收货
+          <{elseif $item.status == "TRADE_FINISHED"}> 交易完成<{if $item.aftersales_status == "SUCCESS"}> 发生售后退款：<{$item.refund_fee|cur}><{/if}>
+          <{elseif $item.status == "TRADE_CLOSED_AFTER_PAY"}>退款并交易关闭
+          <{elseif $item.status == "TRADE_CLOSED_BEFORE_PAY"}>交易关闭
+          <{/if}>
+        </span>
+      </td>
+
+    </tr>
+    <{/foreach}>
+  </tbody>
+</table>
+<div class="text-right">
+  <div>
+    配送费用：<span class="text-orange"><{$trade.post_fee|cur}></span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    商品总额：<span class="text-orange"><{$trade.total_fee|cur}> </span>
+  </div>
+</div>

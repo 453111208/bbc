@@ -1,0 +1,6 @@
+<desktop>
+
+    <adminpanel group="desktop_setting" controller="admin_setting" action="index" permission="shopsetting" display="true" order='10'>商店设置</adminpanel>
+    <adminpanel group="desktop_setting" controller="admin_setting" action="wapSet" permission="shopsetting" display="true" order='11'>wap端设置</adminpanel>
+
+</desktop>

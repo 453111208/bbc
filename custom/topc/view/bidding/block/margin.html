@@ -1,0 +1,286 @@
+ <link rel="stylesheet" href="images/countdown/countdown/jquery.countdown.css" />
+ <script src="images/countdown/countdown/jquery.countdown.js"></script>
+    <script src="images/countdown/js/script.js"></script>
+
+<div id="dialog" style="display:none">
+    <{$artList}>
+</div>
+<div id="dialogPrice" style="display:none">
+    <{$dialogPrice}>
+</div>
+
+     <div class="biddin-head">
+              <input type="hidden" id="sfcj"  value="<{$b_price_type}>"/>
+            <div class="title-icon">竞价</div>
+            <div class="l">
+              <div class="title"><{$requireItem.trading_title}></div>
+              <div class="info-item clearfix">
+                <div class="item">保证金：￥<{$requireItem.ensurence}></div>
+              
+                <div class="item"> 延时周期：5分钟/次</div>
+                <div class="item">交割方式：<{$requireItem.trade_type}></div>
+                <div class="item">涨幅：<{$requireItem.add_price}>%</div>
+                <div class="help"><a href="" title="">&nbsp;</a></div>
+              </div>
+            </div>
+            <div class="r" style="min-width: 100px;">
+              <div class="zt"><{if $state==0}>距离交易开始还有：<{elseif $state==1}>距离交易结束还有：<{else}>交易已经结束<{/if}></div>
+              <{if $state!=2}>
+              <div class="time-item" style="font-size: 16px;">
+              <span id="day_show"></span>
+              <strong id="hour_show"></strong>
+              <strong id="minute_show"></strong>
+              <strong id="second_show"></strong>
+              </div>
+              <{/if}>
+              </div>
+
+          </div>
+          <!-- 版块头部END -->
+          <!-- 版块内容区 -->
+<form action="<{url action=topc_ctl_bidding@sendPrice}>" method="post" id="BiddingsForm" >
+          <div class="biddin-body">
+          <!-- 项目一 -->
+            <input type="hidden" name="ensurence" value="<{$requireItem.ensurence}>" />
+            <input type="hidden" name="bidding_id" value="<{$requireItem.bidding_id}>" />
+            <input type="hidden" name="shop_id" value="<{$requireItem.shop_id}>" />
+          <{foreach from=$itemList item=item}>
+
+            <div class="biddin-item odd">
+              <input type="hidden" name="item_id[]" value="<{$item.item_id}>" />
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+                <colgroup>
+                    <col class="col-5">
+                    <col class="col-4">
+                    <col class="col-4">
+                    <col class="col-4">
+                    <col class="col-3">
+                </colgroup>
+                <tbody>
+                  <tr>    
+                    <td class="name"><div class="icon">&nbsp;</div><{$item.title}></td>
+                  
+                    <td class="num">数量：<{$item.num}><input class="sn" id="number{$item.item_id}" type="hidden" name="num[]" value="<{$item.num}>" readOnly /></td>
+                    <td>单位：<{$item.unit}><input type="hidden" id="" name="unit[]" value="<{$item.unit}>" readOnly /></td>
+                    <td>底价：<{$item.net_price}><input type="hidden" class="dj" name="net_price[]"value="<{$item.net_price}>" readOnly /></td>
+                    <td>
+                      <div class="goods-buy">
+                        <div class="t">出价:</div>
+                        <span class="p-quantity">
+                         <!--  <a href="javascript:void(0);" class="btn-decrease">-</a> -->
+                          <input type="text" id="cj1" attr="number{$item.item_id}" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d.]/g,'')" name="b_price[]" class="action-quantity-input" value="<{$item.bid}>">
+                          <!-- <a href="javascript:void(0);" class="btn-increase">+</a> -->
+                        </span>
+          
+                      </div>
+                    </td>
+                  </tr>    
+                </tbody>
+              </table>
+              <!-- 弹出层 -->
+              <div class="max-bd-popup">
+                <div class="arrow arrow-bottom" ><i class="below">◆</i><i class="above">◆</i></div>
+                <div class="max-pic"><a href="" title=""><img style="width:90px;height:90px;" src="<{$item.image_default_id}>" alt=""></a></div>
+                <div class="max-info">
+                  <div class="goods-name"><a href="" title=""><{$item.title}></a></div>
+                  <ul class="detailinfo-list">
+                        <{foreach from=$item.prop item=propitem}>
+                             <li><{$propitem.item_prop_name}>：<{$propitem.item_prop_value}></li>
+                       <{/foreach}>
+                  </ul>
+                </div>
+              </div>
+              <!-- 弹出层END -->
+            </div>
+            <{/foreach}>
+            <!-- 项目一END -->
+            <!-- 项目二 -->
+         
+            <!-- 项目二END -->
+
+          </div>
+          
+          <!-- 版块内容区END -->
+          <!-- 版块底部 -->
+
+          <div class="biddin-footer">
+            <div class="tishi">
+            <div class="item-1"><div class="icon"></div>
+              提示：出价后支付保证金方成为有效出价更新至前台，</div>
+              <div class="item-1">如果有相同的出价，保证金到账时间为准，交易结束前2小时，结束保证金缴纳</div>
+            </div>
+            <div class="max-buy-box">
+              <div class="l product-concern">
+                <input id="totalbid" type="hidden" name="totalbid" value="">
+                <div class="item">当前价：￥<span id="dqj"><{$totalbid}></span> </div>
+                <div class="item item2" style="display:inline-flex;">我的总价：<div id="wdzj" style="font-size: 24px;width: 130px;">0</div> </div>
+                <div class="item">总一口价：<{$requireItem.fixed_price|cur}> </div>
+              </div>
+              <div class="r">
+                    <div class="item item1" ><!-- 您还未缴纳保证金，<button type="button" id="margin">去缴纳></button> --></div>
+                <div class="item item2" style="display:none">您已缴纳保证金，提交报价将立即生效</div>
+<!--                <a href="" title="" class="btn">提交报价</a>-->
+                <{if $tradeorder}><button type="button" class="btn">竞价结束</button><{else}>
+                <button type="submit" id="offerPrice" class="btn">提交报价</button>
+                <a href="javascript:" title="" class="btn btn-r" id="oncemore"><div id="once">一口价购买</div><div id="describe">以<{$requireItem.fixed_price|cur}>一口价拍下</div></a>
+                <{/if}>
+              </div>
+            </div>
+          </div>
+</form>
+<style type="text/css">
+  #describe{background-color: #FEF5EC;border: 0px;display: none;font-size: 13px;width: 93px;padding-left: 0;white-space: normal;line-height: 1;margin-top: 5px;}
+  #once{background-color: #FEF5EC;border: 0px;width: 93px;padding-left: 0;}
+</style>
+   <script>
+   $("#oncemore").click(function(){
+      $.ajax('<{url action=topc_ctl_bidding@once}>',{
+        type:'post',
+        data:{"bidding_id":'<{$requireItem.bidding_id}>'},
+        error: function(rs) {alert("投标提交失败，请重试！");},
+        success: function(rs) {
+          if(rs == 0){
+            Message.error('不可对自己的发布的商品进行竞价');} 
+          else if(rs==1) {
+            Message.success('恭喜您！一口价竞价成功');
+             window.location.reload();
+            }else if(rs==2){
+              Message.error('您的预存款不足，请及时充值');
+            }else if(rs==3) {
+               Message.error('您没有竞价权限！');
+             }else if(rs==4){
+              Message.error('该项竞价交易已经结束');
+             }else if(rs==5){
+              Message.error('交易未开始');
+             }else Message.error(rs);
+            }
+      });
+    });
+$('#oncemore').hover(function(){
+    $('#once').hide();
+    $('#describe').show();
+    },function(){
+    $('#once').show();
+    $('#describe').hide();
+});
+function setMyPrice(){
+	var value=0
+   try{
+      $(".action-quantity-input").each(function(){       
+           var num = $(this).closest("tr").children('.num').find("input");
+           var num_value = num.val();
+           value = Number($(this).val())*Number(num_value)+value;
+      });
+    
+      var reg = new RegExp("^[0-9]*$")
+       if(reg.test(value)){  
+ $("#wdzj").text(value);
+     $("#totalbid").val(value);
+       }else{
+         $("#wdzj").text(0);
+       }
+
+       }catch(ex){
+  }
+    
+	
+}
+
+$(window).on("load",function(){
+  //setMyPrice();
+  $(".action-quantity-input").bind('input propertychange', function() {
+  setMyPrice();
+}); 
+  if($("#sfcj").val()=="0"){
+    var dqj = 0;
+    $(".dj").each(function(){
+      var sn =   $(this).parent().parent().find(".sn").val();
+      var dj = $(this).val();
+      dqj = dqj+Number(sn)*Number(dj);
+    });
+    $("#dqj").text(dqj);
+  }
+
+
+});
+
+
+$('#margin').click(function (e) {
+    $('#dialog').dialog({
+        width: 890,
+        height: 400,
+        title:'保证金引导页',
+        close: function(){
+        }
+    });
+    //alert($(window).height());
+//$("#dialog").panel("move",{top:500}); 
+});
+$('#offerPrice').click(function (e) {
+
+    if(Number($("#wdzj").text())<=Number($("#dqj").text()))
+    	{alert("您的出价价格低于当前价，请重新出价");return false;}
+    else{
+      var dqj=Number($("#dqj").text());
+      var wodzj=Number($("#wdzj").text());
+      var zhangfu=(wodzj-dqj)/dqj;
+
+        if(zhangfu><{$requireItem.add_price}>/100){
+          alert("您的加价幅度过高，请重新出价！");
+          return false;
+        }
+        var r=confirm("尊敬的用户，系统将默认您的出价为真实交易，并冻结您预存款账户的该笔保证金金额。")
+          if (r==true)
+            {
+              //alert("您的出价已经成功，请留意竞价公告信息！");
+              return true;
+            }
+          else
+            {
+            $.ajax('<{url action=topc_ctl_bidding@wish}>',{
+        type:'post',
+        data:{"bidding_id":'<{$requireItem.bidding_id}>',"shop_id":'<{$requireItem.shop_id}>',"title":'<{$requireItem.trading_title}>'},
+        error: function(rs) {return false;},
+        success: function(rs) {
+          return false;
+        }
+      });
+            return false;
+            }
+    // 	$('#dialogPrice').dialog({
+    //     width: 890,
+    //     height: 400,
+    //     title:'提交报价弹窗',
+    //     close: function(){
+    //     }
+    // });
+    }
+    
+});
+
+var intDiff = parseInt(<{$totaltime}>);//倒计时总秒数量
+function timer(intDiff){
+  window.setInterval(function(){
+  var day=0,
+    hour=0,
+    minute=0,
+    second=0;//时间默认值    
+  if(intDiff > 0){
+    day = Math.floor(intDiff / (60 * 60 * 24));
+    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+  }
+  if (minute <= 9) minute = '0' + minute;
+  if (second <= 9) second = '0' + second;
+  $('#day_show').html(day+"天");
+  $('#hour_show').html('<s id="h"></s>'+hour+'时');
+  $('#minute_show').html('<s></s>'+minute+'分');
+  $('#second_show').html('<s></s>'+second+'秒');
+  intDiff--;
+  }, 1000);
+} 
+$(function(){
+  timer(intDiff);
+}); 
+</script>

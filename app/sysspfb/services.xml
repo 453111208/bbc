@@ -1,0 +1,11 @@
+<services>
+    <service id="desktop_finder.sysspfb_mdl_brand">
+        <class>sysspfb_finder_brand</class>
+    </service>
+    <service id="desktop_finder.sysspfb_mdl_props">
+        <class>sysspfb_finder_props</class>
+    </service>
+    <service id="desktop_finder.sysspfb_mdl_cat">
+        <class>sysspfb_finder_cat</class>
+    </service>
+</services>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="no-support">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <{css app="topshop" src="theme.css"}>
+</head>
+<body>
+  <div class="container">
+    <div class="brand"><img src="../../../bbc/themes/luckymall/images/logo_white.png" alt=""></div>
+    <div class="container-txt">
+      <p>如果遇到无法正常使用情况，请 <a href="#">反馈给我们</a></p>
+      <p>我已知道当前浏览器可能带来的显示问题，我要 <a href="#">继续打开</a></p>
+    </div>
+  </div>
+</body>
+<{script app="topshop" src="lib/jquery.js"}>
+<script>
+$(function(){
+  var browser=navigator.appName;
+  var b_version=navigator.appVersion;
+  var version=b_version.split(";");
+  var trim_Version=version[1].replace(/[ ]/g,"");
+  forIE()
+  function forIE(){
+    if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0"){
+      var body_width=$('body').width();
+      if(body_width>1680){
+        $('html').addClass('for-ie8');
+      }else{
+        $('html').removeClass('for-ie8');
+      }
+    }
+  }
+  $(window).resize(function(){
+    forIE()
+  });
+})
+</script>
+</html>
+

@@ -1,0 +1,56 @@
+<form name="demo" method="post">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="tableform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+<thead>
+<tr>
+<th>交易标题</th>
+<th>投标企业名称</th>
+<th>操作人</th>
+<th>投标价格</th>
+<th>投标时间</th>
+<th>评分</th>
+<th>是否开启</th>
+<th>是否中标</th>
+<th>创建时间</th>
+<th>操作</th>
+</tr></thead><tbody>
+
+<{foreach from=$items item=row}>
+<tr>
+<td><{$row.tender_title}></td>
+<td><{$row.tender_man}></td>
+<td><{$row.name}></td>
+<td><{$row.price}></td>
+<td><{$row.tender_time|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+<td><{$row.score}></td>
+<td><{$row.openornot}></td>
+<td><{$row.winornot}></td>
+<td><{$row.create_time|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+<td>
+<{if $row.openornot == 0}><input type="button" name="close" id="close" value="关闭"><{/if}>
+<{if $row.openornot == 1}><input type="button" name="open" id="open" value="开启"><{/if}>
+<input type="button" name="other" id="other" value="其他"></td>
+</tr>
+<{/foreach}>
+</tbody>
+</table>
+</div>
+</form>
+
+<script type="text/javascript">
+$('close').addEvent('click', function(){
+document.form.action="?app=sysshoppubt&ctl=tenderenter&act=close";
+ document.demo.submit();
+}); 
+
+$('close').addEvent('click', function(){ 
+document.form.action="?app=sysshoppubt&ctl=tenderenter&act=open";
+ document.demo.submit();
+}); 
+
+$('close').addEvent('click', function(){ 
+document.form.action="?app=sysshoppubt&ctl=tenderenter&act=other";
+ document.demo.submit();
+}); 
+</script>

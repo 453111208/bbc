@@ -1,0 +1,16 @@
+<div class="showarea floor area">
+  <section class="floor-bd floor-col-2 ui-refresh">
+    <{if $items}>
+    <ul class="data-list">
+      <{include file="topm/list/itemlist/itemshow.html"}>
+    </ul>
+    <div class="ui-refresh-handle">
+      <div class="ui-refresh-down"></div>
+    </div>
+    <{else}>
+    <div class="empty-area">
+      <span><i class="icon-result"></i>暂无关键词相关商品</span>
+    </div>
+    <{/if}>
+  </section>
+</div>

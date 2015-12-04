@@ -1,0 +1,16 @@
+<services>
+
+    <service id="desktop_finder.sysrate_mdl_appeal">
+        <class>sysrate_finder_appeal</class>
+    </service>
+
+    <service id="desktop_finder.sysrate_mdl_feedback">
+        <class>sysrate_finder_feedback</class>
+    </service>
+
+    <service id="desktop_finder.sysrate_mdl_consultation">
+        <class>sysrate_finder_consultation</class>
+    </service>
+
+</services>
+

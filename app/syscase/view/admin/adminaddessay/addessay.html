@@ -1,0 +1,54 @@
+<form id="propForm" class="tableform" action="?app=syscase&ctl=admin_essay&act=save" method="POST">
+<{input type="hidden"  name="essay_id" id="essay_id" value=$essayInfo.essay_id }>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th><em class="red">*</em><{t}>文章名称：<{/t}></th>
+        <td><{input type="text" name="title" vtype="required"  value=$essayInfo.title }></td>
+    </tr>
+    <tr>
+        <th><em class="red">*</em><{t}>类型：<{/t}></th>
+        <td>
+          <select name="essaycat_id">
+          <option value="" ><{t}>请选择类型<{/t}></option>
+            <{foreach from=$essaycatlist item=cats}>
+              <option value="<{$cats.essaycat_id}>"><{$cats.essaycat}></option>
+            <{/foreach}>
+          </select>
+        </td>
+    </tr>
+    <tr>
+         <th><em class="red">*</em><{t}>文章内容：<{/t}></th>
+         <td><{input type="html" name="context" vtype="required"  value=$essayInfo.context maxlength='1000'}></td>
+    </tr>
+    </table>
+   </div>
+   <div class="table-action">
+    <{button label="保存"|t:'syscase' type="submit" class="btn-primary"}>
+  </div>
+</form>
+
+<script type="text/javascript">
+$('propForm').store('target',
+{
+  onComplete:function(rs)
+   {
+   if(!rs) return;
+   rs = JSON.decode(rs);
+   if(rs.success)
+     {
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog'))
+        {
+          var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update)
+            {
+             Dlg.update.retrieve('instance').initContent();
+            }
+          Dlg.close();
+        }
+     }
+   }
+});
+  
+</script>

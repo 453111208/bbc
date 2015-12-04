@@ -1,0 +1,23 @@
+<div id="confirm_dialog">
+<form action="<{url action=topc_ctl_member_trade@confirmReceipt}>" method="post" class="confirm-form">
+  <div class="order-confirm">
+    <i class="icon icon-information-a" data-icon="\2887"></i>
+    <ul>
+      <li class="form-row">
+        <label for="" class="form-label">订单号：</label>
+        <span class="form-act"><a class="confirm-trade-tid" href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tid}>"><{$tid}></a></span>
+        <input type="hidden" name="tid" value="<{$tid}>" class="confirm-tid">
+      </li>
+      <li class="form-row orange">
+        <p>友情提示：<br>订单确认收货后会将款项打至商家，请务必在收到货物后进行此操作，<br>您是否确认收货？</p>
+      </li>
+      <li class="form-row">
+        <span class="form-act">
+          <button type="submit" class="btn btn-import act-confirm"><span><span>确认收货</span></span></button>
+          <button type="button" class="btn btn-simple action-reset dialog-btn-close"><span><span>暂不确认</span></span></button>
+        </span>
+      </li>
+    </ul>
+  </div>
+</form>
+</div>

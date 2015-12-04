@@ -1,0 +1,72 @@
+<div class="prd-data shop">
+<{include file="topm/common/top.html"}>
+<section class="container appraisal-comment-list">
+  <section class="conditions">
+    <div><a href="<{url action=topm_ctl_item@getItemRate item_id=$item_id}>"><input type="radio" name="query_type" <{if !$filter.query_type}>checked<{/if}>>全部</a></div>
+    <div><a href="<{url action=topm_ctl_item@getItemRate item_id=$item_id query_type=content}>"><input type="radio" name="query_type" <{if $filter.query_type == 'content'}>checked<{/if}> >有内容</a></div>
+    <div><a href="<{url action=topm_ctl_item@getItemRate item_id=$item_id query_type=pic}>"><input type="radio" name="query_type" <{if $filter.query_type == 'pic' }>checked<{/if}>  >有晒图</a></div>
+  </section>
+  <section class="type-list ui-refresh">
+    <ul class="data-list">
+      <{include file="topm/items/rate/list.html"}>
+    </ul>
+    <div class="ui-refresh-handle">
+      <div class="ui-refresh-down"></div>
+    </div>
+  </section>
+</section>
+<script>
+  $('.appraisal-comment-list').on('tap', '.comment-thumbs', function(){
+    var imgArr = [];
+    var thumbs = $(this).find('a');
+    thumbs.each(function(){
+      $(this).click(function(e) {
+        e.preventDefault();
+      });
+      var item = $(this).attr('href');
+      imgArr.push(item);
+    })
+    var list = '';
+    for (var i = 0; i < thumbs.length; i++) {
+      list += '<div><img src="'+ thumbs[i] +'"></div>';
+    };
+    $('#slider').html(list);
+    $('#slider').slider( { imgZoom: true, loop: false, autoPlay: false } );
+    $('.show-imgs').addClass('visible');
+  });
+
+  $('.show-imgs').tap(function(e){
+    $('.show-imgs').removeClass('visible');
+    $('#slider').slider('destroy');
+  })
+
+  $('.conditions input').tap(function(){
+    var link = $(this).parent().attr('href');
+    window.location.href = link;
+  })
+
+  var pagers = <{$pagers|json_encode}>;
+  pagers.next = pagers.current + 1;
+  $('.ui-refresh').refresh({
+    init: function () {
+      if(pagers.current == pagers.total) {
+        this.disable();
+      }
+    },
+    load: function (dir, type) {
+      var self = this;
+      var $list = $('.data-list');
+      $.get('<{url action=topm_ctl_item@getItemRateList json=true}>', location.search.slice(1) + '&pages=' + pagers.next, function (rs) {
+        if(rs.success) {
+          pagers.next = +rs.pagers.current + 1;
+          $list[dir == 'up' ? 'prepend' : 'append'](rs.html);
+        }
+        self.afterDataLoading();
+        if(rs.pagers.current == rs.pagers.total) {
+          self.disable();
+        }
+      });
+    }
+  });
+</script>
+</div>

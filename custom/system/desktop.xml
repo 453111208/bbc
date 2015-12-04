@@ -1,0 +1,29 @@
+<desktop>
+
+    <permissions>
+        <permission id="system" display='true' parent='0' workground='system'>系统设置</permission>
+        <permission id="systemmessenger" display='true' parent='0' workground='system'>邮件短信配置</permission>
+        <permission id="prismmanager" display='true' parent='0' workground='system'>prism参数管理</permission>
+        <permission id="adminlogmanager" display='true' parent='0' workground='system'>日志管理</permission>
+    </permissions>
+
+    <workground name="系统" id="system.workground.setting" controller="admin_crontab" action="index" order="205">
+        <menugroup name="定时任务">
+            <menu controller="admin_crontab" permission='system' action="index" display='true' order='1'>定时任务</menu>
+            <menu controller="admin_queue" permission='system' action="index" display='true' order='2'>队列管理</menu>
+        </menugroup>
+        <menugroup name="配置">
+            <menu controller="admin_messenger" permission='systemmessenger' action="index" display='true' order='3'>邮件短信配置</menu>
+        </menugroup>
+        <menugroup name="prism配置">
+            <!--
+            <menu controller="admin_prism" permission='prismmanager' action="getConf" display='true' order='1'>查看prism设置</menu>
+            -->
+            <menu controller="admin_prism" permission='prismmanager' action="getKeys" display='true' order='4'>访问Keys</menu>
+        </menugroup>
+        <menugroup name="日志管理">
+            <menu controller="admin_adminlog" permission='adminlogmanager' action="index" display='true' order='5'>平台操作日志</menu>
+        </menugroup>
+    </workground>
+
+</desktop>

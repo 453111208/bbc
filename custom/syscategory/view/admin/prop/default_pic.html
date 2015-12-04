@@ -1,0 +1,29 @@
+<form class='tableform' action='?app=syscategory&ctl=admin_props&act=saveDefaultPic' method='post' id="prop_pic_set_form">
+  <table>
+    <tr>
+      <th><{t}>默认属性图片：<{/t}></th>
+      <td><{input type='image' name='set[prop.default.pic]' value=$prop_default_pic  width=$prop_image_width height=$prop_image_height}></td>
+    </tr>
+    <tr>
+      <th><{t}>属性图片高度：<{/t}></th>
+      <td><{input type='number' name='set[prop.image.height]' vtype='required&&unsigned' value=$prop_image_height }><i> px</i></td>
+    </tr>
+    <tr>
+      <th><{t}>属性图片宽度：<{/t}></th>
+      <td><{input type='number' name='set[prop.image.width]' vtype='required&&unsigned' value=$prop_image_width }><i> px</i></td>
+    </tr>
+  </table>
+<{area inject=".mainFoot"}>
+  <div class="table-action">
+    <{button label="保存"|t:'syscategory' class="btn-primary" type="button" onclick="$('prop_pic_set_form').fireEvent('submit',{stop:function(){}})"}>
+  </div>
+<{/area}>
+</form>
+
+<script>
+$('prop_pic_set_form').store('target',{
+  onComplete:function(){
+    $('prop_pic_set_form').getParent('.dialog').retrieve('instance').close();
+  }
+});
+</script>

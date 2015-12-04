@@ -1,0 +1,77 @@
+<div class="address-edit">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">我的收货地址</div>
+    </div>
+  </header>
+  <div class="main" id="main">
+    <form action="<{url action=topm_ctl_cart@saveAddress}>" method="post" id="form_address">
+      <input type="hidden" name="addr_id" value="<{$addrInfo.addr_id}>">
+      <ul>
+        <li class="form-row">
+          <label for="" class="form-label">收货人</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="name" value="<{$addrInfo.name}>" id="name" required data-caution="请填写收货人">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">手机号码</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="mobile" required data-validate="mobile" data-caution="请填写手机号&&手机格式不正确" value="<{$addrInfo.mobile}>" id="mobile">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">邮政编码</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="zip" id="zip" value="<{$addrInfo.zip}>" data-validate="zip" data-caution="邮政编码格式错误">
+          </span>
+        </li>
+        <li class="form-row area">
+          <label for="" class="form-label">所在地区</label>
+          <span class="form-act">
+            <span class="area" id="area" data-validate="area"></span>
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">详细地址</label>
+          <span class="form-act">
+            <input class="input-ln" type="text" name="addr" value="<{$addrInfo.addr}>" id="addr" required data-caution="请填写详细地址">
+          </span>
+        </li>
+      </ul>
+      <div class="set-defualt">
+        <input type="checkbox" id="defualt" name="def_addr" value="1">
+        <label for="defualt">设为默认地址</label>
+      </div>
+      <div class="save-action">
+        <button type="submit" class="ui-btn-warning">保 存</button>
+        <{if $addrInfo.addr_id}>
+        <a href="<{url action=topm_ctl_cart@delAddr addr_id=$addrInfo.addr_id}>" class="icon icon-recycle action-delete" rel="_request"></a>
+        <{/if}>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+new AreaWidget({
+    dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+    select:$('#area'),
+    initData:'<{$addrInfo.region_id}>'
+});
+
+$('.set-defualt label').click(function(){
+  $(this).toggleClass('checked');
+});
+
+$('.action-delete').on('click', function (e) {
+    if(!confirm('确认删除当前地址吗？')) {
+        e.stopPropagation();
+        return false;
+    }
+})
+</script>
+

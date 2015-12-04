@@ -1,0 +1,83 @@
+<form action="?app=syscategory&ctl=admin_brand&act=saveBrandRelCat" method="post" id='type_form' >
+  <div class="tableform tableform-tabs">
+    <input type="hidden" name="brandId" value="<{$brandId}>" id="brandId"/>
+    <div class="division" style="padding:5px; border:1px solid #dddddd; border-top:none; margin:0;">
+      <select class="add-lv" id="add-lv" name="lv1">
+        <{foreach from=$catList item=catlist}>
+        <option value="<{$catlist.cat_id}>" ><{$catlist.cat_name}></option>
+        <{/foreach}>
+      </select>
+      <select class="lv2" name="lv2" style="display:none">
+          <option value="">请选择</option>
+      </select>
+      <div  name="lv3" class="lv3" style="display:none">
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="table-action">
+      <{button type="button"  label="保存"|t:'syscategory' id='type_submit'}>
+  </div>
+</form>
+<script>
+/*$$('.add-lv').addEvent('change',function(){
+  var lv1 = $$('.add-lv').getValue();
+  
+  var myRequest=new Request.JSON({
+    method: "post",
+    url:    "?app=syscategory&ctl=admin_brand&act=getCatInfoByParentId",
+    data:   "catId="+lv1,
+    onSuccess:  function(data){
+            $$('.lv2').set('html','');
+            for (var key in data){
+              var result = new Element('option',{'value':data[key].cat_id,'text':data[key].cat_name});
+              $$('.lv2').adopt(result);
+            };
+            $$('.lv2').show();
+        }
+  }).send();
+});*/
+
+/*$$('.lv2').addEvent('change',function(){
+  var lv2 = $$('.lv2').getValue();
+  var brandId = $('brandId').getValue();
+  var myRequest=new Request.JSON({
+    method: "post",
+    url:    "?app=syscategory&ctl=admin_brand&act=getCatInfoByParentId",
+    data:   "catId="+lv2+"&brandId="+brandId,
+    onSuccess:  function(data){
+            var result='';
+            $$('.lv3').set('html','');
+            Object.each(data,function(value, key){
+              if(value.ck=='checked'){
+                result+='<input type="checkbox" name="lv3[]" checked value="' + value.cat_id + '">' + value.cat_name +'&nbsp;';
+              }else if(value.ck=='nochecked'){
+                result+='<input type="checkbox" name="lv3[]" value="' + value.cat_id + '">' + value.cat_name +'&nbsp;';
+              }
+              
+            });
+            $$('.lv3').set('html',result);
+            $$('.lv3').show();
+        }
+  }).send();
+});*/
+
+
+(function(){
+    $('type_submit').addEvent('click',function(){
+        $('type_form').fireEvent('submit',{stop:$empty});
+    });
+})();
+$('type_form').store('target',{
+    onComplete:function(rs){
+        var json={};
+        try{json = JSON.decode(rs)}catch(e){}
+        if(json.error) return false;
+        if($('type_form').getParent('.dialog'))
+          $('type_form').getParent('.dialog').retrieve('instance').close();
+    }
+});
+
+</script>

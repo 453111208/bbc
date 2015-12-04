@@ -1,0 +1,14 @@
+<services>
+    <service id="desktop_finder.syslogistics_mdl_dlycorp">
+        <class>syslogistics_finder_dlycorp</class>
+    </service>
+
+    <service id="view_helper">
+        <class>syslogistics_view_helper</class>
+    </service>
+
+    <service id="desktop_finder.syslogistics_mdl_ziti">
+        <class>syslogistics_finder_ziti</class>
+    </service>
+
+</services>

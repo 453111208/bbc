@@ -1,0 +1,125 @@
+<form method="post" action="?app=syscategory&ctl=admin_cat&act=save" id='add-category-form'>
+<div class="tableform">
+    <div class="division">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <th><{t}>分类名称：<{/t}>
+            <{if $cat.cat_id }><input type="hidden" value="<{$cat.cat_id}>" name="cat[cat_id]" /></th><{/if}>
+          <td><input type="text" value="<{$cat.cat_name|escape:'html'}>" name="cat[cat_name]" vtype='required' class='x-input'/>
+            <{$cat_name}></td>
+        </tr>
+        <tr>
+          <th><{t}>上级分类：<{/t}></th>
+          <td><{input noselect=true type="select" name="cat[parent_id]" style="font-size:12px;" vtype='required' value=$cat.parent_id rows=$catList valueColumn="cat_id" labelColumn="cat_name"}>
+        </td>
+        </tr>
+        <{if $cat.level==1}>
+
+        <tr>
+          <th><{t}>平台使用费：<{/t}></th>
+          <td><input style="width:50px;" vtype="unsigned" class="inputstyle" value="<{if $cat.platform_fee}> <{$cat.platform_fee}> <{else}>0<{/if}>" name="cat[platform_fee]" class="_x_ipt"/>
+            <span class="notice-inline"><{t}>平台使用费<{/t}></span></td>
+        </tr>
+        <tr>
+          <th><{t}>类目展示模板：<{/t}></th>
+          <td>
+            <{template_filter type="topics" class="inputstyle" platform="pc" selected=$cat.cat_template name="cat[cat_template]"}>
+            </td>
+        </tr>
+        <tr>
+          <th><{t}>类目logo：<{/t}></th>
+          <td>
+            <{input type="image" name='cat[cat_logo]' value=$cat.cat_logo width=30 height=30}>
+            <span class="notice-inline">
+              <{t}>建议图片尺寸30px * 30px,提高用户体验，增强品牌宣传效果。<{/t}></span>
+          </td>
+        </tr>
+
+        <{/if}>
+        <{if $cat.level==2}>
+          <tr>
+            <th><{t}>店铺保证金：<{/t}></th>
+            <td><input style="width:50px;" vtype="unsigned" class="inputstyle" value="<{if $cat.guarantee_money}> <{$cat.guarantee_money}> <{else}>0<{/if}>" name="cat[guarantee_money]" class="_x_ipt"/>
+              <span class="notice-inline"><{t}>店铺保证金<{/t}></span></td>
+          </tr>
+        <{/if}>
+        <{if $cat.level==3}>
+        <tr>
+          <th><{t}>类目服务费率：<{/t}></th>
+          <td><input style="width:50px;" vtype="unsigned" class="inputstyle" value="<{if $cat.cat_service_rates}> <{$cat.cat_service_rates}> <{else}>0<{/if}>" name="cat[cat_service_rates]" class="_x_ipt"/><i>%</i>
+            <span class="notice-inline"><{t}>三级类目服务费率<{/t}></span></td>
+        </tr>
+        <{/if}>
+        <{if $cat.level==3}>
+
+        <{/if}>
+        <tr>
+          <th><{t}>排序：<{/t}></th>
+          <td><input style="width:50px;" vtype="unsigned" class="inputstyle" value="<{if $cat.order_sort}> <{$cat.order_sort}> <{else}>0<{/if}>" name="cat[order_sort]" class="_x_ipt"/>
+            <span class="notice-inline"><{t}>数字越小越靠前<{/t}></span></td>
+        </tr>
+      </table>
+    </div>
+</div>
+
+<div class="table-action">
+  <{button label="保存"|t:'syscategory'  type="submit" }>
+  <{if $is_leaf}>
+  <input type="hidden" name="is_leaf" value=1>
+   <{button class="btn-secondary " label="取消"|t:'syscategory' isclosedialogbtn="true"}>
+  <!-- <{button class="btn-secondary " label="取消"|t:'syscategory' isclosedialogbtn="true" onclick="W.page('?app=syscategory&ctl=admin_cat&act=leaf&parent_id={$cat.cat_id}')" }> -->
+  <{else}>
+  <{button class="btn-secondary " label="取消"|t:'syscategory' isclosedialogbtn="true" onclick="W.page('?app=syscategory&ctl=admin_cat&act=index')" }>
+  <{/if}>
+</div>
+
+<script>
+    $E('#add-category-form input[name^=cat[cat_name]').addEvent('keydown',function(e){
+        if(e.key=='enter'){
+            e.stop();
+        }
+    });
+
+    $('add-category-form').store('target',{onComplete:function(){
+        if(gms=$('g_menu_sec_2')){
+            gms.empty();
+            gms.retrieve('update',$empty)();
+        }
+    }});
+
+    if($('easy-save-category')){
+        $('easy-save-category').addEvent('click',function(e){
+            e.stop();
+            var _form=this.form;
+
+            var cname=$E('#add-category-form input[name^=cat[cat_name]');
+            var value=cname.get('value').clean().trim();
+
+            var cid=$E('#add-category-form input[name^=cat[cat_id]');
+            if(cid) cid.remove();
+
+            if(!value)return MessageBox.error('<{t}>分类名称为不能为空.<{/t}>');
+            if(this.retrieve('tempname',[]).contains(value)){
+                if(!confirm('<{t}>您刚才已经添加了分类:<{/t}>"'+value+'"<{t}>\n要重复添加么?<{/t}>'))return;
+            }
+
+            this.retrieve('tempname',[]).include(value);
+
+            if(!$(_form).get('target')){
+                var _target={
+                    update:'messagebox'
+                }
+                _form.set('target',JSON.encode(_target));
+            }
+            _form.fireEvent('submit',e).erase('target');
+        });
+    }
+    $('add-category-form').store('target',{
+        onComplete:function(rs){
+            rs = JSON.decode(rs);
+            if($('add-category-form').getParent('.dialog') && rs.success)
+            $('add-category-form').getParent('.dialog').retrieve('instance').close();
+        }
+    });
+</script>
+</form>

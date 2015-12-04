@@ -1,0 +1,30 @@
+<div class="order-cancel">
+  <{include file="topm/member/trade/detail_header.html"}>
+  <div class="main">
+    <div class="status-info info-area">
+      <div class="info-l info">
+        <span class="icon icon-book"></span>
+      </div>
+      <div class="info-m">
+        <span class="status">已发货</span>
+        <table>
+          <tr class="theme">
+            <td class="tit">商品金额(含运费)：</td>
+            <td class="con"> <{$trade.payment|cur}></td>
+          </tr>
+          <tr class="more">
+            <td class="tit">运费：</td>
+            <td class="con"><{$trade.post_fee|cur}></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <form action="<{url action=topm_ctl_member_trade@confirmReceipt}>" method="post" class="cancel-form">
+      <input type="hidden" name="tid" value="<{$tid}>" class="cancel-tid">
+        <p>友情提示：<br>订单确认收货后会将款项打至商家，请务必在收到货物后进行此操作，<br>您是否确认收货？</p>
+      <div class="send-apply">
+        <button type="submmit" class="ui-btn-warning">确认完成</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<desktop>
+    <permissions>
+        <permission id="shoptypelist" display='true' parent='0' workground='sysshop.workground.shoptype'>企业类型列表</permission> 
+        <permission id="enterapplylist" display='true' parent='0' workground='sysshop.workground.shoptype'>入驻申请列表</permission> 
+        <permission id="shoplist" display='true' parent='0' workground='sysshop.workground.shoptype'>企业列表</permission> 
+        <permission id="sellerList" display='true' parent='0' workground='sysshop.workground.shoptype'>企业账号列表</permission> 
+        <permission id="shopNotice" display='true' parent='0' workground='sysshop.workground.shoptype'>企业通知</permission> 
+        <permission id="thirdartical" display='true' parent='0' workground='sysinfo.wrokground.theme'>第三方服务管理</permission> 
+    </permissions>
+
+    <workground name="企业" id="sysshop.workground.shoptype" controller="admin_shoptype" action="index" order='90'> 
+        <menugroup name="企业账号"> 
+            <menu controller='admin_seller' action='index' permission='sellerList' display='true' order='10'>账号列表</menu>
+            <menu controller='admin_enterapply' action='license' permission='enterapplylist' display='true' order='20'>企业注册协议</menu>
+        </menugroup> 
+        <menugroup name="企业设置"> 
+             <menu controller='admin_shoptype' action='index' permission='shoptypelist' display='true' order='20'>企业类型列表</menu>
+        </menugroup>
+        <menugroup name="入驻申请"> 
+             <menu controller='admin_enterapply' action='index' permission='enterapplylist' display='true' order='30'>入驻申请列表</menu>
+        </menugroup>
+        <menugroup name="企业">  
+             <menu controller='admin_shop' action='index' permission='shoplist' display='true' order='40'>企业列表</menu> 
+        </menugroup>
+        <menugroup name="企业通知"> 
+             <menu controller='admin_shopnotice' action='index' permission='shopNotice' display='true' order='41'>企业通知列表</menu>
+        </menugroup>
+   
+    </workground>
+     <workground name="文章管理" id="sysinfo.wrokground.theme" controller="admin_shoptype" action="index" order='90'> 
+             <menugroup name="第三方服务管理">  
+             <menu controller='admin_service' action='index' permission='thirdartical' display='true' order='42'>第三方服务列表</menu>  
+        </menugroup>
+ </workground>
+</desktop>
+

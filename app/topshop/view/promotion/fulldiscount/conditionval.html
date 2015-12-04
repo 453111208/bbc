@@ -1,0 +1,13 @@
+<{if $condition_value}>
+    <{foreach from=$condition_value item=condition}>
+        <div class="wholesale-rule-discount">
+          <div class="wholesale-row">
+            <span>
+              消费满 <input type="text" size="5" name="full[]" 
+              value="<{$condition[0]}>"> 元，给予 <input type="text" size="5" name="discount[]" value="<{$condition[1]}>"> % 折扣
+            </span>
+            <a class="del-btn" href="javascript:void(0);">删除</a>
+          </div>
+        </div>
+    <{/foreach}>
+<{/if}>

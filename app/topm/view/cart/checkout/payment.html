@@ -1,0 +1,88 @@
+   <header>
+      <!-- <div class="top-fix" id="topFix"> -->
+        <div class="list-hd">
+          <div class="backto icon-back">
+            <input type="button" name="returnBcak" onclick="history.back()">
+          </div>
+          <div class="tit">订单支付</div>
+          <div class="menu">
+            <button class="btn icon-more" id="menu"></button>
+            <script type="text/javascript">
+              $('#menu').dropmenu({
+                content: [
+                  {
+                    text: '首页',
+                    icon: 'home',
+                    href: 'index.html'
+                  },
+
+                  {
+                    text: '消息中心',
+                    icon: 'news',
+                    href: ''
+                  },
+
+                  {
+                    text: '购物车',
+                    icon: 'barrow',
+                    href: ''
+                  },
+
+                  {
+                    text: '会员中心',
+                    icon: 'man',
+                    href: ''
+                  },
+                ]
+              });
+            </script>
+          </div>
+        </div>
+      <!-- </div> -->
+    </header>
+    <section class="main">
+      <section class="section">
+        <div class="section-head">支付方式</div>
+        <div class="section-body">
+          <div class="btn-group">
+            <button class="ui-btn ui-btn-outlined">在线支付</button>
+            <button class="ui-btn ui-btn-outlined">货到付款</button>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">配送方式</div>
+        <div class="section-body">
+          <div class="btn-group">
+            <button class="ui-btn ui-btn-outlined">快递送货</button>
+            <button class="ui-btn ui-btn-outlined" data-type="pickup">上门自提</button>
+          </div>
+        </div>
+        <div class="option-items" id="pickup" style="display: none;">
+          <div class="option-items-key">自提地点</div>
+          <div class="option-items-val">嘉定自提点</div>
+          <div class="option-items-icon">
+            <span class="icon icon-forward"></span>
+          </div>
+        </div>
+      </section>
+    </section>
+    <div class="action-bar">
+      <div class="action-item">
+        <button>确定</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gotop"></div>
+  <div class="theme-select-cover"></div>
+  <script>
+    $('.btn-group button').tap(function(){
+      $(this).addClass('ui-btn-danger').siblings().removeClass('ui-btn-danger');
+      if($(this).attr('data-type')){
+        $('#pickup').show();
+      }else{
+        $('#pickup').hide();
+      }
+    })
+  </script>

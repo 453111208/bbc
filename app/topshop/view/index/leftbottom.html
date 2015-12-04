@@ -1,0 +1,101 @@
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title">商家运营概况</h3><a href="<{url action=topshop_ctl_sysstat_sysstat@index}>" class="pull-right text-blue">查看详细></a>
+  </div><!-- /.box-header -->
+  <div class="box-body">
+    <div class="text-gray">交易数据</div>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th class="text-right">时间</th>
+          <th>新增订单金额</th>
+          <th>新增订单数量</th>
+          <th>平均客单价</th>
+          <th>待付款订单金额</th>
+          <th>已付款订单金额</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-right">昨日</td>
+          <td><{$yesterday.new_fee|cur}></td>
+          <td><{$yesterday.new_trade|default:0}></td>
+          <td><{$yesterday.averPrice|cur}></td>
+          <td><{$yesterday.ready_fee|cur}></td>
+          <td><{$yesterday.complete_fee|cur}></td>
+        </tr>
+        <tr>
+          <td class="text-right">前日</td>
+          <td><{$beforInfo.new_fee|cur}></td>
+          <td><{$beforInfo.new_trade|default:0}></td>
+          <td><{$beforInfo.averPrice|cur}></td>
+          <td><{$beforInfo.ready_fee|cur}></td>
+          <td><{$beforInfo.complete_fee|cur}></td>
+        </tr>
+        <tr>
+          <td class="text-right">近7天</td>
+          <td><{$weekInfo.new_fee|cur}></td>
+          <td><{$weekInfo.new_trade|default:0}></td>
+          <td><{$weekInfo.averPrice|cur}></td>
+          <td><{$weekInfo.ready_fee|cur}></td>
+          <td><{$weekInfo.complete_fee|cur}></td>
+        </tr>
+        <tr>
+          <td class="text-right">近30天</td>
+          <td><{$monthInfo.new_fee|cur}></td>
+          <td><{$monthInfo.new_trade|default:0}></td>
+          <td><{$monthInfo.averPrice|cur}></td>
+          <td><{$monthInfo.ready_fee|cur}></td>
+          <td><{$monthInfo.complete_fee|cur}></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-gray">业务数据</div>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th class="text-right">时间</th>
+          <th>已完成订单数量</th>
+          <th>待付款订单数量</th>
+          <th>待发货订单数量</th>
+          <th>已发货订单数量</th>
+          <th>已取消订单数量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-right">昨日</td>
+          <td><{$yesterday.complete_trade|default:0}></td>
+          <td><{$yesterday.ready_trade|default:0}></td>
+          <td><{$yesterday.ready_send_trade|default:0}></td>
+          <td><{$yesterday.already_send_trade|default:0}></td>
+          <td><{$yesterday.cancle_trade|default:0}></td>
+        </tr>
+        <tr>
+          <td class="text-right">前日</td>
+          <td><{$beforInfo.complete_trade|default:0}></td>
+          <td><{$beforInfo.ready_trade|default:0}></td>
+          <td><{$beforInfo.ready_send_trade|default:0}></td>
+          <td><{$beforInfo.already_send_trade|default:0}></td>
+          <td><{$beforInfo.cancle_trade|default:0}></td>
+        </tr>
+        <tr>
+          <td class="text-right">近7天</td>
+          <td><{$weekInfo.complete_trade|default:0}></td>
+          <td><{$weekInfo.ready_trade|default:0}></td>
+          <td><{$weekInfo.ready_send_trade|default:0}></td>
+          <td><{$weekInfo.already_send_trade|default:0}></td>
+          <td><{$weekInfo.cancle_trade|default:0}></td>
+        </tr>
+        <tr>
+          <td class="text-right">近30天</td>
+          <td><{$monthInfo.complete_trade|default:0}></td>
+          <td><{$monthInfo.ready_trade|default:0}></td>
+          <td><{$monthInfo.ready_send_trade|default:0}></td>
+          <td><{$monthInfo.already_send_trade|default:0}></td>
+          <td><{$monthInfo.cancle_trade|default:0}></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

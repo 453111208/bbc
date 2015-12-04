@@ -1,0 +1,35 @@
+<services>
+    <service id="desktop_finder.sysuser_mdl_user">
+        <class>sysuser_finder_user</class>
+    </service>
+    <service id="desktop_finder.sysuser_mdl_user_grade">
+        <class>sysuser_finder_grade</class>
+    </service>
+    <service id="desktop_finder.sysuser_mdl_trustlogin_cfg">
+        <class>sysuser_finder_trustlogin_cfg</class>
+    </service>
+
+    <service id="sysuser_trustlogin.sysuser_mdl_trustlogin_cfg" optname="登陆 插件列表">
+        <class>sysuser_plugin_qq</class>
+        <!--<class>sysuser_plugin_taobao</class>
+        <class>sysuser_plugin_weibo</class>
+        <class>sysuser_plugin_renren</class>
+        <class>sysuser_plugin_kaixin</class>
+        <class>sysuser_plugin_sohu</class>
+        <class>sysuser_plugin_baidu</class>
+        <class>sysuser_plugin_alipay</class>
+        <class>sysuser_plugin_weixin</class> -->
+    </service>
+
+    <service id="sysuser_trustlogin.sysuser_pluginwap_cfg" optname="wap登陆 插件列表">
+        <class>sysuser_pluginwap_qq</class>
+        <class>sysuser_pluginwap_taobao</class>
+        <class>sysuser_pluginwap_weibo</class>
+        <class>sysuser_pluginwap_renren</class>
+        <class>sysuser_pluginwap_kaixin</class>
+        <!--<class>sysuser_pluginwap_sohu</class>
+        <class>sysuser_plugin_baidu</class>
+        <class>sysuser_plugin_alipay</class>
+        <class>sysuser_plugin_weixin</class> -->
+    </service>
+</services>

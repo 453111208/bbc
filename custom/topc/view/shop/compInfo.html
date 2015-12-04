@@ -1,0 +1,92 @@
+<div class="max-p-title">
+				<div class="h3">企业信息</div><i></i>
+			</div>
+<!-- 企业信息 -->
+
+			<ul class="seller">
+                  <li class="btnw">
+				<div class="xian"><div class="max-img"><a href="" title=""><img style="width:120px;height: 60px;" src="<{$shopdata.shop_logo}>" alt="" /></a></div></div>
+<a href=""><{$shopdata.shop_name}></a>
+				  </li>
+                  
+                  <li class="maxsubmenu">
+					<div class="item1 item"><img  src="../images/p_dfh.png" alt=""> <span>第<i>3</i>年</span></div>
+					<div class="item3 item">
+						<!-- <div class="n">
+						<a href="" title=""><img src="images/smrz.png" alt="" /><span>收藏企业展台</span></a>
+
+						<a href="" title=""><img src="images/cgxz.png" alt="" /><span>信息订购</span></a>
+						</div> -->
+						<div class="s">所再地：<{$shopdata.shop_addr}></div>
+					</div>
+					   
+                    
+                  </li>
+				 
+                 <li class="maxxq">
+				 <div class="e">累计发布供求信息<b><{$gqcount}></b>条</div>
+				  <div class="e">竞价招标<b><{$biddcount+$tendcount}></b>次</div>
+				  <div class="n">
+				  	<{if $nologin!=1}>
+      					<a href="<{url action=topc_ctl_passport@signin}>"><i></i> <span>收藏企业展台</span></a>
+      					<{else}>
+      					<a href="<{url action=topc_ctl_collect@ajaxFavshop}>" data-ajax-data="shop_id=<{$shopdata.shop_id}>" rel="_request"><i></i> <span>收藏企业展台</span></a>
+      					<{/if}>
+				  <!-- <a href="" title="" class="item2"><i></i> <span>信息订购</span></a> --></div>
+			
+				 </li>
+                </ul>
+                <div class="max-p-title t2">
+					<div class="xian"></div>
+					<div class="h3">企业介绍</div><i></i>
+				</div>
+				<div class="maxbox js">
+					
+					<div class="max-text" style="overflow: hidden;word-wrap: break-word;height: 70px;">
+						<{$shopdata.shop_descript}>
+					</div>
+					<div class="max-text" >
+					<a style="float: right;" href="<{url action=topc_ctl_shopcenter@zizhi shop_id=$shopdata.shop_id}>" title="">查看更多>> </a><!-- <{$userid}> -->
+					</div>
+					<ul class="clearfix">
+					<li>供求信息</li>
+						<{foreach from=$gqList item=gqItem}>
+						<{if $gqItem.type==1}>
+						<li><i></i><em>求购</em><a href="/index.php/require.html?require_id=<{$gqItem.id}>&type=2" title=""><{$gqItem.variety_name}></a></li>
+						<{else}>
+						<li><i></i><em>供应</em><a href="/index.php/supply.html?supply_id=<{$gqItem.id}>&type=1" title=""><{$gqItem.variety_name}></a></li>
+						<{/if}>
+						<{/foreach}>
+					</ul>
+					
+				</div>
+
+				<div class="max-p-title t2">
+					<div class="xian"></div>
+					<div class="h3">联系方式</div><i></i>
+				</div>
+				<div class="maxbox kf ">
+					<div class="max-kf-box item-box">
+						<a href="" title=""><img src="images/qq.png" alt="" />客服一</a>
+						<a href="" title=""><img src="images/qq.png" alt="" />客服二</a>
+					</div>
+					<div class="item-box">
+						<div class="t">工作时间</div>
+						<div class="item item1">周一至周五：8:30-17:30</div>
+						<div class="item item2">周六至周日：9:00-17:00</div>
+
+					</div>
+				
+					<div class="item-box" style="border:0">
+						<div class="t">联系方式</div>
+						<{if $seller_type==2}>
+						<div class="item1 item"><{$shopdata.shopuser_name}>：<{$shopdata.mobile}></div>
+						<div class="item2 item">邮箱 ：<{$shopdata.email}></div>
+						<!-- <div class="item3 item">企业网址：abcd。com</div> -->
+						<{elseif $seller_type==1}>
+						<div class="item1 item">请联系平台方</div>
+						<{/if}>
+
+
+					</div>
+				</div>

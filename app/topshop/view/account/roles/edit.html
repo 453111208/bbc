@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+  <form  action="<{url action=topshop_ctl_account_roles@save}>" method="post" class="form-horizontal" data-validate-onsuccess="ajaxSubmit" id="form_delivery" role="form">
+    <input type="hidden" name="role_id" value="<{$role_id}>">
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >角色名称：</label>
+        <div class="col-sm-3">
+          <input  name='role_name' type='text' value="<{$role_name}>" placeholder="必填" maxlength="20" required class="form-control" >
+        </div>
+      </div>
+      <hr />
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >权限：</label>
+        <div class="col-sm-10" >
+          <ul class="list-unstyled">
+            <li>
+              <label class="checkbox-inline"><input id="check_all" class="check-all" type="checkbox">全选</label>
+            </li>
+            <{foreach from=$permission item=item key=groupPermissionId}>
+            <li>
+              <label class="checkbox-inline"><input type="checkbox" class="check-this-inline" value="<{$groupPermissionId}>"><b><{$item.label}></b></label>
+              <{if $item.group}>
+              <{foreach from=$item.group item=row key=permissionId}>
+              <label class="checkbox-inline"><input type="checkbox" name='workground[]' class="check-item" value=<{$permissionKey.$permissionId}>  <{if in_array($permissionKey.$permissionId, $workground)}> checked<{/if}> ><{$row.label}></label>
+              <{/foreach}>
+              <{/if}>
+            </li>
+            <{/foreach}>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer text-center">
+      <button type="submit" class="btn btn-primary"><{t}>保存<{/t}></button>
+    </div>
+
+  </form>
+</div>
+<script>
+  var all = $('.check-item');
+  $('#check_all').click(function(){
+    if($(this).prop('checked')==true){
+      $('.check-this-inline').prop('checked',true);
+      all.prop('checked',true);
+    }else{
+      $('.check-this-inline').prop('checked',false);
+      all.prop('checked',false);
+    }
+  })
+
+  all.click(function() {
+    if(!$(this).hasClass('check-all') && !$(this).hasClass('check-this-inline')){
+      $('#check_all').prop('checked',false);
+      $(this).parent().parent().find('.check-this-inline').prop('checked', false);
+    }else if($(this).hasClass('check-this-inline')){
+      $('#check_all').prop('checked',false);
+    }
+  });
+
+  $('.check-this-inline').click(function(){
+    if($(this).prop('checked')==true){
+      $(this).parent().siblings().find('input[type="checkbox"]').prop('checked',true);
+    }else{
+      $(this).parent().siblings().find('input[type="checkbox"]').prop('checked',false);
+    }
+  })
+
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        location.href = rs.redirect;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,440 @@
+<div class="prd-detail shop">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">商品详情</div>
+      <div class="menu">
+        <a href="<{url action=topm_ctl_cart@index}>" class="btn icon-cart">
+        </a>
+        <a href="<{url action=topm_ctl_default@index}>" class="btn icon-home">
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class="main" id="main">
+    <!-- slider图片切换 -->
+    <{include file="topm/items/pic.html"}>
+    <div class="price-area">
+      <div class="price-info">
+        <div class="price">
+          <!-- 活动价，单品活动促销 -->
+          <{if $activityDetail.activity_price}>
+          <span class="sale action-update-price"><{$activityDetail.activity_price|cur}></span><br>
+          <{else}>
+          <span class="sale action-update-price"><{$item.price|cur}></span><br>
+          <{/if}>
+          <!-- <span class="suggest">建议价格:<i>￥2299.00</i></span> -->
+        </div>
+        <div class="purchase">
+          <i><{$item.sold_quantity|default:'0'}></i>人购买
+        </div>
+      </div>
+      <div class="goods-info">
+        <div class="goods-tit">
+          <{if $activityDetail}><span class="activity-tag"><{$activityDetail.activity_info.activity_tag}></span><{/if}><{$item.title}>
+        </div>
+        <!--收藏-->
+        <div class="collect">
+          <{if $nologin!=1}>
+          <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="save">
+            <span class="icon icon-favor"></span> 收藏
+          </a>
+          <{else}>
+          <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" data-ajax-data="item_id=<{$item.item_id}>" rel="_request" data-ajax-type="post">
+            <span class="icon icon-favor"></span> 收藏
+          </a>
+          <{/if}>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 促销区 -->
+    <{if $promotionDetail}>
+    <div class="goods-promotion">
+      <section class="promotion-list">
+        <div class="list-title">
+          <div>
+            <div class="promot-thumb">
+              <{foreach from=$promotionDetail item=promotionTag}>
+              <button type="button" class="ui-btn ui-btn-negative">
+                <a href="<{url action=topm_ctl_promotion@getPromotionItem promotion_id=$promotionTag.promotion_id}>">
+                  <{$promotionTag.promotion_tag}>
+                </a>
+              </button>
+              <{/foreach}>
+              <span><{$promotion_count}>个</span>
+            </div>
+            <div class="promot-title">促销优惠</div>
+          </div>
+          <i id="icon_animation" class="icon icon-up"></i>
+        </div>
+        <div class="list-details">
+          <ul>
+            <{foreach from=$promotionDetail item=promotionDetail}>
+            <li>
+              <div>
+                <button type="button" class="ui-btn ui-btn-negative"><{$promotionDetail.promotion_tag}></button>
+                <a href="<{url action=topm_ctl_promotion@getPromotionItem promotion_id=$promotionTag.promotion_id}>">
+                  <{$promotionDetail.promotion_name}>
+                </a>
+              </div>
+              <i class="icon icon-forward"></i>
+            </li>
+            <{/foreach}>
+          </ul>
+        </div>
+      </section>
+      <!-- <section class="promotion-group">
+        <div>优惠组合</div>
+        <div class="view-more">5组 <i class="icon icon-forward"></i></div>
+      </section> -->
+    </div>
+    <{/if}>
+    <form action="<{url action=topm_ctl_cart@add mode=fastbuy}>" method="post" id="form_items">
+      <!-- slider商品规格 -->
+
+      <!-- <div class="comment-area detail">
+        <div class="hd">
+          <a href="comment.html">
+            买家评论(<i class="n">15789</i>条)
+          <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </<dsection>
+    </dsection>iv> -->
+      <div class="pic-area detail">
+        <div class="hd">
+          <a href="<{url action=topm_ctl_item@itemPic item_id=$item.item_id}>">
+            商品描述
+            <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <{if $item.params}>
+        <div class="para-area detail">
+          <div class="hd">
+            <a href="<{url action=topm_ctl_item@itemParams item_id=$item.item_id}>">
+              商品参数
+              <span class="icon icon-forward"></span>
+            </a>
+          </div>
+        </div>
+      <{/if}>
+      <div class="pic-area detail">
+        <div class="hd">
+          <a href="<{url action=topm_ctl_item@getItemRate item_id=$item.item_id}>">
+            商品评价（<{$item.rate_count|default:0}>）
+            <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="store-info">
+        <div class="store-n">
+          <{$shop.shopname}>
+        </div>
+        <div class="store-link">
+          <a href="<{url action=topm_ctl_shopcenter@index shop_id=$item.shop_id}>">
+            <span class="icon icon-stand"></span>
+            进入店铺
+          </a>
+          <{if $nologin!=1}>
+          <a href="<{url action=topm_ctl_passport@signin}>">
+            <span class="icon icon-collect"></span>
+            收藏店铺
+          </a>
+          <{else}>
+          <a href="<{url action=topm_ctl_collect@ajaxFavshop}>" rel="_request" data-ajax-data="shop_id=<{$item.shop_id}>" data-ajax-type="post" class="collect col-store">
+            <span class="icon icon-collect"></span>
+            收藏店铺
+          </a>
+          <{/if}>
+        </div>
+        <!-- <div class="store-mark">
+          <ul>
+            <li>商品评分：<i>4.8</i></li>
+            <li>服务评分：<i>4.8</i></li>
+            <li>配送评分：<i>4.8</i></li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="buy-action">
+        <input type="hidden" name="item[sku_id]" class="action-update-item" value="<{$item.default_sku_id}>">
+        <div class="action-btn-group">
+        <{if $item.realStore > 0}>
+          <{if $nologin!=1}>
+          <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="ui-btn buy-now ui-btn-warning<{if !$item.valid}> hide<{/if}>">
+            立即购买
+          </a>
+          <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="ui-btn add-cart<{if !$item.valid}> hide<{/if}>">
+            加入购物车
+          </a>
+          <{else}>
+          <button type="submit" class="ui-btn buy-now ui-btn-warning action-fastbuy<{if !$item.valid}> hide<{/if}>">
+            立即购买
+          </button>
+          <a href="<{url action=topm_ctl_cart@add}>" class="ui-btn add-cart action-addtocart<{if !$item.valid}> hide<{/if}>" rel="_request">
+            加入购物车
+          </a>
+          <{/if}>
+        <{/if}>
+          <a href="javascript:void(0);" class="ui-btn buy-now ui-btn-warning action-open-dialog <{if !$item.valid || $item.realStore > 0}> hide <{/if}>">
+            到货通知
+          </a>
+        </div>
+      </div>
+
+      <div class="buy-panel">
+        <div class="in-panel">
+          <div class="close-btn-wrap">
+            <span class="close-btn"><i class="icon icon-close"></i></span>
+          </div>
+          <ul class="ui-table-view ui-table-lg ui-table-single">
+            <li class="ui-table-view-cell ui-media">
+              <img class="ui-media-object ui-pull-left" src="<{$item.image_default_id|storager:'s'}>" width="80" height="80">
+              <div class="ui-media-body">
+                <p class="ui-name"> <{$item.title}></p>
+                <p class="ui-ellipsis text-price"><{$item.price|cur}></p>
+              </div>
+            </li>
+          </ul>
+          <!-- 规格显示 -->
+          <{include file="topm/items/itemspec.html"}>
+
+          <div class="buy-amount">
+            <span class="amount-tit">购买数量：</span>
+            <span class="number-increase-decrease">
+              <a href="javascript:void(0);" class="btn action-decrease">-</a>
+              <input type="number" name="item[quantity]" min="1" max="<{if $activityDetail.activity_info.buy_limit}><{$activityDetail.activity_info.buy_limit}><{else}><{$item.realStore}><{/if}>" value="1" class="action-quantity-input">
+              <a href="javascript:void(0);" class="btn action-increase">+</a>
+            </span>
+            <span class="number-stockout hide">
+              库存：<i class="num action-update-quantity"><{$item.storealStorere}></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div id="dialog" style="display:none;">
+        <div class="agreement">
+          <div >该货品暂时缺货，请在下面输入您的邮箱地址，当我们有现货供应时，我们会发送邮件通知您！</div>
+          <div>
+            <ul>
+              <li class="form-row u-line">
+                <label class="form-label"><em>*</em>邮箱地址</label>
+                <input type="text"  name="email"  value="" placeholder="邮箱地址" >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  $('#dialog').dialog({
+      autoOpen: false,
+      closeBtn: false,
+      title:'到货通知',
+      buttons: {
+          '取消': function(){
+              this.close();
+          },
+          '确定': function(){
+              var email = $('input[name=email]').val();
+              if(confirm("确定要提交吗？")){
+                  var url = "<{url action=topm_ctl_memberItem@userNotifyItem}>";
+                  var shopId = "<{$item.shop_id}>";
+                  var item_id= "<{$item.item_id}>";
+                  var sku_id = $('input[name="item[sku_id]"]').val();
+                  var data = 'shop_id='+shopId+'&item_id='+item_id+'&sku_id='+sku_id+'&email='+email;
+                  console.log(data);
+                  $.post(url,data,function(rs){
+                    if(rs.error) {
+                      Message.error(rs.message);
+                    }else{
+                      Message.success(rs.message);
+                    }
+                  });
+              }
+          }
+      }
+  });
+  $('.action-open-dialog').click(function (e) {
+    e.preventDefault();
+    $('#dialog').dialog('open');
+  });
+  //创建slider组件
+  $('#slider').slider( { imgZoom: true });
+
+  //规格显示隐藏
+  $('.icon-close').click(function(){$('.buy-panel').removeClass('visible');});
+
+  var spec_select = $('#spec_select');
+  var specSkuJson = '<{$item.spec.specSku|json_encode}>';
+  var specSku = JSON.parse(specSkuJson);
+  var spec_size = spec_select.find('.parameter').length;
+  var Message = new gmu.Message();
+  spec_select.on('click', 'li', function (e) {
+    e.preventDefault();
+    var parent = $(this).parent('.parameter');
+    $(this).addClass('on').siblings('.on').removeClass('on');
+    var selected = spec_select.find('.on');
+    if(selected.length == spec_size) {
+      var key = [];
+      selected.each(function (i, spec) {
+        key.push(spec.querySelector('a').getAttribute('href'));
+      });
+      key = key.join('_');
+
+      var specinfo = specSku[key];
+
+      processSpec(specinfo);
+    }
+  });
+
+  function processSpec(rs) {
+
+    $('.action-update-item').val(rs.sku_id);
+    $('.action-update-price').text(Currency.format(rs.price));
+    $('.action-update-quantity').text(rs.store);
+
+    var quantity = $('.action-quantity-input').attr('max', rs.store);
+    if(quantity.val() > rs.store) {
+      quantity.val(rs.store);
+    }
+    console.log(rs);
+    if(rs.valid && rs.store >>> 0) {
+      $('.action-fastbuy, .action-addtocart').removeClass('hide');
+      $('.action-notify').addClass('hide');
+      $('.action-open-dialog').addClass('hide');
+      // quantity.val(quantity.attr('min'));
+    }
+    else if(rs.valid && rs.store == 0) {
+    $('.action-fastbuy, .action-addtocart').addClass('hide');
+    $('.action-notify').addClass('hide');
+    $('.action-open-dialog').removeClass('hide');
+    }
+    else{
+      $('.action-fastbuy, .action-addtocart').addClass('hide');
+      $('.action-notify').addClass('hide');
+      $('.action-notify').removeClass('hide');
+
+    }
+  }
+
+  bindQuantityEvent('#main', setQuantity);
+
+  //== 为数量选择框绑定事件
+  function bindQuantityEvent(elements, callback) {
+    elements = $(elements);
+    if(!elements && !elements.length) return;
+    var value = '';
+    //= 数量按钮
+    elements.on('click', '.action-decrease,.action-increase', function (e) {
+        var input = $(this).parent().find('.action-quantity-input');
+        value = +input.val();
+        input.val($(this).hasClass('action-decrease') ? value - 1 : value + 1);
+        return callback && callback(input, value);
+    })
+    //= 数量输入框
+    .on('focus', '.action-quantity-input', function(e){
+        value = +this.value;
+    })
+    .on('change', '.action-quantity-input', function(e) {
+        return callback && callback($(this), value);
+    });
+  }
+
+  //== 获取商品数量值
+  function getQuantity(el) {
+    return el.parents('.buy-action').find('.action-update-quantity').val();
+  }
+
+  //== 设置商品数量
+  function setQuantity(input, value) {
+    return inputCheck(input, {min: input.attr('min'), max: input.attr('max'), 'default': value, store: getQuantity(input), callback: window.quantityCallback});
+  }
+
+  //== 商品数量输入框正确性检测
+  function inputCheck(input, options) {
+
+    if(!input && !input.length) return false;
+    options = options || {};
+
+    if(isNaN(options.min)) options.min = 1;
+    if(isNaN(options.max)) options.max = 999999;
+    options['default'] = options['default'] || options.min;
+
+    var value = +input.val();
+    var pre = '';
+    var msg = '';
+
+    if(options.store && options.store - value <= 0) {
+      pre = '库存有限，';
+    }
+
+    if(value <= options.min) {
+      input.val(options.min);
+      msg = '此商品最少购买' + options.min + '件';
+    }
+
+    else if(value > options.max){
+      input.val(options.max);
+      msg = pre + '此商品最多只能购买' + options.max + '件';
+    }
+
+    else if(isNaN(value)) {
+      input.val(options['default']);
+      msg = '只允许输入数字';
+    }
+
+    if (msg) {
+      Message.error(msg);
+      return false;
+    }
+
+    if(options.callback){
+      options.callback(input, options['default']);
+      return true;
+    }
+  }
+
+  $('#main').on('click','.action-fastbuy, .action-addtocart', function(e){
+    e.preventDefault();
+    $('.buy-panel').addClass('visible');
+    if(spec_select.find('.on').length < spec_size){
+      // location.href = '#standard';
+      Message.error('请先选择完整规格。');
+      return false;
+    }
+  });
+
+  $('.action-fastbuy').data('ajaxCallback', function(rs, target) {
+    localStorage.setItem('_cart_params', 'mode=fastbuy');
+  });
+  $('.action-addtocart').data('ajaxConfig', {
+    type: 'post',
+    data: $('#form_items')
+  });
+
+  $('.list-title').tap(function(){
+    if($('#icon_animation').hasClass('icon-down')){
+      $('.promotion-list').removeClass('visible');
+      $('#icon_animation').addClass('icon-up').removeClass('icon-down');
+      $('.opp').addClass('class_name')
+      $('#icon_animation').on('transitionend',function(){
+        $('#icon_animation').addClass('icon-up').removeClass('icon-down');
+      });
+    }else{
+      $('.promotion-list').addClass('visible');
+      $('#icon_animation').on('transitionend',function(){
+        $('#icon_animation').addClass('icon-down').removeClass('icon-up');
+      });
+    }
+  })
+</script>

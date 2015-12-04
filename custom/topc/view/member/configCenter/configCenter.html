@@ -1,0 +1,71 @@
+
+<form action="<{url action=topc_ctl_member_configCenter@save}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+<div class="maxM-right">
+<input type="hidden" name="shop_id" value="<{$shopInfo.shop_id}>"> 
+	<div class="max-menber-title">
+			<h2>图片设置</h2>
+		</div>
+	<div class="max-menber-data to">
+		<ul>
+		<li>
+			<label class="max-data-left Up">企业logo上传：</label>
+			<div class="max-data-right">
+				<div class="images-uploader">
+					<{if $shopInfo.shop_logo}>
+					<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shopInfo.shop_logo}>"></a><input type="hidden" name="shop_logo[]" value="<{$shopInfo.shop_logo}>"></div>
+					<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="shop_logo[]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						" />
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+				<label class="maxNote">注：图片长宽比建议1:1</label>
+			</div>
+		</li>
+		<li>
+			<label class="max-data-left Up">企业背景上传：</label>
+			<div class="max-data-right">
+				<div class="images-uploader">
+				<{if $shopInfo.background_img}>
+					<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shopInfo.background_img}>"></a><input type="hidden" name="background_img[]" value="<{$shopInfo.background_img}>"></div>
+					<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="background_img[]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						" />
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+				<label class="maxNote">注：推荐尺寸，长度大于100px ,宽度大于1200px</label>
+			</div>
+
+		</li>
+		<li>
+			<label class="max-data-left Up">企业地图上传：</label>
+			<div class="max-data-right">
+				<div class="images-uploader">
+				<{if $shopInfo.map_img}>
+					<div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$shopInfo.map_img}>"></a><input type="hidden" name="map_img[]" value="<{$shopInfo.map_img}>"></div>
+					<{/if}>
+					<div class="handle img-thumbnail action-upload">
+						<input type="file" name="map_img[]" data-max="1" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+						" />
+						<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+					</div>
+				</div>
+				<label class="maxNote">注：推荐尺寸，长度大于500px ,宽度大于400px</label>
+			</div>
+
+		</li>
+
+		</ul>
+		<div class="maxM-buttom" >
+			
+			<button type="submit" class="btn btnp" rel="_request"><span>保 存</span></button>
+			<{if $shopInfo.shop_id>0}>
+			<a  href="shopcenter.html?shop_id=<{$shopInfo.shop_id}>" target="_blank"  class="btn btnp" ><span style="width: 120px;text-align: center;background: ">企业展台预览</span></a>
+			<{/if}>
+		</div>
+	</div>
+</div>
+</form>

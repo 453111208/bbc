@@ -1,0 +1,68 @@
+<div  class="tab">
+  <ul>
+    <{*<{foreach from=$navdata item=item}>
+      <li data-url="#content1">
+        <h3 class="header-title">
+           <{if $item.menu}>
+            <a  href="<{url action=topm_ctl_shopcenter@search shop_id=$shopdata.shop_id shop_cat_id=$item.cat_id}>"><{$item.menu}></a>
+            <{else}>
+            <a  href="<{$item.url}>"><{$item.name}></a>
+            <{/if}>
+        </h3>
+      </li>
+    <{/foreach}>*}>
+    <{foreach from=$itemInfo item=item}>
+      <li data-url="#content1">
+        <h3 class="header-title">
+            <a  href="<{url action=topm_ctl_shopcenter@search shop_id=$item.shop_id widgets_type=$item.widgets_type widgets_id=$item.widgets_id}>"><{$item.params.tagsname}></a>
+
+        </h3>
+      </li>
+    <{/foreach}>
+  </ul>
+</div>
+<div class="showarea floor area">
+  <{if $showitems}>
+  <{foreach from=$showitems item=itemList}>
+  <h3 class="floor-hd">
+    <span class="tit"><{$itemList.params.tagsname}></span>
+  </h3>
+  <section class="floor-bd floor-col-2">
+
+    <ul>
+
+      <{foreach from=$itemList.params.itemlist.list item=item}>
+      <li class="col-xs-6">
+        <div class="pro-pic">
+          <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>">
+            <img class="ui-imglazyload preload" style="background:url(<{$item.image_default_id|default:$defaultImageId.M.default_image|storager:'m'}>) no-repeat center center" alt="">
+          </a>
+        </div>
+        <div class="pro-info">
+          <div class="info-n">
+            <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>"><{if $item.activity}><span class="activity-tag"><{$item.activity.activity_tag}></span><{/if}><{$item.title}></a>
+          </div>
+          <div class="info-p">
+            <div class="p-lf"><{$item.price|cur}></div>
+            <div class="p-rt icon">
+              <{if $nologin!=1}>
+              <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class=""><span class="icon icon-favor"></span></a>
+              <{else}>
+              <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="action-addfav" rel="_request" data-ajax-data="item_id=<{$item.item_id}>" data-ajax-type="post"><span class="icon icon-favor"></span></a>
+              <{/if}>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <{/foreach}>
+    </ul>
+  </section>
+  <div class="floor-more">
+    <a href="<{url action=topm_ctl_shopcenter@search shop_id=$shopdata.shop_id widgets_type=$itemList.widgets_type widgets_id=$itemList.widgets_id}>" class="ui-btn ui-btn-outlined ui-btn-warning">查看更多</a>
+  </div>
+  <{/foreach}>
+  <{/if}>
+</div>
+
+

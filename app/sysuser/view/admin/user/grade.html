@@ -1,0 +1,59 @@
+<form id="userGradeForm" class="tableform" action="?app=sysuser&ctl=admin_grade&act=saveGrade" method="POST">
+  <input type="hidden" name="grade[grade_id]" value="<{$grade.grade_id}>">
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><em class="red">*</em><{t}>等级名称：<{/t}></th>
+        <td>
+          <{input type="text" name="grade[grade_name]" vtype="required" value=$grade.grade_name  maxlength="200"}>
+          <em>
+          <{if $grade.default_grade == 1}>
+          系统默认会员
+          <{/if}>
+          </em>
+        </td>
+      </tr>
+      <tr>
+        <th><em class="red">*</em><{t}>所需成长值：<{/t}></th>
+        <td>
+          <{if $grade.default_grade == 1}>
+          <{input type="text" name="grade[experience]" vtype="required&&unsigned" value=0  maxlength="200" readonly=true}><em>系统默认会员等级，经验值为0</em>
+          <input type="hidden" name="grade[default_grade]" value="1">
+          <{else}>
+          <{input type="text" name="grade[experience]" vtype="required&&unsigned" value=$grade.experience  maxlength="200"}>
+          <input type="hidden" name="grade[default_grade]" value="0">
+          <{/if}>
+        </td>
+      </tr>
+      <tr>
+        <th><em class="red">*</em><{t}>等级LOGO：<{/t}></th>
+        <td>
+          <{input type="image" name="grade[grade_logo]" value=$grade.grade_logo width=110 height=90}>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="table-action">
+    <button class="btn btn-primary" type="submit"><span><span><{t}>确认<{/t}></span></span></button>
+  </div>
+</form>
+
+<script>
+
+  $('userGradeForm').store('target',{
+    onComplete:function(rs){
+                 if(!rs) return;
+                 rs = JSON.decode(rs);
+                 if(rs.success){
+                   if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                   if($('userGradeForm').getParent('.dialog')){
+                     var Dlg = $('userGradeForm').getParent('.dialog').retrieve('instance');
+                     if(Dlg.update){
+                       Dlg.update.retrieve('instance').initContent();
+                     }
+                     Dlg.close();
+                   }
+                 }
+               }
+  });
+</script>

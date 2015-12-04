@@ -1,0 +1,44 @@
+<!-- main container -->
+<div id="main" class="main">
+  <div class="wrap-lg">
+    <!-- <div class="section">
+      <div class="shopbar">
+        <div class="left">
+          <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopdata.shop_id}>">店铺首页 <i class="icon icon-arrow-right"></i> 优惠券列表</a>
+        </div>
+      </div>
+    </div> -->
+    <div class="coupon">
+      <{foreach from=$shopCouponList item=item}>
+      <div class="coupon-item">
+        <div class="init">
+          <div class="coupon-price"><{$item.deduct_money|cur}></div>
+          <div class="coupon-info">
+            <{$item.coupon_name}>
+          </div>
+          <a href="javascript:void(0);" data-couponid="<{$item.coupon_id}>" data-shopid="<{$shopdata.shop_id}>" class="get-coupon-btn">立即领取</a>
+        </div>
+      </div>
+      <{/foreach}>
+    </div>
+  </div>
+</div>
+<script>
+$(".get-coupon-btn").click(function(e){
+  e.preventDefault();
+  var url = '<{url action=topc_ctl_shopcenter@getCouponCode}>';
+  var coupon_id = $(this).attr('data-couponid');
+  var shop_id = $(this).attr('data-shopid');
+  var data = 'shop_id='+shop_id+'&coupon_id='+coupon_id;
+  $.post(url, data, function(rs){
+      if(rs.error)
+      {
+        Message.error(rs.message);
+      }else{
+        if(rs.redirect){
+          location.href = rs.redirect;
+        }
+      }
+  })
+})
+</script>

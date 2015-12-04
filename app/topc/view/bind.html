@@ -1,0 +1,125 @@
+<!-- main container -->
+<div id="main" class="main">
+  <div class="wrap-lg">
+    <div class="">
+      <h1 class="header-title">绑定账号<span class="spec">（绑定后可使用现有账户登录）</span></h1>
+      <form action="<{url action=topc_ctl_trustlogin@bindDefaultCreateUser}>" method="post" id="ajaxForm" class="form-vertical">
+      <div class="trust-skip">
+          没有账号？您可以很快的注册一个账号，或者
+          <input  type="hidden" name="flag"  value="<{$flag}>">
+          <{button type="submit" label="点此跳过"}>
+      </div>
+      </form>
+    </div>
+    <div class="signin2 row trust-login-wrap">
+      <div class="col-lg-8 trust-login-box">
+        <h2 class="trust-login-header">设置并绑定</h2>
+        <form action="<{url action=topc_ctl_trustlogin@bindSignupUser}>" method="post" id="ajaxForm">
+          <input type="hidden" name="vcodekey" value="topc_signup">
+          <input type="hidden" name="flag" value="<{$flag}>">
+          <ul class="trust-login-list">
+            <li class="form-row">
+              <label class="form-label"><em>*</em>账号</label>
+              <span class="form-act has-figure">
+                <input type="text" class="input-block action-account-check" name="pam_account[login_name]" id="for_account" placeholder="用户名/邮箱/手机号，最少4个字符" required minlength="4" data-caution="请填写登录帐号，最少4个字符"  autofocus>
+              </span>
+            </li>
+            <li class="form-row">
+              <label class="form-label"><em>*</em>设置密码</label>
+              <span class="form-act has-figure">
+                <input type="password" class="input-block auto-password-check-handle" name="pam_account[login_password]" placeholder="6-20个字符" required minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符&&输入不正确，最多20个字符">
+                <i class="icon-lock input-figure"></i>
+                <div class="password-check">
+                  <q>安全程度</q>
+                  <span class="progress">
+                    <em class="weak">弱</em><em class="good">中</em><em class="strong">强</em>
+                  </span>
+                </div>
+              </span>
+            </li>
+            <li class="form-row">
+              <label class="form-label"><em>*</em>确认密码</label>
+              <span class="form-act has-figure">
+                <input type="password" class="input-block" name="pam_account[psw_confirm]" id="" maxlength="20" placeholder="再次填写密码" required data-equalto="pam_account[login_password]" data-caution="密码与确认密码不相符，请重新填写">
+                <i class="icon-lock input-figure"></i>
+              </span>
+            </li>
+            <li class="form-row verify-code action-verifycode">
+              <label class="form-label"><em>*</em>验证码</label>
+              <span class="form-act">
+                <input type="text" class="verify-input input-st" name="verifycode" id="iptlogin" required size="4" maxlength="4">
+                <img align="absmiddle" class="auto-change-verify-handle"  src="<{url action=toputil_ctl_vcode@gen_vcode key=topc_signup width=120 height=35}>" alt="" width="120" height="35">
+                <div class="inline auto-change-verify-handle"><div>看不清？</div><a href="#">换一张</a></div>
+              </span>
+            </li>
+            <li class="form-row">
+              <label class="form-label">&nbsp;</label>
+              <span class="form-act">
+                <button type="submit" class="btn btn-import btn-block" rel="_request"><span><span>设置并绑定</span></span></button>
+              </span>
+            </li>
+          </ul>
+        </form>
+      </div>
+
+      <div class="col-lg-6  trust-login-box">
+        <h2 class="header-title  trust-login-header">绑定现有用户</h2>
+        <form action="<{url action=topc_ctl_trustlogin@bindExistsUser}>" method="post" id="ajaxForm" class="form-vertical">
+          <input type="hidden" name="vcodekey" value="topc_signin">
+          <input type="hidden" name="flag" value="<{$flag}>">
+          
+          <ul class=" trust-login-list2">
+            <li class="form-row">              
+              <span class="form-act has-figure">
+                <input type="text" class="input-block action-account-check" name="uname" id="" value="" placeholder="用户名/邮箱地址/已验证手机号" required data-caution="请填写登录帐号" autofocus="autofocus">
+                <i class="icon-user input-figure"></i>
+              </span>
+            </li>
+            <li class="form-row">
+              <span class="form-act has-figure">
+                <input type="password" class="input-block" name="password" id="" placeholder="填写密码" required data-caution="请填写密码">
+                <i class="icon-lock input-figure"></i>
+              </span>
+            </li>
+            <li class="form-row verify-code action-verifycode">
+              <label class="form-label"><em>*</em>验证码</label>
+              <span class="form-act">
+                <input type="text" class="verify-input input-st" name="verifycode" id="iptlogin" required size="4" maxlength="4">
+                <img align="absmiddle" class="auto-change-verify-handle"  src="<{url action=toputil_ctl_vcode@gen_vcode key=topc_signin width=120 height=35}>" alt="" width="120" height="35">
+                <div class="inline auto-change-verify-handle"><div>看不清？</div><a href="#">换一张</a></div>
+              </span>
+            </li>
+            <li class="form-row">
+              <span class="form-act">
+                <button type="submit" class="btn btn-import btn-block" rel="_request"><span><span>绑定</span></span></button>
+              </span>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+    var form = $('#ajaxForm');
+    form.find('button[type=submit]').data('ajaxConfig', {
+        callback: function(rs) {
+            if(rs.error){
+                Message.error(rs.message);
+            }
+            if(rs.redirect){
+             location.href = rs.redirect;
+            }
+        }
+    })
+
+
+    $(document).on('click', '.action-get-verifycode', function(e) {
+        e.preventDefault();
+        if($(this).hasClass('disabled')) return false;
+        sendVerify(this, account[0].name + '=' + account[0].value + '&type=signup');
+    });
+})();
+
+</script>

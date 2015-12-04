@@ -1,0 +1,140 @@
+<form class="form-horizontal" action="<{url action=topshop_ctl_gongqiu@saveGongying}>
+	" method="post" role="form" id="specification" data-validate-onsuccess="ajaxSubmit" data-validate-excluded=":disabled, :not(:visible)">
+	<input type="hidden" name="gongying[gongying_id]" value="">
+	<input type="hidden" name="return_to_url" value="<{$return_to_url}>
+	">
+	<input type="text" name="gongying[shop_id]" value="<{$shopId}>
+	">
+	<div class="panel panel-outter">
+		<div class="panel-body">
+			<h4>添加供应信息</h4>
+
+			<div class="col-md-11">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">基本内容</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<span class="act-handle breadcrumb breadcrumb-primary pull-left">
+								<input type="text" name="gongying[cat_id]"/>
+								<span></span>
+							</span>
+							<button type="button" data-toggle="modal" data-target="#catDialog" class="btn btn-default btn-sm">选择类目</button>
+							<span class="brandErr"></span>
+							<div id="catDialog" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												<span aria-hidden="true">&times;</span>
+												<span class="sr-only">关闭</span>
+											</button>
+											<h4 class="modal-title">选择类目</h4>
+										</div>
+										<div class="modal-body">
+											<{input type="category" name="gongying[cat_id]" shop_id=$shopId value=$gongying.cat_id callback="categoryCallback"}></div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" <{if !$item.item_id}>
+													disabled
+													<{/if}>>保存</button>
+													<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="" class="col-sm-2 control-label">标题：</label>
+										<div class="col-sm-3">
+											<input type="text" name="gongying[variety_name]" value="<{$gongying.variety_name}>" required class="form-control" maxlength="30"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="" class="col-sm-2 control-label">有效时间：</label>
+										<div class="col-sm-5">
+											<input type="radio" class="radio_type" name="gongying[effective_time]" value="0">
+											一个月
+											<input type="radio" class="radio_type" name="gongying[effective_time]" value="1">
+											三个月
+											<input type="radio" class="radio_type" name="gongying[effective_time]" value="2">
+											半年
+											<input type="radio" class="radio_type" name="gongying[effective_time]" value="3">
+											一年
+											<input type="radio" class="radio_type" name="gongying[effective_time]" value="4">长期有效</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="" class="col-sm-2 control-label">联系人：</label>
+										<div class="col-sm-3">
+											<input type="text" name="gongying[name]" value="<{$gongying.name}>" required class="form-control" maxlength="30"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="" class="col-sm-2 control-label">联系人电话:</label>
+										<div class="col-sm-3">
+											<input type="text" name="gongying[tel]" value="<{$gongying.tel}>" required class="form-control" maxlength="30"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="form-group">
+										<label for="" class="col-sm-2 control-label">联系人邮箱:</label>
+										<div class="col-sm-3">
+											<input type="text" name="gongying[email]" value="<{$gongying.email}>" required class="form-control" maxlength="30"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">供应信息描述</div>
+							<div class="bs-example bs-example-tabs">
+
+								<div id="myTabContent" class="tab-content">
+									<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+										<textarea name="gongying[product_intro]" style="width:100%;" class="rich-editor">
+											<{$gongying.product_intro}></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+			    <button type="submit" class="btn btn-primary btn-lg btn-block save-action" style="margin-left:1em;">保存</button>
+			  </div>
+				</div>
+			
+			</form>
+<{script src="md5.js" app="desktop"}>
+			<script type="text/javascript">
+		function categoryCallback (instance, option) {
+    $('#catDialog').find('.btn-primary').prop('disabled', option.hasChild ? true : false);
+}
+
+$('.rich-editor').summernote({
+    height: 400,
+    tabsize: 2,
+    uploadURI: '<{url action=toputil_ctl_image@uploadImages from=shop}>',
+    uploadPerfix: 'upload_file'
+});
+	$('#catDialog').find('.btn-primary').on('click', function(e) {
+    var dialog = $('.cat-select').data('_catselect_');
+    var catId = dialog.selectedParam.val();
+    if(catId) {
+        $('.act-handle span').text(dialog.selectedList.text());
+        $('.act-handle input').val(catId);
+    }
+    if(dialog.selectedParam.val() == '') {
+        //return $('#messagebox').message('请先选择一个类目');
+    }
+    $('.act-handle span').text(dialog.selectedList.text());
+    $('.act-handle input').val(catId);
+
+    $('#catDialog').modal('hide');
+
+}).trigger('click');
+	</script>

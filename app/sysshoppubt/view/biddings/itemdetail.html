@@ -1,0 +1,49 @@
+<form action="?app=sysshoppubt&ctl=biddings&act=save" method="post" onsubmit="return checkinput()"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="tableform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+<thead>
+<tr>
+<th>商品名称</th>
+<th>商品编号</th>
+<th>商品价格</th>
+<th>购买数量</th>
+<th>单位</th>
+<th>底价</th>
+<th>一口价</th>
+<{if $standard_item[0][advice]!=null}>
+<th>建议价格</th>
+<{/if}>
+<th>修改建议价格</th>
+</tr></thead><tbody>
+<{foreach from=$standard_item item=row}>
+<tr>
+<td><{$row.title}></td>
+<td><{$row.bn}></td>
+<td><{$row.price}></td>
+<td><{$row.num}></td>
+<td><{$row.unit}></td>
+<td><{$row.net_price}></td>
+<td><{$row.fixed_price}></td>
+<{if $row.advice!=null}>
+<td><{$row.advice}></td>
+<{/if}>
+
+<td><input type="text" name="advice[<{$row.standardg_item_id}>]" id="ids[]"></td></tr>
+<{/foreach}>
+<tr><td <{if $standard_item[0][advice]!=null}>colspan='9'<{/if}> <{if $standard_item[0][advice]==null}>colspan='8'<{/if}> ><{if $standard_item[0][uniqid]}><input type="submit" value="保存"><{/if}></td></tr>
+</tbody>
+</table>
+</div>  
+</form> 
+<script type="text/javascript">
+function checkinput(){  
+  for(var i=0;ids[i]!=null;i++){
+	var name = document.getElementById("ids[i]").value;
+	if(name ==  null || name == ''){
+		alert("用户名不能为空");
+		return false;   }  
+		return true;
+	}
+}
+</script>

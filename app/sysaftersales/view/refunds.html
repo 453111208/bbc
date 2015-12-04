@@ -1,0 +1,81 @@
+ <form id="cancelForm" action="?app=sysaftersales&ctl=refunds&act=dorefund"  method="POST" class="tableform">
+  <input type='hidden' name='data[aftersales_bn]' value='<{$data.aftersales_bn}>'>
+  <input type='hidden' name='data[refunds_id]' value='<{$data.refunds_id}>'>
+  <input type='hidden' name='refundsData[tid]' value='<{$data.tid}>'>
+  <input type='hidden' name='refundsData[oid]' value='<{$data.oid}>'>
+  <input type='hidden' name='refundsData[shop_id]' value='<{$data.shop_id}>'>
+  <input type='hidden' name='refundsData[user_id]' value='<{$data.user_id}>'>
+  <div class="division">
+    <table width="100%">
+      <tr>
+        <th><{t}>售后单号：<{/t}></th>
+        <td><{$data.aftersales_bn}></td>
+        <th><{t}>退款总金额：<{/t}></th>
+        <td>
+          <input type="hidden" value="<{$data.total_price}>" name="refundsData[money]">
+          <{$data.total_price|cur}>
+        </td>
+      </tr>
+      <tr>
+        <th><{t}>退款方式：<{/t}></th>
+        <td>线下退款</td>
+        <th><{t}>退款单所有商家：<{/t}></th>
+        <td><{$data.shop_id|shopname}></td>
+      </tr>
+      <tr>
+        <th><{t}>退款银行：<{/t}></th>
+        <td colspan="3"><em class="red">*</em><{input type='text' id='payBank' name='refundsData[refund_bank]' style=" margin-right:3px" value='' width="140" vtype="required"}></td>
+      </tr>
+      <tr>
+        <th><{t}>退款帐号：<{/t}></th>
+        <td><em class="red">*</em><{input type='text' name='refundsData[refund_account]' id='payAccount' value='' width="140" vtype="required"}></td>
+        <th><{t}>退款人：<{/t}></th>
+        <td><em class="red">*</em><{input type='hidden' name='refundsData[refund_people]' value=$user.id}> <{$user.name}></td>
+      </tr>
+      <tr>
+        <th><{t}>收款银行：<{/t}></th>
+        <td colspan="3"><em class="red">*</em><{input type='text' id='payBank' name='refundsData[receive_bank]' style=" margin-right:3px" value='' width="140" vtype="required"}></td>
+      </tr>
+      <tr>
+        <th><{t}>收款帐号：<{/t}></th>
+        <td><em class="red">*</em><{input type='text' name='refundsData[receive_account]' id='payAccount' value='' width="140" vtype="required"}></td>
+        <th><{t}>收款人：<{/t}></th>
+        <td><em class="red">*</em><{input type='hidden' name='refundsData[beneficiary]' value=$data.user_id}><{$data.user_name}></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="table-action">
+    <{button type="submit" id='cancel-form-submit' label="确定"}>
+  </div>
+</form>
+
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

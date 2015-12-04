@@ -1,0 +1,171 @@
+<div class="panel panel-outter">
+  <{if $trade.status == "WAIT_BUYER_PAY"}>
+  <{include file="topshop/trade/status/unpay.html"}>
+  <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+  <{include file="topshop/trade/status/undelivery.html"}>
+  <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+  <{include file="topshop/trade/status/unreceived.html"}>
+  <{elseif $trade.status == "TRADE_FINISHED"}>
+  <{include file="topshop/trade/status/finish.html"}>
+  <{elseif $trade.status == "TRADE_CLOSED_BY_SYSTEM" || $trade.status == "TRADE_CLOSED"}>
+  <{include file="topshop/trade/status/cancel.html"}>
+  <{/if}>
+  <div class="panel-body">
+    <div class="box box-solid">
+      <div class="box-body">
+        <h4>订单信息
+        </h4>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">订单号：</label><{$trade.tid}>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">订单状态：</label>
+            <{if $trade.status == "WAIT_BUYER_PAY"}>
+            等待买家付款
+            <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+            买家已付款
+            <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+            卖家已发货
+            <{elseif $trade.status == "TRADE_FINISHED"}>
+            订单已完成
+            <{elseif $trade.status == "TRADE_CLOSED_BY_SYSTEM" || $trade.status == "TRADE_CLOSED"}>
+            订单已关闭
+            <{/if}>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">下单时间：</label><{$trade.created_time|cdate}>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">付款状态：</label><{if $trade.status == "WAIT_BUYER_PAY"}>未付款<{else}>已付款<{/if}>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">付款时间：</label><{$trade.pay_time|cdate}>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">应付金额：</label><span class="text-orange"><{$trade.payment|cur}></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">是否需要开发票：</label><span class="text-orange"><{if !$trade.need_invoice }>不开发票<{else}>需开发票 <{/if}></span>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">发票类型：</label><span class="text-orange"><{if $trade.need_invoice && $trade.invoice_type=='normal'}>普通发票<{else}>无<{/if}></span>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">发票抬头：</label><span class="text-orange"><{if !$trade.need_invoice }> 无<{else}><{if $trade.invoice_name=='individual'}>个人<{else}>单位<{/if}>(<{$trade.invoice_main}>)<{/if}></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">商品总额：</label><{$trade.total_fee|cur}>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">运费金额：</label><span class="text-orange"><{$trade.post_fee|cur}></span>
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">手工调价：</label><span class="text-orange"><{$trade.adjust_fee|cur}></span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">联系方式：</label>
+            <{$trade.receiver_mobile}>
+            <{if $trade.receiver_phone}>&nbsp;,&nbsp;<{$trade.receiver_phone}><{/if}>
+          </div>
+          <{if !$trade.ziti_addr}>
+          <div class="col-xs-4">
+            <label class="order-form-w1">收货地区：</label>
+            <{$trade.receiver_state}><{$trade.receiver_city}><{$trade.receiver_district}>&nbsp;
+          </div>
+          <div class="col-xs-4">
+            <label class="order-form-w1">收货地址：</label><{$trade.receiver_address}>
+          </div>
+          <{else}>
+          <div class="col-xs-4">
+            <label class="order-form-w1">自提地址：</label><{$trade.ziti_addr}>
+          </div>
+          <{/if}>
+        </div>
+        <div class="form-group row">
+          <div class="col-xs-4">
+            <label class="order-form-w1">邮编：</label>
+            <span class="text-orange"><{$trade.receiver_zip}></span>
+          </div>
+          <{if $trade.discount_fee>0}>
+          <div class="col-xs-4">
+            <label class="order-form-w1">促销优惠：</label><span class="text-orange">-<{$trade.discount_fee|cur}></span>
+          </div>
+          <{/if}>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-xs-11">
+            <label class="order-form-w1">下单备注：</label>
+            <span class="text-orange"><{$trade.trade_memo}></span>
+          </div>
+        </div>
+        <div class="text-center">
+          <{if $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+          <a href="<{url action=topshop_ctl_trade_flow@godelivery tid=$trade.tid}>" class="btn btn-warning" data-toggle="modal" data-target="#delivery_<{$trade.tid}>">我要发货 </a>
+          <div class="modal fade" id="delivery_<{$trade.tid}>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:1050px;">
+              <div class="modal-content">
+              </div>
+            </div>
+          </div>
+          <{/if}>
+        </div>
+
+        <form action="<{url action=topshop_ctl_trade_detail@setTradeMemo}>" method="post" id="trade_form" data-validate-onsuccess="ajaxSubmit">
+          <div class="form-group">
+            <label>备注信息</label>
+            <input type="hidden" name="tid" value="<{$trade.tid}>">
+            <textarea name="shop_memo" class="form-control" rows="3"><{$trade.shop_memo}></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">保存</button>
+            <button type="reset" class="btn btn-default">取消</button>
+            <!--
+            <a href="#" class="pull-right">订单导出</a>
+            -->
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <{include file="topshop/trade/detail_item.html"}>
+    <{include file="topshop/trade/trade_total_data.html"}>
+    <div id="logistics">
+    </div>
+  </div>
+</div>
+
+<script>
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+$.post('<{url action=topshop_ctl_trade_detail@ajaxGetLogi}>',{tid: <{$trade.tid}>},function(rs){
+  if(rs.error){
+     return $('#messagebox').message(rs.message);
+  }
+  $('#logistics').html(rs);
+})
+
+</script>

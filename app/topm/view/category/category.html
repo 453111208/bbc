@@ -1,0 +1,23 @@
+<div class="product shop">
+  <{include file="topm/common/top.html"}>
+  <div class="list-bd">
+    <{foreach from=$data item=item key=key}>
+    <a href="<{url action=topm_ctl_category@catList cat_id=$item.cat_id}>" class="product-list">
+      <span class="list-info">
+        <span class="info-tit">
+          <{$item.cat_name}>
+        </span>
+        <span class="info-detail">
+          <{foreach from=$item.lv2 item=lv2item key=lv2key name=name}>
+          <{if $env.foreach.name.last }>
+          <span><{$lv2item.cat_name}></span>
+          <{else}>
+          <span><{$lv2item.cat_name}></span>&frasl;
+          <{/if}>
+          <{/foreach}>
+        </span>
+      </span>
+    </a>
+    <{/foreach}>
+  </div>
+</div>

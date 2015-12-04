@@ -1,0 +1,33 @@
+<!-- main container -->
+<div id="main" class="main">
+  <div class="wrap-lg">
+    <div class="mod-bottom">
+      <!--
+      <div class="crumbs">
+        <em class="color1">您当前位置</em>
+        <span>>&nbsp;&nbsp;<a href="#">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="#">会员中心</a></span>
+      </div>
+      -->
+    </div>
+    <div class="row mod-bottom">
+      <div class="col-lg-3 box">
+        <div ><a href="<{url action=topc_ctl_member@index}>"  class="member-home-btn">我的会员首页</a> </div>
+        <div class="side-nav">
+          <{foreach from=$cpmenu item=menus}>
+          <div class="side-nav-item">
+            <div class="side-nav-title"><{$menus.label}></div>
+            <ul class="side-nav-list">
+              <{foreach from=$menus.items item=items}>
+              <li <{if $action == $items.action}> class="on"<{/if}>><a href="<{url action=$items.action}>"><{$items.label}></a></li>
+              <{/foreach}>
+            </ul>
+          </div>
+          <{/foreach}>
+        </div>
+      </div>
+      <div class="col-lg-13 box">
+        <{include file=$_PAGE_}>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="max-shops-topw">
+  <div class="max-shops-top">
+    <div class="maxlogo"><a href="../" title=""><img src="images/shop/images/logo2.png" alt="" /></a></div>
+    <div class="maxshiopslogo">
+      <!-- <div class="max-img"><a href="" title=""><img src="<{$shopdata.shop_logo}>" alt="" /></a></div> -->
+      <div class="h3"><{$shopdata.shop_name}></div>
+      <div class="max-brief">主营：<{foreach from=$product item=pro}><{$pro.product_name}>,<{/foreach}></div>
+    </div>
+    <div class="maxMenu">
+      <ul class="munu-list">
+        <li class=""><a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopdata.shop_id}>" title="">首&#12288;页</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@productinfo shop_id=$shopdata.shop_id}>" title="">产品信息</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@gfinfo shop_id=$shopdata.shop_id}>" title="">固废信息</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@equipmentinfo shop_id=$shopdata.shop_id}>" title="">技术与设备</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@zizhi shop_id=$shopdata.shop_id}>" title="">企业档案</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@shoptrading shop_id=$shopdata.shop_id}>" title="">交易记录</a></li>
+        <li><a href="<{url action=topc_ctl_shopcenter@shopmap shop_id=$shopdata.shop_id}>" title="">联系方式</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="maxFlash"><a href="" title=""><img style="width:100%;max-height: 300px" src="<{$shopdata.background_img}>" alt="" /></a></div>

@@ -1,0 +1,95 @@
+<div class="maxM-right">
+		<div class="max-menber-title Bid">
+			<h2>我的竞价列表</h2>
+			<a href="javascript:;">我发布的竞价一览表</a>
+		</div>
+		<div class="maxB-menber-list">
+			<dl>
+				<dt class="maxB-title">
+					<ul>
+						<li class="item1" style="width:250px;"><span>交易名称</span></li>
+						<li class="item6" style="width: 130px;margin-left: -44px;"><span>交易状态</span></li>
+						<li class="item2"><span>一口价</span></li>
+						<li class="item3"><span>建议价格</span></li>
+						<li class="item4"><span>竞价开始时间</span></li>
+						<li class="item5"><span>竞价结束时间</span></li>
+					</ul>
+				</dt>
+				<dd>
+				<{foreach from=$bidding item=row key=key}>
+					<div class="maxB-List uniqsee" style="border-bottom:1px dashed #DDDDDD;">		
+							<div style="float:left;" class="bidgoods"><span class="down">∨</span><span class="up">∧</span></div>
+							<div class="maxB-company" style="width:260px;">
+								<label><{$row.trading_title}></label>
+								<{if $row.is_through==1}>
+								<a href="<{url action=topc_ctl_bidding@index bidding_id=$row.bidding_id}>" class="max-into">进入</a><{/if}>
+							</div>
+							<div class="maxB-Time">
+								<label><{if $row.isok==0}>待定<{elseif $row.isok==1}>完成<{elseif $row.isok==2}>失败<{/if}></label>
+							</div>
+							<div class="maxB-Time">
+								<label><{if $row.price_type==1}><{$row.fixed_price}><{else}>不允许<{/if}></label>
+							</div>
+							<div class="maxB-Time" style="text-align:center;">
+								<label><{if $row.advice==2}><{if $row.advicesum==0}>暂未建议<{else}><{$row.advicesum|cur}><{/if}><{else}>否<{/if}></label>
+							</div>
+							<div class="maxB-Time"><span><{$row.start_time|cdate}></span></div>
+							<div class="maxB-Time"><span><{$row.stop_time|cdate}></span></div>
+					</div>
+					<div class="maxB-List uniqhid" style="display:none">
+					<ul class="uniq quick">
+						<li>商品名称</li>
+						<!-- <li>商品价格</li> -->
+						<li>建议价格</li>
+						<li>底价</li>
+						<!-- <li>一口价</li> -->
+						<li>数量</li>
+						<li>单位</li>
+					</ul>
+					<{foreach from=$row.bidgoods item=row1 key=key1}>
+					<ul class="uniq slow">
+						
+						<li><{$row1.title}></li>
+						<!-- <li><{$row1.price|cur}></li> -->
+						<li><{$row1.advice|cur}></li>
+						<li><{$row1.net_price|cur}></li>
+						<!-- <li><{$row1.fixed_price|cur}></li> -->
+						<li><{$row1.num}></li>
+						<li><{$row1.unit}></li>
+						
+					</ul>
+					<{/foreach}>
+					</div>
+					<{/foreach}>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="max-pageview">
+			<span class="prev">上一页</span>
+			<{foreach from=$countnum item=row key=key}>
+			<a class="flip" href="<{url action=topc_ctl_member_biddings@biddingList page=$row}>"><{$row}></a>
+			<{/foreach}>
+			<a class="next">下一页</a>
+		</div>
+</div>
+<script type="text/javascript">
+	$('.uniqsee').click(function(){
+		//$('.uniqhid').hide();
+		//$('.down').show();
+		//$('.up').hide();
+		$(this).next('.uniqhid').toggle();
+		$(this).children('.down').toggle();
+		$(this).children('.up').toggle();
+	});
+	
+</script>
+<style type="text/css">
+	.maxB-List{height:auto;}
+	.uniq li{float:left;padding-left: 40px;padding-right: 40px;text-align: center;width: 55px;text-align: center;overflow: hidden;}
+	.uniq{overflow: hidden;height: 60px;}
+	.quick{background-color: yellow;overflow: hidden;background-color: rgb(237, 252, 235);}
+	.slow{background-color: rgb(230, 225, 202);overflow: hidden;}
+	.uniqsee{cursor: pointer;}
+	.up{display:none;}
+</style>

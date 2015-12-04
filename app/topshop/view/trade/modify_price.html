@@ -1,0 +1,149 @@
+  <form action="<{url action=topshop_ctl_trade_list@updatePrice}>" method="post" class="bg-white" role="form" id="updateprice_form" data-validate-onsuccess="ajaxSubmit">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">订单修改</h4>
+    </div>
+    <div class="modal-body">
+      <h4>订单原价（不含运费）：<span class="text-orange"><{$trade_detail.total_fee}></span>元</h4>
+      <table class="table table-primary table-goods table-order">
+        <thead>
+          <tr>
+            <td>宝贝</td>
+            <td>单价（元）</td>
+            <td>数量</td>
+            <td>原价</td>
+            <td nowrap>商品优惠</td>
+            <td nowrap>订单优惠分摊</td>
+            <td nowrap>涨价或减价<label title='整数代表涨价，负数代表降价'>?</label></td>
+            <td nowrap>邮费（元）</td>
+          </tr>
+        </thead>
+        <tbody>
+          <{assign var=orderItemCount value=$trade_detail.orders|count}>
+          <{foreach from=$trade_detail.orders item=orderitem name=orderlist}>
+          <tr>
+            <td class="col-2">
+              <div class="goods2">
+                <div class="left">
+                  <img src="<{$orderitem.pic_path|storager:'s'}>" alt="<{$orderitem.title}>">
+                </div>
+                <div class="right">
+                  <a href="<{url action=topc_ctl_item@index item_id=$orderitem.item_id}>"><{$orderitem.title}></a>
+                  <div><{if $orderitem.spec_nature_info}>(<{$orderitem.spec_nature_info}>)<{/if}></div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <{$orderitem.price}>
+            </td>
+            <td>
+              <{$orderitem.num}>
+            </td>
+            <td>
+              <{$orderitem.total_fee}>
+            </td>
+            <td>
+              <{$orderitem.discount_fee}>
+            </td>
+            <td>
+              <{$orderitem.part_mjz_discount}>
+            </td>
+            <td>
+              <div class="form-group">
+                <input type="text" name="trade[order][<{$orderitem.oid}>][adjust_fee]" value="<{$orderitem.adjust_fee}>" class="form-control order-input-adjust" data-validate-numeric="true" size="3">
+              </div>
+            </td>
+            <{if $env.foreach.orderlist.iteration==1}>
+            <td class="border-left" rowspan="<{$orderItemCount}>">
+              快递:
+              <div class="form-group">
+                <input type="text" name="trade[post_fee]" value="<{$trade_detail.post_fee}>" class="form-control order-input-post" size="3">
+              </div>
+              <!-- 直接输入金额     -->
+            </td>
+            <{/if}>
+          </tr>
+          <{/foreach}>
+        </tbody>
+      </table>
+      <div>
+        <p>收货地址：<{$trade_detail.receiver_state}><{$trade_detail.receiver_city}><{$trade_detail.receiver_district}>&nbsp;<{$trade_detail.receiver_address}></p>
+        <p>
+        买家支付：<span class="order-change-total"><{$trade_detail.total_fee}></span> + <span class="order-change-post"><{$trade_detail.post_fee}></span> + <span class="text-success order-change-adjust"><{$orderitem.adjust_fee}></span> = <span class="text-orange order-change-payment"><{$trade_detail.payment}></span> 元
+        </p>
+        <p class="text-gray">买家实付 = 原价 + 运费 + 涨价或减价</p>
+        <p class="text-gray">店铺优惠**元已均摊到每个商品，并计算在单个商品的折扣中</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input type="hidden" name="trade[tid]" value="<{$trade_detail.tid}>">
+      <button type="submit" class="btn btn-primary">保存</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    </div>
+  </form>
+
+
+<script>
+  $('#updateprice_form').Validator({
+    icons: {
+      valid:      'icon icon-checkmark-a',
+      invalid:    'icon icon-alert',
+      validating: 'icon icon-loading-c'
+    }
+  });
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    $(form).find('button[type=submit]').prop('disabled', false);
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+
+var adjPirces = [];
+$("#orderEdit .order-input-adjust").each(function(i){
+    adjPirces[i] = parseFloat(this.value);
+});
+function calOrderEditPrice(){
+  var adjustPirce = parseFloat($(".order-change-adjust").text());
+  var totalPrice = parseFloat($(".order-change-total").text());
+  var postPricee = parseFloat($(".order-change-post").text());
+
+  $("#orderEdit .order-input-adjust").change(function(){
+    var adjust = parseFloat(this.value);
+    adjPirces[$(this).index("#orderEdit .order-input-adjust")] = adjust;
+
+    adjustPirce = 0;
+    $.each(adjPirces, function(){
+        adjustPirce += this;
+    });
+
+
+    var payment = (totalPrice*1000 + adjustPirce*1000 + postPricee*1000)/1000;
+    console.log(payment);
+    $(".order-change-adjust").text("(" + adjustPirce + ")");
+    $(".order-change-payment").text(payment);
+  });
+
+  $("#orderEdit .order-input-post").change(function(){
+    postPricee = parseFloat($(this).val());
+    var payment = totalPrice + adjustPirce + postPricee;
+    $(".order-change-post").text(postPricee);
+    $(".order-change-payment").text(payment);
+  });
+
+}
+calOrderEditPrice();
+
+
+</script>

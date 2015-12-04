@@ -1,0 +1,991 @@
+<style type="text/css">
+  .no_marin{
+    margin-left: 0;
+  }
+</style>
+
+<script type="text/javascript">
+  if(<{$type}>){
+    $(".header").addClass("hidden");
+    $(".left-side").addClass("hidden");
+    $(".right-side").addClass("no_marin");
+  }
+</script>
+
+<form class="form-horizontal" action="<{url action=topshop_ctl_item@addItem}>" method="post" role="form" id="specification" data-validate-onsuccess="ajaxSubmit" data-validate-excluded=":disabled, :not(:visible)">
+  <input type="hidden" name="item[item_id]" value="<{$item.item_id}>">
+  <input type="hidden" name="shop_id" value="<{$shopId}>">
+  <input type="hidden" name="return_to_url" value="<{$return_to_url}>">
+  <div class="panel panel-outter">
+    <div class="panel-heading">
+      <h4>产品信息</h4>
+      <div>
+        <span class="act-handle breadcrumb breadcrumb-primary pull-left">
+           <input type="hidden" name="item[cat_id]"/>
+          <span></span>
+        </span>
+        <button type="button" data-toggle="modal" data-target="#catDialog" class="btn btn-default btn-sm">选择类目</button>
+        <span class="brandErr"></span>
+        <div id="catDialog" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">选择类目</h4>
+              </div>
+              <div class="modal-body">
+                <{input type="category" name="item[cat_id]" shop_id=$shopId value=$item.cat_id callback="categoryCallback"}>
+                <input type="hidden" name="item[sku]">
+                <input type="hidden" name="item[spec]">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" <{if !$item.item_id}>disabled<{/if}>>保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body hide">
+      <div class="col-md-11">
+        <h4>编辑商品</h4>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            基本内容
+          </div>
+          <div class="panel-body">
+          <!--   <div class="form-group">
+              <label for="" class="col-sm-2 control-label">企业分类：</label>
+              <div class="col-sm-3">
+                <select name="item[shop_cids][]" multiple id="act-selectshopcat" class="form-control">
+                  <{foreach from=$shopCatList item=shop_cat}>
+                  <{if $shop_cat.children}>
+                  <optgroup label='<{$shop_cat.cat_name}>'>
+                    <{else}>
+                    <option value='<{$shop_cat.cat_id}>'
+                    <{if $shop_cat.selected}>
+                    selected=selected
+                    <{/if}>
+                    ><{$shop_cat.cat_name}></option>
+                    <{/if}>
+
+                    <{if $shop_cat.children}>
+                    <{foreach from=$shop_cat.children item=shop_cat_children}>
+                    <option value='<{$shop_cat_children.cat_id}>'
+                    <{if $shop_cat_children.selected}>
+                    selected
+                    <{/if}>
+                    ><{$shop_cat_children.cat_name}></option>
+                    <{/foreach}>
+                    <{/if}>
+
+                    <{if $shop_cat.children}>
+                  </optgroup>
+                  <{/if}>
+                  <{/foreach}>
+                </select>
+              </div>
+            </div> -->
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">商品标题：</label>
+              <div class="col-sm-3">
+                <input type="text" name="item[title]" value="<{$item.title}>" required class="form-control" maxlength="30">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">副标题：</label>
+              <div class="col-sm-3">
+                <textarea name="item[sub_title]" class="form-control" maxlength="150" rows="4"><{$item.sub_title}></textarea>
+              </div>
+              <span>标题广告语</span>
+            </div>
+            <!--  <div class="form-group">
+              <label for="" class="col-sm-2 control-label">是否为标准商品：</label>
+              <div class="col-sm-3">
+               <input type="radio" class="radio_type" name="item[type]" value="0">是
+                <input type="radio" class="radio_type" name="item[type]" value="1">否
+              </div>
+            </div>
+            <div class="form-group" id="pro_type" >
+              <label for="" class="col-sm-2 control-label">商品类型</label>
+              <div class="col-sm-3">
+               <select name="item[product_type]" required  class="form-control" id="select_type">
+                  <option value="0" class="bz">成品</option>
+                  <option value="1" class="bz">生产设备</option>
+                  <option value="2" class="fbz" disabled="disabled">固废</option>
+                  <option value="3" class="fbz" disabled="disabled">存储状态</option>
+               </select>
+              </div>
+            </div>
+                <div class="form-group">
+              <label for="" class="col-sm-2 control-label">添加到企业展台：</label>
+              <div class="col-sm-3">
+               <input type="radio" class="radio_type" required name="item[is_shop_show]" value="1">是
+                <input type="radio" class="radio_type" required name="item[is_shop_show]" value="0">否
+              </div>
+            </div> -->
+            <!-- <div class="form-group">
+              <label for="" class="col-sm-2 control-label">品牌：</label>
+              <div class="col-sm-3">
+                <select name="item[brand_id]" required id="" class="form-control">
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">货号：</label>
+              <div class="col-sm-3">
+                <input type="text" name="item[bn]" value="<{$item.bn}>" class="form-control">
+              </div>
+            </div> -->
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label">商品图片：</label>
+              <div class="col-sm-10">
+                  <div class="multiple-upload pro-thumb" >
+                      <{if $item.list_image}>
+                      <{foreach from=$item.images item=image_id key=key }>
+                      <div class="multiple-item">
+                          <div class="multiple-del glyphicon glyphicon-remove-circle"></div>
+                          <a class="select-image" data-toggle="modal" href="<{url action=topshop_ctl_shop_image@loadImageModal}>" data-target="#gallery_modal">
+                              <input type="hidden" name="listimages[]" value="<{$image_id}>">
+                              <div class="img-put"><img src="<{$image_id}>"></div>
+                          </a>
+                      </div>
+                      <{/foreach}>
+                      <{/if}>
+                      <div class="multiple-add" data-name="listimages[]" data-limit="10" data-url="<{url action=topshop_ctl_shop_image@loadImageModal}>" ><i class="glyphicon glyphicon-plus"></i></div>
+                  </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-2 control-label"></label>
+              <div class="col-sm-10"><span class="help-block">本类目您最多可上传10张图片。</span></div>
+            </div>
+            <div class="form-group">
+           
+              <div class="col-sm-10">
+      
+                <input type="hidden" name="item[use_platform]" value="1" <{if $item.use_platform == 1}>checked<{/if}>> 
+             
+              </div>
+
+            </div>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            属性
+          </div>
+          <div class="panel-body" id="nature_props">
+ 
+          </div>
+        </div>
+<!--         <div class="panel panel-default">
+          <div class="panel-heading">
+            详细参数
+          </div>
+          <div class="panel-body" id="params">
+          
+          </div>
+        </div> -->
+
+   <!--      <div class="panel panel-default">
+          <div class="panel-heading">
+            销售属性
+          </div>
+          <div id="update_news" class="clearfix">
+          </div>
+          <div class="panel-body" id="spec_props">
+
+          </div>
+        </div> -->
+<!-- 
+        <div class="panel panel-default panel-default-table">
+          <div class="panel-heading">
+            商品规格(sku)
+          </div>
+
+          <{if $goods_spec_images && count($goods_spec_images)>0}>
+          <div id="goods_spec_images">
+            <{foreach from=$goods_spec_images item=imageid}>
+            <input type="hidden" name="img[<{$imageid}>]" value="<{$imageid|storager:'s'}>" />
+            <{/foreach}>
+          </div>
+          <{/if}>
+          <textarea id="goodsTpl" style="display:none;">
+            <tr data-pid="{sku_id}">
+              <td>{spec}</td>
+              <td>
+                <div class="form-group">
+                  <input type="hidden" name="{idx}[sku_id]" value="{sku_id}">
+                  <input type="number" value="{price}" class="form-control price" name="{idx}[price]" required>
+                </div>
+              </td>
+              <td>
+                <input type="number" value="{mkt_price}" class="form-control mkt_price" name="{idx}[mkt_price]">
+              </td>
+              <td>
+                <input type="number" value="{cost_price}" class="form-control cost_price" name="{idx}[cost_price]">
+              </td>
+              <td nowrap>
+                <div class="form-group">
+                  <input type="number" value="{store}" class="form-control store" name="{idx}[store]" required min="0"> 冻结： <em class="text-orange">{freez}</em>
+                </div>
+              </td>
+              <td>
+                <input type="text" value="{bn}" class="form-control bn" name="{idx}[bn]">
+              </td>
+              <td>
+                <input type="text" value="{barcode}" class="form-control barcode" name="{idx}[barcode]">
+              </td>
+            </tr>
+          </textarea>
+
+          <div class="td">
+            <div style="margin-top:1em;margin-left:1em;">共<b class="product-number"><{$countProducts}></b>种货品</div>
+            <div class="spec-tree">
+              <table cellspacing="0" cellpadding="0" border="0" class="table table-bordered" id="goods-table">
+                <thead>
+                  <tr>
+                    <th>规格值</th>
+                    <th style="width:12%;">销售价 <span class="text-danger">*</span></th>
+                    <th style="width:12%;">市场价</th>
+                    <th style="width:12%;">成本价</th>
+                    <th style="width:12%;">库存 <span class="text-danger">*</span></th>
+                    <th style="width:20%;">企业编码</th>
+                    <th style="width:20%;">条形码</th>
+                  </tr>
+                </thead>
+                <tbody id="dataNode">
+                </tbody>
+              </table>
+              <div class="text-center gridlist-footer">
+                <ul id="pager" class="pagination">
+                  <li class="prev">
+                    <a title="上一页" href="javascript:void(0)">&lt;上一页</a>
+                  </li>
+                  <li class="next">
+                    <a title="下一页" href="javascript:void(0)">下一页&gt;</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            商品描述
+          </div>
+          <div class="bs-example bs-example-tabs">
+
+            <div id="myTabContent" class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                  <textarea name="item[item_numberro]" style="width:100%;" class="rich-editor"><{$item.item_numberro}></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <button type="submit" class="btn btn-primary btn-lg btn-block save-action hidden" style="margin-left:1em;">保存</button>
+  </div>
+</form>
+
+<{script src="md5.js" app="desktop"}>
+<script>
+
+// $(window).on("load",function(){
+//     $(".radio_type").change(function(){
+//       if($('.radio_type:checked').val()==1){
+//           $("#select_type").val(2);
+//            $(".fbz").removeAttr("disabled");
+//           $(".bz").attr("disabled","disabled");
+//       }
+//       else{
+//         $("#select_type").val(0);
+//         $(".bz").removeAttr("disabled");
+//          $(".fbz").attr("disabled","disabled");
+//       }
+//     });
+// });
+
+function categoryCallback (instance, option) {
+    $('#catDialog').find('.btn-primary').prop('disabled', option.hasChild ? true : false);
+}
+
+$('.rich-editor').summernote({
+    height: 400,
+    tabsize: 2,
+    uploadURI: '<{url action=toputil_ctl_image@uploadImages from=shop}>',
+    uploadPerfix: 'upload_file'
+});
+
+//用json存取数据
+var GoodsSpec;
+var goods_info;// = <{if $goods_info}><{$goods_info}><{else}>{}<{/if}>;
+var Products;// = <{if $products}><{$products}><{else}>{}<{/if}>;
+var Spec;// = <{if $selection_spec_json}><{$selection_spec_json}><{else}>{}<{/if}>;
+var activeProducts;// = <{if $activeProducts}><{$activeProducts}><{else}>{}<{/if}>;
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+      // rs = JSON.parse(rs);
+      $(form).find('button[type=submit]').prop('disabled', false);
+      if(rs.error) {
+          $('#messagebox').message(rs.message, 'error');
+          return;
+      }
+      else if(rs.success) {
+          $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+          location.href = rs.redirect;
+      }
+  });
+}
+
+
+$('#catDialog').find('.btn-primary').on('click', function(e) {
+    var dialog = $('.cat-select').data('_catselect_');
+    var catId = dialog.selectedParam.val();
+    if(catId) {
+        $('.act-handle span').text(dialog.selectedList.text());
+        $('.act-handle input').val(catId);
+    }
+    if(dialog.selectedParam.val() == '') {
+        return ;
+    }
+    $('.act-handle span').text(dialog.selectedList.text());
+    $('.act-handle input').val(catId);
+    $(".save-action").removeClass("hidden");
+    $.post('<{url action="topshop_ctl_sku@getNatureProps"}>','cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+        if(rs.length<=0){
+          $('#nature_props').parent('.panel').hide();
+        }
+          $('#nature_props').html(rs);
+          console.log(rs);
+    });
+    // $.post('<{url action="topshop_ctl_sku@getNatureProps"}>','cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+    //     if(rs.length<=0){
+    //       $('#nature_props').parent('.panel').hide();
+    //     }
+    //       $('#nature_props').parent('.panel').hide();
+    //    // $('#nature_props').html(rs);
+    // });
+     $('.panel-outter>.panel-body').removeClass('hide');
+    // $.post('<{url action="topshop_ctl_sku@getNatureProps"}>','cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+    //     if(rs.length<=0){
+    //       $('#nature_props').parent('.panel').hide();
+    //     }
+    //       $('#nature_props').parent('.panel').hide();
+    //    // $('#nature_props').html(rs);
+    // });
+    // $.post('<{url action="topshop_ctl_sku@getParams"}>','cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+    //     if(rs.length<=0){
+    //       $('#params').parent('.panel').hide();
+    //     }
+    //     $('#params').parent('.panel').hide();
+    //   //  $('#params').html(rs);
+    // });
+    // $.post('<{url action="topshop_ctl_sku@getSpecProps"}>','cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+    //     if(rs.length<=0){
+    //       $('#spec_props').parent('.panel').hide().next().hide();
+    //       //return false;
+    //     }
+    //      $('#spec_props').parent('.panel').hide().next().hide();
+    //   //  $('#spec_props').html(rs);
+    //     $.post('<{url action="topshop_ctl_sku@set_spec_index"}>','nospec=<{$item.nospec}>&cat_id='+catId+'&item_id='+'<{$item.item_id}>',function(rs){
+    //         if(rs){
+    //             Products = rs.products ? rs.products : {} ;
+    //             Spec = rs.selection_spec_json ? rs.selection_spec_json : {};
+    //             activeProducts = rs.activeProducts ? rs.activeProducts : {};
+    //             goods_info={};
+    //         }
+    //         new goodsSpecTree('#specification');
+    //     });
+    // });
+    // $.post('<{url action="topshop_ctl_item@ajaxGetBrand"}>','cat_id='+catId,function(rs){
+    //     if(rs && !$.isEmptyObject(rs)) {
+    //         if(rs.error) {
+    //             $('.panel-outter>.panel-body').addClass('hide');
+    //             $('#specification button[type=submit]').prop('disabled', true);
+    //             return $('#messagebox').message(rs.message);
+    //         }
+    //         $('.panel-outter>.panel-body').removeClass('hide');
+    //         $('#specification button[type=submit]').prop('disabled', false);
+    //         var i = 0;
+    //         var brandid = '<{$item.brand_id}>';
+    //         $.each(rs, function(k, v) {
+    //             var select = $('select[name="item[brand_id]"]')[0];
+    //             select.options[i] = new Option(v.brand_name, v.brand_id);
+    //             i ++;
+    //             if(v.brand_id==brandid)
+    //             {
+    //               $(select).val(brandid);
+    //             }
+    //         });
+    //     }
+    //     else {
+    //         $('.brandErr').text('该类目下面的品牌为空！');
+    //         $('.panel-outter>.panel-body').addClass('hide');
+    //         $('#specification button[type=submit]').prop('disabled', true);
+    //     }
+    // });
+
+
+    $('#catDialog').modal('hide');
+
+}).trigger('click');
+
+$('.act-listtime').on('focus',function(){
+    $(this).parents('.radio').find('input[type=radio]')[0].checked=true;
+});
+
+// 商品规格编辑
+//table翻页组件
+// var Pager = new Class({
+//   options: {
+//       tpl: '#goodsTpl',
+//       pager: '#pager',
+//       current: 1,
+//       paging: 10
+//   },
+//     init: function(container, data, options) {
+//       this.container = $(container);
+//       this.setOptions(options);
+//       this.data = data;
+//       if(!this.data) return;
+//       this.total = this.data.length;
+//       this.paging = this.options.paging;
+//       this.totalPage = Math.ceil(this.total/this.paging);
+//       this.tpl = $(this.options.tpl).val();
+//       this.pager = $(this.options.pager);
+//       this.current = this.options.current;
+//       this.render(this.current);
+//       this.attach();
+//     },
+//     render: function(n) {
+//         this.goPage(n);
+//         this.updatePager();
+//     },
+//     attach: function() {
+//       var self = this;
+//       this.pager.off('click').on('click', function(e) {
+//         var target = $(e.target);
+//         var n;
+//         if(target.hasClass('disabled') || target.parent('.disabled').size()) {
+//           return;
+//         }
+//         if(target.hasClass('prev') || target.parent('.prev').size()) {
+//           n = self.current - 1;
+//         }
+//         else if(target.hasClass('next') || target.parent('.next').size()) {
+//           n = self.current + 1;
+//         }
+//         else if(target.hasClass('flip')) {
+//           n = parseInt(target.text());
+//         }
+//         else {
+//           return;
+//         }
+//         self.render(n);
+//       });
+//     },
+//     goPage: function(n) {
+//       var html = [];
+//       if(n < 1) n = 1;
+//       else if(n > this.totalPage) n = this.totalPage;
+//       if(this.total) {
+//         for(var i = this.paging * (n - 1), j = this.paging * n, l = this.total, d; i < j && i < l; i++) {
+//           d = this.data[i];
+//           $.each(d, function(k, v) {
+//             if($.type(v) === 'object') d[k] = JSON.stringify(v);
+//           });
+//           html.push(substitute(this.tpl, d));
+//         }
+//         this.current = n;
+//       }
+//       this.container.html(html);
+//     },
+//     updatePager: function() {
+//       if(this.total > 10) {
+//         this.pager.css('display','');
+//         var pageHtml = this.createLink();
+//         this.pager.html(pageHtml);
+//       }
+//       else this.pager.css('display', 'none');
+//     },
+//     pageLink:function(from, to){
+//       var links = [];
+//       for(var i = from; i <= to; i++){
+//         links.push(this.current == i ? '<li><span class="current">'+i+'</span></li>' : '<li><a class="flip" href="javascript:void(0)">'+i+'</a></li>');
+//       }
+//       return links.join(' ');
+//     },
+//     createLink: function() {
+//       var prev = this.pager.find('.prev'),
+//       next = this.pager.find('.next'),
+//       links = [],
+//       t=this.totalPage,
+//       c=this.current;
+//       if(c == 1) {
+//         prev.addClass('disabled');
+//         next.removeClass('disabled');
+//       }
+//       else if(c == t) {
+//         prev.removeClass('disabled');
+//         next.addClass('disabled');
+//       }
+//       else {
+//         prev.removeClass('disabled');
+//         next.removeClass('disabled');
+//       }
+//       if(t<=10){
+//         links.push(this.pageLink(1,t));
+//       }else{
+//         if(t-c<8){
+//           links.push(this.pageLink(1,3));
+//           links.push(this.pageLink(t-8,t));
+//         }else if(c<8){
+//           links.push(this.pageLink(1,Math.max(c+3,8)));
+//           links.push(this.pageLink(t-1,t));
+//         }else{
+//           links.push(this.pageLink(1,3));
+//           links.push(this.pageLink(c-2,c+3));
+//           links.push(this.pageLink(t-1,t));
+//         }
+//       }
+//       return prev.outerHtml() + links.join('...') + next.outerHtml();
+//     }
+// });
+
+// //展示货品数据
+// var goodsSpecTree = new Class({
+    // options: {
+    //   speclist:'.speclist',
+    //   specIMG: '.spec-img',
+    //   specMap: '#dataNode',
+    //   switchTrigger: '.typelist',
+    //   switchContent: '.spec-wrap',
+    //   number: '.product-number'
+    // },
+    // count: 0,
+    // init: function(container, options){
+    //   this.setOptions(options);
+    //   this.container = $(container);
+    //   this.speclist = this.container.find(this.options.speclist);
+    //   this.specLength = this.speclist.length;
+    //   if(!this.specLength) return;
+    //   this.specIMG = this.container.find(this.options.specIMG);
+    //   this.specMap = $(this.options.specMap);
+    //   this.switchTriggers = this.container.find(this.options.switchTrigger).children();
+    //   this.switchPanels = this.container.find(this.options.switchContent).children();
+    //   // this.selectAll = this.container.find('.selectAll input[type=checkbox]');
+    //   this.number = this.container.find(this.options.number);
+    //   this.newProduct = {};
+    //   this.attach();
+    //   // this.build(this.speclist);
+    //   this.createAllGoods(false);
+    // },
+    // attach: function() {
+    //   var self = this;
+    //   for(var i = 0; i < this.specLength; i++) {
+    //       (function(i) {
+    //           var trigger = this.switchTriggers.eq(i),
+    //               panel = this.switchPanels.eq(i),
+    //               // sel = this.selectAll.eq(i),
+    //               list = this.speclist.eq(i);
+    //           // trigger.on('click', function(e) {
+    //           //     $(this).addClass('act').siblings('.act').removeClass('act');
+    //           //     panel.show().siblings().hide();
+    //           // });
+    //           var chks = list.find('input[type=checkbox]');
+    //           // sel.on('change', function(e) {
+    //           //     chks.filter(function(){return !this.disabled;}).set('checked', this.checked);
+    //           //     self.build(chks, list, i, trigger);
+    //           // });
+    //           chks.on('change', function(e) {
+    //               self.build(this, $(this).parents(self.options.speclist), i, trigger);
+    //           });
+    //           chks.on('click', function(e) {
+    //               self.toggleEdit(this, i);
+    //           });
+
+    //       }).call(this, i);
+    //   }
+
+    //   var checked = this.speclist.find('input:checked').eq(0);
+    //   checked.trigger('change');
+
+    //   this.container.on('click', '.btn-createallgoods', function(e) {
+    //       self.createAllGoods();
+    //   })
+    //   .on('change', '.edit-spec-name', function(e) {
+    //       var str = this.name;
+    //       var id = str.match(/\[([^\]]*)\]/)[1];
+
+    //       self.specIMG.find('[data-id=' + id + ']').find('.spec-name').text(this.value);
+
+    //       id = id.split('_');
+    //       Spec[id[0]].option[id[1]].spec_value = this.value;
+    //   })
+    //   .on('click', '.clean:not(.disabled)', function(e) {
+    //     var p = this.parent('tr');
+    //     p.find('input[type=text], input[type=number]').val('');
+    //     // p.find('input[type=checkbox]').val('false').prop('checked', false);
+    //     var uid = this.attr('data-uid');
+    //     $.each(self.products, function(i, p) {
+    //       if(p.idx == uid) {
+    //         self.products[i] = {
+    //           idx: uid,
+    //           sku_id: p.sku_id,
+    //           spec: p.spec
+    //         };
+    //         // self.products.erase(p);
+    //       }
+    //     });
+    //     var oldProduct = $.extend(true, {}, Products[uid]);
+    //     Products[this.attr('data-uid')] = {
+    //       sku_id: 'new',
+    //       spec_desc: oldProduct.spec_desc
+    //     };
+
+    //     // delete Products[uid];
+    //   });
+    //   // this.specIMG.on('change', 'input[type=text], input[type=number]', function(e) {
+    //   //   var str = this.name;
+    //   //   var id = str.match(/\[([^\]]*)\]/)[1];
+    //   //   id = id.split('_');
+    //   //   Spec[id[0]].option[id[1]].spec_value = this.value;
+    //   // });
+    //   this.specMap
+    //   // .on('blur', 'input[type=text], input[type=number]', function(e) {
+    //   //     if(!self.validate(this)) {
+    //   //       (function(){this.focus()}).delay(0, this);
+    //   //       return false;
+    //   //     }
+    //   // })
+    //   .on('change', 'input[type=text], input[type=number]', function(e) {
+    //       var str = this.name;
+    //       var uid = str.split('[')[0];
+    //       var prop = str.match(/\[([^\]]*)\]/)[1];
+    //       self.storeData(this, uid, prop);
+    //   });
+
+    //   $(document.body).on('click', '.save-action', function(e) {
+    //     var keys = [], i = 0, j = self.products.length, k, l = self.props.length, p, attr, flag;
+    //     for(; i < j; i++) {
+    //       //flag = false;
+    //       p = self.products[i];
+    //       // if(!p.bn) {
+    //       //   for(k = 0; k < l; k++) {
+    //       //     attr = self.props[k];
+    //       //     if(attr === 'sku_id' || attr === 'bn' || !p[attr] || p[attr] === 'false') {
+    //       //       flag = true;
+    //       //       continue;
+    //       //     }
+    //       //     alert('请填写"' + p.spec + '"企业编码。');
+    //       //     try{
+    //       //       self.specMap.find('input[name="' + p.idx + '[bn]"]').focus();
+    //       //     } catch(e) {}
+    //       //     return;
+    //       //     // flag = 1;
+    //       //     // break;
+    //       //   }
+    //       // }
+    //       // if(flag === 1) return;
+    //       //if(flag === true) continue;
+    //       //else
+    //       keys.push(p.idx);
+    //     }
+    //     // if(flag === 1) return;
+    //     $.each(Spec, function(k, v) {
+    //       $.each(v.option, function(m, l) {
+    //         if(l.checked === false) delete Spec[k].option[m];
+    //       });
+    //     });
+    //     $.each(Products, function(k, v){
+    //       if(keys.indexOf(k) == -1) delete Products[k];
+    //     });
+    //     self.saveNewProduct(keys);
+    //   });
+    // },
+    // build: function(element, parent, i, trigger) {
+    //   // var d = new Date();
+    //   var id = parent.attr('data-spec-id');
+    //   if(element.length) element.each(function(el){
+    //     this.storeSpec(el, id, parent);
+    //   }, this);
+    //   else {
+    //       this.storeSpec(element, id, parent);
+    //   }
+    //   // this.toggleEdit(element, i);
+    //   trigger && trigger.find('i').text(parent.find('input[type=checkbox]:checked').length);
+    //   this.createSpecGrid(parent, i, id);
+    //   // this.createAllGoods();
+    //   // console.log(new Date() - d + 'ms');
+    // },
+    // toggleEdit: function(element) {
+    //     var parent = $(element).parent();
+    //     var specname = parent.find('.spec-name');
+    //     var editSpecname = parent.find('.edit-spec-name');
+
+    //     if(specname.hasClass('hide')) {
+    //         specname.removeClass('hide');
+    //         editSpecname.addClass('hide');
+    //     }
+    //     else {
+    //         specname.addClass('hide');
+    //         editSpecname.removeClass('hide');
+    //     }
+    // },
+    // storeSpec: function(el, id, parent) {
+    //   var sid = el.value;
+    //   if(el.checked) {
+    //     if(!Spec[id]) {
+    //       Spec[id] = {
+    //         spec_name: parent.attr('data-spec-name'),
+    //         spec_id: id,
+    //         show_type: parent.attr('data-spec-type'),
+    //         option: {}
+    //       };
+    //     }
+    //     if(!Spec[id].option[sid]) {
+    //       Spec[id].option[sid] = {
+    //         private_spec_value_id: el.name,
+    //         spec_value: el.title,
+    //         spec_value_id: sid
+    //       };
+    //       if(Spec[id].show_type == 'image') $.extend(Spec[id].option[sid], {
+    //         spec_image: parent.find('input[key=spec_image_' + sid + ']').val(),
+    //         spec_image_url: parent.find('img[key=spec_img_' + sid + ']').attr('src')
+    //       });
+    //     }
+    //     else delete Spec[id].option[sid].checked;
+    //   }
+    //   else if(Spec[id]) {
+    //     Spec[id].option[sid].checked = false;
+    //   }
+    // },
+    // createAllGoods: function(needs) {
+    //   var self = this;
+    //   this.specElements = [];
+    //   this.speclist.each(function(index) {
+    //     var checkBox = $(this).find('input[type=checkbox]:checked');
+    //     if(checkBox.length > 0) {
+    //       self.specElements.push({
+    //         id: $(this).attr('data-spec-id'),
+    //         name: $(this).attr('data-spec-name'),
+    //         input: checkBox
+    //       });
+    //     }
+    //   });
+
+    //   this.products = [];
+    //   var length = this.specElements.length;
+    //   if(length == this.specLength) {
+    //     this.processProducts(this.specElements, 0, length);
+    //   }
+    //   else if(needs !== false) {
+    //     return $('#messagebox').message('每个规格项至少选中一项，才能组合成完整的货品信息。');
+    //   }
+    //   this.number.text(this.products.length);
+    //   this.createGoodsGrid();
+
+    //   this.count = 0;
+    //   if(this.products.length && goods_info.length) {
+    //     this.products.some(function(v, i) {
+    //       if(v.bn) {
+    //         var n = v.bn.match(/^.+\-(\d+)$/);
+    //         if(n && n[1]) {
+    //           self.count = Math.max(self.count, Number(n[1]) + 1);
+    //           return false;
+    //         }
+    //       }
+    //       return true;
+    //     });
+    //   }
+    // },
+    // createSpecGrid: function(list, i, spec_id) {
+    //     var spec = Spec[spec_id];
+    //     var html = ['<thead>'];
+    //     html.push('<tr>');
+    //     html.push('<th>规格</th>');
+    //     if(spec.show_type == 'image') html.push('<th>规格图片</th>');
+    //     // html.push('<th>关联商品图片</th>');
+    //     html.push('</tr>');
+    //     html.push('</thead>');
+    //     html.push('<tbody>');
+    //     $.each(spec.option, function(k, v) {
+    //       if(v.checked !== false) {
+    //         html.push('<tr data-id="' + spec_id + '_' + v.spec_value_id + '">');
+    //         html.push('<td>');
+    //         if(spec.show_type == 'image') {
+    //           html.push('<span class="spec-colorbox"><img src="' + list.find('img[key=spec_img_' + v.spec_value_id + ']').attr('src') + '"></span>');
+    //         }
+    //         html.push('<span class="spec-name">' + v.spec_value + '</span>');
+    //         html.push('</td>');
+    //         if(spec.show_type == 'image') html.push('<td><a class="select-image" data-toggle="modal" href="<{url action=topshop_ctl_shop_image@loadImageModal}>" data-target="#gallery_modal"><input type="hidden" name="images[' + spec_id + '_' + v.spec_value_id + ']" value="' + (v.spec_image || list.find('input[key=spec_image_' + v.spec_value_id + ']').val()) + '"><div class="img-put"><img src="' + (v.spec_image_url || list.find('img[key=spec_img_' + v.spec_value_id + ']').attr('src')) + '" /><i class="glyphicon glyphicon-picture"></i></div></a></td>');
+    //         //if(spec.show_type == 'image') html.push('<td><div class="choose-image"><input type="file" class="hide action-file-input" name="upload_file" data-size="2097152" data-remote="<{url action=toputil_ctl_image@uploadImages from=shop}>" accept="image/*" /><span class="image-box action-upload"><input type="hidden" name="images[' + spec_id + '_' + v.spec_value_id + ']" value="' + (v.spec_image || list.find('input[key=spec_image_' + v.spec_value_id + ']').val()) + '"><img src="' + (v.spec_image_url || list.find('img[key=spec_img_' + v.spec_value_id + ']').attr('src')) + '" /></span><b class="choose-handle action-upload" title="选择图片"><i class="icon-arrow-right-b"></i></b></div></td>');
+    //         html.push('</tr>');
+    //       }
+    //     })
+    //     html.push('</tbody>');
+
+    //     var table = $('<table>').addClass('table table-bordered').html(html.join('\n'));
+    //     table.find('input[type=text]').prop('disabled', false);
+    //     table.appendTo(this.specIMG.eq(i).empty());
+    //     html = null;
+    // },
+    // props: ['sku_id', 'price','mkt_price','cost_price','store', 'bn', 'barcode', 'freez'],
+    // processProducts: function(arr, index, length, id, name, value, pvid) {
+    //   var self = this, specid = {}, spec_name = [arr[index].name], specvalue = {}, specpvid={}, sname, spec_id = arr[index].id, uid;
+    //   if(name) {
+    //     spec_name = name.concat(spec_name);
+    //   }
+    //   if(value) specvalue = value;
+    //   // if(id) specid = id;
+    //   arr[index].input.each(function(i){
+    //     specid[spec_id] = this.value;
+    //     specpvid[spec_id] = this.name;
+    //     specvalue[spec_id] = Spec[spec_id].option[this.value].spec_value;
+    //     if(id) {
+    //       $.extend(specid, id);
+    //     }
+    //     if(pvid) {
+    //       $.extend(specpvid, pvid);
+    //     }
+    //     if(index < length - 1) {
+    //       self.processProducts(arr, index + 1, length, specid, spec_name, specvalue, specpvid);
+    //     } else if(index == length - 1) {
+    //       var specid_values = [];
+    //       for(var key in specid) {
+    //         specid_values.push(specid[key]);
+    //       }
+    //       uid = getUniqueID(specid_values.join(';'));
+    //       sname = [];
+    //       $.each(spec_name, function(j) {
+    //         spec_id = arr[j].id;
+    //         if(Products[uid] && Products[uid].spec_desc) Products[uid].spec_desc.spec_value[spec_id] = specvalue[spec_id];
+    //         sname.push(this + ':' + specvalue[spec_id]);
+    //       });
+    //       sname = sname.join('，');
+    //       self.mapping(uid, sname, specvalue, specid, specpvid);
+    //     }
+    //   });
+    // },
+    // mapping: function(uid, specname, specvalue, specid, specpvid) {
+    //   var arr = {};
+    //   var self = this;
+    //   $.each(this.props, function(i) {
+    //     if(Products[uid] && (Products[uid][this] || Products[uid][this] === 0)) {
+    //       arr[this] = Products[uid][this];
+    //     }
+    //     else if(goods_info[this]) {
+    //       arr[this] = goods_info[this];
+    //       if(this == 'sku_id') {
+    //         arr[this] = 'new';
+    //       }
+    //       else if (this == 'bn') {
+    //         arr[this] = arr[this] + '-' + self.count;
+    //         self.count ++;
+    //       }
+    //     }
+    //   if(this == 'sku_id' && !arr[this]) {
+    //     arr[this] = 'new';
+    //   }
+    //   });
+    //   if(!Products[uid]) {
+    //     this.newProduct[uid] = $.extend(true, {}, arr);
+    //     this.newProduct[uid].spec_desc = {};
+    //     this.newProduct[uid].spec_desc.spec_private_value_id = $.extend(true, {}, specpvid);
+    //     this.newProduct[uid].spec_desc.spec_value = $.extend(true, {}, specvalue);
+    //     this.newProduct[uid].spec_desc.spec_value_id = $.extend(true, {}, specid);
+    //   }
+
+    //   if(Products[uid] && activeProducts && activeProducts.length && activeProducts.indexOf(Products[uid].sku_id) > -1) {
+    //     arr.unavailable = 'disabled';
+    //     arr.title = '尚有未处理的订单，不能清除此货品。';
+    //   }
+    //   else {
+    //     arr.title = '不生成此货品';
+    //   }
+    //   arr.idx = uid;
+    //   if(specname) arr.spec = specname;
+    //   this.products.push(arr);
+    // },
+    // createGoodsGrid: function() {
+    //   this.specMap.data('instance', this);
+    //   // if(!arr) return this.specMap.erase('html');
+    //   var current = this.container.find('.current');
+    //   current = current.size() ? parseInt(current.text()) : 1;
+    //   this.pager = new Pager(this.specMap, this.products, {current: current, paging: 10});
+    //   $('#specification').Validator('addField', this.specMap.find('.price, .store'));
+    // },
+    // saveNewProduct: function(uid) {
+    //   var self = this;
+    //   if($.type(uid) === 'array' && uid.length) {
+    //     if(!$.isEmptyObject(this.newProduct)) {
+    //       $.each(this.newProduct, function(k) {
+    //         if(uid.indexOf(k) == -1) {
+    //           delete self.newProduct[k];
+    //         }
+    //       });
+    //     }
+    //   }
+    //   else if(uid) {
+    //     if(!Products[uid]) {
+    //       Products[uid] = $.extend(true, {}, this.newProduct[uid]);
+    //       delete this.newProduct[uid];
+    //     }
+    //     return;
+    //   }
+    //   if(!$.isEmptyObject(goods_info) && !$.isEmptyObject(this.newProduct)) {
+    //     $.each(this.newProduct, function(k, v) {
+    //       if(v) Products[k] = $.extend(true, {}, v);
+    //     });
+    //     this.newProduct = {};
+    //   }
+    // },
+    // storeData: function(el, uid, prop, sib) {
+    //   this.saveNewProduct(uid);
+    //   Products[uid][prop] = encodeURIComponent(el.value);
+
+    //   if(!$.isEmptyObject(goods_info)) {
+    //     var n = Products[uid][prop].match(/^.+\-(\d+)$/);
+    //     if(n && n[1]) {
+    //       this.count = Math.max(this.count, Number(n[1]) + 1);
+    //     }
+    //   }
+
+    //   for(var i = 0, j = this.products.length, k; i < j; i++) {
+    //     k = this.products[i];
+    //     if(k.idx === uid) {
+    //       k[prop] = el.value;
+    //       break;
+    //     }
+    //   }
+    // },
+    // validate: function(el) {
+    //   return $(el).Validator();
+    // }
+// });
+
+// $(document).on('click', '.save-action', function () {
+//     // 保存sku信息
+//     Products && $('input[name="item[sku]"]').val(JSON.stringify(Products));
+//     Spec && $('input[name="item[spec]"]').val(JSON.stringify(Spec));
+// });
+
+// function getUniqueID(str) {
+//   return hex_md5(str).substr(0, 10);
+// }
+</script>

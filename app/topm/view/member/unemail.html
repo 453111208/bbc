@@ -1,0 +1,77 @@
+<div class="mobile-bound shop">
+    <{include file="topm/common/top.html"}>
+    <div class="main" id="main">
+        <ul class="form-vertical"> 
+          <{if $userInfo.login_account}>
+          <input  type="hidden"  name="verifyType" value="<{$verifyType}>" id="verifyType">
+          <input type="hidden" name="type"  value="unreset" id="sendType">
+          <input type="hidden" name="op"  value="<{$op}>">
+          <input type="hidden" class="x-input action-account-check" id="uname" name="uname" value="<{$userInfo.email}>">
+          <li class="form-row mobile">
+            <span class="form-act">
+              <div class="unbind-module">
+                <p class="title">已绑定邮箱：</p>
+                <p class="info"><{$userInfo.email}></p>
+              </div>
+            </span>
+          </li>
+          <li class="form-row ">
+            <a href="<{url action=topm_ctl_member@sendVcode}>" class="btn-block ui-btn ui-btn-warning action-get-vcode">发送邮件</a>
+          </li>
+          <{else}>
+           <li class="form-row mobile">
+            <span class="form-act">
+              <div class="unbind-module">
+                <p class="title">已绑定手机号：</p>
+                <p class="info"><{$userInfo.email}></p>
+                <p class="hint">您还未设置用户名无法解绑，请先
+                  <a href="<{url action=topm_ctl_member@userinfoSet}>">设置用户名。</a>
+                </p>
+              </div>
+            </span>
+          </li>
+          <{/if}>
+      </ul>
+
+    </div>
+  </div>
+
+  <script>
+    var Message = new gmu.Message();
+    $('.action-get-vcode').on('click',function(e){
+        e.preventDefault();
+        var $el = $(this);
+        var textCont = $el;
+        
+        var url = this.href;
+        var uname=$("#uname").val();
+
+        var verifyType=$("#verifyType").val();
+        var sendType=$("#sendType").val();
+
+        if(uname && verifyType && !$(this).hasClass('disabled')) {
+          $(this).addClass('disabled');
+          textCont.html($el.text() + '(<i>0</i>)');
+          var cd = new countdown(textCont.find('i'), {
+            start: 120,
+              secondOnly: true,
+              callback: function(e) {
+                $el.removeClass('disabled');
+                textCont.html('重发邮件');
+              }
+          });
+          $.post(url,'uname='+uname + '&type='+sendType,function(rs){
+                if(rs.error) {
+                  cd.stop();
+                  alert(rs.message);
+                  //Message.error(rs.message);
+                  $el.removeClass('disabled');
+                  textCont.html('重发邮件');
+                }else{
+                  //Message.success(rs.message);
+                  alert(rs.message);
+                }
+            });
+        }
+    });
+</script>

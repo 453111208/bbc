@@ -1,0 +1,12 @@
+<services>
+    <service id="desktop_finder.sysexpert_mdl_expert">
+        <class>sysexpert_finder_expert</class>
+    </service>
+    <service id="desktop_finder.sysexpert_mdl_literary">
+        <class>sysexpert_finder_literary</class>
+    </service>
+    <service id="desktop_finder.sysexpert_mdl_literarycat">
+        <class>sysexpert_finder_literarycat</class>
+    </service>
+    
+</services>

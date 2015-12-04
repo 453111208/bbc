@@ -1,0 +1,21 @@
+<services>
+    <service id="desktop_finder.sysshop_mdl_shop_type">
+        <class>sysshop_finder_shoptype</class>
+    </service>
+    <service id="desktop_finder.sysshop_mdl_enterapply">
+        <class>sysshop_finder_enterapply</class>
+    </service>
+    <service id="desktop_finder.sysshop_mdl_shop">
+        <class>sysshop_finder_shop</class>
+    </service>
+    <service id="desktop_finder.sysshop_mdl_shop_rel_lv1cat">
+        <class>sysshop_finder_shop_rel_lv1cat</class>
+    </service>
+    <service id="desktop_finder.sysshop_mdl_seller">
+        <class>sysshop_finder_seller</class>
+    </service>
+    <!-- <service id="desktop_finder.sysshop_mdl_shop_notice">
+        <class>sysshop_finder_shopnotice</class>
+    </service> -->
+
+</services>

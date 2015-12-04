@@ -1,0 +1,51 @@
+<div id="takegoods_dialog" style="" class="takegoods-dialog">
+<ul>
+  <!--
+  <li class="form-item">
+    <label for="" class="form-label">选择地区</label>
+    <span class="form-act">
+      <select name="" id="">
+        <option value="">全部区域</option>
+      </select>
+      <span class="validation-messagebox"></span>
+    </span>
+  </li>
+  -->
+  <{if $data}>
+  <li class="form-item">
+    <label for="" class="form-label">选择自提地点</label>
+    <{foreach from=$data item=ziti}>
+    <div class="item-addr form-act clearfix" data-id="<{$ziti.id}>" data-addr="<{$ziti.area}> <{$ziti.addr}>">
+      <span class="takegoods-addr <{if $ziti_id == $ziti.id}>active <{/if}>" ><div class="choose-triangle"></div>
+        <i class="icon icon-checkmark" data-icon="\2838"></i><{$ziti.name}></span><span class="sp-addr">地址：<{$ziti.area}> <{$ziti.addr}></span> <!--<a href="#">详细地图</a>-->
+    </div>
+    <{/foreach}>
+    <span class="validation-messagebox"></span>
+  </li>
+  <li class="form-item last ">
+    <label for="" class="form-label"></label>
+    <span class="form-act">
+      <button type="button" class="btn btn-import ziti-save"><span><span>保存自取地点</span></span></button>
+      <button type="button" class="btn btn-simple action-reset dialog-btn-close"><span><span>取消</span></span></button>
+    </span>
+  </li>
+  <{else}>
+
+  <li class="form-item takegoods-item-prompt">
+    <span> 您选择的收货地区不支持自提，请选择其他的配送方式</span>
+    <span class="form-act">
+      <br>
+      <button type="button" class="btn btn-simple action-reset dialog-btn-close"><span><span>取消</span></span></button>
+    </span>
+  </li>
+  <{/if}>
+  <li class="form-item takegoods-item-prompt">
+    <!--
+    <span class="form-act">
+      温馨提示：<br />
+    </span>
+    -->
+  </li>
+</ul>
+</div>
+

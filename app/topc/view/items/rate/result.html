@@ -1,0 +1,24 @@
+<div class="goods-grade-title">
+  好评率
+  <span><{if !$countRate.good.num }>100%<{else}><{$countRate.good.percentage}><{/if}></span>
+</div>
+<div class="goods-grade-score">
+  <div>
+    <div class="level-name">好评：</div>
+    <div class="score-parent">
+      <div class="score-progress" style="width: <{$countRate.good.percentage}>;"><span class="score-num"><{$countRate.good.num}></span></div>
+    </div>
+  </div>
+  <div>
+    <div class="level-name">中评：</div>
+    <div class="score-parent">
+      <div class="score-progress" style="width: <{$countRate.neutral.percentage}>;"><span class="score-num"><{$countRate.neutral.num}></span></div>
+    </div>
+  </div>
+  <div>
+    <div class="level-name">差评：</div>
+    <div class="score-parent">
+      <div class="score-progress" style="width: <{$countRate.bad.percentage}>;"><span class="score-num"><{$countRate.bad.num}></span></div>
+    </div>
+  </div>
+</div>

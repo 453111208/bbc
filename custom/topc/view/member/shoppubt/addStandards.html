@@ -1,0 +1,224 @@
+    <script type="text/javascript" src="images/test/demo.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg-editor.js"></script>
+              <link rel="stylesheet" href="images/menber/css.css">
+    <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="images/css/wysiwyg-editor.css" />
+  <!--会员中心-发布标准商品交易-主内容区-->
+  <form  action="<{url action=topc_ctl_member_shoppubt@saveS}>" method="post" id="addStandardsForm"  >
+  <div class="maxM-right">
+    <!--交易发布-->
+    <div class="max-menber-title">
+      <h2>交易发布</h2>
+    </div>
+   <input type="hidden" name="uniqid" value="<{$uniqid}>" id="uniqid">
+    
+      <div class="max-steps">
+        <ul>
+          <li class="active"><span> <s>1</s> <i></i> 选择商品</span></li>
+          <li><span> <s>2</s> <i></i> 填写交易信息</span></li>
+          <li><span> <s>3</s> <i></i> 发布完成</span></li>
+        </ul>
+      </div>
+      <!--选择商品-->
+    <div class="max-Choice">
+      <div class="max-Select-gs">
+        <div class="max-click-se"><a href="javascript:void(0);" class="action-open-dialog">点击选择商品></a></div>
+        <div class="max-click-pu">
+          <a href="">您还未发布商品,快捷发布></a>
+          <span>发布一个商品只需1分钟</span>
+        </div>
+      </div>
+    
+        <div id="addStandardsgoods">
+            <div class="max-Commodity" style="height:auto;min-height:37px;">
+            <ul class="step1">
+            </ul>
+            </div>
+        </div>
+   
+      <!-- <div class="max-nextStep"><button type="submit">下一步</button></div> -->
+    </div>
+
+    <!----填写交易信息----> 
+    <div class="max-information">
+      <div class="max-Infor">
+        <span class="max-for-title">交易标题：</span>
+        <div class="max-for-input">
+          <span class="form-act">
+          </span>
+          <ul>
+           <li class="form-row">
+          <span class="form-act">
+            <input type="text" name="trading_title" required>
+          </span>
+          </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-Infor date">
+        <dt class="max-for-title">交易有效期：</dt>
+        <dd>
+          <input type="hidden" name="stop_time" class="standard_stop_time"  value="effective" />
+          <span class="lakers_month one">一个月</span>
+          <span class="lakers_month three">三个月</span>
+          <span class="lakers_month six">半年</span>
+          <span class="lakers_month december">一年</span>
+          <span class="lakers_month effective active">长期有效</span>        
+        </dd>
+      </div>
+
+      <div class="max-Infor">
+        <dt class="max-for-title">价格方式：</dt>
+        <dd>
+          <div class="max-for-mation">
+            <input value="1" name="price_type" type="radio" checked id="price_type1">
+            <label for="price_type1">价格公开</label>
+            <input value="2" name="price_type" type="radio"  id="price_type2">
+            <label for="price_type2">面议或电联</label>
+          </div>      
+        </dd>
+      </div>
+      <div class="max-Infor">
+        <dt class="max-for-title">资金走向：</dt>
+        <dd >
+          <div class="max-for-mation">
+            <input value="1" name="fund_trend" type="radio" checked id="fund_trend1">
+            <label for="fund_trend1">平台担保交易</label>
+            <input value="2" name="fund_trend" type="radio" id="fund_trend2">
+            <label for="fund_trend2">自行先下支付</label>
+          </div>      
+        </dd>
+      </div>
+      <div class="max-Infor">
+      <dt class="max-for-title">交易描述：</dt>
+         <dd style="margin-left:35px">
+          <div class="max-for-mation">
+     <textarea id="editor1" style="height:600px;" name="desc" placeholder="Type your text here..." style="width:890px"></textarea>
+     </div>
+     </dd>
+    </div>
+  </div>
+
+
+
+      <!----填写交易地址----> 
+    <div class="max-address" id="address_edit">
+      <div>
+        <ul class="max-change-shipping step1">
+       <{include file='topc/member/shoppubt/add_edit.html'}>
+        </ul>
+      </div>
+    </div>
+
+    <!------提交----按钮---->
+    <div class="maxM-buttom">
+      <button type="submit" class="btn btnf" rel="_request"><span>发 布</span></button>
+<!--       <button type="button" class="btn btnp" rel="_request"><span>保 存</span></button>
+      <button type="button" class="btn btnc" rel="_request"><span>取 消</span></button> -->
+    </div>
+  </div>
+</form>
+<div id="lakers_dialog" style="display:none">
+</div>
+<script>
+// $(".btnf").click(function(){
+//   debugger;
+//   $("#addStandardsForm").submit();
+// });
+  $('.max-main').on('click', '.lakers_addaddress', function (e) {
+        var el = $(this),
+            dataEl = el.parent().find('label');
+        $.dialog.ajax('<{url action=topc_ctl_member_shoppubt@addr_dialog}>', {
+            width: 500,
+            title:'交割地址',
+            asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+                var  edit_uniqid=$(".add_uniqid").val();
+                  if(edit_uniqid ==""){
+                   var uniqid=$("#uniqid").val();
+                   $(".add_uniqid").val(uniqid);
+                  }
+                    new AreaWidget({
+                        dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+                        select:this.body.find('.area-select'),
+                        initData:dataEl.data('region-id')
+                    });
+                    this.body.find('form').attr('action','<{url action=topc_ctl_member_shoppubt@saveAddress}>');
+                    this.body.find('input[name=addr]').val(dataEl.data('addr'));
+                    this.body.find('input[name=zip]').val(dataEl.data('zip'));
+                    this.body.find('input[name=name]').val(dataEl.data('name'));
+                    this.body.find('input[name=mobile]').val(dataEl.data('mobile'));
+                    this.body.find('input[name=addr_id]').val(dataEl.data('addrId'));
+                    this.body.find('input[name=transport_way]').val(dataEl.data('transport-way'));
+                    this.body.find('input[name=deliveryaddr_id]').val(dataEl.data('deliveryaddr-id'));
+                    var str=dataEl.data('def-addr');
+                    if(str==1){
+                     this.body.find('input[name=def_addr]')[0].checked=true;
+                    }
+                    //this.body.find('input[name=def_addr]').val();
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        update: '#address_edit .step1',
+                        callback: $.proxy(function(rs) {
+                            // Message.success('保存成功');
+                            this.hide();
+                        }, this)
+                    });
+
+                }
+            }
+        });
+    });
+
+  
+  $('.action-open-dialog').click(function (e) {
+    $.dialog.ajax('<{url action=topc_ctl_member_shoppubt@sGodds}>',{
+        width: 600,
+        height: 'auto',
+        title:'商品筛选',
+             asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+
+
+$('.search_goods').click(function(){
+   var cat_id=$("#catId").val();
+
+   if(cat_id !=""){
+      var data='cat_id='+cat_id;
+      $.post('<{url action=topc_ctl_member_goods@sGoodsData}>',data,function(rs){
+            $('#gooditems').html(rs.message);
+             // $(".save_goods")[0].style.display="block";
+                   var  edit_uniqid=$(".goods_uniqid").val();
+                   if(edit_uniqid ==""){
+                   var uniqid=$("#uniqid").val();
+                   $(".goods_uniqid").val(uniqid);
+                  }
+      });
+   }
+});
+
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        update: '#addStandardsgoods .step1',
+                        callback: $.proxy(function(rs) {
+                            // Message.success('保存成功');
+                            this.hide();
+                        }, this)
+                    });
+                }
+            }
+    });
+});
+</script>

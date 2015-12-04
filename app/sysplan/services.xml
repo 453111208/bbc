@@ -1,0 +1,15 @@
+<services>
+    <service id="desktop_finder.sysplan_mdl_literary">
+        <class>sysplan_finder_literary</class>
+    </service>
+    <service id="desktop_finder.sysplan_mdl_literarycat">
+        <class>sysplan_finder_literarycat</class>
+    </service>
+    <service id="desktop_finder.sysplan_mdl_literaryclass">
+        <class>sysplan_finder_literaryclass</class>
+    </service>
+    <service id="desktop_finder.sysplan_mdl_literarytarget">
+        <class>sysplan_finder_literarytarget</class>
+    </service>
+    
+</services>

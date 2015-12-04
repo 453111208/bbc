@@ -1,0 +1,115 @@
+<div class="store-list shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/shop/promotion/promotiontop.html"}>
+
+  <div class="main">
+    <{*<div id="select" class="select">
+      <{include file="topm/shop/sortbar.html"}>
+    </div>*}>
+    <div class="showarea floor area">
+      <section class="floor-bd floor-col-2 lazyload ui-refresh">
+        <{if $promotionItemList}>
+        <ul class="data-list">
+          <{foreach from=$promotionItemList item=item}>
+          <li class="col-xs-6">
+            <div class="pro-pic">
+              <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>">
+                <img class="ui-imglazyload preload" style="background:url(<{$item.image_default_id|default:$defaultImageId.M.default_image|storager:'m'}>) no-repeat center center" alt="">
+              </a>
+            </div>
+            <div class="pro-info">
+              <div class="info-n">
+                <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a>
+              </div>
+              <div class="info-p">
+                <div class="p-lf"><{$item.price|cur}></div>
+                <div class="p-rt icon">
+                  <{if $nologin!=1}>
+                  <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="save"><span class="icon icon-favor"></span></a>
+                  <{else}>
+                  <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" rel="_request" data-ajax-data="item_id=<{$item.item_id}>" data-ajax-type="post"><span class="icon icon-favor"></span></a>
+                  <{/if}>
+                </div>
+              </div>
+            </div>
+          </li>
+          <{/foreach}>
+        </ul>
+        <{/if}>
+        <div class="ui-refresh-handle">
+          <div class="ui-refresh-down"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+  
+  <script>
+    //创建slider组件
+  $('#slider').slider( { imgZoom: true });
+  //创建返回顶部组件
+  $('#gotop').gotop();
+  // 全setup方式调用
+  $('#backtop').backTop();
+  // 全setup方式调用
+  $('#menu').click(function(){
+    $('.hd-menu .ui-mark-temp').removeClass('ui-in');
+  });
+
+  // 图片懒加载
+  $(function () { function initLazyload() {
+    $('.ui-imglazyload').on('startload', function () {
+      $(this).removeClass('preload');
+    }).imglazyload();
+  }
+  var $cont = $('.lazyload'),
+  html = $cont.html();
+  $('.add-img').on('click', function () {
+    $cont.append(html);
+    initLazyload();
+  });
+  initLazyload();
+  });
+
+  // 排序筛选
+  $('.select ul li').click(function(){
+    // $(this).toggleClass('cur');
+    if($(this).hasClass('cur')){
+      $(this).children('a').toggleClass('is-desc');
+      $(this).siblings().removeClass('cur');
+    }
+  });
+
+  // 筛选条件宽度平均分布
+  var a = $('.select ul li').length;
+  $('.select ul li').css('width',100/a + '%');
+
+
+  var pagers = <{$pagers|json_encode}>;
+  pagers.next = pagers.current + 1;
+  $('.ui-refresh').refresh({
+      init: function () {
+          if(pagers.current == pagers.total) {
+              this.disable();
+          }
+      },
+      load: function (dir, type) {
+          var self = this;
+          var $list = $('.data-list');
+          $.get('<{url action=topm_ctl_promotion@ajaxPromotionItemShow}>', location.search.slice(1) + '&pages=' + pagers.next, function (rs) {
+              if(rs.success) {
+                  pagers.next = +rs.pagers.current + 1;
+                  $list[dir == 'up' ? 'prepend' : 'append'](rs.html);
+              }
+              self.afterDataLoading();
+              if(rs.pagers.current == rs.pagers.total) {
+                  self.disable();
+              }
+          });
+      }
+  });
+  </script>
+
+</div>
+

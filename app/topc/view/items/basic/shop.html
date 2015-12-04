@@ -1,0 +1,52 @@
+<ul class="seller">
+  <li>
+    卖家：<a href="<{url action=topc_ctl_shopcenter@index shop_id=$item.shop_id}>"><{$shop.shop_id|shopname}></a>
+  </li>
+  <li>
+    <div class="clearfix">
+      <div class="im-tit">联系客服：</div>
+      <div class="im-b"><{im shop_id=$item.shop_id type="large"}></div>
+    </div>
+  </li>
+  <li>
+    <div class="dl">
+      <div class="dl-left">评分明细</div>
+      <div class="dl-right">与行业相比</div>
+    </div>
+    <div class="dl">
+      <div class="dl-left">商品评分：<{$shopDsrData.countDsr.tally_dsr}>分</div>
+      <div class="dl-right">
+        <i class="icon <{if $shopDsrData.catDsrDiff.tally_dsr.trend == 'go-up'}>icon-arrow-up-a<{elseif $shopDsrData.catDsrDiff.tally_dsr.trend == 'go-down'}>icon-arrow-down-a<{else}>-<{/if}>">
+          <{$shopDsrData.catDsrDiff.tally_dsr.percentage|default:'持平'}>
+        </i>
+      </div>
+    </div>
+    <div class="dl">
+      <div class="dl-left">服务评分：<{$shopDsrData.countDsr.attitude_dsr}>分</div>
+      <div class="dl-right">
+        <i class="icon <{if $shopDsrData.catDsrDiff.attitude_dsr.trend == 'go-up'}>icon-arrow-up-a<{elseif $shopDsrData.catDsrDiff.attitude_dsr.trend == 'go-down'}>icon-arrow-down-a<{else}>-<{/if}>">
+          <{$shopDsrData.catDsrDiff.attitude_dsr.percentage|default:'持平'}>
+        </i>
+      </div>
+    </div>
+    <div class="dl">
+      <div class="dl-left">配送评分：<{$shopDsrData.countDsr.delivery_speed_dsr}>分</div>
+      <div class="dl-right">
+        <i class="icon <{if $shopDsrData.catDsrDiff.delivery_speed_dsr.trend == 'go-up'}>icon-arrow-up-a<{elseif $shopDsrData.catDsrDiff.delivery_speed_dsr.trend == 'go-down'}>icon-arrow-down-a<{else}>-<{/if}>">
+          <{$shopDsrData.catDsrDiff.delivery_speed_dsr.percentage|default:'持平'}>
+        </i>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="btn-wrap">
+      <a href="<{url action=topc_ctl_shopcenter@index shop_id=$item.shop_id}>" class="btn btn-sm btn-import"><span><span>进入店铺</span></span></a>
+       <{if $nologin!=1}>
+      <a href="<{url action=topc_ctl_passport@signin}>" class="btn btn-sm btn-caution"><span><span>收藏店铺</span></span></a>
+      <{else}>
+      <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" class="btn btn-sm btn-caution" data-ajax-data="shop_id=<{$item.shop_id}>" rel="_request"><span><span>收藏店铺</span></span></a>
+      <{/if}>
+    </div>
+  </li>
+</ul>
+

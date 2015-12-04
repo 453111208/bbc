@@ -1,0 +1,68 @@
+<table>
+	<tfoot>
+		<tr>
+		 <td style="text-align:left;width:150px;border:none;padding:0;">
+		   	<div class="clearfix">
+	  			<div class="flt"><span><{t}> 每页最多显示：<{/t}></span></div>
+	  			<div class="flt pointer finder-pageset" id="finder-pageset-<{$name}>">
+	  				<div class="finder-pageset-handle">
+                        <{$plimit}><{t}>条<{/t}>
+                    </div>
+	  				<div id="finder-pagesel-<{$name}>" class="x-drop-menu" style="visibility:hidden;display:block">
+                       <{foreach from=$perPageSettingList item="perPageSetting"}>
+                           <div class="item" onclick="<{$var_name}>.request({data:'plimit=<{$perPageSetting}>'})">
+                           <{if $plimit == $perPageSetting}>
+                               <{assign var="perPageCheckedHtml" value=" checked='checked' "}>
+                           <{/if}>
+                           
+                           <input type="radio" name="finder_plimit" <{$perPageCheckedHtml}> id=""/>
+                           <{assign var="perPageCheckedHtml" value=""}>
+                           <label><{$perPageSetting}><{t}>条<{/t}></label>
+                           </div>
+
+                       <{/foreach}>
+	  				</div>
+	  			</div>
+	 		</div>
+		 </td>
+		 <td style="text-align:left;width:150px"></td>
+ 		     <{if $pager}>
+  	              <td style="text-align:center;">
+	               <{$pager}>
+	          </td>
+		   <{/if}>
+	       <td style="text-align:right;width:300px;">
+		     <{t}>共<{/t}><{$pinfo.count}><{t}>条记录<{/t}><{if $to>2}><{t}>,当前页:<{/t}><{$from|default:1}>-<{$to}><{t}>条<{/t}> <{/if}>
+		   </td>
+	    </tr>
+	</tfoot>
+</table>
+
+
+
+<script>
+void function(){
+	var _h = $$('#finder-pageset-<{$name}> .finder-pageset-handle');
+	var _s = $('finder-pagesel-<{$name}>');
+	if(!_h[0]||!_s)return;
+	_h = _h[0];
+	$('finder-pageset-<{$name}>').addEvents({
+			'mouseenter':function(){
+				_h.addClass('active');
+				var _pos = _h.getPosition('workground');
+				_s.setStyles({
+					left:_pos.x+(Browser.firefox?1:0),
+					top:_pos.y - _s.getSize().y + (Browser.ie?4:1),
+					visibility:'visible'
+				});
+			},
+			'mouseleave':function(){
+				_h.removeClass('active');
+				_s.setStyle('visibility','hidden');
+			}
+	
+	});
+}();
+  
+
+</script>

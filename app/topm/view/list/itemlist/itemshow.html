@@ -1,0 +1,24 @@
+<{foreach from=$items item=item}>
+<li class="col-xs-6">
+  <div class="pro-pic">
+    <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>">
+      <img class="ui-imglazyload preload" style="background:url(<{$item.image_default_id|default:$image_default_id.M.default_image|storager:'m'}>) no-repeat center center" alt="">
+    </a>
+  </div>
+  <div class="pro-info">
+    <div class="info-n">
+      <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>"><{if $item.activity.activity_tag}><span class="activity-tag"><{$item.activity.activity_tag}></span><{/if}><{$item.title}></a>
+    </div>
+    <div class="info-p">
+      <div class="p-lf"><{$item.price|cur}></div>
+      <div class="p-rt icon">
+        <{if $nologin!=1}>
+        <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="save"><span class="icon icon-favor"></span></a>
+        <{else}>
+        <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" rel="_request" data-ajax-data="item_id=<{$item.item_id}>" data-ajax-type="post"><span class="icon icon-favor"></span></a>
+        <{/if}>
+      </div>
+    </div>
+  </div>
+</li>
+<{/foreach}>

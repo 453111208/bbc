@@ -1,0 +1,97 @@
+<div class="report-condition">
+  <div class="box box-primary">
+    <div class="box-body evaluation">
+      <form id="ajax_form" action="<{url action=topshop_ctl_rate@search}>" method="get" class="report-filter bg-info report-filter-large">
+        <div class="pull-left">
+          <span>商品名称</span>
+          <div class="date-picker">
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" name="item_title" id="" value="">
+            </div>
+          </div>
+          <span>评价时间</span>
+          <div class="date-picker" id="start">
+            <div class="input-group input-group-sm">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right reservation" name="rate_time" id="timearea" value="">
+            </div>
+          </div>
+          <a href="javascript:void(0);" id="settle_search" class="btn btn-warning btn-sm">检索</a>
+        </div>
+        <div class="pull-right">
+          <span>评价分类</span>
+          <select name="result" id="settlement_type" class="condition">
+            <option value="all">全部</option>
+            <option value="good">好评</option>
+            <option value="neutral">中评</option>
+            <option value="bad">差评</option>
+          </select>
+          <label>
+            <input type="checkbox" name="picture" id="" class="condition" value="true"> 有晒图</label>
+          <label>
+            <input type="checkbox" name="is_reply" id="" class="condition" value="true"> 有回复</label>
+          <label>
+            <input type="checkbox" name="content" id="" class="condition" value="true" > 有内容</label>
+        </div>
+      </form>
+      <table class="table table-primary table-bordered text-center table-valign-middle table-order">
+        <thead>
+          <tr>
+            <td class="col-6">评价等级</td>
+            <td>评价内容</td>
+            <td class="col-4">商品信息</td>
+            <td class="col-4">评价人</td>
+            <td class="col-6">操作</td>
+          </tr>
+        </thead>
+      </table>
+      <ul class="evaluation-list">
+        <{include file="topshop/rate/list_item.html"}>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="show_img_madal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:440px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">查看大图</h4>
+      </div>
+      <div class="modal-body">
+        <div class="show-pic-dialog"><div class="show-img"><img id="big_img" src="" alt=""></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('.reservation').daterangepicker({
+      format: 'YYYY/MM/DD',
+      opens: 'right'
+    });
+
+    var condition = $('#ajax_form');
+    function submitForm() {
+      $('.evaluation-list').load(condition.attr('action'),condition.serialize());
+    }
+
+    $('.condition').change(function() {
+      if($(this).attr('type')=='checkbox'){
+        $(this).val($(this).prop('checked'));
+      };
+      submitForm();
+    });
+
+    $('#settle_search').click(function(e){
+      e.preventDefault();
+      submitForm();
+    })
+  })
+</script>
+
+

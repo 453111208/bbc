@@ -1,0 +1,76 @@
+
+
+<div class="maxM-right">
+		<div class="max-menber-title Bid">
+			<h2>我的招标列表</h2>
+			<a href="javascript:;">我发布的招标一览表</a>
+		</div>
+		<div class="maxB-menber-list">
+			<dl>
+				<dt class="maxB-title">
+					<ul>
+						<li class="item1" style="width:310px;"><span>交易名称</span></li>
+						<li class="item5" style="margin-left:-27px;"><span>交易状态</span></li>
+						<li class="item2"><span>招标开始时间</span></li>
+						<li class="item3"><span>招标结束时间</span></li>
+						<li class="item4"><span>操作</span></li>
+					</ul>
+				</dt>
+				<dd>
+				<{foreach from=$shopinfo item=row key=key}>
+					<div class="maxB-List">				
+							<div class="maxB-company">
+								<label><{$row.trading_title}></label>
+								<{if $row.is_through==1}>
+								<a href="<{url action=topc_ctl_tender@index tender_id=$row.tender_id}>" class="max-into">进入</a><{/if}>
+							</div>
+							<div class="maxB-Time"><span><{if $row.isok==0}>待定<{elseif $row.isok==1}>完成<{elseif $row.isok==2}>失败<{/if}></span></div>
+							<div class="maxB-Time"><span><{$row.start_time|cdate}></span></div>
+							<div class="maxB-Time"><span><{$row.stop_time|cdate}></span></div>
+							<div class="maxB-O-but">
+								<a href="<{url action=topc_ctl_member_shoppubt@select tender_id=$row.tender_id}>" id="select_<{$key}>" class="maxS-but"><{if $row.winornot}>评标(<{$row.count}>)<{else}>查看(<{$row.count}>)<{/if}></a>
+							</div>
+					</div>
+					<{/foreach}>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="max-pageview">
+			<span class="prev">上一页</span>
+			<{foreach from=$countnum item=row key=key}>
+			<a class="flip" href="<{url action=topc_ctl_member_shoppubt@tenderList page=$row}>"><{$row}></a>
+			<{/foreach}>
+			<a class="next">下一页</a>
+		</div>
+		
+
+	</div>
+
+	<script type="text/javascript">
+	/*for (var i = 0; i < <{$num}>; i++) {
+		$("#select_"+i).click(function(){
+		$.dialog.ajax('<{url action=topc_ctl_member_shoppubt@select tender=""}>',{
+        width: 990,
+        height: 'auto',
+        title:'投标列表页',
+        asyncOptions:{
+        	type: 'post',
+            callback: function() {
+            	 	this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        callback: $.proxy(function(rs) {
+                             Message.success('保存成功');
+                            this.hide();
+                        }, this)
+                    });
+                }
+        	}
+    	});
+	});
+	};*/
+	</script>

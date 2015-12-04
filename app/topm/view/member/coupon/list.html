@@ -1,0 +1,24 @@
+<{foreach from=$couponList item=item}>
+<li>
+  <!-- <div class="action-check"><input name="coupon_code[]" value="<{$item.coupon_code}>" type="checkbox" ></div> -->
+  <div class="coupon-thumbnail">
+    <a href="<{url action=topm_ctl_member_coupon@couponDetail coupon_id=$item.coupon_id}>">
+    <div class="coupon-item">
+      <div class="init">
+        <div class="coupon-price"><{$item.deduct_money|cur}></div>
+        <div class="coupon-info">
+          <{$item.coupon_name}>
+        </div>
+      </div>
+    </div>
+  </a>
+  </div>
+  <div class="coupon-info">
+    <div class="title"><{$item.shop_id|shopname}></div>
+    <div class="deadline">
+      <{$item.canuse_start_time|cdate:'FDATE'}> 至<br>
+      <{$item.canuse_end_time|cdate:'FDATE'}>
+    </div>
+  </div>
+</li>
+<{/foreach}>

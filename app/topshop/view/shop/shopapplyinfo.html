@@ -1,0 +1,234 @@
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">店铺信息</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>店铺名称：</dt>
+      <dd><{$shop.shop_name}></dd>
+      <dt>店铺描述：</dt>
+      <dd><{$shop.shop_descript}></dd>
+      <dt>店铺类型：</dt>
+      <dd><{if $shop.shop_type == 'cat'}>类目专营店<{elseif $shop.shop_type == 'flag'}>品牌旗舰店<{elseif $shop.shop_type == 'self'}>自营店铺<{else}>品牌专卖店<{/if}></dd>
+      <{if $shopCatInfo}>
+      <dt>类目费用：</dt>
+      <dd>
+        <div class="list">
+          <{foreach from=$shopCatInfo item=shopCat key=key}>
+          <div class="nav" id="dropdownMenu" data-toggle="dropdown">
+            <div class="nav_hd">
+              <span class="n"><{$shopCat.$key.cat_name}>
+              </span>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="c">
+                平台入驻费： <{$shopCat.$key.cat_fee|cur}>
+                &nbsp;&nbsp;
+                <i class="fa fa-folder"></i>
+              </span>
+            </div>
+            <div class="nav_bd">
+              <div class="m_nav">
+                <span class="m_hd l">类目佣金</span>
+                <span class="m_hd r">类目佣金比例</span>
+                <div class="m_bd">
+                  <ul aria-labelledby="dropdownMenu">
+                    <{foreach from=$shopCat item=lv2 key=k}>
+                    <{if $key==$k}>
+                    <{else}>
+                    <li>
+                      <span class="n"><{$lv2.$k.cat_name}>
+                      </span>
+                      <span class="c"><{$lv2.$k.cat_fee|cur}>
+                      </span>
+                      <div class="s_nav">
+                        <ul>
+                          <{foreach from=$lv2 item=lv3 key=ke name=foo}>
+                          <{if $ke==$k}>
+                          <{else}>
+                            <li>
+                              <span class="n"><{$lv3.cat_name}></span>
+                              <span class="c"><{$lv3.cat_fee}>%</span>
+                            </li>
+                          <{/if}>
+                          <{/foreach}>
+                        </ul>
+                      </div>
+                    </li>
+                    <{/if}>
+                    <{/foreach}>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <{/foreach}>
+        </div>
+      </dd>
+      <{/if}>
+      <dt>经营品牌：</dt>
+      <dd><{foreach from=$shopBrandInfo item=brandInfo}><{$brandInfo.brand_name}>&nbsp;&nbsp;<{/foreach}></dd>
+      <{if $shop.status=='active'}>
+      <dt>店铺开通状态：</dt>
+      <dd>已开通</dd>
+      <dt>店铺开通日期：</dt>
+      <dd><{$shop.open_time|cdate:FDATE}> </dd>
+      <{else}>
+      <dt>店铺开通状态：</dt>
+      <dd>没有开通</dd>
+      <{/if}>
+      <dt>品牌授权书电子版：</dt>
+      <dd><img src="<{$shop.brand_warranty|storager:'s'}>" alt=""></dd>
+      <dt>店主姓名：</dt>
+      <dd><{$shop.shopuser_name}></dd>
+      <dt>店主身份证电子版：</dt>
+      <dd><img src="<{$shop.shopuser_identity_img|storager:'s'}>" alt=""></dd>
+      <dt>所在地区：</dt>
+      <dd><{$shop.shop_area}></dd>
+      <dt>详细地址：</dt>
+      <dd><{$shop.shop_addr}></dd>
+      <dt>手机号码：</dt>
+      <dd><{$shop.mobile}></dd>
+      <dt>电子邮箱：</dt>
+      <dd><{$shop.email}></dd>
+    </dl>
+  </div>
+</div>
+<{if $shop_info}>
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">营业执照信息</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>公司名称：</dt>
+      <dd><{$shop.shop_name}></dd>
+      <dt>营业执照注册号：</dt>
+      <dd><{$shop_info.license_num}></dd>
+      <dt>法定代表人姓名：</dt>
+      <dd><{$shop_info.representative}></dd>
+      <dt>法人身份证号码：</dt>
+      <dd><{$shop_info.corporate_identity}></dd>
+      <dt>法人身份证&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>正反面复印件：</dt>
+      <dd>
+       <img src="<{$shop_info.corporate_identity_img|storager:'s'}>" alt="">
+      </dd>
+      <dt>营业执照所在地：</dt>
+      <dd><{$shop_info.license_area}></dd>
+      <dt>营业执照详细地址：</dt>
+      <dd><{$shop_info.license_addr}></dd>
+      <dt>公司成立日期：</dt>
+      <dd><{$shop_info.establish_date}></dd>
+      <dt>营业执照有效期：</dt>
+      <dd><{$shop_info.license_indate}></dd>
+      <dt>法定经营范围：</dt>
+      <dd><{$shop_info.scope}></dd>
+      <dt>公司所在地：</dt>
+      <dd><{$shop_info.company_area}></dd>
+      <dt>公司详细地址：</dt>
+      <dd><{$shop_info.company_addr}></dd>
+      <dt>公司电话：</dt>
+      <dd><{$shop_info.company_phone}></dd>
+      <dt>公司联系人：</dt>
+      <dd><{$shop_info.company_contacts}></dd>
+      <dt>公司联系人手机：</dt>
+      <dd><{$shop_info.company_cmobile}></dd>
+      <dt>营业执照&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>副本复印件：</dt>
+      <dd><img src="<{$shop_info.license_img|storager:'s'}>" alt=""></dd>
+      <dt>注册资本：</dt>
+      <dd><{$shop_info.enroll_capital}></dd>
+      <dt>公司官网：</dt>
+      <dd><{$shop_info.company_url}></dd>
+    </dl>
+  </div>
+</div>
+
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">组织机构代码证</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>税务登记证号：</dt>
+      <dd><{$shop_info.tax_code}></dd>
+      <dt>组织机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>代码证复印件：</dt>
+      <dd><img src="<{$shop_info.tax_code_img|storager:'s'}>" alt=""></dd>
+    </dl>
+  </div>
+</div>
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">税务登记证</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>税务登记证号：</dt>
+      <dd><{$shop_info.tax_code}></dd>
+      <dt>组税务登记证复印件：</dt>
+      <dd><img src="<{$shop_info.tax_code_img|storager:'s'}>" alt=""></dd>
+    </dl>
+  </div>
+</div>
+<div class="box box-primary">
+  <div class="box-header">
+      <h3 class="box-title">结算帐号</h3></div>
+  <div class="box-body">
+    <dl class="dl-horizontal merchant-info">
+      <dt>银行开户公司名：</dt>
+      <dd><{$shop_info.bank_user_name}></dd>
+      <dt>银行开户帐号：</dt>
+      <dd><{$shop_info.bankID}></dd>
+      <dt>CNAPSCODE:</dt>
+      <dd><{$shop_info.cnaps_code}></dd>
+      <dt>开户银行所在地：</dt>
+      <dd><{$shop_info.bank_area}></dd>
+      <dt>开户银行：</dt>
+      <dd><{$shop_info.bank_name}></dd>
+    </dl>
+  </div>
+</div>
+<{/if}>
+
+<script>
+  $(document).ready(
+    function() {
+      $('.m_bd>ul>li:first').addClass('cur').children('.s_nav').addClass('cur');
+
+      $('.nav .nav_hd .c').click(
+        function(){
+          var a = 'fa-folder',
+              b = 'fa-folder-open',
+              el = $(this).children('i');
+          $('.nav_bd').toggleClass('cur');
+          $('.nav_bd').hasClass('cur') == true ? 
+          el.removeClass(a).addClass(b) : el.removeClass(b).addClass(a);
+        }
+      );
+      
+      $('.m_bd>ul>li').mouseover(
+        function(){
+          $(this).addClass('cur').siblings().removeClass('cur');
+          $(this).children('.s_nav').addClass('cur').parent().siblings().children('.s_nav').removeClass('cur');
+
+
+          var span_height = $('.m_bd ul li span').height();
+              ul_length   = $('.m_bd>ul>li').length;
+              mhd_height  = $('.m_nav .m_hd').height();
+              snav_height = $(this).children('.s_nav').height();
+
+            nav_height  = ul_length * span_height;
+
+          if( nav_height < snav_height ){
+            $('.nav_bd').css('height', snav_height + mhd_height );
+          }else{
+            // $('.nav_bd').css('height','auto');
+          }
+        }
+      );
+
+      $('.m_bd>ul>li').mouseleave(
+        function(){
+          $(this).children('.s_nav').removeClass('cur').parent().siblings().children('.s_nav').addClass('cur');
+        }
+      );
+  });
+</script>

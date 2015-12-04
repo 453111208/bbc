@@ -1,0 +1,121 @@
+
+<form action="?app=syscategory&ctl=admin_cat&act=saveRelProp" method="post" id='type_form' >
+  <input type="hidden" name="cat_id" value=<{$cat_id}>>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" ><tr><td class="t-r" style="padding: 5px 20px 0 0"> 销售属性最多添加3个，自然属性最多添加10个</td></tr></table>
+  <div class="tableform tableform-tabs">
+    <{tabber}>
+    <div class="division" style="padding:5px; border:1px solid #dddddd; border-top:none; margin:0;">
+      <{tab name="关联属性"|t:'syscategory'}>
+      <div id="form_style_prop">
+        <div class="gridlist-action">
+          <{button app="desktop" label="选择属性"|t:'syscategory' class="addProp" icon="btn_add.gif" }><span class="notice-inline"></span>
+        </div>
+        <div id="form_style_prop_header" class="gridlist-head"<{if !$props}> style="display:none"<{/if}>>
+          <div class="p_name span-3"><{t}>属性名<{/t}></div>
+          <div class="p_type span-5"><{t}>属性类型<{/t}></div>
+          <div class="p_optionalias span-5"><{t}>操作<{/t}></div>
+        </div>
+
+        <div id="prop_box" class="gridlist" style=" height:300px; overflow:auto; margin-bottom:10px;">
+          <{if $props}>
+          <{foreach from=$props item=item}>
+          <div class="row">
+            <div class="p_name span-3" style="text-align:center">
+              <{$item.prop.prop_name}><{if $item.prop.prop_memo}>（<{$item.prop.prop_memo}>）<{/if}>
+              <input type="hidden" name="prop[prop_id][]" value="<{$item.prop_id}>">
+            </div>
+            <div class="p_type span-5" style="text-align:center">
+              <{if $item.prop.prop_type == 'nature'}><{t}>自然属性<{/t}><{else}><{t}>销售属性<{/t}><{/if}>
+            </div>
+            <div class="p_optionalias span-5" style="text-align:center">
+                  <{img style='cursor:pointer;' onclick="move_p(this,'up')" src="bundle/icon_asc.gif" alt="向上"|t:'syscategory' class="operater" app='desktop'}>&nbsp;&nbsp; &nbsp;&nbsp;
+                <{img style='cursor:pointer;' onclick="move_p(this,'down')" src="bundle/icon_desc.gif" alt="向下"|t:'syscategory' class="operater" app='desktop'}>&nbsp;&nbsp; &nbsp;&nbsp;
+                  <{assign var=comfirm value='属性删除后将会影响商品列表页显示效果，确认要删除吗？'|t:'syscategory'}>
+                  <{assign var=comfirm value=$comfirm|t:'syscategory'}>
+                  <{assign var=comfirm value="if(confirm('{$comfirm}')){\$(this).getParent('.row').remove();}"}>
+                <{img style='cursor:pointer;' onclick=$comfirm src="bundle/delete.gif" alt="删除"|t:'syscategory' class="operater" app='desktop'}>
+            </div>
+            <div style="clear:both"></div>
+          </div>
+          <{/foreach}>
+          <{else}>
+            <span id="form_style_prop_msg_none" style="color:#666666; padding:5px"><{t}>请点击下方按钮添加该类型所需属性<{/t}></span>
+          <{/if}>
+        </div>
+      </div>
+      <{/tab}>
+    </div>
+    <{/tabber}>
+  </div>
+
+  <div class="table-action">
+      <{button type="button"  label="保存"|t:'syscategory' id='type_submit'}>
+  </div>
+</form>
+<script>
+void function(){
+    var tmpl_prop = '<div class="row">'+
+      '<div class="p_name span-3"  style="text-align:center">{name}<input type="hidden" name="prop[prop_id][]" value="{id}"></div>'+
+      '<div class="p_type span-5" style="text-align:center">{prop_type}</div>'+
+        '<div class="p_optionalias span-5" style="text-align:center">'+
+            '<{img style="cursor:pointer;" src="bundle/icon_asc.gif" alt="向上"|t:"syscategory"  onclick="move_p(this,\'up\')" class="operater" app=desktop}>&nbsp;&nbsp; &nbsp;&nbsp; <{img style="cursor:pointer;" src="bundle/icon_desc.gif" onclick="move_p(this,\'down\')" alt="向下"|t:"syscategory"  class="operater" app=desktop}>&nbsp;&nbsp; &nbsp;&nbsp; <{img style="cursor:pointer;" onclick="$(this).getParent(\'.row\').remove();" src="bundle/delete.gif" alt="删除"|t:"syscategory"  class="operater" app=desktop}>'+
+        '</div>'+
+        '<div style="clear:both"></div>'+
+    '</div>';
+    $E('#form_style_prop .addProp').addEvent('click',function(){
+        new Dialog('?app=syscategory&ctl=admin_props&act=selPropDialog',{title:'<{t}>选择属性<{/t}>',
+            onShow:function(){
+                this.dialog.store('callback',function(id,name,prop_type){
+                    var sign_id = false;
+                    $('prop_box').getElements('input[type=hidden]').each(function(item){
+                        if(item.value == id){
+                            sign_id = true;
+                        }
+                    });
+                    if(sign_id) return;
+                    
+                    $('form_style_prop_header').style.display = '';
+                    if($('form_style_prop_msg_none')) $('form_style_prop_msg_none').style.display = 'none';
+
+                    var js_obj = {'id':id,'name':name,'prop_type':prop_type};
+                    var obj = tmpl_prop.substitute(js_obj);
+                    var e = new Element('div').setHTML(obj).getFirst();
+                    $('prop_box').adopt(e);
+                });
+            }
+        })
+    });
+}();
+
+function move_p(item,actdo){
+    var item=$(item);
+    if(!item)return;
+    var div=item.getParent('div.row');
+    var divp=div.getPrevious('div.row');
+    var divn=div.getNext('div.row');
+    switch (actdo) {
+        case 'up':
+            if(divp)div.injectBefore(divp);
+              return ;
+        case 'down':
+            if(divn)div.injectAfter(divn);
+            return;
+    }
+}
+
+(function(){
+    $('type_submit').addEvent('click',function(){
+        $('type_form').fireEvent('submit',{stop:$empty});
+    });
+})();
+
+$('type_form').store('target',{
+    onComplete:function(rs){
+        var json={};
+        try{json = JSON.decode(rs)}catch(e){}
+        if(json.error) return false;
+        if($('type_form').getParent('.dialog'))
+          $('type_form').getParent('.dialog').retrieve('instance').close();
+    }
+});
+</script>

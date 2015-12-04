@@ -1,0 +1,8 @@
+<services>
+    <service id="desktop_finder.sysnotice_mdl_notice_item">
+        <class>sysnotice_finder_noticeitem</class>
+    </service>
+    <service id="desktop_finder.sysnotice_mdl_notice_type">
+        <class>sysnotice_finder_noticetype</class>
+    </service>
+</services>

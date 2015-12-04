@@ -1,0 +1,357 @@
+<link rel="stylesheet" type="text/css" href="images/topc/member/member.css" />
+    <script type="text/javascript" src="images/test/demo.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg-editor.js"></script>
+    <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="images/css/wysiwyg-editor.css" />
+  <script type="text/javascript">
+	/*function closes(){
+	window.opener=null;
+	window.open('','_self');
+	setInterval("window.close()",1000);
+	}*/
+
+  </script>
+
+<form action="<{url action=topc_ctl_tender@save}>" method="post">  
+
+
+
+<div class="newpage">
+	<div class="max-Pands-up">
+	<div class="max-Price-up" style="background-color:white;">
+	<input type="hidden" name="tender_id" value="<{$tender_id}>">
+	<input type="hidden" name="shop_id" value="<{$newrow.shop_id}>">
+	<input type="hidden" name="shop_name" value="<{$newrow.shop_name}>">
+	<font style="float:left;font-size:36px;font-weight:bold;color:red;line-height:1">报价:</font><input type="text" required name="price" style="font-size:30px;margin-top:-15px;background-color:white;"><font style="font-size:36px;font-weight:bold;color:red;line-height:1">元</font>
+	</div>
+		<div class="max-serve-up">
+			<h3>服务细则分值体现及资料上传</h3>
+			<div class="max-text-up">
+				<label>请在对应的需求资质上上传您所具备的资料以作评估</label>
+			</div>
+
+			必要资质
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>必要资质</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumn}>" readonly="true" class="max-Number needed">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '必要资质'}>
+							<input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>">
+							<{if !$row.detail}>
+							<li>
+								<span style="width:385px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" class="max-Number" value="<{$row.score}>" readonly="true" id="needed<{$key}>">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}>
+									<div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div>
+									<{/if}>
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price" style="width:392px;">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}>
+									<div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div>
+									<{/if}>
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+				可选资质
+			<div class="max-Set-up to">
+				<dl>
+					<dt>
+						<span><label>可选资质</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumc}>" readonly="true" class="max-Number canch">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '可选资质'}>
+							<input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>">
+							<{if !$row.detail}>
+							<li>
+								<span style="width:385px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>" readonly="true"  class="max-Number" id="canch<{$key}>">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}>
+									<div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div>
+									<{/if}>
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price" style="width:392px;">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}>
+									<div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div>
+									<{/if}>
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			设备能力
+			<div class="max-Set-up to1">
+				<dl>
+					<dt>
+						<span><label>设备能力<label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$summ}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '设备能力'}>
+							<input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>">
+							<{if !$row.detail}>
+							<li>
+								<span style="width:385px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>" readonly="true"  class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price" style="width:392px;">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			处置能力
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>处置能力</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumd}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '处置能力'}>
+							<input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>">
+							<{if !$row.detail}>
+							<li>
+								<span style="width:385px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>"  readonly="true"  class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price" style="width:392px;">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			服务能力
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>服务能力</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sums}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						
+
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '服务能力'}>
+							<input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>">
+							<{if !$row.detail}>
+							<li>
+								<span style="width:385px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>"  readonly="true" class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price" style="width:392px;">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div class="news">
+									<{if $row.type == '1'}><input type="text" name="data_<{$row.chrule_id}>"><{/if}>
+									<{if $row.type == '0'}><div class="images-uploader" style="margin:0;">
+									<div class="handle img-thumbnail action-upload">
+									<input type="file" name="data_<{$row.chrule_id}>[]" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" />
+									<span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 61px;padding:0;"></span>
+									</div>
+									</div><{/if}>
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="maxM-buttom" style="width:130px;">
+				<button type="submit" class="btn btns" onclick="closes()" ><span>提 交</span></button>
+			</div>
+
+		</div>
+	</div>
+  </div>
+  </form>

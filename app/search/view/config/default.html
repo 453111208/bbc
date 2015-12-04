@@ -1,0 +1,62 @@
+<div class="tableform">
+  <form id="indexForm" action="<{url route='shopadmin' app=search ctl='index' act=setting}>" method="post">
+    <table cellpadding="0" class="gridlist" cellspacing="0" width="100%" border="0">
+      <{input type="hidden" name="indexName" value=$indexName}>
+        <tr>
+		    <td>排序模式</td>
+        <td style="text-align:left;padding:5px 20px">
+          <{input type="select"  name='ranker' value=$setting.ranker options=$search_ranker}>
+        </td>
+        <tr>
+        <td>搜索默认排序字段</td>
+        <td style="text-align:left;padding:5px 20px">
+          <{input type="select" name='order_value' value=$setting.order_value options=$column}>
+          <{if $setting.order_type =='desc' || !$setting.order_type}>
+          <input type="radio" value='desc' name='order_type' checked='checked'>降序
+          <input type="radio" value='asc' name='order_type' >升序
+          <{else}>
+          <input type="radio" value='desc' name='order_type' >降序
+          <input type="radio" value='asc' name='order_type' checked='checked'>升序
+          <{/if}>
+        </td>
+        </tr>
+        <tr>
+        <td>搜索返回最多条目</td>
+        <td style="text-align:left;padding:5px 20px">
+          <{input type="text" vtype='unsignedint'  name='max_limit' value=$setting.max_limit  }>
+        </td>
+        </tr>
+    </table>
+	  <div class="table-action"><{button  id='index-form-submit' type="submit" label="保存"|t:'search' }></div>
+</div>
+
+<script>
+  (function(){
+    var _form = $('indexForm');
+    var btn =$('index-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>
+

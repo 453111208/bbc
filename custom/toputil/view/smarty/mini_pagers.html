@@ -1,0 +1,18 @@
+<span>
+  <span><em><{$c}></em>/<{$total}></span>
+  <span class="pager">
+    <{if $head}>
+    <a href="<{$head}>" class="flip prev"><i class="ico prev">‹</i></a>
+    <{else}>
+    <span class="flip prev over"><i class="ico prev">‹</i></span>
+    <{/if}>
+
+    <{if $tail}>
+    <a href="<{$tail}>" class="flip next"><i class="ico next">›</i></a>
+    <{else}>
+    <span class="flip prev over"><i class="ico prev">›</i></span>
+    <{/if}>
+  </span>
+</span>
+
+

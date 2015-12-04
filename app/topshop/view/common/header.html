@@ -1,0 +1,68 @@
+<div class="alert alert-error message in" role="alert" id="messagebox" style="display:none;"></div>
+<header class="header">
+  <a href="#" class="logo">
+    <img src="<{$env.statics_host_url}>/topshop/statics/images/logo.png" alt="">
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+
+    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button" title="显示/隐藏导航">
+      <span class="sr-only">显示/隐藏导航</span>
+      <span class="fa fa-bars"></span>
+    </a>
+
+    <div class="navbar-left container-fluid">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">显示/隐藏导航栏</span>
+        <span class="fa fa-bars"></span>
+      </button>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <{foreach from=$topshop.navbar item=item_navbar}>
+          <li <{if $item_navbar.default}>class="active"<{/if}>>
+            <a href="<{url action=$item_navbar.action}>">
+              <i class="<{$item_navbar.icon}>"></i>
+              <{$item_navbar.label}>
+            </a>
+          </li>
+          <{/foreach}>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <!--a href="<{url action=topc_ctl_default@index}>" class="dropdown-toggle" target="_blank">
+            <span><{t}>商城首页<{/t}></span>
+          </a-->
+          <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopId}>" class="dropdown-toggle" target="_blank">
+            <span><{t}>浏览店铺<{/t}></span>
+          </a>
+        </li>
+        <{if $topshop.seller}>
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user"></i>
+            <span><{$topshop.seller.login_account}>
+              <i class="caret"></i>
+            </span>
+          </a>
+
+          <ul class="dropdown-menu text-right" role="menu">
+            <li><a href="<{url action=topshop_ctl_passport@update}>" data-toggle="modal" data-target="#pwdupdateIndexDialog"><{t}>修改密码<{/t}></a></li>
+            <li class="divider"></li>
+            <li><a href="<{url action=topshop_ctl_passport@logout}>"><{t}>退出<{/t}></a></li>
+          </ul>
+        </li>
+        <{/if}>
+      </ul>
+    </div>
+  </nav>
+</header>
+<div class="modal fade" id="pwdupdateIndexDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+

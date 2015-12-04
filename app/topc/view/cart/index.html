@@ -1,0 +1,231 @@
+<div class="wrap-lg">
+    <div class="crumbs mod-bottom">
+      <em class="color1">您当前位置</em>
+      <span>>&nbsp;&nbsp;<a href="#">购物车</a></span>
+    </div>
+
+    <div class="mod-bottom" id="cart_main">
+      <{include file="topc/cart/cart_main.html"}>
+    </div>
+</div>
+<script>
+(function(){
+    var checkCart = {
+        updateItem : function(el){
+            var data = $('#cart_main .cart-submit-form').serialize();
+            // var cartRow = $(el).parents('.cart-row-num'),
+            //     cartId = cartRow.find('.check-item'),
+            //     cartCheckedId = cartRow.find('.cart-checked-item'),
+            //     cartNum = cartRow.find('.cart-num'),
+            //     cartDiscount = cartRow.find('.goods-discount'),
+            //     checked = cartRow.find('.check-item').prop('checked');
+
+            // var form_cartId = cartId.attr('name') + '=' + cartId.val();
+            // var form_cartDiscount = '&' + cartDiscount.attr('name') + '=' + cartDiscount.val();
+            // var form_cartNum = '&' + cartNum.attr('name') + '=' + cartNum.val();
+
+            // if(cartCheckedId.prop('checked')){
+            //     var form_cartCheckedId = '&' + cartCheckedId.attr('name') + '=1';
+            // }else{
+            //     var form_cartCheckedId = '&' + cartCheckedId.attr('name') + '=0';
+            // }
+            $.ajax({
+                url:'<{url action=topc_ctl_cart@updateCart}>',
+                type:'POST',
+                data: data,
+                success:function(re) {
+                    if(re){
+                        if(re.success){
+                            $('#cart_main').html(re.message);
+                            // cartRow.html(re.message);
+                            // if(checked){
+                            //     cartRow.find('.cart-checked-item').prop('checked',true);
+                            //     checkCart.updateAll();
+                            // }
+                        }else{
+                          Message.error(re.message);
+                        }
+                    }
+                }
+            });
+        },
+        updateAll : function(){
+            var data = $('#cart_main .cart-submit-form').serialize();
+            $.ajax({
+                url:'<{url action=topc_ctl_cart@ajaxBasicCart}>',
+                type:'POST',
+                data:data,
+                success:function(rs){
+                    $('#cart_main').html(rs.message);
+                }
+            });
+        },
+        deleteItem : function(id){
+            if(id){
+                $.ajax({
+                    url:'<{url action=topc_ctl_cart@removeCart}>',
+                    type:'POST',
+                    data:'cart_id['+id+']=1',
+                    success:function(rs){
+                        if(rs.error) Message.error(rs.message);
+                        if(rs.success){
+                            $('.cart-row[data-cart-id='+id+']').remove();
+                            checkCart.updateAll();
+                        }
+                        if(rs.redirect)
+                        {
+                            location.href = rs.redirect;
+                        }
+                    }
+                });
+            }else{
+                var data = $('#cart_main .cart-submit-form').serialize();
+                $.ajax({
+                    url:'<{url action=topc_ctl_cart@removeCart}>',
+                    type:'POST',
+                    data:data,
+                    success:function(rs){
+                        if(rs.error) Message.error(rs.message);
+                        if(rs.success){
+                            $('.cart-checked-item').filter(function(){
+                                  var tmp = $(this);
+                                  if(tmp.prop('checked')){
+                                      tmp.parents('.cart-row').remove();
+                                  }
+                            });
+                        }
+                        if(rs.redirect)
+                        {
+                            location.href = rs.redirect;
+                        }
+                    }
+                });
+            }
+        }
+    };
+    $('#cart_main').on('click','.decrease',function(e){
+        var el = $(this),
+            min = el.data('min'),
+            input = $(el.next('input'))
+            cart_id = el.data('cart-id'),
+            value = input.val() - 0;
+        if(value > min){
+            input.val(value - 1);
+            checkCart.updateItem(el);
+        }else{
+        }
+    }).on('click','.increase',function(e){
+        var el = $(this),
+            max = el.data('max'),
+            input = $(el.prev('input')),
+            cart_id = el.data('cart-id'),
+            value = input.val() - 0;
+        if(value < max){
+            input.val(value + 1);
+            checkCart.updateItem(el);
+        }
+    }).on('change','.cart-num',function(e){
+      checkCart.updateItem(this);
+    }).on('change','.check-all',function(e){
+        checkAll($(this), $('.check-shop-all, .check-all, .cart-checked-item'));
+        $('.check-item').prop('checked', !$(this).prop('checked'));
+        checkCart.updateItem();
+    }).on('change','.goods-discount',function(e){
+        checkCart.updateItem(this);
+    }).on('change','.check-shop-all',function(e){
+        var el = $(this);
+        if(el.prop('checked')){
+            $(this).parents('.cart-table').find('.cart-checked-item').prop('checked', true)
+            .end().find('.check-item').prop('checked', false);
+        }else{
+            $(this).parents('.cart-table').find('.cart-checked-item').prop('checked', false)
+            .end().find('.check-item').prop('checked', true);
+        }
+        var checked = $('.cart-checked-item').filter(function(){
+                        var tmp = $(this);
+                        if(tmp.prop('checked')){
+                            return this;
+                        }
+                  });
+        if(checked.length == $('.cart-checked-item').length){
+            $('.check-all').prop('checked',true);
+        }else{
+            $('.check-all').prop('checked',false);
+        }
+        checkCart.updateItem();
+    }).on('change','.cart-checked-item',function(e){
+        $(this).parent().find('.check-item').prop('checked', !this.checked);
+        // var el = $(this),
+        //     items = el.parents('.cart-table').find('.cart-checked-item');
+        // var checked = items.filter(function(){
+        //                 var tmp = $(this);
+        //                 if(tmp.prop('checked')){
+        //                     return this;
+        //                 }
+        //           });
+        // if(checked.length == items.length){
+        //     el.parents('.cart-table').find('.check-shop-all').prop('checked',true).trigger('change');
+        // }else if(checked.length == 0){
+        //     el.parents('.cart-table').find('.check-shop-all').prop('checked',false).trigger('change');
+        // }else if(el.prop('checked')){
+        //     var cartId = el.parents('.cart-row').data('cart-id');
+        // }else{
+        //     el.parents('.cart-table').find('.check-shop-all').prop('checked', false);
+        // }
+        checkCart.updateItem(this);
+        // checkCart.updateAll();
+    }).on('click','.delete-item',function(e){
+        e.preventDefault();
+        if(confirm('你确定要删除吗？')){
+            var el = $(this),
+                cartId = el.data('cart-id');
+            checkCart.deleteItem(cartId);
+        }
+    }).on('click','.delete-all',function(e){
+        e.preventDefault();
+        var checked = $('.cart-checked-item').filter(function(){
+            var tmp = $(this);
+            if(tmp.prop('checked')){
+                return this;
+            }
+        });
+        if(checked.length == 0){
+            Message.error('请选择需要删除的商品');
+        }else{
+            if(confirm('你确定要删除选中的商品吗？')){
+                checkCart.deleteItem();
+                checkCart.updateAll();
+            }
+        }
+    }).on('click','.submit-cart',function(e){
+        var checked = $('.cart-checked-item').filter(function(){
+            var tmp = $(this);
+            if(tmp.prop('checked')){
+                return this;
+            }
+        });
+        if(checked.length == 0){
+            return Message.error('请先勾选需要购买的商品');
+        }
+    });
+
+    $('.coupons-select').click(function(e){
+        e.stopPropagation();
+        var that = $(this);
+        that.parent().find('.coupons-option').toggle();
+    });
+    $(document).click(function(e){
+        target = e.target;
+        while(target && !$(target).hasClass('coupons-option') && target.nodeName != 'BODY'){
+            target = target.parentNode;
+        }
+        target = $(target);
+        if(!target.hasClass('coupons-option')){
+            $('.coupons-option').hide();
+        }
+    });
+    $('.get-coupon').click(function(){
+        $(this).hide().parent().find('.disabled').show();
+    })
+})();
+</script>

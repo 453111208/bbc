@@ -1,0 +1,80 @@
+<form action="<{url action=topshop_ctl_trade_list@finishTrade}>" method="post" class="bg-white" role="form" id="finish_form" data-validate-onsuccess="ajaxSubmit">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">订单收款并完成订单</h4>
+  </div>
+  <div class="modal-body">
+    <p class="text-orange">友情提示： 订单收款并完成后，不能再进行其他操作，请确认收到款项之后再操作！</p>
+    <hr>
+    <input type="hidden" name="trade[tid]" value="<{$tradeInfo.tid}>">
+    <input type="hidden" name="trade[shop_id]" value="<{$tradeInfo.shop_id}>">
+    <h4>订单号：<a href="<{url action=topshop_ctl_trade_detail@index tid=$tradeInfo.tid}>"><{$tradeInfo.tid}></a> </h4>
+    <table class="table table-primary table-goods table-order">
+      <tbody>
+        <tr>
+          <td>应付金额： </td>
+          <td>
+            <div class="form-group">
+              <{$tradeInfo.payment|cur}>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>收货信息：</td>
+          <td>
+            <div class="form-group">
+              <{$tradeInfo.receiver_state}><{$tradeInfo.receiver_city}><{$tradeInfo.receiver_district}> <{$tradeInfo.receiver_address}>，<{$tradeInfo.receiver_name}>收，电话 <{$tradeInfo.receiver_mobile}>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>配送信息：</td>
+          <td>
+            <div id="logistics">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary">确认完成</button>
+    <button type="button" class="btn" data-dismiss="modal">放弃操作</button>
+  </div>
+</form>
+
+<script>
+  $('#finish_form').Validator({
+    icons: {
+             valid:      'icon icon-checkmark-a',
+  invalid:    'icon icon-alert',
+  validating: 'icon icon-loading-c'
+           }
+  });
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+
+$.post('<{url action=topshop_ctl_trade_detail@ajaxGetLogi}>',{tid: <{$tradeInfo.tid}>},function(rs){
+  if(rs.error){
+     return $('#messagebox').message(rs.message);
+  }
+  $('#logistics').html(rs);
+})
+
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <{include file="topshop/common/head.html"}>
+</head>
+<body class="skin-blue">
+    <div class="alert alert-error message in" role="alert" id="messagebox" style="display:none;"></div>
+    <{include file="topshop/common/header.html"}>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+    <aside class="left-side sidebar-offcanvas">
+        <section class="sidebar">
+            <div class="signup-flow">
+                <div class="signup-flow-title"><{t}>企业入驻流程<{/t}></div>
+                <ul class="signup-flow-list">
+                    <li><{t}>1账户注册/登录<{/t}><span class="arrow"></span></li>
+                    <li<{if $topshop.currentActionName == 'topshop_ctl_enterapply@apply'}> class="on" <{/if}> ><{t}>2提交申请资料<{/t}><span class="arrow"></span></li>
+                    <li<{if $topshop.currentActionName == 'topshop_ctl_enterapply@checkPlan'}> class="on" <{/if}> ><{t}>3审核通过/签约<{/t}><span class="arrow"></span></li>
+                    <li><{t}>4企业开通<{/t}><span class="arrow"></span></li>
+                    <li><{t}>5企业设置<{/t}><span class="arrow"></span></li>
+                </ul>
+            </div>
+        </section>
+    </aside>
+    <aside class="right-side">
+        <{if $topshop.contentTitle}>
+        <section class="content-header">
+            <h1>
+                <{$topshop.contentTitle}>
+            </h1>
+            <ol class="breadcrumb breadcrumb-primary">
+                <{foreach from=$topshop.path item=item name=name}>
+                <{if !$env.foreach.name.last}>
+                <li><a href="<{$item.url}>"><{$item.title}></a></li>
+                <{else}>
+                <li class="active"><{$item.title}></li>
+                <{/if}>
+                <{/foreach}>
+            </ol>
+        </section>
+        <{/if}>
+        <section class="content">
+        <{include file=$topshop.view}>
+        </section>
+    </aside>
+    </div><!-- ./wrapper -->
+    <{include file="topshop/common/footer.html"}>
+</body>
+</html>

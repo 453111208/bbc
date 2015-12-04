@@ -1,0 +1,78 @@
+<form id="propForm" class="tableform" action="?app=sysexpert&ctl=admin_literary&act=save" method="POST">
+<{input type="hidden"  name="literary_id" id="literary_id" value=$literaryInfo.literary_id }>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><em class="red">*</em><{t}>文章名称：<{/t}></th>
+        <td><{input type="text" name="title" vtype="required"  value=$literaryInfo.title }></td>
+      </tr>
+      <tr>
+        <th><em class="red">*</em><{t}>名人专家名称：<{/t}></th>
+        <!-- <td><{input type="text" name="name" vtype="required"  value="" maxlength='20'}></td> -->
+        <td>
+          <select name="expert_id">
+          <option value="" ><{t}>请选择所属类目<{/t}></option>
+            <{foreach from=$expertList item=cats}>
+              <option value="<{$cats.expert_id}>"><{$cats.name}></option>  <!-- 遍历数组expertList,找到主键为expert_id下的name字段，显示在可选择当中-->
+            <{/foreach}>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><em class="red">*</em><{t}>文章类型：<{/t}></th>
+        <td>
+          <select name="literarycat_id">
+          <option value="" ><{t}>请选择所属类目<{/t}></option>
+            <{foreach from=$literarycatList item=cats}>
+              <option value="<{$cats.literarycat_id}>"><{$cats.literarycat}></option>
+            <{/foreach}>
+          </select>
+       <!--  <{input type="text" name="literarycat" vtype="required"  value="" maxlength='20'}> -->
+        </td>
+      </tr>
+      <tr>
+      <th><{t}>文章列表图片：<{/t}></th>
+      <td>
+        <{input type="image" name='literary_logo' value=$literaryInfo.literary_logo width=30 height=30}>
+        <span class="notice-inline span_class">
+          <{t}>请添加你所需要的文章背景图。<{/t}></span>
+      </td>
+      </tr>
+      <!-- <tr>
+        <th><{t}>排序：<{/t}></th>
+        <td><input style="width:50px;" type="number" name="order_sort" min=1  value=""}></td>
+      </tr> -->
+       <tr>
+        <th><em class="red">*</em><{t}>文章内容：<{/t}></th>
+        <td><{input type="html" name="context" vtype="required"  value=$literaryInfo.context maxlength='1000'}></td>
+      </tr>
+   </div>
+   <div class="table-action">
+    <{button label="保存"|t:'sysexpert' type="submit" class="btn-primary"}>
+  </div>
+</form>
+
+<script type="text/javascript">
+$('propForm').store('target',
+{
+  onComplete:function(rs)
+   {
+   if(!rs) return;
+   rs = JSON.decode(rs);
+   if(rs.success)
+     {
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog'))
+        {
+          var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update)
+            {
+             Dlg.update.retrieve('instance').initContent();
+            }
+          Dlg.close();
+        }
+     }
+   }
+});
+  
+</script>

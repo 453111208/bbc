@@ -1,0 +1,33 @@
+<form id="shoptypeForm" class="tableform" action="?app=sysshop&ctl=admin_shop&act=updateShopStatus" method="POST">
+  <input type="hidden" name="shop[shop_id]" value="<{$shopid}>">
+  <input type="hidden" name="shop[status]" value="<{$status}>">
+  <{if $status == "active"}>
+  <span>您确定要开启 “ <{$shopname}> ” 店铺？ </span>
+  <{elseif $status == "dead"}>
+  <span>店铺关闭会下架店铺下所有商品，请仔细确认好您要关闭的店铺是否是：“ <{$shopname}> ”</span>
+  <div>关闭原因：<textarea name="shop[close_reason]" maxlength="500" rows="5" style="margin: 0px; width: 375px; height: 70px;"> </textarea> </div>
+  <{/if}>
+  <div class="table-action">
+    <button isclosedialogbtn class="btn btn-secondary" type="button" ><span><span><{t}>取消<{/t}></span></span></button>
+    <button class="btn btn-primary" type="submit"><span><span><{t}>确认<{/t}></span></span></button>
+  </div>
+</form>
+
+<script>
+  $('shoptypeForm').store('target',{
+    onComplete:function(rs){
+        if(!rs) return;
+        rs = JSON.decode(rs);
+        if(rs.success){
+          if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+          if($('shoptypeForm').getParent('.dialog')){
+            var Dlg = $('shoptypeForm').getParent('.dialog').retrieve('instance');
+            if(Dlg.update){
+              Dlg.update.retrieve('instance').initContent();
+            }
+            Dlg.close();
+          }
+        }
+      }
+  });
+</script>

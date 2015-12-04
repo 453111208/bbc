@@ -1,0 +1,79 @@
+<form action="<{url action=topc_ctl_member@SaveRequireGoods}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+           <input type="hidden" name="require_id" id="require_id" >
+	 <ul class="editGoods">
+          <li class="form-row">
+                 <span>类别：</span>
+               <select id="cat_id" name="cat_id">
+                     <{foreach from=$catList item=cat}>
+                         <option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+                     <{/foreach}>
+               </select>
+               <input type="hidden" name="cat_name" id="cat_name">
+          </li>
+          <li class="form-row">
+          	<span>品名：</span>
+          	<input type="text" name="variety_name" >
+          </li>
+          <li class="form-row">
+          	<span>有效时间：</span>
+          	<input type="radio" name="effective_time" value="a">一个月
+          	<input type="radio" name="effective_time" value="b">三个月
+          	<input type="radio" name="effective_time" value="c">六个月
+          	<input type="radio" name="effective_time" value="d">一年
+          	<input type="radio" name="effective_time" value="e">永久
+          </li>
+
+          <li  style="width:100%">
+          	<span>产品介绍：</span>
+          	 <{input type=text name='product_intro' style='width:50%'}>
+          </li>
+          <li class="form-row">
+          	<span>联系人：</span>
+          	<input type="text" name="name">
+          </li>
+          <li class="form row">
+          	<span>联系电话：</span>
+          	<input type="text" name="tel">
+          </li>
+          <li class="form-row">
+          	<span>邮箱：</span>
+          	<input type="text" name="email">
+          </li>
+                <li class="form-row">
+               <span>规格型号：</span>
+               <input type="text" name="norms">
+          </li>
+                <li class="form-row">
+               <span>关键词：</span>
+               <input type="text" name="tag">
+          </li>
+          <li class="form-row">
+               <span>编号：</span>
+               <input type="text" name="number">
+          </li>
+     
+
+     </ul>
+    <div class="btn-yes"><input type='checkbox' >同意协议条款 <a href="#">阅读协议条款</a></div> 
+     <div class="btn-group">
+     	<ul>
+     		<li> <button type="submit" class="btn btn-import"><span><span>保存</span></span></button></li>
+     		<li><button>发布</button></li>
+     		<li> <button type="reset" class="btn btn-simple"><span><span>取消</span></span></button></li>
+     	</ul>
+     </div>
+
+</form>
+
+<script type="text/javascript">
+         $(window).on('load',function(){
+    
+          var text = $("#cat_id").find("option:selected").text();
+          $("#cat_name").val(text);
+          $("#cat_id").change(function(event) {
+          $("#cat_name").val($(this).find("option:selected").text());
+    });
+
+    });
+    
+</script>

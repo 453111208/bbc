@@ -1,0 +1,54 @@
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="tableform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+<thead>
+<tr>
+  <th>运输方式</th>
+  <th>地区</th>
+  <th>地址</th>
+  <th>邮编</th>
+  <th>联系人</th>
+  <th>电话</th>
+  <th>手机</th>
+  <th>默认地址</th>
+  <th>创建时间</th>
+</tr>
+</thead>
+
+<tbody>
+
+<{foreach from=$deliveryaddr item=row}>
+<tr>
+<td><{$row.transport_way}></td><!-- 
+<button id="target" onclick="test()">test</button>   -->
+<td><{$row.area}></td>
+<td><{$row.addr}></td>
+<td><{$row.zip}></td>
+<td><{$row.name}></td>
+<td><{$row.tel}></td>
+<td><{$row.mobile}></td>
+<td>
+<{if $row.def_addr==0}>否
+<{else}>是
+<{/if}>
+</td>
+<td><{$row.create_time|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+</tr>
+<{/foreach}>
+
+
+</tbody>
+</table>
+</div>
+<script type="text/javascript">
+  
+/*function test(){  
+    var str ="<{$deliveryaddr[0][addr]}>";
+    var area = str.split(':');
+    var insertText = "<table><tr><td>any thing</td></tr></table>";
+    alert(insertText);
+    document.getElementById("area").innerHTML(insertText);
+document.getElementById("insert").innerText(insertText);
+} */ 
+      
+</script>

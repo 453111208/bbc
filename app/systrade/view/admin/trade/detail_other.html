@@ -1,0 +1,24 @@
+<div class="tableform">
+  <div class="division">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <th><label><{t}>订单备注图标：<{/t}></label></th>
+        <td><{$shop.shop_flag}></td>
+        <th><label><{t}>订单备注：<{/t}></label></th>
+        <td><{$shop.shop_memo}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>平台来源：<{/t}></label></th>
+        <td><{$shop.trade_from}></td>
+        <th><label><{t}>ip 地址：<{/t}></label></th>
+        <td><{$shop.ip}></td>
+      </tr>
+      <tr>
+        <th><label><{t}> 标签：<{/t}></label></th>
+        <td><{$shop.trade_from}></td>
+        <th><label><{t}> 最后更新时间：<{/t}></label></th>
+        <td><{$shop.modified_time|cdate}></td>
+      </tr>
+    </table>
+  </div>
+</div>

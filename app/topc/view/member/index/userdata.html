@@ -1,0 +1,55 @@
+<div class="col-lg-6 txt-list">
+  <ul>
+    <li>
+      您好，<em><{if $userInfo.username}><{$userInfo.username}><{elseif $userInfo.login_account}><{$userInfo.login_account}><{elseif $userInfo.mobile}><{$userInfo.mobile}><{elseif $userInfo.email}><{$userInfo.email}><{/if}></em>，欢迎进入会员中心<a href="<{url action=topc_ctl_member@seInfoSet}>">详细信息</a>
+    </li>
+    <li>
+      <i class="icon-cash yellow"></i> 积分 <a href="<{url action=topc_ctl_member_point@point}>" class="yellow"><{$userInfo.point}></a>
+      <i class="icon-medal orange"></i> 等级 <a href="<{url action=topc_ctl_member_experience@experience}>" class="orange"><{$userInfo.grade_name}></a>
+    </li>
+    <li>
+      <span>未付款订单【<a href="<{url action=topc_ctl_member_trade@tradeList status='WAIT_BUYER_PAY'}>"><em><{$nupay}></em></a>】</span>
+      <span>待发货订单【<a href="<{url action=topc_ctl_member_trade@tradeList status='WAIT_SELLER_SEND_GOODS'}>"><em><{$nudelivery}></em></a>】</span>
+      <span>待收货订单【<a href="<{url action=topc_ctl_member_trade@tradeList status='WAIT_BUYER_CONFIRM_GOODS'}>"><em><{$nuconfirm}></em></a>】</span>
+    </li>
+  </ul>
+</div>
+<div class="col-lg-4 txt-list">
+  <ul>
+    <li>
+      <{if $userInfo.mobile}>
+      <span class="title">手机</span>
+      <span>
+        <{$userInfo.mobile}><a href="<{url action=topc_ctl_member@verify verifyType=mobile type=update}>">修改</a><span class="status">(已绑定)</span>
+      </span>
+      <{else}>
+      <span class="title">手机</span>
+      <span>
+        <a href="<{url action=topc_ctl_member@verify verifyType=mobile}>">验证</a><span class="status">(未绑定)</span>
+      </span>
+      <{/if}>
+    </li>
+    <li>
+      <{if $userInfo.email && $userInfo.email_verify}>
+      <span class="title">邮箱</span>
+      <span>
+        <{$userInfo.email}><a href="<{url action=topc_ctl_member@verify verifyType=email type=update}>">修改</a><span class="status">(已绑定)</span>
+      </span>
+      <{else}>
+      <span class="title">邮箱</span>
+      <span>
+        <{$userInfo.email}>
+        <a href="<{url action=topc_ctl_member@verify verifyType=email}>">验证</a>
+        <{if $userInfo.email}>
+        | <a href="<{url action=topc_ctl_member@verify verifyType=email type=update}>">修改</a>
+        <{/if}>
+        <span class="status">(未绑定)</span>
+      </span>
+      <{/if}>
+    </li>
+    <li>
+      注：修改密码、手机等信息请到<a href="<{url action=topc_ctl_member@security}>">安全设置</a>
+    </li>
+  </ul>
+</div>
+

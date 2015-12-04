@@ -1,0 +1,31 @@
+<table class="chart-view">
+	 <tr>
+		<td width="58%" valign="top">
+			<div class="finder-packet chart-tabs">
+				<h5 class="flt" >会员排行</h5>
+			    <ul class="clearfix">
+			      <li class="current">
+					 <a href="javascript:void(0);"><span>订单量</span></a>
+				  </li>
+			      <li class="">
+					<a href="javascript:void(0);"><span>订单额</span></a>
+				  </li>
+			    </ul>
+			</div>
+			<div style="height:220px;overflow:hidden" class="gridlist">
+				<div class="loading chart-items" >
+					<textarea class="textarea-lazyload dis_n">
+					<iframe frameborder="0" src="?app=sysstat&ctl=admin_analysis_member&act=chart_view&type=volume&time_from=<{$timefrom}>&time_to=<{$timeto}>" scrolling="no"  width="100%" height="100%"></iframe>
+					</textarea>
+				</div>
+
+				<div class="loading chart-items">
+					<textarea class="textarea-lazyload dis_n">
+					<iframe frameborder="0" src="?app=sysstat&ctl=admin_analysis_member&act=chart_view&type=turnover&time_from=<{$timefrom}>&time_to=<{$timeto}>" scrolling="no"  width="100%" height="100%"></iframe>
+					</textarea>
+				</div>
+			</div>
+		</td>
+	 </tr>
+</table>
+

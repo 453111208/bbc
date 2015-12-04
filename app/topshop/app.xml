@@ -1,0 +1,12 @@
+<app>
+    <name>店铺业务管理</name>
+    <type>site</type>
+    <description>提供店铺业务功能</description>
+    <author>
+        <name>shopex开发团队</name>
+        <email>dev@shopex.cn</email>
+        <url>http://www.shopex.cn</url>
+    </author>
+    <version>0.1</version>
+    <license>shopex license</license>
+</app>

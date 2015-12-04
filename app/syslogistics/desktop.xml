@@ -1,0 +1,23 @@
+<desktop>
+
+    <permissions>
+        <permission id="syslogisticslist" display='true' workground='sysshop.workground.logistics'>物流中心</permission>
+    </permissions>
+
+    <workground name="地区管理" id="syslogistics.workground.logistics" controller="admin_logistics" action="index" order='99'>
+        <menugroup name="物流中心">
+             <menu controller='admin_logistics' action='creat' permission='syslogisticslist' display='false' order='1'>物流公司添加</menu>
+             <menu controller='admin_logistics' action='index' permission='syslogisticslist' display='false' order='1'>物流公司</menu>
+             <menu controller='admin_tracker' action='index' permission='syslogisticslist' display='false' order='1'>物流跟踪设置</menu>
+        </menugroup>
+        <menugroup name="地区管理">
+             <menu controller='admin_regions' action='index' permission='syslogisticslist' display='true' order='1'>地区管理</menu>
+        </menugroup>
+        <menugroup name="自提管理">
+             <menu controller='admin_ziti' action='index' permission='syslogisticslist' display='false' order='1'>自提列表</menu>
+             <menu controller='admin_ziti' action='setting' permission='syslogisticslist' display='false' order='1'>自提配置</menu>
+        </menugroup>
+
+    </workground>
+
+</desktop>

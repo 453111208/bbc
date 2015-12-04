@@ -1,0 +1,16 @@
+<app>
+  <name>模板</name>
+  <type>core</type>
+
+  <description>shopex site 模板</description>
+
+  <author>
+	  <name>shopex开发团队</name>
+	  <email>dev@shopex.cn</email>
+	  <url>www.shopex.cn</url>
+  </author>
+
+  <version>0.0.1</version>
+
+  <license>Commercial</license>
+</app>

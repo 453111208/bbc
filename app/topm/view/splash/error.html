@@ -1,0 +1,56 @@
+<div class="page-error shop">
+	<header>
+  <div class="list-hd">
+    <div class="backto icon-back ">
+      <input type="button" name="returnBcak" onclick="history.back()">
+    </div>
+    <div class="tit">提交错误</div>
+    <div class="menu">
+      <button class="btn icon-more" id="menu"></button>
+    </div>
+  </div>
+</header>
+	<div class="main">
+	<div class="page-error-message">
+		<{$msg}></div>
+	</div>
+
+<script type="text/javascript">
+  $('#menu').dropmenu({
+    content:
+    [
+  {
+    text: '首页',
+  icon: 'home',
+  href: '<{url action=topm_ctl_default@index}>'
+  },
+
+  {
+    text: '商品类目',
+  icon: 'catalog',
+  href: '<{url action=topm_ctl_category@index}>'
+  },
+
+  {
+    text: '购物车',
+  icon: 'barrow',
+  href: '<{url action=topm_ctl_cart@index}>'
+  },
+
+  {
+    text: '会员中心',
+    icon: 'man',
+  href: '<{url action=topm_ctl_member@index}>'
+  },
+  ]
+  });
+
+  $(window).scroll(function(){
+    if(! $('.ui-dropmenu.ui-in').length == 0 ){
+      $('.ui-dropmenu').removeClass('ui-in');
+    } 
+  });
+
+</script>
+
+</div>

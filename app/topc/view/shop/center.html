@@ -1,0 +1,29 @@
+<div class="banner mod-bottom">
+  <a href="#"><{$params}></a>
+</div>
+<{if $homeCouponList}>
+<{include file="topc/shop/home_coupons.html"}>
+<{/if}>
+<!--店铺商品信息-->
+<{foreach from=$items item=item key=title name=name}>
+<div class="shoptitle mod-bottom">
+  <{$title}>
+</div>
+<ul class="itemslist itemslist-lg mod-bottom">
+  <{foreach from=$item item=row}>
+  <li>
+    <div class="item">
+      <div class="pic">
+        <a href="<{url action=topc_ctl_item@index item_id=$row.item_id}>">
+          <img width="250" height="290" src="<{$row.image_default_id|default:$defaultImageId.M.default_image|storager:'m'}>" alt="">
+        </a>
+      </div>
+      <a class="name" href="<{url action=topc_ctl_item@index item_id=$row.item_id}>">
+        <{if $row.activity_tag}><span class="item-describe-tag"><{$row.activity_tag}></span><{/if}><{$row.title}>
+      </a>
+      <div class="price"><{$row.price|cur}></div>
+    </div>
+  </li>
+  <{/foreach}>
+</ul>
+<{/foreach}>

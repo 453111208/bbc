@@ -1,0 +1,64 @@
+<div class="section">
+  <div class="row prechase-goods-img">
+    <div class="col-lg-6 box">
+      <div class="thumbnail-slider" data-toggle="switchable">
+        <ol class="switchable-content" id="switchable-content-img">
+          <li><img src="<{$group_item.item_default_image}>" /></li>
+        </ol>
+        <div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10 box prechase-goods-info">
+      <div class="detail-panel prechase-detail-panel">
+        <div class="detail-panel-bd">
+          <{if $now_time < $activity.start_time}>
+          <{include file="topc/promotion/activity/not_beginning.html"}>
+          <{elseif $activity.end_time < $now_time}>
+          <{include file="topc/promotion/activity/end.html"}>
+          <{else}>
+          <{include file="topc/promotion/activity/in.html"}>
+          <{/if}>
+          <{include file="topc/promotion/activity/collection.html"}>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="row">
+    <div class="col-lg-3 buyer-box">
+      <{include file="topc/promotion/activity/shop.html"}>
+      <!--
+      <div class="side-box shop-search">
+        <p>店内搜索</p>
+        <div class="search-area">
+          <input type="text" name="" id="" placeholder="感兴趣的内容">
+          <a href="#" class="icon icon-search-a"></a>
+        </div>
+      </div>
+      -->
+      <{if $history}>
+      <{include file="topc/promotion/activity/history.html"}>
+      <{/if}>
+    </div>
+    <div class="col-lg-13 box">
+      <div class="tab1 purchase-tab" data-toggle="switchable" data-config="{&quot;events&quot;:&quot;click&quot;}">
+        <ul class="switchable-nav">
+          <li class="active">产品介绍</li>
+        </ul>
+        <div class="switchable-content">
+          <div class="switchable-panel" style="display: block;">
+            <div class="goods-info">
+              <div class="bd">
+                <{$item.pc_desc}>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

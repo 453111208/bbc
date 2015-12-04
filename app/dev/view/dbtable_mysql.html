@@ -1,0 +1,30 @@
+<div>platform: <{$platform}></div>
+<table>
+  <tr style="border-bottom:1px solid #9DAFC3">
+    <th width="35px">&nbsp;</th>
+    <th width="250px">Table</th><th width="100px"><{t}>查看<{/t}></th>
+    <th width="70px">Engine</th>
+    <th width="70px">Type</th>
+    <th width="50px">Rows</th>
+    <th width="50px">Data</th>
+    <th width="50px">Index</th>
+    <th>&nbsp;</th>
+  </tr>
+  <{foreach from=$tables key="key" item="table"}>
+  <tr style='background:<{if $key is odd}>#F4F7FB<{else}>#fff<{/if}>'>
+     <td>&nbsp;<{$key+1}></td>
+     <td style='padding-right:10px'><{$table.Name}></td>
+     <td>
+       <span class=\"lnk\" onclick=\"new Dialog('?app=dev&ctl=tools&act=tablesql&tableapp=<{$app}>&tablename=<{$table.Name}>')\">SQL</span>
+       &nbsp;&nbsp;
+       <span class=\"lnk\" onclick=\"new Dialog('?app=dev&ctl=tools&act=tablesrc&tableapp=<{$app}>&tablename=<{$table.Name}>')\">PHP</span>
+     </td>
+     <td><{$table.Engine}></td>
+     <td><{$table.Row_format}></td>
+     <td><{$table.Rows}></td>
+     <td><{$table.Data_length}></td>
+     <td><{$table.Index_length}></td>
+     <td></td>
+  </tr>
+  <{/foreach}>
+</table>

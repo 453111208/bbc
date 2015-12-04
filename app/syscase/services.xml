@@ -1,0 +1,8 @@
+<services>
+    <service id="desktop_finder.syscase_mdl_essay">
+        <class>syscase_finder_essay</class>
+    </service>
+    <service id="desktop_finder.syscase_mdl_essaycat">
+        <class>syscase_finder_essaycat</class>
+    </service>
+</services>

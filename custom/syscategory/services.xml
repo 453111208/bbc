@@ -1,0 +1,11 @@
+<services>
+    <service id="desktop_finder.syscategory_mdl_brand">
+        <class>syscategory_finder_brand</class>
+    </service>
+    <service id="desktop_finder.syscategory_mdl_props">
+        <class>syscategory_finder_props</class>
+    </service>
+    <service id="desktop_finder.syscategory_mdl_cat">
+        <class>syscategory_finder_cat</class>
+    </service>
+</services>

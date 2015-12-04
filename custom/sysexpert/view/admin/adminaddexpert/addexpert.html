@@ -1,0 +1,63 @@
+<form id="propForm" class="tableform" action="?app=sysexpert&ctl=admin_expert&act=save" method="POST">
+<{input type="hidden"  name="expert_id"  value=$expertInfo.expert_id }>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><em class="red">*</em><{t}>名人专家名称：<{/t}></th>
+        <td><{input type="text" name="name" vtype="required"  value=$expertInfo.name }></td>
+      </tr>
+      <tr>
+        <th><em class="red">*</em><{t}>名人专家称号(限20字数)：<{/t}></th>
+        <td><{input maxlength="20" type="text" name="nickname" vtype="required"  value=$expertInfo.nickname }></td>
+      </tr>
+         <tr>
+      <th><{t}>头像：<{/t}></th>
+      <td>
+        <{input type="image" name="image_logo" value=$expertInfo.image_logo}>
+        <span class="notice-inline span_class">
+          <{t}>请添加你所需要的名人专家头像：(建议图片大小:120*120)。<{/t}></span>
+      </td>
+      </tr>
+<!--       <tr>
+      <th><{t}>背景：<{/t}></th>
+      <td>
+        <{input type="image" name="image_background" value=$expertInfo.image_background }>
+        <span class="notice-inline span_class">
+          <{t}>请添加你所需要的名人专家背景图：1920*392。<{/t}></span>
+      </td>
+      </tr> -->
+      <tr>
+        <th><em class="red">*</em><{t}>简介(限80字数)：<{/t}></th>
+        <td><{input maxlength="80" type="textarea" style="resize:none;width:500px;height:50px;" name="summary" vtype="required"  value=$expertInfo.summary }></td>
+      </tr>
+      </table>
+   </div>
+   <div class="table-action">
+    <{button label="保存"|t:'sysexpert' type="submit" class="btn-primary"}>
+  </div>
+</form>
+
+<script type="text/javascript">
+$('propForm').store('target',
+{
+  onComplete:function(rs)
+   {
+   if(!rs) return;
+   rs = JSON.decode(rs);
+   if(rs.success)
+     {
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog'))
+        {
+          var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update)
+            {
+             Dlg.update.retrieve('instance').initContent();
+            }
+          Dlg.close();
+        }
+     }
+   }
+});
+  
+</script>

@@ -1,0 +1,106 @@
+<!-- 添加名人专家文章类型 -->
+    <div class="maxsub">
+	   <div class="maxsubmenu"> 
+		  <{foreach from=$literarycatList item=cats}>
+	    	<a href="/index.php/expert?literarycatid=<{$cats.literarycat_id}>" class="item1"><{$cats.literarycat}></a>
+          <{/foreach}>
+	   </div>
+	</div>
+<!-- 当前位置栏 -->
+    <div class="maxPath">
+        <dl class="basic-ex-breadcrumbs clearfix">
+          <dt>当前位置：</dt>
+          <dd><a class="beb-nav" href="./"><span>首页</span></a><span class="beb-raquo">></span>
+              <a class="beb-nav" href="<{url action=topc_ctl_expert@expertList}>"><span>名人专家</span></a>
+              <span class="beb-raquo">></span>
+              <span class="beb-current">专家介绍</span></dd>
+        </dl>
+    </div>
+<!-- 专家介绍栏背景、专家图片、名称、称号、简介添加 -->
+    <div class="maxfull">
+       <div class="maxback"><img src="images/topc/articles/maxback.jpg"></div>
+	   <div class="maxportrait">
+	     <div class="maxfaces">
+	       <div class="maxfigure">
+			    <div class="maxper">
+			        <img src="<{$expertRow.image_logo}>"><i></i>
+		        </div>
+			    <h3><{$expertRow.name}></h3>
+			    <b><{$expertRow.nickname}></b>
+			  <p style="text-align:center;"><{$expertRow.summary}></p>
+		    </div>
+		  </div>
+	    </div>
+     </div>
+<!-- 文章图片、标题、内容添加 -->
+     <div class="maxsection maxview">  
+	    <div class="maxtit-v"><h3>他的观点</h3></div>
+        <div class="maxlist">
+			 <ul>
+			  <{foreach from=$literaryList item=literary key=key}>
+			     <{if $key<10}> 
+                <li class="frist">
+                   <div class="maxpic"><a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>"><img src="<{$literary.literary_logo}>"></a></div>
+                     <div class="maxlist-content">
+                      <div class="maxlist-title">
+                          <a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>">
+                             <{$literary.title}>
+                          </a>
+                       </div>
+					   <div class="maxicon">
+                        <!-- <i class="maxicon-share"></i> -->
+					    <!-- <i class="maxicon-see"><em>6601</em></i> -->
+					    <i class="maxicon-see"><em>点击量<{$literary.click_count}></em></i> 
+				       </div>
+                     </div>
+				     <div class="maxlist-p">
+				         <p><{$literary.abstract}></p>
+				     </div> 
+
+				   <div class="maxlook"><a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>">[查看全文]</a></div>
+                </li>
+                 <{/if}>
+				<{/foreach}>
+		    </ul>
+		 </div>
+		 <div class="maxover"><a href="../index.php/expert">查看其他更多文章></a></div>
+	  </div>
+
+
+      <div class="maxcetera">
+        <div class="maxhot maxcharacter maxelse">
+			   <div class="maxhot-title"><h2>其他人物推荐</h2></div>
+               <div class="maxhot-content">
+			     <ul>
+			    <{foreach from=$expertList item=expert key=key}>
+				    <{if $key<3}>
+					    <{if $expert.expert_id!=$expertRow.expert_id}>
+
+						   <li class="frist">
+						      <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>"><img src="<{$expert.image_logo}>" width="82" height="82"></a>
+							  <div class="maxpaper">
+							     <h3>
+							     <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>">
+							        <{$expert.name}></a>
+							     <b><{$expert.nickname}></b></h3>
+							     <p><{$expert.summary}></p>
+							  </div>
+						   </li>
+						   <{else}>
+						   <li class="frist">
+						      <a href="#"><img src="<{$expert.image_logo}>" width="82" height="82"></a>
+							  <div class="maxpaper">
+							     <h3>
+							     <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>">
+							        <{$expertList[3][name]}></a>
+							     <b><{$expertList[3][nickname]}></b></h3>
+							     <p><{$expertList[3][summary]}></p>
+							  </div>
+						   </li>
+						<{/if}>
+					<{/if}>
+				<{/foreach}> 
+				 </ul>
+			   </div>
+			 </div>
+       </div>

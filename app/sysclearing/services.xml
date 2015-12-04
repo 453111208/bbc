@@ -1,0 +1,10 @@
+<services>
+
+    <service id="systrade_trade_confirm_after" optname="确认收货后的操作">
+        <class>sysclearing_settlement</class>
+    </service>
+    <service id="desktop_finder.sysclearing_mdl_settlement">
+        <class>sysclearing_finder_settlement</class>
+    </service>
+
+</services>

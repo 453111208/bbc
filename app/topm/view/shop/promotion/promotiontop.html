@@ -1,0 +1,21 @@
+<div class="ui-mask"></div>
+<{include file="topm/common/top.html"}>
+  <{if $promotiontype=='fullminus'}>
+    <{include file="topm/shop/promotion/fullminus.html"}>
+  <{/if}>
+
+  <{if $promotiontype=='coupon'}>
+    <{include file="topm/shop/promotion/coupon.html"}>
+  <{/if}>
+
+  <{if $promotiontype=='fulldiscount'}>
+    <{include file="topm/shop/promotion/fulldiscount.html"}>
+  <{/if}>
+
+  <{if $promotiontype=='freepostage'}>
+    <{include file="topm/shop/promotion/freepostage.html"}>
+  <{/if}>
+
+  <{if $promotiontype=='xydiscount'}>
+    <{include file="topm/shop/promotion/xydiscount.html"}>
+  <{/if}>

@@ -1,0 +1,25 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <div class="membercenter-box-left"><{$nodeInfo.node_name}></div>
+    </div>
+    <div class="membercenter-box-bd">
+      <ul class="artical-list">
+        <{foreach from=$contentList item=content}>
+        <li>
+          <span class="title"><a href="<{url action=topc_ctl_content@getContentInfo article_id=$content.article_id}>"><{$content.title}></a></span>
+          <span class="time"><{$content.modified|cdate}></span>
+        </li>
+        <{/foreach}>
+     </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pager">
+  <div class="page-action">
+
+    <span class="flip prev over"><i class="ico prev">‹</i></span>
+    <{pagers data=$pagers}>
+  </div>
+</div>

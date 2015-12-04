@@ -1,0 +1,73 @@
+<div id="page-reponse">
+  <table class="item-table table-evaluation">
+    <colgroup>
+      <col class="table-col-1" width="50%">
+      <col class="table-col-2" width="15%">
+      <col class="table-col-3" width="25%">
+      <col class="table-col-4" width="10%">
+    </colgroup>
+    <thead>
+      <tr>
+        <td>评价内容</td>
+        <td>商品信息</td>
+        <td>评价对象</td>
+        <td>操作</td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 循环开始 -->
+      <{foreach from=$rate item=item}>
+      <tr class="item">
+        <td>
+          <div class="level"><i class="icon icon-flower <{$item.result}>"></i><br>
+            <{if $item.result == 'good'}>好评<{elseif $item.result == 'bad'}>差评<{else}>中评<{/if}>
+          </div>
+          <div class="detail">
+            <div><{$item.content|default:"默认评价"}>（<span class="name-view"><{if $item.anony == '0'}>实名<{else}>匿名<{/if}></span>）</div>
+            <{if $item.rate_pic}>
+            <div class="show-pics clearfix">
+              <{foreach from=$item.rate_pic item=pic}>
+              <a href="<{$pic|storager:'s'}>" target="_blank"><img width="64" height="64" src="<{$pic|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+              <{/foreach}>
+            </div>
+            <{/if}>
+            <div class="creat-date"><{$item.created_time|cdate}></div>
+            <!-- 卖家回复 -->
+            <{if $item.is_reply}>
+            <div class="feedback">
+              <div class="feedback-tit">卖家回复</div>
+              <div class="feedback-txt">
+                <p><{$item.reply_content}></p>
+                <span><{$item.created_time|cdate}></span>
+              </div>
+            </div>
+            <{/if}>
+          </div>
+        </td>
+        <td>
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>" target="_blank"><{$item.item_title}></a>
+        </td>
+        <td>
+          <div class="txt">商铺：<{$item.shop_id|shopname}></div>
+        </td>
+        <td>
+          <input type="hidden" id="edit_id" value="<{$item.rate_id}>">
+          <{if $item.is_lock == '0'}>
+          <a href="<{url action=topc_ctl_member_rate@edit rate_id=$item.rate_id}>" class="del-color" href="">修改评价&gt;</a>
+          <br>
+          <{/if}>
+          <{if $item.anony == '0'}>
+          <!-- 匿名判断开始 -->
+          <a href="javascript:void(0);" class="name-hide"><span><span>设置匿名</span></span></a>
+          <!-- 匿名判断结束 -->
+          <br>
+          <{/if}>
+          <a class="del-item" href="">删除</a>
+        </td>
+      </tr>
+      <{/foreach}>
+      <!-- 循环结束 -->
+    </tbody>
+  </table>
+</div>
+<{pagers data=$pagers}>

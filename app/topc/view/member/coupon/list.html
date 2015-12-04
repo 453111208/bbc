@@ -1,0 +1,69 @@
+<{if !$count}>
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">我的优惠券</div>
+  <div class="no-content">
+    <span class="txt">暂无优惠券</span>
+  </div>
+</div>
+<{else}>
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">我的优惠券</div>
+  <div class="membercenter-box-right">
+    <span class="num">共<em><{$count}></em>条记录</span>
+    <{pagers data=$pagers type="mini"}>
+  </div>
+
+  <table class="item-table table-address">
+    <colgroup>
+      <col class="table-col-1">
+      <col class="table-col-2">
+      <col class="table-col-3">
+      <col class="table-col-4">
+      <col class="table-col-5">
+      <col class="table-col-6">
+    </colgroup>
+    <thead>
+      <tr>
+        <td>优惠券号码</td>
+        <td>面值</td>
+        <td>规则</td>
+        <td>店铺</td>
+        <td>有效期</td>
+        <td>是否使用</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <{foreach from=$couponList item=item}>
+      <tr>
+        <td>
+          <{$item.coupon_code}>
+        </td>
+        <td>
+          <{$item.deduct_money|cur}>
+        </td>
+        <td>
+          <{$item.coupon_desc}>
+        </td>
+        <td>
+          <{$item.shop_id|shopname}>
+        </td>
+        <td>
+          <{$item.canuse_start_time|cdate:'FDATE'}>
+          ~
+          <{$item.canuse_end_time|cdate:'FDATE'}>
+        </td>
+        <td>
+          <{if $item.is_valid==1}>
+            <span class="green">有效</span>
+            <{else}>
+            <span class="gray">失效</span>
+          <{/if}>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+  <{pagers data=$pagers}>
+</div>
+<{/if}>

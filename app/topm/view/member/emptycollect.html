@@ -1,0 +1,49 @@
+<div class="col-goods shop goods-empty">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="menu">
+        <button type="button" class="btn icon-more" id="menu"></button>
+        <script type="text/javascript">
+          $('#menu').dropmenu({
+            content: [
+              {
+                text: '首页',
+                icon: 'home',
+                href: '<{url action=topm_ctl_default@index}>'
+              },
+    
+              {
+                text: '商品类目',
+                icon: 'catalog',
+                href: '<{url action=topm_ctl_category@index}>'
+              },
+
+              {
+                text: '购物车',
+                icon: 'barrow',
+                href: '<{url action=topm_ctl_cart@index}>'
+              },
+
+              {
+                text: '会员中心',
+                icon: 'man',
+                href: '<{url action=topm_ctl_member@index}>'
+              },
+            ]
+          });
+        </script>
+      </div>
+    </div>
+  </header>
+  
+  <div class="main">
+    <div class="empty-area">
+      <i class="icon-lock"></i>
+      <span class="empty-txt">你还没有收藏商品噢</span>
+      <a href="<{url action=topm_ctl_default@index}>" class="ui-btn-warning">去看看</a>        
+    </div>
+  </div>
+</div>

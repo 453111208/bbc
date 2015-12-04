@@ -1,0 +1,128 @@
+
+<!-- 添加名人专家文章类型 -->
+    <div class="maxsub">
+	   <div class="maxsubmenu"> 
+		  <{foreach from=$literarycatList item=cats}>
+	    	<a href="#" class="item1"><{$cats.literarycat}></a>
+          <{/foreach}>
+	   </div>
+	</div>
+<!-- 当前位置栏 -->
+    <div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+            <dt>当前位置：</dt>
+            <dd><a class="beb-nav" href="/"><span>首页</span></a><span class="beb-raquo">></span>
+            <a class="beb-nav" href="#"><span>名人专家</span></a>
+            <span class="beb-raquo">></span>
+            <span class="beb-current"><{$literarycatRow.literarycat}></span>
+            </dd>
+    </dl>
+    </div>
+
+    <div class="maxmain">
+<!-- 左面板块 -->
+        <div class="maxleft maxcelebrity">
+		<div class="maxdetail">
+        <div class="maxdetail-title">
+<!-- 文章标题 -->
+                   <h2>
+                      <{$literaryRow.title}>
+                   </h2>
+        </div>
+<!-- 添加的文章类型和发布时间 -->
+              <div class="maxdetail-time">
+                   <{$literarycatRow.literarycat}><br />
+                   <{$literaryRow.pubtime|cdate}>
+              </div>
+              <div class="maxdetail-content">
+<!-- 文章段落 -->
+	                <!-- <p style="text-align: center; text-indent: 0;"><img src="<{$literaryRow.literary_logo}>" border="0" alt="346346">
+					</p> -->
+				    <p><{$literaryRow.context}></p>
+			  </div>
+        </div>   
+
+		</div>
+<!-- end左面板块 -->
+
+<!-- 右面板块 -->
+		 <div class="maxright">
+<!-- 人物介绍 -->
+        <div class="maxhot">
+		        <div class="maxhot-title"><h2>人物介绍</h2></div>
+        <div class="maxfigure">
+			    <div class="maxper">
+			       <a href="#"><img src="<{$expertRow.image_logo}>">
+			         <i></i>
+			       </a>
+				</div>
+				<h3>
+				<a href="<{url action=topc_ctl_expert@expert expertid=$expertRow.expert_id}>"><{$expertRow.name}></a>
+				<!-- <{$expertRow.name}> --></h3>
+				<b><{$expertRow.nickname}></b>
+				<p>
+				    <{$expertRow.summary}>
+				</p>
+		</div>
+         </div>
+         <!-- end人物介绍-->
+		     <!-- 排行榜 -->
+           <div class="maxhot maxking">
+		      <div class="maxhot-title"><h2>文章关注榜</h2></div>
+              <div class="max-Tabs-body">
+			  	<div class="maxcomon">
+				   <ul>
+			          <li class="maxrank"><i>1</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li class="maxrank"><i>2</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li class="maxrank"><i>3</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>4</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>5</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>6</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>7</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>8</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>9</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li>
+					  <li><i>10</i><a href="#" target="_blank">创业路上，世界上没有合伙创业这一</a></li> 
+				  </ul>
+				</div>
+             </div>
+          </div>
+         <!-- end排行榜 -->
+          <!-- 人物推荐 -->
+			 <div class="maxhot maxcharacter">
+			   <div class="maxhot-title"><h2>人物推荐</h2><a href="#">查看更多〉</a></div>
+               <div class="maxhot-content">
+			     <ul>
+				   <li>
+				      <a href="#"><img src="articles/maxfigure.jpg" width="82" height="82"></a>
+					  <div class="maxpaper">
+					     <h3><a href="#">陈九霖</a><b>企业成功人士</b></h3>
+					     <p>毕业于北京大学，NASDAQ上市公司九邦数码联合创始人，中国自行车及骑行文化推动者，著有《短暂飞行》、《我手机》、《创业者对话创业者》。</p>
+					  </div>
+				   </li> 
+				   <li>
+				      <a href="#"><img src="articles/maxfigure1.jpg" width="82" height="82"></a>
+					  <div class="maxpaper">
+					     <h3><a href="#">管清友</a><b>企业成功人士</b></h3>
+					     <p>毕业于北京大学，NASDAQ上市公司九邦数码联合创始人，中国自行车及骑行文化推动者，著有《短暂飞行》、《我手机》、《创业者对话创业者》。</p>
+					  </div>
+				   </li> 
+				   <li>
+				      <a href="#"><img src="articles/maxfigure2.jpg" width="82" height="82"></a>
+					  <div class="maxpaper">
+					     <h3><a href="#">洪涛</a><b>企业成功人士</b></h3>
+					     <p>毕业于北京大学，NASDAQ上市公司九邦数码联合创始人，中国自行车及骑行文化推动者，著有《短暂飞行》、《我手机》、《创业者对话创业者》。</p>
+					  </div>
+				   </li> 
+				   <li>
+				      <a href="#"><img src="articles/maxfigure3.jpg" width="82" height="82"></a>
+					  <div class="maxpaper">
+					     <h3><a href="#">刘姝威</a><b>企业成功人士</b></h3>
+					     <p>毕业于北京大学，NASDAQ上市公司九邦数码联合创始人，中国自行车及骑行文化推动者，著有《短暂飞行》、《我手机》、《创业者对话创业者》。</p>
+					  </div>
+				   </li> 
+				 </ul>
+			   </div>
+			 </div>
+              <!-- end人物推荐 -->
+		 </div>
+    </div>

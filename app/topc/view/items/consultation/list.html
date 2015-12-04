@@ -1,0 +1,33 @@
+<div id="all">
+  <ul>
+    <{foreach from=$gask item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.author|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.author}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+<div id="good" style="display: none;"></div>
+<div id="neutral" style="display: none;"></div>
+<div id="bad" style="display: none;"></div>
+<div id="bad" style="display:none"></div>
+
+

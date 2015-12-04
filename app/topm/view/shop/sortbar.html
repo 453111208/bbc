@@ -1,0 +1,29 @@
+<ul>
+  <li class="cur">
+    <a href="<{url action=topm_ctl_shopcenter@search _params=$filter r_sort='' operationtype=replace }>">
+      <span>默认</span>
+    </a>
+  </li>
+  <li>
+    <a href="<{url action=topm_ctl_shopcenter@search  _params=$filter r_sort='list_time desc' operationtype=replace }>" class="btn btn-tab is-desc <{if $activeFilter.orderBy == 'list_time desc' }>on<{/if}>">
+      <span> 上架时间 </span>
+    </a>
+  </li>
+  <li>
+    <{if $activeFilter.orderBy == 'price asc' }>
+    <a href="<{url action=topm_ctl_shopcenter@search _params=$filter  r_sort='price desc' operationtype=replace }>" class="btn btn-tab is-asc <{if $activeFilter.orderBy == 'price asc' }>on<{/if}>">
+      <span> 价格</span>
+    </a>
+    <{else}>
+    <a href="<{url action=topm_ctl_shopcenter@search  _params=$filter r_sort='price asc' operationtype=replace }>" class="btn btn-tab is-desc <{if $activeFilter.orderBy == 'price desc' }>on<{/if}>">
+      <span>价格</span>
+    </a>
+    <{/if}>
+  </li>
+  <!-- <li>
+    <a href="<{url action=topm_ctl_shopcenter@search _params=$filter  r_sort='sold_quantity desc' operationtype=replace}>" class="btn btn-tab is-desc <{if $activeFilter.orderBy == 'sold_quantity desc' || !$activeFilter.orderBy}>on<{/if}>">
+      <span> 销量 </span>
+    </a>
+  </li> -->
+</ul>
+

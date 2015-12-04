@@ -1,0 +1,39 @@
+<services>
+    <service id="desktop_finder.ectools_mdl_payment_cfgs" optname="支付方式后台列表">
+        <class>ectools_finder_payment_cfgs</class>
+    </service>
+
+    <service id="ectools_payment.ectools_mdl_payment_cfgs" optname="支付插件列表">
+        <class>ectools_payment_plugin_alipay</class>
+        <class>ectools_payment_plugin_99bill</class>
+        <class>ectools_payment_plugin_doubletenpay</class>
+        <!-- <class>ectools_payment_plugin_unionpay</class> -->
+        <class>ectools_payment_plugin_upacp</class>
+        <class>ectools_payment_plugin_malipay</class>
+        <class>ectools_payment_plugin_mtenpay</class>
+        <class>ectools_payment_plugin_wxpayjsapi</class>
+        <!--
+        <class>ectools_payment_plugin_offline</class>
+        -->
+    </service>
+
+    <service id="view_compile_helper">
+        <class>ectools_view_compiler</class>
+    </service>
+
+    <service id="view_helper">
+        <class>ectools_view_helper</class>
+    </service>
+
+    <service id="openapi.ectools_payment">
+        <class>ectools_payment_api</class>
+    </service>
+
+    <service id="ectools_regions_apps">
+        <class>ectools_regions_operation</class>
+    </service>
+
+    <service id="api.ectools.get_payments">
+        <class>ectools_api_payment</class>
+    </service>
+</services>

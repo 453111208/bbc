@@ -1,0 +1,81 @@
+<{if $appealData.appeal_again}>
+<ul class="complain-list">
+  <li>
+    <div class="item-status"></div>
+    <div class="complain-item">
+      <div>第一次申诉内容:<{$appealData.appeal_log.content}></div>
+      <div class="imgs-show clearfix">
+        <{if $appealData.appeal_log.evidence_pic}>
+        <ul class="thumb">
+          <{foreach from=$appealData.appeal_log.evidence_pic item=first_pic}>
+          <li><img src="<{$first_pic|storager:'s'}>"></li>
+          <{/foreach}>
+        </ul>
+        <{else}>
+        无图片申诉材料
+        <{/if}>
+      </div>
+    </div>
+    <div class="complain-item reject">
+      <div>第一次驳回理由: <{$appealData.appeal_log.reject_reason}></div>
+    </div>
+  </li>
+  <li>
+    <div class="item-status lastest"></div>
+    <div class="complain-item">
+      <div>第二次申诉内容: <{$appealData.content}></div>
+      <div class="imgs-show clearfix">
+        <{if $appealData.evidence_pic}>
+        <ul class="thumb">
+          <{foreach from=$appealData.evidence_pic item=first_pic}>
+          <li><img src="<{$first_pic|storager:'s'}>"></li>
+          <{/foreach}>
+        </ul>
+        <{else}>
+        无图片申诉材料
+        <{/if}>
+      </div>
+    </div>
+    <{if $appealData.reject_reason}>
+    <div class="complain-item reject">
+      <div>再次驳回理由: <{$appealData.reject_reason}></div>
+    </div>
+    <{else}>
+    <div class="complain-item no-reject">
+      <div>再次驳回理由: </div>
+    </div>
+    <{/if}>
+  </li>
+</ul>
+
+<{else}>
+<ul class="complain-list">
+  <li>
+    <div class="item-status lastest"></div>
+    <div class="complain-item">
+      <div>第一次申诉内容:<{$appealData.content}></div>
+      <div class="imgs-show clearfix">
+        <{if $appealData.evidence_pic}>
+        <ul class="thumb">
+          <{foreach from=$appealData.evidence_pic item=first_pic}>
+          <li><img src="<{$first_pic|storager:'s'}>"></li>
+          <{/foreach}>
+        </ul>
+        <{else}>
+        无图片申诉材料
+        <{/if}>
+      </div>
+    </div>
+    <{if $appealData.reject_reason}>
+    <div class="complain-item reject">
+      <div>第一次驳回理由: <{$appealData.reject_reason}></div>
+    </div>
+    <{else}>
+    <div class="complain-item no-reject">
+      <div>第一次驳回理由: </div>
+    </div>
+    <{/if}>
+  </li>
+</ul>
+
+<{/if}>

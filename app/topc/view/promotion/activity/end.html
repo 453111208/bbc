@@ -1,0 +1,35 @@
+<!--活动详情页，已结束的内容-->
+<div class="detail-panel-info prechase-detail-panel-info">
+  <div class="panel-info-top clearfix">
+    <div class="info-top">【<{$activity.activity_name}>】
+      <!-- 活动三个状态 -->
+      <span class="top-activity-over">活动已结束</span>
+    </div>
+  </div>
+  <h1><span><{$activity.activity_tag}></span><{$group_item.title}></h1>
+  <!-- 状态为活动即将开始时隐藏已有134人购买，否则不隐藏 -->
+  <div class="info-show clearfix"><span >已有<strong><{$item.sold_quantity|default:0}></strong>人购买</span>
+    <a href="<{url action=topc_ctl_shopcenter@index shop_id=$group_item.shop_id}>">
+      <i class="icon"></i>进入店铺</a>
+  </div>
+  <!-- 活动未开始和进行中时间提醒,活动已结束则隐藏该div -->
+  <!-- 活动已结束标志 -->
+  <div class="activity-over-show" >
+    <span class="over-seal">已结束</span>
+  </div>
+  <div class="operation-panel-wrap">
+    <div class="operation-panel">
+      <!-- 活动结束 -->
+      <div class="info-operation activity-over" >
+        <div class="operation-left">
+          <p class="price"><i class="icon icon icon-pricetags-a" data-icon="\2925"></i><{$group_item.activity_price}></p>
+          <p class="suggest-price">建议价格：<del><{$group_item.price}></del></p>
+        </div>
+        <a href="<{url action=topc_ctl_activity@index}>" class="btn btn-go">去活动首页</a>
+        <a href="<{url action=topc_ctl_item@index item_id=$group_item.item_id}>" class="btn btn-buy">原价购买</a>
+        <div class="triangle_border_nw"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

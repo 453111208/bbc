@@ -1,0 +1,49 @@
+  <form action="" method="post" id="ajaxForm">
+    <input type="hidden" name="addr_id" value="">
+    <div class="membercenter-address">
+      <ul>
+        <li class="form-row">
+          <label for="" class="form-label">所在地区</label>
+          <span class="form-act">
+            <span class="area-select" data-validate="area"></span>
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">街道地址</label>
+          <span class="form-act">
+            <input class="x-input" type="text" name="addr" maxlength="100" value="" required>
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">邮政编码</label>
+          <span class="form-act">
+            <input class="x-input" type="text" name="zip" maxlength="10" value="">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">收货人姓名</label>
+          <span class="form-act">
+            <input class="x-input" type="text" name="name" value="" maxlength="25" required>
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">收货人手机</label>
+          <span class="form-act">
+            <input class="x-input" type="mobile" data-validate="mobile" name="mobile" value="" data-caution="手机格式不正确">
+          </span>
+        </li>
+        <li class="form-row">
+          <label for="" class="form-label">设为默认地址</label>
+          <span class="form-act">
+            <input type="radio" name="def_addr" value="1" id="for_defaultaddr"><label for="for_defaultaddr">是</label>
+          </span>
+        </li>
+        <li class="form-row last">
+          <span class="form-act">
+            <button type="submit" class="btn btn-import" id="action-addr-submit" rel="_request"><span><span>保存</span></span></button>
+            <button type="button" class="btn btn-simple action-reset dialog-btn-close"><span><span>取消</span></span></button>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </form>

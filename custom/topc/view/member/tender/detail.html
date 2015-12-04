@@ -1,0 +1,327 @@
+
+<style type="text/css">
+	.news{float: right;}
+</style>
+<form action="<{url action=topc_ctl_member_shoppubt@save}>" method="post" >
+<div class="max-Pands-box">
+	<div class="max-Pands-up">
+	<div class="max-Price-up" style="background-color:white;">
+	<input type="hidden" name="tender_id" value="<{$tender_id}>">
+	<font style="float:left;font-size:36px;font-weight:bold;color:red;line-height:1">报价:</font><input type="text" name="price" readonly="true" value="<{$realmoney}>" style="font-size:24px;margin-top:-15px;background-color:white;"><font style="font-size:36px;font-weight:bold;color:red;line-height:1">元</font>
+	</div>
+	<input type="hidden" name="tender_man_id" value="<{$tender_man_id}>">
+		<!--服务细则分值设置 -->
+		<div class="max-serve-up">
+			<h3>服务细则分值体现及资料上传</h3>
+			<div class="max-text-up">
+				<label>请在对应的需求资质上上传您所具备的资料以作评估</label>
+			</div>
+			<!--必要资质 -->
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>必要资质</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumn}>" readonly="true" class="max-Number needed">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '必要资质'}>
+							<!-- <input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>"> -->
+							<{if !$row.detail}>
+							<li>
+								<span><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label><div style="float:right;">资料：<input style="height: 21px;width: 300px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>"></div></span>
+								<div class="max-c-price">
+									<input tyep="text" class="max-Number" value="<{$row.score}>" readonly="true" id="needed<{$key}>">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+								
+								<div style="float:right;">资料：
+								<input style="height: 21px;width: 300px;margin-right:135px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>">
+								</div>
+								
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+				<!--可选资质 -->
+			<div class="max-Set-up to">
+				<dl>
+					<dt>
+						<span><label>可选资质</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumc}>" readonly="true" class="max-Number canch">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '可选资质'}>
+							<!-- <input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>"> -->
+							<{if !$row.detail}>
+							<li>
+								<span><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label><input style="float:right;height: 21px;width: 300px;" type="text" readonly="true" value="<{$row.data}>"></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>" readonly="true"  class="max-Number" id="canch<{$key}>">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+								
+								<div style="float:right;">资料：
+								<input style="height: 21px;width: 300px;margin-right:135px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>">
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<!--设备能力 -->
+			<div class="max-Set-up to1">
+				<dl>
+					<dt>
+						<span><label>设备能力<label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$summ}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '设备能力'}>
+							<!-- <input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>"> -->
+							<{if !$row.detail}>
+							<li>
+								<span style="width:670px;"><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label><input style="float:right;height: 21px;width: 300px;" type="text" readonly="true" value="<{$row.data}>"></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>" readonly="true"  class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+								
+								<div style="float:right;">资料：
+								<input style="height: 21px;width: 300px;margin-right:135px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>">
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<!--处置能力 -->
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>处置能力</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sumd}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '处置能力'}>
+							<!-- <input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>"> -->
+							<{if !$row.detail}>
+							<li>
+								<span><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label><input style="float:right;height: 21px;width: 300px;" type="text" readonly="true" value="<{$row.data}>"></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>"  readonly="true"  class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+								
+								<div style="float:right;">资料：
+								<input style="height: 21px;width: 300px;margin-right:135px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>">
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<!--服务能力 -->
+			<div class="max-Set-up">
+				<dl>
+					<dt>
+						<span><label>服务能力</label></span>
+						<div class="max-c-price">
+							<label>分值：</label>
+							<input tyep="text" value="<{$sums}>" readonly="true" class="max-Number">
+							<a href="javascript:;" class="max-c-plus"></a>
+							<a href="javascript:;" class="max-c-minus"></a>
+						</div>
+					</dt>
+					<dd>
+						<ul>
+						
+
+						<{foreach from=$allrule item=row key=key}>
+							<{if $row.category == '服务能力'}>
+							<!-- <input type="hidden" name="chrule_<{$row.chrule_id}>" value="<{$row.chrule_id}>"> -->
+							<{if !$row.detail}>
+							<li>
+								<span><input type="checkbox" checked="true" disabled="true"><label><{$row.project}></label><input style="float:right;height: 21px;width: 300px;" type="text" readonly="true" value="<{$row.data}>"></span>
+								<div class="max-c-price">
+									<input tyep="text" value="<{$row.score}>"  readonly="true" class="max-Number">
+									<a href="javascript:;" class="max-c-plus"></a>
+									<a href="javascript:;" class="max-c-minus"></a>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+							</li>
+							<{else}>
+							<li>
+								<span class="max-to"><label><{$row.project}></label></span>
+								<div class="max-c-price">
+									<span>
+										<input type="checkbox" checked="true" disabled="true">
+										<label><{$row.detail}></label>
+									</span>
+								</div>
+								<div style="float:right;">
+									<input type="text" name="s_<{$key}>" id="newscore<{$key}>" value="0">分
+								</div>
+								
+								<div style="float:right;">资料：
+								<input style="height: 21px;width: 300px;margin-right:135px;" type="text" readonly="true" value="<{if $row.data}><{$row.data}><{else}>未上传资料<{/if}>">
+								</div>
+							</li>
+							<{/if}>
+							<{/if}>
+							<{/foreach}>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			
+			<!------提交----按钮---->
+			<div class="maxM-buttom">
+				<button type="submit" class="btn btns" ><span>提 交</span></button>
+				<button type="button" class="btn btnp" ><span>保 存</span></button>
+				<button type="button" class="btn btnc dialog-btn-close"><span>取 消</span></button>
+			</div>
+
+		</div>
+	</div>
+  </div>
+  </form>
+
+ 
+<script type="text/javascript">
+for(i=0;i< <{$num}>;i++){
+$('#newscore'+i).bind('input propertychange', function () {
+	var sum = 0;
+	for (j = 0;j < <{$num}>; j++) {
+	sum = parseFloat($('#newscore'+j).val()) + parseFloat(sum);
+	}
+	if(sum>100){
+		$(this).css("color","red");
+		alert("总分超过100，请更改");
+	}else $(this).css("color","black");
+	});
+}
+
+/*for (i = 0;i < <{$canch}>; i++) {
+$('#canch'+i).bind('input propertychange', function () {
+	var sum = 0;
+	for (j = 0;j < <{$canch}>; j++) {
+	sum = parseFloat($('#canch'+j).val()) + parseFloat(sum);
+	};
+	$('.canch').val(sum);
+	});
+};*/
+</script>
+
+

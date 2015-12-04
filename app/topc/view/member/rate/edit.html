@@ -1,0 +1,154 @@
+<form action="<{url action=topc_ctl_member_rate@update}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+  <input type='hidden' name="rate_id" value=<{$rateInfo.rate_id}>>
+  <div class="box">
+    <!--无订单-->
+    <div class="membercenter-box goods-comment">
+      <div class="comment-header">
+        <span><{$rateInfo.created_time|cdate}></span>
+        <span>订单编号：<{$rateInfo.tid}></span>
+        <span><{$rateInfo.shop_id|shopname}></span>
+      </div>
+      <div class="membercenter-box-bd">
+        <!-- 原评价开始 -->
+        <div class="goods-score">
+          <div class="score-level">
+            <div class="goods-infor">
+              <div class="goods-img"><img width="64" height="64" src="<{$rateInfo.item_pic|storager:'s'}>"></div>
+              <div class="goods-title"><a href="<{url action=topc_ctl_item@index item_id=$rateInfo.item_id}>"><{$rateInfo.item_title}></a></div>
+            </div>
+          </div>
+          <div class="old-evaluation-view">
+            <h4>评价信息</h4>
+            <ul>
+              <li>
+                <div class="view-key">商品评分：</div>
+                <div class="view-val"><i class="icon icon-flower <{$rateInfo.result}>"></i>
+                  <{if $rateInfo.result == 'good'}>好评<{elseif $rateInfo.result == 'bad'}>差评<{else}>中评<{/if}>
+                </div>
+              </li>
+              <li>
+                <div class="view-key">评价内容：</div>
+                <div class="view-val"><{$rateInfo.content}></div>
+              </li>
+              <{if $rateInfo.rate_pic}>
+              <li>
+                <div class="view-key">晒图：</div>
+                <div class="view-val">
+                  <{foreach from=$rateInfo.rate_pic item=picItem}>
+                  <a href="#" target="_blank"><img width="64" height="64" src="<{$picItem|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+                  <{/foreach}>
+                </div>
+              </li>
+              <{/if}>
+              <li>
+                <div class="view-key">评价时间：</div>
+                <div class="view-val"><{$rateInfo.created_time|cdate}></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- 愿评价结束 -->
+        <div class="goods-score">
+          <div class="score-level">
+            <div class="goods-infor">
+              <div class="goods-img"><img width="64" height="64" src="<{$rateInfo.item_pic|storager:'s'}>"></div>
+              <div class="goods-title"><a href="<{url action=topc_ctl_item@index item_id=$rateInfo.item_id}>"><{$rateInfo.item_title}></a></div>
+            </div>
+            <div class="goods-price">
+              <div class="">成交价：<{$rateInfo.item_price|cur}></div>
+            </div>
+          </div>
+          <div class="choose-level">
+            <div class="level-key">商品评分：</div>
+            <div class="level-item">
+              <input id="score_good" name="result" value='good' type="radio" <{if $rateInfo.result=='good'}>checked<{/if}> >
+              <label for="score_good">
+                <i class="icon icon-flower good-color"></i>
+                好评
+              </label>
+            </div>
+            <div class="level-item">
+              <input id="score_normal" name="result" value="neutral" type="radio" <{if $rateInfo.result=='neutral'}>checked<{/if}> >
+              <label for="score_normal">
+                <i class="icon icon-flower normal-color"></i>
+                中评
+              </label>
+            </div>
+            <div class="level-item">
+              <input id="score_bad" name="result" value="bad" type="radio"  <{if $rateInfo.result=='bad'}>checked<{/if}> >
+              <label for="score_bad">
+                <i class="icon icon-flower bad-color"></i>
+                差评
+              </label>
+            </div>
+          </div>
+          <div class="score-comment">
+            <textarea class="comment" name='content' placeholder="<{$rateInfo.content}>"></textarea>
+            <div class="letter-limit">还可以输入<span>300</span>字</div>
+          </div>
+          <div class="score-imgs">
+            <div class="imgs-key">晒图仅限5张</div>
+            <div class="images-uploader">
+              <{if $rateInfo.rate_pic}>
+              <{foreach from=$rateInfo.rate_pic item=pic}>
+              <div class="handle img-thumbnail">
+                <i class="icon-close-b action-remove"></i>
+                <a href="<{$pic|storager:'s'}>" target="_blank">
+                  <img src="<{$pic|storager:'s'}>">
+                </a>
+                <input type="hidden" name="rate_pic[]" value="<{$pic}>">
+              </div>
+              <{/foreach}>
+              <{/if}>
+              <div class="handle img-thumbnail action-upload">
+                <input type="file" name="rate_pic[]" multiple accept="image/*" data-size="2048000" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" class="action-file-input">
+                <span class="icon-add"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="evaluation-submit">
+      <!--div class="anonymous"><input id="anonymous" type="checkbox" value=""> <label for="anonymous">匿名评论</label></div-->
+      <div><button id="submitForm" type="submit" class="btn btn-import"><span><span>确认提交</span></span></button></div>
+      <div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  $(function(){
+    limitContent('.comment', 300);
+
+    //限制评论输入字数
+    function limitContent(content, length) {
+      $('.letter-limit').find('span').text(length);
+      $(content).keydown(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+        numView.text(remaining);
+      });
+
+      $(content).keyup(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        numView.text(remaining);
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+      });
+    };
+  })
+</script>

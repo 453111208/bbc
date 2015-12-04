@@ -1,0 +1,43 @@
+<div class="mobile-bound shop">
+    <{include file="topm/common/top.html"}>
+    <div class="main" id="main">
+      <form action="<{url action=topm_ctl_member@checkVcode}>" method="post">
+        <ul class="form-vertical">
+          <{if $userInfo.login_account}>
+          <input type="hidden" name="verifyType" value="<{$verifyType}>">
+          <input type="hidden" name="type" value="<{$type}>">
+          <li class="form-row mobile">
+            <span class="form-act">
+              <div class="unbind-module">
+                <p class="title">已绑定手机号：</p>
+                <p class="info"><{$userInfo.mobile}></p>
+              </div>
+            </span>
+          </li>
+          <li class="form-row mobile">
+            <span class="form-act">
+               <input class="input-ln action-account-check input-vcode" type="text" name="verifycode" id="for_code" required="" size="6" maxlength="6" placeholder="请填写验证码">
+              <img align="absmiddle" class="auto-change-verify-handle verify-img" id="membervocde" src="<{url action=toputil_ctl_vcode@gen_vcode key=topm_unverify}>" alt="验证码" width="100" height="30">
+            </span>
+          </li>
+          <li class="form-row commit">
+            <button type="submit" class="ui-btn-warning">下一步</button>
+          </li>
+          <{else}>
+           <li class="form-row mobile">
+            <span class="form-act">
+              <div class="unbind-module">
+                <p class="title">已绑定手机号：</p>
+                <p class="info"><{$userInfo.mobile}></p>
+                <p class="hint">您还未设置用户名无法解绑，请先
+                  <a href="<{url action=topm_ctl_member@userinfoSet}>">设置用户名。</a>
+                </p>
+              </div>
+            </span>
+          </li>
+          <{/if}>
+      </ul>
+      </form>
+    </div>
+  </div>
+

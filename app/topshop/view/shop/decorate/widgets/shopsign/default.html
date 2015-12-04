@@ -1,0 +1,93 @@
+<form class="form-horizontal" action="<{url action=topshop_ctl_shop_decorate@save widgets=shopsign dialog=default}>" method="post" id="shopsign_form" role="form" data-validate-onsuccess="ajaxSubmitShopsign">
+  <input type="hidden" name='widgets_id' value=<{$widgets_id}> >
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><{t}>店铺通栏图片<{/t}>：</label>
+      <div class="col-sm-9">
+          <a class="select-image" data-toggle="modal" href="<{url action=topshop_ctl_shop_image@loadImageModal}>" data-target="#gallery_modal">
+            <input type="hidden" name="params[image_id]" value="<{$data.image_id}>">
+            <div class="img-put">
+              <img src="<{$data.image_id|storager:'s'}>">
+              <i class="glyphicon glyphicon-picture"></i>
+            </div>
+          </a>
+        <span class="help-block"><{t}>推荐尺寸<{/t}>:<{t}>高度<{/t}>100px;<{t}>宽度大于<{/t}>1200px</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><{t}>是否显示店铺logo<{/t}>：</label>
+      <div class="col-sm-8">
+        <div class="radio">
+          <label>
+            <input type="radio" name="params[show_shop_logo]" value="on" <{if $data.show_shop_logo == 'on' || !$data.show_shop_logo}> checked <{/if}> ><{t}>启用<{/t}>
+          </label>
+          <label>
+            <input type="radio" name="params[show_shop_logo]" value="off" <{if $data.show_shop_logo == 'off'}> checked <{/if}> ><{t}>禁用<{/t}>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><{t}>是否显示店铺名称<{/t}>：</label>
+      <div class="col-sm-8">
+        <div class="radio">
+          <label>
+            <input type="radio" name="params[show_shop_name]" value="on" <{if $data.show_shop_name == 'on' || !$data.show_shop_name}> checked <{/if}> ><{t}>启用<{/t}>
+          </label>
+          <label>
+            <input type="radio" name="params[show_shop_name]" value="off" <{if $data.show_shop_name == 'off'}> checked <{/if}> ><{t}>禁用<{/t}>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><{t}>是否显示店铺描述<{/t}>：</label>
+      <div class="col-sm-8">
+        <div class="radio">
+          <label>
+            <input type="radio" name="params[show_shop_desc]" value="on" <{if $data.show_shop_desc == 'on' || !$data.show_shop_desc}> checked <{/if}> ><{t}>启用<{/t}>
+          </label>
+          <label>
+            <input type="radio" name="params[show_shop_desc]" value="off" <{if $data.show_shop_desc == 'off'}> checked <{/if}> ><{t}>禁用<{/t}>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary">保存</button>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal">取消</button>
+  </div>
+</form>
+
+<script>
+
+  $('#shopsign_form').Validator({
+    icons: {
+        valid:      'icon icon-checkmark-a',
+        invalid:    'icon icon-alert',
+        validating: 'icon icon-loading-c'
+      }
+  });
+
+  $('.cancel').click(function(){
+    location.href = "<{url action=topshop_ctl_shop_decorate@index}>";
+  })
+
+  function ajaxSubmitShopsign (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.reload()}, 500);
+      }
+    });
+  }
+</script>

@@ -1,0 +1,100 @@
+<form id="payment_form" action="<{url action=topc_ctl_paycenter@createPay}>" method="post">
+</form>
+<div class="membercenter-box-hd">
+  <span class="col-goods">商品</span>
+  <span class="col-price">单价</span>
+  <span class="col-number">数量</span>
+  <span class="col-total">订单总金额</span>
+  <span class="col-status">交易订单状态</span>
+  <span class="col-operate">操作</span>
+</div>
+<div class="membercenter-box-bd">
+  <{if !$trades}>
+  <div class="no-content2">
+    <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">暂无订单</span></span>
+  </div>
+  <{else}>
+  <div class="text-right"><a href="<{url action=topc_ctl_member_trade@tradeList}>">查看全部订单></a></div>
+  <{foreach from=$trades item=tradeitem}>
+  <table class="item-table table-goods">
+    <colgroup>
+      <col class="table-col-1">
+      <col class="table-col-2">
+      <col class="table-col-3">
+      <col class="table-col-4">
+      <col class="table-col-5">
+      <col class="table-col-6">
+      <col class="table-col-7">
+    </colgroup>
+    <thead class="<{if $tradeitem.status == 'WAIT_BUYER_PAY' || $tradeitem.status == 'WAIT_BUYER_CONFIRM_GOODS'}>ifallcheck <{/if}>">
+      <tr>
+        <td colspan="7">
+          <span><{$tradeitem.created_time|cdate:"FDATE"}></span>
+          <span>订单编号：<{$tradeitem.tid}></span>
+          <a href="<{url action=topc_ctl_shopcenter@index shop_id=$tradeitem.shop_id}>"><{$tradeitem.shop_id|shopname}></a>
+          <{im shop_id=$tradeitem.shop_id type=small}>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <{assign var=orderItemCount value=$tradeitem.order|count}>
+      <{foreach from=$tradeitem.order item=orderitem name=orderlist}>
+      <tr>
+        <td>
+          <div class="table-goods-pic"><img width="64" height="64" src="<{$orderitem.pic_path|storager:'s'}>"></div>
+        </td>
+        <td>
+          <a href="<{url action=topc_ctl_item@index item_id=$orderitem.item_id}>"><{if $orderitem.promotion_tag}><span class="item-describe-tag"><{$orderitem.promotion_tag}></span><{/if}><{$orderitem.title}></a>
+          <{$orderitem.spec_nature_info}>
+        </td>
+        <td>
+          <div class="price"><{$orderitem.price|cur}></div>
+        </td>
+        <td>
+          <{$orderitem.num}>
+        </td>
+        <{if $env.foreach.orderlist.iteration==1}>
+        <td rowspan="<{$orderItemCount}>">
+          <div class="price text-center">
+            <{$tradeitem.payment|cur}>
+            <div>
+              (含运费：<{$tradeitem.post_fee|cur}>)
+            </div>
+            <{if $tradeitem.discount_fee>0}>
+            <div>
+              (促销优惠：-<{$tradeitem.discount_fee|cur}>)
+            </div>
+            <{/if}>
+            <{if $tradeitem.adjust_fee!=0}>
+            <div>
+              (含手工调价：<{$tradeitem.adjust_fee|cur}>)
+            </div>
+            <{/if}>
+          </div>
+        </td>
+        <td class="col-operate" rowspan="<{$orderItemCount}>">
+          <{if $tradeitem.status == "WAIT_BUYER_PAY"}>
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">等待买家付款</a>
+          <{elseif $tradeitem.status == "WAIT_SELLER_SEND_GOODS"}>
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">买家已付款</a>
+          <{elseif $tradeitem.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">卖家已发货</a>
+          <{elseif $tradeitem.status == "TRADE_FINISHED"}>
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">订单已完成</a>
+          <{elseif $tradeitem.status == "TRADE_CLOSED_BY_SYSTEM" || $tradeitem.status == "TRADE_CLOSED"}>
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">订单已关闭</a>
+          <{/if}>
+        </td>
+        <td class="col-operate" rowspan="<{$orderItemCount}>">
+          <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$tradeitem.tid}>">查看订单详情</a>
+        </td>
+        <{/if}>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+  <{/foreach}>
+
+  <{/if}>
+</div>
+

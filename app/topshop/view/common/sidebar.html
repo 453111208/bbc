@@ -1,0 +1,38 @@
+<aside class="left-side sidebar-offcanvas">
+  <section class="sidebar">
+    <ul class="sidebar-menu">
+      <{foreach from=$topshop.sidebar item=item_sidebar}>
+      <li class="treeview <{if $item_sidebar.active }>active <{/if}>">
+        <a href="#">
+          <i class="<{$item_sidebar.icon}> glyphicon"></i>
+          <span><{$item_sidebar.label}></span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <{if $item_sidebar.shortcutMenu }>
+          <li><a href="#" data-toggle="modal" data-target="#editShortcutMenu" ><i class="fa fa-angle-double-right"></i> 编辑常用菜单</a></li>
+          <{/if}>
+          <{foreach from=$item_sidebar.menu item=row}>
+          <{if $row.display}>
+          <li <{if $row.default}>class="active"<{/if}> ><a href="<{if $row.action}><{url action=$row.action}><{else}>#<{/if}>"><i class="fa fa-angle-double-right"></i> <{$row.label}></a></li>
+          <{/if}>
+          <{/foreach}>
+        </ul>
+      </li>
+      <{/foreach}>
+    </ul>
+  </section>
+  <!-- Button trigger modal -->
+  <section class="sidebar">
+    <ul class="sidebar-menu">
+      <li class="treeview <{if $item_sidebar.active }>active <{/if}>">
+        <a href="#" data-toggle="modal" data-target="#feedback">
+          <i class="glyphicon glyphicon-list-alt"></i>
+          <span>意见反馈</span>
+        </a>
+
+      </li>
+    </ul>
+  </section>
+</aside>
+<{include file="topshop/common/feedback.html"}>

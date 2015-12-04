@@ -1,0 +1,121 @@
+<section class="content">
+  <div class="report">
+    <div class="box box-primary">
+      <div class="box-body">
+        <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            <div class="pull-left">
+              <div class="goods-infor">
+                <div class="goods-img"><img width="64" height="64" src="<{$rate.item_pic|storager:'s'}>"></div>
+                <div class="goods-title"><a href="<{url action=topc_ctl_item@index item_id=$rate.item_id}>" target="_blank"><{$rate.item_title}></a></div>
+              </div>
+            </div>
+            <div class="goods-price">
+              <div>成交价：<{$rate.item_price|cur}></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="report-title">
+              <h5 class="pull-left">评价信息</h5>
+              <{if !$type}>
+              <div class="pull-right">
+                <{if !$rate.is_reply}>
+                <a href="javascript:void(0);" id="reply_btn" class="btn btn-info btn-sm">我要回复</a>
+                <{/if}>
+                <{if $rate.is_appeal}>
+                <a href="javascript:void(0);" id="appeal_btn" class="btn btn-warning btn-sm">我要申诉</a>
+                <{/if}>
+              </div>
+              <{/if}>
+            </div>
+            <div class="text-muted well no-shadow old-evaluation-view-box">
+              <div class="old-evaluation-view">
+                <ul>
+                  <li>
+                    <div class="view-key">商品评分：</div>
+                    <div class="view-val"><i class="icon icon-flower <{$rate.result}>"></i>
+                    <{if $rate.result == 'good'}>好评<{elseif $rate.result == 'bad'}>差评<{else}>中评<{/if}>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="view-key">评价内容：</div>
+                    <div class="view-val"><{$rate.content}></div>
+                  </li>
+                  <{if $rate.rate_pic}>
+                  <li>
+                    <div class="view-key">晒图：</div>
+                    <div class="view-val">
+                      <{foreach from=$rate.rate_pic item=picItem}>
+                      <a href="#" target="_blank"><img width="64" height="64" src="<{$picItem|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+                      <{/foreach}>
+                    </div>
+                  </li>
+                  <{/if}>
+                  <li>
+                    <div class="view-key">评价时间：</div>
+                    <div class="view-val"><{$rate.created_time|cdate}></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="reply_dom" <{if $type =='reply'}> <{else}> style="display:none" <{/if}> >
+              <{include file="topshop/rate/reply_form.html"}>
+            </div>
+
+            <div id="appeal_dom" <{if $type == 'appeal' && $rate.is_appeal}> <{else}> style="display:none" <{/if}> >
+                <{include file="topshop/rate/appeal/appeal_form.html"}>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+</section>
+<script>
+  $(function(){
+    $('#appeal_btn').click(function(){
+      $('#appeal_dom').show()
+      $('#reply_dom').hide()
+    })
+
+    $('#reply_btn').click(function(){
+      $('#appeal_dom').hide()
+      $('#reply_dom').show()
+    })
+
+    limitContent('.form-control', 300);
+
+    //限制评论输入字数
+    function limitContent(content, length) {
+      $('.letter-limit').find('span').text(length);
+      $(content).keydown(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+        numView.text(remaining);
+      });
+
+      $(content).keyup(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        numView.text(remaining);
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+      });
+    };
+  })
+</script>

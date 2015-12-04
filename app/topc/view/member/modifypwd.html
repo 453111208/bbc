@@ -1,0 +1,46 @@
+<div class="col-lg-13 box">
+
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      修改密码
+    </div>
+    <form action="<{url action=topc_ctl_member@saveModifyPwd}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+    <div class="membercenter-box-bd">
+      <div class="safe-box">
+        <ul>
+          <li class="form-row">
+            <label for="" class="form-label">旧密码</label>
+            <span class="form-act">
+              <input class="x-input" type="password" name="old_password" id="" required maxlength="20">
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">新密码</label>
+            <span class="form-act">
+              <input class="x-input input-block auto-password-check-handle" type="password" required name="new_password" id="" placeholder="6-20个字符,数字" minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符">
+              <div class="password-check">
+                <q>安全程度</q>
+                <span class="progress">
+                  <em class="weak">弱</em><em class="good">中</em><em class="strong">强</em>
+                </span>
+              </div>
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">确认新密码</label>
+            <span class="form-act">
+              <input class="x-input" type="password" name="confirm_password" id="" required data-equalto="new_password">
+            </span>
+          </li>
+          <li class="form-row last">
+            <span class="form-act">
+              <button type="submit" class="btn btn-import btn-lg" rel="_request"><span><span>确定</span></span></button>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+

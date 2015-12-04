@@ -1,0 +1,80 @@
+<form id="catfeeform" action="?app=sysshop&ctl=admin_shop&act=saveCatInfo" method="POST">
+	<input type="hidden" name="shopid" value="<{$shopId}>">
+	<input type="hidden" name="catid" value="<{$catId}>">
+	<{foreach from=$data item=catfee}>
+
+		一级分类：<input  type="checkbox" <{if $catfee.display=='true'}> checked=checked<{/if}>/><{$catfee.cat_name}>&nbsp;
+		平台入住费：<input  vtype='unsigned' name="lvfee[<{$catfee.cat_id}>]" value="<{$catfee.platform_fee}>" />
+		</br>
+		<{foreach from=$catfee.lv2 item=lvtwo}>
+
+			<div class="catfeeform-catesecond">
+				二级分类：<input  type="checkbox" name="lv2[<{$catfee.cat_id}>][<{$lvtwo.cat_id}>]" value="<{$lvtwo.guarantee_money}>" <{if $lvtwo.display=='true'}> checked=checked<{/if}> /><{$lvtwo.cat_name}>&nbsp;
+				类目佣金：<input  vtype='unsigned' name="lvtwo[<{$catfee.cat_id}>][<{$lvtwo.cat_id}>]" value="<{$lvtwo.guarantee_money}>" /></br>
+			</div>
+
+			<div class="catfeeform-catethird">
+				<div class="catfeeform-cateleft"><input type="checkbox" name="" class="lv3-all">三级分类：</div>
+				<div class="catfeeform-cateright">
+					<{foreach from=$lvtwo.lv3 item=lvthree}>
+
+						<div class="lv3-row">
+							<span class="lv3-title"><input class="lv3" type="checkbox" name="lv3[<{$catfee.cat_id}>][<{$lvtwo.cat_id}>][<{$lvthree.cat_id}>]" value="<{$lvthree.cat_service_rates}>" <{if $lvthree.display=='true'}> checked=checked<{/if}>/><{$lvthree.cat_name}>&nbsp;&nbsp;</span>
+							<span class="lv3-input"><input  vtype='unsigned' name="lvthree[<{$catfee.cat_id}>][<{$lvtwo.cat_id}>][<{$lvthree.cat_id}>]" value="<{$lvthree.cat_service_rates}>"/>%</br></span>
+						</div>
+
+					<{/foreach}>
+				</div>
+			</div>
+
+		<{/foreach}>
+
+	<{/foreach}>
+
+	<table cellspacing="0" cellpadding="0" class="table-action">
+		<tbody>
+			<tr valign="middle">
+				<td>
+					<{assign var="___c"  value='确定退出?'|t:'sysshop'}>
+
+		            <{button label="保存并关闭窗口"|t:'sysshop' class="btn-primary" type="button" onclick="submitForm(event,2)"}>
+
+		            <{button label="关  闭"|t:'content' class="btn-secondary" type="button" isclosedialogbtn="1"}>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+<script>
+	var submitForm = function (event,sign){
+	    var _form=$('catfeeform');
+	    switch (sign){
+	      case 1:
+	        var target={
+	          onComplete:function(){
+	                       location.reload();
+	                     }};
+	        break;
+	      case 2:
+	        var target={
+	          onComplete:function(rs)
+	          			{
+	                       if(rs&&!!JSON.decode(rs).success)
+	                       {
+	                          // window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                             window.close();
+	                           _form.getParent('.dialog').retrieve('instance').close();
+	                       }
+	                    }
+	                 };
+	        break;
+	    }
+	    _form.store('target',target);
+	    if(validate(_form) && confirm('是否保存?')) {
+	      _form.fireEvent('submit',new Event(event));
+	    }
+	};
+	$$(".catfeeform-catethird .lv3-all").addEvent("change", function(e) {
+		this.getParent('.catfeeform-catethird').getElements('.lv3').set('checked', this.checked);
+	});
+</script>

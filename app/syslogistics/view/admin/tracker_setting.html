@@ -1,0 +1,40 @@
+<div class="tableform">
+  <{tabber}>
+  <{tab name="物流跟踪设置"|t:'syslogistics'}>
+  <form action="<{url route='shopadmin' app='syslogistics' ctl='admin_tracker' act='index'}>" method="post">
+    <div class="clear division">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th><{t}>是否启用订单跟踪查询:<{/t}></th>
+          <td>
+            <input type="radio" value="true"  name='syslogistics_order_tracking' <{if $syslogistics_order_tracking != 'false'}>checked="checked"<{/if}>  />
+            <label for="bool-t"><{t}>是<{/t}></label>
+            <input  type="radio" value="false" name='syslogistics_order_tracking' <{if $syslogistics_order_tracking == 'false'}>checked="checked"<{/if}> />
+            <label for="bool-t"><{t}>否<{/t}></label>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>
+      <{t}>华强宝物流跟踪配置<{/t}>
+      <span class="notice">不填则使用shopex默认值，<a href="http://www.hqepay.com/public/XdjkoTutorial.aspx" target="_blank" color="#FF0000">申请华强宝授权文档地址</a></span>
+    </h4>
+    <div class="division">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th><{t}>电商ID:<{/t}></th>
+          <td><input type='text' name='hqepay[id]' value=<{$hqepay.id}> ></td>
+        </tr>
+        <tr>
+          <th><{t}>AppKey:<{/t}></th>
+          <td><input type='text' name='hqepay[appkey]' value=<{$hqepay.appkey}> ></td>
+        </tr>
+      </table>
+    </div>
+    <div class="table-action"><{button type="submit" label="保存"|t:'syslogistics' }></div>
+  </form>
+  <{/tab}>
+  <{/tabber}>
+</div>
+

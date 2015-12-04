@@ -1,0 +1,51 @@
+<div class="apply shop order-detail">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <form action="<{url action=topm_ctl_member_complaints@closeComplaints}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+      <input type='hidden' name='complaints_id' value='<{$complaints_id}>'>
+      <input type='hidden' name='oid' value='<{$oid}>'>
+      <div class="apply-info complain-status">
+        <ul class="repeal-list">
+          <li class="form-row">
+            <label for="for-type" class="form-label">投诉类型：</label>
+            <div class="txt"><{$complaints_type}></div>
+          </li>
+          <li class="form-row">
+            <label for="for-type" class="form-label">描述问题：</label>
+            <div class="txt"><{$content}></div>
+          </li>
+        <{if $image_url}>
+        <li clas="form-row">
+          <label for="for-type" class="form-label">投诉凭证：</label>
+          <div class="txt">
+            <{foreach from=$image_url item=pic}>
+            <img width="64" height="64" src="<{$pic|storager:'s'}>">
+            <{/foreach}>
+          </div>
+        </li>
+        <{/if}>
+        </ul>
+        <div class="msg">
+          <span class="hd">撤销原因：</span>
+          <textarea rows="3" minlength="5" name="buyer_close_reasons" required maxlength="200" placeholder="请输入投诉的原因，5-200字" class="comment"></textarea>
+        </div>
+      </div>
+      <div class="buy-action">
+        <a type="submit" class="ui-btn-warning">确认撤销</a>
+        <a  href="<{url action=topm_ctl_member_complaints@detail oid=$oid}>" class="cancel-now ui-btn-grey">暂不撤销</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function commentWords (str, min, max) {
+    var length = str.length;
+    return str.length >= min && str.length <= max;
+  }
+$(".comment").blur(function(){
+  if(!commentWords($('.comment').val(), 5, 200)) {
+    alert("撤销原因在5-200字");
+  }
+})
+</script>
+

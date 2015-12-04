@@ -1,0 +1,55 @@
+<!-- 头部版块END -->
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;btn=r1.gif" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+    <div class="maxPath">
+        <dl class="basic-ex-breadcrumbs clearfix">
+          <dt>当前位置：</dt>
+          <dd><a class="beb-nav" href="/"><span>首页</span></a>
+              <span class="beb-raquo">></span>
+              <span class="beb-current">第三方服务</span></dd>
+        </dl>
+    </div>
+
+         <!-- 左面板块 -->
+         <div class="maxleft maxcelebrity">
+            
+            <!-- 资讯类别页卡 -->
+            <div class="maxsection">
+			   
+               <div class="maxlist">
+			   
+			    <div class="maxcomon" style="display: block;">
+			     <ul>
+			     <{foreach from=$thirdinfo item=item key=key}>
+                   <li class="frist">
+                     <div class="maxpic"><a href="#"><img src="<{$item.article_logo}>"></a></div>
+                     <div class="maxlist-content">
+                        <div class="maxlist-title"><a href="<{url action=topc_ctl_third@thirdlist article_id=$item.article_id}>"><{$item.title}></a></div>
+						<p><{$item.abstract}></p>
+                     </div>
+                     <div class="maxicon">
+                       <i class="maxicon-share"></i>
+					   <i class="maxicon-see"><em><{$item.count}></em></i>
+					 </div>
+                  </li>
+				  <{/foreach}>
+                </ul>
+			   </div>
+			  </div>
+      <{if $thirdinfo}>
+			   <div id="pageGro" class="cb maxpag">
+	              <div class="pageUp">上一页</div>
+                  <div class="pageList">
+                    <{foreach from=$countnum item=row key=key}>
+                    <a class="flip" href="<{url action=topc_ctl_third@third page=$row}>"><{$row}>
+                    </a>
+                    <{/foreach}>
+                  </div>
+                  <div class="pageDown">下一页</div>
+               </div>
+			<{/if}>  
+			</div>
+            <!-- end资讯类别页卡 -->   
+		 </div>
+		 <!-- end左面板块 -->

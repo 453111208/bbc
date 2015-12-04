@@ -1,0 +1,74 @@
+<{if $use_app == 'topc'}>
+<div class="pager">
+  <{if $head}>
+  <a href="<{$head}>" class="flip"><i class="ico prev">‹</i></a>
+  <{else}>
+  <span class="flip prev over"><i class="ico prev">‹</i></span>
+  <{/if}>
+
+  <{foreach from=$links item=item}>
+  <{if $item.link == ""}>
+  <span class="ellipsis"><{$item.num}></span>
+  <{else}>
+  <{if $c == $item.num}>
+  <a href="<{$item.link}>" class="flip active"><{$item.num}></a>
+  <{else}>
+  <a href="<{$item.link}>" class="flip"><{$item.num}></a>
+  <{/if}>
+  <{/if}>
+  <{/foreach}>
+
+  <{if $tail}>
+  <a href="<{$tail}>" class="flip next"><i class="ico next">›</i></a>
+  <{else}>
+  <span class="flip prev over"><i class="ico prev">›</i></span>
+  <{/if}>
+</div>
+
+<{if $ajax == 'true'}>
+<script>
+  $(function(){
+    $('.flip').click(function(e){
+      e.preventDefault();
+      var url = $(this).attr('href');
+      $('#<{$load_id}>').load(url);
+    })
+  })
+</script>
+<{/if}>
+
+<{else}>
+<div class="text-right">
+  <ul class="pagination pagination-sm pull-right">
+
+    <{if $head}>
+    <li><a href="<{$head}>">&laquo;</a></li>
+    <{else}>
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <{/if}>
+
+    <{foreach from=$links item=item}>
+
+    <{if $item.link == ""}>
+    <li class="active"><{$item.num}></li>
+    <{else}>
+    <{if $c == $item.num}>
+    <li class="active"><span><{$item.num}><span class="sr-only"><{$item.num}></span></span></li>
+    <{else}>
+    <li><a href="<{$item.link}>"><{$item.num}></a></li>
+    <{/if}>
+    <{/if}>
+
+    <{/foreach}>
+
+    <{if $tail}>
+    <li><a href="<{$tail}>">&raquo;</a></li>
+    <{else}>
+    <li class="disabled"><a href="#">&raquo;</a></li>
+    <{/if}>
+
+  </ul>
+</div>
+<{/if}>
+
+

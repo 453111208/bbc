@@ -1,0 +1,70 @@
+<{if $rate}>
+<{foreach from=$rate item=item}>
+<li>
+  <table class="table table-primary table-goods table-order">
+    <thead>
+      <tr>
+        <td colspan="5">
+          <span><{$item.created_time|cdate}></span>
+          <span>订单编号  <{$item.tid}></span>
+          <!--span>专营店</span-->
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-6 text-center">
+          <{if $item.result == 'good'}>好评<{elseif $item.result == 'bad'}>差评<{else}>中评<{/if}>
+        </td>
+        <td>
+          <div class="evaluation-txt">
+            <{if $item.content}><{$item.content}><{else}>默认评价<{/if}>（<{if $item.anony == '0'}>实名<{else}>匿名<{/if}>）
+          </div>
+          <{if $item.rate_pic}>
+          <div class="show-pics clearfix">
+            <{foreach from=$item.rate_pic item=pic}>
+            <a href="<{$pic|storager:'s'}>" target="_blank"><img width="64" height="64" src="<{$pic|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+            <{/foreach}>
+          </div>
+          <{/if}>
+          <div class="text-gray"><{$item.created_time|cdate}></div>
+          <{if $item.is_reply}>
+          <div class="feedback">
+            <div class="feedback-tit">卖家回复</div>
+            <div class="feedback-txt">
+              <p><{$item.reply_content}></p>
+              <span><{$item.reply_time|cdate}></span>
+            </div>
+          </div>
+          <{/if}>
+        </td>
+        <td class="col-4">
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>" target="_blank"><{$item.item_title}></a>
+          <div><span class="text-orange"><{$item.item_price|cur}></span></div>
+        </td>
+        <td class="col-4 text-center">
+          <{$userName[$item.user_id]}>
+        </td>
+        <td class="col-6">
+          <div>
+            <a href="<{url action=topshop_ctl_rate@detail rate_id=$item.rate_id}>" target="view_window">评价详情</a>
+          </div>
+          <div>
+            <{if !$item.is_reply}>
+            <a href="<{url action=topshop_ctl_rate@detail type=reply rate_id=$item.rate_id}>" class="btn btn-warning btn-xs" >回复</a>
+            <{/if}>
+            <{if $item.is_appeal && $item.appeal_status != 'REJECT'}>
+            <a href="<{url action=topshop_ctl_rate@detail type=appeal rate_id=$item.rate_id}>" class="btn btn-warning btn-xs">申诉</a>
+            <{/if}>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+<{/foreach}>
+<{else}>
+<li>
+  <p class="text-muted well no-shadow text-center">暂无数据</p>
+</li>
+<{/if}>

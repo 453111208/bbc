@@ -1,0 +1,450 @@
+<form action="<{url action=topshop_ctl_promotion_activity@canregistered_apply_save}>" method="post" class="form-horizontal activity-info clearfix" data-validate-onsuccess="ajaxSubmit" role="form">
+  <input type='hidden' name='activity_id' value="<{$activity_id}>">
+  <input type='hidden' name='activityStatus' value="<{$registered_activity.0.verify_status}>">
+  <div class="panel panel-default">
+    <div class="panel-heading">活动信息</div>
+    <div class="panel-body">
+      <div class="alert alert-danger">
+        <{t}>注<{/t}>：报名一旦提交，则无法修改，请谨慎提交！
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>活动名称<{/t}>：</label>
+        <div class="col-sm-4"><{$activity_name}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>活动类型<{/t}>：</label>
+        <div class="col-sm-4"><{$activity_tag}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>活动描述<{/t}>：</label>
+        <div class="col-sm-4"><{$activity_desc}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>发布时间<{/t}>：</label>
+        <div class="col-sm-4"><{$release_time|cdate:FDATE_STIME}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>申请开始时间<{/t}>：</label>
+        <div class="col-sm-4"><{$apply_begin_time|cdate:FDATE_STIME}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>申请结束时间<{/t}>：</label>
+        <div class="col-sm-4"><{$apply_end_time|cdate:FDATE_STIME}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>开始时间<{/t}>：</label>
+        <div class="col-sm-4"><{$start_time|cdate:FDATE_STIME}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>结束时间<{/t}>：</label>
+        <div class="col-sm-4"><{$end_time|cdate:FDATE_STIME}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>每人每件限购<{/t}>：</label>
+        <div class="col-sm-4"><{$buy_limit}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>可报名商品数量<{/t}>：</label>
+        <div class="col-sm-4"><{$enroll_limit}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>可报名店铺类型<{/t}>：</label>
+        <div class="col-sm-4"><{$shoptype}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>参加活动的类目<{/t}>：</label>
+        <div class="col-sm-4"><{$limit_cat}></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label"><{t}>商品折扣范围<{/t}>：</label>
+        <div class="col-sm-4"><{$discount_min}>% ~ <{$discount_max}>%</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">设置适用商品</div>
+    <div class="panel-body">
+      <div class="item-filter-title clearfix">
+        <div class="form-group">
+          <div class="col-sm-12 conditions">
+            <label class="radio-inline"><input type="radio" name="condition" checked> 选择指定商品</label>
+            <!-- <label class="radio-inline all"><input type="radio" name="condition"> 选择全部店铺商品</label> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <div class="condition-view">
+              <div>
+                <span class="form-text">一级分类</span>
+                <div class="col-sm-2">
+                  <select class="form-control add-items-select">
+                    <option value="">请选择</option>
+                    <{foreach from=$shopCatList item=catlist}>
+                    <option value="<{$catlist.cat_id}>" label="<{$catlist.cat_name}>"><{$catlist.cat_name}></option>
+                    <{/foreach}>
+                  </select>
+                </div>
+                <span class="form-text">二级分类</span>
+                <div class="col-sm-2">
+                  <select class="form-control add-items-select">
+                    <option value="">请选择</option>
+                  </select>
+                </div>
+                <span class="form-text">三级分类</span>
+                <div class="col-sm-2">
+                  <select class="form-control add-items-select action-select-category">
+                    <option value="">请选择</option>
+                  </select>
+                </div>
+                <span class="form-text">品牌</span>
+                <div class="col-sm-2">
+                  <select class="form-control add-items-select action-select-brand">
+                    <option value="">全部品牌</option>
+                  </select>
+                </div>
+              </div>
+              <div style="display: none">
+                <div class="col-sm-6">
+                  <h3><i class="fa fa-check-circle"></i> 已选择全部店铺商品</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="result">
+        <div class="item-filter-table filter-result">
+          <div class="item-filter-hd">
+            <div class="item-check"><input type="checkbox" class="action-checkall"></div>
+            <div class="item-name">商品名称</div>
+            <!-- <div class="item-cate">商品类别</div>  -->
+            <div class="item-price">商品价格</div>
+            <div class="item-search">
+              <div>
+                <div class="col-sm-9">
+                  <input type="hidden" id="cat_id" value="">
+                  <input type="hidden" id="brand_id" value="">
+                  <input type="text" class="form-control" id="items_name" placeholder="">
+                </div>
+                <div class="col-sm-3">
+                  <button type="button" class="btn btn-warning form-control items-search">搜索</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item-filter-bd" id="op_items_list">
+          </div>
+        </div>
+        <div class="item-filter-title text-right">
+          <div class="form-group">
+            <div class="col-sm-10">
+            </div>
+            <div class="col-sm-2 text-right">
+              <button type="button" class="btn btn-primary form-control action-add-item" href="">添加</button>
+            </div>
+          </div>
+        </div>
+        <div class="item-filter-title clearfix">
+          <h5 class="pull-left">已添加的商品</h5>
+        </div>
+        <div class="item-filter-table filter-added item-filter-activity-row">
+          <div class="item-filter-hd">
+            <div class="item-check"></div>
+            <div class="item-name">商品名称</div>
+            <!-- <div class="item-cate">商品类别</div>
+            <div class="item-brand">商品品牌</div> -->
+            <div class="item-price">商品价格</div>
+            <div class="item-activity-price">设置促销价格</div>
+            <div class="item-check"></div>
+          </div>
+          <div class="item-filter-bd" id="op_items_added">
+            <{include file='topshop/promotion/activity/canregistered_item.html'}>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <{if $registered_activity}>
+  <{if $registered_activity.0.verify_status=='refuse'}>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary btn-lg btn-block action-save">报名</button>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-default btn-lg btn-block action-cancel">取消</button>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <{/if}>
+  <{else}>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary btn-lg btn-block action-save">报名</button>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-default btn-lg btn-block action-cancel">取消</button>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <{/if}>
+</form>
+<script>
+$('.reservation').daterangepicker({
+    format: 'YYYY/MM/DD',
+    opens: 'right'
+});
+
+function ajaxSubmit (e) {
+  var form = e.target;
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(), function(rs) {
+    if(rs.error) {
+      $('#messagebox').message(rs.message);
+      return;
+    }
+    if(rs.success) {
+      $('#messagebox').message(rs.message, 'success');
+    }
+    if(rs.redirect) {
+      location.href = rs.redirect;
+    }
+  });
+}
+
+var list = $('#op_items_list');
+var added = $('#op_items_added');
+
+var jsonData = '<{$notEndItem}>';
+var addedItems;
+if(jsonData == ''){
+  addedItems = []
+}else{
+  addedItems = JSON.parse(jsonData);
+}
+
+//var addedItems = JSON.stringify('<{$notEndItem}>') || [];
+
+function getBrand(el) {
+  var catId = el.val();
+  if(catId!=''){
+    $.ajax({
+      url: '<{url action=topshop_ctl_promotion_freepostage@getBrandList}>',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        "catId": catId
+      },
+      success: function(data){
+        if(data){
+          var result = '';
+          result += '<option value="">全部品牌</option>'
+          for (var i = 0; i < data.length; i++) {
+            result += '<option value="'+ data[i].brand_id +'">'+ data[i].brand_name +'</option>';
+          };
+          $('.action-select-brand').empty().append(result);
+        }
+      }
+    });
+  }else{
+    checkNext(el);
+  }
+}
+
+getPro();
+
+function getPro(catId, brandId, name) {
+  $.ajax({
+    url: '<{url action=topshop_ctl_promotion_activity@searchItem}>',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      "searchname": name,
+      "catId": catId,
+      "brandId": brandId,
+      "activityId":"<{$activity_id}>",
+    },
+    success: function(rs){
+      var data;
+      var itemList = rs.itemsList;
+      var checkedItem = rs.notEndItem;
+      var checkedArr = [];
+      if(checkedItem.length==0){
+        data = rs.itemsList;
+      }else{
+        if(checkedItem.length > 0){
+          for (var i = 0; i < itemList.length; i++) {
+            var flag = true;
+            for (var j = 0; j < checkedItem.length; j++) {
+              if(itemList[i].item_id==checkedItem[j]) {
+                flag = false;
+                break
+              };
+            };
+            if (flag){
+              checkedArr.push(itemList[i])
+            }
+          }
+          data = checkedArr;
+        }
+      }
+      var result = '';
+      for (var i = 0; i < data.length; i++) {
+        result += '<div class="item-filter-row items"><div class="item-check"><input type="checkbox" name="item_id[]" value="'+ data[i].item_id +'" class="action-checkitem"></div><div class="item-name"><div class="goods"><a href="'+ '<{url action=topc_ctl_item@index}>?item_id='+data[i].item_id +'" target="_blank"><img src="'+ data[i].image_default_id +'" alt="">'+ data[i].title +'</a></div></div><div class="item-price">'+ data[i].price +'</div></div>';
+      };
+      list.html(result);
+    }
+  });
+}
+
+function getCategory(el) {
+  var catId = el.val();
+  if(catId!=''){
+    $.ajax({
+      url: '<{url action=toputil_ctl_syscat@getChildrenCatList}>',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        "cat_id": catId
+      },
+      success: function(data){
+        if(data.data){
+          var cat_sec = data.data.options;
+          var result = '';
+          result += '<option value="">请选择</option>'
+          for(var i in cat_sec) {
+            result += '<option value="'+ cat_sec[i].value +'">'+ cat_sec[i].text +'</option>';
+          }
+          el.parent().next().next().find('.add-items-select').empty().append(result);
+        }
+      }
+    });
+  }else{
+    checkNext(el);
+  }
+}
+
+function checkNext(el) {
+  var next = el.parent().next().next().find('.add-items-select');
+  if(!next){
+    return false;
+  }else{
+    next.empty().append('<option value="">请选择</option>');
+  };
+  checkNext(next);
+}
+
+$('.add-items-select').change(function(){;
+  $('#items_name').val('');
+  if($(this).hasClass('action-select-category')){
+    getPro($(this).val());
+    getBrand($(this));
+    $('#cat_id').val($(this).val());
+  }
+  else if($(this).hasClass('action-select-brand')){
+    $('#brand_id').val($(this).val());
+    getPro($('#cat_id').val(),$('#brand_id').val());
+  }
+  else{
+    getCategory($(this));
+  }
+});
+
+$('.action-checkall').change(function(e) {
+    checkAll(this, $(this).parents('.item-filter-table').find('.action-checkitem'));
+});
+$('.action-add-item').click(function(e) {
+    e.preventDefault();
+    var items = list.find('.action-checkitem:checked');
+    var pros = added.find('.items');
+    if(pros.length ==0){
+      added.empty();
+    }
+    items.filter(function (i) {
+          if(addedItems.indexOf(this.value) < 0) {
+              addedItems.push(this.value);
+              return true;
+          }
+          $(this).parents('.item-filter-row').remove();
+          return false;
+      });
+    items.each(function(){
+      $(this).prop('checked', false)
+            .parents('.item-filter-row').find('.action-checkitem').css('display','none')
+            .parents('.item-filter-row').append('<div class="item-activity-price"><input type="text" name="item_activity_price['+ $(this).val() +']"></div><div class="item-check del"><a class="item-del" href="#">删除</a></div>').appendTo(added);
+    });
+    if(!list.children().length) {
+        list.parents('.item-filter-table').find('.action-checkall').prop('checked', false);
+    }
+});
+added.on('click','.item-del',function(e){
+  e.preventDefault();
+  var delVal = $(this).parents('.item-filter-row').find('.action-checkitem').val();
+  $(this).parents('.item-filter-row').find('.item-activity-price').remove();
+  $(this)
+  .parents('.item-filter-row').find('.action-checkitem').css('display','inline-block')
+  .parents('.item-filter-row').appendTo(list)
+  .find('.del').remove();
+  var emptyDom = '<div class="item-filter-row"><div align="center">暂未添加商品</div></div>'
+  var pros = added.find('.items');
+  if(pros.length ==0){
+    added.append(emptyDom);
+  }
+  for (var i = 0; i < addedItems.length; i++) {
+    if(delVal == addedItems[i]){
+      addedItems.splice(i);
+    }
+  };
+});
+$('.action-delete-item').click(function(e) {
+    e.preventDefault();
+    added.find('.action-checkitem:checked')
+      .filter(function (i, el) {
+          addedItems.splice(addedItems.indexOf(el.value), 1);
+          var checkbox = list.find('.action-checkitem');
+          var result = true;
+          checkbox.length && checkbox.each(function() {
+              if(this.value == el.value) {
+                  $(el).parents('.item-filter-row').remove();
+                  result = false;
+              }
+          });
+          return result;
+      })
+      .prop('checked', false)
+      .parents('.item-filter-row').appendTo(list);
+
+    if(!added.children().length) {
+        added.parents('.item-filter-table').find('.action-checkall').prop('checked', false);
+    }
+});
+
+$('.items-search').click(function(){
+  var catID = $('#cat_id').val();
+  var brandID = $('#brand_id').val();
+  var itemsName = $('#items_name').val();
+  getPro(catID, brandID, itemsName)
+});
+
+$('.conditions label').click(function() {
+  var cidx = $(this).index();
+  $('.condition-view>div').hide().eq(cidx).show();
+  if($(this).hasClass('all')){
+    $('.action-add-item').hide();
+    $('.result').hide();
+  }else{
+    $('.action-add-item').show();
+    $('.result').show();
+  }
+});
+
+$('.action-save').click(function(e) {
+  added.find('.action-checkitem').prop('checked', true);
+});
+
+</script>

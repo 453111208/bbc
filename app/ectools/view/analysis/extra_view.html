@@ -1,0 +1,33 @@
+<{include file="ectools/analysis/time_header.html"}>
+
+<{if $detail_hidden < 1}>
+<!-- detail start -->
+<div class="large">
+    <{include file="ectools/analysis/detail.html"}>
+</div>
+<!-- detail end -->
+<{/if}>
+
+<{if $graph_hidden < 1}>
+<!-- graph start -->
+<table class="chart-view">
+	 <tr><td valign="top">
+        <{include file="ectools/analysis/graph.html"}>
+    </td></tr>
+</table>
+<!-- graph end -->
+<{/if}>
+
+<{if $rank_html}>
+<!-- rank start -->
+<table class="chart-view">
+	 <tr>
+		<td valign="top">
+			<{$rank_html}>
+		</td>
+	 </tr>
+</table>
+<!-- rank end -->
+<{/if}>
+
+

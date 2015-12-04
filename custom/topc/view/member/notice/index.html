@@ -1,0 +1,67 @@
+<div class="maxM-right">
+    <div class="max-menber-title Bid">
+        <h2>系统通知</h2>
+    </div>
+    <div class="maxB-menber-list">
+        <dl>
+            <dt class="maxB-title">
+            <ul>
+                <li class="item1" style="width:310px;"><span>通知名称</span></li>
+                <li class="item2"><span>通知类型</span></li>
+                 <li class="item3"><span>是否已读</span></li>
+                <li class="item4"><span>通知发送时间</span></li>
+            </ul>
+            </dt>
+            <dd>
+            <{foreach from=$shopnotice item=row key=key}>
+            <div class="maxB-List uniqsee" style="border-bottom:1px dashed #DDDDDD;">
+                <div class="maxB-company" style="width:330px;">
+                    <a style="padding-left: 20px" id="title_<{$key}>"><{$row.notice_title}></a>
+                    <!--  <a href="<{url action=topc_ctl_bidding@index bidding_id=$row.bidding_id}>" class="max-into">进入</a> -->
+                </div>
+                <div  style="text-align: center;width:140px;margin-right: 55px;" class="maxB-Time"  >
+                    <label><{$row.notice_type}></label>
+                </div>
+                <div class="maxB-Time" style="width: 100px;margin-right: 40px;text-align: center">
+                    <{if $row.is_read==0}>
+                    未读
+                    <{else}>
+                    已读
+                    <{/if}>
+                </div>
+                <div class="maxB-Time">
+                    <label><{$row.createtime|cdate}></label>
+                </div>
+
+                <div id="content_<{$key}>" style="display:none">
+                    <{$row.notice_content}>
+                </div>
+            </div>
+            <{/foreach}>
+            </dd>
+        </dl>
+    </div>
+</div>
+<script type="text/javascript">
+<{foreach from=$shopnotice item=row key=key}>
+$('#title_<{$key}>').click(function (e) {
+        $('#content_<{$key}>').dialog({
+            width: 890,
+            height: 400,
+            title:'<{$row.notice_title}>',
+            close: function(){
+                $.ajax({
+                    url: '<{url action=topc_ctl_member_notice@update}>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {'notice_id': '<{$row.notice_id}>'},
+                    success:function(rs){
+                       window.history.go(0);
+                    }
+                });
+                
+            }
+        });
+    });
+<{/foreach}>
+</script>

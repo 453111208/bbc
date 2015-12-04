@@ -1,0 +1,39 @@
+<div id="cancel_dialog">
+<form action="<{url action=topc_ctl_member_trade@cancelOrderBuyer}>" method="post" class="cancel-form">
+  <div class="order-cancel">
+    <i class="icon icon-information-a" data-icon="\2887"></i>
+    <ul>
+      <li class="form-row">
+        <label for="" class="form-label">订单号：</label>
+        <span class="form-act"><a class="cancel-trade-tid" href=""><{$tid}></a></span>
+      </li>
+      <li class="form-row">
+        <label for="" class="form-label"><em>*</em>取消原因</label>
+        <span class="form-act">
+          <input type="hidden" name="tid" value="<{$tid}>" class="cancel-tid">
+          <select id="cancel_reason_select" name="cancel_reason" required>
+            <option value="">请选择关闭理由</option>
+            <{foreach from=$reason.user item=item key=key}>
+            <option value="<{$key}>"><{$item}></option>
+            <{/foreach}>
+          </select>
+        </span>
+      </li>
+      <li class="form-row" id="other" style="display:none;">
+        <span class="form-act">
+          <textarea name="other_reason" cols="5" size="300" rows="3" maxlength="300" placeholder="请填写取消订单原因"></textarea>
+        </span>
+      </li>
+      <li class="form-row orange">
+        <p>友情提示：<br>订单取消后将无法恢复,您是否确认取消？</p>
+      </li>
+      <li class="form-row">
+        <span class="form-act">
+          <button type="submit" class="btn btn-import act-cancel"><span><span>确认取消</span></span></button>
+          <button type="button" class="btn btn-simple action-reset dialog-btn-close"><span><span>暂不取消</span></span></button>
+        </span>
+      </li>
+    </ul>
+  </div>
+</form>
+</div>

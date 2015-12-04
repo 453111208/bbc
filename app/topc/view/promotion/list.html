@@ -1,0 +1,85 @@
+<{if $group_item}>
+<ul class="clearfix" id="search-list">
+  <{foreach from=$group_item item=item}>
+  <{if $now_time < $activity.start_time}>
+  <li>
+    <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>" class="search-item">
+      <div class="item-img">
+      <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+        <img src="<{$item.item_default_image|storager:'m'}>" alt="">
+      </a>
+      </div>
+      <p class="item-describe">
+        <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+          <span class="item-describe-tag"><{$activity.activity_tag}></span><{$item.title}>
+        </a>
+      </p>
+      <div class="item-info">
+        <p class="item-info-top clearfix">
+          <span class="del"><{$item.price|cur}></span>
+          <!--
+          <span class="buy-num">已有<span class="number"><{$item.sales_count}></span>人购买</span>
+          -->
+        </p>
+        <p class="item-info-bottom clearfix">
+          <span class="buy-numbuy-num"><{$item.activity_price}></span>
+          <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>" class="btn buy-remind">
+            即将开售
+          </a>
+        </p>
+      </div>
+    </a>
+  </li>
+  <{elseif $activity.start_time < $now_time && $now_time < $activity.end_time}>
+  <li>
+    <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>" class="search-item">
+      <div class="item-img"><a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><img src="<{$item.item_default_image|storager:'m'}>" alt=""></a></div>
+      <p class="item-describe"><a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><span class="item-describe-tag"><{$activity.activity_tag}></span><{$item.title}></a></p>
+      <div class="item-info rightnow-buy">
+        <p class="item-info-top clearfix">
+          <span class="del"><{$item.price|cur}></span>
+          <!--
+          <span class="buy-num">已有<span class="number"><{$item.sales_count}></span>人购买</span>
+          -->
+        </p>
+        <p class="item-info-bottom clearfix">
+          <span class="buy-numbuy-num"><{$item.activity_price}></span>
+          <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>" class="btn buy">
+            马上抢
+          </a>
+        </p>
+      </div>
+    </a>
+  </li>
+  <{elseif $activity.end_time < $now_time}>
+  <li>
+    <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>" class="search-item">
+      <div class="item-img">
+      <a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+        <img src="<{$item.item_default_image|storager:'m'}>" alt="">
+      </a>
+      <span class="over-seal">已结束</span>
+      </div>
+      <p class="item-describe"><a href="<{url action=topc_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><span class="item-describe-tag"><{$activity.activity_tag}></span><{$item.title}></a></p>
+      <div class="item-info activity-over">
+        <p class="item-info-top clearfix">
+          <span class="del"><{$item.price|cur}></span>
+        </p>
+        <p class="item-info-bottom clearfix">
+          <span class="buy-numbuy-num"><{$item.activity_price}></span>
+          <!--
+          <span class="buy-num">已有<span class="number"><{$item.sales_count}></span>人购买</span>
+          -->
+        </p>
+      </div>
+    </a>
+    <div class="dv-over"></div>
+  </li>
+  <{/if}>
+  <{/foreach}>
+</ul>
+<{else}>
+<div class="empty-area">
+  <span><i class="icon-result"></i>暂无该活动商品</span>
+</div>
+<{/if}>

@@ -1,0 +1,2 @@
+a:4:{s:2:"id";i:1;s:7:"service";s:21:"sysstat_analysis_sale";s:8:"interval";s:3:"day";s:6:"modify";i:1438272000;}
+a:4:{s:2:"id";i:2;s:7:"service";s:25:"sysstat_analysis_shopsale";s:8:"interval";s:3:"day";s:6:"modify";i:1438272000;}

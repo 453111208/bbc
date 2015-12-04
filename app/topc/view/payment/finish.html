@@ -1,0 +1,11 @@
+<div class="payment mod-bottom">
+  <div class="payment-info">
+    <div class="col-lg-6 success-info">
+      <div class="success-info-l1"><i class="icon icon-checkmark-c"></i>您有<{$payment.num}>笔订单已完成付款</div>
+      <div class="success-info-l2">由<span class="price"><{$payment.pay_name}></span>发生支付，付款金额为<span class="price"><{$payment.money|cur}></span></div>
+    </div>
+  </div>
+  <div class="payment-line">
+    您可以：<a href="<{url action=topc_ctl_member_trade@tradeList}>">查看订单</a>或<a href="<{url action='topc_ctl_default@index'}>">回首页</a>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<app>
+    <name>导入导出</name>
+    <type>core</type>
+
+    <description>导入导出</description>
+
+    <author>
+        <name>shopex开发团队</name>
+        <email>dev@shopex.cn</email>
+        <url>http://www.shopex.cn</url>
+    </author>
+
+    <version>1.0</version>
+    <license>shopex license</license>
+
+    <depends>
+        <app>base</app>
+    </depends>
+</app>

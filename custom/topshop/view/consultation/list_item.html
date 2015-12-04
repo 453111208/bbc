@@ -1,0 +1,65 @@
+<{if $gask}>
+<{foreach from=$gask item=item}>
+<li>
+  <table class="table table-primary table-goods table-order">
+    <thead>
+      <tr>
+        <td colspan="5">
+          <span>咨询的商品： <{$item.item_title}></a></span>
+          <span>咨询时间：<{$item.created_time|cdate}></span>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-6 text-center">
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"> <img width="64" height="64" src="<{$item.image_default_id|storager:'s'}>"></a>
+        </td>
+        <td>
+          <div class="evaluation-txt">
+            买家(<{$item.author}>)咨询
+            <{if $item.is_display == "false"}>
+            <span><a href="#" class="gask_display" data-id="<{$item.consultation_id}>" data-status="<{$item.is_display}>">显示至商品详情页</a></span>
+            <{else}>
+            <span><a href="#" class="gask_display" data-id="<{$item.consultation_id}>" data-status="<{$item.is_display}>">关闭显示</a></span>
+            <{/if}>
+          </div>
+          <div class="evaluation-txt">
+            <p> <{$item.content}> </p>
+          </div>
+          <{if $item.reply}>
+          <div class="feedback">
+            <div class="feedback-tit">卖家(<{$item.reply.author}>)回复
+              <{if $item.reply.is_display == "false"}>
+              <span><a href="#" class="gask_display" data-id="<{$item.reply.consultation_id}>" data-status="<{$item.reply.is_display}>">显示至商品详情页</a></span>
+              <{else}>
+              <span><a href="#" class="gask_display" data-id="<{$item.reply.consultation_id}>" data-status="<{$item.reply.is_display}>">关闭显示</a></span>
+              <{/if}>
+
+              <span><a href="#" class="gask_del" data-id="<{$item.reply.consultation_id}>">删除</a></span>
+            </div>
+            <div class="feedback-txt">
+              <p> <{$item.reply.content}> </p>
+              <span><{$reply.created_time|cdate}></span>
+            </div>
+          </div>
+          <{/if}>
+        </td>
+        <td class="col-4 text-center">
+          <p> <{if $item.contack}> <{$item.contack}><{else}><{$item.author}> <{/if}> （<{if !$item.is_anonymity}>实名<{else}>匿名<{/if}>）</p>
+        </td>
+        <td class="col-6">
+          <{if !$item.is_reply}>
+          <a href="#" data-id="<{$item.consultation_id}>" data-toggle="modal" data-target="#reply_modal" > 回复</a>
+          <{/if}>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+<{/foreach}>
+<{else}>
+<li>
+  <p class="text-muted well no-shadow text-center">暂无数据</p>
+</li>
+<{/if}>

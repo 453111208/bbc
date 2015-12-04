@@ -1,0 +1,191 @@
+<form id="activity_form" name="activity_form" action="?app=syspromotion&ctl=admin_activity&act=save"  method="POST" >
+<input type="hidden" name="ruledata[activity_id]" value="<{$ruleInfo.activity_id}>">
+<div class="tableform">
+<div class="division">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>活动名称：<{/t}></th>
+  <td><{input type="text" name="ruledata[activity_name]" style="width:120px" required="true" rows="50" maxlength="20" vtype='required' value=$ruleInfo.activity_name}></td>
+</tr>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>活动标签：<{/t}></th>
+  <td>
+    <{input type="text" name="ruledata[activity_tag]" value=$ruleInfo.activity_tag rows="8" maxlength="10"}>
+    <span class="notice"  style="margin:10px"><{t}>如“团购”，“限时抢购”<{/t}></span>
+  </td>
+</tr>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>规则描述：<{/t}></th>
+  <td><{input type="textarea"  style=" width:50%" class="inputstyle" name="ruledata[activity_desc]" value=$ruleInfo.activity_desc rows="8"}></td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>报名开始时间：<{/t}></th>
+  <td><{input type="time" name="apply_begin_time" value=$ruleInfo.apply_begin_time vtype="required"}></td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>报名结束时间：<{/t}></th>
+  <td><{input type="time" name="apply_end_time" value=$ruleInfo.apply_end_time vtype="required"}>
+    <span class="notice"  style="margin:10px"><{t}>报名结束时间要大于报名开始时间<{/t}></span>
+  </td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>发布时间：<{/t}></th>
+  <td>
+    <{input type="time" name="release_time" value=$ruleInfo.release_time vtype="required"}>
+    <span class="notice"  style="margin:10px"><{t}>发布时间要介于报名结束时间和开售时间之间，以便留出时间审核商家报名<{/t}></span>
+  </td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>开售时间：<{/t}></th>
+  <td><{input type="time" name="start_time" value=$ruleInfo.start_time vtype="required"}></td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>结束时间：<{/t}></th>
+  <td>
+    <{input type="time" name="end_time" value=$ruleInfo.end_time vtype="required"}>
+    <span class="notice"  style="margin:10px"><{t}>活动结束时间要大于活动开售时间<{/t}></span>
+  </td>
+</tr>
+
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>每人每件限购：<{/t}></th>
+  <td><{input type="text" name="ruledata[buy_limit]"  value=$ruleInfo.buy_limit size="5"}>件</td>
+</tr>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>每间店铺可以报名商品数量：<{/t}></th>
+  <td><{input type="text" name="ruledata[enroll_limit]"  value=$ruleInfo.enroll_limit size="5"}>件</td>
+</tr>
+<{if $ruleInfo.shoptype}>
+<tr>
+  <th><{t}>可报名的店铺类型：<{/t}></th>
+  <td>
+    <{foreach from=$shoptype item=item key=id}>
+    <input type="checkbox" vtype="" name="ruledata[shoptype][]" value="<{$id}>" <{if $item.checked}> checked<{/if}> class="act-custom"> <{$item.name}>
+    <{/foreach}>
+  </td>
+</tr>
+<{else}>
+<tr>
+  <th><{t}>可报名的店铺类型：<{/t}></th>
+  <td>
+    <{foreach from=$shoptype item=item key=id}>
+    <input type="checkbox" vtype="" name="ruledata[shoptype][]" value="<{$id}>" class="act-custom"> <{$item.name}>
+    <{/foreach}>
+  </td>
+</tr>
+<{/if}>
+<{if $ruleInfo.limit_cat}>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>选择参加活动的类目：<{/t}></th>
+  <td>
+    <{foreach from=$cat item=item key=id}>
+    <input type="checkbox" vtype="" name="ruledata[limit_cat][]" value="<{$id}>" <{if $item.checked}> checked<{/if}> class="act-custom"> <{$item.cat_name}>
+    <{/foreach}>
+  </td>
+</tr>
+<{else}>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>选择参加活动的类目：<{/t}></th>
+  <td>
+    <{foreach from=$cat item=item key=id}>
+    <input type="checkbox" vtype="" name="ruledata[limit_cat][]" value="<{$id}>" class="act-custom"> <{$item.cat_name}>
+    <{/foreach}>
+  </td>
+</tr>
+<{/if}>
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>店铺设置商品折扣范围：<{/t}></th>
+  <td>
+    <{input vtype="required" type="text" name="ruledata[discount_min]"  value=$ruleInfo.discount_min }>%  &nbsp; ~
+  <{input  vtype="required" type="text" name="ruledata[discount_max]"  value=$ruleInfo.discount_max}>%
+    <span class="notice"  style="margin:10px"><{t}>折扣范围应大于0，小于100<{/t}></span>
+  </td>
+</tr>
+<tr>
+  <th><em></em><{t}>设置轮播广告页：<{/t}></th>
+  <td>
+    <{if $ruleInfo.slide_images}>
+    <table>
+      <tr>
+        <td>
+          <{input type="image" name="ruledata[slide_images]" value=$ruleInfo.slide_images}>
+        </td>
+      </tr>
+    </table>
+    <{else}>
+    <table>
+      <tr>
+        <td>
+          <{input type="image" name="ruledata[slide_images]"}>
+        </td>
+     </tr>
+    </table>
+    <{/if}>
+  </td>
+</tr>
+<!--
+<tr>
+  <th><em><font color='red'>*</font></em><{t}>是否启用：<{/t}></th>
+  <td><{input type="bool" name="ruledata[enabled]" value=$ruleInfo.enabled}></td>
+</tr>
+-->
+</table>
+</div>
+</div>
+
+<{capture name='footbar'}>
+<table cellspacing="0" cellpadding="0" class="table-action">
+    <tbody><tr valign="middle">
+            <td>
+                <{assign var="___a"  value="关  闭"}>
+                <{assign var="___c"  value=$___b2c='确定退出?'|t:'b2c'}>
+                <{button label=$___b2c="发布并关闭窗口"|t:'b2c' class="btn-primary" type="button" id="submitForm" onclick="submitForm(event,2)"}>
+                <{button label=$___content=$___a|t:'content' class="btn-secondary" type="button" onclick="if(confirm('{$___c}'))window.close()"}>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<{/capture}>
+</form>
+
+<script>
+  $$('.act-autoclose').addEvent('click', function(e){
+    if(this.value == 'true') {
+      this.getNext('input[type=text]').show();
+    }
+    else if(this.value == 'false') {
+      this.getNext('input[type=text]').hide();
+    }
+  });
+var submitForm = function (event,sign){
+  var _form=$('activity_form');
+
+  switch (sign){
+    case 1:
+      var target={
+        onComplete:function(){
+          location.reload();
+        }};
+      break;
+    case 2:
+      var target={
+        onComplete:function(rs){
+          if(rs&&!!JSON.decode(rs).success){
+            try{
+              window.opener.finderGroup['<{$env.get.finder_id}>'].refresh();
+              window.close();
+            }catch(e){}
+          }
+        }};
+      break;
+  }
+  _form.store('target',target);
+  _form.fireEvent('submit',new Event(event));
+};
+</script>
+

@@ -1,0 +1,7 @@
+<cronentries>
+    <cron id="sysstat_tasks_statistic_day">
+        <description>分析统计更新商家每天数据</description>
+        <schedule>0 0 */1 * *</schedule>
+        <enabled>true</enabled>
+    </cron>
+</cronentries>

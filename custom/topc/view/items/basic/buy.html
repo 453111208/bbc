@@ -1,0 +1,158 @@
+<div class="choose">
+    <div class="choose-quantity">
+      <!--   <div class="dt">采购量</div>
+        <div class="dd">
+            <div class="number"> <a href="javascript:void(0);" class="btn btn-flat btn-decrease"><span><span>-</span></span></a>
+            <input type="number" name="item[quantity]" min="1" max="1000" value="1" class="action-quantity-input">
+            <a href="javascript:void(0);" class="btn btn-flat btn-increase"><span><span>+</span></span></a><div class="sl">30台可售</div></div>
+        </div> -->
+    </div>
+    <div class="btn-wrap">
+
+    <input type="hidden" name="item[sku_id]" value="405">
+ <!--    <button type="button" class="btn btn-simple btn-xl action-notify hide"> <span><span>暂不销售</span></span> </button> -->
+    <{if $nologin!=1}>
+        <a href="<{url action=topc_ctl_passport@signin}>" class="btn-zxxj btn btn-import btn-xl btn-fastbuy">
+    <{else}>
+        <{if $myreqsupp != 1}>
+            <{if $enquireinfolist}>
+                <a id="hasenquire" class="btn-zxxj btn btn-import btn-xl btn-fastbuy">
+            <{else}>
+                <a id="enquire" class="btn-zxxj btn btn-import btn-xl btn-fastbuy">
+            <{/if}>
+        <{else}>
+                <a id="noenquire" class="btn-zxxj btn btn-import btn-xl btn-fastbuy">
+        <{/if}>
+    <{/if}>
+    <span><span>在线询价</span></span></a>
+<!--     <a href="javascript:void(0);" class="btn btn-caution btn-xl btn-addcart action-open-dialog hide"> <span><span>到货通知</span></span> </a>  -->
+    <!--注册协议弹框-->
+    <div id="dialog" style="display:none;">
+      <div class="agreement">
+        <!-- <div >该货品暂时缺货，请在下面输入您的邮箱地址，当我们有现货供应时，我们会发送邮件通知您！</div> -->
+        <div>
+          <ul>
+            <li class="form-row">
+              <label class="form-label"><em>*</em>邮箱号</label>
+              <span class="form-act has-figure">
+              <input type="text"  name="email" id="ea" value="" placeholder="邮箱号" >
+              </span> </li>
+          </ul>
+        </div>
+        <div class="text-center"> <a href="javascript:void(0);" class="btn btn-import btn-xl dialog-btn-submit">点击提交</a> </div>
+      </div>
+    </div>
+    <div id="enquireinfo" style="display:none;">
+            <div class="max-menber-mod">
+                <ul  class="editGoods">
+                    <li class="form-row">
+                        <span class="form-label"><font color="red">*</font>您的姓名：</span><input class="x-input" type="text" name="name">
+                        <input type="hidden" name="ifrequire" value="<{$type}>">
+                        <{if $type==2}>
+                            <input type="hidden" name="reqsupp_id" value="<{$requireItem.require_id}>">
+                        <{else}>
+                            <input type="hidden" name="reqsupp_id" value="<{$requireItem.supply_id}>">
+                        <{/if}>
+                    </li>
+                    <li class="form-row">
+                        <span class="form-label"><font color="red">*</font>电子邮件：</span><input class="x-input" type="text" name="email">
+                    </li>
+                    <li class="form-row">
+                        <span class="form-label"><font color="red">*</font>联系方式：</span><input class="x-input" type="text" name="phone">
+                    </li>
+                    <li class="form-row">
+                        <span class="form-label">单位名称：</span><input class="x-input" type="text" name="workName">
+                    </li>
+                    <li class="form-row">
+                        <span class="form-label">单位电话：</span><input class="x-input" type="text" name="workPhong">
+                    </li>
+                    <li class="form-row">
+                        <span class="form-label">备注：</span><textarea rows="2" cols="30" name="note"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btns dialog-info-submit"><span><span>提 交</span></span></button>
+                <button id="closebut" type="button" class="btn btns dialog-btn-close"><span><span>关 闭</span></span></button>
+            </div>
+    </div>
+  </div>
+</div>
+<script>
+$('.dialog-btn-close').click(function(){
+    $('.dialog-btn-close').click();
+});
+$('.action-open-dialog').click(function (e) {
+    e.preventDefault();
+    $('#dialog').dialog({
+        width: 400,
+        height: 400,
+        title:'到货通知',
+        onShow: function(){
+          var self = this;
+          this.content.find('.dialog-btn-submit').click(function (e) {
+            var email = self.content.find('input[name=email]').val();
+            if(confirm("确定要提交吗？")){
+                var url = "<{url action=topc_ctl_memberItem@userNotifyItem}>";
+                var shopId = "<{$item.shop_id}>";
+                var item_id= "<{$item.item_id}>";
+                var sku_id = $('input[name="item[sku_id]"]').val();
+                var data = 'shop_id='+shopId+'&item_id='+item_id+'&sku_id='+sku_id+'&email='+email;
+                console.log(data);
+                $.post(url,data,function(rs){
+                  if(rs.error) {
+                    Message.error(rs.message);
+                  }else{
+                    Message.success(rs.message);
+                  }
+                });
+            }
+          });
+        }
+    });
+});
+$('#enquire').click(function (e) {
+    e.preventDefault();
+    $('#enquireinfo').dialog({
+        width: 890,
+        height: 400,
+        title:'在线询价',
+        onShow: function(){
+          var self = this;
+          // $('#enquireinfo').dialog('close');
+          this.content.find('.dialog-info-submit').click(function (e) {
+            var ifrequire = self.content.find('input[name=ifrequire]').val();  
+            var name = self.content.find('input[name=name]').val();  
+            var email = self.content.find('input[name=email]').val();  
+            var phone = self.content.find('input[name=phone]').val();
+            var workName = self.content.find('input[name=workName]').val();
+            var workPhong = self.content.find('input[name=workPhong]').val();
+            var note = self.content.find('textarea[name=note]').val();
+            var reqsupp_id = self.content.find('input[name=reqsupp_id]').val();
+
+            if(confirm("确定要提交吗？")){
+                var url = "<{url action=topc_ctl_member_enquireinfo@enquireinfo}>";
+                var data = 'ifrequire='+ifrequire+'&name='+name+'&email='+email+'&phone='+phone+'&workName='+workName+'&workPhong='+workPhong+'&note='+note+'&reqsupp_id='+reqsupp_id;
+                console.log(data);
+                $.post(url,data,function(rs){
+                  if(rs.error) {
+                    Message.error(rs.message);
+                  }else{
+                    Message.success(rs.message);
+                    $('#enquireinfo').hide();
+                  }
+                });
+            }
+          });
+        }
+    });
+});
+
+$("#noenquire").click(function(event) {
+    Message.error('不可参与自己发布的供求交易');
+});
+
+$("#hasenquire").click(function(event) {
+    Message.error('该供求已发布询价信息');
+});
+</script>

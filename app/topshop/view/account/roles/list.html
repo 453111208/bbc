@@ -1,0 +1,59 @@
+<a href="<{url action=topshop_ctl_account_roles@edit }>" class="btn btn-primary" >
+  添加角色
+</a>
+<hr>
+<table class="table table-bordered table-shopcat">
+  <colgroup>
+    <col class="col-md-8">
+    <col class="col-md-2">
+  </colgroup>
+  <thead>
+    <tr>
+      <td>角色名称</td>
+      <td><{t}>操作<{/t}></td>
+    </tr>
+  </thead>
+  <{if $data}>
+  <tbody>
+    <{foreach from=$data item=item}>
+    <tr>
+      <td><{$item.role_name}></td>
+      <td>
+        <a href="<{url action=topshop_ctl_account_roles@edit role_id=$item.role_id}>">编辑</a>&nbsp;
+        <a href="<{url action=topshop_ctl_account_roles@delete role_id=$item.role_id}>" class="remove text-danger" >删除</a>
+      </td>
+    </tr>
+    <{/foreach}>
+  </tbody>
+  <{else}>
+  <tbody id="none_cat">
+    <tr class="none-information">
+      <td colspan="5"><p class="text-muted well no-shadow text-center">暂无数据</p></td>
+    </tr>
+  </tbody>
+  <{/if}>
+</table>
+
+<script>
+
+  $('.remove').on('click', function(e) {
+    e.preventDefault();
+    if( confirm('确定删除该角色吗？')) {
+      var href = $(this).attr('href');
+      $.get(href, function(rs) {
+        if(rs.error) {
+          $('#messagebox').message(rs.message);
+          return;
+        }else{
+          $('#messagebox').message(rs.message, 'success');
+        }
+
+        if(rs.redirect) {
+          setTimeout(function(){location.href=rs.redirect;}, 800);
+        }
+
+      });
+    }
+  });
+
+</script>

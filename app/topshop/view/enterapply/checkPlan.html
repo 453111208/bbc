@@ -1,0 +1,15 @@
+<table class="table table-bordered">
+    <tr class="info">
+        <td>入驻进度</td><td>日期</td><td>提示</td>
+    </tr>
+    <{foreach from=$logdata item=log name=name}>
+    <tr>
+        <td><{$log.plan}></td>
+        <td><{$log.times|cdate}></td>
+        <td><{$log.hint}>&nbsp; &nbsp;
+            <{if $log.status == "failing" && $data.status=='failing' && $env.foreach.name.last}><a href="<{url action=topshop_ctl_enterapply@updateApply}>">点此修改您的入驻申请</a><{/if}>
+            <{if $log.status == "opened" && $data.status=='finish'}><a href="<{url action=topshop_ctl_index@index}>">浏览店铺</a><{/if}>
+        </td>
+    </tr>
+    <{/foreach}>
+</table>

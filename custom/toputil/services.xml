@@ -1,0 +1,10 @@
+<services>
+    <service id="html_input">
+        <class>toputil_view_input</class>
+    </service>
+
+    <service id="view_helper">
+        <class>toputil_view_helper</class>
+    </service>
+
+</services>

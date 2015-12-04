@@ -1,0 +1,9 @@
+<services>
+    <service id="desktop_finder.syspromotion_mdl_activity">
+        <class>syspromotion_finder_activity</class>
+    </service>
+    <service id="desktop_finder.syspromotion_mdl_activity_register">
+        <class>syspromotion_finder_activity_register</class>
+    </service>
+</services>
+

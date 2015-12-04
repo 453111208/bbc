@@ -1,0 +1,189 @@
+<form id="checkForm" class="tableform complain"  action="?app=sysrate&ctl=appeal&act=check"  method="POST" >
+  <input type="hidden" name='appeal_id' value=<{$appeal_id}>>
+  <div class="division">
+    <h4>评价信息</h4>
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <th>商品评分:</th>
+          <td><{if $rateData.result=='good'}>好评<{elseif $rateData.result=='bad'}>差评<{else}>中评<{/if}></td>
+        </tr>
+        <tr>
+          <th>评价内容:</th>
+          <td><{$rateData.content}></td>
+        </tr>
+        <{if $rateData.rate_pic}>
+        <tr>
+          <th>晒图:</th>
+          <td>
+            <{if $rateData.rate_pic}>
+            <ul class="thumb">
+              <{foreach from=$rateData.rate_pic item=pic}>
+              <li><img src="<{$pic|storager:'s'}>"></li>
+              <{/foreach}>
+            </ul>
+            <{else}>
+            没有晒图
+            <{/if}>
+          </td>
+        </tr>
+        <{/if}>
+        <tr>
+          <th>评价时间:</th>
+          <td><{$rateData.created_time|cdate}></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="division">
+    <h4>订单信息</h4>
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <th>订单号:</th>
+          <td><{$trade.tid}></td>
+          <th>订单状态:</th>
+          <td><{$trade.status_des}></td>
+          <th>店铺名称:</th>
+          <td><{$trade.shop_id|shopname}></td>
+        </tr>
+        <tr>
+          <th>下单时间:</th>
+          <td><{$trade.created_time|cdate}></td>
+          <th>发货时间:</th>
+          <td><{$trade.consign_time|cdate}></td>
+          <th></th>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="division">
+      <div  class="table-grid">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gridlist">
+          <col style="width:10%"/>
+          <col style="width:40%"/>
+          <col style="width:10%"/>
+          <col style="width:10%"/>
+          <col style="width:10%"/>
+          <col style="width:10%"/>
+          <col style="width:10%"/>
+          <thead>
+            <th><{t}>货号<{/t}></th>
+            <th><{t}>商品名称<{/t}></th>
+            <th><{t}>已发货量<{/t}></th>
+            <th><{t}>单价<{/t}></th>
+            <th><{t}>购买量<{/t}></th>
+            <th><{t}>合计金额<{/t}></th>
+            <th><{t}>卖家手动调整金额<{/t}></th>
+          </thead>
+          <{if count($trade.orders) > 0}>
+          <{foreach from=$trade.orders item=aGoods name="item"}>
+          <tr>
+            <td width="10%"><{$aGoods.bn}></td>
+            <td class="textleft" width="40%">
+              <a href="<{url action=topc_ctl_item@index item_id=$aGoods.item_id}>" target="_blank"><{$aGoods.title}></a>
+            </td>
+            <td class="Colamount" width="10%"><{$aGoods.sendnum}></td>
+            <td width="10%"><{$aGoods.price|cur:$order.currency}></td>
+            <td class="Colamount" width="10%"><{$aGoods.num}></td>
+            <td class="Colamount" width="10%"><{$aGoods.total_fee|cur:$order.currency}></td>
+            <td class="Colamount" width="10%"><{$aGoods.adjust_fee|cur:$order.currency}></td>
+          </tr>
+          <{/foreach}>
+          <{/if}>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="division">
+    <h4>申诉进度</h4>
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <th>申诉类型:</th>
+          <td><{if $appealData.appeal_type == 'APPLY_DELETE' }>申请删除评论<{else}>申请修改评论<{/if}></td>
+          <th>申诉状态:</th>
+          <td>
+            <{if $appealData.status == 'WAIT'}>
+            等待处理
+            <{elseif $appealData.status == 'REJECT'}>
+            申诉驳回，可以再次申诉
+            <{elseif $appealData.status == 'SUCCESS'}>
+            申诉成功
+            <{elseif $appealData.status == 'CLOSE'}>
+            申诉关闭，不可再次申诉
+            <{/if}>
+          </td>
+          <th>最后修改时间:</th>
+          <td><{$appealData.modified_time|cdate}></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="">
+      <{include file="sysrate/appeal/appeal.html"}>
+    </div>
+    <{if $appealData.status == 'WAIT'}>
+    <div class="reject-edit">
+      <table width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <th>审核结果:</th>
+            <td>
+              <div class="prop_type">
+                <label><input type="radio" name="result" id="pass" value="true" checked> 通过</label>
+                &nbsp; &nbsp;
+                <label><input type="radio" name="result" id="no_pass" value="false"> 驳回</label>
+              </div>
+            </td>
+          </tr>
+          <tr id="appeal_text" style="display:none">
+            <th>驳回理由:</th>
+            <td><textarea type="textarea" vtype="required" name='reason' cols="60" rows="5" maxlength="200" placeholder="如果选择驳回则必填，请填写驳回申诉原因"></textarea></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <{/if}>
+  </div>
+  <{if $appealData.status == 'WAIT'}>
+  <div class="table-action">
+    <{button type="submit" id='check-form-submit' label="提交审核"}>
+    <{button type="button btn-secondary" isclosedialogbtn="1" label="关闭"}>
+  </div>
+  <{/if}>
+</form>
+<script>
+  $('pass').addEvent('click', function(){
+    if(this.getProperty('checked')==true){
+      $('appeal_text').setStyle('display', 'none');
+    }else{
+      $('appeal_text').setStyle('display', '');
+    }
+  });
+
+$('no_pass').addEvent('click', function(){
+  if(this.getProperty('checked')==true){
+    $('appeal_text').setStyle('display', '');
+  }else{
+    $('appeal_text').setStyle('display', 'none');
+  }
+});
+
+$('checkForm').store('target',{
+  onComplete:function(rs){
+    if(!rs) return;
+    rs = JSON.decode(rs);
+    if(rs.success){
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('checkForm').getParent('.dialog')){
+        var Dlg = $('checkForm').getParent('.dialog').retrieve('instance');
+        if(Dlg.update){
+          Dlg.update.retrieve('instance').initContent();
+        }
+        Dlg.close();
+      }
+    }
+  }
+
+});
+</script>

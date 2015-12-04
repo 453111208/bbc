@@ -1,0 +1,63 @@
+<div class="forgot-content">
+  <div class="safe-box">
+    <h1 class="header-title">找回密码</h1>
+    <div class="status-bar" id="forgot_step">
+      <div >1 填写账户名<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>2 身份验证<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div class="on"><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3 设置新密码<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>4 设定完成</div>
+    </div>
+    <div id="forgot_pass">
+      <form action="<{url action=topc_ctl_passport@findPwdFour}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+        <input type="hidden" name="userid" value="<{$data.user_id}>">
+        <input type="hidden" name="key" value="<{$data.key}>">
+        <input type="hidden" name="account" value="<{$account}>">
+        <ul>
+          <li class="form-row">
+            <label for="" class="form-label">新密码</label>
+            <span class="form-act">
+              <input class="input-ln auto-password-check-handle" type="password" name="password" id="" placeholder="6-20个字符" minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符">
+              <div class="password-check">
+                <q>安全程度</q>
+                <span class="progress">
+                  <em class="weak">弱</em><em class="good">中</em><em class="strong">强</em>
+                </span>
+              </div>
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">确认新密码</label>
+            <span class="form-act">
+              <input class="input-ln" type="password" name="confirmpwd" id="" required data-equalto="password">
+            </span>
+          </li>
+          <li class="form-row">
+            <span class="form-label"></span>
+            <span class="form-act">
+              <button type="submit" class="btn btn-import" rel="_request"><span><span>下一步</span></span></button>
+            </span>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function updateStep(i) {
+    var step = $('#forgot_step');
+    step.children().eq(i).addClass('on').siblings('.on').removeClass('on');
+  };
+
+$('#ajaxForm').data('validateConfig', {
+  tips:{
+         'class': 'caution col-lg-3'
+       }
+})
+.find('button[type=submit]').data('ajaxConfig', {
+  "update": "#forgot_pass",
+  callback: function(rs){
+    updateStep(3);
+  }
+});
+
+</script>

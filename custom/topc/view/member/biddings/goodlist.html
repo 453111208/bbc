@@ -1,0 +1,37 @@
+      <{if $rows}>
+        <{foreach from=$rows item=item}>
+<li class="isitem">
+ <input value="<{$item.item_id}>" type="hidden" name="item_id[]">
+          <input value="<{$item.standardg_item_id}>" type="hidden" name="standardg_item_id[]">
+        <div class="max-the-Commodity">
+                <div class="max-Commodity re  form-row">
+            <span class="max-c-name">
+              <a class="max-fox1"><img style="width:40px;" src="<{$item.image_id}>"></a>
+              <a><{$item.title}></a>
+            </span>
+            <span class="max-c-Number" style="width:90px" >数量： 
+              <input value="" data-validate="number" class="count" required type="text" name="num[]" style="height:18px;width:34px;line-height:18px;"></span>
+            <span class="max-c-Number">单位：<em>
+            <select  required  name="unit[]" >
+              <option value="">请选择</option>
+              <option value="克">克</option>
+              <option value="千克">千克</option>
+              <option value="吨">吨</option>
+              <option value="个">个</option>
+              <option value="台">台</option>
+              <option value="只">只</option>
+            </select>
+            <!-- <input value="" type="text" name="unit[]" style="height:18px;width:34px;line-height:18px;"> -->
+            </em></span>
+            <span class="max-c-price">
+              底价：     
+              <input value="" class="max-Number price"  required data-validate="number" name="net_price[]" style="width:50px">
+<!--               <a href="javascript:;" class="max-c-plus"></a>
+              <a href="javascript:;" class="max-c-minus"></a> -->
+            </span>
+       
+          </div>
+          </div>
+        </li>
+<{/foreach}>
+         <{/if}>

@@ -1,0 +1,52 @@
+<div class="maxM-right">
+<div class="col-lg-12 box main_page">
+    <a class="btnpa" href="<{url action=topc_ctl_member_info@editInfo}>" style="cursor: pointer"><span>发布新资讯</span></a>
+<{if !$infoList}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">没有发布新资讯</span></span>
+    </div>
+     <{else}>
+      <span class="num">企业可以发布<em>100</em>条，已发布<em><{$infoCounts}></em>条，剩余<em><{100-$infoCounts}></em>条</span>
+      <table class="item-table table-goods">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+          </colgroup>
+        <thead>
+            <tr>
+              <td>操作</td>
+              <td>发布人</td>
+              <td>资讯标题</td>
+              <td>发布状态</td>
+              <td>发布时间</td>
+<!--              <td>操作</td>-->
+            </tr>
+        </thead>
+         <{foreach from=$infoList item=info}>
+            <tbody>
+                <tr>
+                <td><a class="btnp" href="<{url action=topc_ctl_info@getInfo articleId=$info.article_id}>" style="cursor: pointer"><span>查看</span></a></td>
+                <td><{$infoName}></td>
+                <td><{$info.title}></td>
+                <td>
+                    <{if $info.status}>
+                    已审核
+                    <{else}>
+                    未审核
+                    <{/if}>
+                </td>
+                <td><{$info.pubtime|cdate}></td>
+<!--                <td><button>编辑</button></td>-->
+                </tr>
+            </tbody>
+          <{/foreach}>
+      </table>
+        <{/if}>
+        </div>
+</div>

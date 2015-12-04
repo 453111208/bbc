@@ -1,0 +1,16 @@
+<{lang_script src="lang.js" app="site"}>
+<{if config::get('app.debug', false)}>
+  <{script src="lib/lab.js" app="site"}>
+  <{script src="lib/jquery.js" app="site"}>
+  <{script src="lib/jquery.cookie.js" app="site"}>
+  <{script src="tools.js" app="site"}>
+  <{script src="switchable.js" app="site"}>
+  <{script src="dialog.js" app="site"}>
+  <{script src="uploader.js" app="site"}>
+<{else}>
+  <{script src="lib/lab.min.js" app="site"}>
+  <{script src="lib/jquery.min.js" app="site"}>
+  <{script src="ui.min.js" app="site"}>
+<{/if}>
+
+

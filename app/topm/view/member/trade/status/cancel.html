@@ -1,0 +1,65 @@
+<div class="order-cancel">
+  <{include file="topm/member/trade/detail_header.html"}>
+  <div class="main">
+    <div class="status-info info-area">
+      <div class="info-l info">
+        <span class="icon icon-book"></span>
+      </div>
+      <div class="info-m">
+        <span class="status">未付款</span>
+        <table>
+          <tr class="theme">
+            <td class="tit">商品金额(含运费)：</td>
+            <td class="con"> <{$trade.payment|cur}></td>
+          </tr>
+          <tr class="more">
+            <td class="tit">运费：</td>
+            <td class="con"><{$trade.post_fee|cur}></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <form action="<{url action=topm_ctl_member_trade@cancelBuyer}>" method="post" class="cancel-form">
+      <input type="hidden" name="tid" value="<{$tid}>" class="cancel-tid">
+      <div class="cancel-reason">
+        <div class="ui-btn-group">
+          <ul>
+            <{foreach from=$reason.user item=userreason key=key name=reason}>
+            <li>
+              <span class="choose"></span>
+              <input id="input<{$key}>" class="button" type="radio" <{if $env.foreach.reason.first}>checked<{/if}> name="cancel_reason" value="<{$key}>">
+              <label for="input<{$key}>">
+                <span class="ui-btn-text"><{$userreason}></span>
+              </label>
+            </li>
+            <{/foreach}>
+            <li id="other">
+              <textarea name="other_reason" cols="5" size="300" rows="3" maxlength="300" placeholder="请填写取消订单原因"></textarea>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="send-apply">
+        <button type="submmit" class="ui-btn-warning">确认取消</button>
+      </div>
+    </form>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+</div>
+
+
+<script>
+$('.button').button();
+
+$('.button').change(function(e) {
+  $(this).siblings('span').addClass('chosen').parent().siblings().children('span').removeClass('chosen');
+  if(this.value == 'other') {
+    $('#other').show().find('textarea')[0].required = true;
+  }
+  else {
+    $('#other').hide().find('textarea')[0].required = false;
+  }
+}).eq(0).trigger('change');
+</script>
+

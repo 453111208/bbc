@@ -1,0 +1,131 @@
+
+		<!-- 右边版块 -->
+		<div class="maxmain-right r">
+
+	<!-- 企业介绍 -->
+				<div class="maxpr-solid maxproduct maxproduct-gufei">
+					<div class="max-p-title t3">
+						<div class="xian"></div>
+						<div class="h3">公司简介</div><i></i>
+					</div>
+					<div class="max-tabs-body">
+			
+								
+				
+						<div class="maxbox js">
+							<div class="clearfix">
+								<a class="max-pic" href="" title=""><img style="width: 120px;height: 60px" src="<{$shopList[0].shop_logo}>" alt="" /></a>
+								<div class="max-text">
+									<h6><{$shopList[0].shop_name}></h6>
+									<{$shopList[0].shop_descript}>
+								</div>
+							</div>
+							
+						</div>
+
+						<div class="maxpr-solid maxhd f3">
+							<div class="max-tabs-body">
+							<div class="maxcomon">
+							<ul>
+								<li>
+				                  <a href="" title=""><img src="<{$shopinfoList[0].license_img}>" alt="" />
+				                  <span>营业执照副本</span>
+				                  </a>
+				                  
+				                </li>
+				               <!--  <li>
+				                  <a href="" title=""><img src="<{$shopinfoList[0].corporate_identity_img}>" alt="" />
+				                  <span>法人身份证</span>
+				                  </a>
+				                  
+				                </li> -->
+				                <li>
+				                  <a href="" title=""><img src="<{$shopinfoList[0].tissue_code_img}>" alt="" />
+				                    <span>组织机构证件</span>
+				                  </a>
+				                
+				                </li>
+							</ul>
+						</div>
+						</div>
+						</div>
+				
+					</div>
+					
+			</div>
+				<!-- 企业介绍end -->
+				<!-- 滑动展示一 -->
+				<div class="maxpr-solid maxhd f4">
+					<div class="max-p-title t3">
+						<div class="xian"></div>
+						<div class="h3">资质证书</div><i></i>
+						
+						
+					</div>
+					<div class="max-tabs-body">
+						<div class="maxcomon">
+							<div class="prev"></div>
+							<div class="next"></div>
+							<ul>
+								<{foreach from=$QualificationsImgList item=QualificationsImg}>
+				                <li>
+				                  <a href="" title=""><img src="<{$QualificationsImg.img}>" alt="" />
+				                    <span><{$QualificationsImg.imgname}></span>
+				                  </a>
+				                </li>
+				                <{/foreach}>
+							</ul>
+						</div>
+					
+						
+					</div>
+
+					
+				</div>
+				
+				<div class="maxpr-solid maxhd news">
+					<div class="max-p-title t3">
+						<div class="xian"></div>
+						<div class="h3">企业新闻</div><i></i>
+						<!-- <div class="maxmore"><a href="" title="">更多></a></div> -->
+						
+					</div>
+					<!-- 展示 -->
+			
+					<div class="maxcomon maxbox item-list">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+							<colgroup>
+							  <col class="col-6">
+							  <col class="col-3">
+							  <col class="col-3">
+							  <col class="col-2">
+							</colgroup>
+							
+							<tbody>
+							<{foreach from=$articleList item=article}>
+								<{if $article.rowno%2 == 1}>
+								<tr class="odd first">
+								<{elseif $article.rowno%2 == 0}>
+								<tr class="">
+								<{/if}>
+									<td>
+										<div class="n">
+											<div class="shu"></div>
+											<div class="time"><{$article.modified|cdate}></div>
+											<i class="q"></i>
+											<div class="max-text"><{$article.content}></div>
+										</div>
+									</td>
+									<td><a class="btn" href="" title="">查看详情</a></td>
+								</tr>
+							<{/foreach}>
+
+							</tbody>
+						</table>
+					</div>
+					<!-- 展示 -->
+				
+				</div>
+		</div>
+		<!-- 右边版块 -->
+

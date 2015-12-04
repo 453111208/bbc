@@ -1,0 +1,225 @@
+
+        <div class="max-p-title t3" style="margin-bottom:0">
+          <div class="xian"></div>
+          <div class="h3">最新交易</div>
+          <div class="maxsubmenu"><a href="" title="">进行中的竞价：<span><{$biddcount}></span></a>|<a href="" title="">进行中的招标：<span><{$tendcount}></span></a></div>
+          
+          <i></i>
+          <!-- <div class="maxmore"><a href="" title="">更多></a></div> -->
+        </div>
+        <div class="maxbox item-list">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" aling="left">
+            <colgroup>
+              <col class="col-6">
+              <col class="col-3">
+              <col class="col-3">
+              <col class="col-2">
+            </colgroup>
+            <thead>
+              <tr>
+              
+                <th class="item1" >发布交易信息</th>
+                <!-- <th >类型</th> -->
+                <th>创建时间</th>
+                <th>报价数</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <{foreach from=$trandeList item=trandeItem}>
+              <tr class="t">
+            
+                <td>
+                  <div class="n" >
+                 <div class="shu"></div>
+                    <div class="time" style="width:170px;" ></div>
+                    <i class="q"></i>
+                    <div class="max-text"> <{$trandeItem.title}></div>
+                  </div>
+                </td>
+               <!--    <td>
+   
+              <{if $trandeItem.type=="1"}>竞价<{else}>招标<{/if}></td> -->
+                <td><{$trandeItem.create_time|cdate}></td>
+                <td>已有报价数<i class="color"><{$trandeItem.Tcount}></i>条</td>
+                <td>
+                <{if $trandeItem.type=="1"}>
+                <a class="btn" href="<{url action=topc_ctl_bidding@index bidding_id=$trandeItem.id}>" title="">查看详情</a>
+                <{else}>
+                 <a class="btn" href="<{url action=topc_ctl_tender@index  tender_id=$trandeItem.id}>" title="">查看详情</a>
+                <{/if}>
+                </td>
+              </tr>
+              <{/foreach}>
+            </tbody>
+          </table>
+        </div>
+        <!-- 滑动展示一 -->
+        <div class="maxpr-solid maxhd">
+          <div class="max-p-title t3">
+            <div class="xian"></div>
+            <div class="h3">成品信息</div><i></i>
+            <!-- <div class="maxmore"><a href="" title="">更多></a></div> -->
+            <div class="max-tabs-top">
+              <ul>
+               <li class="active first" ><span>成品</span></li>
+               <li class="last"><span>生产设备</span></li>
+              </ul>
+              
+            </div>
+          </div>
+          <div class="max-tabs-body">
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+
+              <ul>
+                <{foreach from=$BzItemList item=Bzitem}>
+                 <li><a href="" title="" style="cursor: default;"><img src="<{$Bzitem.image_default_id}>" alt="" /><span><{$Bzitem.title}>
+                   <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                <{else}>
+                <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$Bzitem.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+              <{/if}>
+                 </span></a></li>
+                <{/foreach}>
+                
+              </ul>
+            </div>
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+              <ul>
+                
+                   <{foreach from=$BzItemSbList item=Bzitem}>
+                 <li><a href="" title="" style="cursor: default;"><img src="<{$Bzitem.image_default_id}>" alt="" /><span><{$Bzitem.title}>
+             <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                <{else}>
+                <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$Bzitem.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+              <{/if}>
+                 </span></a></li>
+                <{/foreach}>
+              </ul>
+            </div>
+            
+          </div>
+
+          
+        </div>
+        <!-- 滑动展示END一 -->
+        <!-- 滑动展示一 -->
+        <div class="maxpr-solid maxhd">
+          <div class="max-p-title t2">
+            <div class="xian"></div>
+            <div class="h3">固废品信息</div><i></i>
+           <!--  <div class="maxmore"><a href="" title="">更多></a></div> -->
+            <div class="max-tabs-top">
+              <ul>
+               <li class="active first" ><span>固废</span></li>
+               <li class="last"><span>储存状态</span></li>
+              </ul>
+              
+            </div>
+          </div>
+          <div class="max-tabs-body">
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+              <ul>
+                <{foreach from=$NBzItemList item=NBzitem}>
+                <li><a href="" title="" style="cursor: default;"><img src="<{$NBzitem.image_default_id}>" alt="" /><span><{$NBzitem.title}>
+                <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                <{else}>
+                <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$NBzitem.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+              <{/if}>
+                </span></a></li>
+               <{/foreach}>
+              </ul>
+            </div>
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+              <ul>
+               <{foreach from=$NBzItemCcList item=NBzitemCc}>
+                <li><a href="" title="" style="cursor: default;"><img src="<{$NBzitemCc.image_default_id}>" alt="" /><span><{$NBzitemCc.title}>
+              <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                <{else}>
+                <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$NBzitemCc.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+              <{/if}>
+                </span></a></li>
+               <{/foreach}>
+              </ul>
+            </div>
+            
+          </div>
+
+          
+        </div>
+        <!-- 滑动展示END一 -->
+        <!-- 滑动展示一 -->
+        <div class="maxpr-solid maxhd f3">
+          <div class="max-p-title t3">
+            <div class="xian"></div>
+            <div class="h3">产品出售</div><i></i>
+           <!--  <div class="maxmore"><a href="" title="">更多></a></div> -->
+            
+          </div>
+          <div class="max-tabs-body">
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+              <ul>
+                <{foreach from=$projectitemList item=projectitem}>
+                 <li>
+                  <a href="" title="" style="cursor: default;"><img src="<{$projectitem.image_default_id}>" alt="" />
+                    <span><{$projectitem.title}>
+                       <{if $nologin!=1}>
+                <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                <{else}>
+                <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$projectitem.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+              <{/if}>
+                    </span>
+                  </a>
+                 </li>
+                <{/foreach}>
+              </ul>
+            </div>
+          
+            
+          </div>
+
+          
+        </div>
+        <!-- 滑动展示END一 -->
+        <!-- 滑动展示一 -->
+        <div class="maxpr-solid maxhd f4">
+          <div class="max-p-title t3">
+            <div class="xian"></div>
+            <div class="h3">资质证书</div><i></i>
+            <!-- <div class="maxmore"><a href="" title="">更多></a></div> -->
+            
+          </div>
+          <div class="max-tabs-body">
+            <div class="maxcomon">
+              <div class="prev"></div>
+              <div class="next"></div>
+              <ul>
+                  <{foreach from=$QualificationsImgList item=QualificationsImg}>
+                 <li>
+                  <a href="" title="" style="cursor: default;"><img src="<{$QualificationsImg.img}>" alt="" />
+                    <span><{$QualificationsImg.imgname}></span>
+                  </a>
+                </li>
+                <{/foreach}>
+              </ul>
+            </div>
+          
+            
+          </div>
+
+          
+        </div>
+        <!-- 滑动展示END一 -->

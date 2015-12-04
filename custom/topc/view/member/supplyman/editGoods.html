@@ -1,0 +1,391 @@
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="images/test/demo.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg-editor.js"></script>
+     <link rel="stylesheet" href="images/menber/css.css">
+    <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="images/css/wysiwyg-editor.css" />
+</head>
+<form action="<{url action=topc_ctl_member_supplyman@SaveGoods}>" method="post" id="ajaxForm" class="form-tip-horizontal " >
+    <{if $supplyinfo != null}>
+        <input type="hidden"  name="supply_id" value="<{$supplyinfo.supply_id}>">
+    <{/if}>
+    <div class="maxM-right">
+        <div class="col-lg-12 box  main_page" style="margin-left: 0px">
+        <div class="max-menber-title">
+            <h2>供应基本信息</h2>
+        </div>
+        <div class="max-menber-mod">
+        <ul class="editGoods">
+            <li class="form-row">
+            <ul id="list1" style="width:400px;height: 30px;">
+            <li id="summary-stock">
+                <div class="dt" style="width:95px">选择分类：</div>
+                <div class="dd" style="width:260px">
+                    <div id="store-selector">
+                        <div class="text"><{$supplyinfo.cat_name}><div>
+                        </div><b></b></div>
+                        <div class="content">
+                            <div data-widget="tabs" class="m JD-stock" id="JD-stock">
+                                <div class="mt">
+                                    <ul class="tab">
+                                        <li data-index="0" data-widget="tab-item" class="curr"><a href="#none" class="hover"><em>请选择</em><i></i></a></li>
+                                        <li data-index="1" data-widget="tab-item" style="display:none;"><a href="#none" class=""><em>请选择</em><i></i></a></li>
+                                        <li data-index="2" data-widget="tab-item" style="display:none;"><a href="#none" class=""><em>请选择</em><i></i></a></li>
+
+                                    </ul>
+                                    <div class="stock-line"></div>
+                                </div>
+                                <div class="mc" data-area="0" data-widget="tab-content" id="stock_province_item">
+                                    <ul class="area-list">
+                                        <{foreach from=$catList item=cat}>
+                                        <li><a href="#none" data-value="<{$cat.cat_id}>"><{$cat.cat_name}></a></li>
+                                        <{/foreach}>
+                                    </ul>
+                                </div>
+                                <div class="mc" data-area="1" data-widget="tab-content" id="stock_city_item">
+                                   
+                                </div>
+                                <div class="mc" data-area="2" data-widget="tab-content" id="stock_area_item"></div>
+                                <div class="mc" data-area="3" data-widget="tab-content" id="stock_town_item"></div>
+                            </div></div>
+                            <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
+                            </div><!--store-selector end-->
+                            <div id="store-prompt"><strong></strong></div><!--store-prompt end-->
+                        </div>
+                    </li>
+                </ul>
+                <input type="hidden" name="cat_id" id="catId" value="<{$supplyinfo.cat_id}>">
+                <input type="hidden" name="cat_name" id="cat_name" value="<{$supplyinfo.cat_name}>">
+            </li>
+            <li class="form-row">
+          	<span>品名：</span>
+          	<input type="text" name="variety_name" value="<{$supplyinfo.variety_name}>">
+            </li>
+            <li >
+          	<span>有效时间：</span>
+          	<input type="radio" class="efftime" style="width:15px;"name="effective_time" value="一个月">一个月
+            <input type="radio" class="efftime" style="width:15px;"name="effective_time" value="三个月">三个月
+            <input type="radio" class="efftime" style="width:15px;"name="effective_time" value="六个月">六个月
+            <input type="radio" class="efftime" style="width:15px;"name="effective_time" value="一年">一年
+            <input type="radio" class="efftime" style="width:15px;" name="effective_time" value="永久">永久
+            </li>
+            <li class="form-row">
+          	<span><font color=red>*&nbsp;</font>价格方式：</span>
+                <input type="radio" class="pricetype" style="width:15px;" name="price_method" value="gongkai">价格公开
+                <input type="radio" class="pricetype" style="width:15px;" name="price_method" value="mianyi">价格面议
+            </li>
+            <li id="price" style="display: none" class="form-row">
+            <span>价格：</span>
+                <input type="text" name="price" value="<{$supplyinfo.price}>">
+            </li>
+            <li id="countnum" style="display: none" class="form-row">
+            <span>数量：</span>
+                <input type="text" name="countnum" value="<{$supplyinfo.countnum}>">
+            </li>
+            <li id="company" style="display: none" class="form-row">
+            <span>单位：</span>
+                <input type="text" name="company" value="<{$supplyinfo.company}>">
+            </li>
+            <li class="form-row">
+                <span>图片上传：</span>
+                <!-- <label class="max-data-left Up">图片上传：</label> -->
+                <div class="max-data-right">
+                    <div class="images-uploader">
+                        <{if $supplyinfo.list_image != "" && $supplyinfo.list_image != null}>
+                            <{foreach from=$listimage item=image}>
+                            <div class="handle img-thumbnail"><i class="icon-close-b action-remove" style="display: none;"></i><a href="" target="_blank"><img src="<{$image}>"></a><input type="hidden" name="list_image[]" value="<{$image}>"></div>
+                            <{/foreach}>
+                        <{/if}>
+
+                        <div class="handle img-thumbnail action-upload">
+                            <input type="file" name="list_image[]" data-max="10" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>
+                            " />
+                            <span class="icon-add" style="font-size: 30px;color: #AAAAAA;line-height: 62px;text-align: center;width: 52px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            </ul>
+        </div>
+        <div class="max-menber-title">
+            <h2>产品介绍</h2>
+        </div>
+        <div class="max-menber-mod">
+            <textarea id="editor1" name="product_intro" placeholder="Type your text here..."><{$supplyinfo.product_intro}></textarea>
+        </div>
+        <div class="max-menber-title">
+            <h2>联系人</h2>
+        </div>
+        <div class="max-menber-mod">
+        <ul  class="editGoods">
+            <li class="form-row">
+          	<span>联系人：</span>
+          	<input type="text" name="name" value="<{$supplyinfo.name}>">
+            </li>
+            <li class="form-row">
+          	<span>联系电话：</span>
+          	<input type="text" name="tel" value="<{$supplyinfo.tel}>">
+            </li>
+            <li class="form-row">
+          	<span>邮箱：</span>
+          	<input type="text" name="email" value="<{$supplyinfo.email}>">
+            </li>
+            <!-- <li class="form-row">
+          	<span><a href="#" class="btn btn-simple btn-sm act-mergepay" style='background: #D2D2D2'>关联商品</a></span>
+            </li> -->
+            <li class="form-row">
+                <input type="checkbox" style="height: 16px;width:40px" class="x-checkbox" name="license" id="for_license" data-validate="onerequired" data-caution="<{t}>请选择同意<{/t}>">
+                <label for="for_license">
+                  我已阅读并同意
+                  <a href="javascript:void(0);" class="action-open-dialog">《供求发布协议》</a>
+                </label>
+            </li>
+        </ul>
+        </div>
+        <div class="maxM-buttom">
+            <!-- <button type="submit" class="btn btns" rel="_request"><span>提交平台审核</span></button> -->
+            <button id="savebutton" type="submit" disabled="true" class="btn btnp" rel="_request"><span>保 存</span></button>
+            <button type="button" class="btn btnc"  onclick="javascript:history.go(-1);"><span>取 消</span></button>
+        </div>
+        </div>
+
+        <div id="dialog" style="display:none;">
+            <div class="agreement">
+                <div class="title">供求发布协议</div>
+                <div><{$license}></div>
+                <div class="text-center"><a href="javascript:void(0);" class="btn btn-import btn-lg dialog-btn-close"><span><span>同意并继续</span></span></a></div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+<{if $supplyinfo != null}>
+    $("input[type='radio'][class='efftime'][value=<{$supplyinfo.effective_time}>]").attr("checked",true);
+    $("input[type='radio'][class='pricetype'][value=<{$supplyinfo.price_method}>]").attr("checked",true);
+    <{if $supplyinfo.price_method == "gongkai"}>
+        document.getElementById("price").style.display="block";
+        document.getElementById("countnum").style.display="block";
+        document.getElementById("company").style.display="block";
+    <{/if}>
+<{/if}>
+
+// $(window).on('load',function(){
+    // var text = $("#selectOption_2").find("option:selected").text();
+    // $("#cat_name").val(text);
+    // $("#selectOption_2").change(function(event) {
+    //     $("#cat_name").val($(this).find("option:selected").text());
+    //     });
+    // });
+// $("#selectOption").change(function(){
+//     $("#selectOption_1").find("option[value!='null']").remove();
+//     $("#selectOption_2").find("option[value!='null']").remove();
+//     $("#props").empty();
+//     var level = "1";
+//     var value= $(this).find("option:selected").val();
+//     if(value!="null"){
+//         setOption(value,level,"selectOption_1");
+//     }
+// });
+// $("#selectOption_1").change(function(){
+//         $("#selectOption_2").find("option[value!='null']").remove();
+//         $("#props").empty();
+//         var level = "2";
+//         var value= $(this).find("option:selected").val();
+//         if(value!="null"){
+//             setOption(value,level,"selectOption_2");
+//         }
+// });
+// $("#selectOption_2").change(function(){
+//         var value= $(this).find("option:selected").val(); 
+//         $("#props").empty();
+//         if(value!="null"){
+//         setProp(value);
+//         $("#catId").val(value);
+//         }
+// });
+$("input[name='price_method']").click(function(){
+    var pricemethod = document.getElementsByName("price_method");
+    for(var i=0;i<pricemethod.length;i++)
+    {
+        if(pricemethod[i].checked){
+            var pricemethodval = pricemethod[i].value;
+            if(pricemethodval == "gongkai"){
+                document.getElementById("price").style.display="block";
+                document.getElementById("countnum").style.display="block";
+                document.getElementById("company").style.display="block";
+            }else{
+                <{if $supplyinfo == null}>
+                    $("input[name='price']").val("");
+                    $("input[name='countnum']").val("");
+                    $("input[name='company']").val("");
+                <{/if}>
+                document.getElementById("price").style.display="none";
+                document.getElementById("countnum").style.display="none";
+                document.getElementById("company").style.display="none";
+            }
+            break;
+        }
+    }
+});
+// function setOption(value,level,id){
+//     $.ajax({
+//         url: '<{url action=topc_ctl_member_goods@getOption}>',
+//         type: 'post',
+//         data: {"level": level,"parent":value},
+//         success:function(result){
+//             for (var i=0;i<result.datas.length;i++) {
+//                 var option ="<option value='"+result.datas[i].cat_id+"'>"+result.datas[i].cat_name+"</option>"
+//                 $("#"+id).append(option);
+//             };
+//         }
+//     });	
+// }
+// function setProp(value){
+//     $.ajax({
+//         url: '<{url action=topc_ctl_member_goods@getProp}>',
+//         type: 'post',
+//         data: {"catId":value},
+//         success:function(result){
+//             for(var i=0;i<result.datas.length;i++){
+//                 var props = result.datas[i];
+//                 var value_id = props.prop_value_id;
+//                 var value = props.prop_value;
+//                 var str = "<li><span>"+value+"：</span><input type='text'></li>";
+//                 $("#props").append(str);
+//             }
+//             //console.log(result.datas.length);
+//         }
+//     });	
+// }
+
+$('.action-open-dialog').click(function (e) {
+    $('#dialog').dialog({
+        width: 890,
+        height: 400,
+        title:'供求发布协议',
+        close: function(){
+            $('#for_license').prop("checked",true);
+            $("#savebutton").removeAttr("disabled");
+        }
+    });
+});
+
+$("#for_license").change(function() {
+    if($("#for_license").is(':checked')){
+        $("#savebutton").removeAttr("disabled");
+    }else{
+        $("#savebutton").attr("disabled", "true");
+    }
+});
+</script>
+
+ <script type="text/javascript">
+            var areaTabContainer = $("#JD-stock .tab li");
+            var provinceContainer = $("#stock_province_item");
+            var cityContainer = $("#stock_city_item");
+            var areaContainer = $("#stock_area_item");
+            function setOption(value,level){
+                $.ajax({
+                    url: '<{url action=topc_ctl_member_goods@getOption}>',
+                    type: 'post',
+                    data: {"level": level,"parent":value},
+                    success:function(result){
+                    if(level=="1"){
+                      cityContainer.find(".iloading").remove();
+                       cityContainer.append("<ul class='area-list'></ul>");
+                    for (var i=0;i<result.datas.length;i++) {
+                         cityContainer.find("ul").append(" <li><a href='#none' data-value="+result.datas[i].cat_id+">"+result.datas[i].cat_name+"</a></li>");
+                    }
+                    cityContainer.find("a").click(function() {
+                  var value2 = $(this).attr("data-value");
+                  var text2 = $(this).text();
+                  chooseCity(value2, text2);
+                });
+                  }
+                   if(level=="2"){
+                      areaContainer.find(".iloading").remove();
+                       areaContainer.append("<ul class='area-list'></ul>");
+                    for (var i=0;i<result.datas.length;i++) {
+                         areaContainer.find("ul").append(" <li><a href='#none' data-value="+result.datas[i].cat_id+">"+result.datas[i].cat_name+"</a></li>");
+                    }
+                    areaContainer.find("a").click(function() {
+                  var value3 = $(this).attr("data-value");
+                  var text3 = $(this).text();
+                  $("input[name=cat_id]").val(value3);
+                  $("input[name=cat_name]").val(text3);
+                  $(".text").text(text3);
+                  $('#store-selector').removeClass('hover');
+                 // alert(text3);
+                });
+                  }
+                }
+        });
+        }
+
+
+function chooseCity(cityId, cityName) {
+    provinceContainer.hide();
+    cityContainer.hide();
+    areaTabContainer.eq(1).removeClass("curr").find("em").html(cityName);
+    areaTabContainer.eq(2).addClass("curr").show().find("em").html("请选择");
+    areaTabContainer.eq(3).hide();
+    areaContainer.show().html("<div class='iloading'>正在加载中，请稍候...</div>");
+    setOption(cityId, "2");
+}
+
+function choosefirst(id, name) {
+    provinceContainer.hide();
+    areaTabContainer.eq(0).removeClass("curr").find("em").html(name);
+    areaTabContainer.eq(1).addClass("curr").show().find("em").html("请选择");
+    areaTabContainer.eq(2).hide();
+    areaTabContainer.eq(3).hide();
+    areaContainer.hide();
+    cityContainer.show().html("<div class='iloading'>正在加载中，请稍候...</div>");
+    setOption(id, "1");
+
+    // body...
+}
+(function() {
+    $("#store-selector").bind("mouseover", function() {
+        $('#store-selector').addClass('hover');
+        $("#store-selector .content,#JD-stock").show();
+    }).find("dl").remove();
+    areaTabContainer.eq(0).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(0).addClass("curr").show();
+        provinceContainer.show();
+        cityContainer.hide();
+        areaContainer.hide();
+        areaTabContainer.eq(1).hide();
+        areaTabContainer.eq(2).hide();
+        areaTabContainer.eq(3).hide();
+    });
+    areaTabContainer.eq(1).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(1).addClass("curr").show();
+        provinceContainer.hide();
+        cityContainer.show();
+        areaContainer.hide();
+        areaTabContainer.eq(2).hide();
+        areaTabContainer.eq(3).hide();
+    });
+    areaTabContainer.eq(2).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(2).addClass("curr").show();
+        provinceContainer.hide();
+        cityContainer.hide();
+        areaContainer.show();
+        areaTabContainer.eq(3).hide();
+    });
+    provinceContainer.find("a").click(function() {
+        var value = $(this).attr("data-value");
+        var text = $(this).text();
+        choosefirst(value, text);
+    });
+
+})();
+        </script>

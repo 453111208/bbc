@@ -1,0 +1,157 @@
+<div class="col-goods shop">
+  <div class="add-col">
+    <span>还未选择删除对象!</span>
+  </div>
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">选择收藏</div>
+      <a class="edit"> <i class="icon-edit"></i>
+      </a>
+      <div class="menu">
+        <button type="button" class="btn icon-more" id="menu"></button>
+        <script type="text/javascript">
+          $('#menu').dropmenu({
+            content: [
+              {
+                text: '首页',
+                icon: 'home',
+                href: '<{url action=topm_ctl_default@index}>'
+              },
+    
+              {
+                text: '商品类目',
+                icon: 'catalog',
+                href: '<{url action=topm_ctl_category@index}>'
+              },
+
+              {
+                text: '购物车',
+                icon: 'barrow',
+                href: '<{url action=topm_ctl_cart@index}>'
+              },
+
+              {
+                text: '会员中心',
+                icon: 'man',
+                href: '<{url action=topm_ctl_member@index}>'
+              },
+            ]
+          });
+        </script>
+      </div>
+    </div>
+  </header>
+  <!-- <div class="hd" id="fixhd">
+    <div class="search-bar">
+      <input type="text" placeholder="ONLY">
+      <button>
+        <span class="icon icon-search"></span>
+      </button>
+    </div>
+    <div class="hd-menu">
+      <a href="<{url action=topm_ctl_category@index}>" class="ui-btn" id="item">
+        <span class="icon icon-item"></span>
+      </a>
+      
+      <script>
+          $('.dropmenu').click(
+            function(){
+              $(this).addClass('cur').parent().parent().siblings().children().children().removeClass('cur');
+              $(this).next().show().parent().parent().siblings().children().children('.ui-dropmenu').hide();
+            }
+          );
+        </script>
+    </div>
+  </div> -->
+  <div class="main">
+    <div class="showarea floor area">
+      <section class="floor-bd floor-col-2">
+        <ul>
+          <{foreach from=$fav_info item=fav}>
+            <li class="col-xs-6">
+              <input type="hidden" value="<{$fav.item_id}>" name="item_id[]"/>
+              <div class="pro-pic">
+                <a href="<{url action=topm_ctl_item@index item_id=$fav.item_id}>
+                  ">
+                  <img style="background:url(<{$fav.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>) no-repeat center center" alt=""></a>
+              </div>
+              <div class="pro-info">
+                <div class="info-n">
+                  <a href="<{url action=topm_ctl_item@index item_id=$fav.item_id}>">
+                    <{$fav.goods_name}>
+                  </a>
+                </div>
+                <div class="info-p">
+                  <div class="p-lf">
+                    <{$fav.goods_price|cur}>
+                  </div>
+                  <{if $fav.is_online=='yes'}>
+                    <span class="ui-badge badge-rec p-rt">已失效</span>
+                  <{/if}>
+                </div>
+              </div>
+            </li>
+          <{/foreach}>
+        </ul>
+      </seciton>
+      <{pagers data=$pagers}>
+    </div>
+
+    <div class="delete-action">
+      <button type="button" class="ui-btn-warning">删 除</button>
+    </div>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+</div>
+
+
+<script>
+//创建slider组件
+$('#slider').slider( { imgZoom: true });
+//创建返回顶部组件
+$('#gotop').gotop();
+// 全setup方式调用
+$('#backtop').backTop();
+// 全setup方式调用
+$('#menu').click(function(){
+  $('.hd-menu .ui-mark-temp').removeClass('ui-in');
+});
+
+// 编辑按钮
+$('.edit').click(function(){
+  $(this).hide();
+  $('.showarea').addClass('in');
+  $('.delete-action').addClass('in');
+  $('footer').hide();
+});
+
+// 展示区域
+$('.showarea ul li').click(function(){
+  $(this).toggleClass('cur');
+});
+
+// 删除功能
+$('.delete-action button').click(function(){
+  var Message = new gmu.Message();
+  if(!$('.showarea ul li').hasClass('cur')){
+    Message.error('请选择删除对象');    
+  }else{
+    if(confirm("确认要删除吗？")){
+      var el = $('.showarea ul li.cur input[type=hidden]');
+      el.each(function(){$(this).val();});
+      var url = '<{url action=topm_ctl_collect@ajaxFavDel}>';
+      $.post(url,el,function(rs){
+        if(rs.success){
+          $('.showarea ul li.cur').remove();
+        }
+      });
+    }
+  }
+});
+
+
+</script>

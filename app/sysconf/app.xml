@@ -1,0 +1,19 @@
+<app>
+    <name>商城配置项模块</name>
+    <type>service</type>
+    <description>商城常用的配置项</description>
+    <author>
+        <name>shopex开发团队</name>
+        <email>dev@shopex.cn</email>
+        <url>http://www.shopex.cn</url>
+    </author>
+
+    <version>0.4</version>
+    <license>shopex license</license>
+
+    <parent_model_class>dbeav_model</parent_model_class>
+
+    <depends>
+        <app>desktop</app>
+    </depends>
+</app>

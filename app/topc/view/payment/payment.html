@@ -1,0 +1,68 @@
+<div id="dialog" style="display:none;">
+  <div class="payment-pop">
+    <div class="payment-pop-bd">
+      <div>请您在新打开的支付平台页面进行支付，支付完成前请不要关闭该窗口</div>
+      <div><a href="<{url action=topc_ctl_member_trade@tradeList}>" class="btn btn-simple"><span><span>已完成支付</span></span></a></div>
+    </div>
+    <!--
+    <div><a href="">选择其他支付方式</a></div>
+    -->
+  </div>
+</div>
+<div class="payment mod-bottom">
+  <{if $payment_type}>
+  <div class="payment-info">
+    <div class="col-lg-6 success-info">
+      <div class="success-info-l1"><i class="icon icon-checkmark-c"></i>下单成功，我们会尽快为您发货！</div>
+      <div class="payment-line">付款金额：<span class="price"><{$trades.cur_money|cur}></span></div>
+      <div class="payment-line">您可以：<a href="<{url action=topc_ctl_member_trade@tradeList}>">查看我的订单</a></div>
+    </div>
+  </div>
+  <{else}>
+  <div class="payment-info">
+    <div class="col-lg-6 success-info">
+      <div class="success-info-l1"><i class="icon icon-checkmark-c"></i>订单提交成功，请您尽快付款！</div>
+      <div class="success-info-l2"></div>
+      <div class="payment-line">应付金额：<span class="price"><{$trades.cur_money|cur}></span></div>
+    </div>
+  </div>
+  <div class="payment-choose">
+    <form id="dopay_form" target="_blank" action="<{url action=topc_ctl_paycenter@dopayment}>" method="post" data-async="false">
+      <input type="hidden" name="payment[payment_id]" value="<{$trades.payment_id}>">
+      <input type="hidden" name="payment[money]" value="<{$trades.cur_money}>">
+      <input type="hidden" name="payment[tids]" value="<{$tids}>">
+      <div class="payment-choose-tab">支付平台</div>
+      <div class="payment-choose-bd">
+        <div>选择支付方式</div>
+        <{if $payments}>
+        <div class="payment-choose-list form-row">
+          <{foreach from=$payments item=item}>
+          <div class="payment-choose-item">
+            <input type="radio" name="payment[pay_app_id]" value="<{$item.app_id}>" data-validate="onerequired"> <{$item.app_name}><img src="<{$item.img}>" alt="" width="150" height="34">
+          </div>
+          <{/foreach}>
+        </div>
+        <button type="submit" class="btn btn-import btn-lg act-next"><span><span>下一步</span></span></button>
+        <{else}>
+        <div class="payment-choose-list">
+          <div class="payment-choose-item">
+            没有可用的支付方式，请联系商家协调
+          </div>
+        </div>
+        <{/if}>
+      </div>
+    </form>
+  </div>
+   <div class="payment-line">
+    您可以：<a href="<{url action=topc_ctl_member_trade@tradeList}>">查看我的订单</a>
+  </div>
+  <{/if}>
+</div>
+<script>
+  $('.btn_dialog').click(function (e) {
+    $('#dialog').dialog({
+      width: 480,
+    title:'登录平台支付'
+    });
+  });
+</script>

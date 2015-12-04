@@ -1,0 +1,123 @@
+<div class="shop group">
+<{include file="topm/common/top.html"}>
+  <section class="main">
+    <section id="slider" class="ui-slider">
+      <div class="ui-slider-group">
+        <{foreach from=$slide item=imgurl key=id}>
+        <div class="ui-slider-item" data-index="0">
+          <a href="<{url action=topm_ctl_activity@index id=$id}>"><img src="<{$imgurl}>"></a>
+        </div>
+        <{/foreach}>
+      </div>
+    </section>
+    <section class="group-theme">
+      <hr>
+      <div class="theme-select">
+        <div class="arrow-left"></div>
+        <div class="arrow-right"></div>
+        <div class="theme-select-box">
+          <input type="hidden" id="activity_id" value="">
+          <input type="hidden" id="cat_id" value="">
+          <span></span> <div class="select-pull"></div>
+        </div>
+        <div class="theme-select-option">
+          <ul>
+            <{foreach from=$activity_list item=group}>
+            <li data-id="<{$group.activity_id}>"><{$group.activity_name}></li>
+            <{/foreach}>
+          </ul>
+          <div class="arrow"></div>
+        </div>
+      </div>
+    </section>
+    <div id="item_list">
+      <{include file="topm/shop/promotion/itemlist.html"}>
+    </div>
+  </div>
+  <div id="gotop"></div>
+  <div class="theme-select-cover"></div>
+</div>
+
+<script>
+  //创建slider组件
+$('#slider').slider( { imgZoom: true });
+//创建返回顶部组件
+$('#gotop').gotop();
+// 全setup方式调用
+$('#backtop').backTop();
+
+$('.theme-select-box').tap(function(e){
+  var that = $(this).parents('.theme-select');
+  $('.theme-select-cover').show();
+  that.toggleClass('on');
+  if(that.hasClass('on')){
+    $('.theme-select-cover').show();
+  }else{
+    $('.theme-select-cover').hide();
+  }
+});
+
+$('.theme-select-option li').tap(function(){
+  var id = $(this).attr('data-id');
+  $('#activity_id').val(id);
+  $.ajax({
+    url:"<{url action=topm_ctl_activity@search}>",
+    type:"get",
+    dataType:"html",
+    data:{
+      'id':id
+    },
+    success:function(rs){
+     $('#item_list').html(rs);
+     $('.option-fa li').eq(0).trigger('tap');
+    }
+  });
+});
+
+$(function(){
+  $('.theme-select-option li').eq(0).trigger('tap');
+})
+
+$('body').on('click','.theme-select-cover',function(event){
+  $('.theme-select').removeClass('on');
+  $('.option-group .option-fa').find('li').eq(0).trigger('tap');
+  $('.select-category-option').hide();
+  $(this).hide();
+});
+
+$('#item_list').on('tap','.select-category',function(){
+  $('.theme-select-cover').show();
+  $('.select-category-option').toggle();
+})
+
+$('.theme-select-option').on('tap','li',function(){
+  var themes = $(this).text();
+  $(this).parents('.theme-select').find('.theme-select-box span').text(themes);
+  $(this).parents('.theme-select').removeClass('on');
+  $('.select-category-option').hide();
+})
+
+$('#item_list').on('tap','.option-fa li',function(){
+  $(this).addClass('active').siblings().removeClass('active');
+})
+
+$('#item_list').on('tap','.option-ch li',function(){
+  var catid = $(this).attr('data-cat-id');
+  var id = $(this).attr('data-id');
+  $('#cat_id').val(catid);
+  $.ajax({
+    url:"<{url action=topm_ctl_activity@datalist}>",
+    type:"get",
+    dataType:"html",
+    data:{
+      'cat_id':catid,
+      'id':id
+    },
+    success:function(rs){
+      $('.data-list').html(rs);
+      $('.select-category-option').hide();
+    }
+  });
+})
+</script>
+

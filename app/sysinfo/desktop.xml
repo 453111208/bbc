@@ -1,0 +1,21 @@
+<desktop>
+    
+     <permissions>
+        <permission id="sysinfo_page" display='true' workground='sysinfo.wrokground.theme'>资讯管理</permission>
+        <permission id="sysinfo_market" display='true' workground='sysinfo.wrokground.theme'>行情管理</permission>
+    </permissions>
+    
+    <workground name="资讯行情管理" id="sysinfo.wrokground.theme" controller="admin_module" action="index">
+        <menugroup name="资讯管理"> 
+            <menu controller='admin_node' action='index' permission='sysinfo_page' display='true' order="10">资讯栏目</menu>
+            <menu controller='admin_article' action='index' permission='sysinfo_page' display='true' order="20">资讯列表</menu>
+        </menugroup>
+        <menugroup name="行情管理"> 
+            <menu controller='admin_marketNode' action='index' permission='sysinfo_market' display='true' order="30">行情栏目</menu>
+            <menu controller='admin_marketArticle' action='index' permission='sysinfo_market' display='true' order="40">行情文章列表</menu>
+            <menu controller='admin_marketData' action='index' permission='sysinfo_market' display='true' order="50">行情总览数据</menu>
+            <menu controller='admin_otherData' action='index' permission='sysinfo_market' display='true' order="60">行情其他数据</menu>
+        </menugroup>
+    </workground>
+    
+</desktop>

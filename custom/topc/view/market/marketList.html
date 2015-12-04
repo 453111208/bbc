@@ -1,0 +1,90 @@
+<div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+        <dt>当前位置：</dt>
+        <dd>
+            <a class="beb-nav" href="/index.php/market"><span>行情中心</span></a><span class="beb-raquo">></span>
+<!--            <a class="beb-nav" href=""><span><{$firstSort}></span></a><span class="beb-raquo">></span>-->
+            <span class="beb-current"><{$secondSort}></span>
+        </dd>
+    </dl>
+</div>
+<div class="maxpart first"> 
+    <div class="maxselected second">
+        <{foreach from=$sortList item=item}>
+            <a href="<{url action=topc_ctl_market@getList secondSort=$secondSort thirdSort=$item.third_sort}>"><{$item.third_sort}></a>
+        <{/foreach}>
+    </div>
+    <div class="maxlist">
+        <ul>
+            <{foreach from=$List item=item}>
+            <li>
+                <div class='item-1'>
+                    <a href="<{url action=topc_ctl_market@details dataId=$item.data_id}>">
+                        <{$item.adate}><{$item.nation}><{$item.third_sort}><{$item.title}>价格
+                    </a>
+                </div>
+                <div class='item-3'>
+                    <div class='txt'>所在分类：（<{$item.nation}><{$item.third_sort}>价格行情）</div>
+                    <div class='txt'><{$item.date}></div>
+                </div>
+            </li>
+            <{/foreach}>
+        </ul>
+    </div>
+    <div class="page">
+        <{if $pageNow>1}>
+        <div class="pageUp"><a href="<{url action=topc_ctl_market@getList pageNow=$pageNow-1 secondSort=$secondSort thirdSort=$third_sort}>">上一页</a></div>
+        <{else}>
+        <div class="pageUp"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList">
+            <ul>
+                <{foreach from=$allList item=item key=key}>
+                    <{if $key<$pageCount}>
+                        <li><a href="<{url action=topc_ctl_market@getList pageNow=$key+1 secondSort=$secondSort thirdSort=$third_sort}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}>
+        <div class="pageDown"><a href="<{url action=topc_ctl_market@getList pageNow=$pageNow+1 secondSort=$secondSort thirdSort=$third_sort}>">下一页</a></div>
+        <{else}>
+        <div class="pageDown"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+    </div>
+    <div class="maxread">相关报价</div>
+    <div class="maxarticles">
+        <ul>
+            <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月24日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月23日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日江苏地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月22日上海地区废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江浙沪废铜价格</a></li>
+            <li><a href="#" target="_blank">09月21日江苏地区废铜价格</a></li>
+        </ul>
+    </div>  
+    <div class="maxlabel"><span>本文标签：</span></div>
+    <div class="maxstatement">免责声明:本信息仅供参考，东方循环网力求准确可靠，但不作为您投资决策的唯一因素!</div>
+</div>
+           
+<script>
+    $(".pageList").find("a").each(function(){
+        if($(this).text()==<{$pageNow}>){
+            $(this).addClass("a_active");
+        }
+    });
+</script>

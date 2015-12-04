@@ -1,0 +1,141 @@
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title">店铺入驻信息</h3>
+    <a href="<{url action=topshop_ctl_shop_shopinfo@index}>" class="pull-right text-blue">查看详细></a>
+  </div>
+  <!-- /.box-header -->
+
+  <div class="box-body">
+    <div class="list">
+      <{foreach from=$shopCatInfo item=shopCat key=key}>
+      <div class="nav" id="dropdownMenu" data-toggle="dropdown">
+        <div class="nav_hd">
+          <span class="n"><{$shopCat.$key.cat_name}>
+          </span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="c">
+            平台入驻费： <{$shopCat.$key.cat_fee|cur}>
+            &nbsp;&nbsp;
+            <i class="fa fa-folder"></i>
+          </span>
+        </div>
+        <div class="nav_bd">
+          <div class="m_nav">
+            <span class="m_hd l">类目佣金</span>
+            <span class="m_hd r">类目佣金比例</span>
+            <div class="m_bd">
+              <ul aria-labelledby="dropdownMenu">
+                <{foreach from=$shopCat item=lv2 key=k}>
+                <{if $key==$k}>
+                <{else}>
+                <li>
+                  <span class="n"><{$lv2.$k.cat_name}>
+                  </span>
+                  <span class="c"><{$lv2.$k.cat_fee|cur}>
+                  </span>
+                  <div class="s_nav">
+                    <ul>
+                      <{foreach from=$lv2 item=lv3 key=ke name=foo}>
+                        <{if $ke==$k}>
+                        <{else}>
+                          <li>
+                            <span class="n"><{$lv3.cat_name}></span>
+                            <span class="c"><{$lv3.cat_fee}>%</span>
+                          </li>
+                        <{/if}>
+                      <{/foreach}>
+                    </ul>
+                  </div>
+                </li>
+                <{/if}>
+                <{/foreach}>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <{/foreach}>
+    </div>
+
+    <div>
+      <span class="text-gray">经营品牌：</span>
+      <span>
+        <{foreach from=$shopBrandInfo item=shopBrandInfo}>
+        <{$shopBrandInfo.brand_name}>
+        &nbsp;&nbsp;&nbsp;
+        <{/foreach}></span>
+    </div>
+    <div>
+      <span class="text-gray">店铺开通日期：</span>
+      <span>
+        <{$shop.open_time|cdate:FDATE_STIME}></span>
+    </div>
+    <div>
+      <span class="text-gray">店铺开通状态：</span>
+      <span>
+        <{if $shop.status=='active'}>
+        正常
+        <{else}>
+        已关闭
+        <{/if}></span>
+    </div>
+    <{if $shop.status=='dead'}>
+    <div>
+      <span class="text-gray">店铺关闭日期：</span>
+      <span>
+        <{$shop.close_time|cdate:FDATE_STIME}></span>
+    </div>
+    <div>
+      <span class="text-gray">店铺关闭原因：</span>
+      <span>
+        <{$shop.close_reason}></span>
+    </div>
+    <{/if}>
+
+  </div>
+</div>
+
+<script>
+  $(document).ready(
+    function() {
+      $('.m_bd>ul>li:first').addClass('cur').children('.s_nav').addClass('cur');
+
+      $('.nav .nav_hd .c').click(
+        function(){
+          var a = 'fa-folder',
+              b = 'fa-folder-open',
+              el = $(this).children('i');
+          $('.nav_bd').toggleClass('cur');
+          $('.nav_bd').hasClass('cur') == true ? 
+          el.removeClass(a).addClass(b) : el.removeClass(b).addClass(a);
+        }
+      );
+      
+      $('.m_bd>ul>li').mouseover(
+        function(){
+          $(this).addClass('cur').siblings().removeClass('cur');
+          $(this).children('.s_nav').addClass('cur').parent().siblings().children('.s_nav').removeClass('cur');
+
+
+          var span_height = $('.m_bd ul li span').height();
+              ul_length   = $('.m_bd>ul>li').length;
+              mhd_height  = $('.m_nav .m_hd').height();
+              snav_height = $(this).children('.s_nav').height();
+
+            nav_height  = ul_length * span_height;
+
+          if( nav_height < snav_height ){
+            $('.nav_bd').css('height', snav_height + mhd_height );
+          }else{
+            // $('.nav_bd').css('height','auto');
+          }
+        }
+      );
+
+      $('.m_bd>ul>li').mouseleave(
+        function(){
+          $(this).children('.s_nav').removeClass('cur').parent().siblings().children('.s_nav').addClass('cur');
+        }
+      );
+  });
+</script>

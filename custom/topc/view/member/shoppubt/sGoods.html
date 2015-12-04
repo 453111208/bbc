@@ -1,0 +1,180 @@
+
+ <body>
+                  <div class="lakers_screening_goods">
+    <div class="lakers_conditions">
+        <ul id="list1" style="width:400px;height: 50px;">
+            <li id="summary-stock">
+                <div class="dt">选择分类：</div>
+                <div class="dd">
+                    <div id="store-selector">
+                        <div class="text"><div>
+                        </div><b></b></div>
+                        <div class="content">
+                            <div data-widget="tabs" class="m JD-stock" id="JD-stock">
+                                <div class="mt">
+                                    <ul class="tab">
+                                        <li data-index="0" data-widget="tab-item" class="curr"><a href="#none" class="hover"><em>请选择</em><i></i></a></li>
+                                        <li data-index="1" data-widget="tab-item" style="display:none;"><a href="#none" class=""><em>请选择</em><i></i></a></li>
+                                        <li data-index="2" data-widget="tab-item" style="display:none;"><a href="#none" class=""><em>请选择</em><i></i></a></li>
+
+                                    </ul>
+                                    <div class="stock-line"></div>
+                                </div>
+                                <div class="mc" data-area="0" data-widget="tab-content" id="stock_province_item">
+                                    <ul class="area-list">
+                                        <{foreach from=$catList item=cat}>
+                                        <li><a href="#none" data-value="<{$cat.cat_id}>"><{$cat.cat_name}></a></li>
+                                        <{/foreach}>
+                                    </ul>
+                                </div>
+                                <div class="mc" data-area="1" data-widget="tab-content" id="stock_city_item">
+                                   
+                                </div>
+                                <div class="mc" data-area="2" data-widget="tab-content" id="stock_area_item"></div>
+                                <div class="mc" data-area="3" data-widget="tab-content" id="stock_town_item"></div>
+                            </div></div>
+                            <div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
+                            </div><!--store-selector end-->
+                            <div id="store-prompt"><strong></strong></div><!--store-prompt end-->
+                        </div>
+                    </li>
+                </ul>
+
+                <input type="hidden" name="cat_id" id="catId">
+    </div>
+    </br>
+<div class="text-center" style="margin-bottom: 30px;">
+      <a href="javascript:void(0);"class="btn  search_goods"><span ><span  >查询</span></span></a>
+    </div>
+<form action="<{url action=topc_ctl_member_standarditem@saveItem}>" method="post" id="saveItem" >
+    <div id="gooditems">
+      
+    </div>
+ <!-- <a href="javascript:void(0);" class="btn btn-import btn-lg save_goods" style="display:none"><span><span>保持</span></span></a> -->
+
+  <button id="save_goods" type="submit" class="btn"  ><span><span>保存</span></span></button>
+
+</form>
+
+</div>
+</body>
+
+<script type="text/javascript">
+$("#save_goods").click(function() {
+
+     $("#gooditems").find('input[type=checkbox][value="0"]').each(function(){
+        var parent =$(this).parent().parent();
+        parent.remove();
+      });
+    if($(".itemrow").length==0){
+        alert("请选择商品");
+        return false;
+    }
+});
+
+</script> 
+            <script type="text/javascript">
+            var areaTabContainer = $("#JD-stock .tab li");
+            var provinceContainer = $("#stock_province_item");
+            var cityContainer = $("#stock_city_item");
+            var areaContainer = $("#stock_area_item");
+            function setOption(value,level){
+                $.ajax({
+                    url: '<{url action=topc_ctl_member_goods@getOption}>',
+                    type: 'post',
+                    data: {"level": level,"parent":value},
+                    success:function(result){
+                    if(level=="1"){
+                      cityContainer.find(".iloading").remove();
+                       cityContainer.append("<ul class='area-list'></ul>");
+                    for (var i=0;i<result.datas.length;i++) {
+                         cityContainer.find("ul").append(" <li><a href='#none' data-value="+result.datas[i].cat_id+">"+result.datas[i].cat_name+"</a></li>");
+                    }
+                    cityContainer.find("a").click(function() {
+                  var value2 = $(this).attr("data-value");
+                  var text2 = $(this).text();
+                  chooseCity(value2, text2);
+                });
+                  }
+                   if(level=="2"){
+                      areaContainer.find(".iloading").remove();
+                       areaContainer.append("<ul class='area-list'></ul>");
+                    for (var i=0;i<result.datas.length;i++) {
+                         areaContainer.find("ul").append(" <li><a href='#none' data-value="+result.datas[i].cat_id+">"+result.datas[i].cat_name+"</a></li>");
+                    }
+                    areaContainer.find("a").click(function() {
+                  var value3 = $(this).attr("data-value");
+                  var text3 = $(this).text();
+                  $("input[name=cat_id]").val(value3);
+                  $(".text").text(text3);
+                  $('#store-selector').removeClass('hover');
+                 // alert(text3);
+                });
+                  }
+                }
+        });
+        }
+
+
+function chooseCity(cityId, cityName) {
+    provinceContainer.hide();
+    cityContainer.hide();
+    areaTabContainer.eq(1).removeClass("curr").find("em").html(cityName);
+    areaTabContainer.eq(2).addClass("curr").show().find("em").html("请选择");
+    areaTabContainer.eq(3).hide();
+    areaContainer.show().html("<div class='iloading'>正在加载中，请稍候...</div>");
+    setOption(cityId, "2");
+}
+
+function choosefirst(id, name) {
+    provinceContainer.hide();
+    areaTabContainer.eq(0).removeClass("curr").find("em").html(name);
+    areaTabContainer.eq(1).addClass("curr").show().find("em").html("请选择");
+    areaTabContainer.eq(2).hide();
+    areaTabContainer.eq(3).hide();
+    areaContainer.hide();
+    cityContainer.show().html("<div class='iloading'>正在加载中，请稍候...</div>");
+    setOption(id, "1");
+
+    // body...
+}
+(function() {
+    $("#store-selector").bind("mouseover", function() {
+        $('#store-selector').addClass('hover');
+        $("#store-selector .content,#JD-stock").show();
+    }).find("dl").remove();
+    areaTabContainer.eq(0).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(0).addClass("curr").show();
+        provinceContainer.show();
+        cityContainer.hide();
+        areaContainer.hide();
+        areaTabContainer.eq(1).hide();
+        areaTabContainer.eq(2).hide();
+        areaTabContainer.eq(3).hide();
+    });
+    areaTabContainer.eq(1).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(1).addClass("curr").show();
+        provinceContainer.hide();
+        cityContainer.show();
+        areaContainer.hide();
+        areaTabContainer.eq(2).hide();
+        areaTabContainer.eq(3).hide();
+    });
+    areaTabContainer.eq(2).find("a").click(function() {
+        areaTabContainer.removeClass("curr");
+        areaTabContainer.eq(2).addClass("curr").show();
+        provinceContainer.hide();
+        cityContainer.hide();
+        areaContainer.show();
+        areaTabContainer.eq(3).hide();
+    });
+    provinceContainer.find("a").click(function() {
+        var value = $(this).attr("data-value");
+        var text = $(this).text();
+        choosefirst(value, text);
+    });
+
+})();
+        </script>

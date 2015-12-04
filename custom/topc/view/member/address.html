@@ -1,0 +1,165 @@
+ <div class="maxM-right">
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    收货地址管理
+  </div>
+  <div class="membercenter-box-bd">
+    <div class="membercenter-address">
+      <form action="<{url action=topc_ctl_member@saveAddress}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+        <input type="hidden" name="addr_id" id="addr_id" value="<{$addrInfo.addr_id}>">
+        <div class="membercenter-address-title">
+          新增收货地址&nbsp;您已创建<{$userAddrCount.nowcount}> 个收货地址，最多可创建20个<{$addrInfo.area}>
+        </div>
+        <ul>
+          <li class="form-row">
+            <label for="" class="form-label">*所在地区</label>
+            <span class="form-act">
+              <span id="area" data-validate="area"></span>
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">*街道地址</label>
+            <span class="form-act">
+              <input class="input-ln" type="text" name="addr"  maxlength="100" value="<{$addrInfo.addr}>" id="addr" required>
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">邮政编码</label>
+            <span class="form-act">
+              <input class="input-ln" type="text" name="zip" data-validate="zip" maxlength="10" value="<{$addrInfo.zip}>" id="zip">
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">*收货人姓名</label>
+            <span class="form-act">
+              <input class="input-ln" type="text" name="name" value="<{$addrInfo.name}>" maxlength="25" id="name">
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">运输方式</label>
+            <span class="form-act">
+              <input class="input-ln" type="text" name="transport_way" value="<{$addrInfo.transport_way}>" maxlength="25" id="transport_way" required>
+            </span>
+          </li>
+          <li class="form-row">
+            <label for="" class="form-label">*收货人手机号</label>
+            <span class="form-act">
+              <input class="input-ln" type="text" name="mobile" data-validate="mobile" data-caution="手机格式不正确" value="<{$addrInfo.mobile}>" id="mobile" required>
+            </span>
+          </li>
+          <!-- <li class="form-row">
+            <label for="" class="form-label col-2">收货人固定电话</label>
+            <span class="form-act col-5">
+              <input class="input-ln" type="tel" name="tel" value="<{$addrInfo.tel}>" id="tel" data-oneoftwo="mobile" data-caution="固定电话格式不正确&&请填写手机或固定电话">
+            </span>
+          </li> -->
+          <li class="form-row">
+            <label for="" class="form-label">设为默认地址</label>
+            <span class="form-act">
+              <input type="checkbox" name="def_addr" value="1" id="def_addr"><!-- <label for="def_addr">是</label>
+              <input type="radio" name="def_addr" value="0" id="no_def_addr"><label for="no_def_addr">否</label> -->
+            </span>
+          </li>
+          <li class="form-row">
+            <span class="form-label"></span>
+            <span class="form-act">
+              <button type="submit" class="btn btn-import"><span><span>保存</span></span></button>
+              <button type="reset" class="btn btn-simple"><span><span>取消</span></span></button>
+            </span>
+          </li>
+        </ul>
+      </form>
+      <div class="membercenter-address-title">已保存的有效地址</div>
+      <table class="item-table table-address">
+        <colgroup>
+          <col class="table-col-1">
+          <col class="table-col-2">
+          <col class="table-col-3">
+          <col class="table-col-4">
+          <col class="table-col-5">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>收货人</td>
+            <td>地址</td>
+            <td>邮编</td>
+            <td>手机</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <{foreach from=$userAddrList item=addr}>
+          <tr>
+            <td>
+              <{$addr.name}>
+            </td>
+            <td>
+              <{$addr.area}>/<{$addr.addr}>
+            </td>
+            <td>
+               <{$addr.zip}>
+            </td>
+            <td>
+               <{$addr.mobile}>
+            </td>
+            <td class="col-operate">
+              <a href="<{url action=topc_ctl_member@ajaxAddrUpdate}>" class="action-edit" data-ajax-type="post" data-ajax-data="addr_id=<{$addr.addr_id}>" rel="_request">编辑</a>
+              <span class="op-default text-danger" <{if !$addr.def_addr}>style="display:none;"<{/if}>>默认地址</span>
+              <a href="<{url action=topc_ctl_member@ajaxAddrDef}>" class="action-default" data-ajax-type="post" data-ajax-data="addr_id=<{$addr.addr_id}>" rel="_request" <{if $addr.def_addr}>style="display:none;"<{/if}>>设为默认</a>
+              <a href="<{url action=topc_ctl_member@ajaxDelAddr}>" class="action-delete" data-ajax-type="post" data-ajax-data="addr_id=<{$addr.addr_id}>" rel="_request">删除</a>
+            </td>
+          </tr>
+        <{/foreach}>
+        </div>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+new AreaWidget({
+    dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+    select:$('#area')
+});
+var form = $('#ajaxForm');
+
+$('.action-edit').data('ajaxConfig', {
+    callback: function(rs, sponsor) {
+        $('#addr').val(rs.addr);
+        $('#zip').val(rs.zip);
+        $('#name').val(rs.name);
+        $('#transport_way').val(rs.transport_way);
+        $('#mobile').val(rs.mobile);
+        $('#tel').val(rs.tel);
+        $('#addr_id').val(rs.addr_id);
+        if(rs.def_addr == '1') {
+            $('#def_addr').prop('checked', true);
+        }
+        else {
+            $("#no_def_addr").prop('checked', true);
+        }
+        var area = new AreaWidget({
+            dataUrl: '<{$env.base_url}>/app/ectools/statics/scripts/region.json',
+            select: $('#area'),
+            initData:rs.region_id
+        });
+    }
+});
+
+$('.action-delete').on('click', function(e) {
+    return confirm('是否确认删除此地址？');
+});
+
+$('.action-default').data('ajaxConfig', {
+    showMessage: false,
+    callback: function(rs, sponsor) {
+        sponsor
+            .hide()
+            .prev('.op-default').show()
+        .parents('tr').siblings()
+            .find('.action-default').show()
+            .prev('.op-default').hide();
+    }
+});
+</script>

@@ -1,0 +1,52 @@
+<div class="middle-bar">
+  <span class="store-logo">
+    <a href="<{url action=topm_ctl_shopcenter@index shop_id=$shopdata.shop_id}>">
+      <img src="<{$logo_image.shop_logo|storager}>">
+    </a>
+  </span>
+  <div class="bar-right">
+    <button class="ui-btn ui-btn-negative score"><i class="icon icon-flower"></i> 评分
+      <div class="shop-dsr">
+        <!--div>综合评分：<mark>4.8</mark> 分</div-->
+        <div>
+          <ul>
+            <li>商品评分：<br><mark><{$shopDsrData.countDsr.tally_dsr}></mark></li>
+            <li>服务评分：<br><mark><{$shopDsrData.countDsr.attitude_dsr}></mark></li>
+            <li>配送评分：<br><mark><{$shopDsrData.countDsr.delivery_speed_dsr}></mark></li>
+          </ul>
+        </div>
+        <div class="arrow"></div>
+      </div>
+    </button>
+    <{if $nologin!=1}>
+    <span class="collect" id="collect"> <i class="icon icon-star"></i>
+       <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="shop-favorite" >收藏</a>
+    </span>
+    <{else}>
+    <span class="collect" id="collect"> <i class="icon icon-star"></i>
+    <a href="<{url action=topm_ctl_collect@ajaxFavshop}>" rel="_request" data-ajax-data="shop_id=<{$shopdata.shop_id}>" data-ajax-type="post" class="collect col-store">
+    收藏</a>
+    </span>
+    <{/if}>
+    <!-- <span class="ui-btn-warning ui-btn" id="comment">
+      <i class="icon icon-flower"></i>
+      评分
+    </span> -->
+<!--     <span class="ui-btn-defult ui-btn">
+      <i class="icon icon-ticket"></i>
+      优惠券
+    </span> -->
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.score').tap(function(){
+    $('.shop-dsr').toggleClass('visible');
+  })
+</script>
+
+<!-- 店铺首页优惠券 -->
+<{if $homeCouponList}>
+<{include file="topm/shop/home_coupons.html"}>
+<{/if}>
+

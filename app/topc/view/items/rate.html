@@ -1,0 +1,29 @@
+<div class="goods-grade">
+  <{include file="topc/items/rate/result.html"}>
+</div>
+<div class="goods-info">
+  <div id="evaluation" data-toggle="switchable" class="bd">
+    <div class="evaluation section">
+      <div class="evaluation-condition">
+        <form id="condition_form" action="<{url action=topc_ctl_item@getItemRateList item_id=$item_id}>" method="get">
+          <input type="hidden" name="result" value="">
+          <label class="checkbox-inline">
+            <input type="checkbox" class="condition" name="content" <{if $filter.content}>checked<{/if}>  id="hasContent"> 有内容</label>
+          <label class="checkbox-inline">
+            <input type="checkbox" class="condition" name="picture" <{if $filter.picture}>checked<{/if}>  id="hasPics"> 有晒图</label>
+        </form>
+      </div>
+      <ul class="evaluation-nav">
+        <li data-type="" class="active">全部</li>
+        <li data-type="good">好评</li>
+        <li data-type="neutral">中评</li>
+        <li data-type="bad">差评</li>
+      </ul>
+      <div class="evaluation-content">
+
+        <{include file="topc/items/rate/list.html"}>
+
+      </div>
+    </div>
+  </div>
+</div>

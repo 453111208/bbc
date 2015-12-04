@@ -1,0 +1,214 @@
+<form id="shoptypeForm" class="tableform" action="?app=sysshop&ctl=admin_enterapply&act=goExamine" method="POST">
+  <input type="hidden" name="enterapply_id" value="<{$itemdata.enterapply_id}>">
+  <input type="hidden" name="shop_name" value="<{$itemdata.shop_name}>">
+  <input type="hidden" name="shop[shop_brand]" value="<{$shop.shop_brand}>">
+  <input type="hidden" name="shop_type" value="<{$itemdata.shop_type}>">
+  <h5>店铺信息</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>店铺名称：</th>
+                <td><{$itemdata.shop_name}></td>
+                <th>店铺类型：</th>
+                <td><{$itemdata.shoptype}></td>
+            </tr>
+            <tr>
+                <th>经营类目：</th>
+                <td><{$shop.shop_cat}></td>
+                <th>经营品牌：</th>
+                <td>
+                  <{if $itemdata.shop_type == "cat"}>
+                    由于此商户选择类目专营，暂时不限定品牌
+                  <{else}>
+                  <a href='<{$shop_info.brand_warranty}>' class='img-tip pointer' style="color:red" target='_blank' onmouseover='bindFinderColTip(event);'><{$shop.brand_name}></a>
+                  <{/if}>
+                </td>
+            </tr>
+            <tr>
+                <th>店主姓名：</th>
+                <td><{$itemdata.shopuser_name}></td>
+                <th>店主身份证号：</th>
+                <td>
+                  <a href='<{$shop_info.shopuser_identity_img}>' class='img-tip pointer' style="color:red" target='_blank' onmouseover='bindFinderColTip(event);'><{$shop.shopuser_identity}></a>
+                </td>
+            </tr>
+            <tr>
+                <th>店铺所在地区：</th>
+                <td><{$shop.shop_area}></td>
+                <th>店铺详细地址：</th>
+                <td><{$shop.shop_addr}></td>
+            </tr>
+            <tr>
+                <th>店主邮箱：</th>
+                <td><{$shop.email}></td>
+                <th>店主手机号：</th>
+                <td><{$shop.mobile}></td>
+            </tr>
+        </table>
+    </div>
+    <h5>企业信息</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>公司名称：</th>
+                <td><{$itemdata.company_name}></td>
+                <th>营业执照：</th>
+                <td>
+                  <a href='<{$shop_info.license_img}>' class='img-tip pointer lnk' target='_blank' onmouseover='bindFinderColTip(event);'><{$shop_info.license_num}></a>
+                </td>
+            </tr>
+            <tr>
+                <th>法定代表人：</th>
+                <td><{$shop_info.representative}></td>
+                <th>法定代表人身份证：</th>
+                <td>
+                  <a href='<{$shop_info.corporate_identity_img}>' class='img-tip pointer' style="color:red" target='_blank' onmouseover='bindFinderColTip(event);'><{$shop_info.corporate_identity}></a>
+                </td>
+            </tr>
+            <tr>
+                <th>营业执照所在地区：</th>
+                <td><{$shop_info.license_area}></td>
+                <th>营业执照详细地址：</th>
+                <td><{$shop_info.license_addr}></td>
+            </tr>
+            <tr>
+                <th>公司成立日期：</th>
+                <td><{$shop_info.establish_date}></td>
+                <th>营业期限：</th>
+                <td><{$shop_info.license_indate}></td>
+            </tr>
+            <tr>
+                <th>注册资本：</th>
+                <td><{$shop_info.enroll_capital}></td>
+                <th>经营范围：</th>
+                <td><{$shop_info.scope}></td>
+            </tr>
+            <tr>
+                <th>公司所在地区：</th>
+                <td><{$shop_info.company_area}></td>
+                <th>公司详细地址</th>
+                <td><{$shop_info.company_addr}></td>
+            </tr>
+            <tr>
+                <th>公司电话：</th>
+                <td><{$shop_info.company_phone}></td>
+                <th>公司网址：</th>
+                <td><{$shop_info.shop_url}></td>
+            </tr>
+            <tr>
+                <th>公司联系人：</th>
+                <td><{$shop_info.company_contacts}></td>
+                <th>联系人手机号：</th>
+                <td><{$shop_info.company_cmobile}></td>
+            </tr>
+        </table>
+    </div>
+
+    <h5>组织机构代码证</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>组织机构代码：</th>
+                <td>
+                    <a href='<{$shop_info.tissue_code_img}>' class='img-tip pointer' style="color:red" target='_blank' onmouseover='bindFinderColTip(event);'><{$shop_info.tissue_code}></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h5>税务登记号证</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>税务登记号：</th>
+                <td>
+                    <a href='<{$shop_info.tax_code_img}>' class='img-tip pointer' style="color:red" target='_blank' onmouseover='bindFinderColTip(event);'><{$shop_info.tax_code}></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h5>银行信息</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>银行开户用户名：</th>
+                <td><{$shop_info.bank_user_name}></td>
+                <th>银行账号：</th>
+                <td><{$shop_info.bankID}></td>
+            </tr>
+            <tr>
+                <th>开户银行所在地区：</th>
+                <td><{$shop_info.bank_area}></td>
+                <th>开户银行：</th>
+                <td><{$shop_info.bank_name}></td>
+            </tr>
+            <tr>
+                <th>支行联行号：</th>
+                <td><{$shop_info.cnaps_code}></td>
+                <th></th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <h5>商家账号信息</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>申请人：</th>
+                <td>
+                    <{$itemdata.seller_name}>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h5>审核结果</h5>
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>审核结果:</th>
+                <td>
+                  <{if ($shop.shop_brand && $checkbrand =="") || (!$shop.shop_brand && $itemdata.shop_type == "cat")}>
+                  <input type="radio" name ="status" value="successful" class="act-status">同意开店
+                  <{/if}>
+                  <input type="radio" name ="status" value="failing" class="act-status" checked>不同意开店
+                  <br>
+                  <{input class="reason" type="textarea" value=$checkbrand name="reason" cols="50" rows="5" maxlength="200" vtype="required"}>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="table-action">
+        <button class="btn btn-primary" type="submit"><span><span><{t}>确认<{/t}></span></span></button>
+    </div>
+
+</form>
+<script>
+    $('shoptypeForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('shoptypeForm').getParent('.dialog')){
+                    var Dlg = $('shoptypeForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+
+    $$('.act-status').addEvent('click', function(e){
+        if(this.value == 'failing') {
+            $$('.reason').show();
+        }
+        else {
+            $$('.reason').hide();
+        }
+    });
+</script>
+

@@ -1,0 +1,86 @@
+
+<h3><{t}>文章信息<{/t}></h3>
+<div id="x-g-basic" class="goods-detail">
+    <div class="tableform">
+        <form action="?app=syscontent&ctl=admin_article&act=save" method="post" name="aEditor" id="aEditor">
+        <{input type="hidden"  name="article[article_id]"  value=$article.article_id }>
+        <div class="division">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>文章标题：<{/t}></th>
+                    <td>
+                        <{input type="text" id="article_title" name="article[title]" required="true" vtype='required' value=$article.title }>
+                    </td>
+                </tr>
+                <tr>
+                    <th><{t}>客户端：<{/t}></th>
+                    <td>
+                        <{input type='select' name='article[platform]' value=$article.platform required='true' vtype='required' caution=$__content='客户端'|t:'content' options=$platform_options}>
+                    </td>
+                </tr>
+                <tr>
+                  <th><{t}>文章logo：<{/t}></th>
+                  <td>
+                    <{input type="image" name='article[article_logo]' value=$article.article_logo width=30 height=30}>
+                    <span class="notice-inline">
+                      <{t}>建议图片尺寸108px * 108px,提高用户体验，增强品牌宣传效果。<{/t}></span>
+                  </td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>所属文章类目：<{/t}></th>
+                    <td>
+                        <select name="article[node_id]" vtype='required' class="x-input">
+                            <{if $article.node_id < 1}>
+                            <option value="" ><{t}>请选择所属类目<{/t}></option>
+                            <{/if}>
+                            <{foreach from=$selectmaps item=maps}>
+                            <option class="optionlevels optionlevel_<{math equation='x' x=$maps.step|default:1}>
+                            " value="<{$maps.node_id}>"  depth="<{$maps.step}>" parent_id="<{$maps.parent_id}>" <{if $maps.node_id==$article.node_id}>selected<{/if}>><{$space|paddingleft:$maps.step:'&nbsp;&nbsp;&nbsp;&nbsp;'}><{$maps.node_name}>
+                            </option>
+                            <{/foreach}>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>文章内容:<{/t}></th>
+                    <td>
+                       <{input type=html name='article[content]' value=$article.content}>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-action">
+            <{button type="submit" id='brand-form-submit' label="保存"|t:'syscontent'}>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+  (function(){
+    var _form = $('aEditor');
+    var btn =$('brand-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>

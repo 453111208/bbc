@@ -1,0 +1,22 @@
+<div class="tableform">
+  <form action="?<{$env.server.QUERY_STRING}>" method="post">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <th><{t}>当前等级：<{/t}></th>
+          <td>  <span class="price0"><{$grade_name}></span> </td>
+        </tr>
+       <!--
+        <tr>
+          <th><{t}>调整经验值（增/减）：<{/t}></th>
+          <td> <{input type='number' name='exp[experience]' maxlength=8 vtype="required&&number"}> <span class="notice-inline"><{t}>输入负值即可减少经验值<{/t}></span> </td>
+        </tr>
+        -->
+      </tbody>
+    </table>
+    <!--
+    <div class="table-action"><{button type="submit" label="保存"}></div>
+    -->
+  </form>
+</div>
+

@@ -1,0 +1,123 @@
+<{if $aCart}>
+<form action="<{url action=topc_ctl_cart@checkout}>" method="post" class="cart-submit-form">
+  <div class="cart">
+    <div class="cart-hd cart-table">
+      <div class="cart-row cart-table-th">
+        <div class="cart-col col-checkbox">
+          <input type="checkbox" class="check-all" name="cart_all" <{if $selectAll == true}>checked="true"<{/if}>> <{t}>全选<{/t}>
+        </div>
+        <div class="cart-col col-name"><{t}>商品<{/t}></div>
+        <div class="cart-col col-other"><{t}>单价<{/t}>（元）</div>
+        <div class="cart-col col-other"><{t}>数量<{/t}></div>
+        <div class="cart-col col-other"><{t}>金额<{/t}></div>
+        <div class="cart-col"><{t}>操作<{/t}></div>
+      </div>
+    </div>
+
+    <{foreach from=$aCart item=item name='name' key=shop_id}>
+    <div class="cart-table" data-shop-id="<{$shop_id}>">
+      <table class="item-table">
+        <colgroup>
+          <col class="table-col-1">
+          <col class="table-col-2">
+          <col class="table-col-3">
+          <col class="table-col-4">
+          <col class="table-col-5">
+          <col class="table-col-6">
+          <col class="table-col-7">
+        </colgroup>
+        <thead>
+          <tr>
+            <td colspan="7">
+              <input type="checkbox" class="check-shop-all" name="cart_shop[<{$shop_id}>]" <{if $selectShop[$shop_id] == true}>checked="true"<{/if}> >
+              <label for=""><{t}>店铺<{/t}>&nbsp;&nbsp;</label><em><{$item.shop_name}></em>
+              &nbsp;&nbsp;<{im shop_id=$shop_id type=small}>
+              <!-- 领取店铺优惠券开始 -->
+              <{if $item.hasCoupon}>
+                <a href="<{url action=topc_ctl_shopcenter@shopCouponList shop_id=$shop_id}>"  class="btn btn-danger btn-sm get-coupon"><span><span>领券</span></span></a>
+              <{/if}>
+              
+              <!-- 领取店铺优惠券结束 -->
+            </td>
+          </tr>
+        </thead>
+        <!-- 优惠活动列表开始 -->
+        <tbody>
+          <{foreach from=$item.cartByPromotion item=itemPromotion key=key}>
+          <{if $key!='0'}>
+            <{if in_array($key, $item.usedCartPromotion)}>
+            <tr class="discount-area">
+              <td colspan="7">
+                <span class="label label-danger"><{$item.basicPromotionListInfo[$key].promotion_tag}></span> &nbsp;&nbsp;
+                <a href="<{url action=topc_ctl_promotion@getPromotionItem promotion_id=$item.basicPromotionListInfo[$key].promotion_id}>">
+                  <{$item.basicPromotionListInfo[$key].promotion_name}>
+                </a>
+                <{*if $item.basicPromotionListInfo[$key].promotion_type=='freepostage'*}>
+                  <!-- 免邮 -->
+                <{*/if*}>
+                <{if $item.basicPromotionListInfo[$key].promotion_type=='fullminus' 
+                || $item.basicPromotionListInfo[$key].promotion_type=='fulldiscount'
+                || $item.basicPromotionListInfo[$key].promotion_type=='xydiscount'}>
+                  <span>已优惠:<{$itemPromotion.discount_price}></span>
+                <{/if}>
+              </td>
+            </tr>
+            <{/if}>
+            <{foreach from=$item.object item=goods key=key}>
+              <{if in_array($goods.cart_id,$itemPromotion.cart_ids)}>
+              <tr style="background-color:rgb(245,245,245);" class="cart-row discount-area <{if !$goods.valid}>is-disabled<{/if}>" data-cart-id="<{$goods.cart_id}>">
+                <{include file="topc/cart/cart_item.html"}>
+              </tr>
+              <{/if}>
+            <{/foreach}>
+          <{else}>
+            <{foreach from=$item.object item=goods key=key}>
+            <{if in_array($goods.cart_id,$itemPromotion.cart_ids)}>
+            <tr class="cart-row <{if !$goods.valid}>is-disabled<{/if}>" data-cart-id="<{$goods.cart_id}>">
+              <{include file="topc/cart/cart_item.html"}>
+            </tr>
+            <{/if}>
+            <{/foreach}>
+          <{/if}>
+          <{/foreach}>
+
+        </tbody>
+        <!-- 优惠活动列表结束 -->
+      </table>
+    </div>
+    <{/foreach}>
+
+    <div class="cart-table cart-table-ft">
+      <div class="cart-table-btm">
+        <div class="cart-row">
+          <div class="cart-col cart-check-all">
+            <input type="checkbox" class="check-all" <{if $selectAll == true}>checked="true"<{/if}>><label for="">全选</label>
+            <a href="#" class="delete-all">删除</a>
+            <!--
+            <a href="#">收藏商品</a>
+            -->
+          </div>
+          <div class="cart-col cart-col-right">
+            <span>已选商品<em><{if $totalCart.number}><{$totalCart.number}><{else}>0<{/if}></em>件</span>
+            <span>总计原价（不含运费）：<em><{if $totalCart.totalPrice}><{$totalCart.totalPrice|cur}><{else}>0<{/if}></em></span>
+            <span>优惠金额：<em><{if $totalCart.totalDiscount}>-<{$totalCart.totalDiscount|cur}><{else}>0<{/if}></em></span>
+            <span>合计（不含运费）：<em><{if $totalCart.totalAfterDiscount}><{$totalCart.totalAfterDiscount|cur}><{else}>0<{/if}></em></span>&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-import btn-lg submit-cart"><span><span>去结算</span></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<{else}>
+<div class="cart">
+  <div class="empty-cart">
+    <div class="row offset-lg-2">
+      <i class="col-lg-1 icon icon-cart-a"></i>
+      <p class="offset-lg-1 empty-cart-text">
+        购物车内暂时没有商品，<a href="<{url action=topc_ctl_default@index}>">去首页</a>挑选喜欢的商品
+      </p>
+    </div>
+  </div>
+</div>
+<{/if}>

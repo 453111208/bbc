@@ -1,0 +1,175 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      退换货申请表
+    </div>
+    <div class="membercenter-box-bd">
+      <form action="<{url action=topc_ctl_member_aftersales@commitAftersalesApply}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+        <div class="orderdtl-box">
+          <div class="orderdtl-bd">
+            <div class="row">
+              <div class="col-lg-2"><em class="text-danger">*</em>请选择退换货类型</div>
+              <div>
+                <{if $tradeInfo.status == 'WAIT_SELLER_SEND_GOODS'}>
+                <span>
+                  <input type="radio" class="x-checkbox" name="aftersales_type" value='ONLY_REFUND' checked=checked id="for_return">
+                  <label for="for_return">仅退款</label>
+                </span>
+                <{elseif $tradeInfo.status == 'WAIT_BUYER_CONFIRM_GOODS' || $tradeInfo.status == 'TRADE_FINISHED'}>
+                <{if $tradeInfo.status != 'TRADE_FINISHED' }>
+                <span>
+                  <input type="radio" class="x-checkbox" name="aftersales_type" value='ONLY_REFUND' checked=checked>
+                  <label>仅退款</label>
+                </span>
+                <{/if}>
+                <span class="offset-1">
+                  <input type="radio" class="x-checkbox" name="aftersales_type" value='REFUND_GOODS' checked=checked id="for_return">
+                  <label for="for_return">我要退货</label>
+                </span>
+                <span class="offset-1">
+                  <input type="radio"  name="aftersales_type" value='EXCHANGING_GOODS' id="for_exchange">
+                  <label for="for_exchange">我要换货</label>
+                </span>
+                <{/if}>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orderdtl-box">
+          <div class="orderdtl-hd">订单信息</div>
+          <div class="orderdtl-bd">
+            <div class="row">
+              <div class="col-lg-1">订单编号</div>
+              <div class="col-lg-5"><{$tradeInfo.tid}><input type="hidden" name='tid' value=<{$tradeInfo.tid}>></div>
+              <div class="col-lg-1">商家名称</div>
+              <div class="col-lg-5"><{$tradeInfo.shop_id|shopname}></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-1">订单状态</div>
+              <div class="col-lg-5">
+                <{if $tradeInfo.status == "WAIT_BUYER_PAY"}>
+                等待买家付款
+                <{elseif $tradeInfo.status == "WAIT_SELLER_SEND_GOODS"}>
+                买家已付款
+                <{elseif $tradeInfo.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+                卖家已发货
+                <{elseif $tradeInfo.status == "TRADE_FINISHED"}>
+                订单已完成
+                <{elseif $tradeInfo.status == "TRADE_CLOSED_BY_SYSTEM" || $tradeitem.status == "TRADE_CLOSED"}>
+                订单已关闭
+                <{/if}>
+              </div>
+              <div class="col-lg-1">下单时间</div>
+              <div class="col-lg-5"><{$tradeInfo.created_time|cdate:"FDATE_FTIME"}></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-1">收货信息</div>
+              <div class="col-lg-5">
+                <p><{$tradeInfo.receiver_name}>&nbsp;<{$tradeInfo.receiver_mobile}>
+                  &nbsp; &nbsp;&nbsp;<{$tradeInfo.receiver_state}><{$tradeInfo.receiver_city}><{$tradeInfo.receiver_district}><{$tradeInfo.receiver_address}></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orderdtl-box">
+          <div class="orderdtl-bd">
+            <div>
+              <table class="item-table table-orderdtl">
+                <colgroup>
+                  <col class="table-col-1">
+                  <col class="table-col-2">
+                  <col class="table-col-3">
+                  <col class="table-col-4">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <td colspan="2">商品</td>
+                    <td>单价（元）</td>
+                    <td>购买数量</td>
+                    <td>申请售后数量</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <input type="hidden" name='oid' value=<{$tradeInfo.orders.0.oid}>>
+                    <td>
+                      <div class="table-goods-pic"><img width="64" height="64" src="<{$tradeInfo.orders.0.pic_path|storager:'s'}>"></div>
+                    </td>
+                    <td><{$tradeInfo.orders.0.title}></td>
+                    <td><{$tradeInfo.orders.0.price|cur}></td>
+                    <td><{$tradeInfo.orders.0.num}></td>
+                    <td ><input type="hidden" name='num' value="<{$tradeInfo.orders.0.num}>"> <{$tradeInfo.orders.0.num}> </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="orderdtl-box">
+          <div class="orderdtl-bd">
+            <ul>
+              <li class="form-row">
+                <label for="" class="form-label"><em class="text-danger">*</em>请选择理由</label>
+                <span class="form-act">
+                  <select name="reason">
+                    <option value="">请选择</option>
+                    <option value="物实不符">物实不符</option>
+                    <option value="质量原因">质量原因</option>
+                    <option value="现在不想购买">现在不想购买</option>
+                    <option value="商品价格较贵">商品价格较贵</option>
+                    <option value="价格波动">价格波动</option>
+                    <option value="商品缺货">商品缺货</option>
+                    <option value="重复下单">重复下单</option>
+                    <option value="订单商品选择有误">订单商品选择有误</option>
+                    <option value="支付方式选择有误">支付方式选择有误</option>
+                    <option value="收货信息填写有误">收货信息填写有误</option>
+                    <option value="支付方式选择有误">支付方式选择有误</option>
+                    <option value="发票信息填写有误">发票信息填写有误</option>
+                    <option value="其他原因">其他原因</option>
+                  </select>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label">问题描述</label>
+                <span class="form-act">
+                  <textarea name="description" id="" cols="30" rows="6"></textarea>
+                </span>
+              </li>
+              <li class="form-row">
+                <label for="" class="form-label">图片信息</label>
+                <span class="form-act">
+                  <div>
+                    <div class="images-uploader">
+                      <div class="handle img-thumbnail action-upload">
+                        <input type="file" name="evidence_pic[]" multiple accept="image/*" data-size="5242880" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" class="action-file-input">
+                        <span class="icon-add"></span>
+                      </div>
+                    </div>
+
+                    <span>为了帮助您更好的解决问题，您可以上传图片</span>
+                  </div>
+                  <p class="text-muted">
+                    最多可上次5张图片，每张图片大小不超过5M，支持bmp，gif，JPG，png，jpeg格式文件
+                  </p>
+                  <!--div class="refund-img-box">
+                  <div class="table-goods-pic"><img width="64" height="64" src="images/demo_goods_detail.jpg"></div>
+                  <div class="table-goods-pic"><img width="64" height="64" src="images/demo_goods_detail.jpg"></div>
+                  <div class="table-goods-pic"><img width="64" height="64" src="images/demo_goods_detail.jpg"></div>
+                  <div class="table-goods-pic"><img width="64" height="64" src="images/demo_goods_detail.jpg"></div>
+                  <div class="table-goods-pic"><img width="64" height="64" src="images/demo_goods_detail.jpg"></div>
+                  </div-->
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="orderdtl-box">
+          <div class="orderdtl-bd text-center">
+            <button type="submit" class="btn btn-import"><span><span>提交申请</span></span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

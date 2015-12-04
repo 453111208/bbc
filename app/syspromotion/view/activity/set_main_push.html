@@ -1,0 +1,43 @@
+<form id="set_main_push_form" action="?app=syspromotion&ctl=admin_activity&act=doSetMainpush"  method="POST" >
+  <hr>
+  <div class="notice">※ 设为主推活动后，该活动就成为入口后首先展示的活动，在一段时间内只能有一个主推活动。</div>
+  <h3 for="" class="form-label">请选择要主推的活动：</h3>
+  <hr>
+  <{foreach from=$activity item=group}>
+  <input type="hidden" name="activity[activity_name][<{$group.activity_id}>]" value="<{$group.activity_name}>">
+  <input type="radio" name="activity[activity_id]" value="<{$group.activity_id}>" <{if $group.mainpush}>checked<{/if}> > <{t}><{$group.activity_name}><{/t}><br>
+  <{/foreach}>
+  <br>
+  <div class="table-action">
+    <{button type="submit" id='main_push' label="确定主推"}>
+  </div>
+</form>
+
+<script>
+  (function(){
+    var _form = $('set_main_push_form');
+    var btn =$('main_push');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

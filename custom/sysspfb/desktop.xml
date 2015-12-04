@@ -1,0 +1,34 @@
+<desktop>
+
+    <permissions>
+        <permission id="cat" display='false' workground='sysspfb.workground.category'>分类</permission>
+        <permission id="brand" display='false' workground='sysspfb.workground.category'>商品发布列表</permission>
+        <permission id="prop" display='false' workground='sysspfb.workground.category'>属性</permission>
+         <permission id="sr" display='true' workground='sysspfb.workground.category'>供求信息</permission>
+        <permission id="xj" display='true' workground='sysspfb.workground.category'>询价信息</permission>
+        <permission id="gqxy" display='true' workground='sysspfb.workground.category'>供求协议信息</permission>
+    </permissions>
+
+    <workground name="供求系统" id="sysspfb.workground.category" controller="admin_cat" action="index" order='50'>
+        <menugroup name="品牌管理">
+            <menu controller='admin_brand' action='create' permission='brand' display='false' order='10'>添加品牌</menu>
+            <menu controller='admin_brand' action='index' permission='brand' display='false' order='20'>商品发布列表</menu>
+        </menugroup>
+        <menugroup name="供求信息">
+            <menu controller='admin_supplys' action='index' permission='sr' display='true' order='30'>供应信息列表</menu>
+            <menu controller='admin_requires' action='index' permission='sr' display='true' order='40'>求购信息列表</menu>
+            <menu controller='admin_enquireinfo' action='index' permission='xj' display='true' order='50'>询价信息列表</menu>
+            <menu controller='admin_reqsuppagree' action='index' permission='gqxy' display='true' order='60'>供求协议信息</menu>
+        </menugroup>
+           <menugroup name="属性管理">
+            <menu controller='admin_props' action='create' permission='prop' display='false' order='30'>添加品牌</menu>
+            <menu controller='admin_props' action='index' permission='prop' display='false' order='40'>属性列表</menu>
+        </menugroup>
+        <menugroup name="分类管理">
+            <menu controller='admin_cat' action='create' permission='cat' display='false' order='150'>添加分类</menu>
+            <menu controller='admin_cat' action='index' permission='cat' display='false' order='160'>分类列表</menu>
+            <menu controller='admin_cat' action='leaf' permission='cat' display='false' order='170'>三级分类列表</menu>
+        </menugroup>
+    </workground>
+
+</desktop>

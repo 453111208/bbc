@@ -1,0 +1,86 @@
+<{if $rate}>
+<!-- 循环开始 -->
+<{foreach from=$rate item=item}>
+<li>
+  <table class="table table-primary table-goods table-order">
+    <thead>
+      <tr>
+        <td colspan="7">
+          <span><{$item.appeal_time|cdate}></span>
+          <span>订单编号  <{$item.tid}></span>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-6 text-center">
+          <{if $item.result == 'good'}>好评<{elseif $item.result == 'bad'}>差评<{else}>中评<{/if}>
+        </td>
+        <td class="col-2">
+          <div class="evaluation-txt"><{$item.appeal.content}></div>
+          <{if $item.appeal.evidence_pic}>
+          <div class="show-pics clearfix">
+            <{foreach from=$item.appeal.evidence_pic item=pic}>
+            <a href="<{$pic|storager:'s'}>" target="_blank"><img width="64" height="64" src="<{$pic|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+            <{/foreach}>
+          </div>
+          <{/if}>
+          <div class="text-gray"><{$item.appeal_time|cdate}></div>
+        </td>
+        <td class="col-4">
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.item_title}></a>
+          <div><span class="text-orange"><{$item.item_price|cur}></span></div>
+        </td>
+        <td class="text-center">
+          <{$userName[$item.user_id]}>
+        </td>
+        <td class="col-6 text-center">
+          <{if $item.appeal_again}>
+          再次申诉
+          <{else}>
+          一次申诉
+          <{/if}>
+        </td>
+        <td class="col-6 text-center">
+          <{if $item.appeal_status == 'WAIT'}>
+          等待批准
+          <{elseif $item.appeal_status == 'REJECT' }>
+          申诉驳回
+          <{elseif $item.appeal_status == 'SUCCESS' }>
+          申诉成功
+          <{else}>
+          申诉关闭
+          <{/if}>
+        </td>
+        <td class="col-6">
+          <div>
+            <a href="<{url action=topshop_ctl_rate_appeal@appeaInfo rate_id=$item.rate_id}>" target="view_window">申诉详情</a>
+          </div>
+          <div>
+            <{if $item.appeal_status == 'REJECT'}>
+            <a href="<{url action=topshop_ctl_rate_appeal@appeaInfo rate_id=$item.rate_id type=again}>" class="btn btn-warning btn-xs">再次申诉</a>
+            <{/if}>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+<{/foreach}>
+<{else}>
+<!-- 循环结束 -->
+<li><p class="text-muted well no-shadow text-center">暂无数据</p></li>
+<{/if}>
+<div class="modal fade" id="show_img_madal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width:440px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">查看大图</h4>
+      </div>
+      <div class="modal-body">
+        <div class="show-pic-dialog"><div class="show-img"><img id="big_img" src="" alt=""></div></div>
+      </div>
+    </div>
+  </div>
+</div>

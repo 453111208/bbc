@@ -1,0 +1,279 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      退换货详情
+      <{if $info.progress == '1'}>
+      <!--<a href="#dialog" class="btn_dialog" data-toggle="dialog">填写物流信息</a>-->
+      <a href="#dialog" id="<{$info.aftersales_bn}>" class="btn_dialog" data-toggle="dialog">填写物流信息</a>
+      <{/if}>
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="orderdtl-box">
+        <div class="orderdtl-hd">退换货基本信息</div>
+        <div class="orderdtl-bd">
+          <div class="row">
+            <div class="col-lg-1">退换货编号</div>
+            <div class="col-lg-5"><{$info.aftersales_bn}></div>
+            <div class="col-lg-1">申请时间</div>
+            <div class="col-lg-5"><{$info.created_time|cdate:'FDATE_FTIME'}></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">退换货类型</div>
+            <div class="col-lg-5">
+              <{if $info.aftersales_type == 'ONLY_REFUND'}>
+              仅退款
+              <{elseif $info.aftersales_type == 'REFUND_GOODS'}>
+              退货退款
+              <{elseif $info.aftersales_type == 'EXCHANGING_GOODS'}>
+              换货
+              <{/if}>
+            </div>
+            <div class="col-lg-1">处理状态</div>
+            <div class="col-lg-5">
+              <{if $info.status == '0'}>
+              待处理
+              <{elseif $info.status == '1'}>
+              处理中
+              <{elseif $info.status == '2'}>
+              已处理
+              <{elseif $info.status == '3'}>
+              已驳回
+              <{/if}>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="orderdtl-box">
+        <div class="orderdtl-hd">订单信息</div>
+        <div class="orderdtl-bd">
+          <div class="row">
+            <div class="col-lg-1">订单编号</div>
+            <div class="col-lg-5"><{$info.tid}></div>
+            <div class="col-lg-1">商家名称</div>
+            <div class="col-lg-5"><{$info.trade.shop_id|shopname}></div>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">订单状态</div>
+            <div class="col-lg-5">
+              <{if $info.trade.status == "WAIT_BUYER_PAY"}>
+              <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$info.tid}>">等待买家付款</a>
+              <{elseif $info.trade.status == "WAIT_SELLER_SEND_GOODS"}>
+              <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$info.tid}>">买家已付款</a>
+              <{elseif $info.trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+              <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$info.tid}>">卖家已发货</a>
+              <{elseif $info.trade.status == "TRADE_FINISHED"}>
+              <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$info.tid}>">订单已完成</a>
+              <{elseif $info.trade.status == "TRADE_CLOSED_BY_SYSTEM" || $info.trade.status == "TRADE_CLOSED"}>
+              <a href="<{url action=topc_ctl_member_trade@tradeDetail tid=$info.tid}>">订单已关闭</a>
+              <{/if}>
+            </div>
+            <!--div class="col-lg-1">会员名称</div>
+          <div class="col-lg-5"><{$info.trade.user_id}></div-->
+          </div>
+          <div class="row">
+            <div class="col-lg-1">下单时间</div>
+            <div class="col-lg-5"><{$info.trade.created_time|cdate}></div>
+            <div class="col-lg-1">收货信息</div>
+            <div class="col-lg-5">
+              <p><{$info.trade.receiver_name}>&nbsp;&nbsp; <{if $info.trade.receiver_mobile}><{$info.trade.receiver_mobile}><{else}><{$info.trade.receiver_phone}><{/if}></p>
+              <p><{$info.trade.receiver_state}><{$info.trade.receiver_city}><{$info.trade.receiver_district}><{$info.trade.receiver_address}></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="orderdtl-box">
+        <div class="orderdtl-hd">退换货商品数量</div>
+        <div class="orderdtl-bd">
+          <div>
+            <table class="item-table table-orderdtl">
+              <colgroup>
+                <col class="table-col-1">
+                <col class="table-col-2">
+                <col class="table-col-3">
+                <col class="table-col-4">
+              </colgroup>
+              <thead>
+                <tr>
+                  <td colspan="2">商品</td>
+                  <td>单价（元）</td>
+                  <td>数量</td>
+                  <td>总金额</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="table-goods-pic"><img width="64" height="64" src="<{$info.sku.pic_path|storager:'s'}>"></div>
+                  </td>
+                  <td><a href="<{url action=topc_ctl_item@index item_id=$info.sku.item_id}>"><{$info.sku.title}></a><{$info.sku.spec_nature_info}></td>
+                  <td>
+                    <{$info.sku.price|cur}>
+                  </td>
+                  <td>
+                    <{$info.num}>
+                  </td>
+                  <td>
+                    <{$info.sku.payment|cur}>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="orderdtl-box">
+        <div class="orderdtl-bd">
+          <ul>
+            <li class="form-row">
+              <label for="" class="form-label"><b>退换货理由：</b></label>
+              <span class="form-act">
+                <{$info.reason}>
+              </span>
+            </li>
+
+            <li class="form-row">
+              <label for="" class="form-label"><b>问题描述：</b></label>
+              <span class="form-act">
+                <{$info.description|default:"无详细描述"}>
+              </span>
+            </li>
+
+            <li class="form-row">
+              <label for="" class="form-label"><b>图片信息：</b></label>
+              <span class="form-act">
+                <{if $info.evidence_pic}>
+                <div class="refund-img-box">
+                  <{foreach from=$info.evidence_pic item=pic}>
+                  <div class="table-goods-pic"><img width="64" height="64" src="<{$pic|storager:'s'}>"></div>
+                  <{/foreach}>
+                </div>
+                <{else}>
+                无图片信息
+                <{/if}>
+              </span>
+            </li>
+
+            <{if $info.shop_explanation || $info.admin_explanation }>
+            <li class="form-row">
+              <label for="" class="form-label"><b>退换货处理说明：</b></label>
+              <span class="form-act">
+                <!--div class="row">
+                <span class="col-lg-6">已经开始处理</span>
+                <span class="col-lg-3">2014-09-01 15:00:00</span>
+                </div-->
+                <{if $info.shop_explanation}>
+                <div class="row">
+                  <span class="col-lg-6"><{$info.shop_explanation}></span>
+                </div>
+                <{/if}>
+                <{if $info.admin_explanation}>
+                <div class="row">
+                  <span class="col-lg-6"><{$info.admin_explanation}></span>
+                </div>
+                <{/if}>
+              </span>
+            </li>
+            <{/if}>
+
+            <{if $info.aftersales_type != 'ONLY_REFUND' && $info.sendback_data  && $info.progress >= '2'}>
+            <li class="form-row">
+              <label for="" class="form-label"><b>您的收货信息：</b></label>
+              <span class="form-act">
+                <{$info.sendback_data.receiver_address}>&nbsp;&nbsp;<{$info.sendback_data.mobile}>
+              </span>
+            </li>
+            <li class="form-row">
+              <label for="" class="form-label"><b>您寄送的物流信息</b></label>
+              <span class="form-act">
+                <div class="row">
+                  <span class="col-lg-1">物流公司：</span>
+                  <span class="col-lg-7"><{$info.sendback_data.logi_name}></span>
+                </div>
+                <div class="row">
+                  <span class="col-lg-1">运单号码：</span>
+                  <span class="col-lg-7"><{$info.sendback_data.logi_no}></span>
+                </div>
+                <div class="row">
+                  <span class="col-lg-1">物流跟踪：</span>
+                  <span class="col-lg-7">
+                    <{if $tracker}>
+                    <{foreach from=$tracker item=row}>
+                    <{$row.AcceptTime}> <{$row.AcceptStation}><br/>
+                    <{/foreach}>
+                    <{else}>
+                    该物流公司不支持查询，请到物流公司官网查询
+                    <{/if}>
+                  </span>
+                </div>
+              </span>
+            </li>
+            <{if $info.aftersales_type == 'EXCHANGING_GOODS' }>
+            <li class="form-row">
+              <label for="" class="form-label"><b>商家寄送物流信息</b></label>
+              <{if $info.sendconfirm_data}>
+              <span class="form-act">
+                <div class="row">
+                  <span class="col-lg-1">物流公司：</span>
+                  <span class="col-lg-7"><{$info.sendconfirm_data.logi_name}></span>
+                </div>
+                <div class="row">
+                  <span class="col-lg-1">运单号码：</span>
+                  <span class="col-lg-7"><{$info.sendconfirm_data.logi_no}></span>
+                </div>
+                <div class="row">
+                  <span class="col-lg-1">物流跟踪：</span>
+                  <span class="col-lg-7">
+                    <{if $sendTracker}>
+                    <{foreach from=$sendTracker item=row}>
+                    <{$row.AcceptTime}> <{$row.AcceptStation}><br/>
+                    <{/foreach}>
+                    <{else}>
+                    该物流公司不支持查询，请到物流公司官网查询
+                    <{/if}>
+                  </span>
+                </div>
+              </span>
+              <{else}>
+              <span class="form-act">
+                <div class="row">
+                  <span class="col-lg-4">等待商家发货</span>
+                </div>
+              </span>
+              <{/if}>
+            </li>
+            <{/if}>
+            <{/if}>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.btn_dialog').click(function(e){
+    var _this = this;
+    var dialog = new Dialog('<{url action="topc_ctl_member_aftersales@ajaxLogistics" id=$info.aftersales_bn}>', {
+      width: 500,
+        title:'填写物流',
+        async: 'ajax',
+        asyncOptions: {
+          type: 'get',
+        data: {tid: _this.id},
+        callback: function(){
+          $('#logi_select').change(function(e) {
+            if(this.value == 'other') {
+              $('#other').show().find('input')[0].required = true;
+            }
+            else {
+              $('#other').hide().find('input')[0].required = false;
+            }
+          });
+          dialog.content.find('.act-cancel').on('click', function(e){
+            dialog.hide();
+          });
+        }
+        }
+    });
+  });
+</script>

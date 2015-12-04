@@ -1,0 +1,39 @@
+<div class="tableform">
+<form action="?app=sysshoppubt&ctl=comment&act=deal" method="post" id="cancelForm">
+<h3>评论内容：</h3>
+<br/>
+<textarea cols="80" rows="5" disabled="disabled"><{$commentall.content}></textarea>
+<input type="hidden" name="comment_id" value="<{$commentall.comment_id}>">
+<input type="hidden" name="is_lock" value="<{$commentall.is_lock}>">
+<input type="submit" id="cancel-form-submit" value="<{if $commentall.is_lock}>开启评论<{else}>关闭评论<{/if}>">
+</form> 
+</div>
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

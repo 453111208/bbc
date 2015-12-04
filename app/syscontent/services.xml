@@ -1,0 +1,6 @@
+<services>
+    <service id="desktop_finder.syscontent_mdl_article">
+        <class>syscontent_finder_article</class>
+    </service>
+
+</services>

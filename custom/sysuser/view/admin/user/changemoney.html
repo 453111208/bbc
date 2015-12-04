@@ -1,0 +1,56 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="tableform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gridlist">
+<thead>
+<tr>
+<th>充值消费记录</th>
+<th>意见描述</th>
+<th>户名</th>
+<th>账号</th>
+<th>开户行</th>
+<th>联系人</th>
+<th>联系电话</th>
+<th>支付方式</th>
+<th>支付日期</th>
+<th>说明</th>
+<th>凭证</th>
+<th>保证金体现</th>
+<th>保证金类型</th>
+<th>创建时间</th>
+</tr></thead><tbody>
+
+<{foreach from=$items item=row}>
+<tr>
+<td><{$row.changemoney}></td>
+<td><{$row.text}></td>
+<td><{$row.username}></td>
+<td><{$row.cardnum}></td>
+<td><{$row.bank}></td>
+<td><{$row.likeman}></td>
+<td><{$row.phone}></td>
+<td>
+<{if $row.payway==0}>汇票<{/if}>
+<{if $row.payway==1}>微信<{/if}>
+<{if $row.payway==2}>银行卡<{/if}>
+<{if $row.payway==3}>支付宝<{/if}>
+<{if $row.payway==4}>其他<{/if}>
+</td>
+<td><{$row.paytime|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+<td><{$row.explain}></td>
+<td><{$row.ensurence}></td>
+<td>
+<{if $row.pay==0}>充值<{/if}>
+<{if $row.pay==1}>消费<{/if}>
+<{if $row.pay==2}>保证金体现<{/if}>
+</td>
+<td>
+<{if $row.types==0}>竞价<{/if}>
+<{if $row.types==1}>招标<{/if}>
+<{if $row.types==2}>其他<{/if}>
+</td>
+<td><{$row.create_time|date_format:'%Y-%m-%d %H:%M:%S'}></td>
+</tr>
+<{/foreach}>
+</tbody>
+</table>
+</div>

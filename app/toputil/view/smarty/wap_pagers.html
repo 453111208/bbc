@@ -1,0 +1,26 @@
+<div class="page-num">
+  <{if $head}>
+  <a href="<{$head}>" class="flip"><i class="ico prev">上一页</i></a>
+  <{else}>
+  <span class="flip prev over"><i class="ico prev">上一页</i></span>
+  <{/if}>
+
+  <{foreach from=$links item=item}>
+  <{if $item.link == ""}>
+  <span class="num"><{$item.num}></span>
+  <{else}>
+  <{if $c == $item.num}>
+  <a href="<{$item.link}>" class="flip active"><{$item.num}></a>
+  <{else}>
+  <a href="<{$item.link}>" class="flip"><{$item.num}></a>
+  <{/if}>
+  <{/if}>
+  <{/foreach}>
+
+  <{if $tail}>
+  <a href="<{$tail}>" class="flip next"><i class="ico next">下一页</i></a>
+  <{else}>
+  <span class="flip prev over"><i class="ico prev">下一页</i></span>
+  <{/if}>
+
+</div>

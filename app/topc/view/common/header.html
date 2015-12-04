@@ -1,0 +1,14 @@
+<{if config::get('app.debug', false)}>
+<{css src="layout.css" app="topc"}>
+<{css src="theme.css" app="topc"}>
+<{script src="tips.js" app="topc"}>
+<{script src="formplus.js" app="topc"}>
+<{script src="validate.js" app="topc"}>
+<{script src="area_select.js" app="topc"}>
+<{script src="localstorage.js" app="topc"}>
+<{script src="main.js" app="topc"}>
+<{script src="datepicker.js" app="topc"}>
+<{else}>
+<{css src="basic.min.css" app="topc"}>
+<{script src="shop.min.js" app="topc"}>
+<{/if}>

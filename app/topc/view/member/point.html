@@ -1,0 +1,77 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box section">
+    <div class="membercenter-box-hd">
+      <div class="membercenter-box-left">我的积分</div>
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="points-wrap">
+        <div class="points-left">
+          <h3>可用积分</h3>
+          <p class="points-have"><{if $userpoint.point_count}> <{$userpoint.point_count}><{else}>0 <{/if}></p>
+        </div>
+        <div class="points-right">
+          <h3>将要过期的积分</h3>
+          <div class="points-past"><{if $userpoint.expired_point}><{$userpoint.expired_point}> <{else}>0 <{/if}></div>
+          <div class="note"><{$userpoint.expired_time|cdate}></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="membercenter-box section">
+    <div class="membercenter-box-hd">
+      积分明细
+      <div class="membercenter-box-right">
+        <span class="num">共<em><{$count}></em>条记录</span>
+        <{pagers data=$pagers type="mini"}>
+      </div>
+    </div>
+
+    <div class="membercenter-box-bd">
+      <{if !$pointdata}>
+      <div class="no-content2">
+        <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">暂无记录</span></span>
+      </div>
+      <{else}>
+      <table class="item-table">
+        <colgroup>
+          <col width="30%">
+          <col width="30%">
+          <col width="20%">
+          <col width="20%">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>来源/用途</td>
+            <td>积分变化</td>
+            <td>日期</td>
+            <td>备注</td>
+          </tr>
+        </thead>
+        <tbody>
+          <{foreach from=$pointdata item=point}>
+          <tr>
+            <td>
+              <div class="table-goods-item">
+                <{$point.behavior}>
+              </div>
+            </td>
+            <td>
+              <span class="points-add"><{if $point.behavior_type == "obtain"}>+<{elseif $point.behavior_type == "consume"}>-<{/if}><{$point.point}>
+              </span>
+            </td>
+            <td>
+              <{$point.modified_time|cdate}>
+            </td>
+            <td>
+              <{$point.remark}>
+            </td>
+          </tr>
+          <{/foreach}>
+        </tbody>
+      </table>
+      <{/if}>
+    </div>
+  </div>
+
+  <{pagers data=$pagers}>
+</div>

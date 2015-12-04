@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div class="modal fade" id="areaselect_modal" tabindex="-1" role="dialog">
+  <div class="panel panel-default modal-dialog">
+    <div class="panel-heading clearfix">
+      上传图片
+      <div class="pull-right">
+        <!-- <button type="button" class="btn btn-primary action-save">保存</button> -->
+        <button type="button" class="btn btn-default action-cancel" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+    <div class="panel-body text-center">
+      <div class="gallery-upload-icon">
+        <input type="file" class="hide action-file-input" name="" data-ismodal="true"  data-size="3145728"  multiple="multiple" data-remote="<{url action=toputil_ctl_image@uploadImages from=shop}>" accept="image/*">
+        <i class="glyphicon glyphicon-open action-upload"></i>
+      </div>
+      <hr>
+      <p>图片单张大小支持3M以下，超过3M则不能上传</p>
+      <p>支持图片格式：jpg、jepg、png、gif</p>
+    </div>
+  </div>
+</div>

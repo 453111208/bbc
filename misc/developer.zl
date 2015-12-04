@@ -1,0 +1,10 @@
+Product-Name = ecstore-2.0
+Registered-To = developer
+Max-Concurrent = 5
+Lease-Expiration = 60
+Wait-For-Lease = no
+Expires = Never
+IP-Range = 192.168.*.*
+Hardware-Locked = No
+Produced-By = 180410
+Verification-Code = 4QDxFdf0AD3gA/xTmqsSrZHwdwrpzwIVALf1xHEGyJh2T5XVB+3mC1vuthqz

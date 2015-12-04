@@ -1,0 +1,48 @@
+<div class="maxM-right">
+<div class="col-lg-12 box main_page">
+<!--    <a class="btnp" href="<{url action=topc_ctl_member_supplyman@editGoods}>" style="cursor: pointer"><span>增加供应信息</span></a>-->
+<{if !$enquireList}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">没有发布询价信息</span></span>
+    </div>
+     <{else}>
+<!--       <span class="num">企业可以发布<em>100</em>条，已发布<em><{$enquireCounts}></em>条，剩余<em><{100-$enquireCounts}></em>条</span> -->
+      <table class="item-table table-goods">
+          <colgroup>
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+            <col class="table-col-1">
+          </colgroup>
+        <thead>
+            <tr>
+              <td>操作</td>
+              <td>商品名称</td>
+              <td>联系人</td>
+              <td>联系方式</td>
+              <td>电子邮件</td>
+              <td>企业单位</td>
+              <td>发布人</td>
+            </tr>
+        </thead>
+         <{foreach from=$enquireList item=enquire}>
+            <tbody>
+                <tr>
+                <td><a class="btnp" href="<{url action=topc_ctl_member_enquireinfo@enquireEdit enquireId=$enquire.enquire_id}>" style="cursor: pointer"><span>查看</span></a></td>
+                <td><{$enquire.goodsName}></td>
+                <td><{$enquire.name}></td>
+                <td><{$enquire.phone}></td>
+                <td><{$enquire.email}></td>
+                <td><{$enquire.workName}></td>
+                <td><{$infoName}></td>
+                </tr>
+            </tbody>
+          <{/foreach}>
+      </table>
+        <{/if}>
+        </div>
+</div>

@@ -1,0 +1,187 @@
+<div class="prd-detail shop">
+  <div class="add-col">
+    <span>
+      <span class="icon icon-star"></span>
+      <span class="txt">收藏成功!</span>
+    </span>
+  </div>
+  <div class="ui-mask"></div>
+  <header>
+    <!-- <div class="top-fix" id="topFix"> -->
+      <div class="list-hd">
+        <div class="backto icon-back">
+          <input type="button" name="returnBcak" onclick="history.back()">
+        </div>
+        <div class="tit">活动详情</div>
+        <div class="menu">
+          <a href="" class="btn icon-cart">
+          </a>
+          <a href="index.html" class="btn icon-home">
+          </a>
+        </div>
+      </div>
+      <!-- </div> -->
+  </header>
+  <section class="main">
+    <section id="slider" class="ui-slider">
+      <div class="ui-slider-group">
+        <div class="ui-slider-item" data-index="0">
+          <a href=""><img src="<{$group_item.item_default_image}>"></a>
+        </div>
+        <{foreach from=$itemImg item=item}>
+        <{/foreach}>
+      </div>
+    </section>
+    <section class="price-area">
+      <div class="goods-info">
+        <div class="goods-tit">
+          <span class="activity-tag">
+            <{$group_item.activity_info.activity_tag}>
+          </span>
+          <{$group_item.title}>
+        </div>
+        <!--收藏-->
+        <div class="collect">
+          <{if $nologin!=1}>
+          <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="save">
+            <span class="icon icon-favor"></span> 收藏
+          </a>
+          <{else}>
+          <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" data-ajax-data="item_id=<{$group_item.item_id}>" rel="_request" data-ajax-type="post">
+            <span class="icon icon-favor"></span> 收藏
+          </a>
+          <{/if}>
+        </div>
+      </div>
+      <div class="group-info">
+        <{if $group_item.activity_info.end_time < $now_time }>
+        <div class="end-txt">
+          <span>已结束</span>
+        </div>
+        <{elseif $group_item.activity_info.start_time > $now_time}>
+        <div class="countdown">
+          <i class="icon icon-clock"></i> 距活动开始还有：
+          <br>
+          <span></span>
+        </div>
+        <{elseif $now_time < $group_item.activity_info.end_time && $group_item.activity_info.start_time < $now_time}>
+        <div class="countdown">
+          <i class="icon icon-clock"></i> 距活动结束还有：
+          <br>
+          <span></span>
+        </div>
+        <{/if}>
+        <div class="purchase">
+          已有<i><{$item.sold_quantity|default:0}></i>人购买
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="pic-area detail">
+        <div class="hd">
+          <a href="<{url action=topm_ctl_item@getItemRate item_id=$group_item.item_id}>">
+            买家评价
+            <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="pic-area detail">
+        <div class="hd">
+          <a href="<{url action=topm_ctl_item@itemPic item_id=$group_item.item_id}>">
+            商品描述
+            <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </div>
+      <div class="para-area detail">
+        <div class="hd">
+          <a href="<{url action=topm_ctl_item@itemParams item_id=$group_item.item_id}>">
+            商品参数
+            <span class="icon icon-forward"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="store-info">
+      <span class="store-n">
+        <{$shop.shopname}>
+      </span>
+      <div class="store-link">
+        <a href="<{url action=topm_ctl_shopcenter@index shop_id=$shop.shop_id}>"  class="enter">
+          <span class="icon icon-stand"></span>
+          进入店铺
+        </a>
+        <{if $nologin!=1}>
+        <a href="<{url action=topm_ctl_passport@signin next_page=$next_page}>" class="collect col-store">
+          <span class="icon icon-collect"></span>收藏店铺
+        </a>
+        <{else}>
+        <a href="<{url action=topm_ctl_collect@ajaxFavshop}>" rel="_request" data-ajax-data="shop_id=<{$group_item.shop_id}>" data-ajax-type="post" class="collect col-store">
+          <span class="icon icon-collect"></span>收藏店铺
+        </a>
+        <{/if}>
+      </div>
+      <div class="store-mark">
+        <ul>
+          <li>商品评分：<i><{$shopDsrData.countDsr.tally_dsr}></i></li>
+          <li>服务评分：<i><{$shopDsrData.countDsr.attitude_dsr}></i></li>
+          <li>配送评分：<i><{$shopDsrData.countDsr.delivery_speed_dsr}></i></li>
+        </ul>
+      </div>
+    </section>
+  </section>
+</div>
+
+<{if $now_time < $group_item.activity_info.start_time }>
+<section class="group-detail-foot group-ready">
+  <div class="group-price">
+    <i class="icon icon-coupon"></i><{$group_item.activity_price}>
+    <span><{$group_item.price}></span>
+  </div>
+  <div class="group-action">
+    <a href="#" class="ui-btn ui-btn-warning ui-btn-block">即将开售</a>
+  </div>
+</section>
+<script>
+  //创建slider组件
+$('#slider').slider( { imgZoom: true });
+// 全setup方式调用
+countdown('.countdown span',{
+  'start': <{$group_item.activity_info.start_time-$now_time}>,
+  'secondOnly': false,
+  'callback': null
+});
+</script>
+<{elseif  $group_item.activity_info.end_time < $now_time}>
+<section class="group-detail-foot group-end">
+  <div class="group-price">
+    <i class="icon icon-coupon"></i><{$group_item.activity_price}>
+    <span><{$group_item.price}></span>
+  </div>
+  <div class="group-action">
+    <a href="<{url action=topm_ctl_item@index item_id=$group_item.item_id }>" class="ui-btn ui-btn-warning ui-btn-block">原价购买</a>
+  </div>
+</section>
+<{else}>
+<section class="group-detail-foot group-start">
+  <div class="group-price">
+    <i class="icon icon-coupon"></i><{$group_item.activity_price}>
+    <span><{$group_item.price}></span>
+  </div>
+  <div class="group-action">
+    <a href="<{url action=topm_ctl_item@index item_id=$group_item.item_id a=$group_item.activity_id}>" class="ui-btn ui-btn-warning ui-btn-block">立即抢购</a>
+  </div>
+</section>
+<script>
+  //创建slider组件
+$('#slider').slider( { imgZoom: true });
+// 全setup方式调用
+countdown('.countdown span',{
+  'start': <{$group_item.activity_info.end_time-$now_time}>,
+  'secondOnly': false,
+  'callback': null
+});
+</script>
+<{/if}>
+
+

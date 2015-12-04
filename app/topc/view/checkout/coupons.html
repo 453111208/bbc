@@ -1,0 +1,17 @@
+<div class="coupon-outbox">
+  <!-- <div class="coupon-header">此处只显示本单您可用的优惠券 <a href="#">［了解优惠券使用规则］</a></div> -->
+  <div>
+    <ul>
+      <!-- 满减列表开始 -->
+      <{foreach from=$couponList item=item}>
+      <li><div class="radio"><label><input type="radio" name="coupon_use" id="" value="<{$item.coupon_code}>" data-coupon-desc="<{$item.coupon_name}>" checked > <{$item.coupon_name}></label></div></li>
+      <{/foreach}>
+      <li><div class="radio"><label><input type="radio" name="coupon_use" id=""  value="-1"> 不使用优惠券</label></div></li>
+      <!-- 满减列表结束 -->
+    </ul>
+  </div>
+  <div class="coupon-footer">
+    <button type="button" id="check_coupon" class="btn btn-import dialog-btn-close"><span><span>确定</span></span></button>
+    <button type="button" class="btn btn-cancel"><span><span>取消</span></span></button></div></div>
+  </div>
+</div>

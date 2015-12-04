@@ -1,0 +1,294 @@
+<div class="report">
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="report-filter bg-info">
+      <span class="report-filter-1">
+        <a href="<{url action=topshop_ctl_sysstat_sysstat@index sendtype='yesterday'}>" <{if $sendtype=='yesterday'|| $sendtype==''}>class="active"<{/if}> >昨日</a>
+        <a href="<{url action=topshop_ctl_sysstat_sysstat@index sendtype='beforday'}>" <{if $sendtype=='beforday'}>class="active"<{/if}>>前日</a>
+        <a href="<{url action=topshop_ctl_sysstat_sysstat@index sendtype='week'}>" <{if $sendtype=='week'}>class="active"<{/if}>>最近7天</a>
+        <a href="<{url action=topshop_ctl_sysstat_sysstat@index sendtype='month'}>" <{if $sendtype=='month'}>class="active"<{/if}>>最近30天</a>
+      </span>
+      </div>
+      <div class="report-total">
+        <div class="small-box bg-aqua col-lg-2">
+          <div class="inner">
+            <div>新增订单金额(￥)</div>
+            <h3><{$sysstat.commonday.new_fee|cur}></h3>
+            <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+            <p class="text-light-gray">上周同期<{$sysstat.beforeweek.new_fee|cur}></p>
+            <{/if}>
+          </div>
+        </div> 
+        <div class="small-box bg-green col-lg-2">
+          <div class="inner">
+            <div>新增订单数(笔)</div>
+            <h3><{$sysstat.commonday.new_trade|default:0}></h3>
+            <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+            <p class="text-light-gray">上周同期<{$sysstat.beforeweek.new_trade|default:0}></p>
+            <{/if}>
+          </div>
+        </div>
+        <div class="small-box bg-yellow col-lg-2">
+          <div class="inner">
+            <div>平均单价(￥)</div>
+           <h3><{$sysstat.commonday.averPrice|cur}></h3>
+            <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+            <p class="text-light-gray">上周同期<{$sysstat.beforeweek.averPrice|cur}></p>
+            <{/if}>
+          </div>
+        </div>   
+        <div class="small-box bg-red col-lg-2">
+          <div class="inner">
+            <div>已完成订单数(笔)</div>
+             <h3><{$sysstat.commonday.complete_trade|default:0}></h3>
+            <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+            <p class="text-light-gray">上周同期<{$sysstat.beforeweek.complete_trade|default:0}></p>
+            <{/if}>
+          </div>
+        </div>
+        <div class="small-box bg-maroon col-lg-2">
+          <div class="inner">
+             <div>已发货订单数(笔)</div>
+            <h3><{$sysstat.commonday.already_send_trade|default:0}></h3>
+            <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+            <p class="text-light-gray">上周同期<{$sysstat.beforeweek.already_send_trade|default:0}></p>
+            <{/if}>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="checkbox text-gray">
+             <label>
+              <input type="radio" name="radio" id="trade" value="new_fee" checked onchange="businessTrade()">新增订单金额
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="new_trade" onchange="businessTrade()">新增订单数
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="averPrice" onchange="businessTrade()">平均单价
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="ready_fee" onchange="businessTrade()">待付款订单金额
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="alreadyfee" onchange="businessTrade()">已付款订单金额
+            </label>
+            <br/>
+            <label>
+              <input type="radio" name="radio" id="trade" value="complete_trade" onchange="businessTrade()">已完成订单数
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="ready_send_trade" onchange="businessTrade()">待发货订单数
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="already_send_trade" onchange="businessTrade()">已发货订单数
+            </label>
+            <label>
+              <input type="radio" name="radio" id="trade" value="cancle_trade" onchange="businessTrade()">已取消订单数
+            </label>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="checkbox pull-right">
+              <{if $sendtype=='yesterday' || $sendtype=='beforday'}>
+              对比：
+              <label>
+                <input type="radio" name="compare" id="compare" value="comparebefore" checked onchange="businessTrade()">前一日
+              </label>
+              <label>
+                <input type="radio" name="compare" id="compare" value="compareweek" onchange="businessTrade()">上周同期
+              </label>
+              <{/if}>
+            </div>
+          </div>
+          <div class="demo-container">
+            <div id="placeholder" class="demo-placeholder" style="width:100%;height:300px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="report-title">商品销售Top5<a href="#" class="pull-right">查看详细></a></div>
+      <table class="table table-primary table-bordered table-goods text-center">
+        <thead>
+          <tr>
+            <td width="60">序号</td>
+            <td>产品详情</td>
+            <td>销售数量</td>
+            <td>销售金额</td>
+          </tr>
+        </thead>
+         <tbody>
+          <{foreach from=$sysItemInfo item=shopItem}>
+          <tr>
+            <td>
+              <{assign var="i" value=$i+1}>
+              <{$i}>
+            </td>
+            <td class="text-left">
+              <div class="goods">
+              <img src="<{$shopItem.pic_path}>" alt="">
+              <a href="<{url action=topc_ctl_item@index item_id=$shopItem.item_id}>"><{$shopItem.title}></a> 
+              </div>
+            </td>
+            <td>
+              <{$shopItem.amountnum|default:0}>
+            </td>
+            <td>
+              <{$shopItem.amountprice|cur}>
+            </td>
+          </tr>
+          <{/foreach}>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="report-title">交易数据<a href="#" class="pull-right">查看详细></a></div>
+      <table class="table table-primary table-bordered text-center">
+        <thead>
+          <tr>
+            <td>时间</td>
+            <td>新增订单金额</td>
+            <td>新增订单数量</td>
+            <td>平均客单价</td>
+            <td>待付款订单金额</td>
+            <td>已付款订单金额</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>昨日</td>
+            <td><{$sysDataInfo.yesterday.commonday.new_fee|cur}></td>
+            <td><{$sysDataInfo.yesterday.commonday.new_trade|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.averPrice|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.ready_fee|cur}></td>
+            <td><{$sysDataInfo.yesterday.commonday.alreadyfee|cur}></td>
+          </tr>
+          <tr>
+            <td>前日</td>
+            <td><{$sysDataInfo.beforInfo.commonday.new_fee|cur}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.new_trade|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.averPrice|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.ready_fee|cur}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.alreadyfee|cur}></td>
+          </tr>
+
+          <tr>
+           <td >近7天</td>
+           <td><{$sysDataInfo.week.commonday.new_fee|cur}></td>
+           <td><{$sysDataInfo.week.commonday.new_trade|default:0}></td>
+           <td><{$sysDataInfo.week.commonday.averPrice|default:0}></td>
+           <td><{$sysDataInfo.week.commonday.ready_fee|cur}></td>
+           <td><{$sysDataInfo.week.commonday.alreadyfee|cur}></td>
+          </tr>
+          <tr>
+           <td >近30天</td>
+           <td><{$sysDataInfo.month.commonday.new_fee|cur}></td>
+           <td><{$sysDataInfo.month.commonday.new_trade|default:0}></td>
+           <td><{$sysDataInfo.month.commonday.averPrice|default:0}></td>
+           <td><{$sysDataInfo.month.commonday.ready_fee|cur}></td>
+           <td><{$sysDataInfo.month.commonday.alreadyfee|cur}></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="report-title">业务数据<a href="#" class="pull-right">查看详细></a></div>
+     <table class="table table-primary table-bordered text-center">
+        <thead>
+          <tr>
+            <td>时间</td>
+            <td>已完成订单数量</td>
+            <td>待付款订单数量</td>
+            <td>待发货订单数量</td>
+            <td>已发货订单数量</td>
+            <td>已取消订单数量</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td >昨日</td>
+            <td><{$sysDataInfo.yesterday.commonday.complete_trade|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.ready_trade|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.ready_send_trade|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.already_send_trade|default:0}></td>
+            <td><{$sysDataInfo.yesterday.commonday.cancle_trade|default:0}></td>
+          </tr>
+          <tr>
+            <td >前日</td>
+            <td><{$sysDataInfo.beforInfo.commonday.complete_trade|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.ready_trade|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.ready_send_trade|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.already_send_trade|default:0}></td>
+            <td><{$sysDataInfo.beforInfo.commonday.cancle_trade|default:0}></td>
+          </tr>
+          <tr>
+            <td >近7天</td>
+            <td><{$sysDataInfo.week.commonday.complete_trade|default:0}></td>
+            <td><{$sysDataInfo.week.commonday.ready_trade|default:0}></td>
+            <td><{$sysDataInfo.week.commonday.ready_send_trade|default:0}></td>
+            <td><{$sysDataInfo.week.commonday.already_send_trade|default:0}></td>
+            <td><{$sysDataInfo.week.commonday.cancle_trade|default:0}></td>
+           </tr>
+          <tr>
+            <td >近30天</td>
+            <td><{$sysDataInfo.month.commonday.complete_trade|default:0}></td>
+            <td><{$sysDataInfo.month.commonday.ready_trade|default:0}></td>
+            <td><{$sysDataInfo.month.commonday.ready_send_trade|default:0}></td>
+            <td><{$sysDataInfo.month.commonday.already_send_trade|default:0}></td>
+            <td><{$sysDataInfo.month.commonday.cancle_trade|default:0}></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+<script type="text/javascript">
+$('.report input[type=radio]:checked').trigger('change');
+
+function sysstatment(rs)
+{
+    var options = {
+      series: {
+        lines: { show: true },
+        points: { show: true },
+        shadowSize:0
+      },
+      clickable: true,
+      hoverable: true,
+      xaxis:{
+        //tickSize:1,
+        minTickSize: [1, 'day'],
+        mode: 'time',
+        timeformat: "%Y/%m/%d"
+      }
+
+    };
+    $.plot("#placeholder", rs, options);
+}
+function businessTrade()
+{
+  var type = $(":radio:checked").val();
+  var sendtype = "<{$sendtype}>";
+  if(sendtype=='yesterday' || sendtype=='beforday')
+  {
+    var compare = $('input[name="compare"]:checked').val();
+  }
+  //alert(type);
+  var url = "<{url action=topshop_ctl_sysstat_sysstat@ajaxTrade}>";
+  var datainfo = "trade="+type+"&sendtype="+sendtype+"&compare="+compare;
+  $.ajax({
+    type:'POST',
+    url:url,
+    data:datainfo,
+    success:function(rs){
+      sysstatment(rs);
+    }
+  });
+
+}
+
+</script>
+

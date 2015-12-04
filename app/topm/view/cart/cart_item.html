@@ -1,0 +1,72 @@
+<div class="goods-info">
+  <div class="check">
+    <input type="checkbox" class="icon-checkmark-c action-checkitem-on" name="cart_id[<{$goods.cart_id}>]" value="1" <{if $goods.is_checked==true}>checked="true"<{/if}>>
+    <input type="checkbox" class="action-checkitem-off hide" name="cart_id[<{$goods.cart_id}>]" value="0" <{if $goods.is_checked==false}>checked="true"<{/if}>>
+  </div>
+  <div class="info-l">
+    <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-pic"><img src="<{$goods.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>" alt=""></a>
+  </div>
+  <div class="info-m">
+    <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-name">
+      <{if $goods.activityDetail}><span class="activity-tag"><{$goods.activityDetail.activity_info.activity_tag}></span><{/if}><{$goods.title}>
+    </a>
+    <{if $goods.spec_info}>
+    <br>
+    <{$goods.spec_info}>
+    <{/if}>
+    <div class="standard-area">
+      <div class="standard-info">
+        <div class="size parameter">
+          <span class="tit">尺寸1:</span>
+          <ul class="inn">
+            <li>
+              <button class="button">XS</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="info-quality">
+    <input type="number" name="cart_num[<{$goods.cart_id}>]" class="action-modify cart-num" value="<{$goods.quantity}>" min="1" max="<{if $goods.activityDetail.activity_info.buy_limit}><{$goods.activityDetail.activity_info.buy_limit}><{else}><{$goods.store}><{/if}>">
+  </div>
+  <div class="info-r">
+    <div class="g-price">
+      <span class="after">
+        <{if $goods.activityDetail.activity_price}>
+        <{$goods.activityDetail.activity_price}>
+        <{else}>
+        <{$goods.price.price|cur}>
+        <{/if}>
+      </span>
+      <br>
+      <span class="num">x <i><{$goods.quantity}></i></span>
+    </div>
+  </div>
+</div>
+<div class="action">
+  <input type="hidden" id="<{$goods.item_id}>">
+  <div class="coupon-select">
+    <div class="r select">
+      <!-- 商品选择优惠方式开始 -->
+      <{if $goods.promotions}>
+      <select <{if !$goods.valid}>disabled <{/if}> class="goods-discount" name="promotionid[<{$goods.cart_id}>]">
+        <option value="0" <{if $goods.selected_promotion==0}> selected="selected" <{/if}>>不使用活动优惠</option>
+        <{foreach from=$goods.promotions item=promitem}>
+        <option value="<{$promitem.promotion_id}>" <{if $goods.selected_promotion==$promitem.promotion_id}> selected="selected" <{/if}> ><{$promitem.promotion_name}></option>
+        <{/foreach}>
+      </select>
+      <{/if}>
+      <!-- 商品选择优惠方式结束 -->
+    </div>
+  </div>
+  <div>
+    <{if $collect.stat}>
+    <span class="icon icon-favor cur"></span>
+    <{else}>
+    <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save action-addfav" data-ajax-data="item_id=<{$goods.item_id}>" rel="_request" data-ajax-type="post"><span class="icon icon-favor"></span></a>
+    <{/if}>
+    <a href="javascript:void(0);" class="action-delete" data-cart-id="<{$goods.cart_id}>"><span class="delete icon icon-recycle"></span></a>
+  </div>
+</div>
+

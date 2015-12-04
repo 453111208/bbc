@@ -1,0 +1,23 @@
+<{if !$favList}>
+<div class="no-content2">
+  <span class="symbol"><i class="icon icon-bag-flash"></i><span class="txt">暂无收藏的商品</span></span>
+</div>
+<{else}>
+<div class="membercenter-favorit">
+  <{foreach from=$favList item=fav}>
+  <div class="membercenter-favorite-item">
+    <div class="pic"><a href="<{url action=topc_ctl_item@index item_id=$fav.item_id}>"><img width="140" height="140" src="<{$fav.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>"></a><div class="item-mask"></div></div>
+    <div class="name"><a href="<{url action=topc_ctl_item@index item_id=$fav.item_id}>">
+        <{$fav.goods_name}></a></div>
+    <div><a href="#" class="price"><{$fav.goods_price|cur}></a></div>
+    <div class="operate">
+      <a href="#" class="btn-square"><i class="icon icon-cart-a" data-icon="\2829"></i></a>
+      <a href="javascript:void(0);" class="btn-square favDel" data-itemId="<{$fav.item_id}>"><i class="icon icon-trash-a" ></i></a>
+    </div>
+    <div class="operate2">
+      <a href="#" class="btn-select"><i class="icon icon-checkmark" data-icon="\2841"></i></a>
+    </div>
+  </div>
+  <{/foreach}>
+</div>
+<{/if}>

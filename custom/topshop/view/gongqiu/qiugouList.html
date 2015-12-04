@@ -1,0 +1,56 @@
+<table class="table table-primary table-hover table-goods">
+    <thead>
+      <tr>
+        <td class="col-checkbox"></td>
+        <td class="col-name">标题</td>
+        <td>有效时间</td>      
+        <td>联系人</td>
+        <td>发布日期</td>
+       <!--  <td class="text-center">操作</td> -->
+      </tr>
+    </thead>
+     <{if $qiugouList}>
+    <tbody id="data_node">
+     <{foreach from=$qiugouList item=qiugou}>
+      <tr>
+        <td>
+          <label class="checkbox-inline">
+            <input type="checkbox" name=item_ids value=<{$gitem.item_id}>>&nbsp;
+          </label>
+        </td>
+        <td>
+          <div class="goods">
+            <a href="#" target="_blank">
+    <{$qiugou.variety_name}>
+          </a>
+          </div>
+        </td>
+            <td> <{if $qiugou.effective_time==0}>
+            一个月
+            <{elseif $qiugou.effective_time==1}>
+            三个月
+            <{elseif $qiugou.effective_time==2}>
+            半年
+            <{elseif $qiugou.effective_time==3}>
+            一年
+            <{elseif $qiugou.effective_time==4}>
+            长期有效
+            <{/if}></td>
+        <td><{$qiugou.name}></td>
+        <td>
+        <{$qiugou.create_tiem|cdate}>
+        </td>
+        <!-- <td class="text-center"><a href="#">编辑商品</a></td> -->
+      </tr>
+<{/foreach}>
+    </tbody>
+    <{else}>
+    <tbody id="data_node">
+      <tr>
+        <td algin="center" colspan="11">
+          <p class="text-muted well no-shadow text-center">暂无数据</p>
+        </td>
+      </tr>
+    </tbody>
+    <{/if}>
+  </table>

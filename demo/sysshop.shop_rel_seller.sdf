@@ -1,0 +1,15 @@
+a:5:{s:7:"shop_id";i:1;s:9:"seller_id";i:1;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:5:"apple";}
+a:5:{s:7:"shop_id";i:2;s:9:"seller_id";i:2;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"sony";}
+a:5:{s:7:"shop_id";i:3;s:9:"seller_id";i:3;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:18:"shopex奶粉专卖";}
+a:5:{s:7:"shop_id";i:4;s:9:"seller_id";i:4;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:23:"luckmall体验店775708";}
+a:5:{s:7:"shop_id";i:6;s:9:"seller_id";i:6;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:5:"goods";}
+a:5:{s:7:"shop_id";i:7;s:9:"seller_id";i:7;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"A001";}
+a:5:{s:7:"shop_id";i:8;s:9:"seller_id";i:8;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"B001";}
+a:5:{s:7:"shop_id";i:9;s:9:"seller_id";i:9;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"C002";}
+a:5:{s:7:"shop_id";i:10;s:9:"seller_id";i:10;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"B002";}
+a:5:{s:7:"shop_id";i:11;s:9:"seller_id";i:11;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"A002";}
+a:5:{s:7:"shop_id";i:12;s:9:"seller_id";i:11;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"A003";}
+a:5:{s:7:"shop_id";i:13;s:9:"seller_id";i:13;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"B003";}
+a:5:{s:7:"shop_id";i:14;s:9:"seller_id";i:14;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"C003";}
+a:5:{s:7:"shop_id";i:15;s:9:"seller_id";i:15;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:4:"A004";}
+a:5:{s:7:"shop_id";i:17;s:9:"seller_id";i:18;s:5:"roles";s:5:"admin";s:9:"authority";s:3:"all";s:9:"shop_name";s:12:"天使店铺";}

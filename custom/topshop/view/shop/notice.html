@@ -1,0 +1,72 @@
+
+<form action="" method="post" role="form">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" <{if $notice_type=='' }> class="active" <{/if}>>
+      <a href="<{url action=topshop_ctl_shop_notice@index}>">全部</a>
+    </li>
+    <{foreach from=$notice item=noticetype}>
+      <li role="presentation" class="<{if $noticetype == $notice_type }>active<{/if}>">
+        <a href="<{url action=topshop_ctl_shop_notice@index notice_type=$noticetype}>" ><{$noticetype}></a>
+      </li>
+    <{/foreach}>
+  </ul>
+  <br>
+  <table class="table table-primary table-hover table-goods">
+    <thead>
+      <tr>
+        <td class="col-name">通知标题</td>
+        <td>通知时间</td>
+        <td>操作</td>
+      </tr>
+    </thead>
+    <{if $noticeList}>
+    <tbody id="data_node">
+      <{foreach from=$noticeList item=notice}>
+      <tr>
+
+        <td>
+          <div class="goods">
+            <a href="<{url action=topshop_ctl_shop_notice@noticeInfo notice_id=$notice.notice_id}>" target="_blank">
+            <{$notice.notice_title}>
+          </a>
+          </div>
+        </td>
+        <td>
+          <{$notice.createtime|cdate:FDATE_STIME}>
+        </td>
+       
+        <td>
+          <div class="goods">
+            <a href="<{url action=topshop_ctl_shop_notice@noticeInfo notice_id=$notice.notice_id}>" target="_blank">
+              查看详情
+            </a>
+          </div>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+    <{else}>
+    <tbody id="data_node">
+      <tr>
+        <td algin="center" colspan="11">
+          <p class="text-muted well no-shadow text-center">暂无数据</p>
+        </td>
+      </tr>
+    </tbody>
+    <{/if}>
+  </table>
+
+  <{pagers data=$pagers}>
+  <{if $total > 0 }>
+  <span class="page-number">共&nbsp;<em class="text-aqua"><{$total}></em>&nbsp;条记录</span>
+  <{/if}>
+
+</form>
+
+<script>
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-edit");
+    }
+  );
+</script>

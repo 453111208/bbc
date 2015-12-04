@@ -1,0 +1,39 @@
+<div class="maxmain-right r">
+    <!-- 产品 -->
+    <div class="maxpr-solid maxproduct">
+        <div class="max-p-title t3">
+            <div class="xian"></div>
+            <div class="h3">产品信息</div><i></i>
+
+
+        </div>
+        <div class="maxtext">共有在售产品 <i><{$projectitemcount[0].projectnum}></i> 个</div>
+        <div class="max-tabs-body">
+            <div class="maxcomon">
+
+                <ul>
+
+                    <{foreach from=$projectitemList item=projectitem}>
+                    <li>
+                        <a href="" title="" style="cursor: default;" ><img src="<{$projectitem.image_default_id}>" alt="" />
+                        <span><{$projectitem.title}>
+                        <{if $nologin!=1}>
+                        <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{else}>
+                        <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$projectitem.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{/if}>
+                        </span>
+                        </a>
+                    </li>
+                    <{/foreach}>
+
+
+                </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- 产品 -->
+</div>

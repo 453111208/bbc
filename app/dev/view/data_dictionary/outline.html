@@ -1,0 +1,11 @@
+数据库表数量: <{$count}>个
+
+<{foreach from=$appsOutline item="tablesOutline" key="appName"}>
+<{if $tablesOutline}>
+- [APP:<{$appName}>](#app-<{$appName}>-define)
+<{foreach from=$tablesOutline item="table" key="tableName"}>
+  - [<{$tableName}>(<{$table.comment}>)](#table-<{$tableName}>-define)
+<{/foreach}>
+<{/if}>
+<{/foreach}>
+

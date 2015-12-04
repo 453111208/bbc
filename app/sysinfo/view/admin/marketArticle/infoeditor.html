@@ -1,0 +1,68 @@
+<h3><{t}>行情信息<{/t}></h3>
+<div id="x-g-basic" class="goods-detail">
+    <div class="tableform">
+        <form action="?app=sysinfo&ctl=admin_marketArticle&act=infoCheck" method="post" name="infoEditor" id="infoEditor">
+        <{input type="hidden"  name="article[article_id]"  value=$article.article_id }>
+        <div class="division">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>行情标题：<{/t}></th>
+                    <td><{$article.title}></td>
+                </tr>
+                <tr>
+                    <th><{t}>客户端：<{/t}></th>
+                    <td>
+                        <{if $article.platform=='pc'}>
+                        电脑端
+                        <{else}>
+                        移动端
+                        <{/if}>
+                    </td>
+                </tr>
+                <tr>
+                  <th><{t}>行情logo：<{/t}></th>
+                  <td><img src="<{$article.article_logo }>"/></td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>所属行情类目：<{/t}></th>
+                    <td><{$parentName}> > <{$nodeName}></td>
+                </tr>
+                <tr>
+                    <th><em><font color="red">*</font></em><{t}>行情内容：<{/t}></th>
+                    <td>
+                       <{$article.content}>
+                    </td>
+                </tr>
+                <tr>
+                    <th><{t}>审核结果：<{/t}></th>
+                    <td>
+                      <input type="radio" name ="article[status]" value="1" class="act-status" checked>审核通过
+                      <input type="radio" name ="article[status]" value="0" class="act-status">审核不通过
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-action">
+            <{button type="submit" label="确定"|t:'sysinfo'}>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+$('infoEditor').store('target',{
+    onComplete:function(rs){
+        if(!rs) return;
+        rs = JSON.decode(rs);
+        if(rs.success){
+            if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+            if($('infoEditor').getParent('.dialog')){
+                var Dlg = $('infoEditor').getParent('.dialog').retrieve('instance');
+                if(Dlg.update){
+                    Dlg.update.retrieve('instance').initContent();
+                }
+                Dlg.close();
+            }
+        }
+    }
+});
+</script>

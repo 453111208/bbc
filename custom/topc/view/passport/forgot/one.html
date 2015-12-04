@@ -1,0 +1,22 @@
+<form action="<{url action=topc_ctl_passport@findPwdTwo}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+  <ul>
+    <li class="form-row">
+      <label for="" class="form-label">账户名</label>
+      <span class="form-act"><input class="input-ln action-account-check" type="text" name="username" id="" required placeholder="用户名/邮箱地址/手机号码"></span>
+    </li>
+    <li class="form-row">
+      <label class="form-label"></label>
+      <span class="form-act">
+        <button type="submit" class="btn btn-import" rel="_request"><span><span>下一步</span></span></button>
+      </span>
+    </li>
+  </ul>
+</form>
+<script>
+$('#ajaxForm').find('button[type=submit]').data('ajaxConfig', {
+    "update": "#forgot_pass",
+    callback: function(rs){
+        updateStep(1);
+    }
+});
+</script>

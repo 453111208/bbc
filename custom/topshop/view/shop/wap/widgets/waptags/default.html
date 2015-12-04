@@ -1,0 +1,176 @@
+<section class="content widgets">
+  <p>
+    <span class="btn btn-default"><input type="checkbox" name="" id="selectAll"> 全选</span>
+    <a href="<{url action=topshop_ctl_wap_decorate@addTags widgets=$widgetsName dialog=$dialogName}>" class="btn btn-primary act-addcat">
+      <i class="glyphicon glyphicon-plus"></i>
+      添加新标签    </a>
+      <button type="button" class="btn btn-default text-blue opentags">
+      启用标签    </button> 
+      <button type="button" class="btn btn-default text-blue save-ordersort">
+    保存排序    </button>
+    <button type="button" class="btn btn-default text-red act-deltags">
+      <i class="glyphicon glyphicon-remove"></i>
+      删除    </button>
+    
+  </p>
+  <p class="text-orange">*添加标签的上限为10个，启用标签的上限为5个</p>
+  <table class="table table-bordered table-hover" id="data_table">
+    <colgroup>
+      <col class="col-md-0">
+      <col class="col-md-4">
+      <col class="col-md-2">
+      <col class="col-md-2">
+      <col class="col-md-2">
+      <col class="col-md-2">
+    </colgroup>
+    <thead>
+      <tr>
+        <td></td>
+        <td>标签名称</td>
+        <td>状态</td>
+        <td>创建时间</td>
+        <td class="text-center">排序设置</td>
+        <td class="text-center">操作</td>
+      </tr>
+    </thead>
+    <tbody id="data_node">
+      <{foreach from=$data item=item key=key}>
+      <tr class="topshop-widgetstag_del shop-adv">
+        <td><input type="checkbox" name="widgetsId[]"  value="<{$item.widgets_id}>" class="main-check"></td>
+        <td class="form-group">
+          <{$item.params.tagsname}>
+        </td>
+        <td>
+          <{if $item.params.isstart}>
+          已启用
+          <{else}>
+          未启用
+          <{/if}>
+        </td>
+        <td><{$item.modified_time|cdate}></td>
+        <td class="sortable-bar">
+          <input type="hidden" name="tag[<{$item.widgets_id}>][order_sort]">
+          <a href="#" class="icon icon-arrow-up-a act-up" title="上移"></a>
+          <a href="#" class="icon icon-arrow-down-a act-down" title="下移"></a>
+        </td>
+        <td>
+          <span class="col-md-2 text-nowrap"><a href="<{url action=topshop_ctl_wap_decorate@addTags widgets=$widgetsName widgetsId=$item.widgets_id dialog=$dialogName}>">编辑</a></span>
+          <span class="col-md-2 text-nowrap"><a href="javascript:void(0);" class="del text-danger widgetsDel" data-widgetsId="<{$item.widgets_id}>">删除</a></span>
+        </td>
+      </tr>
+    <{/foreach}>
+    </tbody>
+</table>
+
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+</section>
+<script>
+  $('#data_node .act-up').click(function(){
+    var parent = $(this).parents(".shop-adv");
+    var prev = parent.prev();
+    parent.insertBefore(prev);
+  });
+  $("#data_node .act-down").click(function(){
+    var parent = $(this).parents(".shop-adv");
+    var next = parent.next();
+    parent.insertAfter(next);
+  });
+  $('.save-ordersort').on('click',function(){
+    var table = $('#data_table');
+    var url = "<{url action=topshop_ctl_wap_decorate@saveSort}>";
+    table.find('tr input[type=hidden][name$="[order_sort]"]').each(function(i) {
+          this.value = i;
+    });
+    table.find('tr input[type=checkbox]').each(function() {
+      $(this).data('_checked', this.checked);
+      this.checked = true;
+    });
+
+    $.post(url, $('#data_table input[type=hidden]'), function(rs) {
+        if(rs.success){
+              $('#messagebox').message(rs.message, 'success');
+        }
+        if(rs.error) {
+          $('#messagebox').message(rs.message);
+          return;
+        }
+        if(rs.redirect) {
+          setTimeout(function(){location.href=rs.redirect;}, 800);
+        }
+    });
+  });
+
+  $('.widgetsDel').on('click', function(event){
+    if(confirm("确认要删除吗?")){
+      var url = "<{url action=topshop_ctl_wap_decorate@ajaxWidgetsDel}>";
+      var el = $(this);
+          widgetsId = $(this).attr("data-widgetsId");
+          widgetsName = "<{$widgetsName}>";
+          dialogName = "<{$dialogName}>";
+      if(widgetsId){
+        $.post(url, 'widgetsId='+widgetsId+'&widgetsName='+widgetsName+'&dialogName='+dialogName, function(rs) {
+          if(rs.success){
+                el.parents('.topshop-widgetstag_del').remove();
+          }
+        });
+      }
+    }
+  });
+
+  $('#selectAll').change(function(){
+        $('#data_node input[type=checkbox]').prop('checked', this.checked);
+  });
+
+  $('.widgets .opentags').on('click',function(){
+    var url = "<{url action=topshop_ctl_wap_decorate@openTags}>";
+    var widgetsName = "<{$widgetsName}>";
+    var widgetsId = $('#data_node input[type=checkbox]').serialize();
+    var dialogName = "<{$dialogName}>";
+    if($('#data_node input[type=checkbox]').is(':checked')){
+      $.post(url, widgetsId+'&widgets='+widgetsName +'&dialog='+dialogName, function(rs){
+        if(rs.success){
+              $('#messagebox').message(rs.message, 'success');
+        }
+        if(rs.error) {
+          $('#messagebox').message(rs.message);
+          return;
+        }
+        if(rs.redirect) {
+          setTimeout(function(){location.href=rs.redirect;}, 800);
+        }
+      });
+    }else{
+      $('#messagebox').message("请选择标签！");
+    }
+
+  });
+
+  $('.widgets .act-deltags').on('click',function(){
+    var url = "<{url action=topshop_ctl_wap_decorate@ajaxWidgetsDel}>";
+    var widgetsName = "<{$widgetsName}>";
+    var widgetsId = $('#data_node input[type=checkbox]').serialize();
+    var dialogName = "<{$dialogName}>";
+    if(confirm("确认要删除吗?")){
+      if($('#data_node input[type=checkbox]').is(':checked')){
+        $.post(url, widgetsId+'&widgetsName='+widgetsName +'&dialogName='+dialogName, function(rs){
+          if(rs.success){
+                $('#messagebox').message(rs.message, 'success');
+          }
+          if(rs.error) {
+            $('#messagebox').message(rs.message);
+            return;
+          }
+          if(rs.redirect) {
+            setTimeout(function(){location.href=rs.redirect;}, 800);
+          }
+        });
+      }else{
+        $('#messagebox').message("请选择标签！");
+      }
+  }
+
+  });
+
+
+</script>
+

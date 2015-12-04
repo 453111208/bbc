@@ -1,0 +1,52 @@
+<{foreach name="finderList" from=$list key="key" item="row"}>
+<{capture assign="zebra_class"}>
+<{if $key is even}> even<{else}> odd<{/if}>
+<{if $env.foreach.finderList.first}> first<{/if}>
+<{if $env.foreach.finderList.last}> last<{/if}>
+<{/capture}>
+<{assign var="id" value=$row["_id_"]|htmlspecialchars}>
+<tr class="row <{$zebra_class}>" item-id="<{$id}>">
+    <{if $use_buildin_selectrow}>
+    <{if $favstar_rows['id-'.$id] == 1}>
+    <{assign var="star_class" value="fav-star-on"}>
+    <{assign var="fav_sel" value="isfav"}>
+    <{else}>
+    <{assign var="star_class" value=""}>
+    <{assign var="fav_sel" value=""}>
+    <{/if}>
+    <td>
+         <div class="clearfix">
+             <div class="span-auto">
+                  <input type="<{$singleselect}>" class="sel <{$fav_sel}>" name="items[]" rowindex="<{$pinfo['from']+$key}>" value="<{$id}>">
+             </div>
+             <div class="flt">
+                 <i class="fav-star <{$star_class}>">
+                     <{img src="bundle/fav_start.png" app="desktop"}>
+                 </i>
+             </div>
+         </div>
+    </td>
+    <{/if}>
+    <{if $detail_url}>
+    <td class="finder-list-command">
+        <span title=<{t}>展开查看<{/t}> class="btn-detail-open" detail="<{$detail_url}>&id=<{$id}><{$default_detail}>">
+            <{img app="desktop" src="bundle/finder_drop_arrow.gif" alt="展开"|t:'desktop' title="展开"|t:'desktop'}>
+        </span>
+        <{if $allow_detail_popup}>
+        <a title="<{t}>在新窗口查看<{/t}>" href=<{$detail_url}>&id=<{$id}>&singlepage=true<{$default_detail}>' target='_blank'>
+            <{img app="desktop" src="bundle/new_window.gif" alt="新窗"|t:'desktop' title="新窗"|t:'desktop'}>
+        </a>
+        <{/if}>
+    </td>
+    <{/if}>
+    <{foreach from=$showColumnsDefines key="key" item="columnDefine"}>
+    <td key="<{$key}>" class="editable">
+        <div class="cell">
+            <{$row[$key]}>
+        </div>
+    </td>
+    <{/foreach}>
+    <td>&nbsp;</td>
+</tr>
+      
+<{/foreach}>

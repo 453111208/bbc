@@ -1,0 +1,85 @@
+<div class="wrap-lg group-purchase-banner">
+  <{if $slide}>
+  <div class="slider group-purchase" data-toggle="switchable" data-switchable-config='{
+    "effect": "scrollx",
+    "autoplay": true,
+    "interval": 2,
+    "events": "click",
+    "circle": true
+    }'>
+    <div class="slider-pic">
+      <ul class="switchable-content">
+      <{foreach from=$slide item=imgurl key=key}>
+        <li>
+          <a href="<{url to=$item.linktarget}>">
+            <img src="<{$imgurl}>">
+          </a>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <div class="slider-switch switchable-nav">
+      <{assign var=countnum value="1"}>
+      <{foreach from=$slide item=url name="slider"}>
+      <a href="#" <{if $env.foreach.slider.first}>class="active"<{/if}>></a>
+      <{/foreach}>
+    </div>
+  </div>
+  <{/if}>
+  <div class="section">
+    <div class="purchase-hot col-lg-16 clearfix">
+      <div class="decor-line-left"></div>
+      <div class="decor-line-right"></div>
+      <div class="hot-content">
+        <div class="hot-content-ctn">
+          <span><{$activity_list.0.activity_name}></span>
+          <i class="icon icon-arrow-down-b"></i>
+        </div>
+        <input type="hidden" id="activity_id" value="">
+        <div class="hot-content-sub">
+          <{foreach from=$activity_list item=group}>
+          <a href="<{url action=topc_ctl_activity@search id=$group.activity_id}>" data-id="<{$group.activity_id}>"><{$group.activity_name}></a>
+          <{/foreach}>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 团购列表导航 -->
+  <div id="item_list">
+    <{include file="topc/promotion/itemlist.html"}>
+  </div>
+</div>
+</div>
+<script>
+  //banner下方数字居中
+if($('.purchase-switch li').length > 0){
+  $('.purchase-switch').css('margin-left', '-' + ($('.purchase-switch li').length * (parseInt($('.purchase-switch li').css('width'))+10))/2 + 'px');
+}
+$('.hot-content').mouseover(function(e) {
+  $('.hot-content-sub').stop().fadeIn();
+}).mouseout(function(e) {
+  $('.hot-content-sub').stop().fadeOut();
+});
+
+$(function(){
+  $('.hot-content-sub a').eq(0).trigger('click');
+})
+
+$('.hot-content-sub a').on('click', function(e) {
+  e.preventDefault();
+  $('.hot-content-ctn span').text($(this).text());
+  $('.hot-content-sub').stop().fadeOut();
+  $('#activity_id').val($(this).attr('data-id'));
+  var aHref = $(this).attr('href');
+  $.ajax({
+    url: aHref,
+    type: 'get',
+    dataType: 'html',
+    success: function(rs) {
+      $('#item_list').html(rs);
+    }
+  });
+});
+</script>
+
+

@@ -1,0 +1,22 @@
+<div class="tableform">
+  <{foreach from=$column key=index_name item=item}>
+  <table cellpadding="0" class="gridlist" cellspacing="0" width="100%" border="0">
+    <thead>
+      <tr>
+        <th>索引字段类型</th>
+        <th>索引字段</th>
+      </tr>
+    </thead>
+    <{foreach from=$item item=row}>
+    <{if $row.Field}>
+    <tbody>
+      <tr>
+        <td><{$row.Type}></td>
+        <td><{$row.Field}></td>
+      </tr>
+    </tbody>
+    <{/if}>
+    <{/foreach}>
+  </table>
+    <{/foreach}>
+</div>

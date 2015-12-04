@@ -1,0 +1,32 @@
+<div class="prd-list shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <div class="list-tit">
+      <h3><{$data.cat_name}></h3>
+    </div>
+    <div class="list-inn">
+      <ul>
+        <{foreach from=$data.lv2 item=lv2item key=lv2key}>
+        <li>
+          <button class="dropmenu"><{$lv2item.cat_name}><span class="icon icon-back"></span></button>
+          <div class="ui-dropmenu">
+            <ul class="ui-dropmenu-items">
+              <{foreach from=$lv2item.lv3 item=lv3item key=lv3key}>
+              <li><a href="<{url action=topm_ctl_list@index cat_id=$lv3item.cat_id}>"  class="ui-btn-white"><{$lv3item.cat_name}></a></li>
+              <{/foreach}>
+            </ul>
+          </div>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+  $('.dropmenu').click(function(){
+      $(this).addClass('cur').parent().siblings().children().removeClass('cur');
+      $(this).next().show().parent().siblings().children('.ui-dropmenu').hide();
+  });
+  </script>
+  
+</div>

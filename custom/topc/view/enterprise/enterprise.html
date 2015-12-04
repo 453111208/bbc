@@ -1,0 +1,48 @@
+
+<div class="maxrank f1">
+<!-- 产品企业绿色总榜 -->
+	<div class="item">
+		<div class="maxTitle"><h3>生产加工企业绿色总榜</h3><a href="<{url action=topc_ctl_gallery@index}>" title="">查看所有></a></div>
+		<div class="t"><em class="l">公司名称</em><em class="r">绿色指数</em></div>
+		<ul class="clearfix maxTabs-body">
+		<{foreach from=$rabishpd item=item key=key}>
+			<li class="<{if $key==0}>active <{/if}><{if $key<3}>now<{/if}>">
+				<div class="title"><i><{$key+1}></i><h3><a href="<{url action=topc_ctl_shopcenter@index shop_id=$item.shop_id}>" title=""><{$item.shop_name}></a></h3> <span class="mun"><{$item.green}></span></div>
+				<div class="maxinfow">
+					<div class="maxpic"><a href="" title=""><img style="width: 115px;height: 115px;" src="<{$item.shop_logo}>" alt="" /></a></div>
+					<div class="maxinfo" style="height:162.5px;">
+						<div class="list-1"><span>产废品种：</span><{foreach from=$item.cat_name item=row key=key}><{$row.cat_name}>&nbsp<{/foreach}>
+						</div>
+						<div class="list-2" style="max-height: 92px;overflow: hidden;"><span>公司简介：</span><{$item.shop_descript}></div>
+						<div class="list-3"><img src="images/p_cx.png" alt=""><img src="images/p_sd.png" alt=""></div>
+					</div>
+				</div>
+			</li>
+			<{/foreach}>
+		</ul>
+	</div>
+	<!-- 产品企业绿色总榜END -->
+	<!-- 回收处置企业绿色总榜 -->
+	<div class="item item2">
+		<div class="maxTitle"><h3>回收处置企业绿色总榜</h3><a href="<{url action=topc_ctl_gallery@index}>" title="">查看所有></a></div>
+		<div class="t"><em class="l">公司名称</em><em class="r">绿色指数</em></div>
+		<ul class="clearfix maxTabs-body">
+		<{foreach from=$resyclepd item=item key=key}>
+			<li class="<{if $key==0}>active <{/if}><{if $key<3}>now<{/if}>">
+				<div class="title"><i><{$key+1}></i><h3><a href="<{url action=topc_ctl_shopcenter@index shop_id=$item.shop_id}>" title=""><{$item.shop_name}></a></h3> <span class="mun"><{$item.green}></span></div>
+				<div class="maxinfow">
+					<div class="maxpic"><a href="" title=""><img style="width: 115px;height: 115px;" src="<{$item.shop_logo}>" alt="" /></a></div>
+					<div class="maxinfo" style="height:162.5px;">
+						<div class="list-1"><span>产废品种：</span><{foreach from=$item.cat_name item=row key=key}><{$row.cat_name}>&nbsp<{/foreach}></div>
+						<div class="list-2" style="max-height: 92px;overflow: hidden;"><span>公司简介：</span><{$item.shop_descript}></div>
+						<div class="list-3"><img src="images/p_cx.png" alt=""><img src="images/p_sd.png" alt=""></div>
+					</div>
+				</div>
+			</li>
+		<{/foreach}>
+		</ul>
+	</div>
+	<!-- 回收处置企业绿色总榜END -->
+</div>
+
+

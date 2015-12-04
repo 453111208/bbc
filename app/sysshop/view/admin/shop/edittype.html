@@ -1,0 +1,60 @@
+<form id="shoptypeForm" class="tableform" action="?app=sysshop&ctl=admin_shoptype&act=saveShoptype" method="POST">
+    <input type="hidden" name="shoptype[shoptype_id]" value="<{$shoptype.shoptype_id}>">
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th><em class="red">*</em><{t}>类型名称：<{/t}></th>
+                <td><{$shoptype.name}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>是否开启：<{/t}></th>
+                <td><{input type="bool" name="shoptype[status]" vtype="required" value=$shoptype.status disabled="true"}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>是否排他：<{/t}></th>
+                <td>
+                    <{*if $shoptype.shop_type=="flag"*}>
+                    <{input type="bool" name="shoptype[is_exclusive]" vtype="required" value=$shoptype.is_exclusive disabled="true" }>
+                    <{*else*}>
+                    <{*input type="bool" name="shoptype[is_exclusive]" vtype="required" value=$shoptype.is_exclusive *}>
+                    <{*/if*}>
+                </td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>类型描述：<{/t}></th>
+                <td><{input type="textarea" name="shoptype[brief]" vtype="required" value=$shoptype.brief  cols="50" rows="5" maxlength="200"}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>店铺名称后缀：<{/t}></th>
+                <td><{input type="text" name="shoptype[suffix]" vtype="required" value=$shoptype.suffix  maxlength='20'}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>默认商品上限：<{/t}></th>
+                <td><{input type="unsignedint" name="shoptype[max_item]" value=$shoptype.max_item maxlength="4"}></td>
+            </tr>
+        </table>
+    </div>
+    <div class="table-action">
+        <button class="btn btn-primary" type="submit"><span><span><{t}>确认<{/t}></span></span></button>
+    </div>
+</form>
+
+<script>
+
+    $('shoptypeForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('shoptypeForm').getParent('.dialog')){
+                    var Dlg = $('shoptypeForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

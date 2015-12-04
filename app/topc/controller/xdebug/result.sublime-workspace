@@ -1,0 +1,646 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rout",
+				"route::get"
+			],
+			[
+				"po",
+				"pos-a	position: absolute;"
+			],
+			[
+				"st",
+				"fems-dt	font-emphasize-style: dot;"
+			],
+			[
+				"t",
+				"table-layout"
+			],
+			[
+				"d",
+				"d-n	display: none;"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"app",
+				"appendTo	.appendTo()"
+			],
+			[
+				"add",
+				"addClass	.addClass()"
+			],
+			[
+				"lastBox",
+				"lastBoxDis"
+			],
+			[
+				"scro",
+				"scrollTop	.scrollTop()"
+			],
+			[
+				"offs",
+				"offset	.offset()"
+			],
+			[
+				"off",
+				"offset	.offset()"
+			],
+			[
+				"out",
+				"outerHeight	.outerHeight()"
+			],
+			[
+				"ou",
+				"outerHeight	.outerHeight()"
+			],
+			[
+				"ob",
+				"oBoxDiv"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"data",
+				"dataInt"
+			],
+			[
+				"s",
+				"scrollTop"
+			],
+			[
+				"doc",
+				"documentElement"
+			],
+			[
+				"l",
+				"length"
+			],
+			[
+				"oB",
+				"oBox"
+			],
+			[
+				"o",
+				"oBoxs"
+			],
+			[
+				"of",
+				"offsetHeight"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"min",
+				"minH"
+			],
+			[
+				"col",
+				"console"
+			],
+			[
+				"bx",
+				"boxArr"
+			],
+			[
+				"box",
+				"boxArr"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"T",
+				"ToString"
+			],
+			[
+				"v_dept_name",
+				"v_dept_name2"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/D/WorkWeb/b2b2c/app/custom/spfb/app.xml",
+			"settings":
+			{
+				"buffer_size": 787,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/WorkWeb/b2b2c/app/custom/spfb/desktop.xml",
+			"settings":
+			{
+				"buffer_size": 476,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/WorkWeb/b2b2c/app/topc/controller/member.php",
+			"settings":
+			{
+				"buffer_size": 27253,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "result.sublime-project",
+			"settings":
+			{
+				"buffer_size": 452,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/User/chrome.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"css3",
+				"Set Syntax: CSS3"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ke",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - Default"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/WorkWeb/b2b2c/app/custom/spfb/app.xml",
+		"/D/WorkWeb/b2b2c/config/mapper.php",
+		"/D/WorkWeb/b2b2c/app/custom/topc/app.xml",
+		"/D/WorkWeb/b2b2c/app/custom/topc/site.xml",
+		"/D/WorkWeb/b2b2c/app/desktop/services.xml",
+		"/D/WorkWeb/b2b2c/app/desktop/desktop.xml",
+		"/D/WorkWeb/b2b2c/app/spfb/app.xml",
+		"/D/WorkWeb/b2b2c/app/desktop/setting.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/member/index/userdata.html",
+		"/D/WorkWeb/b2b2c/app/desktop/task.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/member/needgoods.html",
+		"/D/WorkWeb/b2b2c/app/topc/controller/member.php",
+		"/D/WorkWeb/b2b2c/config/usermenu.php",
+		"/D/WorkWeb/b2b2c/config/compatible.php",
+		"/D/WorkWeb/b2b2c/config/prism.php",
+		"/D/WorkWeb/b2b2c/config/permission.php",
+		"/D/WorkWeb/b2b2c/config/messenger.php",
+		"/D/WorkWeb/b2b2c/config/app.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/member/address.html",
+		"/D/WorkWeb/b2b2c/app/topc/controller/test.php",
+		"/D/WorkWeb/b2b2c/app/topc/controller/needgoods.php",
+		"/D/WorkWeb/b2b2c/bootstrap/routes.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/member/index.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/needgoods/needgoods.html",
+		"/D/WorkWeb/b2b2c/app/topc/lib/site/view/helper.php",
+		"/D/WorkWeb/b2b2c/app/topc/lib/site/filter.php",
+		"/D/WorkWeb/b2b2c/app/topc/lib/controller.php",
+		"/D/WorkWeb/b2b2c/app/topc/site.xml",
+		"/D/WorkWeb/b2b2c/app/topc/services.xml",
+		"/D/WorkWeb/b2b2c/app/topc/app.xml",
+		"/D/WorkWeb/b2b2c/app/sysuser/dbschema/user_addrs.php",
+		"/D/WorkWeb/b2b2c/app/sysuser/api/addUserAdress.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_test/theme_widget_ad_test.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_test/_config.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_test/default.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/images/index.css",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_fourpic/_config.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/test/test1.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/test/member-test.html",
+		"/D/WorkWeb/b2b2c/app/topc/controller/topics.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/items_subcat/theme_widget_items_subcat.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/cart/index.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/cart/cart_main.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/checkout/index.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/default.html",
+		"/D/WorkWeb/b2b2c/app/topc/controller/item.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/test/signin.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/forgot/forgot.html",
+		"/D/WorkWeb/b2b2c/app/topc/controller/list.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_test/widgets.php",
+		"/D/WorkWeb/b2b2c/bootstrap/paths.php",
+		"/D/WorkWeb/b2b2c/app/topc/controller/content.php",
+		"/D/WorkWeb/b2b2c/app/topc/controller/collect.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/custom_html/default.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/backtotop/_config.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/brandlist/_config.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/custom_html/_config.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/keyword/default.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/logo/_config.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/custom_html/theme_widget_custom_html.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/custom_html/widgets.php",
+		"/D/WorkWeb/b2b2c/app/desktop/view/index.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/index.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/signin/signin.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/signin/success.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/signup/signup.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/signup/member-signup.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/passport/signin/member-signin.html",
+		"/D/WorkWeb/b2b2c/app/base/start.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_cat/widgets.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_cat/default.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/main_slide/default.html",
+		"/D/WorkWeb/b2b2c/app/desktop/view/ui/index.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_fourpic/theme_widget_ad_fourpic.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_fourpic/widgets.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_fourpic/default.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/ad_cat/_config.html",
+		"/D/WorkWeb/b2b2c/public/app/desktop/view/tpl.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/block/header.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/topbar_subnav/widgets.php",
+		"/D/WorkWeb/b2b2c/app/topc/view/shop/header.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/shop/index.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/topbar_member/widgets.php",
+		"/D/WorkWeb/b2b2c/app/topshop/view/open/index.html",
+		"/D/WorkWeb/b2b2c/app/topshop/view/index/right.html",
+		"/D/WorkWeb/b2b2c/app/topshop/view/index/lefttop.html",
+		"/D/WorkWeb/b2b2c/app/topshop/view/index.html",
+		"/D/WorkWeb/b2b2c/app/topshop/view/index/leftbottom.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/topbar_member/default.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/bind.html",
+		"/D/WorkWeb/b2b2c/app/topc/view/topics.html",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/topbar_member/theme_widget_topbar_member.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/nav/widgets.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/nav/theme_widget_nav.php",
+		"/D/WorkWeb/b2b2c/public/themes/demo/widgets/nav/default.html",
+		"/C/Users/admin/Desktop/feili/脚本备份/COM_FIN_INDICATOR_DTL0201 - 副本.sql",
+		"/D/WorkWeb/b2b2c/app/search/view/capability/default.html",
+		"/D/WorkWeb/b2b2c/public/app/desktop/view/about.html",
+		"/D/WorkWeb/b2b2c/app/desktop/view/license.html",
+		"/D/WorkWeb/b2b2c/app/desktop/view/login.html",
+		"/D/WorkWeb/b2b2c/app/desktop/view/main_menu_define.html",
+		"/D/WorkWeb/b2b2c/config/deploy.xml",
+		"/C/Users/admin/Desktop/2.sql",
+		"/D/MyWeb/img_shadow/index.html",
+		"/D/MyWeb/img_shadow/css/style.css",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/request/reship.php",
+		"/D/MyWeb/css3/c_1.html",
+		"/D/yunshang-erp.git/app/middleware/lib/adapter.php",
+		"/D/yunshang-erp.git/custom/middleware/lib/adapter.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/request/stockin.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/request/delivery.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/request/common.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/abstract.php",
+		"/D/yunshang-erp.git/config/config.php",
+		"/C/Users/admin/Desktop/config.php",
+		"/D/yunshang-erp.git/app/middleware/lib/func.php",
+		"/D/yunshang-erp.git/app/middleware/lib/iostock.php",
+		"/D/yunshang-erp.git/app/middleware/lib/log.php",
+		"/D/yunshang-erp.git/app/middleware/lib/message.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/request/goods.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/ilcwms/config.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/wxwms/config.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/matrixwms/config.php",
+		"/D/yunshang-erp.git/app/middleware/lib/wms/selfwms/config.php",
+		"/D/php_ec_test/test.txt",
+		"/D/yunshang-erp.git/app/desktop/controller/users.php",
+		"/C/Users/admin/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/admin/AppData/Roaming/Sublime Text 2/Packages/SublimeCodeIntel-master/SublimeCodeIntel.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"topc_ctl_needgoods@index",
+			"setLayoutFlag",
+			"();",
+			"inset",
+			"PHP",
+			"auto_complete",
+			"../images/",
+			"id=\"pic\"",
+			"id=\"box\"",
+			"import_bsc"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"class=\"pic\"",
+			"class=\"box\""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/D/WorkWeb/b2b2c/app/custom/spfb/app.xml",
+					"settings":
+					{
+						"buffer_size": 787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								293,
+								293
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/WorkWeb/b2b2c/app/custom/spfb/desktop.xml",
+					"settings":
+					{
+						"buffer_size": 476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								445,
+								445
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/D/WorkWeb/b2b2c/app/topc/controller/member.php",
+					"settings":
+					{
+						"buffer_size": 27253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3264,
+								3264
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "UTF-8",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1200.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "result.sublime-project",
+					"settings":
+					{
+						"buffer_size": 452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								416
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"index.html",
+				"public/themes/demo/index.html"
+			],
+			[
+				"header",
+				"public/themes/demo/block/header.html"
+			],
+			[
+				"style.css",
+				"css/style.css"
+			],
+			[
+				"scr",
+				"js/script.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 279.0,
+	"status_bar_visible": true
+}

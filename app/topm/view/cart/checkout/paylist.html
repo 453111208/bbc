@@ -1,0 +1,46 @@
+<div class="shop group">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">支付方式</div>
+    </div>
+  </header>
+  <form action="<{url action=topm_ctl_cart@checkout}>" method="post" id="selpay_form">
+    <input type="hidden" name="addr_id" value="<{$addr_id}>">
+    <input type="hidden" name="mode" value="<{$mode}>">
+    <section class="main">
+      <div class="select-list">
+        <{if $isSelfShop}>
+        <input type="hidden" name="pay_type" value="<{$payType.pay_type}>" id="pay_type">
+        <ul>
+          <li class="<{if $payType.pay_type == 'online'}>selected<{/if}>" data-type="online"><i class="icon icon-ok"></i> 线上支付</li>
+          <li class="<{if $payType.pay_type == 'offline'}>selected<{/if}>" data-type="offline"><i class="icon icon-ok"></i> 线下支付 </li>
+        </ul>
+        <{else}>
+        <input type="hidden" name="pay_type" value="online" id="pay_type">
+        <ul>
+          <li class="selected" data-type="online"><i class="icon icon-ok"></i> 线上支付</li>
+        </ul>
+        <{/if}>
+      </div>
+    </section>
+    <div class="action-bar">
+      <div class="action-item">
+        <button id="submit_pay_type">确定</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  $('.select-list li').tap(function(){
+    $(this).addClass('selected').siblings().removeClass('selected');
+  $('#pay_type').val($('.selected').attr('data-type'));
+  })
+
+$('#submit_pay_type').tap(function(){
+  $('#selpay_form').submit();
+});
+
+</script>

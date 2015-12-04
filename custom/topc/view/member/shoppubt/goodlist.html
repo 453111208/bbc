@@ -1,0 +1,35 @@
+      <{if $rows}>
+        <{foreach from=$rows item=item}>
+      <li style="height:40px;">
+          <span class="max-c-name">
+          <a class="max-fox1"><img src="<{$item.image_id}>" style="height:25px;width:50px;"></a>
+          <a><{$item.title}></a>
+          <input value="<{$item.item_id}>" type="hidden" name="item_id[]">
+          <input value="<{$item.standardg_item_id}>" type="hidden" name="standardg_item_id[]">
+<!--           <input name="title[]" type="text" value="边角料粉碎机" >
+          <input name="bn[]" type="text" value="边角料粉碎机1" >
+          <input name="sku_id[]" type="text" value="1">
+          <input name="item_id[]" type="text" value="1"> -->
+        </span>
+        <span class="max-c-Number lakers_nums">
+          数量：     <input value="" type="text" vtype="number" name="num[]" style="height:18px;width:34px;line-height:18px;"></span>
+          <!-- <input value="<{$item.num}>" min="1" max="100000"  class="action-quantity-input" type="text" name="num[]"> -->
+  <!--         <a href="javascript:;" class="max-c-plus btn-quantity-increase"></a>
+          <a href="javascript:;" class="max-c-minus btn-quantity-decrease"></a> -->
+        </span>
+
+        <span class="max-Taiwan">单位：<input value="" type="text" name="unit[]"></span>
+        <span class="max-Price lakers_price">
+          单价：     
+          <!-- <input value="<{$item.price}>" class="action-price-input" min="1"> -->
+           <input value="" class="max-Number" name="net_price[]" vtype="number" style="width:50px">
+<!--           <a href="javascript:;" class="max-c-plus btn-price-increase"></a>
+          <a href="javascript:;" class="max-c-minus btn-price-decrease"></a> -->
+        </span>
+      </li>
+
+<{/foreach}><script type="text/javascript">
+$('.max-fox1').click(function(){
+  $(this).parent().parent('li').remove();
+});</script>      
+         <{/if}>

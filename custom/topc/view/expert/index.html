@@ -1,0 +1,126 @@
+<!-- 样式：E:\huanjing\b2b2c\public\themes\huanjing\images\topc\articles -->
+
+<!-- 添加名人专家文章类型 -->
+		    <div class="maxsub first">
+			<div class="maxsubmenu second">
+			    <{foreach from=$literarycatList item=cats}>
+			    <a href="/index.php/expert?literarycatid=<{$cats.literarycat_id}>" class="item1"><{$cats.literarycat}></a>
+			    <!-- href="<{url action=topc_ctl_expert@index literarycatid=$cats.literarycat_id}>" -->
+		        <{/foreach}>
+			</div>
+			</div>
+<!-- 当前位置栏 -->
+		    <div class="maxPath">
+		    <dl class="basic-ex-breadcrumbs clearfix">
+		          <dt>当前位置：</dt>
+		          <dd><a class="beb-nav" href="./"><span>首页</span></a>
+		              <span class="beb-raquo">></span>
+		              <span  class="beb-current"><a href="<{url action=topc_ctl_expert@expertList}>">名人专家</a></span>
+		          </dd>
+		    </dl>
+		    </div>
+
+<div class="maxmain">
+<!-- 左面板块  名人专家文章列表 -->
+  <div class="maxleft maxcelebrity"> 
+   <div class="maxsection"> 
+    <div class="maxlist third"> 
+     <div class="maxcomon" style="display: block;"> 
+      <ul class="fourth">
+        <{foreach from=$literaryList item=literary key=key}> <{if $key<10}> 
+       <li class="frist"> 
+        <div class="maxpic">
+         <a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>"><img src="<{$literary.literary_logo}>" /></a>
+        </div> 
+        <div class="maxlist-content"> 
+         <div class="maxlist-title"> 
+          <!-- 跳转到文章页 --> 
+          <a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>" class="item1"> <{$literary.title}></a> 
+         </div> 
+         <p><{$literary.abstract}></p> 
+        </div> 
+        <div class="maxicon"> 
+         <!-- <i class="maxicon-share"></i> --> 
+         <i class="maxicon-see"><em>点击量<{$literary.click_count}></em></i> 
+        </div> </li> <{/if}> <{/foreach}> 
+      </ul> 
+     </div> 
+    </div> 
+    <div id="pageGro" class="cb maxpag"> 
+        <{if $pageNow>1}>
+        <div class="pageUp"><a  style="display:block" href="<{url action=topc_ctl_expert@index pageNow=$pageNow-1 }>">上一页</a></div>
+        <{else}>
+        <div class="pageUp"><a style="color: #999;">上一页</a></div>
+        <{/if}>
+        <div class="pageList">
+            <ul>
+                <{foreach from=$literaryAllList item=item key=key}>
+                    <{if $key<$pageCount}>
+                        <li><a style="display:block" href="<{url action=topc_ctl_expert@index pageNow=$key+1}>"><{$key+1}></a></li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </div>
+        <{if $pageNow<$pageCount}>
+        <div class="pageDown"><a style="display:block" href="<{url action=topc_ctl_expert@index pageNow=$pageNow+1 }>">下一页</a></div>
+        <{else}>
+        <div class="pageDown"><a style="color: #999;">下一页</a></div>
+        <{/if}>
+    </div> 
+   </div> 
+  </div>
+
+<!-- 右面板块 -->
+		<div class="maxright">
+	            <div class="maxhot maxking">
+			    <div class="maxhot-title"><h2>文章关注榜</h2></div>
+	            <div class="max-Tabs-body">
+			    <div class="maxcomon">
+			    <ul>
+				      <{foreach from=$hotliteraryLit item=literary key=key}>
+				      <{if $key<6}>
+				      <{if $key<3}>
+			          <li class="maxrank">
+			              <i><{$key+1}></i>
+			              <a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>" ><{$literary.title}></a>
+			          </li>
+			           <{else}>
+			          <li>
+			              <i><{$key+1}></i>
+			              <a href="<{url action=topc_ctl_expert@literary literaryid=$literary.literary_id}>" ><{$literary.title}></a>
+			          </li>
+			          <{/if}>
+			          <{/if}>
+					  <{/foreach}>
+			    </ul>
+			    </div>
+	            </div>
+	            </div>
+
+				<div class="maxhot maxcharacter">
+				     <div class="maxhot-title"><h2>人物推荐</h2><a href="<{url action=topc_ctl_expert@expertList}>">查看更多〉</a></div>
+		        <div class="maxhot-content">
+				     <ul>
+					    <{foreach from=$expertList item=expert key=key}>
+					    <{if $key<6}>
+						   <li>
+						      <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>"><img src="<{$expert.image_logo}>" width="82" height="82"></a>
+							  <div class="maxpaper">
+							     <h3>
+							         <a href="<{url action=topc_ctl_expert@expert expertid=$expert.expert_id}>"><{$expert.name}></a>
+							         <b><{$expert.nickname}></b>
+							     </h3>
+							     <p><{$expert.summary}></p>
+							  </div>
+						   </li>
+					    <{/if}>
+						<{/foreach}>
+				    </ul>
+				</div>
+				</div>        
+	    </div>
+</div>
+
+<script> 
+
+</script>

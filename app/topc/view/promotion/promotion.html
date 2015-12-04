@@ -1,0 +1,56 @@
+<div class="section">
+  <div class="row">
+    <div class="col-lg-16 box">
+      <{if $promotiontype=='fullminus'}>
+        <{include file="topc/promotion/fullminus.html"}>
+      <{/if}>
+
+      <{if $promotiontype=='coupon'}>
+        <{include file="topc/promotion/coupon.html"}>
+      <{/if}>
+
+      <{if $promotiontype=='fulldiscount'}>
+        <{include file="topc/promotion/fulldiscount.html"}>
+      <{/if}>
+
+      <{if $promotiontype=='freepostage'}>
+        <{include file="topc/promotion/freepostage.html"}>
+      <{/if}>
+
+      <{if $promotiontype=='xydiscount'}>
+        <{include file="topc/promotion/xydiscount.html"}>
+      <{/if}>
+      <{*<div class="section">
+        <div class="sortbar">
+          <div class="left">
+            排序：&nbsp;&nbsp;
+            <a href="" class="btn btn-flat is-desc on"><span><span>销量<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+            <a href="" class="btn btn-flat is-asc"><span><span>价格<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+            <a href="" class="btn btn-flat"><span><span>上架时间<i class="icon icon-arrow-down-a"></i><i class="icon icon-arrow-up-a"></i></span></span></a>
+          </div>
+          <div class="right">
+            <span class="num">共<em><{$count}></em>件商品</span>
+              <{pagers data=$pagers type="mini"}>
+          </div>
+        </div>
+      </div>*}>
+      <div class="section">
+        <ul class="itemslist">
+          <{foreach from=$promotionItemList item=item}>
+          <li>
+            <div class="item">
+              <div class="pic">
+                <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>">
+                  <img width="210" height="230" src="<{$item.image_default_id|default:$image_default_id.M.default_image|storager:'m'}>" data-haszoom="700">
+                </a>
+              </div>
+              <a class="name" href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a>
+              <div class="price"><{$item.price|cur}></div>
+            </div>
+          </li>
+          <{/foreach}>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+<div class="panel panel-outter">
+  <div class="panel-heading">
+    <h4>订单查询</h4>
+    <form class="form-horizontal" action="<{url action=topshop_ctl_trade_list@search}>" method="post" role="form" data-validate-onsuccess="ajaxSuccess">
+      <div class="form-group">
+        <div class="col-xs-6">
+          <span class="order-form-w1" style="display:inline-block;vertical-align:11px;line-height:34px;">下单时间：</span>
+          <span class="input-group input-group-sm col-xs-3" style="display:inline-table;">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input type="text" class="form-control pull-right reservation" style="max-width:100%;" readonly name="create_time" id="" value="">
+          </span>
+        <!--   <input class="x-input" type="date" name="create_time_from" value="<{''|date_format:'%Y-%m-%d'}>" >
+          - <input class="x-input" type="date" name="create_time_to" value="<{''|date_format:'%Y-%m-%d'}>" > -->
+        </div>
+        <div class="col-xs-6">
+          <span class="order-form-w1">订单号：</span><input class="x-input" type="text" name="tid">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <span class="order-form-w1">订单状态：</span>
+          <select name="status" class="x-input">
+            <{foreach from=$status item=value key=key}>
+            <option value="<{$key}>"><{$value}></option>
+            <{/foreach}>
+          </select>
+          <input type="hidden" value="<{$filter.status}>" id="filter_status">
+        </div>
+        <div class="col-xs-6">
+          <span class="order-form-w1">会员用户名：</span><input class="x-input" type="text" name="user_name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <span class="order-form-w1">收货人：</span><input class="x-input" type="text" name="receiver_name">
+        </div>
+        <div class="col-xs-6">
+          <span class="order-form-w1">收货人手机：</span><input class="x-input" type="text" name="receiver_mobile">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <span class="order-form-w1">收货人电话：</span><input class="x-input" type="text" name="receiver_phone">
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">提交</button>
+        <button type="reset" class="btn btn-default">重置</button>
+      </div>
+    </form>
+  </div>
+  <div class="panel-body">
+    <div class="clearfix">
+    <h4 class="pull-left">订单列表</h4>
+        <div class="pull-right export-filter" data-value="">
+            <a href="<{url action=topshop_ctl_export@export app=systrade model=trade}>" data-value="" data-toggle="modal" data-target="#exportDialog" class="btn-export btn btn-default">订单导出</a>
+            <a href="<{url action=topshop_ctl_export@export app=systrade model=order}>" data-value="" data-toggle="modal" data-target="#exportDialog" class="btn-export btn btn-default">子订单导出</a>
+        </div>
+    </div>
+    <div class="nav-tabs-custom" id="tabs">
+      <ul class="nav nav-tabs">
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_0" data-toggle="tab">全部</a></li>
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_1" data-toggle="tab">待支付</a></li>
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_2" data-toggle="tab">待发货</a></li>
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_3" data-toggle="tab">待收货</a></li>
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_4" data-toggle="tab">已收货</a></li>
+        <li><a href="<{url action=topshop_ctl_trade_list@search}>#tab_5" data-toggle="tab">已取消</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="tab_0">
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_1">
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2">
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_3">
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_4">
+
+        </div><!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_5">
+
+        </div><!-- /.tab-pane -->
+      </div><!-- /.tab-content -->
+    </div>
+  </div>
+</div>
+
+<!--订单取消弹框-->
+<div class="modal fade" id="orderCancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:440px;">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+<!--订单修改弹框-->
+<div class="modal fade" id="orderEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+<!--特殊情况订单取消弹框-->
+<div class="modal fade" id="orderCancelSpecial">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--订单收款并完成 -->
+<div class="modal fade" id="orderFinish" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:440px;">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+
+<script>
+$('.reservation').daterangepicker({
+    format: 'YYYY/MM/DD',
+    opens: 'right'
+});
+
+$('#tabs a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+  var tabhref = $(this).attr('href');
+  var tab = tabhref.split("#")[1];
+  var status = tab.split("_")[1];
+  $('#'+tab).load(tabhref,{'status':status});
+  //$("form input[name=status]").val($(this).text());
+  $("form select[name=status]").val(status);
+}).eq($('#filter_status').val()).trigger('click');
+
+function ajaxSuccess(e) {
+  var form = e.target;
+  $(form).find('button[type=submit]').prop('disabled', false);
+  e.preventDefault();
+  $.post(form.action, $(form).serialize(),function(rs){
+    var status = $(form).find('select[name=status]').val();
+    $('#tabs a[data-toggle="tab"]').eq(status).trigger('click');
+    $('#tabs .tab-pane.active').html(rs);
+  });
+}
+
+$('#orderCancel,#orderEdit,#delivery,#orderFinish').on('hide.bs.modal', function (e) {
+    $(this).removeData('bs.modal');
+})
+
+$('.btn-export').click(function (e) {
+    var listArr = []
+    var filter = null
+    var list = $('.data-list tbody tr')
+    for (var i = 0; i < list.length; i++) {
+        var checked = $(list[i]).find('input[type="checkbox"]');
+        if($(checked).prop('checked')==true){
+            var listId = $(checked).val();
+            listArr.push(listId);
+        }
+    };
+
+    if( listArr.length > 0 ){
+      filter = '{"tid":[' + listArr + ']}';
+    }
+
+    $('.export-filter').attr('data-value',filter);
+
+    if( listArr.length <= 0 && !confirm("是否确认导出全部") ){
+      return false;
+    }
+})
+
+$(document).ready(
+  function() {
+    $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-stats");
+  }
+);
+</script>

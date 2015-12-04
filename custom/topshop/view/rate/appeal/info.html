@@ -1,0 +1,137 @@
+<section class="content">
+  <div class="report">
+    <div class="box box-primary">
+      <div class="box-body">
+        <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            <div class="pull-left">
+              <div class="goods-infor">
+                <div class="goods-img"><img width="64" height="64" src="<{$rate.item_pic|storager:'s'}>"></div>
+                <div class="goods-title"><a href="<{url action=topc_ctl_item@index item_id=$rate.item_id}>" target="_blank"><{$rate.item_title}></a></div>
+              </div>
+            </div>
+            <div class="goods-price">
+              <div>成交价：<{$rate.item_price|cur}></div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="report-title">
+              <h5 class="pull-left">评价信息</h5>
+            </div>
+            <div class="text-muted well no-shadow old-evaluation-view-box">
+              <div class="old-evaluation-view">
+                <ul>
+                  <li>
+                    <div class="view-key">商品评分：</div>
+                    <div class="view-val"><i class="icon icon-flower <{$rate.result}>"></i>
+                      <{if $rate.result == 'good'}>好评<{elseif $rate.result == 'bad'}>差评<{else}>中评<{/if}>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="view-key">评价内容：</div>
+                    <div class="view-val"><{$rate.content}></div>
+                  </li>
+                  <{if $rate.rate_pic}>
+                  <li>
+                    <div class="view-key">晒图：</div>
+                    <div class="view-val">
+                      <{foreach from=$rate.rate_pic item=picItem}>
+                      <a href="#" target="_blank"><img width="64" height="64" src="<{$picItem|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+                      <{/foreach}>
+                    </div>
+                  </li>
+                  <{/if}>
+                  <li>
+                    <div class="view-key">评价时间：</div>
+                    <div class="view-val"><{$rate.created_time|cdate}></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="well">
+              <div>申诉理由：</div>
+              <div><{$rate.appeal.content}></div>
+            </div>
+            <div class="well appeal-result">
+              <div>申诉结果：</div>
+              <h4>
+                <{if $rate.appeal_status == 'WAIT'}>
+                等待批准
+                <{elseif $rate.appeal_status == 'REJECT' }>
+                申诉驳回
+                <{elseif $rate.appeal_status == 'SUCCESS' }>
+                申诉成功
+                <{else}>
+                申诉关闭
+                <{/if}>
+              </h4>
+              <{if $rate.appeal.reject_reason}>
+              <div class="reason">驳回原因：<{$rate.appeal.reject_reason}></div>
+              <{/if}>
+            </div>
+            <{if $rate.appeal_status == 'REJECT' }>
+            <div><label><input type="checkbox" name="" id="appeal_again" <{if $type='again'}> checked <{/if}> > 提起二次申诉</label>（二次申诉是最后机会咯）</div>
+            <div id="appeal_dom" <{if $type="again"}> <{else}> style="display:none" <{/if}> >
+                <{include file="topshop/rate/appeal/appeal_form.html"}>
+            </div>
+            <{/if}>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+</section>
+<script>
+  $(function(){
+    $('#appeal_btn').click(function(){
+      $('#appeal_dom').show()
+      $('#reply_dom').hide()
+    })
+
+    $('#reply_btn').click(function(){
+      $('#appeal_dom').hide()
+      $('#reply_dom').show()
+    })
+
+    $('#appeal_again').click(function(){
+      if($(this).prop('checked')){
+        $('#appeal_dom').show();
+      }else{
+        $('#appeal_dom').hide();
+      }
+    })
+
+    limitContent('.form-control', 300);
+
+    //限制评论输入字数
+    function limitContent(content, length) {
+      $('.letter-limit').find('span').text(length);
+      $(content).keydown(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+        numView.text(remaining);
+      });
+
+      $(content).keyup(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        numView.text(remaining);
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+      });
+    };
+  })
+</script>

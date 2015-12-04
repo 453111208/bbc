@@ -1,0 +1,19 @@
+    {  
+        "folders":  
+        [  
+            {  
+                "path": "/D/xampp/htdocs" 
+            }  
+        ],  
+        "settings":  
+        {  
+            "xdebug": {  
+                "path_mapping": {  
+                },  
+                "url": "http://localhost/xampp/php.php",
+                "super_globals": true,  
+                "close_on_stop": true,  
+                "port": 9001   
+            }  
+        }  
+    }  

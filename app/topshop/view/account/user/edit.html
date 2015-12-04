@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+  <form  action="<{url action=topshop_ctl_account_list@save}>" method="post" class="form-horizontal" data-validate-onsuccess="ajaxSubmit" id="form_delivery" role="form">
+    <input type="hidden" name="seller_id" value="<{$seller_id}>">
+    <div class="panel-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >用户名：</label>
+        <div class="col-sm-3">
+          <input type="text" name="login_account" <{if $seller_id }>disabled<{/if}> value="<{$login_account}>" class="form-control" placeholder="最少4个字符 不能纯数字" required maxlength="50" data-validate-length-min="4" pattern="^(?!\d+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能用纯数字或中文" data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=account}>" data-validate-remote-name="login_account" data-validate-remote-message="此帐号已被注册过，请换一个重试">
+        </div>
+      </div>
+      <{if !$seller_id }>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >设置密码：</label>
+        <div class="col-sm-3">
+          <input type="password" name="login_password" class="form-control" placeholder="6-20个字符,不能纯数字,字母" required maxlength="20" data-validate-length-min="6" pattern="^(?!\d+$|[a-zA-Z]+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能纯数字、字母">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >确认密码：</label>
+        <div class="col-sm-3">
+          <input  name='psw_confirm' type='password' placeholder="登录密码确认" maxlength="20" required data-validate-equalto-field="login_password" data-validate-equalto-message="两次密码输入不一致" class="form-control" >
+        </div>
+      </div>
+      <{else}>
+      <{/if}>
+      <hr/>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >联系姓名：</label>
+        <div class="col-sm-3">
+          <input  name='name' type='text' value="<{$name}>" placeholder="店员姓名,最多10个字符" required maxlength="10" class="form-control" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >联系手机：</label>
+        <div class="col-sm-3">
+          <input type="text" name="mobile" value="<{$mobile}>" class="form-control" placeholder="请输入联系人手机" maxlength="11" required data-validate-mobile <{if !$seller_id}>data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=mobile}>"  data-validate-remote-message="此手机号已被注册过，请换一个重试"<{/if}>>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >联系邮箱：</label>
+        <div class="col-sm-3">
+          <input type="email" name="email" value="<{$email}>" class="form-control" placeholder="最多50个字符" required maxlength="50"  <{if !$seller_id}> data-validate-remote-url="<{url action=topshop_ctl_passport@isExists type=email}>"  data-validate-remote-message="此邮箱已被注册过，请换一个重试" <{/if}>>
+        </div>
+      </div>
+      <hr />
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >选择角色：</label>
+        <div class="col-sm-10" >
+          <{foreach from=$rolesData item=item }>
+          <label><input type="radio" name="role_id" value="<{$item.role_id}>" <{if $role_id == $item.role_id}> checked <{/if}> ><b><{$item.role_name}></b>&nbsp;&nbsp;</label>
+          <{/foreach}>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer text-center">
+      <button type="submit" class="btn btn-primary"><{t}>保存<{/t}></button>
+    </div>
+
+  </form>
+</div>
+<script>
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        location.href = rs.redirect;
+      }
+    });
+  }
+</script>

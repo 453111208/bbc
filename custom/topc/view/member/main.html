@@ -1,0 +1,110 @@
+<div class="max-main">
+  <div class="max-page">
+   <!--会员中心-发布标准商品交易-左侧栏-->
+  <div class="maxM-left">
+    <!--会员中心-菜单-->
+    <div class="max-menber-menu">
+
+    
+<!--       <{foreach from=$cpmenu item=menus}>
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title "><{$menus.label}></h2>
+        <ul class="max-menu-ul" >
+              <{foreach from=$menus.items item=items}>
+              <li <{if $action == $items.action}> class="on"<{/if}>><a href="<{url action=$items.action}>"><{$items.label}></a></li>
+              <{/foreach}>   
+        </ul>
+      </div>
+          <{/foreach}> -->
+
+
+  <{if  $seller_type!=3}>
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">商品管理</h2>
+        <ul class="max-menu-ul" >
+              <li ><a  href="<{url action=topc_ctl_member_configcat@index}>">我的商品类型</a></li>
+              <li ><a href="<{url action=topc_ctl_member_frame@list_index}>">商品列表</a></li>
+              <li ><a href="<{url action=topc_ctl_member_frame@add_index}>">发布商品</a></li>
+              <!-- <li ><a href="<{url action=topc_ctl_member_goods@addGoods}>">发布商品(ui)</a></li> -->
+             <!--  <li ><a >商品认证列表</a></li>
+              <li ><a >商品撮合列表</a></li> -->
+        </ul>
+      </div>
+
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">交易管理</h2>
+        <ul class="max-menu-ul" >
+            <li ><a href="<{url action=topc_ctl_member_shoppubt@addStandards}>">标准商品交易</a></li>
+            <li ><a href="<{url action=topc_ctl_member_biddings@addBidding}>">竞价商品交易</a></li>
+            <li ><a href="<{url action=topc_ctl_member_tender@addTender}>">招标商品交易</a></li>
+            <li ><a href="<{url action=topc_ctl_member_shoppubt@standardList}>">我的标准交易</a></li>
+            <li ><a href="<{url action=topc_ctl_member_biddings@biddingList}>">我发布的竞价</a></li>
+            <li ><a href="<{url action=topc_ctl_member_shoppubt@tenderList}>">我发布的招标</a></li>
+            <li ><a href="<{url action=topc_ctl_member@address}>">我的交割地址</a></li>
+            <li ><a href="<{url action=topc_ctl_member_mytrade@mytrade}>">我参与的交易（列表页）</a></li>
+        </ul>
+      </div>
+
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">供求管理</h2>
+        <ul class="max-menu-ul" >
+              <!-- <li ><a >我发布的供求（列表页）</a></li> -->
+              <li ><a href=" <{url action=topc_ctl_member_supplyman@needgoods }>">供应信息发布</a></li>
+              <li ><a href="<{url action=topc_ctl_member_supplyman@wantgoods }>">求购信息发布</a></li>
+              <li ><a href="<{url action=topc_ctl_member_enquireinfo@inreqsupp }>">我参与的供求（列表页）</a></li>
+              <li ><a href="<{url action=topc_ctl_member_enquireinfo@enquire }>">询价信息列表</a></li>
+        </ul>
+      </div>
+
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">企业展台</h2>
+        <ul class="max-menu-ul" >
+       <!--  <{if $shopInfo}>
+              <li ><a href="shopcenter.html?shop_id=<{$shopInfo.shop_id}>">企业展台预览</a></li>
+               <{/if}> -->
+              <li ><a href="<{url action=topc_ctl_member_configCenter@index}>">编辑企业展台</a></li>
+             
+              <li ><a href="<{url action=topc_ctl_member_userdata@index}>">企业入驻信息</a></li>
+        </ul>
+      </div>
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">客服管理</h2>
+        <ul class="max-menu-ul" >
+              <li ><a >评价管理</a></li>
+              <!-- <li ><a  href="#">交割申诉列表</a></li>
+              <li ><a >保证金申诉列表</a></li> -->
+              <li ><a href="<{url action=topc_ctl_member_notice@index}>">系统通知</a></li>
+        </ul>
+      </div>
+<{/if}>
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">资讯管理</h2>
+        <ul class="max-menu-ul" >
+              <li ><a href="<{url action=topc_ctl_member_info@publishInfo}>">我发布的资讯</a></li>
+              <li ><a >我关注的资讯</a></li>
+        </ul>
+      </div>
+
+      <div class="max-menu-mod artive">
+        <h2 class="max-menu-title ">收藏管理</h2>
+        <ul class="max-menu-ul" >
+              <li ><a href="<{url action=topc_ctl_member@itemsCollect}>">商品收藏</a></li>
+              <!-- <li ><a >交易收藏</a></li> -->
+              <li ><a href="<{url action=topc_ctl_member@shopsCollect}>">企业展台收藏</a></li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+
+<div>
+ <{include file=$_PAGE_}>
+</div>  
+  </div>
+</div>

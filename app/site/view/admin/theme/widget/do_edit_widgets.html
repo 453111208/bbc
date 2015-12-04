@@ -1,0 +1,44 @@
+<form id="_<{$widgets_id|default:'new'}>_wg_cfg" action='?app=site&ctl=admin_theme_widget&act=save_widget' method='post'>
+<{include file="site/admin/theme/widget/widget_header.html"}>
+<div class="table-action">
+    <{button type="submit" label="保存修改"|t:'site'}>
+</div>
+</form>
+<script>
+$('_<{$widgets_id|default:'new'}>_wg_cfg').addEvent('submit',function(e){
+    e.stop();
+    if(!validate(this))return;
+    //<{t}>指向框架内对象<{/t}>
+    //<{t}>验证输入<{/t}>
+
+    $ES('textarea[ishtml=true]',this).getValue();
+    var frameWin=$('themeFrame').contentWindow;
+    var shopWidgets=frameWin.shopWidgets;
+    var temId=$time()+$random(100,999);
+    var wg=frameWin.document.createElement('div');
+
+    var remoteUrl = this.action += "&widgets_id=<{$widgets_id}>&widgets=<{$widgets_type}>&widgets_app=<{$widgets_app}>&widgets_theme=<{$widgets_theme}>&theme=<{$theme}>&domid=" + temId;
+
+    new Request({
+        url:remoteUrl,
+        evalScript:false,
+        onSuccess:function(re){
+            // $(wg).set('html',re);
+            // wg = wg.getFirst();
+            // wg.set('id',temId);
+            wg.innerHTML = re;
+            wg = wg.firstElementChild;
+            wg.id = temId;
+            var drag=shopWidgets.curWidget[0].parentNode.replaceChild(wg, shopWidgets.curWidget[0]);
+            shopWidgets.initDrags([drag]);//<{t}>使新版块可拖动摆放<{/t}>
+
+            shopWidgets.drag_operate_box.data('drag', drag);
+            shopWidgets.drag_operate_box.css('visibility','hidden');
+
+            // frameWin.$.Switchable.autoRender(null, shopWidgets.injectBox);
+            shopWidgets.curdialog.close();
+            $('btn_save')&&($('btn_save').disabled = false);
+        }
+    }).post($('_<{$widgets_id}>_wg_cfg'));
+});
+</script>

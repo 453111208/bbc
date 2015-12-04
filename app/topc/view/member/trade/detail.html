@@ -1,0 +1,198 @@
+<form id="payment_form" action="<{url action=topc_ctl_paycenter@createPay}>" method="post">
+</form>
+<div class="membercenter-box">
+  <div class="membercenter-box-hd">
+    <div class="membercenter-box-left">
+      <span>订单编号：<{$trade.tid}></span>
+      <span class="order-status">
+        状态：
+        <{if $trade.status == "WAIT_BUYER_PAY"}>
+        订单已生成，请及时付款
+        <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS" && $trade.pay_type == "online"}>
+        已收到款项，请耐心等待商家发货
+        <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS" && $trade.pay_type == "offline"}>
+        订单已生成,请耐心等待商家发货处理
+        <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+        已发货，请耐心等待物流配送并确认收货
+        <{/if}>
+      </span>
+    </div>
+    <div class="membercenter-box-right">
+      <{if $trade.status == "WAIT_BUYER_PAY"}>
+      <button id="<{$trade.tid}>" class="btn btn_dialog">
+        <span><span>取消订单</span></span>
+      </button>
+      <a href="<{$trade.tid}>" class="btn btn-import  act-pay"><span><span>去付款</span></span></a>
+      <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS" && $trade.pay_type == "online"}>
+      <a href="javascript:void(0);" id="<{$trade.tid}>" class="btn btn-import btn-confirm">
+        <span><span>确认收货</span></span>
+      </a>
+      <{/if}>
+    </div>
+  </div>
+  <div class="membercenter-box-bd">
+    <div class="orderdtl-box membercenter-ordert1-unpay-hd">
+      <{if $trade.status == "WAIT_BUYER_PAY"}>
+      <{include file="topc/member/trade/status/unpay.html"}>
+      <{elseif $trade.status == "WAIT_SELLER_SEND_GOODS"}>
+      <{include file="topc/member/trade/status/undelivery.html"}>
+      <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+      <{include file="topc/member/trade/status/unreceived.html"}>
+      <{elseif $trade.status == "TRADE_FINISHED"}>
+      <{include file="topc/member/trade/status/finish.html"}>
+      <{elseif $trade.status == "TRADE_CLOSED_BY_SYSTEM" || $trade.status == "TRADE_CLOSED"}>
+      <{include file="topc/member/trade/status/cancel.html"}>
+      <{/if}>
+    </div>
+    <div class="orderdtl-box">
+      <div class="orderdtl-hd">收货人信息</div>
+      <div class="orderdtl-bd">
+        <div>收货人：<{$trade.receiver_name}></div>
+        <div>联系方式：<{$trade.receiver_mobile}></div>
+        <{if !$trade.ziti_addr}>
+        <div>收货地址：
+          <{$trade.receiver_state}><{$trade.receiver_city}> <{$trade.receiver_district}>&nbsp;<{$trade.receiver_address}>
+        <{/if}>
+        </div>
+      </div>
+    </div>
+    <div class="orderdtl-box">
+      <div class="orderdtl-hd">支付及配送方式</div>
+      <div class="orderdtl-bd">
+        <div>支付类型：<{if $trade.pay_type == "online"}>在线支付<{else}>线下支付<{/if}></div>
+        <div>已支付：<{$trade.payed_fee|cur}></div>
+        <{if $trade.ziti_addr}>
+        <div>提货地址：<{$trade.ziti_addr}> <!--<span class="orange">预计10月22日[周三]送达</span>--></div>
+        <{else}>
+        <div><{$trade.shipping_type}> <!--<span class="orange">预计10月22日[周三]送达</span>--></div>
+        <{/if}>
+      </div>
+    </div>
+    <div class="orderdtl-box">
+      <div class="orderdtl-hd">发票信息</div>
+      <div class="orderdtl-bd">
+        <{if !$trade.need_invoice}>
+        无发票
+        <{else}>
+        <div>发票类型：<{if $trade.invoice_type=='normal'}>普通发票<{/if}></div>
+        <div>发票抬头：<{if $trade.invoice_name=='individual'}>个人<{else}>单位<{/if}>(<{$trade.invoice_main}>)</div>
+        <{/if}>
+      </div>
+    </div>
+
+    <{if $trade.status == "WAIT_BUYER_CONFIRM_GOODS"}>
+    <div class="orderdtl-box" id="logistics">
+    </div>
+    <{/if}>
+
+    <div class="orderdtl-box">
+      <{include file="topc/member/trade/items.html"}>
+    </div>
+
+    <div class="orderdtl-box">
+      <div class="orderdtl-hd">订单备注信息</div>
+      <div class="orderdtl-bd">
+        <div>备注信息：<{$trade.trade_memo}></div>
+      </div>
+    </div>
+
+    <div class="orderdtl-box">
+      <div class="orderdtl-box-right">
+        <div class="row"><span class="col-lg-2 text-right">商品总金额</span> <em class="col-lg-2"><{$trade.total_fee|cur}></em></div>
+        <div class="row"><span class="col-lg-2 text-right">运费</span> <em class="col-lg-2"><{$trade.post_fee|cur}></em></div>
+        <{if $trade.adjust_fee!=0}>
+        <div class="row"><span class="col-lg-2 text-right">手工调价</span> <em class="col-lg-2"><{$trade.adjust_fee|cur}></em></div>
+        <{/if}>
+        <{if $trade.discount_fee>0}>
+        <div class="row"><span class="col-lg-2 text-right">促销优惠</span> <em class="col-lg-2">-<{$trade.discount_fee|cur}></em></div>
+        <{/if}>
+        <div class="row"><span class="col-lg-2 text-right">实付金额</span> <em class="col-lg-2 price"><{$trade.payment|cur}></em></div>
+        <div class="offset-lg-1">
+          <{if $trade.status == "WAIT_BUYER_PAY"}>
+          <a href="javascript:void(0);" id="<{$trade.tid}>" class="btn_dialog">
+            <span><span>取消订单</span></span>
+          </a>
+          <a href="<{$trade.tid}>" class="btn btn-import btn-lg  act-pay">
+            <span><span>去付款</span></span>
+          </a>
+          <{elseif $trade.status == "WAIT_BUYER_CONFIRM_GOODS" && $trade.pay_type == "online"}>
+          <div class="row">
+            <a href="javascript:void(0);" id="<{$trade.tid}>" class="btn btn-import btn-confirm">
+              <span><span>确认收货</span></span>
+            </a>
+          </div>
+          <{/if}>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  //支付按钮事件
+$(".act-pay").on('click',function(e){
+  e.preventDefault();
+  $.post($("#payment_form").attr('action'), {tid: $(this).attr('href'), merge: false}, function(rs){
+    if( rs.error ){
+      alert(rs.message)
+    }
+  if(rs.redirect) {
+    location.href = rs.redirect;
+  }
+  })
+})
+
+//订单取消
+$('.btn_dialog').click(function (e) {
+  var _this = this;
+  var dialog = new Dialog('<{url action="topc_ctl_member_trade@ajaxCancelTrade"}>', {
+      width: 500,
+      title:'订单取消',
+      async: 'ajax',
+      asyncOptions: {
+        type: 'get',
+        data: {tid: _this.id},
+        callback: function(){
+          $('#cancel_reason_select').change(function(e) {
+            if(this.value == 'other') {
+              $('#other').show().find('textarea')[0].required = true;
+            }
+            else {
+              $('#other').hide().find('textarea')[0].required = false;
+            }
+          });
+          dialog.content.find('.act-cancel').on('click', function(e){
+            dialog.hide();
+          });
+        }
+      }
+  });
+});
+
+//定单确认收货事件
+$('.btn-confirm').click(function (e) {
+  var _this = this;
+  var dialog = new Dialog('<{url action="topc_ctl_member_trade@ajaxConfirmTrade"}>', {
+    width: 500,
+      title:'订单确认收货',
+      async: 'ajax',
+      asyncOptions: {
+      type: 'get',
+      data: {tid: _this.id},
+      callback: function(){
+        dialog.content.find('.act-confirm').on('click', function(e){
+          dialog.hide();
+        });
+      }
+      }
+  });
+});
+
+$.post('<{url action=topc_ctl_member_trade@ajaxGetLogi}>',{tid: <{$trade.tid}>},function(rs){
+  if(rs.error){
+    return alert(rs.message);
+  }
+  $('#logistics').html(rs);
+})
+</script>

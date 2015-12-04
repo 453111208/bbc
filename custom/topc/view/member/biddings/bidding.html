@@ -1,0 +1,438 @@
+    <script type="text/javascript" src="images/test/demo.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg.js"></script>
+    <script type="text/javascript" src="images/test/wysiwyg-editor.js"></script>
+          <link rel="stylesheet" href="images/menber/css.css">
+    <link rel="stylesheet" href="http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="images/css/wysiwyg-editor.css" />
+    <div class="maxM-right">
+    	<{if $sellertype==3}>
+<div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">个人会员无法发布竞价交易</span></span>
+    </div>
+    <{elseif $shopInfo.shop_id<0}>
+    <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">你还未完善企业信息，无法发布竞价交易</span></span>
+    </div>
+    <{elseif $shopInfo.status=="dead"}>
+     <div class="no-content">
+      <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">您的企业还未通过我们的审核，请耐心等待</span></span>
+    </div>
+    <{else}>
+	<form action="<{url action=topc_ctl_member_biddings@saveS}>" method="post" id="addBiddingsForm" >
+	<!--会员中心-发布标准商品交易-主内容区-->
+	
+		<!--交易发布-->
+	
+		<div class="max-menber-title">
+			<h2>交易发布</h2>
+		</div>
+		
+			<div class="max-steps">
+				<ul>
+					<li class="active"><span> <s>1</s> <i></i>选择商品</span></li>
+					<li><span> <s>2</s> <i></i> 填写交易信息</span></li>
+					<li><span> <s>3</s> <i></i> 发布完成</span></li>
+				</ul>
+			</div>
+			<!----选择商品---->
+		<div class="max-Choice">
+			<div class="max-Select-gs">
+				<div class="max-click-se"><a href="javascript:void(0);" class="action-open-dialog">点击选择商品></a></div>
+				<div class="max-click-pu">
+					<a href="">您还未发布商品,快捷发布><em>发布一个商品只需1分钟</em></a>
+				</div>
+			</div>
+
+
+				<!----下一步按钮---->
+			<!-- <div class="max-nextStep"><button type="submit">下一步</button></div> -->
+		</div>
+
+		<!--价高者得-->
+		
+<div class="max-highest-bidder">
+	<!--价高者得页卡按钮-->
+<!--价高者得主体内容-->
+<div class="max-the-Contents" style="display:block;">	
+<input type="hidden" name="uniqid" value="<{$uniqid}>" id="uniqid">
+<div class="max-the-Content">
+			<div class="max-the-con form-row" >
+				<span class="max-i-left">交易标题：</span>
+				       <input type="text" class="max-i-news" name="trading_title" required>		
+			</div>
+			<div class="max-the-con">
+				<span class="max-i-left">交易开始时间：</span>
+				<span class="input-comb date" data-toggle="datepicker">
+    			<input type="date" id="start" name="start_time">
+    			<span class="input-comb-addon"><i class="icon-calendar"></i></span>
+				<span id="timestart" style="letter-spacing: 0px;color:#DC143C;"></span>
+				</span>
+			</div>
+			<div class="max-the-con">
+				<span class="max-i-left">交易结束时间：</span>
+				<span class="input-comb date" data-toggle="datepicker">
+    			<input type="date" id="stop" name="stop_time">
+    			<span class="input-comb-addon"><i class="icon-calendar"></i></span>
+    			<span id="timestop" style="letter-spacing: 0px;color:#DC143C;"></span>
+				</span>
+			</div>
+
+			<div class="max-the-con">
+				<span class="max-i-left">是否允许一口价：</span>
+				<input type="radio" name="price_type" value="1" class="max-r-input" id="price_type1" checked="checked"><label for="price_type1">允许</label>
+				<input type="radio" name="price_type"value="2" id="price_type2" class="max-r-input"><label  for="price_type2">不允许</label>
+				
+			<div class="max-the-con" id="mouse">
+				<span class="max-i-left">一口价：</span>
+				<input type="text" name="fixed_price"  class="max-r-input" >
+			</div>
+			</div>
+
+
+
+
+
+			<!---商品设置---->
+			<div  class="max-the-con">
+				<h3 class="max-i-left">商品设置：</h3>
+
+		<div id="addBiddingsgoods">
+            <div class="max-Commodity ">
+            <ul class="step1" style="margin-left:132px;" >
+             </ul>
+            </div>
+        </div>
+				<div class="max-Advice">
+					<input type="checkbox" name="advice" value="2" id="advice">
+					<label for="advice">
+						<span>价格建议<em>(勾选此项将在商品提交后24小时内收到东方循环专业产品经理给出的价格建议)</em></span>
+					</label>
+				</div>
+			</div>	
+
+			<div class="max-the-con last">
+				<span class="max-i-left">交货期设置：</span>
+				<input type="radio"  value="1" name="trade_type" class="max-r-input" id="trade_type1" checked>
+				<label class="max-r-Once" for="trade_type1">一次出货</label>
+				<input type="radio" value="2" name="trade_type" class="max-r-input" id="trade_type2">
+				<label class="max-r-Once" for="trade_type2">多次出货</label>
+			</div>
+			 <div class="max-the-con">
+			 	<span class="max-i-left">交易描述：</span>
+			 	<br><br>
+         		<dd style="margin-left:35px">
+          		<div class="max-for-mation">
+     				<textarea id="editor1" style="height:600px;" name="desc" placeholder="Type your text here..." style="width:890px"></textarea>
+     			</div>
+     			</dd>
+    		</div>
+
+  
+
+	</div>
+
+		<div class="max-the-Intr">
+			<ul>
+				<li >
+				<div class="fudu">
+					<span>最小加价幅度：</span>
+					<label><input name="add_price" data-validate="fudu  number" required type="text" style="width:50px;height:20px"> %</label>
+					
+					</div>
+				</li>
+				<li>
+				<div class="bzj">
+					<span>保证金设置：</span>
+					<label><input name="ensurence" data-validate="number" type="text" required style="width:50px;height:20px">元</label>
+					</div>
+				</li>
+				<li>
+					<span>资金走向：</span>
+					<label>
+						<input type="radio"  value="1" name="fund_trend" class="max-r-input" id="fund_trend1" checked>
+						<label class="max-r-Once" for="fund_trend1">平台担保交易</label>
+						<input type="radio" value="2" name="fund_trend" class="max-r-input" id="fund_trend2">
+						<label class="max-r-Once" for="fund_trend2">自行线下支付</label>
+					</label>
+				</li>
+				<li>
+					<span>公开要素：</span>
+					<label>
+						<input type="hidden" name="" id="public_item">
+						<input type="checkbox"  value="1" name="public_item" class="max-r-input" id="public_item1" >
+						<label for="public_item1">
+							过程公开，
+						</label>
+						
+						<input type="checkbox"  value="2" name="" class="max-r-input" id="public_item2">
+							<label for="public_item2">
+							公开竞价公司，
+						</label>
+						<input type="checkbox"  value="3" name="" class="max-r-input" id="public_item3">
+										<label for="public_item3">
+							公开竞价公司，
+						</label>
+					</label>
+				</li>
+<!-- 				<li>
+					<span>查看权限：</span>
+					<label>报名后审核可见联系方式；需供应商签署<a class="max-m-text">保密协议</a>才能看产品详细信息、下载附件和进行报名<a  class="max-m-text">了解详情</a></label>
+					<a class="max-li-mod">修改</a>
+				</li> -->
+				<li>
+					<span>是否限制与企业：</span>
+					<label>
+						<input type="radio"  value="1" name="limitation" class="max-r-input" id="limitation1" checked>
+						<label class="max-r-Once" for="limitation1">不限制</label>
+						<input type="radio" value="2" name="limitation" class="max-r-input" id="limitation2">
+						<label class="max-r-Once" for="limitation2">限制</label>
+					</label>
+
+				</li>
+				
+			</ul>
+		</div>
+
+	<!--填写交易地址-->	
+	      <!----填写交易地址----> 
+    <div class="max-address" id="address_edit">
+      <div>
+        <ul class="max-change-shipping step1">
+       <{include file='topc/member/shoppubt/add_edit.html'}>
+        </ul>
+      </div>
+    </div>
+
+</div>
+<!--价高者得-结尾-->
+</div>
+		<!--提交按钮-->
+		<div class="maxM-buttom">
+			<button type="submit" class="btn btnf action_submit" rel="_request"><span>发 布</span></button>
+			<!-- <button type="submit" class="btn btnp" rel="_request"><span>保 存</span></button>
+			<button type="submit" class="btn btnc" rel="_request"><span>取 消</span></button> -->
+		</div>
+	
+</form>
+<{/if}>
+</div>
+	<script>
+
+       $('#price_type1').click(function(){
+        $('#mouse').show();
+       });
+       $('#price_type2').click(function(){
+        $('#mouse').hide();
+       });
+
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+var checkin = $('#start').datepicker({
+  onRender: function(date) {
+  	debugger;
+    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.date.valueOf()) {
+    var newDate = new Date(ev.date)
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.setValue(newDate);
+  }
+  checkin.hide();
+  $('#stop')[0].focus();
+}).data('datepicker');
+var checkout = $('#stop').datepicker({
+  onRender: function(date) {
+    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+  checkout.hide();
+}).data('datepicker');
+
+$(".action_submit").click(function(e){
+    
+    if($(".isitem").length==0)
+    {
+    	alert("请先添加商品");
+    	return  false;
+    }
+     if($("input[name=price_type]:checked ").val()==1){
+	var yikoujia=$("input[name=fixed_price]").val();
+	var value=0;
+	var price=0;
+	var num=0;
+	var total=0;
+	$(".max-the-Commodity").find(".count").each(function(i){
+		
+		price=$(".count:eq("+i+")").val();
+		num=$(".price:eq("+i+")").val();
+		total=Number(price)*Number(num);
+		value=value+total;
+	});
+	if(yikoujia<value){
+		alert("您规定的一口价低于商品总低价，请重新设定");
+		return false;
+	}
+     }
+
+    var fudu=$(".fudu input").val();
+     if(fudu>100||/[^\d]/.test(fudu)){
+     alert("涨幅不能大于100而且只能是数字");
+     return false;
+     }
+     var bzj=$(".bzj input").val();
+     if(/[^\d]/.test(bzj)){
+     	alert("保证金只能是数字");
+     	return false;
+     }
+
+     return true;
+});
+
+$('.max-main').on('click', '.lakers_addaddress', function (e) {
+        var el = $(this),
+            dataEl = el.parent().find('label');
+        $.dialog.ajax('<{url action=topc_ctl_member_shoppubt@addr_dialog}>', {
+            width: 500,
+            title:'交割地址',
+            asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+                var  edit_uniqid=$(".add_uniqid").val();
+                  if(edit_uniqid ==""){
+                   var uniqid=$("#uniqid").val();
+                   $(".add_uniqid").val(uniqid);
+                  }
+                    new AreaWidget({
+                        dataUrl:"<{$env.base_url}>/app/ectools/statics/scripts/region.json",
+                        select:this.body.find('.area-select'),
+                        initData:dataEl.data('region-id')
+                    });
+                    this.body.find('form').attr('action','<{url action=topc_ctl_member_shoppubt@saveAddress}>');
+                    this.body.find('input[name=addr]').val(dataEl.data('addr'));
+                    this.body.find('input[name=zip]').val(dataEl.data('zip'));
+                    this.body.find('input[name=name]').val(dataEl.data('name'));
+                    this.body.find('input[name=mobile]').val(dataEl.data('mobile'));
+                    this.body.find('input[name=addr_id]').val(dataEl.data('addrId'));
+                    this.body.find('input[name=transport_way]').val(dataEl.data('transport-way'));
+                    this.body.find('input[name=deliveryaddr_id]').val(dataEl.data('deliveryaddr-id'));
+                    var str=dataEl.data('def-addr');
+                    if(str==1){
+                     this.body.find('input[name=def_addr]')[0].checked=true;
+                    }
+                    debugger;
+                    //this.body.find('input[name=def_addr]').val();
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        update: '#address_edit .step1',
+                        callback: $.proxy(function(rs) {
+                            // Message.success('保存成功');
+                            this.hide();
+                        }, this)
+                    });
+
+                }
+            }
+        });
+    });
+
+  
+
+
+
+
+
+
+
+
+    $('.action-open-dialog').click(function (e) {
+    $.dialog.ajax('<{url action=topc_ctl_member_shoppubt@sGodds}>',{
+        width: 500,
+        height: 'auto',
+        title:'商品筛选',
+             asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+
+
+$('.search_goods').click(function(){
+   var cat_id=$("#catId").val();
+   //alert(cat_id);
+   if(cat_id !=""){
+      var data='cat_id='+cat_id;
+      $.post('<{url action=topc_ctl_member_goods@sGoodsData}>',data,function(rs){
+            $('#gooditems').html(rs.message);
+             // $(".save_goods")[0].style.display="block";
+                   var  edit_uniqid=$(".goods_uniqid").val();
+                   $(".bidding_goods").val('1');
+                   if(edit_uniqid ==""){
+                   var uniqid=$("#uniqid").val();
+                   $(".goods_uniqid").val(uniqid);
+                  }
+      });
+   }
+});
+
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        update: '#addBiddingsgoods .step1',
+                        callback: $.proxy(function(rs) {
+                            // Message.success('保存成功');
+                            this.hide();
+                        }, this)
+                    });
+
+
+
+
+
+                }
+            }
+    });
+});
+
+
+
+$('input[name=start_time]').change(function() { 
+	var time = $('input[name=start_time]').val();
+	var times = time.split('-');
+	var d = new Date();
+	var vYear = d.getFullYear();
+	var vMon = d.getMonth()+1;
+	var vDay = d.getDate();
+	if(times[0]<vYear)$('#timestart').html('开始时间不可小于当前时间');
+	else if(times[0]==vYear) {
+		if(times[1]<vMon)$('#timestart').html('开始时间不可小于当前时间');
+		else if(times[1]==vMon){
+			if(times[2]<vDay)$('#timestart').html('开始时间不可小于当前时间');
+			else $('#timestart').html('');
+		}
+		else $('#timestart').html('');
+	}
+	else $('#timestart').html('');
+});
+$('input[name=stop_time]').change(function() { 
+	var time = $('input[name=stop_time]').val();
+	var times = time.split('-');
+	var d = $('input[name=start_time]').val();
+	var ds = d.split('-');
+	if(times[0]<ds[0])$('#timestop').html('结束时间不可小于开始时间');
+	else if(times[0]==ds[0]) {
+		if(times[1]<ds[1])$('#timestop').html('结束时间不可小于开始时间');
+		else if(times[1]==ds[1]){
+			if(times[2]<ds[2])$('#timestop').html('结束时间不可小于开始时间');
+			else $('#timestop').html('');
+		}
+		else $('#timestop').html('');
+	}
+	else $('#timestop').html('');
+});
+	</script>

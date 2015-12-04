@@ -1,0 +1,36 @@
+<form id='prism_key_edit_form' method='post' action='?app=system&ctl=admin_prism&act=save'>
+  <div class='division'>
+    <input type='hidden' name='appId' value='<{$appId}>'>
+    <table class='gridlist'>
+      <tbody>
+        <tr>
+          <td>app_id</td>
+          <td><{$appId}></td>
+        </tr>
+        <tr>
+          <td>key</td>
+          <td><input type='text' name='key' value='<{$prismKey.key}>'></td>
+        </tr>
+        <tr>
+          <td>secret</td>
+          <td><input type='text' name='secret' value='<{$prismKey.secret}>'></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class='table-action'>
+    <{button class='btn-primary' type="button"  label="保存并关闭"}>
+    <{button class='btn-secondary' type="button"  label="关闭"}>
+    </div>
+  </div>
+</form>
+<script>
+  $$('.btn-primary').addEvent('click', function(event){
+    $('prism_key_edit_form').submit();
+    location.href='?app=system&ctl=admin_prism&act=getKeys';
+  });
+  $$('.btn-secondary').addEvent('click', function(){
+    $('prism_key_edit_form').getParent('.dialog').retrieve('instance').close();
+
+  });
+
+</script>

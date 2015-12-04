@@ -1,0 +1,26 @@
+
+<{foreach from=$nature_props key=key item=aProp}>
+<{if $aProp.item_prop_id>0}>
+<div class="form-group">
+  <label for="" class="col-sm-2 control-label"><{$aProp.item_prop_name}>：</label>
+  <div class="col-sm-3">
+    <{assign var="p_col" value="{$key}"}>
+    <input type="hidden" name="item_prop_id[]" value="<{$aProp.item_prop_id}>">
+    <input type="hidden" name="item_prop_name[]" value="<{$aProp.item_prop_name}>">
+    <input type="hidden" name="cat_id[]" value="<{$aProp.cat_id}>">
+    <input type="hidden" name="cat_name[]" value="<{$aProp.cat_name}>">
+    <input type="text" name="item_prop_value[]" class="form-control">
+    <!-- <{if true}>
+    <select name="item[nature_props][<{$aProp.prop_id}>]" class="form-control">
+      <{foreach from=$aProp.prop_value item=pv_item}>
+      <option value="<{$pv_item.prop_value_id}>" <{if $aProp.selected_prop_value_id==$pv_item.prop_value_id}> selected=selected <{/if}>> <{$pv_item.prop_value}> </option>
+      <{/foreach}>
+    </select>
+    <{else}>
+    <input type="text" name="item[nature_props][<{$aProp.prop_id}>]" maxlength="25" value="<{$item.props[$p_col].value}>" />
+    <{/if}> -->
+  </div>
+</div>
+<{/if}>
+<{/foreach}>
+

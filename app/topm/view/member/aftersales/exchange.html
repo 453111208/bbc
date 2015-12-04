@@ -1,0 +1,60 @@
+<div class="exchange shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <ul>
+      <{if $status != 'TRADE_FINISHED' }>
+      <li>
+        <a href="<{url action=topm_ctl_member_aftersales@aftersalesApply tid=$tid oid=$oid type=ONLY_REFUND}>">
+          <span class="icon">
+            <span class="icon-refund"></span>
+          </span>
+          <span class="txt">
+            <span>仅退款</span><br>
+            <span>未收到货，收到货只需退款</span>
+          </span>
+          <span class="towards">
+            <span class="icon-forward"></span>
+          </span>
+        </a>
+      </li>
+      <{/if}>
+      <li>
+        <a href="<{url action=topm_ctl_member_aftersales@aftersalesApply tid=$tid oid=$oid type=REFUND_GOODS}>">
+          <span class="icon">
+            <span class="icon-found"></span>
+          </span>
+          <span class="txt">
+            <span>退货退款</span><br>
+            <span>已收到货，需要退还已收到的货物</span>
+          </span>
+          <span class="towards">
+            <span class="icon-forward"></span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="<{url action=topm_ctl_member_aftersales@aftersalesApply tid=$tid oid=$oid type=EXCHANGING_GOODS}>">
+          <span class="icon">
+            <span class="icon-return"></span>
+          </span>
+          <span class="txt">
+            <span>换货</span><br>
+            <span>已收到货，向商家申请换货</span>
+          </span>
+          <span class="towards">
+            <span class="icon-forward"></span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady(){
+    var mytopbar = document.getElementById("topFix");
+    var myfixhd = document.getElementById("fixhd");
+    WeixinJSBridge.call('hideToolbar');
+    mytopbar.style.display="none";
+    myfixhd.style.margin="0";
+});
+</script>

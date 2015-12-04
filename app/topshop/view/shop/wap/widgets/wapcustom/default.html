@@ -1,0 +1,53 @@
+<form  action="<{url action=topshop_ctl_wap_decorate@save}>" method="post" id="custom_html_form" class="form-horizontal" data-validate-onsuccess="ajaxSubmitCustom" role="form">
+  <input type="hidden" name='widgets' value="<{$widgetsName}>" >
+  <input type="hidden" name='dialog' value="<{$dialogName}>" >
+  <input type="hidden" name='widgetsId' value="<{$data.0.widgets_id}>" >
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+    <h4 class="modal-title">自定义区域配置</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <textarea name="params[custom]" style="width:100%;" class="rich-editor"><{if $data.0.params.custom}><{$data.0.params.custom}><{/if}></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">保存</button>
+
+  </div>
+</form>
+<script>
+var editor = $('.rich-editor');
+editor.summernote({
+    height: 200,
+    tabsize: 2,
+    uploadURI: '<{url action=toputil_ctl_image@uploadImages from=shop}>',
+    uploadPerfix: 'upload_file'
+});
+editor.parents('.modal').on('hidden', function(){
+    editor.destroy();
+});
+
+$('#custom_html_form').Validator({
+    icons: {
+        valid:      'icon icon-checkmark-a',
+        invalid:    'icon icon-alert',
+        validating: 'icon icon-loading-c'
+    }
+});
+
+function ajaxSubmitCustom (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.href=rs.redirect;}, 500);
+      }
+    });
+}
+</script>

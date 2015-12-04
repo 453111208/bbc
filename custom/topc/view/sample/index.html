@@ -1,0 +1,75 @@
+ <style type="text/css">
+ .input-comb{
+  margin-left:12px;
+ }
+ </style>
+
+  <form action="<{url action=topc_ctl_sample@save_sample}>" method="post" id="ajaxForm">
+    <input type="hidden" name="standard_id" value="" class="standard_id">
+    <input type="hidden" name="bidding_id" value="" class="bidding_id">
+    <input type="hidden" name="tender_id" value="" class="tender_id">
+    <input type="hidden" name="type" value="" class="type">
+    <input type="hidden" name="shop_id" value="" class="shop_id">
+    <input type="hidden" name="shop_name" value="" class="shop_name">
+    <input type="hidden" name="title" value="" class="title">
+
+    <div class="membercenter-address">
+      <ul>
+
+        <li class="form-row">
+          <label for="" class="form-label">样品名称：</label>
+          <span class="input-comb">
+            <input class="title" type="text" name="name"  value="" required>
+          </span>
+        </li>
+
+        <li class="form-row">
+          <label for="" class="form-label">预计看样时间：</label>
+        <span class="input-comb date" data-toggle="datepicker" > 
+          <input type="date" id="start" name="about_time"  required>
+          <span class="input-comb-addon"><i class="icon-calendar"></i></span>
+        </span>
+        </li>
+        <li>
+        <label for="" class="form-label">看样截止时间：</label>
+        <input type="text" style="margin-left: 12px;" name='ceshi' class="seegood" readonly="readonly">
+        </li>
+
+        <li class="form-row">
+          <label for="" class="form-label">看样地点：</label>
+          <span class="input-comb">
+            <input class="x-input" type="text" name="addr" >
+          </span>
+        </li>
+
+        <li class="form-row">
+          <label for="" class="form-label">联系人姓名：</label>
+          <span class="input-comb">
+            <input class="x-input" type="text" name="u_name"  maxlength="25" required>
+          </span>
+        </li>
+ 
+        <li class="form-row">
+          <label for="" class="form-label">收货人手机</label>
+          <span class="input-comb">
+            <input class="x-input" type="mobile" data-validate="mobile" name="mobile" value="" data-caution="手机格式不正确" required>
+          </span>
+        </li>
+
+        <li style="margin-bottom:20px;">
+          <label for="" class="form-label">描述</label>
+          <span class="form-act">
+            <textarea  name="desc"  id="for_defaultaddr"></textarea>
+          </span>
+        </li>
+
+        <li class="form-row last">
+          <span class="form-act">
+            <button type="submit" class="btn btn-import" id="action-addr-submit" rel="_request"><span><span>保存</span></span></button>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </form>
+
+

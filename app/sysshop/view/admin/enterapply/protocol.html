@@ -1,0 +1,29 @@
+<form id="protocolForm" action="?app=sysshop&ctl=admin_enterapply&act=setProtocol"  method="POST" >
+    <div class="tableform">
+        <{input type="html" name="content" value=$content}>
+    </div>
+    <div class="table-action">
+        <{button type="submit" id='protocol-form-submit' label="保存配置"|t:'syscategory'}>
+    </div>
+
+</form>
+
+<script>
+
+    $('protocolForm').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('protocolForm').getParent('.dialog')){
+                    var Dlg = $('protocolForm').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

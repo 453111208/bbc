@@ -1,0 +1,21 @@
+<site>
+    <module id='topm'>
+        <allow_seo route='topm.item.detail'>
+            <title>wap端商品详细页</title>
+            <config id="{ENV_item_title}">商品名</config>
+            <config id="{ENV_shop_name}">店铺名称</config>
+            <config id="{ENV_item_brand}">商品品牌</config>
+            <config id="{ENV_item_bn}">商品编号</config>
+            <config id="{ENV_item_cat}">类目</config>
+            <config id="{ENV_sub_title}">商品简介</config>
+            <param>
+                <seo_title>{ENV_item_title}_{ENV_shop_name}_{ENV_item_brand}</seo_title>
+                <seo_keywords>{ENV_item_title}_{ENV_shop_name}</seo_keywords>
+                <seo_content>{ENV_item_title}_{ENV_shop_name}_{ENV_sub_title}</seo_content>
+                <seo_nofollow>0</seo_nofollow>
+                <seo_noindex>0</seo_noindex>
+            </param>
+            <hidden>true</hidden>
+        </allow_seo>
+    </module>
+</site>

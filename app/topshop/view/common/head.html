@@ -1,0 +1,71 @@
+<meta charset="UTF-8">
+<title><{$topshop.seo.title}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="author" content="shopex UED Team">
+<meta name="keywords" content="<{$topshop.seo.keywords}>">
+<meta name="description" content="<{$topshop.seo.description}>">
+
+<link rel="icon" href="<{$icon}>" type="image/x-icon" />
+<link rel="shortcut icon" href="<{$icon}>" type="image/x-icon" />
+
+<{if config::get('app.debug', false)}>
+<!-- common styles -->
+<{css app="topshop" src="theme.css"}>
+<{css app="topshop" src="font-awesome.css"}>
+<{css app="topshop" src="ionicons.css"}>
+<!-- plugins -->
+<{css app="topshop" src="bootstrap-validator.css"}>
+<{css app="topshop" src="bootstrap-daterangepicker.css"}>
+<{css app="topshop" src="bootstrap-datepicker.css"}>
+<{css app="topshop" src="editor/summernote.css"}>
+<!-- common scripts -->
+<{script app="topshop" src="lib/jquery.js"}>
+<{script app="topshop" src="lib/bootstrap.js"}>
+<!-- plugins -->
+<{script app="topshop" src="lib/bootstrap-modal.js"}>
+<{script app="topshop" src="lib/bootstrap-validator.js"}>
+<{script app="topshop" src="lib/daterangepicker.js"}>
+<{script app="topshop" src="lib/datepicker.js"}>
+<{script app="topshop" src="lib/jquery.flot.js"}>
+<{script app="topshop" src="lib/jquery.flot.time.js"}>
+<!-- editor -->
+<{script app="topshop" src="lib/editor/summernote.js"}>
+<{script app="topshop" src="lib/editor/summernote-zh-CN.js"}>
+<!-- main scripts -->
+<{script app="topshop" src="tools.js"}>
+<{script app="topshop" src="imageupload.js"}>
+<{script app="topshop" src="app.js"}>
+<{else}>
+<{css app="topshop" src="theme.min.css"}>
+<{css app="topshop" src="plugins.min.css"}>
+<{script app="topshop" src="lib/jquery.min.js"}>
+<{script app="topshop" src="lib/plugins.min.js"}>
+<{script app="topshop" src="main.min.js"}>
+<{/if}>
+<script>
+var imageuploadUrl = "<{url action=topshop_ctl_shop_image@loadImageModal}>";
+
+(function() {
+  var explorer = window.navigator.userAgent ;
+  //ie
+  if (explorer.indexOf("MSIE") >= 0) {
+    window.location.href= "<{url action=topshop_ctl_index@browserTip}>"
+  }
+  //firefox
+  else if (explorer.indexOf("Firefox") >= 0) {
+
+  }
+  //Chrome
+  else if(explorer.indexOf("Chrome") >= 0){
+
+  }
+  //Opera
+  else if(explorer.indexOf("Opera") >= 0){
+    window.location.href= "<{url action=topshop_ctl_index@browserTip}>"
+  }
+  //Safari
+  else if(explorer.indexOf("Safari") >= 0){
+
+  }
+})()
+</script>

@@ -1,0 +1,40 @@
+<div class="side-box">
+  <div class="hd">店内搜索</div>
+  <div class="bd">
+    <form action="<{url action=topc_ctl_shopcenter@search}>" method="post">
+      <div class="searchbar-small has-figure">
+        <input type="text" class="input-block input-sm" name="title" id="" placeholder="关键字">
+        <input type="hidden" name="shop_id" value="<{$item.shop_id}>">
+        <button type="submit" class="icon-search-a btn input-figure input-figure-sm"></button>
+      </div>
+    </form>
+  </div>
+</div>
+<{include file="topc/shop/cat.html"}>
+<div class="side-box" id="view_history">
+  <div class="hd">浏览过的商品</div>
+  <div class="bd">
+  </div>
+</div>
+
+<{if $buyerList}>
+<div class="side-box" id="view_buy">
+  <div class="hd">最近购买记录</div>
+  <div class="bd">
+    <{foreach from=$buyerList item=row}>
+    <div class="item clearfix ">
+      <div class="pic">
+        <a href="<{url action=topc_ctl_item@index item=$row.item_id}>" target="_blank" title="<{$row.title}>" data-gid="<{$row.item_id}>">
+          <img width="210" height="230" src="<{$row.pic_path|storager:'s'}>" alt="<{$row.title}>">
+        </a>
+      </div>
+      <div class="item-info">
+        <a class="name" href="<{url action=topc_ctl_item@index item=$row.item_id}>" target="_blank" title="<{$row.title}>"><{$row.title}></a>
+        <div class="price"><{$row.price|cur}></div>
+      </div>
+    </div>
+    <{/foreach}>
+  </div>
+</div>
+<{/if}>
+

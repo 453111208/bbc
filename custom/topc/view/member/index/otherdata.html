@@ -1,0 +1,58 @@
+<h6><a><i></i><{$zuoshang.title}></a></h6>
+<h3 class="setup-info1"><a>设置我感兴趣的信息</a></h3>
+<ul>
+    <{foreach from=$zuoshang.infolist item=item}>
+        <li><label>[<{$item.lablestr}>]</label><a href="<{url action=topc_ctl_member@pubact id=$item.id type=$item.lablestr catparent=$zuoshang.instrcatparent}>"><{$item.lablecontent}></a><span><{$item.datepub}></span></li>
+    <{/foreach}>
+</ul>
+<script>
+ $('.setup-info1').click(function (e) {
+    $.dialog.ajax('<{url action=topc_ctl_member@search id=1 instrid=$zuoshang.instrID}>',{
+        width: 890,
+        height: 400,
+        title:'选择信息',
+             asyncOptions:{
+                type: 'post',
+                callback: function(xhr) {
+
+
+//    $('.search_goods').click(function(){
+//        var cat_id=$("#selectOption_2").val();
+//
+//        if(cat_id !=""){
+//           var data='cat_id='+cat_id;
+//           $.post('<{url action=topc_ctl_member_goods@sGoodsData}>',data,function(rs){
+//                 $('#gooditems').html(rs.message);
+//                  // $(".save_goods")[0].style.display="block";
+//                        var  edit_uniqid=$(".goods_uniqid").val();
+//                        if(edit_uniqid ==""){
+//                        var uniqid=$("#uniqid").val();
+//                        $(".goods_uniqid").val(uniqid);
+//                       }
+//           });
+//        }
+//     });
+//
+                    this.body.find('form').data('validateConfig', {
+                        tips: {
+                            form: 'block'
+                        }
+                    })
+                    .find('[type=submit]').data('ajaxConfig', {
+                        update: '#addStandardsgoods .step1',
+                        callback: $.proxy(function(rs) {
+                            // Message.success('保存成功');
+                            this.hide();
+                            location.reload();
+                        }, this)
+                    });
+
+
+
+
+
+                }
+            }
+    });
+});
+</script>

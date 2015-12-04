@@ -1,0 +1,146 @@
+<{if $info.sendback_data}>
+<div class="border-box">
+  <div class="form-group row">
+    <span class="pull-left">用户退换货物流信息：</span>
+    <span class="pull-left">
+      <span class="row">
+        <span>物流公司：</span>
+        <span><{$info.sendback_data.logi_name}></span>
+      </span>
+      <span class="row">
+        <span>运单号码：</span>
+        <span><{$info.sendback_data.logi_no}></span>
+      </span>
+      <span class="clearfix">
+        <span class="pull-left">物流跟踪：</span>
+        <span class="pull-left">
+        <{if $tracker}>
+        <{foreach from=$tracker item=row}>
+        <{$row.AcceptTime}> <{$row.AcceptStation}><br/>
+        <{/foreach}>
+        <{else}>
+        该物流公司不支持查询，请到物流公司官网查询
+        <{/if}>
+      </span>
+      </span>
+    </span>
+  </div>
+</div>
+<{/if}>
+
+<{if $info.aftersales_type == 'EXCHANGING_GOODS' }>
+
+<{if $info.sendconfirm_data}>
+<div class="border-box">
+  <div class="form-group">寄送信息：</div>
+  <div class="form-group">
+    <span class="order-form-w1 pull-left">用户收货信息：</span>
+    <span class="col-xs-8">
+      <{$info.sendback_data.receiver_address}>&nbsp;&nbsp;<{$info.sendback_data.mobile}>
+    </span>
+  </div>
+  <div class="form-group row">
+    <span class="order-form-w1 pull-left">寄送物流信息：</span>
+    <span class="pull-left">
+      <span class="row">
+        <span>物流公司：</span>
+        <span><{$info.sendconfirm_data.logi_name}></span>
+      </span>
+      <span class="row">
+        <span>运单号码：</span>
+        <span><{$info.sendconfirm_data.logi_no}></span>
+      </span>
+      <span class="clearfix">
+        <span class="pull-left">物流跟踪：</span>
+        <span class="pull-left">
+          <{if $sendTracker}>
+          <{foreach from=$sendTracker item=row}>
+          <{$row.AcceptTime}> <{$row.AcceptStation}><br/>
+          <{/foreach}>
+        <{else}>
+          该物流公司不支持查询，请到物流公司官网查询
+        <{/if}>
+        </span>
+      </span>
+    </span>
+  </div>
+</div>
+<{else}>
+<div class="form-group">
+  <span class="order-form-w1 pull-left">用户收货信息：</span>
+  <span class="col-xs-8">
+    <{$info.sendback_data.receiver_address}>&nbsp;&nbsp;<{$info.sendback_data.mobile}>
+  </span>
+</div>
+<div class="form-group">
+  <span class="order-form-w1 pull-left"><a href="" data-toggle="modal" data-target="#logistics">填写物流信息></a></span>
+</div>
+<{/if}>
+
+<!--填写物流信息弹框-->
+<div class="modal fade" id="logistics">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">填写物流信息</h4>
+      </div>
+      <form action="<{url action=topshop_ctl_aftersales@sendConfirm}>" method="post" class="bg-white" data-validate-onsuccess="ajaxSubmit">
+      <input type='hidden' name='aftersales_bn' value="<{$info.aftersales_bn}>">
+      <div class="modal-body">
+        <div class="form-horizontal form-refund">
+          <div class="row">
+            <label for="" class="col-sm-4 control-label"><em class="text-red">*</em>选择物流公司</label>
+            <div class="col-xs-8">
+              <select name="corp_code" required="true" id="corp_code" data-validate-field="">
+                <option value="">请选择</option>
+                <{foreach from=$corpData item=item}>
+                <option value="<{$item.corp_code}>-<{$item.corp_name}>" ><{$item.corp_name}></option>
+                <{/foreach}>
+                <option value="other">其他</option>
+              </select>
+              <div style="display:none" id="other"><input type="text" name='logi_name' placeholder="请填写物流公司名称" required></div>
+            </div>
+          </div>
+          <div class="row">
+            <label for="" class="col-sm-4 control-label"><em class="text-red">*</em>填写物流单号</label>
+            <div class="col-sm-8">
+              <input type="text" name='logi_no' required='true'>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+  $('#corp_code').change(function(){
+    if(this.value == "other"){
+      $('#other').show();
+    }else{
+      $('#other').hide();
+    }
+  });
+  function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+      }
+      if(rs.redirect) {
+        setTimeout(function(){location.href=rs.redirect;}, 800);
+      }
+    });
+  }
+</script>
+<{/if}>

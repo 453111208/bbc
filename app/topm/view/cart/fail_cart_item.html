@@ -1,0 +1,58 @@
+<{if !$goods.store}>
+<div class="g-info disabled">
+  <div class="check">
+    <input type="checkbox" id="goods1">
+    <label for="goods1"></label>
+  </div>
+  <div class="info-l">
+    <a href="" class="g-pic">
+      <img src="<{$goods.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>" alt="">
+    </a>
+  </div>
+  <div class="info-m">
+    <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-name"><{$goods.title}></a>
+    <span class="ui-badge badge-rec">无库存</span>
+  </div>
+  <div class="info-r">
+  </div>
+</div>
+<div class="action">
+  <{if $collect.stat}>
+  <span class="collect icon icon-favor"></span>
+  <{else}>
+  <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" data-ajax-data="item_id=<{$goods.item_id}>" rel="_request" data-ajax-type="post">
+    <span class="collect icon icon-favor"></span>
+  </a>
+  <{/if}>
+  <a href="javascript:void(0);" class="action-delete" data-cart-id="<{$goods.cart_id}>">
+    <span class="delate icon icon-recycle"></span>
+  </a>
+</div>
+<{else}>
+<div class="g-info disabled">
+  <div class="check">
+    <input type="checkbox" id="goods1">
+    <label for="goods1"></label>
+  </div>
+  <div class="info-l">
+    <a href="" class="g-pic">
+      <img src="<{$goods.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>" alt="">
+    </a>
+  </div>
+  <div class="info-m">
+    <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-name"><{$goods.title}></a>
+    <{if $goods.status=="instock"}>
+    <br>
+    <span class="ui-badge badge-rec">已下架</span>
+    <{else}>
+    <br>
+    <span class="ui-badge badge-rec">已失效</span>
+    <{/if}>
+  </div>
+  <div class="info-r">
+    <a href="javascript:void(0);" class="action-delete" data-cart-id="<{$goods.cart_id}>">
+      <span class="delate icon icon-recycle"></span>
+    </a>
+  </div>
+</div>
+<{/if}>

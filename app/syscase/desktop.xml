@@ -1,0 +1,14 @@
+<desktop>
+    
+     <permissions>
+        <permission id="syscase_info" display='true' workground='syscase.wrokground.theme'>解决方案页面管理</permission>
+    </permissions>
+    
+    <workground name="解决方案管理" id="syscase.wrokground.theme" controller="admin_module" action="index" order='30'>
+        <menugroup name="解决方案页面管理"> 
+            <menu controller='admin_essay' action='index' permission='syscase_info' display='true' order="10">解决方案文章管理</menu>
+            <menu controller='admin_essaycat' action='index' permission='syscase_info' display='true' order="20">解决方案文章类型管理</menu>
+        </menugroup>
+    </workground>
+    
+</desktop>

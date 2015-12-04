@@ -1,0 +1,16 @@
+<div class="floor picarea area lazyload">
+  <section class="floor-bd floor-col-2">
+    <ul>
+      <{if $imageSlider}>
+      <{foreach from=$imageSlider item=imageList}>
+      <li class="col-xs-6">
+        <div class="pro-pic">
+          <a href="<{$imageList.link}>">
+            <img class="ui-imglazyload preload" style="background:url(<{$imageList.sliderImage}>) no-repeat center center" alt=""></a>
+        </div>
+      </li>
+      <{/foreach}>
+      <{/if}>
+    </ul>
+  </section>
+</div>

@@ -1,0 +1,118 @@
+<div class="item-consult">
+  <div class="clearfix">
+    <div class="item-consult-nav">
+      <ul>
+        <li data-type="" class="active">全部咨询(<span><{$count.all}></span>条)</li>
+        <li data-type="item">商品咨询(<span><{$count.item}></span>条)</li>
+        <li data-type="store_delivery">库存配送(<span><{$count.store_delivery}></span>条)</li>
+        <li data-type="payment">支付方式(<span><{$count.payment}></span>条)</li>
+        <li data-type="invoice">发票保修(<span><{$count.invoice}></span>条)</li>
+      </ul>
+    </div>
+    <div class="get-consult">
+      有什么问题，请再这里咨询<br>
+      <a href="#item_consult_form" class="btn btn-caution btn-xl btn-addcart"><span><span><i class="icon icon-chatbox"></i> 我要咨询</span></span></a>
+    </div>
+  </div>
+  <div class="item-consult-con">
+    <{include file="topc/items/consultation/list.html"}>
+  </div>
+
+  <div id="item_consult_form" class="item-consult-form">
+    <div class="form-title">发表咨询</div>
+    <div>声明：您可以在购买前对产品包装、颜色、运输、库存等方面进行咨询，我们有专人进行回复！因厂家随时会更新一些产品的包装、颜色、产地等参数，所以该回复仅在当时对提问者有效，其他网友仅供参考！咨询回复的工作时间为：周一至周五，9:00至18:00，请耐心等待工作人员回复。</div>
+    <form id="consult-form" action="<{url action=topc_ctl_item@commitConsultation}>" method="post" >
+      <input type="hidden" name="gask[item_id]" value="<{$item_id}>">
+      <div class="form-row">
+        <label for="for_input_uname" class="form-label">咨询类型：</label>
+        <span class="form-act row input-row">
+          <label class="radio-inline">
+            <input type="radio" name="gask[type]" checked value="item"> 商品咨询
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gask[type]" value="store_delivery"> 库存及配送
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gask[type]" value="payment"> 支付问题
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gask[type]" value="invoice"> 发票及保修
+          </label>
+        </span>
+      </div>
+      <div class="form-row">
+        <label for="for_input_uname" class="form-label">咨询内容：</label>
+        <span class="form-act row input-row">
+          <textarea name="gask[content]" id="consult_content" rows="3" class="col-16" placeholder="您想咨询的问题(5-200字)" ></textarea>
+          <div class="letter-limit">还可以输入<span>200</span>字</div>
+        </span>
+      </div>
+      <{if !$user_id}>
+      <div class="form-row">
+        <label for="for_input_uname" class="form-label">联系方式：</label>
+        <span class="form-act row input-row">
+          <input type="text" name="gask[contack]">
+        </span>
+      </div>
+
+      <{/if}>
+      <div class="form-row row">
+        <div class="offset-2 checkbox">
+          <label><input name="gask[is_anonymity]" value=1 type="checkbox"> 匿名</label>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="button" id="consult-submit" class="btn btn-caution"><span><span>提交咨询</span></span></button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $('#consult-submit').click(function(){
+    var con = $('#consult_content').val();
+    if(con.length>4 && con.length<201){
+      $.post('<{url action=topc_ctl_item@commitConsultation}>', $('#consult-form').serialize(), function(data) {
+        if(data.success==true){
+          Message.success(data.message);
+          $('#consult-form')[0].reset();
+        }else{
+          Message.error(data.message);
+        }
+      });
+    }else{
+      Message.error('咨询内容必须在5-200个字符之间！');
+    }
+  });
+
+  limitContent('#consult_content', 200);
+
+  //限制评论输入字数
+  function limitContent(content, length) {
+    $('.letter-limit').find('span').text(length);
+    $(content).keydown(function(e){
+      var numView = $(this).parent().find('.letter-limit').find('span');
+      var remaining = length - $(this).val().length;
+      if(remaining < 0){
+        numView.css('color', '#ff0000');
+        numView.css('font-weight', 'bold');
+      }else{
+        numView.css('color', '#aaa');
+        numView.css('font-weight', 'normal');
+      }
+      numView.text(remaining);
+    });
+
+    $(content).keyup(function(e){
+      var numView = $(this).parent().find('.letter-limit').find('span');
+      var remaining = length - $(this).val().length;
+      numView.text(remaining);
+      if(remaining < 0){
+        numView.css('color', '#ff0000');
+        numView.css('font-weight', 'bold');
+      }else{
+        numView.css('color', '#aaa');
+        numView.css('font-weight', 'normal');
+      }
+    });
+  };
+</script>

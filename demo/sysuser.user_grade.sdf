@@ -1,0 +1,8 @@
+a:6:{s:8:"grade_id";i:1;s:10:"grade_name";s:12:"初级会员";s:10:"grade_logo";s:1:"1";s:10:"experience";i:0;s:13:"default_grade";i:1;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:2;s:10:"grade_name";s:12:"中级会员";s:10:"grade_logo";s:1:"1";s:10:"experience";i:1000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:3;s:10:"grade_name";s:12:"高级会员";s:10:"grade_logo";s:1:"1";s:10:"experience";i:5000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:4;s:10:"grade_name";s:12:"顶级会员";s:10:"grade_logo";s:1:"1";s:10:"experience";i:12000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:5;s:10:"grade_name";s:12:"骨灰初级";s:10:"grade_logo";s:1:"1";s:10:"experience";i:30000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:6;s:10:"grade_name";s:12:"骨灰中级";s:10:"grade_logo";s:1:"1";s:10:"experience";i:40000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:7;s:10:"grade_name";s:12:"骨灰高级";s:10:"grade_logo";s:1:"1";s:10:"experience";i:60000;s:13:"default_grade";i:0;s:8:"validity";i:0;}
+a:6:{s:8:"grade_id";i:8;s:10:"grade_name";s:12:"骨灰顶级";s:10:"grade_logo";s:1:"1";s:10:"experience";i:67000;s:13:"default_grade";i:0;s:8:"validity";i:0;}

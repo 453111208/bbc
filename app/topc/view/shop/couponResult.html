@@ -1,0 +1,37 @@
+<!-- main container -->
+<div id="main" class="main">
+  <div class="wrap-lg">
+    <div class="get-coupon-success coupon-info">
+      <div class="coupon">
+        <div class="coupon-item">
+          <div class="init">
+            <div class="coupon-price"><{$couponInfo.deduct_money|cur}></div>
+            <div class="coupon-info">
+              <{$couponInfo.coupon_name}>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="coupon-detail">
+        <h1>恭喜您领取成功！</h1>
+        <div class="coupon-rule">
+          <dl>
+            <dt>优惠券类型：</dt>
+            <dd><{$couponInfo.coupon_name}></dd>
+            <dt>使用店铺：</dt>
+            <dd><{$couponInfo.shop_id|shopname}></dd>
+            <dt>使用期限：</dt>
+            <dd><{$couponInfo.canuse_start_time|cdate:'FDATE'}> ~ <{$couponInfo.canuse_end_time|cdate:'FDATE'}></dd>
+            <dt>使用平台：</dt>
+            <dd><{$couponInfo.used_platform|json2value:'{"0":"手机、电脑端通用","1":"电脑端","2":"手机端"}'}></dd>
+          </dl>
+        </div>
+        <div class="coupon-explain">
+          说明：<{$couponInfo.coupon_desc}>
+        </div>
+        <div>
+          <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopdata.shop_id}>" class="btn btn-danger btn-lg"><span><span>进入店铺</span></span></a>
+          <a href="<{url action=topc_ctl_member_coupon@couponList}>" class="btn btn-flat btn-lg"><span><span>查看优惠券</span></span></a>
+        </div>
+      </div>
+    </div>

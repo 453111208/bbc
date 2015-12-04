@@ -1,0 +1,57 @@
+<form id="brandForm" action="?app=sysspfb&ctl=admin_brand&act=doApprove"  method="POST" >
+  <input type="hidden" name="item_id" value="<{$itemRow.item_id}>">
+  <div class="tableform">
+    <div class="division">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <th><{t}>商品名称：<{/t}></th>
+          <td><{$itemRow.title}></td>
+        </tr>
+        <tr>
+          <th><{t}>商品副标题<{/t}></th>
+          <td><{$itemRow.sub_title}></td>
+        </tr>
+      </table>
+    </div>
+    <div class="division">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+         <th><{t}> 产品介绍<{/t}></th>
+          <td><{t}>  <{$itemRow.item_numberro}><{/t}></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="table-action">
+    <{button type="submit" id='brand-form-submit' label="保存"|t:'sysspfb'}>
+  </div>
+</form>
+<script>
+  (function(){
+    var _form = $('brandForm');
+    var btn =$('brand-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+
+  })();
+</script>

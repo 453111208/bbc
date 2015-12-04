@@ -1,0 +1,53 @@
+<div class="apply shop order-detail">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+    <div class="apply-info complain-status">
+      <div class="msg">
+        <span class="hd">
+          <{if $status == 'WAIT_SYS_AGREE'}>
+          订单投诉处理中
+          <{elseif $status == 'FINISHED'}>
+          订单投诉处理成功
+          <{elseif $status == 'BUYER_CLOSED'}>
+          订单投诉已撤销
+          <{elseif $status == 'CLOSED'}>
+          订单投诉已关闭
+          <{/if}>
+        </span>
+      </div>
+      <ul class="repeal-list">
+        <li class="form-row">
+          <label for="for-type" class="form-label">投诉类型：</label>
+          <div class="txt"><{$complaints_type}></div>
+        </li>
+        <li class="form-row">
+          <label for="for-type" class="form-label">描述问题：</label>
+          <div class="txt"><{$content}></div>
+        </li>
+        <{if $image_url}>
+        <li clas="form-row">
+          <label for="for-type" class="form-label">投诉凭证：</label>
+          <div class="txt">
+            <{foreach from=$image_url item=pic}>
+            <img width="64" height="64" src="<{$pic|storager:'s'}>">
+            <{/foreach}>
+          </div>
+        </li>
+        <{/if}>
+      </ul>
+      <{if $status == 'BUYER_CLOSED'}>
+      <div class="msg">
+        <span class="hd">撤销原因：</span>
+        <div class="info2">
+          <{$buyer_close_reasons}>
+        </div>
+      </div>
+      <{elseif $status == 'WAIT_SYS_AGREE'}>
+      <div class="apply-btn">
+        <div class="hint-txt">若您的问题已解决，您可以</div>
+        <a href="<{url action=topm_ctl_member_complaints@closeView oid=$oid}>" class="ui-btn ui-btn-warning">撤销投诉</a>
+      </div>
+      <{/if}>
+    </div>
+  </div>
+</div>

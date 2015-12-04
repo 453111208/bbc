@@ -1,0 +1,20 @@
+<div class="forgot-content">
+  <div class="safe-box">
+    <h1 class="header-title">找回密码</h1>
+    <div class="status-bar" id="forgot_step">
+      <div class="on">1 填写账户名<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>2 身份验证<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3 设置新密码<i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i></div>
+      <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>4 设定完成</div>
+    </div>
+    <div id="forgot_pass">
+      <{include file="topc/passport/forgot/one.html"}>
+    </div>
+  </div>
+</div>
+<script>
+function updateStep(i) {
+    var step = $('#forgot_step');
+    step.children().eq(i).addClass('on').siblings('.on').removeClass('on');
+};
+</script>

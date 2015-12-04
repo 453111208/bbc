@@ -1,0 +1,20 @@
+<div class="find-three">
+  <form action="<{url action=topm_ctl_passport@findPwdFour}>" method="post" id="ajaxForm" class="form-tip-horizontal">
+    <input type="hidden" name="userid" value="<{$data.user_id}>">
+    <input type="hidden" name="key" value="<{$data.key}>">
+    <input type="hidden" name="account" value="<{$account}>">
+    <ul>
+      <li class="form-row">
+        <label for="" class="form-label">新密码</label>
+          <input class="input-ln auto-password-check-handle" type="password" name="password" id="" placeholder="6-20个字符" required minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符">
+      </li>
+      <li class="form-row">
+        <label for="" class="form-label">确认新密码</label>
+        <input class="input-ln" type="password" name="confirmpwd" id="" required data-equalto="password" placeholder="请重新输入新密码" data-caution="请再次输入新密码">
+      </li>
+      <li class="form-row commit">
+        <button type="submit" class="ui-btn-warning" rel="_request">确认</button>
+      </li>
+    </ul>
+  </form>
+</div>

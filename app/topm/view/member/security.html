@@ -1,0 +1,96 @@
+
+<div class="safe-center shop">
+  <{include file="topm/common/top.html"}>
+  <!-- main container -->
+  <{*<div class="main">
+    <div class="password info-item">
+      <div class="info-hd">
+        <span class="p-info">登录密码</span>
+        <div class="p-link">
+          <a href="<{url action=topm_ctl_member@modifyPwd}>">修改密码</a>
+        </div>
+      </div>
+      <span class="add-info">
+        请经常更换登录密码，且不要和其他帐号共用一个密码。
+      </span>
+    </div>
+    <div class="mobile info-item">
+      <div class="info-hd">
+        <span class="p-info">手机绑定</span>
+        <div class="p-link">
+          <{if $userInfo.mobile}>
+            <a href="<{url action=topm_ctl_member@verify verifyType=mobile type=update}>">修改手机</a></br>
+            <a href="<{url action=topm_ctl_member@unVerifyOne verifyType=mobile type=delete}>">解绑手机</a>
+            <{else}>
+            <a href="<{url action=topm_ctl_member@verify verifyType=mobile}>">立即绑定</a>
+          <{/if}>
+        </div>
+        <div >
+        </div>
+      </div>
+      <span class="add-info">进行绑定以后，用户可以进行找回密码，保护账号安全</span>
+    </div>
+    <div class="e-mail info-item">
+      <div class="info-hd">
+        <span class="p-info">邮箱绑定</span>
+        <div class="p-link">
+          <{if $userInfo.email && $userInfo.email_verify}>
+          <a href="<{url action=topm_ctl_member@verify verifyType=email type=update}>">更换邮箱</a></br>
+          <a href="<{url action=topm_ctl_member@unVerifyTwo verifyType=email op=delete}>">解绑邮箱</a>
+          <{else}>
+          <a href="<{url action=topm_ctl_member@verify verifyType=email}>">绑定邮箱</a>
+          <{if $userInfo.email}>
+          | <a href="<{url action=topm_ctl_member@verify verifyType=email type=update}>">更换邮箱</a>
+          <{/if}>
+          <{/if}>
+        </div>
+      </div>
+      <span class="add-info">绑定后，用户可以使用邮箱进行登录
+      </span>
+    </div>
+  </div>*}>
+
+  <div class="main">
+    <div class="password info-item">
+      <div class="info-hd">
+        <span class="p-info">修改密码</span>
+        <div class="p-link whole-click">
+          <a href="<{url action=topm_ctl_member@modifyPwd}>"><i class="icon icon-forward"></i></a>
+        </div>
+      </div>
+      <span class="add-info">
+        请经常更换登录密码，且不要和其他帐号共用一个密码。
+      </span>
+    </div>
+    <div class="mobile info-item">
+      <div class="info-hd">
+        <span class="p-info">绑定手机 <span class="whole-info"><{$userInfo.mobile}></span></span>
+        <div class="p-link whole-click">
+          <{if $userInfo.mobile}>
+           <a href="<{url action=topm_ctl_member@verifyRoute verifyType=mobile}>"><i class="icon icon-forward"></i></a>
+            <{else}>
+            <a href="<{url action=topm_ctl_member@verify verifyType=mobile}>">立即绑定</a>
+          <{/if}>
+        </div>
+        <div>
+        </div>
+      </div>
+      <span class="add-info">进行绑定以后，用户可以进行找回密码，保护账号安全</span>
+    </div>
+    <div class="e-mail info-item">
+      <div class="info-hd">
+        <span class="p-info">邮箱绑定<span class="whole-info"><{$userInfo.email}></span></span>
+        <div class="p-link whole-click">
+          <{if $userInfo.email}>
+            <a href="<{url action=topm_ctl_member@verifyRoute verifyType=email}>"><i class="icon icon-forward"></i></a>
+            <{else}>
+            <a href="<{url action=topm_ctl_member@verify verifyType=email}>">绑定邮箱</a>
+          <{/if}>
+        </div>
+      </div>
+      <span class="add-info">绑定后，用户可以使用邮箱进行登录
+      </span>
+    </div>
+  </div>
+
+</div>

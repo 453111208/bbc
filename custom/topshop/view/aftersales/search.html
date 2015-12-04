@@ -1,0 +1,53 @@
+<div class="panel-heading">
+  <h4>退换货查询</h4>
+  <form class="form-horizontal" action="<{url action=topshop_ctl_aftersales@search}>" method="post" role="form" data-validate-onsuccess="ajaxSuccess">
+    <div class="form-group">
+      <div class="col-xs-6">
+        <span class="order-form-w1" style="display:inline-block;vertical-align:11px;line-height:34px;">申请时间：</span>
+        <span class="input-group input-group-sm col-xs-3" style="display:inline-table;">
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          <input type="text" class="form-control pull-right reservation" style="max-width:100%;" readonly name="created_time" id="" value="">
+        </span>
+      </div>
+      <div class="col-xs-6">
+        <span class="order-form-w1">退换货编号：</span>
+        <input class="x-input" type="text" name="aftersales_bn">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-6">
+        <span class="order-form-w1">订单编号：</span>
+        <input class="x-input" type="text" name="tid">
+      </div>
+      <div class="col-xs-6">
+        <span class="order-form-w1">退换货类型：</span>
+        <select name="aftersales_type" class="x-input">
+          <option value="">全部</option>
+          <{foreach from=$refund_type item=typevalue key=typekey}>
+          <option value="<{$typekey}>"><{$typevalue}></option>
+          <{/foreach}>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-6">
+        <span class="order-form-w1">商品名称：</span>
+        <input class="x-input" type="text" name="title">
+      </div>
+      <div class="col-xs-6">
+        <span class="order-form-w1">申请处理进度：</span>
+        <select name="progress" class="x-input">
+          <option value="all">全部</option>
+          <{foreach from=$progress item=progressvalue key=progresskey}>
+          <option value="<{$progresskey}>"><{$progressvalue}></option>
+          <{/foreach}>
+        </select>
+        <input type="hidden" value="<{$filter.progress}>" id="filter_progress">
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">提交</button>
+      <button type="reset" class="btn btn-default">重置</button>
+    </div>
+  </form>
+</div>

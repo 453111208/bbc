@@ -1,0 +1,143 @@
+<div id="all" class="disapear">
+  <ul>
+  <{$gask.item}>
+    <{foreach from=$gask item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.user_name|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.user_name}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+
+<div id="item" style="display: none;" class="disapear">
+ <ul>
+  <{$items.item}>
+    <{foreach from=$items item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.author|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.author}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul> 
+</div>
+<div id="delivery" style="display: none;" class="disapear">
+<ul>
+  <{$delivery.item}>
+    <{foreach from=$delivery item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.author|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.author}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+<div id="pay" style="display: none;" class="disapear">
+<ul>
+  <{$pay.item}>
+    <{foreach from=$pay item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.author|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.author}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+<div id="invoice" style="display:none" class="disapear">
+<ul>
+  <{$invoice.item}>
+    <{foreach from=$invoice item=item}>
+    <li>
+      <{if $item.is_anonymity}>
+      <div class="usr-info"><{if $item.contack}> <{$item.contack|hidden_show}><{else}><{$item.author|hidden_show}> <{/if}>(匿名) <{$item.create_time}></div>
+      <{else}>
+      <div class="usr-info"><{$item.author}> <{$item.create_time}></div>
+      <{/if}>
+      <div>
+        <dl>
+          <dt>咨询内容：</dt>
+          <dd><{$item.content}></dd>
+        </dl>
+      </div>
+      <{if $item.reply}>
+      <div class="admin-reply">
+        <dl>
+          <dt>卖家回复：</dt>
+          <dd><{$item.reply.content}><div class="reply-time"><{$item.reply.reply_time}></div></dd>
+        </dl>
+      </div>
+      <{/if}>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>
+
+

@@ -1,0 +1,52 @@
+
+
+<div class="maxM-right">
+		<div class="max-menber-title Bid">
+			<h2>我的标准交易</h2>
+			<a href="javascript:;">我发布的标准交易一览表</a>
+		</div>
+		<div class="maxB-menber-list">
+			<dl>
+				<dt class="maxB-title">
+					<ul class="uniq">
+						<li ><span>交易名称</span></li>
+						<li ><span>是否通过审核</span></li>
+						<li ><span>交易状态</span></li>
+						<li ><span>发布时间</span></li>
+						<!-- <li ><span>状态</span></li>
+						<li ><span>操作</span></li> -->
+					</ul>
+				</dt>
+				<dd>
+				<{foreach from=$allorder item=row key=key}>
+					<div class="maxB-List">
+							<div class="maxB-Time uniqone">
+								<label><{$row.trading_title}></label>
+								<{if $row.is_through==1}>
+								<a href="<{url action=topc_ctl_standard@index standard_id=$row.standard_id}>" class="max-into">进入</a><{/if}>
+							</div>
+							<div class="maxB-Time uniqone"><span><{if $row.is_through==1}>通过<{elseif $row.is_through==2}>未通过<{/if}></span></div>
+							<div class="maxB-Time uniqone"><span><{if $row.isok==0}>待定<{elseif $row.isok==1}>完成<{elseif $row.isok==2}>失败<{/if}></span></div>
+							<div class="maxB-Time uniqone"><span><{$row.create_time|cdate}></span></div>
+							<!-- <div class="maxB-Time uniqone"><span><{if $row.isok==0}>待定<{elseif $row.isok==1}>成功<{else}>失败<{/if}></span></div>
+							<div class="maxB-Time uniqone">
+								<span></span>
+							</div> -->
+					</div>
+					<{/foreach}>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="max-pageview">
+			<span class="prev">上一页</span>
+			<{foreach from=$countnum item=row key=key}>
+			<a class="flip" href="<{url action=topc_ctl_member_shoppubt@standardList page=$row}>"><{$row}></a>
+			<{/foreach}>
+			<a class="next">下一页</a>
+		</div>
+	</div>
+	<style type="text/css">
+	.uniq li{margin-left: 50px;margin-right: 50px;}
+	.uniqone{margin-left: 30px;}
+	</style>

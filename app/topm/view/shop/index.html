@@ -1,0 +1,30 @@
+<div class="store shop">
+  <{include file="topm/shop/shoptop.html"}>
+  <div class="main">
+    <!-- slider -->
+    <{if $slider}>
+        <{include file="topm/shop/slider.html"}>
+    <{/if}>
+    <{if $logo_image.show_shop_logo == 'on' }>
+      <{include file="topm/shop/shop.html"}>
+    <{/if}>
+    <{include file="topm/shop/list.html"}>
+    <{include file="topm/shop/imageSlider.html"}>
+  </div>
+  <!--返回顶部-->
+  <div id="gotop"></div>
+</div>
+
+<script>
+  //创建slider组件
+$('#slider').slider( { imgZoom: true });
+//创建返回顶部组件
+$('#gotop').gotop();
+// 全setup方式调用
+$('#backtop').backTop();
+
+$('.action-addfav').data('ajaxCallback', function(rs, target){
+    target.addClass('cur');
+});
+</script>
+

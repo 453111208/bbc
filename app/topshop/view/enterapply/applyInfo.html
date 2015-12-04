@@ -1,0 +1,340 @@
+<section class="content">
+<form  class="form-horizontal" role="form" >
+
+  <fieldset>
+  <div class="panel panel-outter">
+    <div class="panel-body">
+        <div class="col-md-10">
+      <div>
+        <legend id="license">营业执照信息</legend>
+      </div>
+      <div class="form-group">
+        <label for="company_name" class="control-label col-md-3">公司名称：</label>
+        <div class="col-md-5">
+          <input type="text" name="company_name" value="<{$applydata.company_name}>" id="company_name" class="form-control" placeholder="公司名称" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="license_num" class="control-label col-md-3">营业执照注册号：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[license_num]" value="<{$shop_info.license_num}>" id="license_num" class="form-control" placeholder="营业执照注册号" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="representative" class="control-label col-md-3">法定代表人姓名：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[representative]" value="<{$shop_info.representative}>" id="representative" class="form-control" placeholder="法定代表人姓名" maxlength="20" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="corporate_identity" class="control-label col-md-3">法人身份证号：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[corporate_identity]" value="<{$shop_info.corporate_identity}>" id="corporate_identity" class="form-control" placeholder="法人身份证号" maxlength="18" required data-validate-id>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="corporate_identity_img" class="control-label col-md-3">法人身份证正反面复印件：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop_info[corporate_identity_img]" value="<{$shop_info.corporate_identity_img}>" id="corporate_identity_img" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="license_area" class="control-label col-md-3">营业执照所在地：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[license_area]" value="<{$shop_info.license_area}>" id="license_area" class="form-control" placeholder="营业执照所在地" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="license_addr" class="control-label col-md-3">营业执照详细地址：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[license_addr]" value="<{$shop_info.license_addr}>" id="license_addr" class="form-control" placeholder="营业执照详细地址" maxlength="200" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="establish_date" class="control-label col-md-3">公司成立日期：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[establish_date]" value="<{$shop_info.establish_date}>" id="establish_date" class="form-control" placeholder="公司成立日期，格式：2014-08-09" required data-validate-date-format="YYYY-MM-DD">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="license_indate" class="control-label col-md-3">营业执照有效期：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[license_indate]" value="<{$shop_info.license_indate}>" id="license_indate" class="form-control" placeholder="营业执照有效期，格式：2014-08-09" required data-validate-date-format="YYYY-MM-DD">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="scope" class="control-label col-md-3">法定经营范围：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[scope]" value="<{$shop_info.scope}>" id="scope" class="form-control" placeholder="经营范围" maxlength="200" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company_area" class="control-label col-md-3">公司所在地：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[company_area]" value="<{$shop_info.company_area}>" id="company_area" class="form-control" placeholder="公司所在地" required>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="company_addr" class="control-label col-md-3">公司详细地址：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[company_addr]" value="<{$shop_info.company_addr}>" id="company_addr" class="form-control" placeholder="公司详细地址" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company_phone" class="control-label col-md-3">公司电话：</label>
+        <div class="col-md-5">
+          <input type="tel" name="shop_info[company_phone]" value="<{$shop_info.company_phone}>" id="company_phone" class="form-control" placeholder="公司电话" maxlength="20" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company_contacts" class="control-label col-md-3">公司联系人：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[company_contacts]" value="<{$shop_info.company_contacts}>" id="company_contacts" class="form-control" placeholder="公司联系人" maxlength="20" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company_cmobile" class="control-label col-md-3">公司联系人手机：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[company_cmobile]" value="<{$shop_info.company_cmobile}>" id="company_cmobile" class="form-control" placeholder="公司联系人手机" maxlength="11" required data-validate-mobile>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="license_img" class="control-label col-md-3">营业执照副本复印件：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop_info[license_img]" value="<{$shop_info.license_img}>" id="license_img" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="enroll_capital" class="control-label col-md-3">注册资本：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[enroll_capital]" value="<{$shop_info.enroll_capital}>" id="enroll_capital" class="form-control" placeholder="注册资本" maxlength="18" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="company_url" class="control-label col-md-3">公司官网：</label>
+        <div class="col-md-5">
+          <input type="url" name="shop_info[company_url]" value="<{$shop_info.company_url}>" id="company_url" class="form-control" placeholder="公司官网，http://..." maxlength="50">
+        </div>
+      </div>
+      <div>
+        <legend id="tissue">组织机构代码证</legend>
+      </div>
+      <div class="form-group">
+        <label for="tissue_code" class="control-label col-md-3">组织机构代码：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[tissue_code]" value="<{$shop_info.tissue_code}>" id="tissue_code" class="form-control" placeholder="组织机构代码" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tissue_code_img" class="control-label col-md-3">组织机构代码证复印件：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop_info[tissue_code_img]" value="<{$shop_info.tissue_code_img}>" id="tissue_code_img" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div>
+        <legend id="tax">税务登记证</legend>
+      </div>
+      <div class="form-group">
+        <label for="tax_code" class="control-label col-md-3">税务登记证号：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[tax_code]" value="<{$shop_info.tax_code}>" id="tax_code" class="form-control" placeholder="税务登记证号" maxlength="20" required>
+        </div>
+      </div>
+        <!--
+        <div class="form-group">
+            <label for="" class="control-label col-md-3">税务人识别号：</label>
+            <input type="text" name="tax_code" id="tax_code" class="form-control" placeholder="税务登记证号" required>
+        </div>
+      -->
+      <div class="form-group">
+        <label for="tax_code_img" class="control-label col-md-3">税务登记证复印件：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop_info[tax_code_img]" value="<{$shop_info.tax_code_img}>" id="tax_code_img" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div>
+        <legend id="bank">结算账号</legend>
+      </div>
+      <div class="form-group">
+        <label for="bank_user_name" class="control-label col-md-3">银行开户公司名：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[bank_user_name]" value="<{$shop_info.bank_user_name}>" id="bank_user_name" class="form-control" placeholder="开户银行" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bankID" class="control-label col-md-3">银行开户账号：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[bankID]" value="<{$shop_info.bankID}>" id="bankID" class="form-control" placeholder="账号" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cnaps_code" class="control-label col-md-3">CNAPS CODE：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[cnaps_code]" value="<{$shop_info.cnaps_code}>" id="cnaps_code" class="form-control" placeholder="支行联行号" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bank_area" class="control-label col-md-3">开户银行所在地：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[bank_area]" value="<{$shop_info.bank_area}>" id="bank_area" class="form-control" placeholder="开户银行所在地" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bank_name" class="control-label col-md-3">开户银行：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_info[bank_name]" value="<{$shop_info.bank_name}>" id="bank_name" class="form-control" placeholder="支行名称" maxlength="50" required>
+        </div>
+      </div>
+      <div>
+        <legend id="shop">店铺信息</legend>
+      </div>
+      <div class="form-group">
+        <label for="shop_type" class="control-label col-md-3">店铺类型：</label>
+        <div class="col-md-5">
+          <select name="shop_type" id="shop_type" class="form-control">
+            <{foreach from=$shoptypelist item=type key=key}>
+            <option value="<{$key}>" <{if $key == $applydata.shop_type}>selected<{/if}>><{$type}></option>
+            <{/foreach}>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shop_cart" class="control-label col-md-3">店铺经营类目：</label>
+        <div class="col-md-5">
+            <select name="shop[shop_cat]" id="shop_cat" class="form-control" autocomplete="off">
+              <option value="">请先选择经营类目</option>
+                <{foreach from=$catlist item=catname key=key}>
+                <option  value="<{$key}>" <{if $shop.shop_cat == $key}>selected <{/if}>><{$catname}></option>>
+                <{/foreach}>
+            </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shop_brand" class="control-label col-md-3">经营品牌：</label>
+        <div class="col-md-5">
+          <div class="col-xs-6">
+            <select name="shop[shop_brand]" id="shop_brand" class="form-control" autocomplete="off">
+              
+            </select>
+          </div>
+          <div class="col-xs-1">
+            <p class="form-control-static" id="">或</p>
+          </div>
+          <div class="col-xs-5">
+              <input type="text" name="new_brand" value="<{$applydata.new_brand}>" id="new_brand" maxlength="50" class="form-control form-control-static" placeholder="新增品牌" autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="brand_warranty" class="control-label col-md-3">品牌授权书电子版：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop[brand_warranty]" value="<{$shop.brand_warranty}>" id="brand_warranty" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shop_name" class="control-label col-md-3">店铺名称：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop_name" value="<{$applydata.shop_name}>" id="shop_name" class="form-control" placeholder="店铺名称" maxlength="20" required>
+        </div>
+      </div>
+       <div class="form-group">
+        <label for="shop_name" class="control-label col-md-3">店铺描述：</label>
+        <div class="col-md-5">
+          <textarea name="shop[shop_descript]"><{$shop.shop_descript}></textarea>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shopuser_name" class="control-label col-md-3">店主姓名：</label>
+        <div class="col-md-5">
+          <input type="text" name="shopuser_name" value="<{$applydata.shopuser_name}>" id="shopuser_name" class="form-control" placeholder="店主姓名" maxlength="20" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="control-label col-md-3">店主身份证号：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop[shopuser_identity]" value="<{$shop.shopuser_identity}>" id="shopuser_identity" class="form-control" placeholder="店主身份证号" maxlength="18" required data-validate-id>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shopuser_identity_img" class="control-label col-md-3">店主身份证电子版：</label>
+        <div class="col-md-5">
+          <input type="file" name="shop[shopuser_identity_img]" value="<{$shop.shopuser_identity_img}>" id="shopuser_identity_img" class="form-control" accept="image/*" data-validate-file-extension="jpg,png,gif" data-validate-file-maxsize="1048576">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shop_area" class="control-label col-md-3">所在地区：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop[shop_area]" value="<{$shop.shop_area}>" id="shop_area" class="form-control" placeholder="所在地区" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="shop_addr" class="control-label col-md-3">详细地址：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop[shop_addr]" value="<{$shop.shop_addr}>" id="shop_addr" class="form-control" placeholder="详细地址" maxlength="50" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mobile" class="control-label col-md-3">手机号码：</label>
+        <div class="col-md-5">
+          <input type="text" name="shop[mobile]" value="<{$shop.mobile}>" id="mobile" class="form-control" placeholder="手机号码" maxlength="11" required data-validate-mobile>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="control-label col-md-3">邮箱：</label>
+        <div class="col-md-5">
+          <input type="email" name="shop[email]" value="<{$shop.email}>" id="email" class="form-control" placeholder="邮箱" maxlength="50" required>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  </fieldset>  
+
+ 
+</form>
+</section>
+<script>
+
+    $('.wrapper').scrollspy({
+        target: '.sidebar'
+    });
+    //$('#sidebar_nav').css('left', $('#login_box').offset().left - $('#sidebar_nav').width() + 'px');
+
+    <{if $applydata.enterapply_id == ''}>
+    $('form').rememberState({mark: 'enterapply'}).rememberState('restoreState');
+    <{/if}>
+
+
+    $('#shop_cat').on('change',function(){
+        var url = "<{url action=topshop_ctl_enterapply@ajaxCatBrand}>";
+        if($(this).val()) {
+            $.post(url,'cat_id='+$(this).val(),function(rs){
+                rs = JSON.parse(rs); 
+                var optionstring = "";  
+                for (var j = 0; j < rs.length; j++) {  
+                    optionstring += '<option value="' + rs[j].brand_id + '"';
+                    if(rs[j].brand_id == '<{$shop.shop_brand}>') {
+                        optionstring += ' selected';
+                    }
+                    optionstring += '>' + rs[j].brand_name + '</option>';  
+                }  
+                $("#shop_brand").html("<option value=''>请选择...</option> "+optionstring).trigger('change'); 
+
+            });
+        }
+    }).trigger('change');
+
+    $('#shop_brand').on('change',function(){
+        if(this.value !== '') {
+            $('#new_brand').val('');
+        }
+    }).trigger('change');
+
+    $('#new_brand').on('change',function(){
+        if(this.value) {
+            $('#shop_brand').val('');
+        }
+    })
+
+</script>

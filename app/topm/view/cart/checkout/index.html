@@ -1,0 +1,310 @@
+<div class="order">
+  <!--- 头部内容显示-->
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back ">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">订单结算</div>
+      <div class="menu">
+      </div>
+    </div>
+  </header>
+  <div class="main">
+    <form action="<{url action=topm_ctl_trade@create}>" method="post" id="form_settle">
+      <input type="hidden" name="checkout" value="1">
+      <input type="hidden" name="mode" value="<{$mode}>">
+      <input type="hidden" name="md5_cart_info" value="<{$md5_cart_info}>">
+      <div class="address-info info-area">
+        <div class="address">
+          <{if $def_addr}>
+          <a href="<{url action=topm_ctl_cart@getAddrList mode=$mode selected=$def_addr.addr_id}>">
+            <input type="hidden" name="addr_id" value="<{$def_addr.addr_id}>">
+            <div class="info-l info">
+              <span class="icon icon-place"></span>
+            </div>
+            <div class="info-m">
+              <table>
+                <tr>
+                  <td class="tit">收货人：</td>
+                  <td class="con"><{$def_addr.name}> &nbsp;&nbsp;<{$def_addr.mobile}></td>
+                </tr>
+                <tr>
+                  <td class="tit">收货地址：</td>
+                  <td class="con"><{$def_addr.area|region}>&nbsp;<{$def_addr.addr}></td>
+                </tr>
+              </table>
+            </div>
+            <div class="info-r info">
+              <span class="icon icon-forward"></span>
+            </div>
+          </a>
+          <{elseif $nowcount <= 0}>
+          <a href="<{url action=topm_ctl_cart@editAddr mode=$mode}>">
+            <div class="info-l info">
+              <span class="icon icon-place"></span>
+            </div>
+            <div class="info-m">
+              收货地址为空，请去 添加新地址
+            </div>
+            <div class="info-r info">
+              <span class="icon icon-forward"></span>
+            </div>
+          </a>
+          <{else}>
+          <a href="<{url action=topm_ctl_cart@getAddrList mode=$mode}>">
+            <div class="info-l info">
+              <span class="icon icon-place"></span>
+            </div>
+            <div class="info-m">
+              没有默认的收货地址，请去 选择收货地址
+            </div>
+            <div class="info-r info">
+              <span class="icon icon-forward"></span>
+            </div>
+          </a>
+          <{/if}>
+        </div>
+      </div>
+      <div class="address-info info-area">
+        <div class="address">
+          <a href="<{url action=topm_ctl_cart@getPayTypeList mode=$mode addr_id=$def_addr.addr_id selected=$payType.pay_type s=$isSelfShop}>">
+            <input type="hidden" name="payment_type" value="<{$payType.pay_type}>">
+            <div class="info-l info">
+              <span class="icon icon-point"></span>
+            </div>
+            <div class="info-m">
+              支付方式：<span> <{if $payType}> <{$payType.name}> <{else}>请选择支付方式 <{/if}></span>
+            </div>
+            <div class="info-r info">
+              <span class="icon icon-forward"></span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <{foreach from=$cartInfo.resultCartData key=shop_id item=cart}>
+      <div class="select-store">
+        <div class="store-n">
+          <span><{$cart.shop_name}></span>
+        </div>
+        <{foreach from=$cart.cartByPromotion item=itemPromotion key=key}>
+        <{if $key!='0'}>
+        <div class="cart-promotion cart-promotion-list">
+          <{if $mode=='fastbuy'}>
+          <section>
+            <div class="promotion-info">
+              <mark>如需参加该商品的其他促销活动，请通过购物车购买</mark>
+            </div>
+            <div class="get-promotion">
+              <a href="<{url action=topm_ctl_cart@index}>">返回</a> <i class="icon icon-forward"></i>
+            </div>
+          </section>
+          <{/if}>
+          <section>
+            <div class="promotion-info">
+              <button type="button" class="ui-btn ui-btn-negative"><{$cart.basicPromotionListInfo[$key].promotion_tag}></button>
+              <{$cart.basicPromotionListInfo[$key].promotion_name}>
+              <{if $cart.basicPromotionListInfo[$key].promotion_type=='fullminus' || $cart.basicPromotionListInfo[$key].promotion_type=='fulldiscount'}>
+                已优惠:<{$itemPromotion.discount_price}>
+              <{/if}>
+            </div>
+          </section>
+        </div>
+        <{/if}>
+        <div class="store-g">
+          <ul  <{if $key!='0'}>class="discount-area"<{/if}>>
+            <{foreach from=$cart.object item=goods name=checkoutItemList}>
+            <{assign var=checkoutItemCount value=$cartInfo.resultCartData|count}>
+            <{if in_array($goods.cart_id,$itemPromotion.cart_ids)}>
+            <li>
+              <div class="g-info">
+                <div class="info-l">
+                  <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-pic">
+                    <img src="<{$goods.image_default_id|storager:'s'}>" alt=""></a>
+                </div>
+                <div class="info-m">
+                  <{if $goods.activityDetail}><span class="ui-badge-danger">[<{$goods.activityDetail.activity_info.activity_tag}>]</span><{/if}>
+                  <a href="<{url action=topm_ctl_item@index item_id=$goods.item_id}>" class="g-name"><{$goods.title}></a>
+                </div>
+                <div class="info-r">
+                  <div class="g-price">
+                    <span class="after"><{$goods.price.price|cur}></span>
+                    <br>
+                    <span class="num">
+                      x <i class="n"><{$goods.quantity}></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <{/if}>
+            <{/foreach}>
+          </ul>
+        </div>
+        <{/foreach}>
+        <div class="sale-del">
+          <!--
+          <div class="store-sale fold">
+            <span class="l">店铺优惠</span>
+            <div class="r sale-menu">
+              <span class="ui-btn-warning ui-btn-outlined">
+                <span>满100元减10元</span>
+                <i class="icon icon-down"></i>
+              </span>
+              <div class="dropmenu">
+                <ul>
+                  <li>满100减1元</li>
+                  <li>满100减0元</li>
+                  <li>满100减10元</li>
+                  <li>满100减20元</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          -->
+          <div class="delivery fold">
+            <div class="l">优惠券</div>
+            <div class="r select">
+              <select name="coupon_use[<{$shop_id}>][coupon_code]" data-shopid="<{$shop_id}>" class="action-select-coupon">
+                <{foreach from=$cart.couponList key=key item=couponItem}>
+                <option value="<{$couponItem.coupon_code}>"><{$couponItem.coupon_name}></option>
+                <{/foreach}>
+              </select>
+            </div>
+          </div>
+          <div class="delivery fold">
+            <div class="l">配送方式</div>
+            <div class="r select">
+              <select name="shipping[<{$shop_id}>][template_id]" id="" class="action-select-shipping">
+                <{foreach from=$dtyList[$shop_id] key=key item=dtyItem}>
+                <option value="<{$dtyItem.template_id}>"><{$dtyItem.name}></option>
+                <{/foreach}>
+              </select>
+            </div>
+          </div>
+          <{if $zitiDataList}>
+          <div class="delivery fold ziti-info" style="display: none;">
+            <span class="icon">自提地点&nbsp;&nbsp;&nbsp;</span>
+            <div class="r">
+              <select id="select-ziti-id" name="ziti[<{$shop_id}>][ziti_addr]">
+              <{foreach from=$zitiDataList item=item key=key}>
+              <option value="<{$item.id}>"><{$item.name}></option>
+              <{/foreach}>
+              </select>
+            </div>
+          </div>
+          <{/if}>
+
+          <div class="words">
+            <input type="text" name="mark[<{$shop_id}>]" maxlength="85" placeholder="买家留言，85个字以内">
+          </div>
+          <div class="charges">
+            <table>
+              <tr>
+                <td class="t">商品金额:</td>
+                <td class="c warm" id="op_items_<{$shop_id}>"><{0|cur}></td>
+              </tr>
+              <tr>
+                <td class="t">总重:</td>
+                <td class="c warm" id="op_weight_<{$shop_id}>"><{0}></td>
+              </tr>
+              <tr>
+                <td class="t">运费:</td>
+                <td class="c" id="op_shipping_<{$shop_id}>"><{0|cur}></td>
+              </tr>
+              <tr>
+                <td class="t">减免:</td>
+                <td class="c warm" id="op_discount_<{$shop_id}>"><{0|cur}></td>
+              </tr>
+              <tr class="total-c">
+                <td class="t">总计:</td>
+                <td class="c warm" id="op_total_<{$shop_id}>"><{$goods.price.total_price|cur}></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <{/foreach}>
+      </div>
+      <div class="total-price">
+        <div class="price">
+          <span>
+            合计
+            <i class="tp" id="op_amount"><{0|cur}></i>
+          </span>
+        </div>
+        <div class="confirm">
+          <button type="submit" class="ui-btn-warning">结算</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--返回顶部-->
+  <div id="gotop"></div>
+
+</div>
+
+<script>
+  $('.button').button();
+  $('.g-standard').click(
+    function(){
+      $('.standard-info').toggleClass('cur');
+    }
+  );
+
+  var Message = new gmu.Message();
+
+  function total(){
+    var form = $('#form_settle');
+    $.post('<{url action=topm_ctl_cart@total}>', form.serialize(), function(rs) {
+      rs.shop && $.each(rs.shop, function(k, v) {
+        $('#op_items_' + k).text(Currency.format(v.total_fee));
+        $('#op_shipping_' + k).text(Currency.format(v.post_fee||0));
+        $('#op_total_' + k).text(Currency.format(v.payment));
+        $('#op_discount_' + k).text('-'+Currency.format(v.discount_fee));
+        $('#op_weight_' + k).text(v.totalWeight+'kg');
+      });
+      $('#op_amount').text(Currency.format(rs.allPayment));
+    });
+  }
+
+  $('.action-select-shipping').on('change', function(e) {
+    if($(this).val()==0){
+      $(this).parents('.select-store').find('.ziti-info').show();
+    }else{
+      $(this).parents('.select-store').find('.ziti-info').hide();
+      total();
+    }
+  }).eq(0).change();
+
+  $('.action-select-coupon').change(function(e) {
+    var that = $(this);
+
+    var fastbuyMode = '<{$mode}>';
+    var couponCode = $(this).val();
+    var shopId = $(this).attr('data-shopid');
+    var data = 'mode='+fastbuyMode+'&shop_id='+ shopId +'&coupon_code='+ couponCode;
+    if(couponCode!='-1') {
+      $.post('<{url action=topm_ctl_cart@useCoupon}>',data,function(rs){
+        if(rs.error==true){
+          that.val('-1');
+          Message.error(rs.message);
+          return;
+        }else{
+          total();
+        }
+      });
+    }else{
+      // 赋值优惠券号码为空
+      $.post('<{url action=topm_ctl_cart@cancelCoupon}>',data,function(rs){
+        if(rs.success) {
+          total();
+        }
+        if(rs.error) {
+          Message.error(rs.message);
+          return;
+        }
+      });
+    }
+  });
+</script>

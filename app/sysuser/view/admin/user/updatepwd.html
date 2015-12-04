@@ -1,0 +1,24 @@
+<div class="tableform">
+	<form action="?app=sysuser&ctl=admin_user&act=updatePwd"  method="post">
+	<div class="division">
+	    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+	    	<input type="hidden" name="user_id" value="<{$data.user_id}>">
+	      <tbody>
+	        <tr>
+	          <th><{t}>会员名称：<{/t}></th>
+	          <td><span class="price0"><{ $data.login_account}></span></td>
+	          </tr>
+	        <tr>
+	          <th ><{t}>请输入新密码：<{/t}></th>
+	          <td><{input type="password" vtype="required" maxlength="20" name="login_password"}></td>
+	        </tr>
+			<tr>
+			<th><{t}>请确认新密码：<{/t}></th>
+	          <td><{input type="password" vtype="required" maxlength="20" name="psw_confirm"}></td>
+			</tr>
+	      </tbody>
+	    </table>
+	</div>
+	<div class="table-action"><{button type="submit" label="保存"|t:'___sysuser' }></div>
+	</form>
+</div>

@@ -1,0 +1,39 @@
+<div class="prd-list shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+
+    <div class="list-inn article-list">
+      <ul>
+        <{foreach from=$nodeList item=nodelist}>
+        <li>
+          <button class="dropmenu" type="button"><{$nodelist.node_name}><span class="icon icon-back"></span></button>
+          <div class="ui-dropmenu">
+            <ul class="ui-dropmenu-items">
+              <{foreach from=$nodelist.children item=nodechildren}>
+              <li>
+                <a href="<{url action=topm_ctl_content@contentList node_id=$nodechildren.node_id}>" class="ui-btn-white">
+                  <{$nodechildren.node_name}>
+                </a>
+              </li>
+              <{/foreach}>
+            </ul>
+          </div>
+        </li> 
+        <{/foreach}>
+      </ul>
+      <script>
+        $('.dropmenu').click(
+            function(){
+              if($(this).hasClass('cur')){
+                $(this).removeClass('cur');
+                $(this).next().hide();
+              }else{
+                $(this).addClass('cur');
+                $(this).next().show();
+              }
+            }
+          );
+      </script>
+    </div>
+  </div>
+</div>

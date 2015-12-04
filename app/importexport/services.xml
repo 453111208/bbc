@@ -1,0 +1,5 @@
+<services>
+    <service id="desktop_finder.importexport_mdl_task">
+        <class>importexport_finder_task</class>
+    </service>
+</services>

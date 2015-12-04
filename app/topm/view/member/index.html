@@ -1,0 +1,87 @@
+<div class="member shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main">
+
+    <div class="member-info">
+      <div class="info-hd">
+        <div>
+          <!--
+          <span class="hd-img">
+            <img src="images/member.png" alt="" >
+          </span>
+          -->
+          <span class="hd-name"><{$account}></span>
+          <a href="<{url action=topm_ctl_member@userinfoSet}>" class="icon-top"></a>
+        </div>
+        <div class="user-grade">
+          <a href="<{url action=topm_ctl_member_experience@experience}>" class="grade"><i class="icon icon-grade"></i><{$userInfo.grade_name}></a>
+          <a href="<{url action=topm_ctl_member_point@point}>" class="money"><i class="icon icon-money"></i><{$userInfo.point}></a>
+        </div>
+      </div>
+      <div class="info-data">
+        <div class="col-goods">
+          <a href="<{url action=topm_ctl_member@itemsCollect}>">
+            <span class="num"><{$itemcount}></span>
+            <span class="txt">收藏的商品</span>
+          </a>
+        </div>
+        <div class="col-stores">
+          <a href="<{url action=topm_ctl_member@shopsCollect}>">
+            <span class="num"><{$shopcount}></span>
+            <span class="txt">收藏的店铺</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="order-status">
+      <div class="order-hd">
+        <a href="<{url action=topm_ctl_member_trade@index}>">
+          <span class="my-order">我的订单</span>
+          <span class="whole">全部<i class="icon icon-forward"></i></span>
+        </a>
+      </div>
+      <div class="order-icons">
+        <ul>
+          <li class="notpaid">
+            <a href="<{url action=topm_ctl_member_trade@index s=1}>" ><span class="icon icon-book"><i><{$nupay|default:0}></i></span>待付款</a>
+          </li>
+          <li class="unfilled">
+            <a href="<{url action=topm_ctl_member_trade@index s=2}>" ><span class="icon icon-ribbon"><i><{$nudelivery|default:0}></i></span>待发货</a>
+          </li>
+          <li class="receiving">
+            <a href="<{url action=topm_ctl_member_trade@index s=3}>" ><span class="icon icon-truck"><i><{$nuconfirm|default:0}></i></span>待收货</a>
+          </li>
+          <li class="receiving">
+            <a href="<{url action=topm_ctl_member_trade@index s=4}>" ><span class="icon icon-dialog"><i><{$unrate|default:0}></i></span>待评价</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="receive-address">
+      <a href="<{url action=topm_ctl_member_coupon@couponList}>">
+        <span class="safe">我的优惠券</span>
+        <i class="icon icon-forward"></i>
+      </a>
+    </div>
+    <div class="receive-address">
+      <a href="<{url action=topm_ctl_member@address}>">
+        <span class="safe">收货地址</span>
+        <i class="icon icon-forward"></i>
+      </a>
+    </div>
+    <div class="safe-center">
+      <a href="<{url action=topm_ctl_member@security}>">
+        <span class="safe">安全中心</span>
+        <i class="icon icon-forward"></i>
+      </a>
+    </div>
+    <div class="help-center">
+      <a href="">
+        <span class="safe">帮助与反馈</span>
+        <i class="icon icon-forward"></i>
+      </a>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,61 @@
+<!-- <ul class="seller">
+  <li>
+    发布企业：<a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopinfo.shop_id}>"><{$shopinfo.shop_name}></a>
+  </li>
+  <li>
+    <div class="clearfix">
+      <div class="im-tit">联系客服：</div>
+      <div class="im-b"><{$shopinfo.mobile}></div>
+    </div>
+  </li>
+  <li>
+
+  </li>
+  <li>
+    <div class="btn-wrap">
+      <a href="<{url action=topc_ctl_shopcenter@index shop_id=$shopinfo.shop_id}>" class="btn btn-sm btn-import"><span><span>进入企业展台</span></span></a>
+       <{if $nologin!=1}>
+      <a href="<{url action=topc_ctl_passport@signin}>" class="btn btn-sm btn-caution"><span><span>收藏店铺</span></span></a>
+      <{else}>
+      <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" class="btn btn-sm btn-caution" data-ajax-data="shop_id=<{$shopinfo.shop_id}>" rel="_request"><span><span>收藏店铺</span></span></a>
+      <{/if}>
+    </div>
+  </li>
+</ul> -->
+
+   <ul class="seller">
+          <li>
+            <div class="maxbrand-logo" >
+             <a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>" target="_blank">
+             <img style="width:120px;height: 60px;" src="<{$shopinfo.shop_logo}>" title="">
+            </a>
+            </div>
+          </li>
+                  <li class="btnw"><a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>"><{$shopinfo.shop_name}></a> <div class="btn">&nbsp;</div>
+          <div class="maxinfo " style="display:none">
+            <div class="item item1 clearfix"><span>综合评分：</span><em class="jd"><div class="n" style="width:<{$shopinfo.score*10}>%"></div></em><i><{$shopinfo.score}>分</i></div>
+                            <!-- 修改进度条长度改class="n"宽度即可 -->
+            <!-- <div class="item item2"><span>细则评分：</span><em>9.94<i class="s"><img src="images/images/p_s.png" alt="" /></i></em><em>9.84<i class="z"><img src="images/images/p_z.png" alt="" /></i></em><em>9.81<i class="x"><img src="images/images/p_x.png" alt="" /></i></em></div> -->
+          
+          </div>
+          
+          </li>
+                  
+        <li class="maxsubmenu">
+         <!--  <div class="item1 item"><img src="images/p_dfh.png" alt="" /> <span>第<i>3</i>年</span></div> -->
+          <div class="item3 item">
+             <div class="n"><a href="shopcenter.html?shop_id=<{$shopinfo.shop_id}>" target="_blank" title="">进入展台</a>
+            <{if $nologin!=1}>
+            <a href="<{url action=topc_ctl_passport@signin}>" title="">
+            <{else}>
+            <a href="<{url action=topc_ctl_collect@ajaxFavshop}>" data-ajax-data="shop_id=<{$shopinfo.shop_id}>" rel="_request">
+            <{/if}>
+            关注展台</a>
+             
+            </div>
+          </div>  
+      </li>
+
+        
+                </ul>
+

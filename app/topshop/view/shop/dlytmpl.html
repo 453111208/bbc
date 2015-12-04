@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+      <a href="<{url action=topshop_ctl_shop_dlytmpl@editView}>" class="btn btn-default text-blue act-dlytmpl">
+          <i class="glyphicon glyphicon-plus"></i>
+          <{t}>新增运费模板<{/t}>
+      </a>
+  </div>
+
+  <div class="panel-body">
+    <{if $data}>
+    <{foreach from=$data item=item}>
+    <table class="table table-bordered">
+        <col class="col-md-2">
+        <col class="col-md-6">
+        <col class="col-md-1">
+        <col class="col-md-1">
+        <col class="col-md-1">
+      <thead>
+        <tr class="info">
+          <th colspan="6">
+            <div class="pull-left">
+              <{$item.name}>&nbsp;&nbsp;&nbsp;
+              <a href="<{url action=topshop_ctl_shop_dlytmpl@editView template_id=$item.template_id}>">修改</a>
+              <a href="<{url action=topshop_ctl_shop_dlytmpl@remove template_id=$item.template_id}>" class="action-delete">删除</a>
+            </div>
+            <div class="pull-right">
+              <{t}>最后修改时间<{/t}>：<{$item.modifie_time|cdate:"FDATE"}>
+              &nbsp;&nbsp;&nbsp;<{if $item.status == 'on'}>启用<{else}>禁用<{/if}>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active">
+          <td >配送公司</td>
+          <td >配送地址</td>
+          <td >首重(kg)</td>
+          <td >运费(元)</td>
+          <td >续重(kg)</td>
+          <td >运费(元)</td>
+        </tr>
+        <{foreach from=$item.fee_conf  item=row name=name}>
+        <tr>
+          <{if $env.foreach.name.first}>
+          <td rowspan="<{$env.foreach.name.total}>"><{$item.corp_id|corpname}></td>
+          <{/if}>
+          <td><{if $row.area}><{$row.area|areaNameById}><{else}><{t}>全国<{/t}><{/if}></td>
+          <td><{$row.start_standard}></td>
+          <td><{$row.start_fee}></td>
+          <td><{$row.add_standard}></td>
+          <td><{$row.add_fee}></td>
+        </tr>
+        <{/foreach}>
+      </tbody>
+    </table>
+    <{/foreach}>
+    <{else}>
+    <{t}>请先添加运费模板<{/t}>
+    <{/if}>
+  </div>
+</div>
+<script>
+$('.right-side').on('click', '.action-delete', function (e) {
+    confirm('确定删除此条运费模板吗？') || e.preventDefault();
+})
+</script>

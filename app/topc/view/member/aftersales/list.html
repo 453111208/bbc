@@ -1,0 +1,109 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      退换货记录
+    </div>
+    <{if !$list}>
+    <div class="no-content">
+      <span class="symbol"><span class="txt">暂无退换货纪录</span></span>
+    </div>
+    <{else}>
+    <{foreach from=$list item=row key=id}>
+    <div class="membercenter-box-bd">
+      <div class="membercenter-box-row">
+        <span>退换货编号：<{$row.aftersales_bn}></span>
+        <span class="offset-1">
+          退换货类型：
+          <{if $row.aftersales_type == 'ONLY_REFUND'}>
+          仅退款
+          <{elseif $row.aftersales_type == 'REFUND_GOODS'}>
+          退货退款
+          <{elseif $row.aftersales_type == 'EXCHANGING_GOODS'}>
+          换货
+          <{/if}>
+        </span>
+        <span class="offset-1">申请时间：<{$row.created_time|cdate:'FDATE_FTIME'}></span>
+      </div>
+      <table class="item-table table-refund">
+        <colgroup>
+          <col class="table-col-1">
+          <col class="table-col-2">
+          <col class="table-col-3">
+          <col class="table-col-4">
+          <col class="table-col-5">
+          <col class="table-col-6">
+        </colgroup>
+        <thead>
+          <tr>
+            <td colspan="2">商品</td>
+            <td>订单编号</td>
+            <td>数量</td>
+            <!--td>退还运费</td-->
+            <td>处理状态</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="table-goods-pic"><img width="64" height="64" src="<{$row.sku.pic_path|storager:"s"}>"></div>
+            </td>
+            <td><a href="<{url action=topc_ctl_item@index item_id=$row.sku.item_id}>"><{$row.sku.title}></a><{$row.sku.spec_nature_info}></td>
+            <td><{$row.tid}></td>
+            <td><{$row.num}></td>
+            <td>
+              <{if $row.status == '0'}>
+              待处理
+              <{elseif $row.status == '1'}>
+              处理中
+              <{elseif $row.status == '2'}>
+              已处理
+              <{elseif $row.status == '3'}>
+              已驳回
+              <{/if}>
+            </td>
+            <td>
+              <div>
+                <a href="<{url action=topc_ctl_member_aftersales@aftersalesDetail id=$row.aftersales_bn}>">查看详情></a>
+              </div>
+              <{if $row.progress == '1'}>
+              <div>
+                <a href="#dialog" id="<{$row.aftersales_bn}>" class="btn_dialog" data-toggle="dialog">填写物流信息</a
+                </div>
+                <{/if}>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <{/foreach}>
+    </div>
+    <{/if}>
+  </div>
+  <script>
+    $('.btn_dialog').click(function(e){
+      var _this = this;
+      var dialog = new Dialog('<{url action="topc_ctl_member_aftersales@ajaxLogistics" id=$info.aftersales_bn}>', {
+        width: 500,
+          title:'填写物流',
+          async: 'ajax',
+          asyncOptions: {
+            type: 'get',
+          data: {id: _this.id},
+          callback: function(){
+            $('#logi_select').change(function(e) {
+              if(this.value == 'other') {
+                $('#other').show().find('input')[0].required = true;
+              }
+              else {
+                $('#other').hide().find('input')[0].required = false;
+              }
+            });
+            dialog.content.find('.act-cancel').on('click', function(e){
+              dialog.hide();
+            });
+          }
+          }
+      });
+    });
+  </script>

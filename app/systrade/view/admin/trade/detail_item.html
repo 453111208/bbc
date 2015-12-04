@@ -1,0 +1,38 @@
+<div class="division">
+  <div  class="table-grid">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gridlist">
+      <col style="width:10%"/>
+      <col style="width:40%"/>
+      <col style="width:10%"/>
+      <col style="width:10%"/>
+      <col style="width:10%"/>
+      <col style="width:10%"/>
+      <col style="width:10%"/>
+      <thead>
+        <th><{t}>货号<{/t}></th>
+        <th><{t}>商品名称<{/t}></th>
+        <th><{t}>已发货量<{/t}></th>
+        <th><{t}>单价<{/t}></th>
+        <th><{t}>购买量<{/t}></th>
+        <th><{t}>合计金额<{/t}></th>
+        <th><{t}>合计金额<{/t}></th>
+      </thead>
+      <{if count($goodsItems) > 0}>
+      <{foreach from=$goodsItems item=aGoods name="item"}>
+      <tr>
+        <td width="10%"><{$aGoods.bn}></td>
+        <td class="textleft" width="40%">
+          <a href="<{url action=topc_ctl_item@index item_id=$aGoods.item_id}>" target="_blank"><{$aGoods.title}></a>
+        </td>
+        <td class="Colamount" width="10%"><{$aGoods.sendnum}></td>
+        <td width="10%"><{$aGoods.price|cur:$order.currency}></td>
+        <td class="Colamount" width="10%"><{$aGoods.num}></td>
+        <td class="Colamount" width="10%"><{$aGoods.total_fee|cur:$order.currency}></td>
+        <td class="Colamount" width="10%"><{$aGoods.adjust_fee|cur:$order.currency}></td>
+      </tr>
+      <{/foreach}>
+      <{/if}>
+    </table>
+  </div>
+</div>
+

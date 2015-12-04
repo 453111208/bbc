@@ -1,0 +1,42 @@
+<{foreach from=$userAddrList item=addrList}>
+<{if $addrList.addr}>
+    <li class="max-selected active">
+      <span class="max-Delivery"><i></i>交割地址</span>
+      <label>
+      
+        <address>
+           <{$addrList.area|region}>&nbsp;<{$addrList.addr|cut:75}>，<{$addrList.zip}>，<{$addrList.transport_way}>
+          <i>(<{$addrList.name}>，<{$addrList.mobile}>)</i>
+          <em>
+          <{if $addrList.def_addr}>
+            <span class="" >已默认</span>
+            <{else}>
+            <span class="setdef_addr">设为默认</span>
+             <input type="hidden" name="uniqid" value="<{$addrList.uniqid}>"  class="add_edit_uniqid"> 
+             <input type="hidden" name="deliveryaddr_id" value="<{$addrList.deliveryaddr_id}>"  class="add_edit_deliveryaddr_id"> 
+
+          <{/if}>
+         <label data-region-id="<{$addrList.region_id}>" data-addr-id="<{$addrList.addr_id}>" data-addr="<{$addrList.addr}>" data-name="<{$addrList.name}>" data-mobile="<{$addrList.mobile}>" data-zip="<{$addrList.zip}>" data-deliveryaddr-id="<{$addrList.deliveryaddr_id}>" data-transport-way="<{$addrList.transport_way}>" data-def-addr="<{$addrList.def_addr}>" style="display:none">
+        </label>
+            <span class="max-get-ad lakers_addaddress">修改本地址</span>
+          </em>
+        </address>
+      </label>
+    </li>
+        <{/if}>
+<{/foreach}>
+<li class="max-Other-add"> 
+  <a href="javascript:;" class="lakers_addaddress">使用其他地址</a>
+</li>
+<script>
+    $('.max-main').on('click', '.setdef_addr', function (e) {
+    var partstr=this.parentNode;
+    var uniqid= partstr.children[1].value;
+    var deliveryaddr_id= partstr.children[2].value;
+   var data='deliveryaddr_id='+deliveryaddr_id+'&uniqid='+uniqid;
+    $.post('<{url action=topc_ctl_member_deliveryaddr@setAddrDef}>',data,function(rs){
+          $('.max-change-shipping').html(rs.message);
+});
+});
+
+</script>

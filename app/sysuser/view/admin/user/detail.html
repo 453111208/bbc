@@ -1,0 +1,29 @@
+<div class="tableform">
+  <div class="division"> 
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <th><label><{t}>用户姓名：<{/t}></label></th>
+        <td><{$data.login_account|escape:'html'}></td>
+      
+        <th><label><{t}>手机：<{/t}></label></th>
+        <td><{$data.mobile}></td>
+        <th><label><{t}>出生日期：<{/t}></label></th>
+        <td><{$data.birthday|date_format:'%Y-%m-%d'}></td>
+      </tr>
+      <tr>
+        
+        <th><label>E-mail：</label></th>
+        <td><{$data.email}></td>
+       
+        <th><label><{t}>注册日期：<{/t}></label></th>
+        <td><{$data.regtime|cdate:FDATE}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>性别：<{/t}></label></th>
+        <td><{if $data.sex == 1}><{t}>男<{/t}><{elseif $data.sex == 0}><{t}>女<{/t}><{/if}></td>
+        <th><label><{t}>注册IP：<{/t}></label></th>
+        <td><{$data.reg_ip}></td>
+      </tr>
+    </table>
+  </div>
+</div>

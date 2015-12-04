@@ -1,0 +1,25 @@
+<div class="prd-data shop">
+    <{include file="topm/common/top.html"}>
+    <div class="main" id="main">
+      <div class="data-g">
+        <{if $itemParams}>
+          <table>
+            <tbody>
+              <{foreach from=$itemParams item=row key=key}>
+                  <h3><{$key}></h3>
+                  <{foreach from=$row item=params key=paramsName}>
+                  <tr>
+                    <td class="n"><{$paramsName}></td>
+                    <td class="t"><{$params}></td>
+                  </tr>
+                  <{/foreach}>
+              <{/foreach}>
+            </tbody>
+          </table>
+          <{else}>
+          <span class="no-data">商品描述暂未添加</span>
+        <{/if}>
+      </div>
+
+    </div>
+</div>

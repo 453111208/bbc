@@ -1,0 +1,13 @@
+<h5><{$prop.prop_name}></h5>
+<ul class='goods-prop-box' > 
+    <{foreach from=$prop.prop_value item=vItem }>
+    <li style="cursor:default;">
+        <{if $prop.show_type == 'text'}>
+        <span><{$vItem.prop_value}></span>
+        <{else}>
+        <{$vItem.prop_value}>
+        <img src='<{if $vItem.prop_image}><{$vItem.prop_image|storager}><{else}><{$prop_default_pic|storager}><{/if}>' alt='<{$vItem.prop_value}>' width='30' height='30'/>
+        <{/if}>
+    </li>
+    <{/foreach}>
+</ul>

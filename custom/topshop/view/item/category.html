@@ -1,0 +1,464 @@
+<form action="<{url action=topshop_ctl_item_cat@storeCat}>" method="post" role="form" data-validate-onsuccess="ajaxSubmit" data-validate-disptype="inline-block">
+  <p>
+    <span class="btn btn-default"><input type="checkbox" name="" id="selectAll"> 全选</span>
+    <button type="button" class="btn btn-default text-red act-delall">
+      <i class="glyphicon glyphicon-remove"></i>
+      <{t}>批量删除<{/t}>
+    </button>
+    <button type="button" class="btn btn-default text-blue act-addcat">
+      <i class="glyphicon glyphicon-plus"></i>
+      <{t}>添加分类<{/t}>
+    </button>
+    <button type="submit" class="btn btn-default pull-right"><{t}>保存更改<{/t}></button>
+  </p>
+  <table class="table table-bordered table-hover table-shopcat" id="data_table">
+    <colgroup>
+      <col class="col-md-0">
+      <col class="col-md-5">
+      <col class="col-md-2">
+      <col class="col-md-2">
+      <col class="col-md-3">
+    </colgroup>
+    <thead>
+      <tr>
+        <td></td>
+        <td><{t}>分类名称<{/t}></td>
+        <td><{t}>排序<{/t}></td>
+        <td><{t}>创建时间<{/t}></td>
+        <td class="text-center"><{t}>操作<{/t}></td>
+      </tr>
+    </thead>
+    <{if $cat}>
+    <{foreach from=$cat item=item name='name' key=key}>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" name="cat[<{$item.cat_id}>]" value="<{$item.cat_id}>" class="main-check"></td>
+        <td class="form-group">
+          <i class="icon icon-arrow-right-b act-showsubcat"></i>
+          <input type="text" name="cat[<{$item.cat_id}>][cat_name]" value="<{$item.cat_name}>" required>
+        </td>
+        <td class="sortable-bar">
+          <input type="hidden" name="cat[<{$item.cat_id}>][order_sort]">
+          <a href="#" class="icon icon-arrow-start-a act-start" title="置顶"></a><a href="#" class="icon icon-arrow-up-a act-up" title="上移"></a><a href="#" class="icon icon-arrow-down-a act-down" title="下移"></a><a href="#" class="icon icon-arrow-end-a act-end" title="置底"></a>
+        </td>
+        <td><{$item.modified_time|cdate}></td>
+        <td>
+          <span class="col-md-2 text-nowrap"><a href="#" class="del text-danger"><{t}>删除<{/t}></a></span>
+          <span class="col-md-2 text-nowrap"><a href="<{url action=topshop_ctl_item@itemList shop_cat_id=$item.cat_id}>"><{t}>查看<{/t}></a></span>
+        </td>
+      </tr>
+      <{foreach from=$item.children item=row name=name key=key}>
+      <tr style="display:none;">
+          <td><input type="checkbox" name="cat[<{$row.cat_id}>]" class="sub-check" value="<{$row.cat_id}>"></td>
+          <td class="form-group">
+            <i>&nbsp;&nbsp;&nbsp;</i>
+            <i class="icon icon-plot"></i>
+            <input type="text" name="cat[<{$row.cat_id}>][cat_name]" value="<{$row.cat_name}>" required>
+            <input type="hidden" name="cat[<{$row.cat_id}>][parent_id]" value="<{$item.cat_id}>">
+          </td>
+          <td class="sortable-bar">
+            <input type="hidden" name="cat[<{$row.cat_id}>][order_sort]" value="">
+            <a href="#" class="icon icon-arrow-start-a act-start" title="置顶"></a><a href="#" class="icon icon-arrow-up-a act-up" title="上移"></a><a href="#" class="icon icon-arrow-down-a act-down" title="下移"></a><a href="#" class="icon icon-arrow-end-a act-end" title="置底"></a>
+          </td>
+          <td><{$row.modified_time|cdate}></td>
+          <td>
+              <span class="col-md-2 text-nowrap"><a href="#" class="del text-danger"><{t}>删除<{/t}></a></span>
+              <span class="col-md-2 text-nowrap"><a href="<{url action=topshop_ctl_item@itemList shop_cat_id=$row.cat_id}>"><{t}>查看<{/t}></a></span>
+          </td>
+      </tr>
+      <{/foreach}>
+      <tr style="display:none;" class="tr-foot">
+        <td></td>
+        <td colspan="4">
+          <i>&nbsp;&nbsp;&nbsp;</i>
+          <i class="icon icon-plot"></i>
+          <button type="button" class="btn btn-default btn-flat act-addsubcat"><i class="icon icon-subcat text-red"></i> 添加子分类</button>
+        </td>
+      </tr>
+    </tbody>
+    <{/foreach}>
+    <{else}>
+    <tbody id="none_cat">
+      <tr class="none-information">
+        <td colspan="5">请先添加分类</td>
+      </tr>
+    </tbody>
+    <{/if}>
+  </table>
+</form>
+<textarea style="display:none;" id="cat_template">
+  <tbody>
+    <tr>
+      <td><input type="checkbox" name="new[{cat_id}][cat_id]" class="main-check" value="{cat_id}"></td>
+      <td class="form-group">
+        <i class="icon icon-arrow-down-b act-showsubcat"></i>
+        <input type="text" name="new[{cat_id}][cat_name]" value="" required>
+      </td>
+      <td class="sortable-bar">
+        <input type="hidden" name="new[{cat_id}][order_sort]" value="">
+        <a href="#" class="icon icon-arrow-start-a act-start" title="置顶"></a><a href="#" class="icon icon-arrow-up-a act-up" title="上移"></a><a href="#" class="icon icon-arrow-down-a act-down" title="下移"></a><a href="#" class="icon icon-arrow-end-a act-end" title="置底"></a>
+      </td>
+      <td><{$nowtime|cdate}></td>
+      <td>
+        <span class="col-md-2 text-nowrap"><a href="#" class="del text-danger"><{t}>删除<{/t}></a></span>
+        <!--span class="col-md-2 text-nowrap"><a href="#"><{t}>查看<{/t}></a></span-->
+      </td>
+      <tr class="tr-foot">
+        <td></td>
+        <td colspan="4">
+          <i>&nbsp;&nbsp;&nbsp;</i>
+          <i class="icon icon-plot"></i>
+          <button type="button" class="btn btn-default btn-flat act-addsubcat"><i class="icon icon-subcat text-red"></i> 添加子分类</button>
+        </td>
+      </tr>
+    </tr>
+  </tbody>
+</textarea>
+<textarea style="display:none;" id="subcat_template">
+  <tr>
+    <td><input type="checkbox" name="new[{cat_id}][{sub_id}][cat_id]" class="sub-check" value="{sub_id}"></td>
+    <td class="form-group">
+      <i>&nbsp;&nbsp;&nbsp;</i>
+      <i class="icon icon-plot"></i>
+      <input type="text" name="new[{cat_id}][{sub_id}][cat_name]" value="" required>
+    </td>
+    <td class="sortable-bar">
+      <input type="hidden" name="new[{cat_id}][{sub_id}][order_sort]" value="">
+      <a href="#" class="icon icon-arrow-start-a act-start" title="置顶"></a><a href="#" class="icon icon-arrow-up-a act-up" title="上移"></a><a href="#" class="icon icon-arrow-down-a act-down" title="下移"></a><a href="#" class="icon icon-arrow-end-a act-end" title="置底"></a>
+    </td>
+    <td><{$nowtime|cdate}></td>
+    <td>
+      <span class="col-md-2 text-nowrap"><a href="#" class="del text-danger"><{t}>删除<{/t}></a></span>
+      <!--span class="col-md-2 text-nowrap"><a href="#"><{t}>查看<{/t}></a></span-->
+    </td>
+  </tr>
+</textarea>
+
+<script type="text/javascript">
+
+var cat_id, sub_id;
+var table = $('#data_table');
+var firstcheckbox = table.find('tbody input[type=checkbox][name^=cat]').first();
+var lastcheckbox = table.find('tbody input[type=checkbox][name^=cat]').last();
+if(firstcheckbox.size()) {
+    cat_id = firstcheckbox.val() || 0;
+}
+else {
+    cat_id = 0;
+}
+if(lastcheckbox.size()) {
+    sub_id = lastcheckbox.val() || 0;
+}
+else {
+    sub_id = 0;
+}
+cat_id ++;
+sub_id ++;
+function substitute(string, cat_id, sub_id) {
+    string = string.replace(/\{cat_id\}/g, cat_id);
+    if(sub_id || sub_id === 0) {
+        string = string.replace(/\{sub_id\}/g, sub_id);
+    }
+    return string;
+}
+
+$('#selectAll').on('change', function(e) {
+    table.find('input[type=checkbox]').prop('checked', this.checked);
+});
+$('.act-delall').on('click', function(e) {
+    var checked = table.find('input[type=checkbox]:checked');
+    var parent;
+    if(!checked.size()) {
+        return $('#messagebox').message('请至少选择一个分类');
+    }
+
+    if(confirm('删除分类后，该分类关联的商品会被移出当前分类，确定删除选择的分类吗？')) {
+        checked.parents('tr').each(function() {
+            if($(this).index() == 0) {
+                parent = $(this).parent();
+            }
+            else {
+                parent = $(this);
+            }
+
+            var field = parent.find('input[type=text]');
+            var name = field.attr('name');
+            if(/^new\[\d+\].+/.test(name)) {
+                parent.remove();
+            }
+            else {
+                var checkbox = parent.find('input[type=checkbox]');
+                checkbox.each(function() {
+                    $(this).attr('name', $(this).attr('name').replace(/^(cat|up)/, 'del'));
+                });
+                parent.hide();
+            }
+            $('form').Validator('removeField', field);
+        });
+    }
+});
+
+table.on('change', '.main-check', function(e) {
+    $(this).parents('tbody').find('input[type=checkbox].sub-check').prop('checked', this.checked);
+})
+.on('click', '.del', function(e) {
+    e.preventDefault();
+    var parent = $(this).parents('tr');
+    if(parent.index() == 0) {
+        if(parent.next(':not(.tr-foot)')[0]) {
+            return $('#messagebox').message('此分类中还有子类，不可以删除！');
+        }
+        parent = parent.parent();
+    }
+    if(confirm('确定删除此分类吗？')) {
+        var field = parent.find('input[type=text]');
+        var name = field.attr('name');
+        if(/^new\[\d+\].+/.test(name)) {
+            parent.remove();
+        }
+        else {
+            $.post('<{url action="topshop_ctl_item_cat@removeCat"}>', parent.serialize(), function(rs) {
+                if(rs.error) {
+                    $('#messagebox').message(rs.message);
+                    return;
+                }
+                parent.find('input[type=checkbox]').attr('name', parent.find('input[type=checkbox]').attr('name').replace(/^(cat|up)/, 'del'));
+                parent.find('input[type=text]').attr('name', parent.find('input[type=text]').attr('name').replace(/^(up)/, 'cat'));
+                parent.find('input[type=hidden]').attr('name', parent.find('input[type=hidden]').attr('name').replace(/^(up)/, 'cat'));
+                parent.hide();
+            });
+        }
+        $('form').Validator('removeField', field);
+    }
+});
+
+function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    if(!table.find('tbody:not(#none_cat)').size()) {
+        return $('#messagebox').message('请先添加分类');
+    }
+
+    //order numbers
+    table.find('tr input[type=hidden][name$="[order_sort]"]').each(function(i) {
+        this.value = i;
+    });
+    table.find('tr input[type=checkbox]').each(function() {
+        $(this).data('_checked', this.checked);
+        this.checked = true;
+    });
+
+    //request remote url
+    $.post(form.action, $(form).serialize(), function(rs) {
+        if(rs.error) {
+            table.find('tr input[type=checkbox]').each(function() {
+                this.checked = $(this).data('_checked');
+            });
+            return $('#messagebox').message(rs.message);
+        }
+        if(rs.success) {
+            window.onbeforeunload = null;
+            $('#messagebox').message(rs.message, 'success');
+        }
+        if(rs.redirect) {
+            setTimeout(function(){location.href=rs.redirect;}, 800);
+        }
+    });
+}
+
+$('.act-addcat').on('click', function(){
+    var tpl = $('#cat_template').val();
+    var trs = table.find('tbody tr:not(.tr-foot, .none-information):visible');
+    if(trs.size() == 100) {
+        return $('#messagebox').message('最多添加100个分类（包括子分类）');
+    }
+    tpl = $(substitute(tpl, cat_id));
+    table.find("tbody").last().after(tpl);
+    cat_id ++;
+    $('#selectAll')[0].checked = false;
+    $('#none_cat').remove();
+    $('form').Validator('addField', tpl.find('input[type=text]'));
+});
+
+$('form')
+.on('click', '.act-addsubcat', function(){
+    var tpl = $('#subcat_template').val();
+    var trs = table.find('tbody tr:not(.tr-foot):visible');
+    if(trs.size() == 100) {
+        return $('#messagebox').message('最多添加100个分类（包括子分类）');
+    }
+    var parent = $(this).parents('tr');
+    var parentname = parent.parent().find('input[type=checkbox][name]').first();
+    console.log(parentname);
+    if(parentname.val() === '') {
+        return $('#messagebox').message('请先填写父分类名称');
+    }
+    var parent_id = parentname.attr('name').match(/^(?:cat|new)\[(\d+)\].*/)[1] || 0;
+    tpl = $(substitute(tpl, parent_id, sub_id));
+    parent.before(tpl);
+    sub_id ++;
+    $('#selectAll')[0].checked = false;
+    $('form').Validator('addField', tpl.find('input[type=text]'));
+})
+.on('click', '.act-showsubcat', function(){
+    var $this = $(this);
+    if($this.hasClass('icon-arrow-right-b')) {
+        $this.parents('tr').nextAll().show();
+        $this.addClass('icon-arrow-down-b').removeClass('icon-arrow-right-b');
+    }
+    else {
+        $this.parents('tr').nextAll().hide();
+        $this.addClass('icon-arrow-right-b').removeClass('icon-arrow-down-b');
+    }
+})
+.on('click', '.act-up', function(e) {
+    e.preventDefault();
+    var tr = $(this).parents('tr');
+    var tbody = tr.parent();
+    var prev;
+    if(tr.index() == 0) {
+        if(tbody.index(table.find('tbody')) == 0) {
+            return;
+        }
+        else {
+            prev = tbody.prev();
+            tbody.after(prev);
+            prev.find('tr:eq(0) input[name^=cat]').each(function() {
+                $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+            });
+        }
+    }
+    else if(tr.index() == 1) {
+        return;
+    }
+    else {
+        prev = tr.prev();
+        tr.after(prev);
+        prev.find('input[name^=cat]').each(function() {
+            $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+        });
+    }
+    table.find('.warning').removeClass('warning');
+    tr.addClass('warning');
+    tr.find('input[name^=cat]').each(function() {
+        $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+    });
+})
+.on('click', '.act-down', function(e) {
+    e.preventDefault();
+    var tr = $(this).parents('tr');
+    var tbody = tr.parent();
+    var next;
+    if(tr.index() == 0) {
+        if(tbody.index(table.find('tbody')) == table.find('tbody').size() - 1) {
+            return;
+        }
+        else {
+            next = tbody.next();
+            tbody.before(next);
+            prev.find('tr:eq(0) input[name^=cat]').each(function() {
+                $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+            });
+        }
+    }
+    else if(tr.index() == tbody.find('tr').size() - 2) {
+        return;
+    }
+    else {
+        next = tr.next();
+        tr.before(next);
+        prev.find('input[name^=cat]').each(function() {
+            $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+        });
+    }
+    table.find('.warning').removeClass('warning');
+    tr.addClass('warning');
+    tr.find('input[name^=cat]').each(function() {
+        $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+    });
+})
+.on('click', '.act-start', function(e) {
+    e.preventDefault();
+    var tr = $(this).parents('tr');
+    var tbody = tr.parent();
+    var first;
+    if(tr.index() == 0) {
+        if(tbody.index(table.find('tbody')) == 0) {
+            return;
+        }
+        else {
+            first = table.find('tbody').first();
+            first.before(tbody);
+            first.find('tr:eq(0) input[name^=cat]').each(function() {
+                $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+            });
+        }
+    }
+    else if(tr.index() == 1) {
+        return;
+    }
+    else {
+        first = tbody.find('tr').first().next();
+        first.before(tr);
+        first.find('input[name^=cat]').each(function() {
+            $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+        });
+    }
+    table.find('.warning').removeClass('warning');
+    tr.addClass('warning');
+    tr.find('input[name^=cat]').each(function() {
+        $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+    });
+})
+.on('click', '.act-end', function(e) {
+    e.preventDefault();
+    var tr = $(this).parents('tr');
+    var tbody = tr.parent();
+    var last;
+    if(tr.index() == 0) {
+        if(tbody.index(table.find('tbody')) == table.find('tbody').size() - 1) {
+            return;
+        }
+        else {
+            last = table.find('tbody').last();
+            last.after(tbody);
+            last.find('tr:eq(0) input[name^=cat]').each(function() {
+                $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+            });
+        }
+    }
+    else if(tr.index() == tbody.find('tr').size() - 2) {
+        return;
+    }
+    else {
+        last = tbody.find('tr').last().prev();
+        last.after(tr);
+        last.find('input[name^=cat]').each(function() {
+            $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+        });
+    }
+    table.find('.warning').removeClass('warning');
+    tr.addClass('warning');
+    tr.find('input[name^=cat]').each(function() {
+        $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+    });
+})
+.on('change', 'input[type=text]', function(e) {
+    $(this).parents('tr').find('input[name^=cat]').each(function() {
+        $(this).attr('name', $(this).attr('name').replace(/^(cat)/, 'up'));
+    });
+})
+.on('change', 'input, select, textarea', function(e) {
+    window.onbeforeunload = function(e){
+        e.returnValue = '你有一些更改还未保存。确定要离开此页吗？';
+    }
+});
+</script>
+
+<script>
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-edit");
+    }
+  );
+</script>

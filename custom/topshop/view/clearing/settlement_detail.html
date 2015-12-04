@@ -1,0 +1,121 @@
+
+<div class="report">
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="report-filter bg-info report-filter-large">
+        <span>账期时间</span>
+        <div class="date-picker" id="start">
+            <div class="input-group input-group-sm">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control pull-right reservation" name="timearea" id="timearea" value="<{$timearea}>">
+            </div>
+        </div>
+        <span>结算类型</span>
+        <select name="settlement_type" id="settlement_type">
+          <option value="">全部</option>
+          <option value="1" <{if $settlement_type=='1'}> selected <{/if}>>普通结算</option>
+          <!--option value="2" <{if $settlement_type=='2'}> selected <{/if}>>运费结算</option-->
+          <option value="3" <{if $settlement_type=='3'}> selected <{/if}>>退款结算</option>
+        </select>
+        <a href="javascript:void(0);" id="settle_search" class="btn btn-warning btn-sm">检索</a>
+        <!--a href="#" class="btn btn-info btn-sm"><i class="icon icon-arrow-end-a"></i>导出</a-->
+      </div>
+      <table class="table table-primary table-bordered text-center table-valign-middle">
+        <thead>
+          <tr>
+            <td>可结算时间</td>
+            <td>付款时间</td>
+            <td>订单号</td>
+            <td>商品编号</td>
+            <td>商品名称</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>商品款</td>
+            <td>运费</td>
+            <td>退款金额</td>
+            <td>佣金比例</td>
+            <td>佣金</td>
+            <td>结算金额</td>
+            <td>结算类型</td>
+          </tr>
+        </thead>
+        <tbody>
+          <{foreach from=$settlement_detail_list item=item}>
+          <tr>
+            <td>
+              <{$item.settlement_time|cdate:'FDATE'}></}>
+            </td>
+            <td>
+              <{$item.pay_time|cdate:'FDATE'}></}>
+            </td>
+            <td>
+              <{$item.tid}>
+            </td>
+            <td>
+              <{$item.bn}>
+            </td>
+            <td>
+              <{$item.title}>
+            </td>
+            <td>
+              <{$item.price}>
+            </td>
+            <td>
+              <{$item.num}>
+            </td>
+            <td>
+              <{$item.payment}>
+            </td>
+            <td>
+              <{$item.post_fee}>
+            </td>
+            <td>
+              <{$item.refund_fee}>
+            </td>
+            <td>
+              <{$item.cat_service_rate}>
+            </td>
+            <td>
+              <{$item.commission_fee}>
+            </td>
+            <td>
+              <{$item.settlement_fee}>
+            </td>
+            <td>
+              <{if $item.settlement_type=='1'}> 普通结算 <{/if}>
+              <{if $item.settlement_type=='2'}> 运费结算 <{/if}>
+              <{if $item.settlement_type=='3'}> 退款结算 <{/if}>
+            </td>
+          </tr>
+          <{/foreach}>
+        </tbody>
+      </table>
+      <div class="page-bar bg-gray">
+        <div class="pull-right">
+          <div class="pull-right">
+          <{pagers data=$pagers}>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$('.report input[type=radio]:checked').trigger('change');
+$('.reservation').daterangepicker({
+  format: 'YYYY/MM/DD',
+  opens: 'right'
+});
+$("#settle_search").click(function() {
+    var timearea=$("#timearea").val();
+    var settlement_type = $('#settlement_type').val();
+    window.location.href="<{url action=topshop_ctl_clearing_settlement@detail}>?timearea="+timearea+'&settlement_type='+settlement_type;
+});
+
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-cloud");
+    }
+  );
+</script>

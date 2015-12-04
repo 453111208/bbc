@@ -1,0 +1,35 @@
+<app>
+    <name>客户前端系统</name>
+    <type>site</type>
+    <description>客户前端功能</description>
+
+    <author>
+        <name>shopex开发团队</name>
+        <email>dev@shopex.cn</email>
+        <url>http://www.shopex.cn</url>
+    </author>
+
+    <version>0.1</version>
+    <license>shopex license</license>
+
+    <depends>
+        <app>entermembercenter</app>
+        <app>site</app>
+        <app>system</app>
+        <app>syscategory</app>
+        <app>syslogistics</app>
+        <app>sysshop</app>
+        <app>sysitem</app>
+        <app>sysuser</app>
+        <app>systrade</app>
+        <app>ectools</app>
+        <app>search</app>
+        <app>sysdecorate</app>
+        <app>toputil</app>
+        <app>topshop</app>
+        <app>sysconf</app>
+        <app>sysclearing</app>
+    </depends>
+
+
+</app>

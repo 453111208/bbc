@@ -1,0 +1,11 @@
+<desktop>
+    <permissions>
+        <permission id="openShop" display='true' parent='0' workground='sysopen.shop.open'>开放平台</permission>
+    </permissions>
+
+    <workground name="开放" id="sysopen.shop" controller="admin_shop" action="index" order='90'>
+        <menugroup name="商家开放">
+            <menu controller='admin_shop' action='index' permission='sellerList' display='false' order='10'>商家列表</menu>
+        </menugroup>
+    </workground>
+</desktop>

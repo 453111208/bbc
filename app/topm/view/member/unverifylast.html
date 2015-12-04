@@ -1,0 +1,22 @@
+<div class="email-confirm shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <div class="order-fin">
+      <div class="center">
+        <div class="fin-icon">
+          <img src="images/order-icon.png" alt="">
+        </div>
+        <div class="success-info">
+          恭喜您，您的
+          <{if $sendType=='email'}>
+            <span class="thanks">邮箱解绑成功</span>
+          <{/if}>
+          <{if $sendType=='mobile'}>
+            <span class="thanks">手机解绑成功！</span>
+          <{/if}>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

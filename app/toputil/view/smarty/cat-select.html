@@ -1,0 +1,44 @@
+<!-- 类目选择器 -->
+<div class="cat-select">
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="icon icon-search-a"></i></span>
+      <input type="search" name="" id="" class="form-control">
+    </div>
+    <div class="list-group list-group-select"></div>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="icon icon-search-a"></i></span>
+      <input type="search" name="" id="" class="form-control">
+    </div>
+    <div class="list-group list-group-select"></div>
+  </div>
+  <div class="col-md-4">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="icon icon-search-a"></i></span>
+      <input type="search" name="" id="" class="form-control">
+    </div>
+    <div class="list-group list-group-select"></div>
+  </div>
+  <div class="cat-select-foot">
+    <b>当前选择：</b><span></span>
+    <input type="hidden" name="">
+  </div>
+</div>
+<{script app="toputil" src="jquery-catselect.js"}>
+<script>
+    $('.cat-select').catselect({
+        url: '<{url action="toputil_ctl_syscat@getChildrenCatList"}>',
+        name: 'cat_id',
+<{if $value}>
+        data: <{$value}>,
+<{/if}>
+<{if $callback}>
+        onchange: function (instance, option) { window['<{$callback}>'] && <{$callback}>(instance, option); },
+<{/if}>
+        searchbox: '.form-control',
+        selectedList: '.cat-select-foot span',
+        selectedParam: '.cat-select-foot input[type=hidden]'
+    });
+</script>

@@ -1,0 +1,149 @@
+<section class="content">
+  <div class="report">
+    <div class="box box-primary">
+      <div class="box-body">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="goods-grade">
+              <div class="goods-grade-title">
+                <i class="glyphicon glyphicon-star-empty"></i><br>
+                店铺动态评分
+              </div>
+              <div class="goods-grade-score">
+                <div>
+                  <div class="level-name">实物与描述相符：</div>
+                  <div class="score-parent">
+                    <div class="score-progress" style="width: <{$countDsr.tally_dsr.percentage}>;">
+                      <span class="score-num"><{$countDsr.tally_dsr.num}></span>
+                      <{if $countNum}>
+                      <div class="popover top">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                          <{foreach from=$countNum.tally_dsr item=row key=key}>
+                          <p><{$key}> 星累计评分：<{$row}></p>
+                          <{/foreach}>
+                        </div>
+                      </div>
+                      <{/if}>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="level-name">服务质量：</div>
+                  <div class="score-parent">
+                    <div class="score-progress" style="width: <{$countDsr.attitude_dsr.percentage}>;">
+                      <span class="score-num"><{$countDsr.attitude_dsr.num}></span>
+                      <{if $countNum}>
+                      <div class="popover top">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                          <{foreach from=$countNum.attitude_dsr item=row key=key}>
+                          <p><{$key}> 星累计评分：<{$row}></p>
+                          <{/foreach}>
+                        </div>
+                      </div>
+                      <{/if}>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="level-name">发货速度：</div>
+                  <div class="score-parent">
+                    <div class="score-progress" style="width: <{$countDsr.delivery_speed_dsr.percentage}>;">
+                      <span class="score-num"><{$countDsr.delivery_speed_dsr.num}></span>
+                      <{if $countNum}>
+                      <div class="popover top">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                          <{foreach from=$countNum.delivery_speed_dsr item=row key=key}>
+                          <p><{$key}> 星累计评分：<{$row}></p>
+                          <{/foreach}>
+                        </div>
+                      </div>
+                      <{/if}>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="goods-grade-contrast">
+                <table class="table table-primary table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <td colspan="2">行业平均分同比</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>描述相符</td>
+                      <td class="<{$catDsrDiff.tally_dsr.trend}>"><{$catDsrDiff.tally_dsr.percentage}> <{if $catDsrDiff.tally_dsr.trend == 'go-up'}> &uarr;<{elseif $catDsrDiff.tally_dsr.trend == 'go-down'}> &darr;<{else}> -<{/if}>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务质量</td>
+                      <td class="<{$catDsrDiff.attitude_dsr.trend}>"><{$catDsrDiff.attitude_dsr.percentage}> <{if $catDsrDiff.attitude_dsr.trend == 'go-up'}> &uarr;<{elseif $catDsrDiff.attitude_dsr.trend == 'go-down'}> &darr;<{else}> -<{/if}>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>发货速度</td>
+                      <td class="<{$catDsrDiff.delivery_speed_dsr.trend}>">
+                        <{$catDsrDiff.delivery_speed_dsr.percentage}><{if $catDsrDiff.delivery_speed_dsr.trend == 'go-up'}> &uarr;<{elseif $catDsrDiff.delivery_speed_dsr.trend == 'go-down'}> &darr;<{else}> -<{/if}>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class="table table-primary table-bordered text-center">
+          <thead>
+            <tr>
+              <td></td>
+              <td>最近1周</td>
+              <td>最近1个月</td>
+              <td>最近6个月</td>
+              <td>6个月前</td>
+              <td>总计</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>好评</td>
+              <td><{$count.week.good|default:'0'}></td>
+              <td><{$count.month.good|default:'0'}></td>
+              <td><{$count.sixMonth.good|default:'0'}></td>
+              <td><{$count.sixMonthAgo.good|default:'0'}></td>
+              <td><{$count.total.good|default:'0'}></td>
+            </tr>
+            <tr>
+              <td>中评</td>
+              <td><{$count.week.neutral|default:'0'}></td>
+              <td><{$count.month.neutral|default:'0'}></td>
+              <td><{$count.sixMonth.neutral|default:'0'}></td>
+              <td><{$count.sixMonthAgo.neutral|default:'0'}></td>
+              <td><{$count.total.neutral|default:'0'}></td>
+            </tr>
+            <tr>
+              <td>差评</td>
+              <td><{$count.week.bad|default:'0'}></td>
+              <td><{$count.month.bad|default:'0'}></td>
+              <td><{$count.sixMonth.bad|default:'0'}></td>
+              <td><{$count.sixMonthAgo.bad|default:'0'}></td>
+              <td><{$count.total.bad|default:'0'}></td>
+            </tr>
+            <tr>
+              <td>总计</td>
+              <td><{$count.week.total|default:'0'}></td>
+              <td><{$count.month.total|default:'0'}></td>
+              <td><{$count.sixMonth.total|default:'0'}></td>
+              <td><{$count.sixMonthAgo.total|default:'0'}></td>
+              <td><{$count.total.total|default:'0'}></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+</section>
+

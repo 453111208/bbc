@@ -1,0 +1,56 @@
+<div id="all">
+  <table class="item-table table-evaluation">
+    <colgroup>
+      <col class="table-col-1" width="75%">
+      <col class="table-col-2" width="25%">
+    </colgroup>
+    <tbody>
+      <!-- 循环开始 -->
+      <{foreach from=$rate item=rateInfo}>
+      <tr>
+        <td>
+          <div class="level"><i class="icon icon-flower <{$rateInfo.result}>"></i>
+            <br><{if $rateInfo.result == 'good'}>好评<{elseif $rateInfo.result=='bad'}>差评<{else}>中评<{/if}></div>
+          <{if $rateInfo.anony}>
+          <div class="user-name"><{$userName[$rateInfo.user_id]|hidden_show}></div>
+          <{else}>
+          <div class="user-name"><{$userName[$rateInfo.user_id]}></div>
+          <{/if}>
+          <div class="detail">
+            <div><{if $rateInfo.content}><{$rateInfo.content}><{else}>默认评价<{/if}></div>
+            <{if $rateInfo.rate_pic}>
+            <div class="show-pics">
+              <ul>
+                <{foreach from=$rateInfo.rate_pic item=pic}>
+                <a href="<{$pic|storager}>" target="_blank"><img src="<{$pic|storager:'s'}>"><i class="icon icon-search-a"></i></a>
+                <{/foreach}>
+              </ul>
+            </div>
+            <{/if}>
+            <div class="creat-date"><{$rateInfo.created_time|cdate}></div>
+            <{if $rateInfo.is_reply}>
+            <div class="feedback">
+              <div class="feedback-tit">卖家回复</div>
+              <div class="feedback-txt">
+                <p><{$rateInfo.reply_content}></p>
+                <span><{$rateInfo.reply_time|cdate}></span>
+              </div>
+            </div>
+            <{/if}>
+          </div>
+        </td>
+        <td>
+          <{if $rateInfo.spec_nature_info}>
+            <{$rateInfo.spec_nature_info}>
+          <{/if}>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+  <{pagers data=$pagers ajax='true' load_id=$result }>
+</div>
+<div id="good" style="display: none;"></div>
+<div id="neutral" style="display: none;"></div>
+<div id="bad" style="display: none;"></div>
+<div id="dialog" style="display:none"></div>

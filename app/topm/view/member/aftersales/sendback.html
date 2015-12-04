@@ -1,0 +1,54 @@
+<!--填写物流信息弹框-->
+<form action="<{url action=topm_ctl_member_aftersales@sendback}>" method="post" id="ajaxForm">
+  <input type='hidden' name='aftersales_bn' value='<{$aftersales_bn}>'>
+  <ul>
+    <li>
+      <select class="corp" name="corp_code">
+        <option value="">请选择物流公司</option>
+        <{foreach from=$corpData item=item}>
+        <option value="<{$item.corp_code}>-<{$item.corp_name}>" ><{$item.corp_name}></option>
+        <{/foreach}>
+        <option value="other">其他</option>
+      </select>
+    </li>
+    <li class="other_corp" style="display: none;">
+      <label>物流公司</label>
+      <span class="form-act">
+        <input type="text" name='logi_name' class="input-ln" placeholder="如果不能选择物流公司，填写物流公司名称">
+      </span>
+    </li>
+    <li>
+      <label>物流单号</label>
+      <span class="form-act">
+        <input type="text" name='logi_no' class="input-ln"  placeholder="填写物流单号" required >
+      </span>
+    </li>
+    <{if $info.aftersales_type == 'EXCHANGING_GOODS'}>
+    <!--如果是换货的话，则需要填写换货的收获地址-->
+    <li>
+      <label>手机号码</label>
+      <span class="form-act">
+        <input type="text" name='mobile' class="input-ln" placeholder="你的手机号码" required>
+      </span>
+    </li>
+    <li>
+      <label>收货地址</label>
+      <span class="form-act">
+        <input type="text" name='receiver_address' class="input-ln" placeholder="你的收货地址" required>
+      </span>
+    </li>
+    <{/if}>
+  </ul>
+  <div class="aftersale-submit">
+    <div class="get-back"><button type="submit" class="ui-btn ui-btn-negative">提交回寄物流信息</button></div>
+  </div>
+</form>
+<script>
+  $('.corp').change(function () {
+    if($(this).val()=='other'){
+      $('.other_corp').show();
+    }else{
+      $('.other_corp').hide();
+    }
+  })
+</script>

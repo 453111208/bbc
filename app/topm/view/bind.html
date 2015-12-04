@@ -1,0 +1,183 @@
+
+<div class="connect">
+  <header>
+      <div class="list-hd">
+        <div class="backto icon-back ">
+          <input type="button" name="returnBcak" onclick="history.back()">
+        </div>
+        <div class="tit">绑定账号</div>
+      </div>
+  </header>
+
+  <!-- main container -->
+  <div class="main">
+    <div id="tabs">
+      <ul>
+        <li data-url="#content1">
+          <h3 class="header-title">
+            新账号绑定
+          </h3>
+        </li>
+        <li data-url="#content2">
+          <h3 class="header-title  trust-login-header">
+            已有账户绑定
+          </h3>
+        </li>
+      </ul>
+      <div id="content1">
+        <span class="signup-int">没有账号？您可以很快注册一个账号
+        </span>
+          <div class="col-lg-8 trust-login-box">
+            <form action="<{url action=topm_ctl_trustlogin@bindSignupUser}>
+              " method="post" id="ajaxForm" data-async="false">
+              <input type="hidden" name="vcodekey" value="topm_signup">
+              <input type="hidden" name="flag" value="<{$flag}>">
+              <ul class="trust-login-list">
+                <li class="form-row">
+                  <label class="form-label"> 
+                    登录账号:
+                  </label>
+                  <span class="form-act has-figure">
+                    <input type="text" class="input-block action-account-check" name="pam_account[login_name]" id="for_account" placeholder="用户名，最少4个字符" required minlength="4" data-caution="请填写登录帐号，最少4个字符" data-remote="<{url action=topm_ctl_passport@checkLoginAccount}>" autofocus>
+                  </span>
+                </li>
+                <li class="form-row">
+                  <label class="form-label"> 
+                    登录密码:
+                  </label>
+                  <span class="form-act has-figure">
+                    <input type="password" class="input-block auto-password-check-handle" name="pam_account[login_password]" placeholder="6-20个字符" required minlength="6" maxlength="20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符&&输入不正确，最多20个字符"> <i class="icon-lock input-figure"></i>
+                  </span>
+                </li>
+                <li class="form-row">
+                  <label class="form-label">
+                    确认密码:
+                  </label>
+                  <span class="form-act has-figure">
+                    <input type="password" class="input-block" name="pam_account[psw_confirm]" id="" maxlength="20" placeholder="再次填写密码" required data-equalto="pam_account[login_password]" data-caution="密码与确认密码不相符，请重新填写"> <i class="icon-lock input-figure"></i>
+                  </span>
+                </li>
+                <li class="form-row verify-code action-verifycode">
+                  <label class="form-label">
+                    验证码:
+                  </label>
+                  <span class="form-act">
+                    <input type="text" class="verify-input input-st" name="verifycode" id="iptlogin" required size="4" maxlength="4" placeholder="点击验证码可刷新">
+                    <img align="absmiddle" class="auto-change-verify-handle"  src="<{url action=toputil_ctl_vcode@gen_vcode key=topm_signup width=120 height=35}>
+                    " alt="" width="120" height="35">
+                  </span>
+                </li>
+                <li class="form-row">
+                  <label class="form-label">&nbsp;</label>
+                  <span class="form-act">
+                    <button type="submit" class="ui-btn-warning" rel="_request">
+                      创建并绑定
+                    </button>
+                  </span>
+                </li>
+              </ul>
+            </form>
+          </div>
+      </div>
+      <div id="content2">
+        <span class="signup-int">绑定已有商城账号
+        </span>
+        <div class="col-lg-6  trust-login-box">
+          <form action="<{url action=topm_ctl_trustlogin@bindExistsUser}>
+            " method="post" id="ajaxForm" data-async="false">
+            <input type="hidden" name="vcodekey" value="topm_signin">
+            <input type="hidden" name="flag" value="<{$flag}>">
+            <ul class=" trust-login-list2">
+              <li class="form-row">
+                <span class="form-act has-figure">
+                <label class="form-label"> 
+                  用户名：
+                </label>
+                  <input type="text" class="input-block action-account-check" name="uname" id="" placeholder="邮箱/用户名/手机号" required data-caution="请填写登录帐号" autofocus="autofocus">
+                  <i class="icon-user input-figure"></i>
+                </span>
+              </li>
+              <li class="form-row">
+                <span class="form-act has-figure">
+                <label class="form-label"> 
+                  密码:
+                </label>
+                  <input type="password" class="input-block" name="password" id="" placeholder="请输入您的密码" required data-caution="请输入您的密码">
+                  <i class="icon-lock input-figure"></i>
+                </span>
+              </li>
+              <li class="form-row verify-code action-verifycode">
+                <label class="form-label">
+                  验证码:
+                </label>
+                <span class="form-act">
+                  <input type="text" class="verify-input input-st" name="verifycode" id="iptlogin" required size="4" maxlength="4"  placeholder="点击验证码可刷新">
+                  <img align="absmiddle" class="auto-change-verify-handle"  src="<{url action=toputil_ctl_vcode@gen_vcode key=topm_signin width=120 height=35}>
+                  " alt="" width="120" height="35">
+                </span>
+              </li>
+              <li class="form-row">
+                <span class="form-act">
+                  <button type="submit" class="ui-btn-warning" rel="_request">
+                    绑定
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div> 
+
+    <form action="<{url action=topm_ctl_trustlogin@bindDefaultCreateUser}>
+      " method="post" id="ajaxForm" class="form-vertical"  data-async="false">
+      <div class="trust-skip">
+        <input  type="hidden" name="flag"  value="<{$flag}>">
+        <button type="submit" rel="_request">
+          <span>
+            什么也不做，
+            <i>点此跳过进入快速购物通道</i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  var form = $('#ajaxForm');
+  var account = form.find('.action-account-check');
+  
+  form.find('button[type=submit]').data('ajaxConfig', {
+      callback: function(rs) {
+          if(rs.error) {
+              changeCode($('img.auto-change-verify-handle'));
+          }
+      }
+  });
+  
+  $(document).on('click', '.action-get-verifycode', function(e) {
+      e.preventDefault();
+      if($(this).hasClass('disabled')) return false;
+      sendVerify(this, account[0].name + '=' + account[0].value + '&type=signup');
+  });
+  
+</script>
+
+<script> 
+  $('#tabs').tabs({
+        ajax: {
+            dataType: 'json'
+        },
+        beforeRender: function(e, response, panel, index){
+            var html = '';
+            $.each(response, function(){
+                html += '<p>'+this.text+'</p>';
+            });
+            panel.html(html);
+            console.log(index);
+            //需要阻止，否则会把response原文写入到div里面。
+            e.preventDefault();
+        }
+    });
+</script>

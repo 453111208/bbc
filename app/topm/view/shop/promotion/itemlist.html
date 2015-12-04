@@ -1,0 +1,142 @@
+<section id="select" class="select">
+  <div class="select-category">
+    <span>全部分类</span> <i></i><div class="box-conner"></div>
+  </div>
+  <ul>
+    <li></li>
+    <li></li>
+    <li class="contition down" data-key="activity_price" data-order="desc">
+      <span>价格</span>
+    </li>
+    <li class="contition down" data-key="sales_count" data-order="desc">
+      <span>销量</span>
+    </li>
+  </ul>
+  <div class="select-category-option">
+    <div class="option-group">
+      <div class="option-fa">
+        <ul>
+          <{foreach name=catlist from=$catlist item=item key=catid}>
+          <li data-cat-id="<{$catid}>" data-id="<{$filter.id}>"><{$item}> <i></i></li>
+          <{/foreach}>
+        </ul>
+      </div>
+      <div class="option-ch">
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="showarea floor area">
+  <section class="floor-bd floor-col-2 ui-refresh">
+    <{if $group_item}>
+    <ul class="data-list">
+      <{include file="topm/shop/promotion/list.html"}>
+    </ul>
+    <div class="ui-refresh-handle">
+      <div class="ui-refresh-down"></div>
+    </div>
+    <{else}>
+    <div class="empty-area">
+      <span><i class="icon-result"></i>暂无相关活动</span>
+    </div>
+    <{/if}>
+  </section>
+</div>
+
+<script>
+  $(function(){
+    $('.option-fa li').eq(0).trigger('tap');
+  })
+
+  $('.option-fa li').tap(function(){
+    var catid = $(this).attr('data-cat-id');
+    var id = $(this).attr('data-id');
+    $.ajax({
+      url:"<{url action=topm_ctl_activity@getCatLv3}>",
+      type:"get",
+      dataType:"json",
+      data:{
+        'catid':catid,
+        'id':id
+      },
+      success:function(rs){
+        var list="";
+        if(rs){
+          for(var i=0;i<rs.length; i++){
+            list+='<li data-cat-id='+rs[i].cat_id+' data-id='+id+'>'+rs[i].cat_name+'</li>';
+          }
+          $('.option-ch ul').html(list);
+        }
+      }
+    });
+  })
+
+$('.contition').tap(function(){
+
+  if($(this).hasClass('down')){
+    $(this).attr('data-order','desc');
+    $(this).removeClass('down').addClass('up');
+  }else{
+    $(this).attr('data-order','asc');
+    $(this).removeClass('up').addClass('down');
+  }
+    var key= $(this).attr('data-key');
+    var order= $(this).attr('data-order');
+    var catid=$('#cat_id').val();
+    var id=$('#activity_id').val();
+    var orderBy=key+' '+order;
+
+    getList(orderBy,id,catid);
+});
+
+function getList(orderBy,id,catid){
+  $.ajax({
+    url:"<{url action=topm_ctl_activity@datalist}>",
+    type:"get",
+    dataType:"html",
+    data:{
+       'orderBy':orderBy,
+       'id':id,
+       'cat_id':catid
+    },
+    success:function(rs){
+      if(rs){
+      $('.data-list').html(rs);
+      }
+    }
+  });
+}
+
+var pagers = <{$pagers|json_encode}>;
+console.log(pagers);
+pagers.next = pagers.current + 1;
+$('.ui-refresh').refresh({
+  init: function () {
+    if(pagers.current == pagers.total) {
+      this.disable();
+    }
+  },
+  load: function (dir, type) {
+    var self = this;
+    var $list = $('.data-list');
+    var slice = location.search.slice(1);
+    if(!slice) {
+      slice = "id="+$('#activity_id').val();
+    }
+    $.get('<{url action=topm_ctl_activity@ajaxItemShow}>', slice + '&pages=' + pagers.next, function (rs) {
+      if(rs.success) {
+        pagers.next = +rs.pagers.current + 1;
+        $list[dir == 'up' ? 'prepend' : 'append'](rs.html);
+      }
+      self.afterDataLoading();
+      if(rs.pagers.current == rs.pagers.total) {
+        self.disable();
+      }
+    });
+  }
+});
+</script>
+
+

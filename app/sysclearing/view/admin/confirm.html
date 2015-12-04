@@ -1,0 +1,44 @@
+<form id="cancelForm" action="?app=sysclearing&ctl=admin_settlement&act=doConfirm" method="POST" >
+  <ul>
+    <li class="form-row">
+      <label for="" class="form-label">结算单号：</label>
+      <input type="hidden" name="settlement_no" value="<{$settlement_no}>">
+      <input type="hidden" name="settlement_status" value='2'>
+      <span class="form-act"><{$settlement_no}></span>
+    </li>
+  </ul>
+  <div class="table-action">
+    <{button type="submit" id='cancel-form-submit' label="确定结算"}>
+    <{button type="button" isclosedialogbtn="1" label="取消"}>
+  </div>
+</form>
+
+<script>
+
+  (function(){
+    var _form = $('cancelForm');
+    var btn =$('cancel-form-submit');
+    var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+    _form.store('target',{
+      onSuccess:function(response){
+        var hash_res_obj = JSON.decode(response);
+
+        if (hash_res_obj.success != undefined && hash_res_obj.success != ""){
+          try{
+            var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+          }catch(e){}
+
+          if(_dialogIns){
+            _dialogIns.close();
+            window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+          }
+        }
+      }
+    });
+
+    btn.addEvent('click',function(){
+      _form.fireEvent('submit',{stop:$empty});
+    });
+  })();
+</script>

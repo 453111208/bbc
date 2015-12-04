@@ -1,0 +1,55 @@
+
+<section class="content">
+  <div class="report">
+    <div class="box box-primary">
+      <div class="box-body">
+        <{foreach from=$config item=widgets  key=widgetsName }>
+        <div class="operate-bar">
+         <span><{$widgets.title}></span>
+         <span class="pull-right">
+            <a href="<{url action=topshop_ctl_wap_decorate@dialog widgets=$widgetsName dialog=$widgets.dialog.0}>" >
+              <i class="glyphicon glyphicon-edit glyphicon"></i>
+            </a>
+            <a href="javascript:void(0);" class="icon icon-arrow-up-a act-up" title="上移"></a>
+            <a href="javascript:void(0);" class="icon icon-arrow-down-a act-down" title="下移"></a>
+            <input type="hidden"  name="<{$widgetsName}>[]" value="<{$widgets.sort}>">
+         </span>
+        </div>
+        <{/foreach}>
+      </div>
+    </div>
+  </div>
+  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+</section>
+
+<script>
+  /*$(".act-up,.act-down").click(function(){
+    var parent = $(this).parents(".operate-bar");
+    if($(this).hasClass(".act-up")){
+      if(!prev.size()){
+        var prev = parent.prev();
+        parent.insertBefore(prev);
+      }
+    }else{
+      var next = parent.next();
+      if(!next.size()){
+        
+        parent.insertAfter(next);
+      }
+    }
+  });*/
+
+  $(".act-up").click(function(){
+    var parent = $(this).parents(".operate-bar");
+    var prev = parent.prev();
+    parent.insertBefore(prev);
+    $.post('<{url action="topshop_ctl_wap_decorate@saveSort"}>', $('.content .operate-bar input[type=hidden]').serialize());
+  });
+
+  $(".act-down").click(function(){
+    var parent = $(this).parents(".operate-bar");
+    var next = parent.next();
+    parent.insertAfter(next);
+    $.post('<{url action="topshop_ctl_wap_decorate@saveSort"}>', $('.content .operate-bar input[type=hidden]').serialize());
+  });
+</script>

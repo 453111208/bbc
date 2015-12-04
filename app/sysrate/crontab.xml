@@ -1,0 +1,26 @@
+<cronentries>
+  <cron id="sysrate_tasks_dsr">
+    <description>统计DSR</description>
+    <schedule>0 3 */1 * *</schedule>
+    <enabled>true</enabled>
+  </cron>
+
+  <cron id="sysrate_tasks_finishAppeal">
+    <description>申诉10天没处理，自动驳回</description>
+    <schedule>0 1 */1 * *</schedule>
+    <enabled>true</enabled>
+  </cron>
+
+  <cron id="sysrate_tasks_lockRate">
+    <description>申诉成功开通之后有15天的修改权限,逾期自动关闭</description>
+    <schedule>0 1 */1 * *</schedule>
+    <enabled>true</enabled>
+  </cron>
+
+  <!--cron id="sysrate_tasks_finishRate">
+    <description>用户15天内没有评价，系统自动好评</description>
+    <schedule>0 1 */1 * *</schedule>
+    <enabled>true</enabled>
+  </cron-->
+
+</cronentries>

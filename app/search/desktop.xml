@@ -1,0 +1,11 @@
+<desktop>
+  <permissions>
+    <permission id="system" display='true' parent='0' workground='system'>系统设置</permission>
+  </permissions>
+    <workground name="系统" id="system.workground.setting" controller="search" action="index" order='205'>
+      <menugroup name="搜索配置">
+        <menu controller='policy' action='index' permission='system' display='true' order='10'>搜索引擎管理</menu>
+        <menu controller='index' action='index' permission='system' display='true' order='11'>索引管理</menu>
+      </menugroup>
+    </workground>
+</desktop>

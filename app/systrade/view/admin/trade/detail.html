@@ -1,0 +1,164 @@
+<div class="tableform">
+  <table border="0" cellpadding="0" style="margin-top:10px" cellspacing="0" class="orderdetails_basic">
+    <tr>
+      <td style=" padding:0;width:270px" >
+        <h5 align="center" style=" margin-top:10px;"><{t}>订单基本信息<{/t}></h5>
+        <table class="multi-cols" border="0" cellpadding="0" cellspacing="0" >
+          <tr>
+            <th ><{t}>订 单 号：<{/t}></th>
+            <td><{$trade.tid}></td>
+          </tr>
+          <tr>
+            <th ><{t}>商品总额：<{/t}></th>
+            <td><{$trade.payment|cur}></td>
+          </tr>
+          <tr>
+            <th ><{t}>配送费用：<{/t}></th>
+            <td><{$trade.post_fee|cur}></td>
+          </tr>
+          <{if $trade.discount_fee>0}>
+          <tr>
+            <th ><{t}>促销优惠：<{/t}></th>
+            <td>-<{$trade.discount_fee|cur}></td>
+          </tr>
+          <{/if}>
+          <tr>
+            <th ><{t}>手工调价：<{/t}></th>
+            <td><{$trade.adjust_fee|cur}></td>
+          </tr>
+          <tr>
+            <th ><{t}>订单总额：<{/t}></th>
+            <td><{$trade.payment|cur}></td>
+          </tr>
+          <tr>
+            <th ><{t}>订单状态：<{/t}></th>
+            <td><{$trade.status_des}></td>
+          </tr>
+          <{if $trade.cancel_reason}>
+          <tr>
+            <th ><{t}>订单关闭原因：<{/t}></th>
+            <td><{$trade.cancel_reason}></td>
+          </tr>
+
+          <{/if}>
+          <tr>
+            <th ><{t}>下单时间：<{/t}></th>
+            <td><{if $trade.created_time}><{$trade.created_time|cdate}><{/if}></td>
+          </tr>
+        </table>
+      </td>
+      <td style=" padding:0;width:220px" >
+        <h5 align="center" style=" margin-top:10px"><{t}>订单支付信息<{/t}></h5>
+        <table class="multi-cols" border="0" cellpadding="0" cellspacing="0" >
+          <tr>
+            <th ><{t}>应支付金额：<{/t}></th>
+            <td><{$trade.payment|cur}></td>
+          </tr>
+          <tr>
+            <th nowrap style="width:10%;"><{t}>支付状态：<{/t}></th>
+            <td><{if $trade.status == 'WAIT_BUYER_PAY'}>等待支付<{else}>已支付<{/if}></td>
+          </tr>
+          <tr>
+            <th nowrap style="width:10%;"><{t}>支付方式：<{/t}></th>
+            <td><{if $payment.pay_name}><{$payment.pay_name}><{else}>暂无支付信息<{/if}></td>
+          </tr>
+          <tr>
+            <th ><{t}>已支付金额：<{/t}></th>
+            <td><{$trade.payed_fee|cur}> </td>
+          </tr>
+          <tr>
+            <th ><{t}>付款时间：<{/t}></th>
+            <td><{if $trade.pay_time}><{$trade.pay_time|cdate}><{/if}></td>
+          </tr>
+        </table>
+      </td>
+      <td style=" padding:0;width:200px" >
+        <h5 align="center" style=" margin-top:10px;"><{t}>订单发票信息<{/t}></h5>
+        <table class="multi-cols" border="0" cellpadding="0" cellspacing="0" >
+          <tr>
+            <th style="width:10%" nowrap ><{t}>是否需要发票：<{/t}></th>
+            <{if $trade.need_invoice}>
+            <td><{t}>是<{/t}></td>
+            <{else}>
+            <td><{t}>否<{/t}></td>
+            <{/if}>
+          </tr>
+          <{if $trade.need_invoice}>
+          <tr>
+            <th ><{t}>发票类型：<{/t}></th>
+            <{if $trade.invoice_type == "normal"}>
+            <td>普通发票</td>
+            <{else}>
+            <td>无</td>
+            <{/if}>
+          </tr>
+          <{/if}>
+          <{if $trade.need_invoice}>
+          <tr>
+            <th ><{t}>发票抬头：<{/t}></th>
+            <td><{if $trade.invoice_name == "individual"}> 个人<{else}>单位<{/if}>(<{$trade.invoice_main}>)</td>
+          </tr>
+          <{/if}>
+        </table>
+      </td>
+      <td style=" padding:0;width:200px" >
+        <h5 align="center" style=" margin-top:10px;"><{t}>收货人信息<{/t}></h5>
+        <table class="multi-cols" border="0" cellpadding="0" cellspacing="0" >
+          <tr>
+            <th ><{t}>收 货 人：<{/t}></th>
+            <td><{$trade.receiver_name}></td>
+          </tr>
+          <tr>
+            <th ><{t}>收货人手机：<{/t}></th>
+            <td><{$trade.receiver_mobile}></td>
+          </tr>
+          <tr>
+            <th ><{t}>收货人电话：<{/t}></th>
+            <td><{$trade.receiver_phone}></td>
+          </tr>
+          <{if !$trade.ziti_addr}>
+          <tr >
+            <th style="width:10%" nowrap ><{t}>收货地区：<{/t}></th>
+            <td><{$trade.receiver_state}><{$trade.receiver_city}><{$trade.receiver_district}></td>
+          </tr>
+          <tr>
+            <th ><{t}>收货地址：<{/t}></th>
+            <td><{$trade.receiver_address|escape:'html'}></td>
+          </tr>
+          <{else}>
+            <tr>
+            <th ><{t}>自提地址：<{/t}></th>
+            <td><{$trade.ziti_addr|escape:'html'}></td>
+          </tr>
+          <{/if}>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="tableform">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="gridlist">
+    <thead>
+      <tr>
+        <th><{t}>发货单号<{/t}></th>
+        <th><{t}>物流单号<{/t}></th>
+        <th><{t}>收件人<{/t}></th>
+        <th><{t}>配送方式<{/t}></th>
+        <th><{t}>建立日期<{/t}></th>
+      </tr>
+    </thead>
+    <tbody>
+      <{if $logi}>
+      <tr>
+        <td><{$logi.delivery_id}></td>
+        <td><{$logi.logi_no}></td>
+        <td><{$logi.receiver_name}></td>
+        <td><{$logi.logi_name}></td>
+        <td><{$logi.t_begin|cdate:""}></td>
+      </tr>
+      <{/if}>
+    </tbody>
+  </table>
+</div>

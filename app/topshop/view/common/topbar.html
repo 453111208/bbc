@@ -1,0 +1,26 @@
+<nav class="navbar topbar" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="fa fa-bars"></span>
+            </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li <{if $topshop.currentActionName == 'topshop_ctl_passport@signin' }>class="active"<{/if}>>
+                    <a href="<{url action=topshop_ctl_passport@signin}>"><{t}>登录<{/t}></a>
+                </li>
+                <li <{if $topshop.currentActionName == 'topshop_ctl_passport@signup' }>class="active"<{/if}> >
+                    <a href="<{url action=topshop_ctl_passport@signup}>"><{t}>注册<{/t}></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="<{url action=topc_ctl_default@index}>" target="_blank"><{t}>商城首页<{/t}></a></li>
+                <li><a href="#" target="_blank">帮助中心</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

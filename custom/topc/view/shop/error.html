@@ -1,0 +1,7 @@
+<div class="no-content">
+<{if $status=='dead'}>
+  抱歉，您访问的企业 <{$shopid|shopname}> <span style="color:red">由于临时原因而关闭</span>，请点击这里<a style="color:blue" href="<{url action=topc_ctl_default@index}>">去平台首页</a>继续浏览!
+ <{elseif $is_center=="0"}>
+抱歉，您访问的企业 <{$shopid|shopname}> <span style="color:red">还没开通企业展台</span>，请点击这里<a style="color:blue" href="<{url action=topc_ctl_default@index}>">去平台首页</a>继续浏览!
+ <{/if}>
+</div>

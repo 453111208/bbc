@@ -1,0 +1,8 @@
+<services>
+    <service id="site_view_helper">
+        <class>topm_site_view_helper</class>
+    </service>
+   <service id="desktop.cert.check">
+        <class>topm_cert_certcheck</class>
+    </service>
+</services>

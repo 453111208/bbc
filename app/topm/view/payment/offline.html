@@ -1,0 +1,23 @@
+<div class="shop group">
+  <header>
+    <div class="list-hd">
+      <div class="backto icon-back">
+        <input type="button" name="returnBcak" onclick="history.back()">
+      </div>
+      <div class="tit">订单状态</div>
+    </div>
+  </header>
+  <section class="main">
+    <div class="order-success-wrap">
+      <div class="success-info">
+        <i class="icon icon-ok"></i>
+        <span>下单成功，我们会尽快为您发货！</span>
+      </div>
+      <div class="success-other-info">
+        <p>应付金额：<span><{$trades.cur_money|cur}></span></p>
+        <p>您可以：<a href="<{url action=topm_ctl_member_trade@tradeList}>">查看我的订单</a></p>
+      </div>
+    </div>
+  </section>
+</div>
+

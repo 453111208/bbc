@@ -1,0 +1,43 @@
+<form id="propForm" class="tableform" action="?app=sysplan&ctl=admin_literarytarget&act=save" method="POST">
+<{input type="hidden"  name="literarytarget_id"  value=$literarytargetInfo.literarytarget_id }>
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><em class="red">*</em><{t}>案例目标：<{/t}></th>
+        <td><{input type="text" name="literarytarget" vtype="required"  value=$literarytargetInfo.literarytarget maxlength='20'}></td>
+      </tr>
+<!--       <tr>
+        <th><{t}>排序：<{/t}></th>
+        <td><{input style="width:50px;" type="number" name="order_sort" min=1  value=$literarytargetInfo.order_sort}></td>
+      </tr> -->
+    </table>
+   </div>
+   <div class="table-action">
+    <{button label="保存"|t:'sysplan' type="submit" class="btn-primary"}>
+  </div>
+</form>
+
+<script type="text/javascript">
+$('propForm').store('target',
+{
+  onComplete:function(rs)
+   {
+   if(!rs) return;
+   rs = JSON.decode(rs);
+   if(rs.success)
+     {
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog'))
+        {
+          var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+          if(Dlg.update)
+            {
+             Dlg.update.retrieve('instance').initContent();
+            }
+          Dlg.close();
+        }
+     }
+   }
+});
+  
+</script>

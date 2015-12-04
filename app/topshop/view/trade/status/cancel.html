@@ -1,0 +1,19 @@
+<div class="panel-heading">
+  <div class="text-center">
+    <ul class="step-bar">
+      <li class="on">
+        <div class="state">已下单，待付款</div>
+        <div class="time"><{$trade.created_time|cdate}></div>
+        <i class="glyphicon glyphicon-chevron-right"></i>
+      </li>
+      <li class="on">
+        <div class="state">已关闭</div>
+        <div class="time"></div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="panel-heading text-center">
+  <span class="time">订单取消原因： <{$trade.cancel_reason}></span>
+</div>
+

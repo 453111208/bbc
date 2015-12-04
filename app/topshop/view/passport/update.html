@@ -1,0 +1,47 @@
+ <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title">修改密码</h4>
+</div>
+<div class="form-box" id="login-box">
+<form action="<{url action=topshop_ctl_passport@updatepwd}>" method="post" class="bg-white" role="form" data-validate-onsuccess="ajaxSubmit" id="postupdate">
+			<div class="body">
+
+				<div class="form-group">
+					<label for="login_password" class="control-label">旧密码：</label>
+					<input type="password" name="login_password_old"  class="form-control" placeholder="密码，6-20个字符，不能纯数字、字母" required maxlength="20" data-validate-length-min="6" pattern="^(?!\d+$|[a-zA-Z]+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能纯数字、字母">
+				</div>
+				<div class="form-group">
+					<label for="login_password" class="control-label">请设置新密码：</label>
+					<input type="password" name="login_password" id="login_password" class="form-control" placeholder="密码，6-20个字符，不能纯数字、字母" required maxlength="20" data-validate-length-min="6" pattern="^(?!\d+$|[a-zA-Z]+$)[^\u4e00-\u9fa5]*$" data-validate-regexp-message="不能纯数字、字母">
+				</div>
+				<div class="form-group">
+					<label for="psw_confirm" class="control-label">请确认新密码：</label>
+					<input type="password" name="psw_confirm" id="psw_confirm" class="form-control" placeholder="请再次输入密码" required maxlength="20" data-validate-equalto-field="login_password" data-validate-equalto-message="两次密码输入不一致">
+				</div>
+			</div>
+			<div class="footer">
+					<p>
+						<button type="submit" class="btn btn-primary btn-block btn-lg">密码修改</button>
+					</p>
+			</div>
+</form>
+</div>
+<script>
+$("#postupdate").Validator();
+function ajaxSubmit (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+        if(rs.error) {
+            $('#messagebox').message(rs.message);
+            return;
+        }
+        if(rs.success) {
+            $('#messagebox').message(rs.message, 'success');
+        }
+        if(rs.redirect) {
+            setTimeout(function(){location.href=rs.redirect;}, 500);
+        }
+    });
+}
+</script>

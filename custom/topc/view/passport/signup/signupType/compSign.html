@@ -1,0 +1,242 @@
+<div class="maxsuperior">
+  <img src="images/topc/members/maxreg.jpg">
+  <div class="maxmsg">
+    服务须知：我们的审核时限为24小时(工作日)，遇法定节假日顺延。如有疑问，请拨打企业专享热线：18017411355&nbsp;或
+    <a href="#" target="_blank">&nbsp;咨询东东</a>
+  </div>
+</div>
+<form action="<{url action=topc_ctl_passport@createc}>
+  " method="post" id="ajaxForm" class="form-tip-horizontal">
+  <input type="hidden" name="next_page" value="<{$next_page}>
+  ">
+  <input type="hidden" name="key" value="topc_signup">
+  <input type="hidden" name="sellerType" value="0">
+  <div class="form">
+    <h3>基础注册</h3>
+    <div class="item item1 form-row">
+      <span class="label"> <b>*</b>
+        企业类型：
+      </span>
+      <div style="width:340px;" class="item-ifo maxtype ">
+        <div class="maxregname">
+          <label>
+            <input name="seller_type" data-validate="onerequired"  type="radio" value="2" />
+            生产加工企业
+          </label>
+          <label>
+            <input name="seller_type" data-validate="onerequired"  type="radio" value="1" />
+            回收处置企业
+          </label>
+          <label>
+            <input name="seller_type" data-validate="onerequired"  type="radio" value="0" />
+            通用企业
+          </label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="item form-row ">
+      <span class="label"> <b>*</b>
+        用户名：
+      </span>
+      <div class="item-ifo ">
+
+        <input type="text" class="text action-account-check" name="pam_user[account]" id="for_account" placeholder="最少4个字符" required minlength="4"  data-caution="请填写登录帐号，最少4个字符,不能全为数字"  data-remote="<{url action=topc_ctl_passport@checkLoginAccount}>
+        " autofocus> <i class="i-name"></i>
+        <!--               <label class="succeed"></label>
+      -->
+    </div>
+  </div>
+  <div class="item form-row ">
+    <span class="label">
+      <b>*</b>
+      请设置密码：
+    </span>
+    <div class="item-ifo">
+      <input type="password" class="text " name="pam_user[password]" placeholder="6-20个字符" required minlength="6" maxlength="20" 
+                data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符&&输入不正确，最多20个字符"> <i class="i-pass"></i>
+      <!--  <label class="error">6-20位字符，建议由字母，数字和符号两种以上组合</label>
+    -->
+  </div>
+</div>
+<div class="item form-row ">
+  <span class="label">
+    <b>*</b>
+    请确认密码：
+  </span>
+  <div class="item-ifo ">
+    <input type="password" class="text" name="pam_user[pwd_confirm]" id="" maxlength="20" placeholder="再次填写密码" required data-equalto="pam_user[password]" data-caution="密码与确认密码不相符，请重新填写">
+    <i class="i-pass"></i>
+  </div>
+</div>
+<div class="item form-row ">
+  <span class="label">
+    <b>*</b>
+    联系人邮箱：
+  </span>
+  <div class="item-ifo">
+    <input type="text"  required name="pam_user[email]" data-validate="email" class="text action-email-check"  data-caution="<{t}>请填写正确的email地址<{/t}>"   >
+    <i class="i-phone"></i>
+  </div>
+</div>
+<div class="item form-row ">
+  <span class="label">
+    <b>*</b>
+    验证手机：
+  </span>
+  <div class="item-ifo">
+    <input type="text" required name="pam_user[phone]" id="" data-validate="mobile" data-caution="<{t}>
+  请填写正确的手机号码
+  <{/t}>
+    "  class="text action-mobile-check">
+    <i class="i-phone"></i>
+  </div>
+</div>
+<!-- <div class="item form-row  " style="height: 62px;">
+  <span class="label">
+    <b>*</b>
+    手机验证码：
+  </span>
+        <div class="item-ifo">
+        <input type="text" name="vcode" id="" class="verify-input input-st">
+        <a href="<{url action=topc_ctl_passport@sendVcode}>" class="btn btn-simple action-get-verifycode"><span><span>发送验证码</span></span></a>
+      </div>
+</div> -->
+
+<div class="item form-row ">
+  <span class="label">
+    <b>*</b>
+    公司名称：
+  </span>
+  <div class="item-ifo">
+    <input type="text"  required name="pam_user[con_name]" class="text" >
+    <i class="i-phone"></i>
+  </div>
+</div>
+<div class="item form-row">
+<span class="label">&nbsp;</span>
+<div class="item-ifo">
+  <input type="checkbox" class="x-checkbox" name="license" id="for_license" data-validate="onerequired" data-caution="<{t}>
+  请选择同意
+  <{/t}>
+    ">
+    <label for="for_license">
+      我已阅读并同意
+      <a href="javascript:void(0);" class="action-open-dialog">《会员注册协议》</a>
+    </label>
+  </div>
+</div>
+  <div class="item form-row ">
+    <span class="label">&nbsp;</span>
+    <button type="submit" class="btn-regist" rel="_request">
+      <span>
+        <span>立即注册</span>
+      </span>
+    </button>
+  </div>
+</div>
+</form>
+<script>
+
+var form = $('#ajaxForm');
+var account = form.find('.action-account-check');
+var emailcount=form.find('.action-email-check');
+var mobile=form.find(".action-mobile-check");
+
+form.find('button[type=submit]').data('ajaxConfig', {
+    callback: function(rs) {
+        if(rs.error) {
+            changeCode($('img.auto-change-verify-handle'));
+        }
+    }
+});
+
+account.data('remoteCallback',function(rs){
+    var parent = this.closest('.form-row');
+    var tips = new Tips({
+        'class': 'caution col-lg-4',
+        'target': parent
+    });
+    if(rs.error) {
+        parent.removeClass('has-success').addClass('has-error');
+        return tips.error(rs.message);
+    }
+    else {
+        parent.removeClass('has-error');
+        if(rs.success) {
+            parent.addClass('has-success');
+            tips.success(rs.message);
+        }
+        else {
+            tips.hide();
+        }
+
+        if(validatorMap.mobile[1](this, this.val())) {
+            if(rs.needVerify == 'mobile') {
+                form.find('.action-mobile-verify').removeClass('hide');
+                form.find('.action-verifycode').addClass('hide');
+            }
+            return;
+        }
+        form.find('.action-mobile-verify').addClass('hide');
+        form.find('.action-verifycode').removeClass('hide');
+    }
+}); 
+emailcount.data('remoteCallback',function(rs){
+    var parent = this.closest('.form-row');
+    var tips = new Tips({
+        'class': 'caution col-lg-4',
+        'target': parent
+    });
+    if(rs.error) {
+        parent.removeClass('has-success').addClass('has-error');
+        return tips.error(rs.message);
+    }
+    else {
+        parent.removeClass('has-error');
+        if(rs.success) {
+            parent.addClass('has-success');
+            tips.success(rs.message);
+        }
+        else {
+            tips.hide();
+        }
+    }
+}); 
+
+// $(document).on('click', '.action-get-verifycode', function(e) {
+//     e.preventDefault();
+//     if($(this).hasClass('disabled')) return false;
+//     sendVerify(this, 'uname=' + mobile[0].value + '&type=signup');
+// });
+
+// function sendVerify(el, data) {
+//     var url = el.href;
+//     var textCont = $(el).find('span span');
+//     $(el).addClass('disabled');
+//     textCont.html($(el).text() + '(<i>0</i>)');
+//     var cd = new countdown(textCont.find('i'), {
+//         start: 120,
+//         secondOnly: true,
+//         callback: function(e) {
+//             $(el).removeClass('disabled');
+//             textCont.html('重发验证码');
+//         }
+//     });
+//     $.post(url, data, function(rs) {
+//         if(rs.error) {
+//             cd.stop();
+//             console.log(rs);
+//             Message.error(rs.message);
+//             $(el).removeClass('disabled');
+//             textCont.html('重发验证码');
+//         }
+//         else if(rs.redirect) {
+//             Message.success(rs.message, function() {
+//                 location.href = rs.redirect;
+//             });
+//         }
+//     });
+// }
+</script>

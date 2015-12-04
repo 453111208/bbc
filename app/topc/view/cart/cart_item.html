@@ -1,0 +1,56 @@
+<td>
+  <input type="checkbox" class="cart-checked-item" name="cart_id[<{$goods.cart_id}>]" value="1" <{if $goods.is_checked=='1'}>checked="true"<{/if}> <{if !$goods.valid}>disabled <{/if}>>
+  <input type="checkbox" class="check-item hide" name="cart_id[<{$goods.cart_id}>]" value="0" <{if $goods.is_checked=='0'}>checked="true"<{/if}> <{if !$goods.valid}>disabled <{/if}>>
+</td>
+<td>
+  <div class="table-goods-pic">
+    <img width="64" height="64" src="<{$goods.image_default_id|default:$defaultImageId.S.default_image|storager:'s'}>">
+  </div>
+</td>
+<td>
+  <a class="cart-goods-name" href="<{url action=topc_ctl_item@index item_id=$goods.item_id }>" >
+  <{if $goods.activityDetail}><span class="item-describe-tag"><{$goods.activityDetail.activity_info.activity_tag}></span><{/if}>
+  <{$goods.title}>
+</a>
+<{if $goods.spec_info}><{$goods.spec_info}><{/if}>
+</td>
+<td>
+  <{if $goods.activityDetail.activity_price}>
+  <{$goods.activityDetail.activity_price|cur}>
+  <{else}>
+  <{$goods.price.price|cur}>
+  <{/if}>
+  <!-- 商品选择优惠方式开始 -->
+  <{if $goods.promotions}>
+  <select <{if !$goods.valid}>disabled <{/if}> class="goods-discount" name="promotionid[<{$goods.cart_id}>]">
+    <option value="0" <{if $goods.selected_promotion==0}> selected="selected" <{/if}>>不使用活动优惠</option>
+    <{foreach from=$goods.promotions item=promitem}>
+    <option value="<{$promitem.promotion_id}>" <{if $goods.selected_promotion==$promitem.promotion_id}> selected="selected" <{/if}> ><{$promitem.promotion_name}></option>
+    <{/foreach}>
+  </select>
+  <{/if}>
+  <!-- 商品选择优惠方式结束 -->
+</td>
+<td>
+  <!--div class="number is-stockout"-->
+  <div class="number">
+    <{if $goods.valid }>
+    <span class="number-increase-decrease">
+      <a href="javascript:void(0);" class="btn btn-flat decrease" data-min="1" data-cart-id='<{$goods.cart_id}>'><span><span>-</span></span></a>
+      <input type="number" value="<{$goods.quantity}>" name="cart_num[<{$goods.cart_id}>]" class="cart-num" min="1" max="<{if $goods.activityDetail.activity_info.buy_limit}><{$goods.activityDetail.activity_info.buy_limit}><{else}><{$goods.store}><{/if}>">
+      <a href="javascript:void(0);" class="btn btn-flat increase" data-max="<{if $goods.activityDetail.activity_info.buy_limit}><{$goods.activityDetail.activity_info.buy_limit}><{else}><{$goods.store}><{/if}>" data-cart-id="<{$goods.cart_id}>"><span><span>+</span></span></a>
+    </span>
+    <!--div class="number-stockout">限购6件</div-->
+    <{else}>
+    <{t}>已失效<{/t}>
+    <{/if}>
+  </div>
+</td>
+<td>
+  <em><{$goods.price.total_price|cur}></em>
+</td>
+<td class="col-operate">
+  <a href="<{url action=topc_ctl_collect@ajaxFav}>" data-ajax-data="item_id=<{$goods.item_id}>" rel="_request">收藏</a>
+  <a href="javascript:void(0);" class="delete-item" data-cart-id="<{$goods.cart_id}>">删除</a>
+</td>
+

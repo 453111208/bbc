@@ -1,0 +1,55 @@
+<div class="store-list shop">
+  <div class="ui-mask"></div>
+  <{include file="topm/common/top.html"}>
+
+  <{include file="topm/list/search.html"}>
+
+  <{include file="topm/list/list.html"}>
+
+  <!--返回顶部-->
+  <div id="gotop"></div>
+
+  <script>
+  //创建返回顶部组件
+  $('#gotop').gotop();
+
+  // 排序筛选
+  $('.select ul li').click(function(){
+    // $(this).toggleClass('cur');
+    if($(this).hasClass('cur')){
+      $(this).children('a').toggleClass('is-desc');
+      $(this).siblings().removeClass('cur');
+    }
+  });
+
+  // 筛选条件宽度平均分布
+  var a = $('.select ul li').length;
+  $('.select ul li').css('width',100/a + '%');
+
+  var pagers = <{$pagers|json_encode}>;
+  pagers.next = pagers.current + 1;
+  $('.ui-refresh').refresh({
+    init: function () {
+      if(pagers.current == pagers.total) {
+          this.disable();
+      }
+    },
+    load: function (dir, type) {
+      var self = this;
+      var $list = $('.data-list');
+      $.get('<{url action=topm_ctl_list@ajaxItemShow}>', location.search.slice(1) + '&pages=' + pagers.next, function (rs) {
+        if(rs.success) {
+          pagers.next = +rs.pagers.current + 1;
+          $list[dir == 'up' ? 'prepend' : 'append'](rs.html);
+        }
+        self.afterDataLoading();
+        if(rs.pagers.current == rs.pagers.total) {
+          self.disable();
+        }
+      });
+    }
+  });
+  </script>
+
+</div>
+

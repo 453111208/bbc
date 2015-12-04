@@ -1,0 +1,65 @@
+<div class="col-lg-13 box">
+
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      <{if $verifyType=='mobile'}>
+        解绑手机
+        <{else}>
+        解绑邮箱
+      <{/if}>
+    </div>
+
+    <div class="membercenter-box-bd">
+      <div class="safe-box">
+        <div class="status-bar">
+          <div class="on"> <{if $verifyType=='mobile'}>1发送短信验证 <{else}>
+        发送邮箱链接验证<{/if}>
+            <i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i>
+          </div>
+          <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>
+            <{if $verifyType=='mobile'}>2验证手机<{else}>
+            验证邮箱<{/if}>
+        <i class="icon icon-arrow-right-b icon-last" data-icon="\2816"></i>
+          </div>
+          <div><i class="icon icon-arrow-right-b icon-first" data-icon="\2816"></i>3解绑完成</div>
+        </div>
+        <form action="<{url action=topc_ctl_member@checkVcode}>" method="post">
+          <input type="hidden" name="verifyType" value="<{$verifyType}>">
+          <input type="hidden" name="type" value="<{$type}>">
+        <ul>
+           <{if $userInfo.login_account}>
+            <li class="form-row">
+              <label for="" class="form-label">已绑定手机号：</label>
+              <span class="form-act">
+               <{$userInfo.mobile}>
+              </span>
+            </li>
+            <li class="form-row verify-code">
+              <label class="form-label">请输入验证码</label>
+              <span class="form-act">
+                <input type="text" class="verify-input input-st" name="verifycode" id="iptlogin" required size="4" maxlength="4">
+                <img align="absmiddle" class="auto-change-verify-handle"  src="<{url action=toputil_ctl_vcode@gen_vcode key=topc_unverify width=120 height=35}>" alt="" width="90" height="30">
+                <div class="inline auto-change-verify-handle"><div>看不清？</div><a href="#">换一张</a></div>
+              </span>
+            </li>
+            <li class="form-row">
+              <span class="form-label"></span>
+              <span class="form-act offset-2">
+                <{button type="submit" class="btn btn-import" label="下一步"}>
+              </span>
+            </li>
+          <{else}>
+            
+            <li class="form-row safe-hint">
+              <label for="" class="form-label">已绑定手机号码<{$userInfo.mobile}></label>
+                <i class="icon icon-alert" data-icon="\2803"></i>您还未设置用户名，无法解绑，请先<a href="<{url action=topc_ctl_member@pwdSet}>">设置用户名</a>
+            </li>
+            <{/if}>
+        </ul>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+

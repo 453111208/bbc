@@ -1,0 +1,215 @@
+<form id="propForm" class="tableform" action="?app=syscategory&ctl=admin_props&act=saveProp" method="POST">
+
+  <input type="hidden" name="prop_id" value="<{$propInfo.prop_id}>">
+  <div class="division">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><em class="red">*</em><{t}>属性名称：<{/t}></th>
+        <td><{input type="text" name="prop_name" vtype="required" value=$propInfo.prop_name  maxlength='20'}><{if $propInfo.is_def}>*系统默认销售属性<{/if}></td>
+      </tr>
+      <tr>
+        <th><{t}>排序：<{/t}></th>
+        <td><input style="width:50px;" type="number" name="order_sort" min=1 <{if $propInfo.is_def}> readonly <{/if}> value=<{$propInfo.order_sort|default:'1'}>></td>
+      </tr>
+      <tr>
+        <th><{t}>属性备注：<{/t}></th>
+        <td><{input type="text" name="prop_memo" value=$propInfo.prop_memo}></td>
+      </tr>
+      <tr>
+        <th><{t}>属性类型：<{/t}></th>
+        <td>
+          <div class='prop_type'>
+            <{if $propInfo.prop_type == 'spec' || $propInfo.prop_id == ''}>
+            <label><input type="radio" name="prop_type" value="spec" checked/><{t}>销售属性<{/t}></label>
+            <{/if}>
+            &nbsp; &nbsp;
+            <{if $propInfo.prop_type == 'nature' || $propInfo.prop_id == ''}>
+            <label><input type="radio" name="prop_type" value="nature" /><{t}>自然属性<{/t}></label>
+            <{/if}>
+          </div>
+        </td>
+      </tr>
+      <!-- <tr>
+        <th><{t}>显示类型：<{/t}></th>
+        <td>
+          <div class='show_type'>
+            <label><input type="radio" name="show_type" value="text" checked/><{t}>文字<{/t}></label> &nbsp; &nbsp;
+            <label><input type="radio" name="show_type" value="image" /><{t}>图片<{/t}></label>
+          </div>
+        </td> -->
+      </tr>
+    </table>
+  </div>
+  <div class="division">
+    <div class="gridlist-action">
+      <{button app="desktop" label="添加属性值"|t:'syscategory' class="addprop" id="addprop" icon="btn_add.gif" }><!--<span class="notice-inline"></span>-->
+    </div>
+
+    <table border="0" cellspacing="0" cellpadding="0" class="gridlist sepc_value_table <{$propInfo.show_type|default:'text'}>-prop-value-table">
+      <thead>
+        <tr>
+          <th><{t}>属性值名称<{/t}></th>
+          <{if $propInfo.is_def}>
+          <th class='simg-col'><span><{t}>属性图片<{/t}></span></th>
+          <{/if}>
+          <th><{t}>操作<{/t}></th>
+        </tr>
+      </thead>
+      <tbody>
+        <{foreach from=$propInfo.prop_value item=items key=key}>
+        <tr>
+          <td style="vertical-align:middle; text-align:center"><{input type="text" name="prop_value[{$key}][prop_value]" value=$items.prop_value style='width:150px;' maxlength='20'  vtype='required'}></td>
+          <{if $propInfo.is_def}>
+          <td class='simg-col'>
+            <span>
+              <{assign var=name_prop_image value="prop_value[{$key}][prop_image]"}>
+              <span style="" class='edit sel_image'><{input type='image' name=$name_prop_image value=$items.prop_image}></span>
+            </span>
+          </td>
+          <{/if}>
+          <td style="vertical-align:middle;">
+            <input type='hidden' name='prop_value[<{$key}>][prop_value_id]' class='prop-value-id' value='<{$items.prop_value_id}>'/>
+            <{img app=desktop src='bundle/icon_asc.gif' class='asc'  title='向上移动'|t:'syscategory' style="cursor:pointer;"}> &nbsp; &nbsp;
+            <{img app=desktop src='bundle/icon_desc.gif' class='desc' title='向下移动'|t:'syscategory' style="cursor:pointer; width:13px; height:12px; margin-top:10px"}> &nbsp; &nbsp;
+            <{img app=desktop src='bundle/delete.gif' class='delete'  title='删除'|t:'syscategory' style="cursor:pointer;" }>
+          </td>
+        </tr>
+        <{/foreach}>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="table-action">
+    <{button label="保存"|t:'syscategory' type="submit" class="btn-primary"}>
+  </div>
+
+</form>
+<script>
+  (function(){
+    var new_prop_item = 0;
+    var prop_image_width = '<{$width}>';
+    var prop_image_height = '<{$height}>';
+
+    var propForm=$('propForm');
+    // var radio_show_type=$$("#propForm input[type=radio][name^=show_type");
+    var table_prop_value=$E("#propForm table.sepc_value_table");
+
+    // radio_show_type.addEvent('change',function(e){
+    //   var clazz=this.value+'-prop-value-table';
+    //   if(this.value=='text'){
+    //     table_prop_value.getElements('.simg-col').set('styles',{ 'display':'none' });
+    //     table_prop_value.removeClass('image-prop-value-table');
+    //     table_prop_value.addClass('text-prop-value-table');
+    //   }else{
+    //     table_prop_value.getElements('.simg-col').set('styles',{ 'display':'' });
+    //     table_prop_value.removeClass('text-prop-value-table');
+    //     table_prop_value.addClass('image-prop-value-table');
+    //   }
+    // });
+
+
+    var bindEditEvent=function(row){
+      var sel_image=row.getElement('span.sel_image');
+      var asc=row.getElement('img.asc');
+      var desc=row.getElement('img.desc');
+      var del=row.getElement('img.delete');
+
+      asc.addEvent('click',function(){
+        var pre=row.getPrevious('tr');
+        if(pre){
+          row.injectBefore(pre);
+        }
+      });
+      desc.addEvent('click',function(){
+        var next=row.getNext('tr');
+        if(next){
+          row.injectAfter(next);
+        }
+      });
+      del.addEvent('click',function(){
+        if(!this.getParent('td').getElement('.prop-value-id')){
+          if(confirm('<{t}>删除不可恢复，确认删除本行吗？<{/t}>')){
+            row.remove();
+          }
+          return;
+        };
+        var propvid=this.getParent('td').getElement('.prop-value-id').get('value');
+        if(confirm('<{t}>删除不可恢复，确认删除本行吗？<{/t}>')){
+          new Request({  url:'?app=syscategory&ctl=admin_props&act=checkPropValueId',
+            onSuccess:function(re){
+              if(re=='can'){
+                row.remove();
+              }else{
+                MessageBox.error(re);
+              }
+
+            }
+          }).post('propValueId='+encodeURIComponent(propvid));
+
+        }
+      });
+
+    };
+
+    var IMP_UPLOAD_TMPL = '<{input type="image" name="{img_upload_name}"}>';
+
+    var getTemp = function(i){
+      return '<td style="vertical-align:middle; text-align:center;"><{input type="text" name="prop_value[new_'+i+'][prop_value]" value="" style="width:150px;" maxlength="20"  vtype="required"}></td>'+
+        <{if $propInfo.is_def}>
+        '<td class="simg-col">'+IMP_UPLOAD_TMPL.replace('{img_upload_name}','prop_value[new_'+i+'][prop_image]')+' </td>'+
+        <{/if}>
+        '<td style="vertical-align:middle;"><input type="hidden" name="prop_value[new_'+i+'][prop_value_id]" value=""/><{img app=desktop src="bundle/icon_asc.gif" class="asc"  title="向上移动"|t:"syscategory"  style="cursor:pointer;"}> &nbsp; &nbsp; <{img app=desktop src="bundle/icon_desc.gif" class="desc" title="向下移动"|t:"syscategory"  style="cursor:pointer;"}> &nbsp; &nbsp; <{img app=desktop src="bundle/delete.gif" class="delete"  title="删除"|t:"syscategory"  style="cursor:pointer;" }></td>';
+    };
+
+    $('addprop').addEvent('click',function(e){
+      var num = $E('tbody',table_prop_value).getChildren().length;
+      if(num >= 30) {
+        alert('<{t}>属性值不能超过30个<{/t}>');
+        return;
+      }
+      var newRow=new Element('tr');
+      newRow.inject($E('tbody',table_prop_value));
+      newRow.setHTML(getTemp(new_prop_item++));
+      // if(table_prop_value.hasClass('text-prop-value-table')){
+      //   newRow.getElement('.simg-col').setStyle('display','none');
+      // }else{
+      //   newRow.getElement('.simg-col').setStyle('display', '');
+      // }
+      bindEditEvent(newRow);
+    });
+
+    /*初始化属性设置项RADIO,VALUE*/
+    // $$('#propForm input[name=prop_type]').addEvent('click',function(){
+    //   if(this.value=='nature'){
+    //     $$('#propForm input[value=image]').set('disabled',true);
+    //     $$('#propForm input[value=text]').set('checked',true).fireEvent('change');
+    //   }else{
+    //     $$('#propForm input[value=image]').set('disabled',false);
+    //     $$('#propForm input[value=text]').set('checked',true).fireEvent('change');
+    //   }
+    // });
+
+    $E('#propForm input[value=<{$propInfo.prop_type|default:'spec'}>]').set('checked',true).fireEvent('change');
+    // $E('#propForm input[value=<{$propInfo.show_type|default:'text'}>]').set('checked',true).fireEvent('change');
+    $ES('tbody tr',table_prop_value).each(bindEditEvent);
+
+  })();
+
+$('propForm').store('target',{
+  onComplete:function(rs){
+    if(!rs) return;
+    rs = JSON.decode(rs);
+    if(rs.success){
+      if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+      if($('propForm').getParent('.dialog')){
+        var Dlg = $('propForm').getParent('.dialog').retrieve('instance');
+        if(Dlg.update){
+          Dlg.update.retrieve('instance').initContent();
+        }
+        Dlg.close();
+      }
+    }
+  }
+});
+</script>

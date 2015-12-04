@@ -1,0 +1,61 @@
+<{foreach from=$group_item item=item}>
+<{if $now_time < $activity.start_time }>
+<li class="col-xs-6 group-before">
+  <div class="pro-pic">
+    <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+      <img class="ui-imglazyload preload" style="background:url(<{$item.item_default_image|storager:'s'}>) no-repeat center center" alt=""></a>
+  </div>
+  <div class="pro-info">
+    <div class="info-n">
+      <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><{$item.title}></a>
+    </div>
+    <div class="info-p">
+      <div class="p-lf"><span><{$item.price|cur}></span><br><{$item.activity_price|cur}></div>
+      <!--
+      <div class="p-rt">已 <mark><{$item.sales_count}></mark> 人预约</div>
+      -->
+    </div>
+  </div>
+  <div class="start-txt"></div>
+</li>
+<{elseif $now_time < $activity.end_time && $activity.start_time < $now_time}>
+<li class="col-xs-6">
+  <div class="pro-pic">
+    <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+      <img class="ui-imglazyload preload" style="background:url(<{$item.item_default_image|storager:'s'}>) no-repeat center center" alt=""></a>
+  </div>
+  <div class="pro-info">
+    <div class="info-n">
+      <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><{$item.title}></a>
+    </div>
+    <div class="info-p">
+      <div class="p-lf"><span><{$item.price|cur}></span><br><{$item.activity_price|cur}></div>
+      <!--
+      <div class="p-rt"><mark><{$item.sales_count}></mark> 件已售</div>
+      -->
+    </div>
+  </div>
+</li>
+<{elseif $activity.end_time < $now_time }>
+<li class="col-xs-6 group-after">
+  <div class="pro-pic">
+    <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>">
+      <img class="ui-imglazyload preload" style="background:url(<{$item.item_default_image|storager:'s'}>) no-repeat center center" alt=""></a>
+  </div>
+  <div class="pro-info">
+    <div class="info-n">
+      <a href="<{url action=topm_ctl_activity@detail a=$item.activity_id g=$item.item_id}>"><{$item.title}></a>
+    </div>
+    <div class="info-p">
+      <div class="p-lf"><span><{$item.price|cur}></span><br><{$item.activity_price|cur}></div>
+      <!--
+      <div class="p-rt"><mark><{$item.sales_count}></mark> 件已售</div>
+      -->
+    </div>
+  </div>
+  <div class="end-txt"></div>
+</li>
+<{/if}>
+<{/foreach}>
+
+

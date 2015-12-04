@@ -1,0 +1,61 @@
+
+<form id="sysuserform" class="tableform" name="sysuserform"  method='post' action='?app=sysuser&ctl=admin_user&act=saveUserInfo' >
+	<h3><{t}>基本信息<{/t}></h3>
+    <input type="hidden" name="user[user_id]" value="<{$data.user_id}>">
+    <div class="division">
+        <table width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                      <th><{t}>会员名称：<{/t}></th>
+                      <td><span class="price0"><{ $data.login_account}></span></td>
+                </tr>
+
+                <tr>
+                    <th><em class="red">*</em><label for="dlycorp_name"><{t}>会员昵称:<{/t}></label></th>
+                    <td>
+                        <{input type="text" value=$data.name  name="user[name]"}>
+                </tr>
+
+                <tr>
+                    <th><em class="red">*</em><label for="dlycorp_name"><{t}>会员性别:<{/t}></label></th>
+                    <td>
+                    	<{input type="gender" value=$data.sex id="sex" name="user[sex]"}>
+                </tr>
+                
+                <tr>
+                    <th><em class="red"></em><label for="dlycorp_name"><{t}>会员电话:<{/t}></label></th>
+                    <td><{$data.mobile}></td>
+                </tr>
+                <tr>
+                    <th><{t}>会员email:<{/t}></th>
+                    <td><{$data.email}></td>
+                </tr>
+                <tr>
+                    <th><{t}>会员生日:<{/t}></th>
+                    <td><{input type="date" vtype="required" name="user[birthday]" class="x-input" value=$data.birthday maxlength="20" size="44"}></td>
+                </tr>
+                
+        </table>
+    </div>
+    <div class="table-action">
+        <button class="btn btn-primary" type="submit"><span><span><{t}>保存<{/t}></span></span></button>
+    </div>
+</form>
+
+<script>
+    $('sysuserform').store('target',{
+        onComplete:function(rs){
+            if(!rs) return;
+            rs = JSON.decode(rs);
+            if(rs.success){
+                if(window.finderGroup) window.finderGroup['<{$env.get.finder_id}>'].refresh();
+                if($('sysuserform').getParent('.dialog')){
+                    var Dlg = $('sysuserform').getParent('.dialog').retrieve('instance');
+                    if(Dlg.update){
+                        Dlg.update.retrieve('instance').initContent();
+                    }
+                    Dlg.close();
+                }
+            }
+        }
+    });
+</script>

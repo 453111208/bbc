@@ -1,0 +1,264 @@
+<div class="section">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      我的成长值
+    </div>
+    <div class="membercenter-box-bd">
+      <div class="grow-value">
+        <p class="txt">当前等级：<{$grade.userlist.gradename}></p>
+        <div class="chart">
+          <div class="line">
+            <{foreach from=$grade.gradeList item=grades key=gkey name=name}>
+            <div class="line-fragment">
+              <span class="grade <{if $grades.current == 'true'}>on big<{/if}> <{if $grades.past}>on<{/if}><{if $env.foreach.name.first }> first <{elseif $env.foreach.name.last}>last<{/if}>">V<{$gkey+1}></span>
+              <div class="pop-wrap">
+              <{if !$env.foreach.name.last}>
+              <b class="<{if $grades.past}>on full<{else}>on<{/if}> "><em style="<{if $grades.current == 'true'}> width:<{$grade.userlist.percentage}>%<{/if}>"></em></b>
+              <{/if}>
+              <div class="grow-pop" style="left: <{$grade.userlist.percentage}>%; <{if $grades.current == 'true'}>display:block<{/if}>">
+                <p>
+                  <span class="l1">当前成长值：<{$grade.userlist.experience}></span>
+                  <span class="l2">到下一等级：<{$grade.userlist.lackExp}></span>
+                </p>
+                <i class="icon-location"></i>
+              </div>
+            </div>
+            </div>
+            <{/foreach}>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      会员成长体系
+    </div>
+    <div class="membercenter-box-bd">
+      <div id='holder'></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      成长记录
+      <div class="membercenter-box-right">
+        <span class="num">共<em><{$count}></em>条记录</span>
+        <{pagers data=$pagers type="mini"}>
+      </div>
+    </div>
+    <div class="membercenter-box-bd">
+      <{if !$experiencedata}>
+      <div class="no-content2">
+        <span class="symbol"><i class="icon icon-doc-flash"></i><span class="txt">暂无记录</span></span>
+      </div>
+      <{else}>
+      <table class="item-table">
+        <colgroup>
+          <col width="30%">
+          <col width="30%">
+          <col width="20%">
+          <col width="20%">
+        </colgroup>
+        <thead>
+          <tr>
+            <td>记录时间</td>
+            <td>行为</td>
+            <td>成长值</td>
+            <td>备注</td>
+          </tr>
+        </thead>
+        <tbody>
+          <{foreach from=$experiencedata item=experience}>
+          <tr>
+            <td>
+              <{$experience.modified_time|cdate}>
+            </td>
+            <td>
+              <{$experience.behavior}>
+            </td>
+            <td>
+              <{if $experience.behavior_type == "obtain"}>+<{elseif $experience.behavior_type == "consume"}>-<{/if}><{$experience.experience}>
+            </td>
+            <td>
+              <{$experience.remark}>
+            </td>
+          </tr>
+          <{/foreach}>
+        </tbody>
+      </table>
+      <{pagers data=$pagers}>
+      <{/if}>
+    </div>
+  </div>
+
+  <{script app="topc" src="raphael.js"}>
+  <script>
+    var a = function () {
+      var paper = new Raphael(document.getElementById('holder'), 1000, 500);
+
+      /*直线*/
+      var l1 = paper.path("M70 390 L195 380");
+      l1.attr({"stroke": "#F7EB00","stroke-width": 3});
+      var l2 = paper.path("M195 380 L315 365");
+      l2.attr({"stroke": "#F4B600","stroke-width": 3});
+      var l3 = paper.path("M315 365 L440 340");
+      l3.attr({"stroke": "#F59000","stroke-width": 3});
+      var l4 = paper.path("M440 340 L560 285");
+      l4.attr({"stroke": "#F46D01","stroke-width": 3});
+      var l5 = paper.path("M560 285 L680 235");
+      l5.attr({"stroke": "#F23B01", "stroke-width": 3});
+      var l6 = paper.path("M680 235 L805 155");
+      l6.attr({"stroke": "#DE294A","stroke-width": 3});
+      var l7 = paper.path("M805 155 L925 70");
+      l7.attr({"stroke": "#A63FF0","stroke-width": 3});
+
+      var arrow = paper.path("M925 70 L950 40").attr({'arrow-end':'block-wide-long',stroke: "#6D3CEF","stroke-width": 3});
+
+      /*圆点*/
+      var c1 = paper.circle(70, 390, 5);
+      c1.attr({"stroke": "#F7EB00","stroke-width": 3,"fill": "#fff"});
+      var c2 = paper.circle(195, 380, 5);
+      c2.attr({"stroke": "#F4B600","stroke-width": 3,"fill": "#fff"});
+      var c3 = paper.circle(315, 365, 5);
+      c3.attr({"stroke": "#F59000","stroke-width": 3,"fill": "#fff"});
+      var c4 = paper.circle(440, 340, 5);
+      c4.attr({"stroke": "#F46D01","stroke-width": 3,"fill": "#fff"});
+      var c5 = paper.circle(560, 285, 5);
+      c5.attr({"stroke": "#F23B01","stroke-width": 3,"fill": "#fff"});
+      var c6 = paper.circle(680, 235, 5);
+      c6.attr({"stroke": "#DE294A","stroke-width": 3,"fill": "#fff"});
+      var c7 = paper.circle(805, 155, 5);
+      c7.attr({"stroke": "#A63FF0","stroke-width": 3,"fill": "#fff"});
+      var c8 = paper.circle(925, 70, 5);
+      c8.attr({"stroke": "#6D3CEF","stroke-width": 3,"fill": "#fff"});
+
+      /*曲线图*/
+      var ln = paper.path('M20 410 L980 410').attr('stroke', '#efb31d');
+
+      var bz1 = paper.path('M17,410c20.7-11,71.7-15.5,112,0').attr({'fill': '0-#F7EB00-#F6DD01:100', 'stroke': 'none'});
+      var bz2 = paper.path('M139,410c8,0,29-20,56-20s48,20,56,20').attr({'fill': '0-#F4B600-#F5A700:100', 'stroke': 'none'});
+      var bz3 = paper.path('M261,410c12,0,26-36,56-36s44.8,36,56,36').attr({'fill': '0-#F59000-#F48901:100', 'stroke': 'none'});
+      var bz4 = paper.path('M383,410c29-1.8,30-56,56-56s26,54,56,56').attr({'fill': '0-#F46D01-#F15500:100', 'stroke': 'none'});
+      var bz5 = paper.path('M505,410c29-3.6,21-110,56-110s26,106.4,56,110').attr({'fill': '0-#F23B01-#F12A00:100', 'stroke': 'none'});
+      var bz6 = paper.path('M627,410c29-5.4,13.7-160,56-160s26,154.7,56,160').attr({'fill': '0-#DE294A-#C936A9:100', 'stroke': 'none'});
+      var bz7 = paper.path('M749,410c29-8,13.7-240,56-240s26,232,56,240').attr({'fill': '0-#A63FF0-#883DEF:100', 'stroke': 'none'});
+      var bz8 = paper.path('M871,410c29-12.5,13.7-320,56-320s26,327.5,56,320').attr({'fill': '0-#6D3CEF-#603CEE:100', 'stroke': 'none'});
+
+      /*x轴标签*/
+      var r1 = paper.circle(70, 432, 14).attr({'fill': '#F7EB00', 'stroke': 'none'});
+      var v1 = paper.text(0, 0, 'V1').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 70 432.7']);
+      var r2 = paper.circle(195, 432, 14).attr({'fill': '#F4B600', 'stroke': 'none'});
+      var v2 = paper.text(0, 0, 'V2').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 195 432.7']);
+      var r3 = paper.circle(315, 432, 14).attr({'fill': '#F59000', 'stroke': 'none'});
+      var v3 = paper.text(0, 0, 'V3').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 315 432.7']);
+      var r4 = paper.circle(440, 432, 14).attr({'fill': '#F46D01', 'stroke': 'none'});
+      var v4 = paper.text(0, 0, 'V4').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 440 432.7']);
+      var r5 = paper.circle(565, 432, 14).attr({'fill': '#F23B01', 'stroke': 'none'});
+      var v5 = paper.text(0, 0, 'V5').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 565 432.7']);
+      var r6 = paper.circle(685, 432, 14).attr({'fill': '#DE294A', 'stroke': 'none'});
+      var v6 = paper.text(0, 0, 'V6').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 685 432.7']);
+      var r7 = paper.circle(810, 432, 14).attr({'fill': '#A63FF0', 'stroke': 'none'});
+      var v7 = paper.text(0, 0, 'V7').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 810 432.7']);
+      var r8 = paper.circle(930, 432, 14).attr({'fill': '#6D3CEF', 'stroke': 'none'});
+      var v8 = paper.text(0, 0, 'V8').attr({'fill': '#ffffff'}).transform(['m1 0 0 1 930 432.7']);
+    };
+
+//图表
+var gradeDataJson=<{$grade.gradeList|json_encode}>;
+var data = [];
+var colors = [
+    ['#F7EB00', '0-#FFECA9-#FFD02A:100','#F7EB00'],
+    ['#FFECA9', '0-#F4B600-#F5A700:100','#F4B600'],
+    ['#F4B600', '0-#F59000-#F48901:100','#F59000'],
+    ['#F59000', '0-#F46D01-#F15500:100','#F46D01'],
+    ['#F46D01', '0-#F23B01-#F12A00:100','#F23B01'],
+    ['#F23B01', '0-#DE294A-#C936A9:100','#DE294A'],
+    ['#DE294A', '0-#A63FF0-#883DEF:100','#A63FF0'],
+    ['#A63FF0', '0-#6D3CEF-#603CEE:100','#603CEE']
+];
+gradeDataJson.forEach(function(d, i) {
+    data[i] = ['V' + (i + 1), d.experience];
+    data[i].push.apply(data[i], colors[i]);
+});
+createMap('holder', {
+  data: data
+});
+function createMap(id, options) {
+  var cs = [1180, 430],
+      data = options.data,
+      length = data.length >>> 0,
+      paper = [id].concat(cs),
+      lw = 1180 - 60,
+      lx = (cs[0] - lw) / 2,
+      ly = cs[1] - 40,
+      bzw = 112,
+      bzh,
+      maxh = cs[1] - 110 - 5,
+      px = maxh / data[length - 1][1],
+      spac = (lw - bzw * length) / (length - 1),
+      line = ['M', lx, ly, 'H', lw + lx],
+      bz,
+      cr = 14,
+      cx,
+      cy = ly + cr + 8,
+      curve,
+      dot,
+      cr2=5;
+
+  // Creates canvas
+  var paper = Raphael.apply(null, paper);
+
+  var ln = paper.path(line).attr('stroke', '#efb31d');
+  var prevPos = [];
+
+  data.forEach(function(d, i) {
+    bzh = px * d[1] + 5;
+    bz = [
+    'M',
+    (bzw + spac) * i + lx,
+    ly,
+    'c',
+    (i * 4.1 + 2.6),
+    0.1 * i,
+    32 - i * 4,
+    -bzh,
+    56,
+    -bzh,
+    's',
+    i < 3 ? 48 : 26,
+    bzh,
+    56,
+    bzh
+    ];
+
+  cx = (bzw + spac) * i + bzw / 2 + lx;
+
+  if(i > 0){
+    curve = [
+      'M',
+      prevPos[0],
+      prevPos[1],
+      'L',
+      cx,
+      ly - bzh - 15
+        ]
+        paper.path(curve).attr({"stroke": d[2] || "#F7EB00","stroke-width": 3}).toBack();
+  }
+  prevPos = [cx,ly - bzh - 15];
+
+  dot = ly - bzh - 15;
+
+  paper.path(bz).attr({'fill': d[3] || '#ACEAEA', 'stroke': 'none'});
+  paper.circle(cx, cy, cr).attr({'fill': d[4] || '#A4D6FF', 'stroke': 'none'});
+  paper.text(cx, cy + 0.7, d[0]).attr({'fill': '#ffffff'});
+  paper.text(cx, ly - bzh - 45, d[1]).attr({'fill':  d[4] || '#A4D6FF','font-size':16});
+  var r1 = paper.circle(cx, dot, cr2).attr({'fill': '#ffffff', 'stroke': d[4] || '#A4D6FF',"stroke-width": 3,});
+  });
+}
+</script>
+
+

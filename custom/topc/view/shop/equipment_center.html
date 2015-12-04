@@ -1,0 +1,49 @@
+<!-- 右边版块 -->
+<div class="maxmain-right r">
+    <!-- 产品 -->
+    <!-- 滑动展示一 -->
+    <div class="maxpr-solid maxproduct maxproduct-gufei">
+        <div class="max-p-title t2">
+            <div class="xian"></div>
+            <div class="h3">成品信息</div><i></i>
+
+            <div class="max-tabs-top">
+                <ul>
+                    <li class="active first" ><span>成品</span></li>
+                    <li class="last"><span>生产设备</span></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="max-tabs-body">
+            <div class="maxcomon">
+                <ul>
+                    <{foreach from=$productList item=product}>
+                    <li><a href="" title="" style="cursor: default;"><img src="<{$product.image_default_id}>" alt="" /><span><{$product.title}>
+		<{if $nologin!=1}>
+                        <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{else}>
+                        <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$product.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{/if}>
+                    </span></a></li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <div class="maxcomon">
+                <ul>
+                    <{foreach from=$equipmentList item=equipment}>
+                    <li><a href="" title="" style="cursor: default;"><img src="<{$equipment.image_default_id}>" alt="" /><span><{$product.title}>
+		<{if $nologin!=1}>
+                        <a href="<{url action=topc_ctl_passport@signin next_page=$next_page}>" class="favorite-btn on"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{else}>
+                        <a href="<{url action=topc_ctl_collect@ajaxFav}>" class="favorite-btn on" data-ajax-data="item_id=<{$equipment.item_id}>" rel="_request"><i class="icon icon-heart"></i>收藏商品</a>
+                        <{/if}>
+                    </span></a></li>
+                    <{/foreach}>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- 产品 -->
+</div>

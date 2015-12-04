@@ -1,0 +1,103 @@
+<div class="col-lg-13 box">
+  <div class="membercenter-box">
+    <div class="membercenter-box-hd">
+      发起投诉
+    </div>
+    <form action="<{url action=topc_ctl_member_complaints@complaintsCi}>" method="post" id="ajaxForm" class="form-horizontal">
+      <input type="hidden" name="oid" value="<{$oid}>">
+      <div class="membercenter-box-bd">
+        <div class="orderdtl-bd">
+          <ul>
+            <li class="form-row">
+              <label for="" class="form-label"><em class="text-danger">*</em>请选择投诉类型</label>
+              <span class="form-act">
+                <select name="complaints_type" >
+                  <option value="">请选择</option>
+                  <option value="商品问题">商品问题</option>
+                  <option value="配送问题">配送问题</option>
+                  <option value="支付问题">支付问题</option>
+                  <option value="促销活动问题">促销活动问题</option>
+                  <option value="账户问题">账户问题</option>
+                  <option value="发票问题">发票问题</option>
+                  <option value="系统问题">系统问题</option>
+                  <option value="退货/换货问题">退货/换货问题</option>
+                  <option value="表扬/投诉工作人员">表扬/投诉工作人员</option>
+                  <option value="其他">其他</option>
+                </select>
+              </span>
+            </li>
+            <li class="form-row">
+              <label for="" class="form-label"><em class="text-danger">*</em>联系方式</label>
+              <span class="form-act">
+                <input class="x-input input-xln action-account-check" type="text" name="tel" id="">
+              </span>
+            </li>
+            <li class="form-row">
+              <label for="" class="form-label">问题描述</label>
+              <span class="form-act">
+                <textarea name="content" id="" cols="30" rows="6" required class="comment"></textarea>
+                <div class="letter-limit">还可以输入<span>300</span>字</div>
+              </span>
+            </li>
+            <li class="form-row">
+              <label for="" class="form-label">上传凭证（选填）</label>
+              <span class="form-act">
+                <div class="score-imgs inbox">
+                  <form method="post" action="" enctype="multipart/form-data">
+                    <div class="images-uploader">
+                      <div class="handle img-thumbnail action-upload">
+                        <input type="file" name="image_url[]" multiple accept="image/*" data-size="2048000" data-max="5" data-remote="<{url action=toputil_ctl_image@uploadImages from=user}>" class="action-file-input">
+                        <span class="icon-add"></span>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="imgs-key">上传凭证：每张图片大小不超过2M，支持JPG、PNG格式，最多上传5张</div>
+                </div>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="orderdtl-box">
+          <div class="orderdtl-bd text-center">
+            <button type="submit" class="btn btn-import"><span><span>提交投诉</span></span></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $(function(){
+
+    limitContent('.comment', 300);
+    //限制评论输入字数
+    function limitContent(content, length) {
+      $('.letter-limit').find('span').text(length);
+      $(content).keydown(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+        numView.text(remaining);
+      });
+
+      $(content).keyup(function(e){
+        var numView = $(this).parent().find('.letter-limit').find('span');
+        var remaining = length - $(this).val().length;
+        numView.text(remaining);
+        if(remaining < 0){
+          numView.css('color', '#ff0000');
+          numView.css('font-weight', 'bold');
+        }else{
+          numView.css('color', '#aaa');
+          numView.css('font-weight', 'normal');
+        }
+      });
+    };
+  });
+</script>

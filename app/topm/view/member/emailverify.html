@@ -1,0 +1,31 @@
+<div class="mobile-bound shop">
+  <{include file="topm/common/top.html"}>
+  <div class="main" id="main">
+    <ul class="form-vertical">
+      <li class="form-row mobile">
+        <span class="form-act">
+          <div class="unbind-module">
+            <{if $userInfo.email && $userInfo.email_verify}>
+            <p class="title">已绑定邮箱号：</p>
+            <p class="info"> <{$userInfo.email}></p>
+            <{else}>
+            <p class="title">已注册邮箱号：</p>
+            <p class="info"> <{$userInfo.email}></p>
+            <{/if}>
+          </div>
+        </span>
+      </li>
+      <li class="form-row commit">
+          <{if $userInfo.email}>
+          <a href="<{url action=topm_ctl_member@verify verifyType=email type=update}>" class="ui-btn-warning ui-btn  btn-block">绑定新邮箱号
+          </a>
+          <{/if}>
+      </li>
+      <li class="form-center-row">
+        <{if $userInfo.email && $userInfo.email_verify}>
+          <a href="<{url action=topm_ctl_member@unVerifyTwo verifyType=email op=delete}>">解绑邮箱</a>
+        <{/if}>
+      </li>
+    </ul>
+  </div>
+</div>

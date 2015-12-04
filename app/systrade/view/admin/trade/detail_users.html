@@ -1,0 +1,28 @@
+<div class="tableform">
+  <div class="division">
+    <table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <th><label><{t}>用户姓名：<{/t}></label></th>
+        <td><{$user.login_account|escape:'html'}></td>
+        <th><label><{t}>性别：<{/t}></label></th>
+        <td><{if $user.sex == 1}><{t}>男<{/t}><{elseif $user.sex == 0}><{t}>女<{/t}><{/if}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>出生日期：<{/t}></label></th>
+        <td><{$user.birthday|cdate:FDATE}></td>
+        <th><label><{t}>注册日期：<{/t}></label></th>
+        <td><{$user.regtime|cdate:FDATE}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>手机：<{/t}></label></th>
+        <td><{$user.mobile}></td>
+        <th><label>E-mail：</label></th>
+        <td><{$user.email}></td>
+      </tr>
+      <tr>
+        <th><label><{t}>注册IP：<{/t}></label></th>
+        <td><{$user.reg_ip}></td>
+      </tr>
+    </table>
+  </div>
+</div>

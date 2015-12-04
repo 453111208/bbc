@@ -1,0 +1,127 @@
+
+<form class="form-horizontal" action="<{url action=topshop_ctl_shop_decorate@save widgets=nav dialog=add}>" method="post" id="add_nav_form"  role="form" data-validate-onsuccess="ajaxSubmitAddNav" >
+  <input type="hidden" name='widgets_id' value=<{$widgets_id}> >
+  <input type="hidden" name="showdialog" value="default" >
+  <div class="modal-body">
+    <span class="text-red">最多配置8个导航菜单</span>
+    <hr>
+    <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <{if !$data.editType }>
+        <li class="active"><a href="#cat" role="tab" data-toggle="tab">店铺分类</a></li>
+        <li class=""><a href="#custom" role="tab" data-toggle="tab">自定义链接</a></li>
+        <{else}>
+          <{if $data.editType == 'cat'}>
+          <li class="active"><a href="#cat" role="tab" data-toggle="tab">店铺分类</a></li>
+          <{/if}>
+          <{if $data.editType == 'link'}>
+          <li class="active"><a href="#custom" role="tab" data-toggle="tab">自定义链接</a></li>
+          <{/if}>
+        <{/if}>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade  <{if $data.editType != 'link'}> active in<{/if }>" id="cat">
+          <div data-spy="scroll" data-target="#navbar-example" data-offset="0">
+            <span>&nbsp;</span>
+            <table class="table table-bordered table-hover table-shopcat">
+              <colgroup>
+                <col class="col-md-0">
+                <col class="col-md-12">
+              </colgroup>
+              <thead>
+                <tr>
+                  <td></td>
+                  <td><{t}>分类名称<{/t}></td>
+                </tr>
+              </thead>
+              <{if $data.cat}>
+              <tbody>
+                <{foreach from=$data.cat item=item name='name' key=key}>
+                <tr>
+                  <{if $item.cat_id == $data.selectCat[$item.cat_id].cat_id }>
+                  <input type="hidden" name="params[cat][<{$item.cat_id}>][order_sort]" value="<{$data.selectCat[$item.cat_id].order_sort|default:'0'}>">
+                  <{/if}>
+                  <td><input type="checkbox" name="params[cat][<{$item.cat_id}>][cat_id]" value="<{$item.cat_id}>" class="main-check" <{if $item.cat_id == $data.selectCat[$item.cat_id].cat_id }>checked <{/if}> > </td>
+                  <td class="form-group"><{$item.cat_name}></td>
+                </tr>
+                <{foreach from=$item.children item=row name=name key=key}>
+                <tr>
+                  <{if $row.cat_id == $data.selectCat[$item.cat_id].children[$row.cat_id].cat_id }>
+                  <input type="hidden" name="params[cat][<{$item.cat_id}>][children][<{$row.cat_id}>][order_sort]" value="<{$data.selectCat[$item.cat_id].children[$row.cat_id].order_sort}>">
+                  <{/if}>
+                  <td><input type="checkbox" name="params[cat][<{$item.cat_id}>][children][<{$row.cat_id}>][cat_id]" class="sub-check" value="<{$row.cat_id}>" <{if $row.cat_id == $data.selectCat[$item.cat_id].children[$row.cat_id].cat_id }>checked <{/if}> ></td>
+                  <td class="form-group">
+                    <i>&nbsp;&nbsp;&nbsp;</i>
+                    <i class="icon icon-plot"></i>
+                    <{$row.cat_name}>
+                  </td>
+                </tr>
+                <{/foreach}>
+                <{/foreach}>
+              </tbody>
+              <{else}>
+              <tbody id="none_cat">
+                <tr class="none-information">
+                  <td colspan="5"><a href="<{url action=topshop_ctl_item_cat@index}>" target="_blank" >没有分类，请先添加店铺分类</a></td>
+                </tr>
+              </tbody>
+              <{/if}>
+            </table>
+          </div>
+        </div>`
+        <div class="tab-pane fade <{if $data.editType == 'link'}> active in<{/if }>" id="custom">
+          <span>&nbsp;</span>
+          <{if $data.editType == 'link'}>
+          <input type="hidden" name="params[old_name]" class="form-control" value="<{$data.link.name}>" >
+          <input type="hidden" name="params[link][order_sort]" class="form-control" value="<{$data.link.order_sort}>" >
+          <{/if}>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"><{t}>链接名称<{/t}></label>
+            <div class="col-sm-8">
+              <input type="text" name="params[link][name]" class="form-control" value="<{$data.link.name}>" required placeholder="<{t}>导航栏标题名称<{/t}>" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"><{t}>链接地址<{/t}></label>
+            <div class="col-sm-8">
+              <input type="text" name="params[link][url]" class="form-control" value="<{$data.link.url}>" required placeholder="http://<{t}>只能为站内链接<{/t}>" >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer text-center">
+    <button type="submit" class="btn btn-primary"><{t}>保存<{/t}></button>
+    <button type="button" class="btn btn-default cancel"><{t}>取消<{/t}></button>
+  </div>
+</form>
+<script>
+  $('#add_nav_form').Validator({
+      icons: {
+          valid:      'icon icon-checkmark-a',
+          invalid:    'icon icon-alert',
+          validating: 'icon icon-loading-c'
+      }
+  });
+
+  $('.cancel').click(function(){
+    location.href= "<{url action=topshop_ctl_shop_decorate@dialog widgets=nav dialog=default }>";
+  })
+
+  function ajaxSubmitAddNav (e) {
+    var form = e.target;
+    e.preventDefault();
+    $.post(form.action, $(form).serialize(), function(rs) {
+      if(rs.error) {
+        $('#messagebox').message(rs.message);
+        return;
+      }
+      if(rs.success) {
+        $('#messagebox').message(rs.message, 'success');
+        setTimeout(function(){location.href=rs.redirect;}, 500);
+      }
+    });
+  }
+</script>

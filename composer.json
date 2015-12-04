@@ -1,0 +1,48 @@
+{
+	"name": "shopex/luckymall",
+	"description": "",
+	"keywords": ["bbc", "b2b2c", "luckymall"],
+	"license": "proprietary",
+    "forum": "bbs.ec-os.net",
+	"require": {
+        "php": ">=5.4.0",
+	    "filp/whoops": "1.1.*",
+		"illuminate/container": "4.2.*",
+		"symfony/debug": "2.5.*",
+		"symfony/routing": "2.5.*",
+        "symfony/http-kernel": "2.5.*",
+        "symfony/http-foundation": "2.5.*",
+        "ircmaxell/password-compat": "~1.0",
+	    "symfony/finder": "2.5.*",
+        "symfony/routing": "2.5.*",
+        "doctrine/dbal": "2.5.*",
+        "patchwork/utf8": "1.1.*",
+        "shopex/prism": "1.2.*",
+        "symfony/console": "2.6.*",
+        "monolog/monolog": "~1.11",
+        "qiniu/php-sdk": "7.0.*",
+		"endroid/qrcode": "1.5.*",
+        "guzzlehttp/guzzle": "5.3.*"
+	},
+	"autoload": {
+		"classmap": [
+		],
+        "files": [
+            "app/base/ego/helpers.php",
+            "app/base/lib/support/helpers.php",
+            "app/base/lib/foundation/helpers.php"
+        ]
+	},
+	"scripts": {
+        "post-install-cmd": [
+        ],
+        "post-update-cmd": [
+        ],
+		"post-create-project-cmd": [
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+    },
+    "minimum-stability": "stable"
+}

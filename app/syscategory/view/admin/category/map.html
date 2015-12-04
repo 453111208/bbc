@@ -1,0 +1,204 @@
+<form action="?app=syscategory&ctl=admin_cat&act=updateSort" id="catEditor" method="post">
+    <{area inject=".mainHead"}>
+    <h2 class="head-title"><{t}>商品分类<{/t}></h2>
+    <div class="gridlist-action">
+        <{assign var=addcat value="添加一级分类"|t:'syscategory'}>
+        <{assign var=editsort value="编辑排序"|t:'syscategory'}>
+        <{assign var=savesort value="保存排序"|t:'syscategory'}>
+        <{assign var=exportfee value="导出资费表"|t:'syscategory'}>
+        <{button app="desktop" label=$addcat icon="btn_add.gif" onclick="new Dialog('?app=syscategory&ctl=admin_cat&act=add',{title:'{$addcat}',width:550,height:300})" }>
+        <{button app="desktop" tmplabel=$savesort label=$editsort  id="edit-catsort"}>
+
+        <{if $tree_number<=1000}>
+        <{button app="desktop" label="展开分类"|t:'syscategory' id="showCat-handle"}> <{button app="desktop" label="收起分类"|t:'syscategory'  id="hideCat-handle" }>
+        <{/if}>
+        &nbsp;
+        <{button app="desktop" label=$exportfee onclick="new Dialog('?app=importexport&ctl=admin_export&act=export_view&_params[mdl]=syscategory_mdl_tariff&supportType=xls',{title:'{$exportfee}',width:400,height:170})"}>
+    </div>
+    <div class="Node">
+        <div class='gridlist-head mainHead '>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="20%"><{t}>分类名称<{/t}></td>
+                    <td width="30%"><{t}>排序<{/t}></td>
+                    <td width="35%"><{t}>操作<{/t}></td>
+                </tr>
+            </table>
+       </div>
+    </div>
+    <{/area}>
+
+    <div class="Node-body">
+        <div id="cat_tree" class='gridlist catlist'>
+            <{foreach from=$tree item=item name="item"}>
+            <{if $item.level<3}>
+            <div style="padding:0" depath="<{$item.level}>" class="clear_cat row" cid="<{$item.cat_id}>" pid="<{$item.pid}>">
+                <div class='row-line' style="padding:0">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="20%" style="vertical-align:top">
+                                <div style="padding-left:<{$item.level*15}>px;text-align:left">
+                                    <{if $tree_number<=1000}>
+                                    <{if $item.level=='1'}>
+                                    <span class="handle-icon" style='width:12px;line-height:12px; height:12px;overflow:hidden;display:inline-block;padding:0;cursor:pointer'>
+                                        <{img src="bundle/handle-hide.gif" alt="收起子分类"|t:'syscategory' title="收起子分类"|t:'syscategory' class="handle-hide" app='desktop'}>
+                                        <{img src="bundle/handle-show.gif" alt="收起子分类"|t:'syscategory' title="展开子分类"|t:'syscategory' class="handle-show" app='desktop'}>
+                                    </span>
+                                    <{/if}>
+                                    <{/if}>
+                                    <a href="?app=syscategory&ctl=admin_cat&act=edit&p[0]=<{$item.cat_id}>" target="dialog::{title:'<{t}>编辑分类<{/t}>', width:500, height:300}">
+                                        <{$item.cat_name}>
+                                    </a>
+                                </div>
+                            </td>
+                            <td width="30%" align="center" style="vertical-align:top">
+                                <input class="_x_ipt" type="number" size="5"  name="order_sort[<{$item.cat_id}>]" value="<{$item.order_sort|default:0}>" vtype="unsigned" style="display:none">
+                                <b><{$item.order_sort|default:0}></b>
+                            </td>
+                            <td width="35%" style="vertical-align:top">
+                                <div class="clearfix">
+                                    <div class="span-auto">&nbsp;</div>
+                                    <div class="span-auto">&nbsp;</div>
+                                    <div class="span-auto">
+                                        <{if $item.level=='1'}>
+                                        <span class="opt" onClick="new Dialog('?app=syscategory&ctl=admin_cat&act=add&p[0]=<{$item.cat_id}>', {title:'<{t}>添加二级分类<{/t}>', width:550, height:300})">
+                                            <{img src="bundle/addcate.gif" border="0" alt="添加二级分类"|t:'syscategory' app='desktop'}>
+                                            <{t}>添加二级分类<{/t}>
+                                        </span>
+                                        <{/if}>
+                                        <{if $item.level=='2'}>
+                                        <span class="opt" onClick="new Dialog('?app=syscategory&ctl=admin_cat&act=add&p[0]=<{$item.cat_id}>', {title:'<{t}>添加三级分类<{/t}>', width:550, height:300})">
+                                            <{img src="bundle/addcate.gif" border="0" alt="添加三级分类"|t:'syscategory' app='desktop'}>
+                                            <{t}>添加三级分类<{/t}>
+                                        </span>
+                                        <{/if}>
+                                    </div>
+                                    <div class="span-auto">
+                                        <span class="opt" onClick="new Dialog('?app=syscategory&ctl=admin_cat&act=edit&p[0]=<{$item.cat_id}>',{title:'<{t}>编辑分类<{/t}>', width:580, height:300})">
+                                            <{img src="bundle/editcate.gif" border="0" alt="编辑"|t:'syscategory'  app='desktop'}>
+                                            <{t}>编辑<{/t}>
+                                        </span>
+                                    </div>
+                                    <div class="span-auto">
+                                        <span class="opt" onclick="deleteRow('?app=syscategory&ctl=admin_cat&act=toRemove&p[0]=<{$item.cat_id}>',event)">
+                                            <{img src="bundle/delecate.gif" border="0" alt="删除"|t:'syscategory' app='desktop'}>
+                                            <{t}>删除<{/t}>
+                                        </span>
+                                    </div>
+                                    
+                                    <{if $item.level=='2'}>
+                                    <div class="span-auto">
+                                        <span class="opt" onclick='W.page("?app=syscategory&ctl=admin_cat&act=leaf&parent_id=<{$item.cat_id}>&dialog=true")'><{img src="bundle/showcate.gif" border="0" alt="查看二级分类下三级分类"|t:'syscategory' app='desktop'}><{t}>查看三级分类<{/t}></span>
+                                    </div>
+                                    <div class="span-auto">
+                                        <a class="opt" target="_blank" href='?app=desktop&amp;act=alertpages&amp;goto=%3Fapp%3Dsyscategory%26ctl%3Dadmin_cat%26act%3Dleaf%26parent_id%3D<{$item.cat_id}>%26nobuttion%3D1'><{img src="bundle/showcate.gif" border="0" alt="查看二级分类下三级分类"|t:'syscategory' app='desktop'}><{t}>三级分类<{/t}></a>
+                                    </div>
+                                    <{/if}>
+                                     <!-- <div class="span-auto">
+                                      <span class="opt" onclick='W.page("?app=syscategory&ctl=admin_goods&act=index&filter[cat_id]=<{$item.link.cat_id.v}>")'><{img src="bundle/showcate.gif" border="0" alt="查看此分类下商品"|t:'syscategory' app='desktop'}><{t}>查看商品<{/t}></span>
+                                     </div>
+                                     <div class="span-auto last">
+                                      <span class="opt" onclick="window.open('<{$item.url}>')"><{img src="bundle/zoom_btn.gif" border="0" alt="跳转前台查看该"|t:'syscategory' app='desktop'}><{t}>预览<{/t}></span>
+                                     </div> -->
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <{/if}>
+            <{/foreach}>
+        </div>
+    </div>
+</form>
+
+<script>
+
+function deleteRow(act,event){
+    e=$(new Event(event).stop().target);
+    var row=e.getParent('.row');
+
+    if(confirm('<{t}>您确定要删除该分类？<{/t}>')){
+        W.page(act,{
+            method:'get',
+            update:'messagebox',
+            onComplete:function(re){
+                if(re.contains('successSplash')){row.remove();}
+            }
+        });
+    }
+}
+
+<{if $tree_number<=1000}>
+void function(){
+   $E('#hideCat-handle').addEvent('click',function(){
+        $ES('#cat_tree .clear_cat').each(function(e){
+            if(e.get('depath')>1){
+                e.setStyles({'display':'none'});
+            }
+        });
+        $ES('#cat_tree .handle-hide').hide();
+        $ES('#cat_tree .handle-show').show();
+    });
+
+    $E('#showCat-handle').addEvent('click',function(){
+        $ES('#cat_tree .clear_cat').each(function(e){
+            if(e.get('depath')>1){
+                e.setStyles({'display':''});
+            }
+        });
+        $ES('#cat_tree .handle-hide').show();
+    });
+
+    $('cat_tree').addEvent('click',function(e){
+        if(!e.target.className.match(/handle-/i))return;
+        var handle=$(e.stop().target);
+        var eventRow=handle.getParent('.row');
+        var visible=handle.hasClass('handle-show')?'':'none';
+        if(visible=='none'){
+             handle.hide().getNext().show();
+        }else{
+             handle.hide().getPrevious().show();
+        }
+        flode(eventRow,visible);
+    });
+
+    $('edit-catsort').addEvent('click',function(){
+        var _ctext = this.get('text').trim();
+        if(_ctext=='<{t}>编辑排序<{/t}>'){
+            $$('#cat_tree input[vtype=unsigned]').each(function(item){
+                item.style.cssText = "";
+                item.getNext().setStyle('display','none');
+            });
+            this.getElement('span span').set({'text':'<{t}>保存排序<{/t}>','styles':{color:'#ff3300'}})
+         }else{
+            $('catEditor').fireEvent('submit',{stop:function(){}});
+        }
+    });
+
+    function flode(eventRow,visible){
+        var cid=eventRow.get('cid');
+        var pid=eventRow.get('pid');
+        var depath=eventRow.get('depath');
+
+        eventRow.getAllNext('div[pid='+cid+']').each(function(row){
+            if(visible=='none'){
+                row.hide();
+                var obj=row.getElements('.handle-icon img');
+                if(obj.length>1){
+                    flode(row,visible);
+                }
+            }else{
+                row.show();
+                var obj=row.getElements('.handle-icon img');
+                if(obj.length>1){
+                    var vis=(obj[0].getStyle('display')=='none'?'none':'inline');
+                    flode(row,vis);
+                }
+            }
+        });
+    }
+}();
+<{/if}>
+
+</script>

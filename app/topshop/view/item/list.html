@@ -1,0 +1,187 @@
+<div class="panel-heading">
+  <h4>商品查询</h4>
+  <form class="form-horizontal" action="<{url action=topshop_ctl_item@searchItem}>" method="post" >
+
+    <div class="form-group">
+      <div class="col-xs-6">
+          <span class="order-form-w1">发布终端：</span>
+          <select name="use_platform" class="x-input">
+            <option value="0">全部</option>
+            <option value="1">pc端</option>
+            <option value="2">wap端</option>
+          </select>
+          <input type="hidden" value="<{$filter.status}>" id="filter_status">
+        </div>
+      <div class="col-xs-6">
+        <span class="order-form-w1">商品名称：</span><input class="x-input" type="text" name="item_title">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-12">
+        <span class="order-form-w1">价格区间：</span>
+        <input  type="text" data-validate-number="true" min="0" name="min_price">&nbsp;-
+        <input  type="text" data-validate-number="true" min="0" name="max_price">
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">提交</button>
+      <button type="reset" class="btn btn-default">重置</button>
+    </div>
+  </form>
+</div>
+<form action="" method="post" role="form">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="<{if !$status }>active<{/if}>"><a href="<{url action=topshop_ctl_item@itemList}>">全部</a></li>
+    <li role="presentation" class="<{if $status=='onsale'}>active<{/if}>"><a href="<{url action=topshop_ctl_item@itemList status=onsale}>">上架中</a></li>
+    <li role="presentation" class="<{if $status=='instock'}>active<{/if}>"><a href="<{url action=topshop_ctl_item@itemList status=instock}>">仓库中</a></li>
+  </ul>
+  <br>
+  <p>
+    <span class="btn btn-default"><input type="checkbox" name="" id="selectAll"> <label for="selectAll">当前页全选</label></span>
+    <button type="button" class="btn btn-default text-blue" id="action-instock">
+      <i class="icon-arrow-right"></i>
+      下架
+    </button>
+    <button type="button" class="btn btn-default text-blue" id="action-onsale">
+      <i class="icon-arrow-left"></i>
+      上架
+    </button>
+    <button type="button" class="btn btn-default text-red act-delall" id="action-remove">
+      <i class="glyphicon glyphicon-remove"></i>
+      删除
+    </button>
+  </p>
+  <table class="table table-primary table-hover table-goods">
+    <thead>
+      <tr>
+        <td class="col-checkbox"></td>
+        <td class="col-name">商品名称</td>
+        <td>价格(元)</td>
+        <td>总库存</td>
+        <td>全部状态</td>
+        <td>发布时间</td>
+        <td>最后编辑时间</td>
+        <td class="text-center">操作</td>
+      </tr>
+    </thead>
+    <{if $item_list}>
+    <tbody id="data_node">
+      <{foreach from=$item_list item=gitem}>
+      <tr>
+        <td>
+          <label class="checkbox-inline">
+            <input type="checkbox" name=item_ids value=<{$gitem.item_id}>>&nbsp;
+          </label>
+        </td>
+        <td>
+          <div class="goods">
+            <a href="<{url action=topc_ctl_item@index item_id=$gitem.item_id}>" target="_blank">
+            <img src="<{$gitem.image_default_id|default:$image_default_id.S.default_image|storager:'s'}>" alt="">
+            <{$gitem.title}>
+          </a>
+          </div>
+        </td>
+        <td>
+          <span class="text-orange"><{$gitem.price|cur}></span>
+        </td>
+        <td>
+          <{$gitem.store}>
+        </td>
+        <td><{if $gitem.approve_status == "instock"}> 未上架<{elseif $gitem.approve_status}> 已上架 <{/if}></td>
+        <td>
+          <{$gitem.list_time|cdate:FDATE_STIME}>
+        </td>
+        <td>
+          <{$gitem.modified_time|cdate:FDATE_STIME}>
+        </td>
+        <td class="text-center"><a href="<{url action=topshop_ctl_item@edit item_id=$gitem.item_id}>">编辑商品</a></td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+    <{else}>
+    <tbody id="data_node">
+      <tr>
+        <td algin="center" colspan="11">
+          <p class="text-muted well no-shadow text-center">暂无数据</p>
+        </td>
+      </tr>
+    </tbody>
+    <{/if}>
+  </table>
+
+  <{pagers data=$pagers}>
+  <{if $total > 0 }>
+  <span class="page-number">共&nbsp;<em class="text-aqua"><{$total}></em>&nbsp;条记录</span>
+  <{/if}>
+
+</form>
+
+<script type="text/javascript">
+    $('#selectAll').change(function(){
+        $('#data_node input[type=checkbox]').prop('checked', this.checked);
+    });
+
+    $('#action-onsale').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@setItemStatus}>', 'type=tosale&item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+            // itemIds.push($(this).val());//向数组中添加商品id
+        });
+        // if(itemIds.length>0){
+        //     var itemIdsStr=itemIds.join(',');//将商品id数组元素连接起来以构建一个字符串
+        // }else{
+        //     return false;
+        // }
+    });
+    $('#action-instock').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@setItemStatus}>', 'type=tostock&item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+        });
+    });
+
+    $('#action-remove').on('click',function(){
+        var itemIds = new Array();
+        $($("#data_node input[name='item_ids']:checked")).each(function(){
+            $.post('<{url action=topshop_ctl_item@deleteItem}>', 'item_id='+$(this).val(), function(rs){
+              if(rs.error) {
+                $('#messagebox').message(rs.message);
+                return;
+              }
+              if(rs.success) {
+                $('#messagebox').message(rs.message, 'success');
+                setTimeout(function(){location.reload();}, 800);
+              }
+            });
+        });
+    });
+
+</script>
+
+<script>
+  $(document).ready(
+    function() {
+      $(".sidebar .sidebar-menu li a i.glyphicon").eq(1).removeClass("glyphicon-list-alt").addClass("glyphicon-edit");
+    }
+  );
+</script>
