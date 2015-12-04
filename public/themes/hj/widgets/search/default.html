@@ -1,0 +1,23 @@
+<{if $env.conf.search.associate_enabled == '1'}>
+<{assign var=associate value="true"}>
+<{/if}>
+<div class="searchbar">
+  <form action="<{url action=topc_ctl_search@index}>" method="post" id="goods_search">
+    <input type="text" name="keyword" id="" class="x-input">
+    <a herf="javascript:void(0);" class="btn btn-search">搜索</a>
+  </form>
+<{if $data.search}>
+  <div class="hots">
+    <span><{$setting.hotkey}></span>
+    <{foreach from=$data.search item=toplink key=top_key}>
+    <a href="<{$toplink.top_link_url}>"><{$toplink.top_link_title}></a>
+    <{/foreach}>
+  </div>
+<{/if}>
+</div>
+
+<script>
+  $('.btn-search').click(function(){
+    $('#goods_search').submit();
+  })
+</script>

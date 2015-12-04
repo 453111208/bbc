@@ -1,0 +1,19 @@
+<div class="module-hd"><{$setting.block_name}><span><{$setting.desc}></span></div>
+<div class="module-bd brand-wall">
+  <div class="col-lg-3"><a href="<{$setting.small_pic0_link}>"><img width="214" height="339" src="<{$setting.small_pic0}>" alt="<{$setting.small_pic0_txt}>"></a></div>
+  <div class="col-lg-10">
+    <div class="logo-list clearfix">
+      <ul>
+        <{foreach from=$setting.pic item=item}>
+        <li>
+          <a href="<{$item.linktarget}>">
+            <div class="out-line"></div>
+            <img width="139" height="90" src="<{$item.link}>" alt="<{$item.info}>">
+          </a>
+        </li>
+        <{/foreach}>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-3"><a href="<{$setting.small_pic1_link}>"><img width="215" height="339" src="<{$setting.small_pic1}>" alt="<{$setting.small_pic1_txt}>"></a></div>
+</div>

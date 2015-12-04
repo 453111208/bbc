@@ -1,0 +1,21 @@
+<div class="groupbuy-title"><{$data.texttag}></div>
+<div class="groupbuy-pic">
+  <img width="215" height="280" src="<{$data.item.image_default_id|default:$data.defaultImg.S.default_image|storager:'s'}>" alt="<{$data.item.title}>">
+</div>
+<div class="groupbuy-info">
+  <!--
+  <div><span class="origin-price"><i>￥298</i>（1.3折）</span></div>
+  -->
+  <div>
+    <span class="discount-price"><em><{$data.item.price|cur}></em></span>
+    <a href="<{url action=topc_ctl_item@index item_id=$data.item.item_id}>" class="btn btn-import"><span><span>马上抢购</span></span></a>
+  </div>
+</div>
+
+<!--
+<div class="banner">
+  <a href="<{$data.ad_pic_link}>" target="_blank">
+    <img data-src="<{$data.ad_pic|storager}>" alt="<{$setting.ad_pic_txt}>" <{if $data.ad_pic_width}>width="<{$data.ad_pic_width}>"<{/if}> <{if $data.ad_pic_height}>height="<{$data.ad_pic_height}>"<{/if}> />
+  </a>
+</div>
+-->

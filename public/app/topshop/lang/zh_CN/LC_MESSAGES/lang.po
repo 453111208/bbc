@@ -1,0 +1,605 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:98
+msgid "申请入驻成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:145
+msgid "请选择店铺品牌 或 新增店品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:156
+msgid "店铺类型不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:166
+msgid "类目不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:173
+msgid "手机号码格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:180
+msgid "公司联系人手机号码格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:187
+msgid "公司电话格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:193
+msgid "邮箱格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:199
+msgid "店主身份证号格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/enterapply.php:205
+msgid "法人代表身份证号码格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item/cat.php:17
+msgid "店铺分类列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item/cat.php:36
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:81
+msgid "保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item/cat.php:41
+msgid "保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:15
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:55
+msgid "添加商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:67
+msgid "商品列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:93
+msgid "商品id不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:100
+msgid "上架成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/item.php:105
+msgid "下架成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/passport.php:16
+msgid "企业账号登录"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/passport.php:45
+msgid "登录成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/passport.php:59
+msgid "企业账号注册"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/passport.php:103
+msgid "注册成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/passport.php:139
+msgid "修改成功,请重新登陆"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:14
+msgid "店铺首页装修"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:31
+msgid "保存导航菜单成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:60
+msgid "导航名称不能超过10字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:66
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:73
+msgid "只能为站内链接"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:75
+msgid "新增导航菜单成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:104
+msgid "店铺招牌配置成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:125
+msgid "保存排序成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:152
+msgid "商品展示栏目保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/design.php:180
+msgid "保存自定义区域成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/dlytmpl.php:21
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/dlytmpl.php:34
+msgid "快递运费模板列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/dlytmpl.php:33
+msgid "首页"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/dlytmpl.php:35
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/dlytmpl.php:50
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/dlytmpl.html:6
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:4
+msgid "新增运费模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/shop/setting.php:10
+msgid "店铺设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/trade/detail.php:24
+msgid "备注添加成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/trade/detail.php:29
+msgid "备注保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/trade/list.php:14
+msgid "订单列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop//controller/trade/list.php:20
+msgid "订单查询"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/header.html:33
+msgid "浏览前端"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/header.html:46
+msgid "修改密码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/header.html:49
+msgid "入住信息查看"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/header.html:52
+msgid "退出"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/topbar.html:14
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:19
+msgid "登录"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/topbar.html:17
+msgid "注册"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/common/topbar.html:21
+msgid "商城首页"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/index/lefttop.html:17
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/setting.html:8
+msgid "<{$shop.shop_name}>"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:6
+msgid "批量删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:10
+msgid "添加分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:12
+msgid "保存更改"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:25
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:24
+msgid "分类名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:26
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:18
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/index.html:20
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/index.html:20
+msgid "排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:27
+msgid "创建时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:28
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:53
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:126
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/index.html:21
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/index.html:21
+msgid "操作"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:46
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:64
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:102
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:130
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:14
+msgid "删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:47
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:65
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:103
+#: /Users/bryant/codes/bbc/app/topshop/view/item/cat/index.html:131
+msgid "查看"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/edit.html:615
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec.html:324
+msgid "关联商品图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:9
+msgid "销售价："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:15
+msgid "编辑会员价格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:25
+msgid "成本价："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:30
+msgid "前台不会显示，仅供后台使用。"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:33
+msgid "市场价："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:41
+msgid "货号："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:45
+msgid "重量："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:46
+msgid "克(g)"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:50
+msgid "库存："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:56
+msgid "当前冻结库存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:64
+msgid "货位："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:70
+msgid "规格："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:72
+msgid "开启规格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:73
+msgid "开启规格前先填写以上价格等信息，可自动复制信息到货品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:80
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec.html:2
+msgid "规格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:82
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:34
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec.html:4
+msgid "编辑"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:94
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec.html:18
+msgid "关闭"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/nospec.html:135
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec.html:44
+msgid "关闭后现有已添加的货品数据将全部丢失，确定要关闭规格吗？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec.html:34
+msgid "会员价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec.html:92
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec_selalbumsimg.html:12
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:72
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/index.html:47
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/index.html:68
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:82
+msgid "保存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:21
+msgid "当前商品类型没有绑定默认规格，请点击右上角增加规格项"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:31
+msgid "请点击右侧"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:31
+msgid "添加本商品需要的"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:34
+msgid "添加全部"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:34
+msgid "没有您需要的"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:34
+msgid "？立刻"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:47
+msgid "系统规格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:48
+msgid "自定义规格值"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:50
+msgid "自定义规格图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/set_spec_desc.html:52
+msgid "关联商品相册图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec_value_tmpl.html:5
+#: /Users/bryant/codes/bbc/app/topshop/view/item/sale_props/spec_value_tmpl.html:13
+msgid "添加"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:6
+msgid "用户名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:7
+msgid "账号"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:10
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:11
+msgid "密码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:14
+msgid "记住我"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signin.html:22
+msgid "注册新用户"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:2
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:13
+msgid "商家入驻流程"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:4
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:15
+msgid "1账户注册/登录"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:5
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:16
+msgid "2提交申请资料"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:6
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:17
+msgid "3审核通过/签约"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:7
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:18
+msgid "4店铺开通"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/passport/signup.html:8
+#: /Users/bryant/codes/bbc/app/topshop/view/tmpl/commonpage.html:19
+msgid "5店铺设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/design.html:5
+msgid "保存且发布"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/dlytmpl.html:28
+msgid "最后修改时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/dlytmpl.html:48
+msgid "全国"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/dlytmpl.html:59
+msgid "请先添加运费模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:12
+msgid "模板名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:24
+msgid "快递公司"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:38
+msgid "物流保价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:40
+msgid "支持物流保价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:59
+msgid "计价方式"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:62
+msgid "按重量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:67
+msgid "是否启用"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:70
+msgid "启用"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:73
+msgid "禁用"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:121
+msgid "运送到"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:122
+msgid "首重"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:123
+msgid "首费"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:124
+msgid "续重"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:125
+msgid "续费"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/editdlytmpl.html:151
+msgid "为指定地区城市设置运费"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/setting.html:6
+msgid "店铺名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/setting.html:12
+msgid "店铺LOGO"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/shop/setting.html:23
+msgid "店铺描述"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:8
+msgid "栏目名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:10
+msgid "展示栏目名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:14
+msgid "展示商品数量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:16
+msgid "整数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:29
+msgid "关键字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:31
+msgid "商品名称关键字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/goods.html:73
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/index.html:48
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/index.html:69
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:83
+msgid "取消"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/goods/index.html:40
+msgid "请先添加商品展示"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/index.html:61
+msgid "请先添加菜单"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:65
+msgid "链接名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:67
+msgid "导航栏标题名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/nav/nav.html:71
+msgid "链接地址"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topshop/view/widgets/shopsign/pic.html:11
+msgid "通栏背景图上传"
+msgstr ""
+

@@ -1,0 +1,22 @@
+<div class="subslider" data-toggle="switchable" data-switchable-config='{
+  "effect": "scrollx",
+  "step": 8,
+  "viewSize": [1160],
+  "lazyload": true,
+  "circle": true,
+  "hasFlips": true
+  }'>
+  <a href="#" class="prev-btn icon icon-arrow-left prev"></a>
+  <div class="subslider-pic">
+    <ul class="switchable-content">
+      <{foreach from=$data.pic item=item}>
+      <li>
+        <a href="<{$item.linktarget}>">
+          <img width="139" height="90" src="<{$item.link}>" alt="<{$item.info}>">
+        </a>
+      </li>
+      <{/foreach}>
+    </ul>
+  </div>
+  <a href="#" class="next-btn icon icon-arrow-right next"></a>
+</div>

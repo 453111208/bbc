@@ -1,0 +1,7 @@
+<ul>
+    <{foreach from=$data.articles_focus item=item key=key}>
+        <li class="maxrank">
+            [专家]<a href="<{url action=topc_ctl_expert@literary literaryid=$item.literaryId}>" target="_blank"><{$item.title}></a>
+        </li>
+    <{/foreach}>
+</ul>

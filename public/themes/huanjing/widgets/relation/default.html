@@ -1,0 +1,17 @@
+
+<{foreach from=$data.relation item=result}>
+<li>
+    <div class="maxpic"><a href="<{url action=topc_ctl_case@essay essayid=$result.essay.essay_id}>"><img src="<{$result.essay.essay_logo}>"/></a></div>
+        <div class="maxlist-content">
+        <div class="maxlist-title"><a href="<{url action=topc_ctl_case@essay essayid=$result.essay.essay_id}>"><{$result.essay.title}></a></div>
+            <ul>
+            <{foreach from=$result.article item=arit key=key}>
+            <{if $key<2}>
+            <li><a href="<{url action=topc_ctl_info@getInfo articleId=$arit.article_id}>"><{$arit.title}></a></li>
+            <{/if}>
+           <{/foreach}>
+            </ul>
+        </div>
+    <div class="maxicon"> <i class="maxicon-share"></i> <i class="maxicon-see"><em><{$result.essay.click_count}></em></i> </div>
+    </li>
+<{/foreach}>

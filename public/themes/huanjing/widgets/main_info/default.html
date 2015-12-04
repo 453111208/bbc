@@ -1,0 +1,39 @@
+<ul>
+    <{foreach from=$data.node_select item=item  key=parentId  name="slider"}>
+        <li class="<{if $env.foreach.slider.first}>active<{/if}>">
+            <a href="<{url action=topc_ctl_info@getNode nodeId=$item.node_id}>" class="tab"><{$item.node}></a>
+        </li>
+    <{/foreach}>
+</ul>
+<div class="maxlist">
+    <{foreach from=$data.article item=article key=parentId  name="slider" }>
+        <div class="maxcomon" style="<{if $env.foreach.slider.first}>display: block;<{else}>display:none;<{/if}>" >
+            <{if $article.list}>
+                <ul>
+                    <{foreach from=$article.articleInfo item=item key=infoId}>
+                        <{if $infoId<10}>
+                            <li>
+                                <div class="maxpic">
+                                    <a href="<{url action=topc_ctl_info@getInfo articleId=$item.article_id}>" style="width: 104px;">
+                                        <img src="<{$item.article_logo}>"/>
+                                    </a>
+                                </div>
+                                <div class="maxlist-content">
+                                    <div class="maxlist-title">
+                                        <a href="<{url action=topc_ctl_info@getInfo articleId=$item.article_id}>">
+                                            <{$item.title}>
+                                        </a>
+                                    </div>
+                                    <div class="maxlist-subhead"><{$item.subhead}></div>
+                                </div>
+                                <div class="click_rate">
+                                    点击量：<i class="maxicon-see"><em><{$item.click_rate}></em></i>
+                                </div>
+                            </li> 
+                        <{/if}>
+                    <{/foreach}>
+                </ul>
+            <{/if}>
+        </div>
+    <{/foreach}>
+</div>

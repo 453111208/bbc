@@ -1,0 +1,73 @@
+        
+        <div class="item">
+
+        <div class="maxTitle"><h3>生产加工企业排行榜</h3><a href="" title="">查看所有></a></div>
+        <div class="maxTabs">
+          <ul class="clearfix">
+          <{foreach from=$data.catname item=item key=key}>
+             <li class="<{if $key==0}>current<{/if}>"><{$item.cat_name}></li>
+          <{/foreach}>
+          </ul>
+        </div>
+        <div class="t"><em class="l">公司名称</em><em class="r">成交量/吨</em></div>
+
+        <{foreach from=$data.catname item=item key=key}>
+        <ul class="clearfix maxTabs-body<{if $key==1}> cur<{/if}>">
+        <{foreach from=$data.rabish item=item1 key=key1}>
+          <{foreach from=$item1 item=item3 key=key3}>
+
+          <{if $item.cat_id==$item3.cat_id}>
+          <li class="<{if $key1==0}>active <{/if}><{if $key1<3}>now<{/if}>">
+            <div class="title"><i><{$key3+1}></i><h3><a href="/index.php/shopcenter.html?shop_id=<{$item3.shop_id}>" title=""><{$item3.shopname}></a></h3> <span class="mun"><{$item3.count}></span></div>
+
+            <div class="maxinfow">
+              <div class="maxpic"><a href="" title=""><img style="width: 115px;height: 115px;" src="<{$item3.shop_logo}>" alt="" /></a></div>
+              <div class="maxinfo" style="height:162.5px;">
+
+                <div class="list-1"><span>产废品种：</span><{foreach from=$item3.cat_name item=item2 key=key2}><{$item2.cat_name}><{/foreach}></div>
+                <div class="list-2" style="max-height: 92px;overflow: hidden;"><span>公司简介：</span><{$item3.shop_descript}></div>
+                <div class="list-3"><img src="images/p_cx.png" alt=""><img src="images/p_sd.png" alt=""></div>
+              </div>
+            </div>
+          </li>
+          <{/if}>
+            <{/foreach}>
+          <{/foreach}>
+        </ul>
+          <{/foreach}>
+                </div>
+      
+       <div class="itemnew item2">
+        <div class="maxTitle"><h3>回收处置企业排行榜</h3><a href="" title="">查看所有></a></div>
+        <div class="maxTabsnew">
+         <ul class="clearfix">
+          <{foreach from=$data.catname item=item key=key}>
+             <li class="<{if $key==0}>current<{/if}>"><{$item.cat_name}></li>
+          <{/foreach}>
+          </ul>
+        </div>
+        <div class="t"><em class="l">公司名称</em><em class="r">成交量/吨</em></div>
+        <{foreach from=$data.catname item=item key=key}>
+        <ul class="clearfix maxTabsnew-body<{if $key==1}> cur<{/if}>">
+        <{foreach from=$data.resycle item=item1 key=key1}>
+          <{foreach from=$item1 item=item3 key=key3}>
+          <{if $item.cat_id==$item3.cat_id}>
+          <li class="<{if $key3==0}>active <{/if}><{if $key3<3}>now<{/if}>">
+            <div class="title"><i><{$key3+1}></i><h3><a href="/index.php/shopcenter.html?shop_id=<{$item3.shop_id}>" title=""><{$item3.shopname}></a></h3> <span class="mun"><{$item3.count}></span></div>
+
+            <div class="maxinfow">
+              <div class="maxpic"><a href="" title=""><img style="width: 115px;height: 115px;" src="<{$item3.shop_logo}>" alt="" /></a></div>
+              <div class="maxinfo" style="height:162.5px;">
+                <div class="list-1"><span>产废品种：</span><{foreach from=$item3.cat_name item=item2 key=key2}><{$item2.cat_name}>|<{/foreach}></div>
+                <div class="list-2" style="max-height: 92px;overflow: hidden;"><span>公司简介：</span><{$item3.shop_descript}></div>
+                <div class="list-3"><img src="images/p_cx.png" alt=""><img src="images/p_sd.png" alt=""></div>
+              </div>
+            </div>
+          </li>
+          <{/if}>
+            <{/foreach}>
+          <{/foreach}>
+        </ul> 
+          <{/foreach}>
+      </div> 
+      <!-- 回收处置企业绿色总榜END -->

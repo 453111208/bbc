@@ -1,0 +1,42 @@
+        <div class="max-Tabs-top">
+          <ul class="clearfix">
+            <li class="active"> <span>热门竞价</span></li>
+            <li class=""> <span>热门招标</span></li>
+          </ul>
+        </div>                
+          <div class="max-Tabs-body" style="min-height: 265px;">
+          <div class="maxcomon">
+                <ul>
+<{foreach from=$data.sprodreleaseList item=item key=key}>
+              <li class="<{if $key<1}>active<{else}><{/if}>">
+                 <h3><span>[竞价]</span><a href="/index.php/bidding?bidding_id=<{$item.bidding_id}>"><{$item.trading_title}></a></h3>
+                <div class="maxinfo clearfix">
+                    <div class="item-pic"><a href="/index.php/bidding?bidding_id=<{$item.bidding_id}>" title=""><img src="<{$item.img_id}>" alt="" style="width:124px;height:88px"></a></div>
+                  <div class="l">
+                      <h6><span>[竞价]</span><a href="/index.php/bidding?bidding_id=<{$item.bidding_id}>"><{$item.trading_title}></a></h6>
+                    <div class="gel-price">当前价：<em><{$item.mbid}>元/<{$item.unit}></em></div>
+                    <div class="bid"><a href="/index.php/bidding?bidding_id=<{$item.bidding_id}>" title="">去出价&gt;</a></div>
+                  </div>
+                </div>
+              </li>
+<{/foreach}>
+            </ul>
+          </div>
+          <div class="maxcomon" style="display:none">
+                <ul>
+<{foreach from=$data.sprodreleaseList2 item=item2 key=key}>
+              <li class="<{if $key<1}>active<{else}><{/if}>">
+                 <h3><span>[招标]</span><a href="/index.php/tender?tender_id=<{$item2.tender_id}>"><{$item2.trading_title}></a></h3>
+                <div class="maxinfo clearfix">
+                    <div class="item-pic"><a href="/index.php/tender?tender_id=<{$item2.tender_id}>" title=""><img src="<{$item2.img_id}>" alt="" style="width:124px;height:88px"></a></div>
+                  <div class="l">
+                      <h6><span>[招标]</span><a href="/index.php/tender?tender_id=<{$item2.tender_id}>"><{$item2.trading_title}></a></h6>
+                    <div class="gel-price"><em></em></div>
+                    <div class="bid"><a href="/index.php/tender?tender_id=<{$item2.tender_id}>" title="">去招标&gt;</a></div>
+                  </div>
+                </div>
+              </li>
+<{/foreach}>
+            </ul>
+          </div>
+        </div>

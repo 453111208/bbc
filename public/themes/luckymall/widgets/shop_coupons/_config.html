@@ -1,0 +1,20 @@
+<div id="goods_exshow_config" class="tableform widgetconfig">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <th>版块名称：</th>
+            <td><input type="text"  name="class_name" value="<{$setting.class_name|default:'店铺优惠券'}>"  /></td>
+        </tr>
+        <tr>
+            <th>版块描述：</th>
+            <td><input type="text"  name="class_detail" value="<{$setting.class_detail|default:'COUPONS'}>"  /></td>
+        </tr>
+        <tr>
+            <th>选择优惠券：</th>
+            <td>
+                <div data-extend = "select"  <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+                  <{input type="object" object="coupon" filter="platform=wap" app="syspromotion" select=checkbox multiple="true" value=$setting.coupons textcol="coupon_name" name="coupons" breakpoint=0}>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

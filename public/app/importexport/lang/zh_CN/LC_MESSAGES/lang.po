@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:74
+msgid "上传成功,已加入队列"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:84
+msgid "未上传文件"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:90
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/import/import.html:40
+msgid "请上传当前选中的文件类型"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:95
+msgid "导入格式不支持"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:126
+#: /Users/bryant/codes/bbc/app/importexport//lib/controller.php:136
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runexport.php:30
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runimport.php:26
+msgid "本地文件创建失败，请检查/tmp文件夹权限"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:162
+msgid "数据格式不正确"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:175
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runexport.php:48
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runimport.php:62
+msgid "本地写入文件失败，请检查/tmp文件夹权限"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:181
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runexport.php:54
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runimport.php:69
+msgid "文件上传失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/import.php:189
+msgid "导入文件中需导入的数据为空或不识别文件,请下载模板再编辑导入"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/system.php:28
+msgid "保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/system.php:30
+msgid "保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//controller/admin/system.php:40
+msgid "检查通过"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/controller.php:112
+msgid "上传成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/controller.php:114
+msgid "上传失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/data/object.php:192
+msgid "标准平台"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/data/object.php:193
+msgid "手机触屏"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/finder/task.php:14
+msgid "下载"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/policy/ftp.php:45
+msgid "FTP地址必填"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/policy/ftp.php:59
+msgid "连接FTP失败，请检查FTP地址或FTP端口"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/policy/ftp.php:81
+#: /Users/bryant/codes/bbc/app/importexport//lib/policy/ftp.php:92
+msgid "登录到FTP失败，请检查用户名和密码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/policy/ftp.php:205
+msgid "FTP下载文件失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport//lib/tasks/runimport.php:76
+msgid "数据库插入错误"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:3
+msgid "FTP配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:24
+msgid "FTP地址："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:30
+msgid "FTP端口："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:36
+msgid "FTP用户名："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:41
+msgid "FTP密码："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:46
+msgid "FTP路径："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:54
+msgid "测试配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/ftp.html:55
+msgid "保存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/importexport/view/admin/import/import.html:24
+msgid "导入"
+msgstr ""
+

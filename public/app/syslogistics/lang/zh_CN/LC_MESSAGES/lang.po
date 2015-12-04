@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/syslogistics//controller/admin/logistics.php:25
+msgid "物流公司列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//controller/admin/logistics.php:28
+#: /Users/bryant/codes/bbc/app/syslogistics//controller/admin/logistics.php:30
+msgid "添加物流公司"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:15
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:16
+msgid "物流公司ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:24
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:25
+msgid "物流公司代码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:34
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:35
+msgid "物流公司全名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:44
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:45
+msgid "物流公司简称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:54
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:55
+msgid "物流公司网址"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:63
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:64
+msgid "查询接口网址"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:72
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:73
+msgid "排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//dbschema/dlycorp.php:94
+msgid "物流公司表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//lib/data/tracker.php:70
+msgid "查询失败，请到快递公司官网查询"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//lib/finder/dlycorp.php:23
+msgid "物流公司编辑"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics//lib/finder/dlycorp.php:24
+msgid "编辑"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:6
+msgid "物流公司简称:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:10
+msgid "物流公司代码:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:22
+msgid "物流公司全名:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:26
+msgid "物流公司网址:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:30
+msgid "物流查件网址:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:34
+msgid "排序:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/logistics.html:40
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:35
+msgid "保存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:3
+msgid "物流跟踪设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:8
+msgid "是否启用订单跟踪查询:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:11
+msgid "是"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:13
+msgid "否"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:20
+msgid "华强宝物流跟踪配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:26
+msgid "电商ID:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syslogistics/view/admin/tracker_setting.html:30
+msgid "AppKey:"
+msgstr ""
+

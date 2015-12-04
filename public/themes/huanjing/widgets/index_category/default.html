@@ -1,0 +1,64 @@
+<div class="AdvBanner">
+          <span>类别索引</span>
+          <i></i>
+        </div>
+<div class="maxContent" <{if !$data.isindex}>style="display:none;"<{/if}>>
+          <ul class="category-primary clearfix"  >
+          <!-- 分类1 -->
+<{assign var="j" value=0}>
+      <{foreach from=$data.data item=item key=key j=0}>
+      <{if $j<6}>
+      <li class="maxlv1 maxlv1-1">
+              <div class="category-primary-item">
+                <i class="icon"></i>
+                <i class="icon2"></i>
+                <a class="depth-1" href="" title=""><{$item.cat_name}></a>
+                <div class="sub-menu" style="max-height: 12px;overflow: hidden;">
+                  <ul class="clearfix" >
+                  <{assign var="i" value=0}>
+                  <{foreach from=$item.lv2 item=lv2item key=lv2key i=0}>
+                 
+                   <!-- <{$item.lv2.foreach.loop.total}>  -->
+                  <{if $i<=2 }>
+                    <li><a  href="" title=""><{$lv2item.cat_name}></a></li>
+                    <div style="display: none"><{$i=$i+1}></div>
+                    <{/if}>
+                     
+                  <{/foreach}>
+
+                  </ul>
+                </div>
+              </div>
+<div class="category-sub" > 
+          <{foreach from=$item.lv2 item=lv2item key=lv2key}>
+    
+          <div class="category-sub-item"> 
+                  <div class="category-sub-title">
+                   <{$lv2item.cat_name}>
+                  </div> 
+                  <ul> 
+              <{foreach from=$lv2item.lv3 item=lv3item key=lv3key}>
+                    <li><a href=""><{$lv3item.cat_name}></a></li> 
+              <{/foreach}>
+                  </ul> 
+                   </div> 
+          <{/foreach}>
+</div>
+        </li>
+        <{/if}>
+        <div style="display: none"><{$j=$j+1}></div>
+       <{/foreach}>
+
+           
+
+          </ul>
+          </div>
+          <script type="text/javascript">
+          <{if !$data.isindex}>
+          $(".AdvBanner,.maxContent").hover(function() {
+            $(".maxContent").css("display","block");
+          },function(e){
+            $(".maxContent").css("display","none");
+          });
+          <{/if}>
+          </script>

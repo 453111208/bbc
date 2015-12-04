@@ -1,0 +1,10 @@
+<{foreach from=$data.pic item=item}>
+<div class="categorygoods-item">
+  <div class="categorygoods-title"><{$item.linkinfo}></div>
+  <div class="categorygoods-pic">
+    <a href="<{$item.linktarget}>">
+      <img width="248" height="312" src="<{$item.link}>" alt="<{$item.linkinfo}>">
+    </a>
+  </div>
+</div>
+<{/foreach}>

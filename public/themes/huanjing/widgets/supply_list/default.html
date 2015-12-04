@@ -1,0 +1,61 @@
+<div class="max-Tabs-top">
+          <ul class="clearfix">
+            <li class="active"> <span>热门采购</span></li>
+            <li class=""> <span>热门供应</span></li>
+          </ul>
+          
+        </div>
+        <div class="max-Tabs-body" style="min-height: 225px;">
+        <!-- 页卡切换 -->
+          <div class="maxcomon">
+            <ul class="clearfix">
+               <{foreach from=$setting.requireList item=require}>
+               <li class="">
+                <h6><em>[求购]</em>
+             
+                <a href="<{url action=topc_ctl_require@index  require_id=$require.require_id  type=2}>"><{$require.variety_name}></a>
+                </h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                  <{if $require.price_method=="gongkai"}>
+                    <div class="s">交易数量：<{$require.countnum}></div>
+                    <div class="x">价格：<i>￥<{$require.price}></i>&nbsp;/&nbsp;<{$require.company}></div>
+                    <{else}>
+                    <div class="x">价格：价格面议</div>
+                    <{/if}>
+                  </div>
+                  <div class="maxright r"><a href="<{url action=topc_ctl_require@index  require_id=$require.require_id  type=2}>" title="">去询价></a></div>
+                </div>
+                
+              </li>
+              <{/foreach}>
+            </ul>
+          </div>
+          <!-- 页卡切换END -->
+          <!-- 页卡切换2 -->
+          <div class="maxcomon" style="display:none">
+            <ul class="clearfix">
+              <{foreach from=$setting.supplyList item=supply}>
+               <li class="">
+                <h6><em>[供应]</em>
+              
+                <a href="<{url action=topc_ctl_supply@index  supply_id=$supply.supply_id  type=1}>"><{$supply.variety_name}></a>
+                </h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                     <{if $supply.price_method=="gongkai"}>
+                    <div class="s">交易数量：<{$supply.countnum}></div>
+                    <div class="x">价格：<i>￥<{$supply.price}></i>&nbsp;/&nbsp;<{$supply.company}></div>
+                    <{else}>
+                    <div class="x">价格：价格面议</div>
+                    <{/if}>
+                  </div>
+                  <div class="maxright r"><a href="<{url action=topc_ctl_supply@index  supply_id=$supply.supply_id  type=1}>" title="">去询价></a></div>
+                </div>
+              </li>
+              <{/foreach}>
+          
+            </ul>
+          </div>
+          <!-- 页卡切换2END -->
+        </div>

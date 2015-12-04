@@ -1,0 +1,31 @@
+<ul class="clearfix">
+    <{foreach from=$data.sprodreleaseList item=item}>
+               <li class="active clearfix">
+                <!-- 选中显示 -->
+                <div class="maxinfo clearfix">
+                      <div class="maxpreview">
+                       <div class="maxpic-zb" style="width: 220px;height: 205px;"><i ></i><a href="#"><img style="width: 220px;height: 205px;" src="<{$item.img_id}>" alt="" /></a></div>
+                    </div>
+                  <div class="max-left">
+                    <div class="item item-1"><a href="/index.php/tender?tender_id=<{$item.tender_id}>"><span><{$item.trading_title}></span></a>
+                    </div>
+                    <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span><{$item.shop_name}></span></a></div>
+                       <div class="maxrz">
+                      <a class='a-item1' href="" title=""><img src="images/tradings/maxcxt.jpg" /></a>
+                      <a class='a-item2' href="" title=""><img src="images/tradings/maxsdt.jpg" /></a>
+                      </div>
+                    </div>
+                    <div class="item item-3"><em>供货地：</em><span><{$item.shop_area}></span></div>
+                  </div>
+                  <div class="max-right">
+                  <div class="icon"></div>
+                    <div class="item item-3"><a href="/index.php/tender?tender_id=<{$item.tender_id}>" title="">查看招标结果></a></div>
+                    <div class="maxtime">
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- 选中显示END -->
+               </li>
+    <{/foreach}>
+</ul>

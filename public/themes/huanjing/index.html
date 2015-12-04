@@ -1,0 +1,301 @@
+  <!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+    <link rel="stylesheet" href="images/max.css">
+    <link rel="stylesheet" href="images/index.css" />
+  </head>
+<body>
+    <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+  <div class="maxAllwrap clearfix">
+    <div class="maxFlash">
+        <{widgets id="main_pic"}>
+      <div class="maxad">
+        <div class="ad-shopmax-group clearfix ">
+          <ul>
+            <li><{widgets id="pic1"}></li>
+            <li><{widgets id="pic2"}></li>
+            <li><{widgets id="pic3"}></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="maxwR-index">
+        <div class="maxArticle">
+            <div class="max-Tabs-top">
+                <ul class="clearfix">
+                    <li class="active"><span>公告</span></li>
+                    <li><span>资讯</span></li>
+                    <li><span>专家</span></li>
+                    <li><span>话题</span></li>
+                </ul>
+            </div>
+            <div class="max-Tabs-body">
+                <div class="maxcomon"><{widgets id="notice"}></div>
+                <div class="maxcomon" style="display:none"><{widgets id="article"}></div>
+                <div class="maxcomon" style="display:none"><{widgets id="expert"}></div>
+                <div class="maxcomon" style="display:none"><{widgets id="topic"}></div>
+            </div>
+        </div>
+    <div class="maxsubmenu">
+        <ul class="clearfix">
+          <li class="item-1">
+            <a href="#expert" title="">
+              <i></i>
+              <span>名人专家</span>
+            </a>
+          </li>
+          <li class="item-2">
+            <a href="#appreciate" title="">
+              <i></i>
+              <span>升值空间</span>
+            </a>
+          </li>
+          <li class="item-3">
+            <a href="javascript:void()" title="">
+              <i></i>
+              <span>全网营销</span>
+            </a>
+          </li>
+          <li class="item-4">
+            <a href="javascript:void()" title="">
+              <i></i>
+              <span>我是新手</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="maxArticle maxArticle2"><{widgets id="main_tjshop"}></div>
+  </div>
+  <!--交易中心-->
+  <div class="maxprow f1">
+    <div class="maxTitle">
+      <h3>交易中心</h3>
+      <div class="maxSubMenu">
+       <{widgets id="cat_trading"}>
+      </div>
+      <!-- <div class="maxMore"><a href="javascript:void()" title="">企业申请入驻>></a></div> -->
+    </div>
+    <div class="maxBody clearfix">
+           <div class="maxPro-L">
+       <{widgets id="supply_list"}>
+        <div class="maxMorelink">
+          <ul>
+            <li><a href="<{url action=topc_ctl_member_supplyman@needgoods}>" title="">发布供应</a></li>
+            <li><a href="<{url action=topc_ctl_member_supplyman@wantgoods}>" title="">发布采购</a></li>
+            <!-- <li><a href="javascript:void()" title="">找货助手</a></li> -->
+            <li style="width:100%"><a href="javascript:void()" title="">查看更多&nbsp;></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="maxPro-C">
+        <div class="max-Tabs-top">
+          <ul class="clearfix" style="28px">
+            <li class="active" style="width: 33%"><span>在线交易</span></li>
+            <li style="width: 33%"><span>交易预告</span></li>
+            <li style="width: 33%"><span>交易公示</span></li>
+          </ul>
+          <div class="maxKeys">
+           <!--  <a clas="bold" href="javascript:void()" title="">新手发布向导></a>| -->
+              <a href="<{url action=topc_ctl_member_biddings@addBidding}>" title="">发布竞价</a>|
+            <a href="<{url action=topc_ctl_member_tender@addTender}>" title="">发布招标</a>|
+            <a href="javascript:void()" title="">查看更多></a>
+          </div>
+        </div>
+        <div class="max-Tabs-body">
+            <div class="maxcomon"><{widgets id="bidtra"}></div>
+            <div class="maxcomon" style="display:none">
+              <{widgets id="main_jyyg"}>
+          </div>
+            <div class="maxcomon" style="display:none">
+              <{widgets id="main_jygs"}>
+          </div>
+        </div>
+      </div>
+      <div class="maxPro-R">
+        <div class="max-Tabs-top">
+          <ul class="clearfix">
+            <li class="active"><span>现货金属行情</span></li>
+            <li><span>现货塑料行情</span></li>
+          </ul>
+        </div>
+        <div class="max-Tabs-body">
+          <div class="maxcomon" style="display: block;"><{widgets id="metalCash"}></div>
+          <div class="maxcomon" style="display:none"><{widgets id="plastic"}></div>
+        </div>
+<!--        <div class="maxMorelink">
+          <ul>        
+            
+            <li><a href="javascript:void()" title="">看专家评行情</a></li>
+            <li><a href="javascript:void()" title="">金属行情</a></li>
+            <li class="x"><a href="javascript:void()" title="">塑料行情</a></li>
+            <li class="x"><a href="javascript:void()" title="">废纸行情</a></li>
+            <li class="x"><a href="javascript:void()" title="">和大家侃走势</a></li>
+          </ul>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="maxprow" style="margin-bottom:12px;"><{widgets id="mid_ad1"}></div>
+  <!-- 解决方案 -->
+  <div class="maxprow f5">
+    <div class="maxTitle" id="appreciate"><h3>解决方案</h3>
+  <div class="maxKeys">
+            |<a style="color:#f60" href="<{url action=topc_ctl_case@index}>" title="">查看更多></a>
+        </div>
+    </div>
+    <div class="maxBody">
+      <div class="maxPro-L"><{widgets id="resolve_case_pic"}></div>
+      <div class="maxPro-C">
+        <{widgets id="resolve_case1"}>
+        <{widgets id="resolve_case2"}>
+        <{widgets id="resolve_case3"}>
+      </div>
+      <div class="maxPro-R">
+        <div class="max-Tabs-top">
+          <ul class="clearfix">
+            <li class="active"><span>警示录</span></li>
+            <li><span>吐槽榜</span></li>
+          </ul>
+        </div>
+        <div class="max-Tabs-body">
+          <div class="maxcomon">
+            <div class="max-top"><{widgets id="caution_against"}></div>
+          </div>
+          <div class="maxcomon" style="display:none">
+            <div class="max-top"><{widgets id="ridicule_list"}></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 第三方资源 -->
+  <div class="maxprow f3">
+    <div class="maxTitle">
+      <h3>第三方资源</h3>
+      <div class="maxKeys">
+       <!--  |<a style="color:#f60" href="javascript:void()" title="">申请认证</a> -->
+      </div>
+    </div>
+    <div class="maxBody">
+      <div class="maxPro-L">
+        <div class="max-certification">
+          <div class="max-top">第三方认证</div>
+          <div class="max-body"><{widgets id="tpos"}></div>
+        </div>
+        <div class="max-service">
+          <div class="max-top">第三方服务</div>
+          <div class="max-body"><{widgets id="third_service"}></div>
+        </div>
+      </div>
+      <div class="maxPro-C">
+        <div class="max-brand">
+          <div class="max-top">第三方认证机构推荐</div>
+          <div class="max-body"><{widgets id="third_ncb"}></div>
+        </div>
+        <div class="max-ad"><{widgets id="mid_ad2"}></div>
+      </div>
+      <div class="maxPro-R">
+        <div class="max-top">成功案例
+       
+          <a style="float:right;font-size: 12px;color:#f60" href="<{url action=topc_ctl_plan@index}>">更多>></a>
+       
+        </div>
+        <div class="max-body"><{widgets id="success_case"}></div>
+      </div>
+    </div>
+  </div>
+  <!-- 名人天地 -->
+  <div class="maxprow f4">
+    <div class="maxTitle" id="expert">
+        <h3>名人天地</h3>
+        <div class="maxKeys">
+            |<a style="color:#f60" href="<{url action=topc_ctl_expert@expertList}>" title="">进入名人专家中心></a>
+        </div>
+    </div>
+    <div class="maxBody">
+        <div class="maxPro-L">
+            <div class="max-top">东方文榜</div>
+            <div class="article-hot"><{widgets id="articles_focus"}></div>
+                <div class="max-top">人物推荐</div>
+                <div class="referral">
+                   <{widgets id="expert_pic"}>
+                </div>
+        </div>
+        <div class="maxPro-C">
+            <div class="item1"><{widgets id="aaaa"}></div>
+            <div class="item1"><{widgets id="bbbb"}></div>
+            <div class="item1"><{widgets id="cccc"}></div>
+            <div class="item1"><{widgets id="dddd"}></div>
+        </div>
+        <div class="maxPro-R">
+            <div class="max-top">创客创造</div>
+            <div class="pic1"><{widgets id="ck_1"}></div>
+            <div class="pic2">
+                <ul>
+                    <li  style="border: 1px;margin:0"><{widgets id="ck_2"}></li>
+                    <li style="border: 1px;margin:0"><{widgets id="ck_3"}></li>
+                    <li style="border: 1px;margin:0"><{widgets id="ck_4"}></li>
+                    <li style="border: 1px;margin:0"><{widgets id="ck_5"}></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        
+    $('.a1').hover(function(){
+        $(this).hide();
+        $(this).next('li').show();
+    },function(){
+    });
+    $('.b1').hover(function(){
+    },function(){
+        $(this).hide();
+        $('.a1').show();
+    });
+</script>
+  </div>
+  <div class="maxprow" style="margin-bottom:12px;"><{widgets id="mid_ad3"}></div>
+  <!-- 环保超市 -->
+  <div class="maxprow f2">
+    <div class="maxTitle">
+      <h3>环保超市</h3>
+      <div class="maxKeys">
+        <{widgets id="bz_cat"}>
+      </div>
+    </div>
+    <div class="maxBody clearfix">
+      <div class="maxPro-L max-hot">
+        <div class="max-top">销售榜</div>
+        <div class="max-body">
+         <{widgets id="bz_pro_list"}>
+        </div>
+      </div>
+      <div class="maxPro-C">
+        <div class="goods-shopmax-list">
+          <{widgets id="bz_pro"}>
+        </div>
+        <div class="max-slider-brand" data-toggle="switchable" data-switchable-config="{&quot;effect&quot;: &quot;scrollx&quot;,&quot;autoplay&quot;: false,&quot;step&quot;: 1,&quot;viewSize&quot;: [160,640],&quot;lazyload&quot;: true,&quot;circle&quot;: true,&quot;hasFlips&quot;: true}">
+          <span class="prev icon icon-arrow-left"></span>
+          <span class="next icon icon-arrow-right"></span>
+            <div class="scroller" style="position: relative;">
+             <div class="switchable-content" style=""><{widgets id="shoplist"}></div>
+            </div>
+        </div>
+      </div>
+      <div class="maxPro-R">
+      <{widgets id="hb_pic"}>
+    </div>
+    </div>
+  </div>
+  </div>
+<{require file="block/footer.html"}>
+<!--   右侧悬浮客服 -->
+<div class="maxkf"><{widgets id="right_service"}></div>
+<script src="images/max.js"></script>
+<script src="images/index.js"></script>
+</body>
+</html>   
+     

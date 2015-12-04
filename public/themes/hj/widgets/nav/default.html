@@ -1,0 +1,11 @@
+<div class="menu">
+    <{foreach from=$data item=sitemenu key=menukey}>
+
+    <{if $sitemenu.url}>
+    <a <{if $sitemenu.hilight}>class="on"<{/if}> href="<{$sitemenu.url}>" ><{$sitemenu.title}></a>
+    <{else}>
+
+    <a <{if $sitemenu.hilight}>class="on"<{/if}> href="#" ><{$sitemenu.title}></a>
+    <{/if}>
+    <{/foreach}>
+</div>

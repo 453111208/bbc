@@ -1,0 +1,12 @@
+<div class="brand">
+  <div class="brand-hd">
+  </div>
+  <div class="brand-list">
+    <{foreach from=$data.pic item=item}>
+    <a href="<{url to=$item.linktarget}>">
+      <img width="140" height="70" src="<{$item.link}>" alt="<{$item.linkinfo}>">
+    </a>
+    <{/foreach}>
+  </div>
+</div>
+

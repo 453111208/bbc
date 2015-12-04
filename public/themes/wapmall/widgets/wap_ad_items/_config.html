@@ -1,0 +1,41 @@
+<div id="goods_exshow_config" class="tableform">
+  <div class="division">
+    <p>
+      <label for="">最多展示数量：</label>
+      <{input type="text" name="limit" value=$setting.limit disabled="true" }>个商品
+    </p>
+    <p>
+      <label>显示标签：</label>
+      <{input type="text" name="texttag" vtype="required" value=$setting.texttag|default:"主推商品"}>
+    </p>
+  </div>
+  <div class="division">
+    <div class="goods-selector-handle clearfix">
+
+      <div class="span-auto">
+        <label>
+          <input type="radio"  name="selector" value="select" <{if $setting.selector=="select"}>checked<{/if}> />&nbsp;精确选择商品
+        </label>
+      </div>
+    </div>
+    <div class="division goods-selector">
+
+      <div data-extend = "select" <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+        <{input type="object" value=$setting.item_select object="item" app="sysitem" filter="use_platform|noequal=1" name="item_select" select="checkbox" multiple="true" textcol="title"}>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $$('#goods_exshow_config .goods-selector-handle input[type=radio]').addEvent('change',function(){
+    var radio  = this;
+    if(!radio.checked)return;
+    $$('#goods_exshow_config .goods-selector [data-extend]').each(function(item){
+      if(item.get('data-extend')!=radio.value){
+        item.hide();
+      }else{
+        item.show();
+      }
+    });
+  });
+</script>

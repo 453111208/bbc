@@ -1,0 +1,12 @@
+
+  <div class="division">
+  
+    <div class="division goods-selector">
+      <{foreach  from=$setting.catlist item=cat}>
+ &nbsp; &nbsp; &nbsp;<input type="checkbox"  name="cat_id[]"  value="<{$cat.cat_id}>"/><{$cat.cat_name}>
+<{/foreach}>
+ 
+    </div>
+  </div>
+
+

@@ -1,0 +1,14 @@
+<div class="groupbuy-title"><{$data.texttag}></div>
+<div class="groupbuy-pic">
+  <img width="215" height="150" src="<{$data.item.image_default_id|default:$data.defaultImg.S.default_image|storager:'s'}>" alt="<{$data.item.title}>">
+</div>
+<div class="groupbuy-info">
+  <div>
+    <!--
+    <span class="origin-price"><i><{$data.item.price|cur}></i></span>
+    -->
+    <span class="discount-price"><em><{$data.item.price|cur}></em></span>
+    <a href="<{url action=topc_ctl_item@index item_id=$data.item.item_id}>" class="btn btn-import"><span><span>立即购买</span></span></a>
+  </div>
+</div>
+

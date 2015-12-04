@@ -1,0 +1,8 @@
+<div class="recommend">
+  <{foreach from=$data.pic item=item}>
+  <a href="<{url to=$item.linktarget}>">
+    <img width="190" height="170" src="<{$item.link}>" alt="<{$item.linkinfo}>">
+  </a>
+  <{/foreach}>
+</div>
+

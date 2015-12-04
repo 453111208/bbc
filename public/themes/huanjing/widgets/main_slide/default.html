@@ -1,0 +1,25 @@
+<div class="slider" data-toggle="switchable" data-switchable-config='{
+  "effect": "<{$setting.effectWay}>",
+  "autoplay": "<{$setting.autoplay}>",
+  "interval": 2,
+  "events": "click",
+  "circle": true
+  }'>
+  <div class="slider-pic">
+    <ul class="switchable-content">
+      <{foreach from=$data.pic item=item}>
+      <li>
+        <a href="<{url to=$item.linktarget}>">
+          <img src="<{$item.link}>" alt="<{$item.linkinfo}>">
+        </a>
+      </li>
+      <{/foreach}>
+    </ul>
+  </div>
+  <div class="slider-switch switchable-nav">
+    <{assign var=countnum value="1"}>
+    <{foreach from=$data.pic item=parent key=parentId name="slider"}>
+    <a href="#" <{if $env.foreach.slider.first}>class="active"<{/if}>></a>
+    <{/foreach}>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+ <div class="max-tab-key seachbtn">
+            <a class="active" search-type="tradding" href="javascript:void();" title="">交易</a>|
+            <a  href="javascript:void();" search-type="market" title="">行情</a>|
+            <a  href="javascript:void();" search-type="shop" title="">企业</a>|
+            <a  href="javascript:void();" search-type="article" title="">资讯</a> 
+          </div>
+ <form action="<{url action=topc_ctl_search@index}>" method="post" id="goods_search" class="SearchBar">
+            <input type="text" name="keyword"  class="inputstyle keywords" placeholder="默认搜索字">
+            <input type="hidden" name="searchtype" value="tradding">
+              <a herf="javascript:void(0);" class="btn_search" style="text-align: center;line-height: 40px;">搜索</a>
+            <!-- <input type="submit" value="搜索" class="btn_search" onfocus="this.blur();"> -->
+</form>
+        <{if $data.search}>
+          <div class="maxKey">
+            <span><{$setting.hotkey}></span>
+              <{foreach from=$data.search item=toplink key=top_key}>
+                  <a href="<{$toplink.top_link_url}>"><{$toplink.top_link_title}></a>
+              <{/foreach}>
+          </div>
+        <{/if}>
+
+        <script type="text/javascript">
+        $(".seachbtn a").click(function(){
+            $(".seachbtn a").removeClass("active");
+            $(this).addClass("active");
+            $("input[name=searchtype]").val($(this).attr("search-type"));
+        });
+        // $(".btn_search").click(function(){
+        //   return false;
+        // });
+  $('.btn_search').click(function(){
+    $('#goods_search').submit();
+  })
+        </script>
+

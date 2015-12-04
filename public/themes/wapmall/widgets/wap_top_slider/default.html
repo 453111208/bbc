@@ -1,0 +1,20 @@
+<div class="ui-slider-group">
+  <{assign var=countnum value="1"}>
+  <{foreach from=$data.pic item=item key=key}>
+  <div class="ui-slider-item" data-index="<{$countnum++}>">
+    <a href="<{$item.linktarget}>">
+      <img max-height="210" src="<{$item.link}>">
+    </a>
+  </div>
+  <{/foreach}>
+</div>
+
+<p class="ui-slider-dots">
+  <{foreach from=$data.pic item=item key=key}>
+  <b class=""></b>
+  <{/foreach}>
+</p>
+
+<script>
+  $('.ui-slider').slider( { imgZoom: true });
+</script>

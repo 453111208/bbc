@@ -1,0 +1,7 @@
+        <div class="bd">
+          <ul>
+            <{foreach from=$data.sprodreleaseList item=item}>
+            <li><a href="/index.php/sysinfo.html?articleId=<{$item.article_id}>" title=""><em>[<{$item.node_name}>]</em><{$item.title}></a></li>
+            <{/foreach}>
+          </ul>
+        </div>

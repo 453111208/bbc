@@ -1,0 +1,26 @@
+
+                <div class="max-top"><{$data.literarycatInfo.literarycat}><a href="/index.php/expert?literarycatid=<{$data.literarycatInfo.literarycat_id}>" title="">更多></a></div>
+                <div class="article">
+                    <ul>
+                     <{foreach from=$data.literaryInfo item=item key=key}>
+                     <{if $key<6}>
+                    <li class="h6 a1"><a href="" title=""><span>[<{$item.name}>]</span><{$item.title}></a></li>
+                        <li style="height:94px;display: none;" class="b1">
+                            <div class="maxcomon">
+                            <div class="maxinfo clearfix">
+                                <div class="maxpic"><a href="<{url action=topc_ctl_expert@literary literaryid=$item.literary_id}>" title=""><img style="width:74px; height:74px;" src="<{$item.literary_logo}>" alt="" /></a></div>
+                                <div class="max-left" style="float: none;">
+                                    <div class="item item-1" style="max-width: 160px;"><a href="<{url action=topc_ctl_expert@literary literaryid=$item.literary_id}>" title=""><b><{$item.title}></b></a></div>
+                                    <div class="item item-2" style="float: left;max-width: 150px;"><span>作者：<{$item.name}>（<{$item.nickname}>）</span></div>
+                                  <!--   <div class="item item-3"><span><{$item.abstract}>...</span></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <{/if}>
+                    <{/foreach}>
+                    </ul>              
+                </div>
+    
+                           
+                   

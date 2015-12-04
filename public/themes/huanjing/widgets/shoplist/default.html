@@ -1,0 +1,8 @@
+<div class="switchable-content" style=""> 
+    <{foreach from=$data.ncb_select item=item key=key}>
+        <a href="shopcenter.html?shop_id=<{$item.shop_id}>" style="display: block; float: left;">
+            <img src="<{$item.shop_logo}>" alt="" style="width:170px;height:96px;">
+            <span><{$item.shop_name}></span>
+        </a> 
+    <{/foreach}>
+</div>

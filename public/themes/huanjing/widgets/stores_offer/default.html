@@ -1,0 +1,26 @@
+<div class="max-top">
+    <h3>废电子电器商家报价</h3>
+    <a href="<{url action=topc_ctl_market@getOffer}>" title="">更多</a>
+</div>
+<div class="maxcomon">
+    <table class="item-tab" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+                <td class="iTab">产品名称</td>
+                <td class="iTab-1">价格</td>
+                <td class="iTab-2">所在地</td>
+                <td class="iTab-3">时间</td>
+                <td class="iTab-4">公司</td>
+            </tr>
+            <{foreach from=$data.offer_select item=item key=key}>
+                <tr>
+                    <td><a href="http://jiage.zz91.com/cdetail/374581.html" target="_blank"><{$item.title}></a></td>
+                    <td><{$item.price}></td>
+                    <td><{$item.area}></td>
+                    <td><{$item.date}></td>
+                    <td><a href="http://company.zz91.com/compinfo80910.htm" target="_blank"><{$item.company}></a></td>
+                </tr>
+            <{/foreach}>
+        </tbody>
+    </table>
+</div>

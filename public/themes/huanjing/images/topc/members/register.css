@@ -1,0 +1,53 @@
+.maxmain{background:#f2f2f2;}
+/*logo==================================================*/
+.maxregister{border-bottom:2px solid #c69e46;background:#fff;}
+.maxlogo{width:990px;margin:auto;}
+/*注册=================================================*/
+.maxPro-C{width:990px;margin:25px auto 0px;padding-bottom:25px;}
+.maxPro-C .max-Tabs-top{padding-right:10px;position:relative;overflow:visible;margin-bottom:-1px;border-bottom:1px solid #dddddd;}
+.maxPro-C .max-Tabs-top ul{height:33px;padding-left:365px;position:relative;overflow:hidden;top:1px;}
+.maxPro-C .max-Tabs-top li{float:left;width:100px;background:#f7f7f7;border:1px solid #dddddd;border-bottom:0px;margin-right:5px;margin-top:3px;font-size:14px;height:28px;text-align:center;line-height:28px;color:#333;cursor:pointer;}
+.maxPro-C .max-Tabs-top li.active{position:relative;background:#fff;color:#fe5a1d;height:32px;line-height:32px;font-weight:bold;margin-top:0;-moz-box-shadow:2px 0 2px #DDDDDD; -webkit-box-shadow:2px 0 2px #DDDDDD;box-shadow:2px 0 2px #DDDDDD;cursor:pointer;}
+.maxPro-C .max-Tabs-top .maxextra{position:absolute;right:20px;top:5px;color:#333;}
+.maxPro-C .max-Tabs-top .maxextra a{color: #005AA0;}
+.maxPro-C .max-Tabs-top .maxextra a:hover{text-decoration:underline;}
+.maxPro-C .max-Tabs-body{background:#fff;padding:30px 0 20px;border:solid #dddddd;border-width:0px 1px 1px; }
+.max-Tabs-body .item{padding-top:9px;height:60px;line-height:34px;position:relative;z-index:1;overflow: hidden;}
+.max-Tabs-body .label{float: left;width:280px;background-color:#fff;text-align:right;font-size:14px;color:#999;padding-right:10px;line-height: 34px;}
+.max-Tabs-body .label b{color: #fe5a1d;font-family: "????";margin-right: 5px;font-weight: normal;}
+.max-Tabs-body .item-ifo{float: left;position: relative;width:270px;}
+.max-Tabs-body .text{width:238px;height:16px;padding:10px 25px 10px 5px; border:1px solid #cccccc;float:none;font-size:14px;color: #999;overflow:hidden;}
+.max-Tabs-body .text1{border:1px solid #7ABD54;color: #333;}
+.max-Tabs-body .text2{border:1px solid #FF0000;color:#f00;}
+.max-Tabs-body .error{color:#666;width:260px;;line-height:15px;height:33px;background:#f7f7f7;border:1px solid #dddddd;position:absolute;top:0px;right:-275px;padding:3px 5px 0px;}
+.max-Tabs-body .error.cur{color:#e4393c;line-height:36px;height:36px;position:absolute;top:0px;right:-275px;width:260px;padding:0 5px;background:#FFEBEB;border:1px solid #ffbdbe;}
+.max-Tabs-body .btn{margin-left: 10px;border:1px solid #dddddd;width:106px;background:#f4f4f4; text-align:center;height:36px;line-height:36px;}
+.max-Tabs-body .text-1{width:100px;float:left;}
+.max-Tabs-body .btn span{font-size:12px;padding-left:0em;border:0px;background-color:#f4f4f4;}
+.max-Tabs-body .btn span:hover{text-decoration: underline;}
+.max-Tabs-body .btn:hover{text-decoration: underline;color:#333;}
+.radio, .checkbox {display:initial;}
+.max-Tabs-body .blue{color:#005AA0;}
+.max-Tabs-body .blue:hover{text-decoration: underline;}
+.max-Tabs-body .btn-regist{width:270px;height:34px;color:#FFF;padding:0px;border:0px;font-family:"microsoft yahei";font-size:16px;background:#ff742f;border-radius:3px;cursor:pointer;}
+
+.max-Tabs-body .item-ifo i{position: absolute;right: 8px;}
+.max-Tabs-body .item-ifo .i-name{background:url(one4.jpg) no-repeat scroll 0 0 transparent;height: 16px;top: 9px;width: 16px;}
+.max-Tabs-body .item-ifo .i-pass{background: url(one5.jpg) no-repeat scroll 0 0 transparent;height: 19px;top: 10px; width: 14px;}
+.max-Tabs-body .item-ifo .i-phone{background: url(one6.jpg) no-repeat scroll 0 0 transparent;height: 21px;top: 8px;width: 14px;left:250px;}
+.max-Tabs-body .highlight1{border:1px solid #7ABD54;color: #333;}
+.max-Tabs-body .highlight2{border:1px solid #FF0000;color:#f00;}
+.max-Tabs-body .highlight3{border:1px solid #fc0;color:#333;}
+.max-Tabs-body .succeed{background:url(sucess.png) center no-repeat #ffffff;width: 16px;height: 16px;position: absolute;left: 243px;top: 7px;padding: 3px;float: none;}
+.max-Tabs-body .error-ico{background:url(error.png) center no-repeat #ffffff;}
+.max-Tabs-body .cue-ico{background:url(cue.png) center no-repeat #ffffff;}
+/*企业用户·=================================================*/
+.maxsuperior{background:url(maxbg.gif);height:306px;padding:0px;}
+.maxmsg{position:relative;margin:0 19px;height:73px;line-height: 73px;border-top:1px solid #e9e9ea;color:#666;}
+.maxmsg a{color:#005aa0;}
+.maxcomon h3{border-top:1px solid #E7E7E7;padding:2px 16px 3px;background:#f7f7f7;font-size:14px;height:28px;line-height:28px;margin-bottom:10px;font-family:"ÃƒÂ¥Ã‚Â¾Ã‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¯ÃƒÂ©Ã¢â‚¬ÂºÃ¢â‚¬Â¦ÃƒÂ©Ã‚Â»Ã¢â‚¬Ëœ";font-weight:normal;}
+.maxcomon .maxregname label{margin-right:15px;}
+.maxcomon .maxregname input{margin-right:10px;}
+.max-Tabs-body .maxtype{float: left;position: relative;width:320px;margin-top:3px;}
+.max-Tabs-body .item1{height:45px;}
+.maxHelpw{background:#fff;}

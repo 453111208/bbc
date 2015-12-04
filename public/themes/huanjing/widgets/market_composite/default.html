@@ -1,0 +1,15 @@
+<div class="max-Tabs-top">
+    <div class="maxspot">
+        <span><{$setting.sort}></span>
+        <a href="<{url action=topc_ctl_market@getNode nodeName=$data.nodeName nodeId=$data.nodeId}>" title="">更多</a>
+    </div>
+</div>
+<div class="max-Tabs-body">
+    <ul>
+        <{foreach from=$data.info_select item=item key=key}>
+            <li>
+                <a href="<{url action=topc_ctl_market@getInfo articleId=$item.article_id}>"><{$item.title}></a>
+            </li>
+        <{/foreach}>
+    </ul>
+</div>

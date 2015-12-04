@@ -1,0 +1,226 @@
+body {color:#666; font:12px/150% Arial,Verdana,"宋体b8b\4f53";min-width:1200px;word-break:break-all;}
+ul, ol,p,h2{list-style: none;margin: 0;padding: 0;}
+a {text-decoration:none;color:#000; }
+a:hover{color:#f60; }
+/* 资讯中心 */
+.maxmain{ width:1200px; margin:10px auto 30px auto;overflow:hidden}
+
+/* 注册广告图 */
+.maxregister_ad{width:1200px; margin:0px auto 10px auto;}
+/* 注册广告图 */
+/*行情*/
+.maxquotation{overflow:hidden;}
+.maxquotation .maxad-pic{float:left;width:342px;}
+.maxquotation .maxcenter{float:left;width:552px;padding:0px 27px;}
+.maxquotation .maxnews-title h2{height:36px;overflow:hidden;}
+.maxquotation .maxnews-title a{line-height:36px;font-size:22px;font-family:microsoft yahei;}
+.maxquotation .maxnews-title p{text-indent:20px;color:#999;line-height:22px;height:66px;overflow:hidden;}
+.maxquotation .maxnews-list{margin-top:2px;}
+.maxquotation .maxnews-list li{height:30px;line-height:30px;overflow:hidden;font-size:14px;margin-left:5px;padding-left:20px;background: url(maxPoint.jpg) no-repeat left 50%;}
+.maxquotation .maxnews-list li a{color:#333;}
+.maxquotation .maxnews-list li a:hover{color:#f60;}
+.maxquotation .maxquote{float:right;width:251px;}
+.maxquotation .max-Tabs-top{height:40px;border:1px solid #ddd;border-left:0px;}
+.maxquotation .max-Tabs-top li{float:left;line-height:40px;text-align:center;width:124px;border-left:1px solid #ddd;}
+.maxquotation .max-Tabs-top li span{font-size:14px;color:#333;cursor:pointer;}
+.maxquotation .max-Tabs-top li.active{height:41px;background:#fff;font-weight:bold;}
+.maxquotation .max-Tabs-body{border-top:0px;border:1px solid #ddd;border-top:0px;padding:14px 10px;}
+.maxquotation .max-Tabs-body .maxcomon li{line-height:26px;height:26px;overflow:hidden;margin-left:10px;padding-left:15px;background: url(maxPback.jpg) no-repeat left 50%;}
+.maxquotation .max-Tabs-body .maxcomon li a{color:#333;}
+.maxquotation .max-Tabs-body .maxcomon li a:hover{color:#f60;}
+/*废金属 */
+.maxmetal{margin-top:10px;}
+.maxmetal .maxmetal-title{padding-top:5px;clear: both;height:35px;overflow: hidden;background:url(maxline.jpg) repeat-x 0px 20px;}
+.maxmetal .maxmetal-title h3{float:left;padding-right:10px;background-color: #fff;line-height:35px;font-weight:normal;color:#333;font-family:microsoft yahei;}
+.maxmetal .maxmetal-content{margin-top:5px;overflow:hidden;}
+/*废金属左面 */
+.maxmetal .maxmetal-content .maxmetal-L{float:left;width:340px;border: 1px solid #e4e4e4;}
+.maxmetal .maxmetal-content .maxclass{background: #fff7e0;border-bottom: 1px solid #e4e4e4;padding:0px 10px 18px 10px;}
+.maxmetal .maxmetal-content .maxclass a{border:#eee4cb 1px solid;display:inline-block;height:24px;padding:0 10px;margin-top: 18px;margin-left:10px;background: #fff;color: #987869;line-height:24px;white-space: nowrap;}
+.maxmetal .maxmetal-content .maxclass a:hover{background-color:#f60; color:#fff}
+.maxmetal .maxmetal-content .max-Tabs-top{height:43px;line-height:43px;text-align:center;}
+.maxmetal .maxmetal-content .max-Tabs-top li{width: 50%;float: left;border-bottom: 1px solid #ecdfbf;text-align: center;cursor: pointer;color: #999;}
+.maxmetal .maxmetal-content .max-Tabs-top li.active{border-bottom:1px solid #f60;color:#333;}
+.maxmetal .maxmetal-content .max-Tabs-body{margin:14px 10px;}
+.maxmetal .maxmetal-content .max-Tabs-body table{font-size:12px;text-align: center;line-height: 26px;}
+.maxmetal .maxmetal-content .max-Tabs-body table th{font-weight:bold;}
+.maxmetal .maxmetal-content .max-Tabs-body table tbody tr:hover{background-color:#f7f7f7}
+.maxmetal .maxmetal-content .max-Tabs-body table .col-1{width:97px;}
+.maxmetal .maxmetal-content .max-Tabs-body table .col-2{width:125px;}
+.maxmetal .maxmetal-content .max-Tabs-body table .col-3{width:98px}
+/*废金属中间 */ 
+.maxmetal .maxmetal-content .maxmetal-C{float:left;width:606px;}
+.maxmetal .maxmetal-content .maxwaste{overflow:hidden;}
+.maxmetal .maxmetal-content .maxwaste .maxcon{float:left;width:275px;margin-left:18px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-top{padding-top:5px;line-height:28px;overflow: hidden;border-bottom:1px solid #c69e45}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-top h3{float:left;color:#c69e45;line-height:23px;padding-left:5px;font-size:14px;font-weight:bold;font-family:microsoft yahei;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-top a{float:right;color: #444;padding-right:15px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-top a:hover{color: #c69e45;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-body{line-height:26px;padding: 6px 5px 5px 0px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-body li{padding-left:15px;background: url(maxPback.jpg) no-repeat left 50%;height:26px;overflow:hidden;margin-left:8px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-body li a:hover{color: #f60;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-body li a{color:#333;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .max-body li span{padding-right:3px;}
+.maxmetal .maxmetal-content .maxad{padding-top:25px;margin-left:23px}
+.maxmetal .maxmetal-content .ad-shopmax-group li{float:left;padding-right:5px;}
+/*废金属右面*/ 
+.maxmetal .maxmetal-content .maxmetal-R{float:right;width:249px;border:1px solid #ddd;border-bottom:0px;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon{border-bottom:1px solid #ddd;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-top{line-height:36px;overflow: hidden;border-bottom:1px solid #ddd;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-top h3{float:left;line-height:36px;padding-left:15px;font-size:14px;font-weight:bold;font-family:microsoft yahei;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-top a{float:right;color: #444;padding-right:15px;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-top a:hover{color: #c69e45;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-body{border-top:0px;padding:12px 10px;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-body li{line-height:25px;height:25px;overflow:hidden;margin-left:10px;padding-left:15px;background: url(maxPback.jpg) no-repeat left 50%;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-body li a:hover{color:#f60;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-body li a{color:#333;}
+.maxmetal .maxmetal-content .maxmetal-R .maxcon .max-body li span{padding-right:3px;}
+/*废塑料*/ 
+.maxmetal .maxmetal-content .max-Tabs-body{margin:14px 15px 14px 25px;}
+.maxmetal .maxmetal-content .max-Tabs-body li{height:26px;line-height:26px;overflow:hidden;}
+.maxmetal .maxmetal-content .max-Tabs-body li a{color:#666;}
+.maxmetal .maxmetal-content .max-Tabs-body li a:hover{color:#f60;}
+.maxmetal .maxmetal-content .max-Tabs-body li span{margin-right:3px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon .maxtable{padding:0px;}
+.maxmetal .maxmetal-content .maxwaste .maxcon #Metals_table{border:1px solid #ecdfbf;}
+.maxmetal .maxmetal-content .maxtable table th{background:#fff7e0;line-height:25px;color:#555;}
+.maxmetal .maxmetal-content .maxtable table tr{text-align:center;font-size:12px;}
+.maxmetal .maxmetal-content .maxtable table tr a{color:#9d7f1e;text-decoration:underline;}
+.maxmetal .maxmetal-content .maxtable table .col-1{width:98px;}
+.maxmetal .maxmetal-content .maxtable table .col-2{width:125px;}
+.maxmetal .maxmetal-content .maxtable table .col-3{width:98px}
+.maxmetal .maxmetal-content .maxwaste .maxcon .maxplastic{border-bottom:0px;}
+/*其他废料*/ 
+.maxmetal .maxmetal-content .max-Tabs-top .maxspot{border-bottom:1px solid #f60;}
+.maxmetal .maxmetal-content .max-Tabs-top .maxspot a{float:right;color:#666;}   /*DLC*/
+/*电子*/ 
+.maxmetal .maxmetal-content .maxelectron .max-Tabs-body table{line-height:19px;}
+.maxmetal .maxmetal-content  .maxelectron .max-Tabs-body{margin:10px 15px 10px 25px;}
+.maxmetal .maxmetal-content .maxwaste .maxelec{width:570px;}
+.maxmetal .maxmetal-content .maxwaste .maxelec li{float:left;width:245px;}
+.maxmetal .maxmetal-content .maxwaste .maxform{width:570px;border-bottom:0px;}
+.maxmetal .maxmetal-content .maxwaste .maxform .max-top{border-bottom:0px;margin-top:3px}
+.maxform .item-tab{width:570px;border:1px solid #e2e2e2;text-align:center;font-size:12px;color:#333;}
+.maxform .item-tab tr td{line-height:30px;border-right:1px solid #e2e2e2;border-bottom:1px solid #e2e2e2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+.maxform .iTab{width:125px;background:#eeeeee}
+.maxform .iTab-1{width:100px;background:#eeeeee}
+.maxform .iTab-2{width:100px;background:#eeeeee}
+.maxform .iTab-3{width:100px;background:#eeeeee}
+.maxform .iTab-4{width:150px;background:#eeeeee}
+
+/*详细页*/ 
+.maxPath{width:1200px;margin:10px auto 0px auto;overflow:hidden;min-height:20px;}
+.basic-ex-breadcrumbs{height:40px;line-height:40px;font-weight:normal;padding-left:0px;}
+.basic-ex-breadcrumbs .beb-current{font-weight:normal;color: #f60;padding:0 8px 0 0px;}
+.basic-ex-breadcrumbs a{padding:0 8px 0 0px;display:inline-block;}
+.basic-ex-breadcrumbs a:hover span{color:#f60;}
+.basic-ex-breadcrumbs dt{padding:0 8px;padding-left: 0;float: left;}
+.basic-ex-breadcrumbs .beb-raquo{padding-right:5px;}
+.maxleft{float:left;width:915px;}
+.maxpart{border:1px solid #ddd;padding:20px;}
+.maxpart .maxleft-title .maxcontent_caption h1{font-weight:normal;font-size:20px;color:#444;text-align:center;font-family:microsoft yahei;}
+.maxpart .maxleft-title .maxcontent_txt{margin-top:10px;text-align:center;}
+.maxpart .maxleft-title .maxcontent_txt span{display:block;}
+.maxpart .maxleft-title .maxcontent_txt a{color:#666;line-height:25px;margin-right:5px;}
+.maxpart .maxleft-title .maxcontent_txt a:hover{color:#f60;}
+/*行情表格*/ 
+.maxpart .maxtab{margin:20px 0px;}
+.maxpart .maxtab table{width:100%}
+.maxpart .maxtab .zb-tab{border:1px solid #184d31;text-align:center}	
+.maxpart .maxtab .zb-tab tr td{height:34px;line-height:34px;border-bottom:1px solid #184d31;}
+.maxpart .maxtab .zb-tab-td_{border-right:1px solid #184d31;font-size:12px;color:#333;}
+.maxpart .maxtab .zb-tab-td0{width:102px;color:#fff;background:#184d31;font-size:15px;font-family:microsoft yahei;}
+.maxpart .maxtab .zb-tab-td1{width:212px;color:#fff;background:#184d31;font-size:15px;font-family:microsoft yahei;}
+.maxpart .maxtab .zb-tab-td2{width:112px;color:#fff;background:#184d31;font-size:15px;font-family:microsoft yahei;}
+.part_left_content .pl_content_box{width:658px;height:auto;overflow:hidden;margin:20px auto}
+/*行情分类*/ 
+.maxbox {overflow:hidden;padding:20px 22px 10px 22px;position: relative;bottom: 0;left: 0;}
+.maxbox ul li{width:120px;height:30px;line-height:28px;text-align:center;margin-right:18px;margin-bottom:10px;float:left;display:inline}
+.maxbox ul li a{width:118px;height:28px;color:#303030;border:1px solid #e2e2e2;display:block;text-decoration:none}
+.maxbox ul li a:hover{background:#fff7e0;color:#f60;}
+/*相关报价*/ 
+.maxread{width:98px;height:27px;line-height:27px;margin-top:30px;color:#fff;text-align:center;font-size:14px;font-weight:bold;background:url(maxread.jpg) no-repeat;font-family:microsoft yahei;relative;bottom: 0;left: 0;}
+.maxarticles{overflow:hidden;margin-top:15px}
+.maxarticles ul li{width:190px;height:25px;line-height:25px;overflow:hidden;margin-left:25px;float:left;display:inline}
+.maxarticles ul li a{color:#444}
+.maxarticles ul li a:hover{color:#f60;}
+/*标签*/ 
+.maxstatement{height:31px;line-height:31px;padding-left:30px;background:#eeeeee;font-size:14px;color:#fb1a1a;margin:15px 0 10px 0px}
+.maxlabel{font-size:13px;margin-top:15px;}
+.maxlabel a{color:#0066cc}
+/*产品交易*/ 
+.maxrelevant{border:1px solid #ddd;margin-top:20px;}
+.maxrelevant .maxbe{line-height:39px;font-size:14px;font-weight:bold;color:#333;padding-left:20px;border-bottom:1px solid #ddd;font-family:microsoft yahei;}
+.maxrelevant .maxgoods{margin:15px 0px 8px 0px;overflow:hidden;}
+.maxrelevant .maxgoods img:hover{filter:Alpha(opacity=80);-moz-opacity:0.90;opacity:0.90;}
+.maxrelevant .maxgoods li{float:left;width:165px;margin-left:15px;}
+.maxrelevant .maxgoods li h6{height:22px;line-height:22px;margin-top:5px;font-size:14px;font-weight:normal;overflow:hidden;}
+.maxrelevant .maxgoods li h6 span{color:#f60;padding-right:3px;}
+.maxrelevant .maxgoods li h6 a{color:#333;}
+.maxrelevant .maxgoods li h6 a:hover{color:#f60;}
+.maxrelevant .maxgoods .gel-price{line-height:20px;}
+.maxrelevant .maxgoods .gel-price em{color:#f60;font-size:14px;}
+/*右边*/ 
+.maxright{float:right;width:265px;}
+.maxinfo{border:1px solid #c69e45;}
+.maxinfo h3{font-size:14px;color:#fff;background:#c69e45;line-height:32px;padding-left:15px;font-family:microsoft yahei;}
+.maxinfo .maxclass{padding:10px 15px;font-family:microsoft yahei;}
+.maxinfo .maxclass a{line-height:35px;font-size:14px;margin-right:15px;color:#333;}
+.maxinfo .maxclass a:hover{color:#f60;}
+.maxright .maxquote{margin-top:20px;}
+.maxright .max-Tabs-top{height:40px;border:1px solid #ddd;border-left:0px;background:#f7f7f7;font-family:microsoft yahei;}
+.maxright .max-Tabs-top li{float:left;line-height:40px;text-align:center;width:131px;border-left:1px solid #ddd;}
+.maxright .max-Tabs-top li span{font-size:14px;color:#333;cursor:pointer;}
+.maxright .max-Tabs-top li.active{height:41px;background:#fff;font-weight:bold;}
+.maxright .max-Tabs-body{border-top:0px;border:1px solid #ddd;border-top:0px;padding:14px 10px;}
+.maxright .max-Tabs-body .maxcomon li{line-height:26px;height:26px;overflow:hidden;margin-left:10px;}
+.maxright .max-Tabs-body .maxcomon li a{color:#444;}
+.maxright .max-Tabs-body .maxcomon li a:hover{color:#f60;}
+.maxpro{margin-top:20px;border:1px solid #ddd;}
+.maxpro .maxtle{line-height:32px;font-size:14px;color:#333;font-weight:bold;padding-left:15px;border-bottom:1px solid #ddd;background:#f7f7f7;font-family:microsoft yahei;}
+.maxpro .maxabout{padding:8px 15px;margin-top:3px;zoom:1}
+.maxpro .maxabout ul li{height:25px;line-height:25px;overflow:hidden}
+.maxpro .maxabout ul li a{color:#666}
+.maxpro .maxabout ul li a:hover{color:#f60;}
+.maxpro .maxabout ul li i{display:none;}
+
+/*列表页*/ 
+.maxpart .maxselected{padding:5px 0 15px 0px;margin:0px 20px;border-bottom: 1px solid #e2e2e2; clear:both;overflow:hidden;}
+.maxpart .maxselected a{display:block;float:left;color:#333;line-height:25px;border:1px solid #e2e2e2;text-align:center;margin-right:12px;padding:0px 10px;}
+.maxpart .maxselected a:hover{color:#f60;}
+
+.maxlist{padding:0px 20px;}
+.maxlist .item-tab{width:828px;border:1px solid #e2e2e2;text-align:center;font-size:12px;color:#333;}   /*DLC*/
+.maxlist .txt{float: left;margin-right:20px;margin-top:10px;}
+.maxlist ul li{border-bottom:1px solid #e7e7e7;padding-top: 10px; padding-bottom:10px;}
+.maxlist .item-1{padding:12px 0;font-size:14px; color:#999}
+.maxlist .item-1 a{color:#333;font-weight:bold}
+.maxlist .item-1 a:hover{color:#f60;}
+.maxlist .item-2{color:#999}
+.maxlist .item-3{overflow:hidden;line-height:30px;}
+.maxlist .item-3 .txt{width:210px;font-size:12px;color:#999;float:left;}
+
+/*分页*/
+.page{width:270px;margin:0px auto;padding-top:15px;}
+.page .pageUp,.page .pageDown,.page ul li{ font-size:15px; background-color:#f2f2f2; line-height:30px;min-width:15px; float:left; margin-left:8px;text-align:center;}
+.page a{display: block;}
+.a_active{color:#999;}
+.page ul li:hover{color:#fff; background:#c69e45;}
+.page .pageDown:hover{color:#fff; background:#c69e45;}
+.page .pageUp:hover{color:#fff; background:#c69e45;}
+
+/* 行情评价带图列表*/
+.maxlist{width:828px;margin-top:15px;overflow:hidden;margin-bottom:20px;}
+.maxlist li{overflow:hidden;padding:15px 0px;border-top:1px dotted #ddd;}
+.maxlist .maxpic{float:left;}
+.maxlist .click_rate{float:right;}   /*DLC*/
+.maxlist .maxpic img{width:120px;height:80px;}
+.maxlist .maxpic img:hover{opacity: 0.9;filter:alpha(opacity=80);}
+.maxlist .maxlist-content{float:left;width:530px;margin-left:16px;}
+.maxlist .maxlist-content .maxlist-title{height:30px;line-height:30px;overflow:hidden;font-size:22px;font-family:microsoft yahei;margin-bottom:3px;}
+.maxlist .maxlist-content li{height:22px;line-height:22px;color:#000;overflow:hidden;border:0px;padding:0px 0px 0px 10px;background: url(maxPoint.jpg) no-repeat left 50%;}
+.maxlist .maxicon{float:right;}
+.maxlist .maxicon i{float:left;}
+.maxlist .maxicon .maxicon-share{display:block;width:30px;height:20px;background:url(maxicon.png) no-repeat 0px -5px;cursor:pointer;}
+.maxlist .maxicon .maxicon-see{display:block;padding-left:20px;background:url(maxicon.png) no-repeat -45px -6px;}
+.maxlist .maxicon em{font-style: normal;color:#000;}

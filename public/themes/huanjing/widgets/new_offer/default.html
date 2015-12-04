@@ -1,0 +1,11 @@
+<div class="max-body">
+    <ul class="clearfix">
+        <{foreach from=$data.sort_select item=item key=key}>
+            <li class="item1 first">
+                <a href="<{url action=topc_ctl_market@details dataId=$item.data_id}>">
+                    <span>[<{$item.data.third_sort}>]</span><{$item.date}><{$item.data.area}><{$item.data.third_sort}>价格行情
+                </a>
+            </li>
+        <{/foreach}>
+    </ul>
+</div>

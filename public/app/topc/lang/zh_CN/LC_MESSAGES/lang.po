@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:86
+msgid "加入购物车失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:115
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:193
+msgid "更新失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:143
+msgid "删除失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:168
+msgid "地区不存在!"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/cart.php:183
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:123
+msgid "添加成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:16
+msgid "商品收藏添加失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:18
+msgid "商品收藏添加成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:32
+msgid "商品收藏删除失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:34
+msgid "商品收藏删除成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:49
+msgid "店铺收藏添加失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:51
+msgid "店铺收藏添加成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:66
+msgid "店铺收藏删除失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/collect.php:68
+msgid "店铺收藏删除成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:165
+msgid "设置成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:191
+msgid "删除成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:241
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:464
+msgid "修改成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:346
+#: /Users/bryant/codes/bbc/app/topc//controller/member.php:434
+msgid "成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:22
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:67
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:93
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:107
+msgid "支付失败，提交的订单数据有误"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:39
+msgid "支付失败，支付单创建失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc//lib/payment/gather.php:57
+msgid "该订单已经支付"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_item.html:22
+msgid "商品缺货"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:8
+msgid "全选"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:8
+msgid "商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:9
+msgid "单价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:10
+msgid "数量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:11
+msgid "金额"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:12
+msgid "操作"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/cart/cart_main.html:19
+msgid "店铺"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/list/index.html:31
+msgid "品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/passport/signin.html:9
+msgid "用户登录"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/passport/signup/member-signup.html:49
+msgid "请选择同意"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/topc/view/passport/signup.html:9
+msgid "用户注册"
+msgstr ""
+

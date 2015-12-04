@@ -1,0 +1,18 @@
+<ul clabankss="clearfix">
+      <{foreach from=$data.sprodreleaseList item=item}>
+      <li class="item">
+      <div class="p">  
+            <a href="/index.php/standard?standard_id=<{$item.standard_id}>">
+              <img style="width: 200px;height: 200px;"src="<{$item.image_default_id}>" alt="">
+            </a>
+         </div>
+              <div class="i">
+                <ul class="clearfix">
+                   <li class="gel-price"><em><{$item.net_price|cur}></em></li>
+                  </ul>
+            <h6>  <a href="/index.php/standard?standard_id=<{$item.standard_id}>"><{$item.title}></a> </h6>
+
+        </div>
+      </li>
+      <{/foreach}>
+    </ul>

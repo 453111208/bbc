@@ -1,0 +1,75 @@
+<div id="form" class="tableform widgetconfig">
+<h5><{t app="site"}>选择要显示的分类:<{/t}></h5>
+<h4>第一个</h4>
+<select name="cat_id1" class="selectOption1" id="selectOption1">
+	<option value="null">请选择</option>
+	<{foreach from=$setting.catList item=cat }>
+	<option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+	<{/foreach}>
+</select>
+<input type="hidden" name="cat_name1" id="cat_name1" />
+
+<h4>第二个</h4>
+<select name="cat_id2" class="selectOption2"  id="selectOption2">
+	<option value="null">请选择</option>
+	<{foreach from=$setting.catList item=cat }>
+	<option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+	<{/foreach}>
+</select>
+<input type="hidden" name="cat_name2" id="cat_name2" />
+<h4>第三个</h4>
+<select name="cat_id3" class="selectOption3"  id="selectOption3">
+	<option value="null">请选择</option>
+	<{foreach from=$setting.catList item=cat }>
+	<option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+	<{/foreach}>
+</select>
+<input type="hidden" name="cat_name3" id="cat_name3" />
+<h4>第四个</h4>
+<select name="cat_id4" class="selectOption4"  id="selectOption4"> 
+	<option value="null">请选择</option>
+	<{foreach from=$setting.catList item=cat }>
+	<option value="<{$cat.cat_id}>"><{$cat.cat_name}></option>
+	<{/foreach}>
+</select>
+
+<input type="hidden" name="cat_name4" id="cat_name4" />
+</div>
+<script type="text/javascript">
+
+	   $$(".selectOption1").addEvent('change',function(e){
+		var val = $("form").getElementById("selectOption1").getSelected().get('value');
+		var text = $("form").getElementById("selectOption1").getSelected().get('text');
+		if(val != "null"){
+		$("cat_name1").set('value',text);
+		}
+		
+	});
+	     $$(".selectOption2").addEvent('change',function(e){
+		var val = $("form").getElementById("selectOption2").getSelected().get('value');
+		var text = $("form").getElementById("selectOption2").getSelected().get('text');
+		if(val != "null"){
+		$("cat_name2").set('value',text);
+		}
+		
+	});
+	       $$(".selectOption3").addEvent('change',function(e){
+		var val = $("form").getElementById("selectOption3").getSelected().get('value');
+		var text = $("form").getElementById("selectOption3").getSelected().get('text');
+		if(val != "null"){
+		$("cat_name3").set('value',text);
+		}
+		
+	});
+	         $$(".selectOption4").addEvent('change',function(e){
+		var val = $("form").getElementById("selectOption4").getSelected().get('value');
+		var text = $("form").getElementById("selectOption4").getSelected().get('text');
+		if(val != "null"){
+		$("cat_name4").set('value',text);
+		}
+		
+	});
+
+	   	
+	   	// /* Act on the event */
+</script>

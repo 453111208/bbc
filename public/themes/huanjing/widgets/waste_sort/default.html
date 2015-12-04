@@ -1,0 +1,3 @@
+<{foreach from=$data.sort_select item=item key=key}>
+    <a href="<{url action=topc_ctl_market@getList secondSort=$item}>" title=""><{$item}></a>
+<{/foreach}>

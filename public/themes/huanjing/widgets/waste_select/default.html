@@ -1,0 +1,8 @@
+<div class="maxinfo"> 
+    <h3><{$data.first_sort}></h3>
+    <div class="maxclass">         
+        <{foreach from=$data.sort_select item=item key=key}>
+           <a href="<{url action=topc_ctl_market@getList secondSort=$item}>" title=""><{$item}></a>
+        <{/foreach}>
+    </div>
+</div>

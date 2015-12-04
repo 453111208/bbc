@@ -1,0 +1,18 @@
+<div class="article-widgets">
+  <div class="article-widgets-header">
+    <h3><{$setting.contenttag}></h3>
+    <a class="get-more" href="<{url action=topc_ctl_content@index node_id=$setting.data.node_id}>">更多</a>
+  </div>
+  <div class="article-widgets-body">
+    <ul>
+    <{foreach from=$setting.data.articleList item=article}>
+    <li><{$article.articleList.article_id}>
+      <a href="<{url action=topc_ctl_content@getContentInfo article_id=$article.article_id}>">
+        <div class="article-thumbnail"><{if $article.article_logo}><img src="<{$article.article_logo}>" alt=""><{/if}></div>
+        <div class="article-title"><{$article.title}></div>
+      </a>
+    </li> 
+    <{/foreach}>
+    </ul>
+  </div>
+</div>

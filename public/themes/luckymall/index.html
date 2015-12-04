@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+    <link rel="stylesheet" href="images/index.css">
+  </head>
+
+  <body>
+    <{require file="block/header.html"}>
+    <!-- 主内容区 -->
+    <div class="seaview">
+      <div class="wrap-lg seaview-other">
+        <div class="module">
+          <div class="row">
+            <div class="col-lg-3 sidebar"></div>
+            <div class="col-lg-10 box">
+              &nbsp;
+            </div>
+            <div class="col-lg-3 box">
+              <{widgets id="banners"}>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <{widgets id="main_focus"}>
+      </div>
+    </div>
+    <div id="main" class="main index">
+      <div class="wrap-lg">
+        <div class="module">
+          <{widgets id="activity"}>
+        </div>
+        <div class="module">
+          <{widgets id="floor_index"}>
+        </div>
+      </div>
+    </div>
+    <{require file="block/footer.html"}>
+  </body>
+</html>

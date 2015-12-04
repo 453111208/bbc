@@ -1,0 +1,23 @@
+<ul>
+    <{foreach from=$data.article_select item=item key=key}>
+        <li id="all_<{$key}>" style="width:73px;height:73px;float:left;">
+            <img style="width:100%;height:100%;" src="<{$item.pic1}>" alt="" />
+        </li>
+        <div id="dialog_<{$key}>" style="display:none">
+            <{$item.a11}>
+        </div>
+    <{/foreach}>
+</ul>
+<script>
+<{foreach from=$data.article_select item=item key=key}>
+    $('#all_<{$key}>').click(function (e) {
+        $('#dialog_<{$key}>').dialog({
+            width: 890,
+            height: 400,
+            title:'<{$item.title}>',
+            close: function(){
+            }
+        });
+    });
+<{/foreach}>
+</script>

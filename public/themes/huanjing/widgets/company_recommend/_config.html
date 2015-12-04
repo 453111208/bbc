@@ -1,0 +1,35 @@
+<div id="goods_exshow_config" class="tableform">
+  <div class="division">
+    <p>
+      <label for="">最多选择：</label>
+      <{input type="text" name="limit" value=$setting.limit size="3" disabled="true" }>个企业
+    </p>
+  </div>
+  <div class="division">
+    <div class="goods-selector-handle clearfix">
+      <div class="span-auto">
+        <label>
+          <input type="radio"  name="selector" value="select" <{if $setting.selector=="select"}>checked<{/if}> />&nbsp;选择企业
+        </label>
+      </div>
+    </div>
+    <div class="division goods-selector">
+      <div data-extend = "select" <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+        <{input type="object" value=$setting.shop_select object="shop" app="sysshop" offset=2  name="shop_select" select="checkbox" multiple="true" textcol="shop_name"}>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $$('#goods_exshow_config .goods-selector-handle input[type=radio]').addEvent('change',function(){
+    var radio  = this;
+    if(!radio.checked)return;
+    $$('#goods_exshow_config .goods-selector [data-extend]').each(function(item){
+      if(item.get('data-extend')!=radio.value){
+        item.hide();
+      }else{
+        item.show();
+      }
+    });
+  });
+</script>

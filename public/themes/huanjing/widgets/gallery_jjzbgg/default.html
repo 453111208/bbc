@@ -1,0 +1,21 @@
+           <ul class="clearfix"> 
+            <{foreach from=$data.sprodreleaseList item=item key=key}>
+            <li class="<{if $key<1}>active<{else}><{/if}>"> <h6><a href="<{$item.linkAddress}>" title=""><em>[<{$item.bidorten_type_name}>]</em><{$item.trading_title}></a></h6> 
+             <div class="maxinfo clearfix"> 
+              <div class="max-pic">
+               <a href="<{$item.linkAddress}>" title=""><img style="width:124px;height:88px;" src="<{$item.img_id}>" alt="" /></a>
+              </div> 
+              <div class="maxleft l"> 
+               <div class="s">
+                <{if $item.bidorten_type==1}>￥<{$item.mbid}>\<{$item.unit}><{else}><{/if}>
+               </div> 
+               <div class="x">
+                <{if $item.bidorten_type==1}><{$item.cbid}>次出价<{else}><{/if}>
+               </div> 
+               <div class="maxright r">
+                <a href="<{$item.linkAddress}>" title="">查看公告&gt;</a>
+               </div> 
+              </div> 
+             </div> </li>
+            <{/foreach}>
+           </ul> 

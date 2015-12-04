@@ -1,0 +1,279 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/crontab.php:16
+msgid "计划任务管理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/messenger.php:12
+msgid "邮件短信配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/messenger.php:104
+msgid "含有非法字符"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/messenger.php:114
+msgid "操作成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/messenger.php:116
+msgid "操作失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/queue.php:16
+#: /Users/bryant/codes/bbc/app/system/view/admin/queue.html:4
+msgid "队列管理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//controller/admin/shopmatrix.php:35
+msgid "如果需要切换通道，请先解除现有的绑定关系"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:16
+msgid "模版名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:20
+msgid "内容"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:22
+msgid "模板内容"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:27
+msgid "编辑时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:32
+msgid "是否激活"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/messenger_systmpl.php:36
+msgid "邮件短信模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:16
+msgid "ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:20
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:21
+msgid "队列标识"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:29
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:30
+msgid "执行任务类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:37
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:38
+msgid "任务参数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:44
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:45
+msgid "进入队列的时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:52
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:53
+msgid "任务开始执行时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:60
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:61
+msgid "mysql进程ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//dbschema/queue_mysql.php:78
+msgid "队列-mysql实现表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/crontab.php:19
+#: /Users/bryant/codes/bbc/app/system//lib/finder/crontab.php:19
+msgid "编辑计划任务"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/crontab.php:19
+#: /Users/bryant/codes/bbc/app/system//lib/finder/crontab.php:19
+msgid "编辑"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/crontab.php:19
+#: /Users/bryant/codes/bbc/app/system//lib/finder/crontab.php:19
+msgid "执行"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/data/messenger.php:133
+msgid "签名设置成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/data/messenger.php:142
+msgid "签名长度为2到8字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/data/messenger.php:151
+msgid "非法签名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/email.php:47
+msgid "无法发送邮件，下面是出错信息："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:65
+msgid "验证码不存在！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:67
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:103
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:137
+msgid "no license"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:80
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:116
+msgid "生成激活码成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:101
+msgid "手机号不能为空！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:146
+msgid "手机短信不能为空！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:162
+msgid "短信发送成功！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:168
+msgid "短信发送失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system//lib/messenger/smschg.php:243
+msgid "接口地址无法相应！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/crontab/detail.html:61
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/setsms.html:17
+#: /Users/bryant/codes/bbc/app/system/view/admin/shopmatrix.html:22
+msgid "保存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/edtmpl.html:2
+msgid "模板编辑 "
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/edtmpl.html:11
+msgid "可使用变量标签："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/edtmpl.html:47
+msgid "内容："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/edtmpl.html:56
+msgid "保存模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/email/account-member.html:1
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/sms/account-member.html:1
+msgid "您的验证码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/email/account-member.html:1
+msgid "请在页面中输入完成验证，不要把此验证码泄露给任何人，如非本人操作，请忽略此邮件"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:1
+msgid "邮件短信管理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:4
+msgid "邮件账号设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:5
+msgid "短信平台设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:6
+msgid "短信签名设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:14
+msgid "发送项目"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:30
+msgid "编辑模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:33
+msgid "预览模板"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/index.html:49
+msgid "保存设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/setsms.html:2
+msgid "短信签名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/sms/account-member.html:1
+msgid "请在页面中输入完成验证，不要把此验证码泄露给任何人，如非本人操作，请忽略此短信"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/sms/account-signup.html:1
+msgid "您的验证码是："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/messenger/sms/account-signup.html:1
+msgid "请在注册页输入验证码并完成注册；验证码有效期24小时"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/queue.html:7
+msgid "当前队列策略为"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/queue.html:8
+msgid "队列管理只支持"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/queue.html:8
+msgid "策略"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/queue.html:9
+msgid "如采用其他方式, 请根据相应的策略到对应的应用管理界面上进行处理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/shopmatrix.html:4
+msgid "数据通道配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/system/view/admin/shopmatrix.html:7
+msgid "通道类型: "
+msgstr ""
+

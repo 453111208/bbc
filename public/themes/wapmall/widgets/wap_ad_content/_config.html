@@ -1,0 +1,41 @@
+
+  <div class="tableform">
+    
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+          <th><em><font color="red">*</font></em><{t}>设置文章栏目名称：<{/t}></th>
+          <td>
+             <{input type="text" name="contenttag" vtype="required" value=$setting.contenttag|default:"资讯门户"}>
+          </td>
+      </tr>
+      <tr>
+          <th><em><font color="red">*</font></em><{t}>选择文章节点：<{/t}></th>
+          <td>
+              <select name="nodeId" vtype='required' class="x-input">
+                  <{foreach from=$setting.selectmaps item=maps}>
+                  <option class="optionlevels optionlevel_<{math equation='x' x=$maps.step|default:1}>
+                  " value="<{$maps.node_id}>"  depth="<{$maps.step}>" parent_id="<{$maps.parent_id}>" <{if $maps.node_id==$setting.nodeId}>selected<{/if}>><{$space|paddingleft:$maps.step:'&nbsp;&nbsp;&nbsp;&nbsp;'}><{$maps.node_name}>
+                  </option>
+                  <{/foreach}>
+              </select>
+          </td>
+      </tr>
+      <tr>
+          <th><{t}>展示文章数目：<{/t}></th>
+          <td>
+              <{input type="text" name="contentnum" vtype="required" value=$setting.contentnum|default:"5"}>
+          </td>
+      </tr>
+      <tr>
+        <th><{t}>展示文章排序：<{/t}></th>
+        <td>
+          <select name="nodeSort" vtype='required' class="x-input">
+            <option value="timedesc" <{if $setting.nodeSort==timedesc}>selected<{/if}>>根据发布时间降序</option>
+            <option value="timeasc" <{if $setting.nodeSort==timeasc}>selected<{/if}>>根据发布时间升序</option>
+          </select>
+        </td>
+      </tr>
+      </table>
+  </div>
+
+

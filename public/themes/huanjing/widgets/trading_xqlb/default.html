@@ -1,0 +1,54 @@
+        <div class="max-Tabs-top">
+          <ul class="clearfix">
+            <li class="active"> <span>最新需求</span></li>
+            <li class=""> <span>热门需求</span></li>
+          </ul>
+          <!-- 左侧链接 -->
+        <div class="maxMorelink">
+            <a href="<{url action=topc_ctl_member@eidtRequireGoods}>" title="">发布需求</a>
+          <!-- <a href="" title="" class="more">更多</a> -->
+        </div>
+        <!-- 左侧链接END -->
+        </div>
+        <div class="max-Tabs-body" style="min-height: 265px;">
+        <!-- 供应页卡切换 -->
+          <div class="maxcomon" style="display: block;">
+            <ul class="clearfix">
+             <{foreach from=$data.sprodreleaseList item=item key=key}>
+             <li class="<{if $key<1}>active<{else}><{/if}>">
+                <h6><a href="/index.php/require.html?require_id=<{$item.require_id}>&type=2"><em>[需求]</em><{$item.variety_name}></a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                     <{if $item.price_method=="gongkai"}>
+                    <div class="s">交易数量：<{$item.countnum}></div>
+                    <div class="x">价格：<i>￥<{$item.price}></i>&nbsp;/&nbsp;<{$item.company}></div>
+                    <{else}>
+                    <div class="x">价格：价格面议</div>
+                    <{/if}>
+                  </div>
+                  <div class="maxright r"><a href="/index.php/require.html?require_id=<{$item.require_id}>&type=2" title="">去询价&gt;</a></div>
+                </div>
+              </li>
+              <{/foreach}>
+            </ul>
+          </div>
+          <!-- 页卡切换END -->
+          <!-- 页卡切换2 -->
+          <div class="maxcomon" style="display: none;">
+            <ul class="clearfix">
+              <{foreach from=$data.info_select item=item}>
+              <li class="">
+                <h6><a href="/index.php/supply.html?require_id=<{$item.require_id}>&type=2"><em>[热门]</em><{$item.variety_name}></a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="/index.php/supply.html?require_id=<{$item.require_id}>&type=2" title="">去询价&gt;</a></div>
+                </div>
+              </li> 
+              <{/foreach}>
+            </ul>
+          </div>
+          <!-- 页卡切换2END -->
+        </div>

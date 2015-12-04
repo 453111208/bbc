@@ -1,0 +1,23 @@
+<div class="module-hd"><{$setting.class_name}><span><{$setting.class_detail}></span></div>
+<div class="module-bd daily-promotion clearfix">
+  <ul>
+    <{foreach from=$setting.data item=item}>
+    <li>
+      <div class="promotion-type hui"><{$item.activity_tag}></div>
+      <div class="thumb"><a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><img src="<{$item.item_default_image}>" width="121" height="121" alt="<{$item.title}>"></a></div>
+      <div class="caption">
+        <h2><a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a></h2>
+        <div class="get-promotion" >
+          <div class="promotion-price">
+            <div class="old-price"><{$item.price|cur}></div>
+            <div class="new-price">秒杀价<br><span class="price-num"><{$item.activity_price|cur}></span></div>
+          </div>
+          <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>" class="promotion-buy">
+            立即抢<br>GO!
+          </a>
+        </div>
+      </div>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>

@@ -1,0 +1,462 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:19
+msgid "下架商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:22
+msgid "确定要下架选中商品？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:25
+msgid "删除违规商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:28
+msgid "确定要删除选中商品？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:35
+msgid "商品列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:85
+msgid "全部"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:89
+msgid "已上架"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//controller/admin/item.php:97
+msgid "已下架"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:9
+msgid "item_id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:14
+msgid "所属店铺"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:15
+msgid "店铺id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:26
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:27
+msgid "商品类目ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:37
+msgid "商品品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:38
+msgid "品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:48
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:49
+msgid "商家自定义分类id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:54
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:55
+msgid "商品标题"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:66
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:67
+msgid "商品子标题"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:74
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:20
+msgid "商品编号"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:75
+msgid "bn"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:86
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:87
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:25
+msgid "商品价格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:96
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:97
+msgid "商品成本价格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:106
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:107
+msgid "商品市场价格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:117
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:118
+msgid "商品数量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:128
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:129
+msgid "商品重量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:136
+msgid "商品默认图"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:141
+msgid "自定义列表页图"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:146
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:147
+msgid "缩略图"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:155
+msgid "小图"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:160
+msgid "大图"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:164
+msgid "出售中"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:165
+msgid "库中"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:169
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:170
+msgid "商品状态"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:179
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:180
+msgid "上架时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:187
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:188
+msgid "下架时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:196
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:197
+msgid "排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:205
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:61
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:57
+msgid "更新时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:206
+msgid "商品最后更新时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:214
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:215
+msgid "是否支持会员打折"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:222
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:223
+msgid "是否是虚拟商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:230
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:231
+msgid "是否定时上下架"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:238
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:239
+msgid "是否违规"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:247
+msgid "单品/多规格"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:254
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:258
+msgid "销售属性序列化"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:262
+msgid "商品属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:267
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:268
+msgid "是否支持下单减库存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:274
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:275
+msgid "预扣库存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:281
+msgid "商家外部编码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:286
+msgid "是否是线下商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:290
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:39
+msgid "条形码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:291
+msgid "商品级别的条形码"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:297
+msgid "销量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:298
+msgid "商品销量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:306
+msgid "disabled"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item.php:310
+msgid "商品表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:7
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_desc.php:7
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:14
+msgid "商品id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:13
+msgid "评论次数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:19
+msgid "周浏览次数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:25
+msgid "浏览次数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:31
+msgid " 周购买次数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:37
+msgid "购买次数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_count.php:41
+msgid "商品次数表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_desc.php:11
+msgid "宝贝详情"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_desc.php:16
+msgid "Wap宝贝详情"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_desc.php:21
+msgid "无线端宝贝详情"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_desc.php:26
+msgid "商品详情表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:17
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:43
+msgid "商品ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:24
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:18
+msgid "商品三级分类ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:32
+msgid "自然属性ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:39
+msgid "自然属性值ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:43
+msgid "下拉框select"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:44
+msgid "输入值text"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:48
+msgid "商品人员输入或选择的属性值的值"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/item_nature_props.php:67
+msgid "商品自然属性信息表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:9
+msgid "sku_id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:30
+msgid "成本价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:35
+msgid "市场价"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:44
+msgid "货品库存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:48
+msgid "创建时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:52
+msgid "最后更新时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:56
+msgid "sku销售属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:60
+msgid "物品描述"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:64
+msgid "规格值,序列化"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:72
+msgid "sku状态"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:76
+msgid "sku预占库存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:80
+msgid "商家设置的外部id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/sku.php:86
+msgid "货品表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:26
+msgid "销售属性ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:35
+msgid "销售属性值ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:52
+msgid "sku ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//dbschema/spec_index.php:63
+msgid "商品规格索引表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:27
+msgid "商品下架成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:32
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:57
+msgid "商品下架失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:57
+msgid "商品上架失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:77
+msgid "违规商品删除成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:82
+msgid "违规商品删除失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:279
+msgid "商品分类不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:284
+msgid "商品分类必须为三级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:289
+msgid "品牌不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:295
+msgid "商品名称不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:337
+msgid "您所填写的商品编号已被使用，请检查！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:357
+msgid "您所填写的货号已被使用，请检查！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//lib/data/item.php:411
+msgid "保存商品失败！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/sysitem//task.php:14
+msgid "商家用户系统"
+msgstr ""
+

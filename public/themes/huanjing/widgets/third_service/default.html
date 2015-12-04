@@ -1,0 +1,19 @@
+<{foreach from=$data.service_select item=item key=key}>
+    <a id="title_<{$key}>"><{$item.title}></a><{if $key%2==0}>|<{/if}>
+    <div id="content_<{$key}>" style="display:none">
+        <{$item.content}>
+    </div>
+<{/foreach}>
+<script>
+<{foreach from=$data.service_select item=item key=key}>
+    $('#title_<{$key}>').click(function (e) {
+        $('#content_<{$key}>').dialog({
+            width: 890,
+            height: 400,
+            title:'<{$item.title}>',
+            close: function(){
+            }
+        });
+    });
+<{/foreach}>
+</script>

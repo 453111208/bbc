@@ -1,0 +1,36 @@
+<section class="floor" id="">
+  <h3 class="floor-hd">
+    <span class="tit">
+      <i class="icon icon-favor"></i>
+     <{$setting.texttag}>
+    </span>
+  </h3>
+  <section class="floor-bd floor-col-2 ui-refresh">
+    <ul class="data-list">
+      <{foreach from=$data.item item=item}>
+      <li class="col-xs-6">
+        <div class="pro-pic">
+          <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>">
+            <img src="<{$item.image_default_id|default:$data.defaultImg.S.default_image|storager:'s'}>" class="ui-imglazyload preload" alt="">
+          </a>
+        </div>
+        <div class="pro-info">
+          <div class="info-n">
+            <a href="<{url action=topm_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a>
+          </div>
+          <div class="info-p">
+            <div class="p-lf"><{$item.price}></div>
+            <div class="p-rt icon">
+              <{if $setting.nologin!=1}>
+                <a href="<{url action=topm_ctl_passport@signin nextpage=$next_page}>" class="save"><span class="icon icon-favor"></span></a>
+              <{else}>
+                <a href="<{url action=topm_ctl_collect@ajaxFav}>" class="save" rel="_request" data-ajax-data="item_id=<{$item.item_id}>" data-ajax-type="post"><span class="icon icon-favor"></span></a>
+              <{/if}>
+            </div>
+          </div>
+        </div>
+      </li>
+      <{/foreach}>
+    </ul>
+  </section>
+</section>

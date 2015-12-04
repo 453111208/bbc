@@ -1,0 +1,42 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <{header}>
+        <link rel="stylesheet" href="images/max.css">
+        <link href="images/articles/article.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+    <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+    <div class="maxmain">
+        <div class="maxleft"><{main}></div>
+        <div class="maxright">
+            <div class="maxhot"><{widgets id="hot_info"}></div>
+            <div class="maxhot"><{widgets id="expert_policy"}></div>
+            <div class="maxprow">
+                <div class="maxPro-L maxhot">
+                <div class="maxhot-title"><h2>热门交易</h2><a href="#">更多</a></div>
+                <{widgets id="article_rmjy"}>
+               </div>
+            </div>
+            <div class="maxhot maxking">
+                <div class="max-Tabs-top">
+                    <ul class="clearfix">
+                        <li class="active"><span>热度排行</span></li>
+                    </ul>
+                </div>
+                <div class="max-Tabs-body">
+                    <div class="maxcomon" style="display:block;"><{widgets id="article_rmzx"}></div>
+                </div>
+            </div>
+            <div class="maxad"><{widgets id="article_ad"}></div>
+        </div>
+    </div>
+<div class="maxkf"><{widgets id="right_service"}></div>
+<{require file="block/footer.html"}>
+<script src="images/max.js"></script>
+<script src="images/articles/article.js"></script>
+</body>
+</html>
+
+   

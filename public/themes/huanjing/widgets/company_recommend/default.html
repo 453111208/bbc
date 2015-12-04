@@ -1,0 +1,7 @@
+<ul>
+    <{foreach from=$data.shop_select item=item key=key}>
+        <li>
+            <a href="shopcenter.html?shop_id=<{$item.shop_id}>" target="_blank"><{$item.shop_name}></a>
+        </li>
+    <{/foreach}>
+</ul>

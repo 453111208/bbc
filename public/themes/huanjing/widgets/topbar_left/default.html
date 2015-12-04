@@ -1,0 +1,16 @@
+<{if $data.UNAME}>
+<div class="small-signin" id="member_<{$widgets_id}>" >
+        <{t app='topc'}>您好<{/t}><span id="uname_<{$widgets_id}>"><{$data.UNAME}></span>！
+       <a href="<{url action=topc_ctl_passport@logout}>"><{t app='topc'}>退出<{/t}></a>
+</div>
+<{else}>
+
+
+
+<div class="small-signin" id="login_<{$widgets_id}>">
+  <span><{$setting.welcome}></span>
+  <a href="<{url action=topc_ctl_passport@signin}>"><{t app='topc'}>登录<{/t}></a>
+  <a href="<{url action=topc_ctl_passport@signup}>"><{t app='topc'}>注册<{/t}></a>
+</div>
+<{/if}>
+

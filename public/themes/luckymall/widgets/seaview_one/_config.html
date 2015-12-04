@@ -1,0 +1,42 @@
+<div class="tableform">
+    <div class="widgetconfig">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tbody><tr>
+                    <th><{t app='b2b2c'}>广告尺寸：<{/t}></th>
+                    <td><{t app='b2b2c'}>宽<{/t}>
+                      <input type="text" name="ad_pic_widths" value="<{$setting.ad_pic_widths|default:230}>" style="width:40px">px <{t app='b2b2c'}>高<{/t}>
+                      <input type="text" name="ad_pic_heights" style="width:40px" value="<{$setting.ad_pic_heights|default:366}>">px
+                    </td>
+                </tr>
+                <tr>
+                    <th><{t app='b2b2c'}>图片：<{/t}></th>
+                    <td>
+                        <input type=hidden name="ad_pics" value="<{$setting.ad_pics}>"><input name='ad_pics' class="imgsrc" id="ad_pic" value="<{$setting.ad_pics}>"><input type=button value="<{t app='b2b2c'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic()">
+                    </td>
+                </tr>
+                <tr>
+                    <th><{t app='b2b2c'}>图片标题：<{/t}></th>
+                    <td><input type="text" name="ad_pic_title" value="<{$setting.ad_pic_title}>"></td>
+                </tr>
+                <tr>
+                    <th><{t app='b2b2c'}>图片描述：<{/t}></th>
+                    <td><input type="text" name="ad_pic_txts" value="<{$setting.ad_pic_txts}>"></td>
+                </tr>
+                <tr>
+                    <th><{t app='b2b2c'}>图片链接：<{/t}></th>
+                    <td><input type="text" name="ad_pic_links" value="<{$setting.ad_pic_links}>"></td>
+                </tr>
+        </tbody></table>
+    </div>
+</div>
+<script>
+    function addPic(){
+        var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+        var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;
+        Ex_Loader('modedialog',function(){
+            return new imgDialog(url,{onCallback:function(image_id,image_src){
+                    $('ad_pic').value=image_src;
+            }})	;
+        });
+    }
+</script>

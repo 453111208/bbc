@@ -1,0 +1,7 @@
+<ul>
+    <{foreach from=$data.info_select item=item key=key}>
+        <li>
+            [资讯]<a href="<{url action=topc_ctl_info@getInfo articleId=$item.article_id}>" target="_blank"><{$item.title}></a>
+        </li>
+    <{/foreach}>
+</ul>

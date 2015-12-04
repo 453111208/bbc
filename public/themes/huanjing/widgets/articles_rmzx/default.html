@@ -1,0 +1,12 @@
+<ul>
+    <{foreach from=$data.sprodreleaseList item=item key=key}>
+        <li style="max-height: 35px;max-width: 314px; overflow: hidden;" <{if $key<3}>class="maxrank"<{/if}>><i><{$key+1}></i><a href="/index.php/sysinfo.html?articleId=<{$item.article_id}>" target="_blank"><{$item.title}></a></li>
+    <{/foreach}>    
+</ul>
+
+
+
+
+
+
+

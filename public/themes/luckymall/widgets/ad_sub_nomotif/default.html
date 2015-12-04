@@ -1,0 +1,21 @@
+<div data-toggle="switchable" data-switchable-config='{"effect": "scrollx", "autoplay": true,"viewSize": [215,348], "interval": 2, "events": "click", "circle": true}'>
+  <div class="scroller">
+    <ol class="switchable-content">
+      <{foreach from=$data.pic item=item}>
+      <li>
+        <div class="goods-pic">
+          <a href="<{$item.linktarget}>">
+            <img width="230" height="348" src="<{$item.link}>" alt="<{$item.linkinfo}>">
+          </a>
+        </div>
+      </li>
+      <{/foreach}>
+    </ol>
+  </div>
+  <ul class="goods-switch switchable-nav">
+    <li class="active"><span></span></li>
+    <li><span></span></li>
+    <li><span></span></li>
+  </ul>
+</div>
+

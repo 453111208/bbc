@@ -1,0 +1,73 @@
+<div id="category_handle">
+  <div class="big-cate">
+    <a href="#">全部商品分类</a>
+  </div>
+  <div class="category is-display" id="category_box" <{if !$data.isindex}>style="visibility:hidden;"<{/if}>>
+    <ul class="category-primary">
+      <{foreach from=$data.data item=item key=key}>
+      <li>
+        <div class="category-primary-item">
+          <a href="<{url action=topc_ctl_topics@index cat_id=$item.cat_id}>">
+            <{if $item.cat_logo}><i><img src="<{$item.cat_logo}>" width="30" height="30" /></i><{/if}>
+            <{$item.cat_name}>
+          </a>
+          <span class="active-arrow"></span>
+        </div>
+        <div class="category-sub">
+          <{foreach from=$item.lv2 item=lv2item key=lv2key}>
+          <div class="category-sub-item">
+            <div class="category-sub-title"><{$lv2item.cat_name}></div>
+            <ul>
+              <{foreach from=$lv2item.lv3 item=lv3item key=lv3key}>
+              <li><a href="<{url action=topc_ctl_list@index cat_id=$lv3item.cat_id}>"><{$lv3item.cat_name}></a></li>
+              <{/foreach}>
+            </ul>
+          </div>
+          <{/foreach}>
+        </div>
+      </li>
+      <{/foreach}>
+    </ul>
+  </div>
+</div>
+<script>
+<{if !$data.isindex}>  
+  var category = $('#category_box');
+  $('#category_handle').on('mouseover', function(e){
+      category.css('visibility','visible');
+  }).on('mouseout', function(e){
+      category.css('visibility','hidden');
+  });
+<{/if}>
+$('#category_handle').on('mouseover', 'li', function(){
+  $(this).find('.category-primary-item').addClass('on');
+}).on('mouseout', 'li', function(){
+  $(this).find('.category-primary-item').removeClass('on');
+})
+// <style>
+// .category .category-sub{
+//     width: <{$setting.sub_category_width}>px;
+// }
+// </style>
+//全部商品分类hover时sub category的定位
+// $('.category-primary li').hover(
+//   function(){
+//     var subCate = $(this).find('.category-sub');
+//     var primCate = $(this).parent('.category-primary');
+
+//     var subCateHeight = $(subCate).height();
+//     var primCateHeight = $(primCate).height();
+
+//     var subCateTop = $(subCate).offset().top;
+//     var primCateTop = $(primCate).offset().top;
+
+//     var subCateY = subCateTop+subCateHeight;
+//     var primCateY = primCateTop+primCateHeight;
+
+//     if(subCateY>primCateY){
+//       $(this).css('position','static');
+//       subCate.css({'bottom':'0','top':'initial'});        
+//     }
+//   }
+// );
+</script>

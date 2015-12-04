@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+      <link rel="stylesheet" href="images/max.css">
+  <link href="images/markets/market.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+    <div class="maxmain">
+        <div class="maxleft"><{main}></div>
+        <div class="maxright">
+            <div class="maxinfo"><{widgets id="metals_sort"}></div>
+            <div class="maxquote">
+                <div class="max-Tabs-top">
+                    <ul class="clearfix">
+                        <li class="active"><span>日评</span></li>
+                        <li class=""><span>周评</span></li>
+                    </ul>
+                </div>
+                <div class="max-Tabs-body">
+                    <div class="maxcomon" style="display: block;"><{widgets id="day_discuss"}></div>
+                    <div class="maxcomon" style="display: none;"><{widgets id="week_discuss"}></div>
+                </div>
+             </div>
+            <div class="maxpro"><{widgets id="community_answer"}></div>
+            <div class="maxpro">
+                <div class="maxtle">相关最新资讯</div>
+                <div class="maxabout"><{widgets id="article_rmzx"}></div>
+            </div>
+            <div class="maxpro">
+                <div class="maxtle">相关企业推荐</div>
+                <div class="maxabout"><{widgets id="company_recommend"}></div>
+             </div>
+        </div>
+    </div>
+    <!--   右侧悬浮客服 -->
+    <div class="maxkf"><{widgets id="right_service"}></div>
+    <{require file="block/footer.html"}>
+    <script src="images/max.js"></script>
+    <script src="images/markets/market.js"></script>
+  </body>
+</html>

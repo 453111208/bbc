@@ -1,0 +1,19 @@
+<section class="floor catalog">
+  <h3 class="floor-hd">
+    <span class="tit">
+      <i class="icon icon-catalog"></i>
+      <{$setting.block_name}>
+    </span>
+  </h3>
+  <div id="theme9" class="floor-col-2">
+    <ul class="activity-list floor-col-2">
+      <{foreach from=$data.pic item=item}>
+        <li class="activity-item">
+          <a href="<{$item.linktarget}>" class="activity-link">
+            <img src="<{$item.link}>" alt="<{$item.title}>" class="activity-img" >
+          </a>
+        </li>
+      <{/foreach}>
+    </ul>
+  </div>
+</section>

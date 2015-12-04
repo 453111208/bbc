@@ -1,0 +1,415 @@
+h1,h2,h3,h4,h5,h6,ul,li{ padding:0;  margin:0; list-style:none;color:#666;font-size:100%;}
+a {font-size:12px;text-decoration: none;color:#666;}
+button{padding:0;margin:0;border:0;outline:medium;background:none;cursor:pointer;float:left;}
+s{text-decoration:none;}
+.maxM-right label{max-width:780px;}
+
+/*=============会员中心发布商品头部===共用========*/
+.max-header{width: 100%;position: relative;background: #c69e46;height: 93px;}
+.max-page{width: 1200px;margin: 0 auto;}
+.max-logo{float: left;padding:23px 0 0 19px;}
+.max-Supply{ float: left;padding: 23px 0 0 18px;}
+.max-Supply span{font:22px/22px microsoft yahei;color:white;display:block;text-align: center;}
+.max-Supply a{display:block;background:#d4b160;width:90px;height:22px;line-height: 22px;color: #fff0d0;border-radius:20px;-webkit-border-radius:20px;-moz-border-radius:20px;
+text-align:center;border:1px solid #e4d1a7;margin: 7px 0 0 0;}
+.max-Supply a:hover{color:#fff0d0;}
+.max-nav{float: left;padding:34px 0 0 60px ;}
+.max-nav a{float:left;font:bold 16px/32px microsoft yahei;color:white;padding:0 20px;margin:0 3px;height:32px;}
+.max-nav a:hover{color:#fff0d0;}
+.max-nav a.active{background:#003d04;border-radius:20px;-webkit-border-radius:20px;-moz-border-radius:20px;}
+.max-search{float: right;padding:20px 10px 0 0;}
+.max-search .max-keywords a{color:white;padding:0 5px 0 11px;background:url(max_menber.png) no-repeat 0 3px;}
+.max-search .max-keywords .item-1{padding-left:0;font-weight:bold;background:none;}
+.max-search-input{overflow:hidden;padding-top:5px;}
+.max-search input.max-key{float:left;width:210px;height:28px;line-height:20px;border:1px #ae8d40 solid;border-left:0;background:#e5d3ad;}
+.max-search .max-submit{float:left;width:50px;height:32px;background:#003d04;color:white;font-weight:bold;font-family:simsun;padding:0;margin:0;border:0;}
+
+/*=====会员中心主体区====*/
+.max-main{width:100%;background-color:#f5f5f5;overflow:hidden;}
+
+.max-Shadow{width:100%;height:8px;clear:both;background:url(max_menber.png) 0 -272px;}
+
+
+/*=============会员中心发布商品左侧菜单===共用========*/
+.maxM-left{float:left;width:180px;margin:15px 0;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;}
+.maxM-left .max-menu-mod{padding:0 22px 2px;}
+.maxM-left .max-menu-mod.artive h2{background: url(max_menber.png) no-repeat 0 -57px;}
+.maxM-left .max-menu-mod h2.max-menu-title.no{background:none;}
+.max-menber-menu{padding:20px 0;background: white;}
+.max-menu-mod.artive .max-menu-ul{display:block;}
+.maxM-left .max-menu-mod h2{font:bold 14px/24px microsoft yahei;color:#333;padding-left:24px;background: url(max_menber.png) no-repeat 0 -24px;cursor:pointer;}
+.maxM-left .max-menu-mod ul li{padding-left:38px;}
+.maxM-left .max-menu-mod ul li a{color:#666;line-height:22px;}
+.maxM-left .max-menu-mod ul li a:hover{color:#ff6600;}
+
+/*=============会员中心发布商品右侧主体===========*/
+.maxM-right{float:right;width:1000px;margin:15px 0 20px 0;padding-bottom:20px;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;background: white;}
+.maxM-right .max-menber-title h2{font:18px/65px microsoft yahei;color:#484848;padding-left:38px;}
+.maxM-right .max-menber-mod{width:935px;margin-left:35px;background:#fffdf1;border:1px solid #f4e8dc;}
+.maxM-right .max-menber-mod.to{margin-top:10px;}
+.maxM-right .max-menber-mod ul{padding:10px 0;}
+.maxM-right .max-menber-mod li{padding:5px 0;}
+.maxM-right .max-menber-mod li span{width:85px;text-align:right;float:left;line-height:30px;color:#4f4f4d;padding-right:10px;font-size:12px;}
+.maxM-right .max-menber-mod li .maxfic{height:22px;outline:medium;}
+.maxM-right .max-menber-mod li textarea{width:280px;height:75px;line-height:18px;outline:medium;}
+.max-menber-mod input{height:26px;line-height:20px;outline:medium;}
+.max-menber-mod input.maxPrna{width:700px;}
+.max-menber-mod .max-Desc{width:905px;height:343px;margin:10px;}
+
+/*=============会员中心发布标准商品交易主体===========*/
+.maxM-right .max-steps {display:block;width:921px;margin:0 auto;padding-top:10px;overflow:hidden;}
+.maxM-right .max-steps ul li{width:307px;float:left;position:relative;}
+.maxM-right .max-steps ul li span{width:307px;text-align:center;display:block;font:17px/50px microsoft yahei;color:#bfbfbf;}
+.maxM-right .max-steps ul li.active span{color:#ff6600;}
+.maxM-right .max-steps ul li s{position:absolute;top:-10px;left:50%;margin-left:-12px;width:24px;height:24px;line-height:24px;font-size:12px;background:url(max_menber.png) 0 -146px;}
+.maxM-right .max-steps ul li.active s{background:url(max_menber.png) no-repeat 0 -102px;color:white;}
+.maxM-right .max-steps ul li i{width:307px;height:6px;display:block;background:url(max_menber.png) 0 -193px;}
+.maxM-right .max-steps ul li.active  i{background:#ff6600;}
+.max-Choice{padding-left:35px;}
+.max-Choice .max-Select-gs{overflow:hidden;}
+.max-Choice .max-click-se{float:left;width:217px;height:61px;background:#fffdf1;border:#ebd0b3 solid 1px;text-align:center;margin-right:11px;}
+.max-Choice .max-click-se:hover{background:#fffae8}
+.max-Choice .max-click-se a{font:14px/61px microsoft yahei;color:#48494b;display:block;}
+.max-Choice .max-click-pu{float:left;width:217px;height:61px;background:#fffdf1;border:#ebd0b3 solid 1px;}
+.max-Choice .max-click-pu:hover{background:#fffae8}
+.max-Choice .max-click-pu a{font:14px microsoft yahei;color:#48494b;display:block;padding:13px 0 0 14px;display:block;}
+.max-Choice .max-click-pu em{color:#ff6600;display:block;}
+.max-Choice .max-Commodity{width:944px;height:37px;border:1px solid #e8e8e8;margin-top:15px;}
+.max-Choice .max-c-name{width:440px;float:left;}
+.max-Choice .max-c-name a{font:12px/37px simsun;color:#48494b;float:left;}
+.max-Choice .max-c-name a.max-fox1{line-height:0;}
+.max-Choice .max-c-name a.max-fox1 img{padding: 10px 0 0 10px;}
+.max-Choice .max-c-Number{color:#48494b;position:relative;float:left;line-height:35px;}
+.max-Choice .max-c-Number a{width:8px;height:5px;position:absolute;right:6px;}
+.max-Choice .max-c-Number .max-c-plus{top:13px;background: url(max_menber.png) no-repeat 0 -212px;}
+.max-Choice .max-c-Number .max-c-minus{bottom:8px;background: url(max_menber.png) no-repeat 0 -220px;}
+.max-Choice .max-Taiwan{float:left;line-height:35px;padding-left:11px;}
+.max-Choice .max-Taiwan input{width:34px;height:21px;line-height:21px;text-align:center;border:1px solid #ccc;outline:medium;background:white url(input-bg.png) 0 0;color: #48494b;}
+.max-Choice .max-Price{padding-left:25px;color:#48494b;position:relative;float:left;line-height:35px;}
+.max-Choice .max-Price input,.max-Choice .max-c-Number input{color: #48494b;}
+.max-Choice .max-Price a{width:8px;height:5px;position:absolute;right:6px;}
+.max-Choice .max-Price .max-c-plus{top:13px;background: url(max_menber.png) no-repeat 0 -212px;}
+.max-Choice .max-Price .max-c-minus{bottom:8px;background: url(max_menber.png) no-repeat 0 -220px;}
+.max-Choice .max-nextStep{padding-top:15px;overflow:hidden;}
+.max-Choice .max-nextStep button{width:82px;height:32px;background:#ff6600;color:white;font-size:15px;font-family: microsoft yahei;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;}
+.max-information{width:930px;border:1px solid #e0e0e0;margin:25px 0 0 35px;padding:15px 0; }
+.max-information .max-Infor{overflow:hidden;display:block;padding:2px 0;}
+.max-information .max-for-title{width:130px;float:left;text-align:right;color:#666;line-height:36px;}
+.max-information .max-for-input{float:left;line-height: 36px;}
+.max-information .max-for-input input{width:425px;height:26px;line-height:20px;outline:medium;border:1px solid #ccc;}
+.max-information .max-Infor dd{float:left;}
+.max-information .max-Infor.date dd span{font:14px/36px simsun;border:2px solid #cfcfcf;padding:6px 15px;margin-right: 5px;color:#666;}
+.max-information .max-Infor.date dd span.active{border-color:#ff6600;}
+.max-information .max-for-mation{float:left;}
+.max-information .max-for-mation input{float:left;margin-top:12px;}
+.max-information .max-for-mation label{float:left;line-height:36px;color:#666;padding:0 25px 0 5px;}
+.max-address{width:930px;border:1px solid #e0e0e0;margin:15px 0 0 35px;padding:15px 0; }
+.max-address ul li{display: block;overflow: hidden;width: 872px;margin: auto;}
+.max-address ul li:hover{background:#fffbe8;}
+.max-address li.max-selected input{float:left;margin-top:7px;margin-left:97px;}
+.max-address li.max-selected label{float:left;width:754px;line-height:26px;padding-left:6px;color:#2d2d2d;}
+.max-address li.max-selected label i{color:#919191;}
+.max-address li.max-selected.active{padding-left:0px;width:872px;border:solid 1px #ffc700;background:#fffbe8;margin:10px auto;box-shadow:6px 6px 0px #f2f4f3;-moz-box-shadow:6px 6px 0px #f2f4f3;-webkit-box-shadow:6px 6px 0px #f2f4f3;}
+.max-address li.max-selected.active label{float:right;font:bold 15px/32px simsun;}
+.max-address li.max-selected.active input{margin-top:9px;margin-left:1px;}
+.max-address li.max-selected .max-Delivery{float:left;width:70px;padding:0 0 0 26px;font:18px microsoft yahei;color:#ff6600;font: bold 15px/32px simsun;position:relative;}
+.max-address li.max-selected .max-Delivery i{position:absolute;left:10px;top:6px;width:12px;height:19px;background: url(max_menber.png) no-repeat 0 -233px;}
+.max-address li.max-selected label em{float:right;}
+.max-address li.max-selected label em span{font:12px/32px simsun;}
+.max-address li.max-selected label em span.max-get-ad{color:#3366cf;padding:0 10px 0 60px;cursor:pointer;}
+.max-address li.max-Other-add a{color:#3366cf;padding-left:116px;line-height:26px;}
+
+/*=============会员中心发布交易主体===竞标========*/
+.max-highest-bidder .max-the-Contents input{border:1px solid #ccc;}
+.max-the-radio label{font:15px microsoft yahei;color:#333;cursor:pointer;}
+.max-the-bidder.Hover .max-the-radio label{color:#333;font-weight: bold;}
+.max-goods-name{margin-top:15px;}
+.max-Commodity.re{margin-top:-1px;}
+.max-Commodity.re:hover{background:#fffed5;}
+.max-highest-bidder{padding-left:25px;width:945px;margin-top:37px;}
+.max-highest-bidder .max-the-bidder{float:left;width:236px;height:88px;border:dashed 1px #e5e5e5;margin-left:20px;position:relative;cursor:pointer;}
+.max-highest-bidder .max-the-bidder.Hover i{height:5px;width:236px;position:absolute;left:0;bottom:-2px;z-index:99;background:#fefcf0;}
+.max-highest-bidder .max-the-bidder:first-child{margin-left:0px;}
+.max-highest-bidder .max-the-radio{padding:20px 0 0 20px;}
+.max-highest-bidder .max-the-radio input{margin-top:-4px;}
+.max-highest-bidder .max-the-bidder span{color:#999;line-height:26px;padding-left:35px;}
+.max-highest-bidder .max-the-bidder.Hover{padding-bottom:10px;background:#fefcf0;border-color:#e42a2d;border-bottom:0;}
+.max-highest-bidder .max-the-Contents{border:dashed 1px #e42a2d;clear:both;width:945px;background:#fefcf0;padding-bottom:22px;display:none;}
+.max-highest-bidder .max-the-Content{width:910px;background:white;margin:12px 0 0 17px;padding:10px 0 20px 0;border:1px solid #e7dcae;}
+.max-highest-bidder .max-the-con{padding-top:9px;}
+.max-highest-bidder .max-the-con label{line-height:31px;padding:0 15px 0 5px;}
+.max-highest-bidder .max-the-con .max-i-left{width:132px;line-height:31px;float:left;text-align:right;}
+.max-highest-bidder .max-the-con .max-i-right{position:relative;}
+.max-highest-bidder .max-the-con .max-i-down{position:absolute;right:0;top:0;width:13px;height:20px;background:url(max_menber.png) no-repeat 0 -296px;}
+.max-highest-bidder .max-the-con .max-i-right input{width:36px;height:23px;margin-left:7px;padding-left:4px;color:#7f7b7c;}
+.max-highest-bidder .max-the-Intr{width:910px;background:white;margin-left:17px;border:1px solid #e7dcae;margin-top:12px;padding:15px 0;}
+.max-highest-bidder .max-address.Rele{width:910px;background:white;margin:12px 0 0 17px;border:1px solid #e7dcae;}
+.max-highest-bidder .max-the-con .max-i-news{width:475px;height:27px;}
+.max-highest-bidder .max-the-con .max-i-new{width:132px;height:27px;padding-left:18px;line-height:27px;}
+.max-highest-bidder .max-the-con h3.max-i-left{font:12px/22px simsun;}
+.max-highest-bidder .max-the-con .max-r-input{margin-top:-2px;}
+.max-the-Commodity {float: left;}
+.max-the-Commodity .max-Commodity{border:solid 1px #e8e8e8;width:750px;height:37px;overflow:hidden;}
+.max-the-Commodity .max-Commodity span{line-height:36px;float:left;color:#494949;position:relative;}
+.max-the-Commodity .max-c-name{width:200px;}
+.max-the-Commodity .max-c-Number{width:178px;}
+.max-the-Commodity .max-c-price{margin-right:8px;}
+.max-the-Commodity .max-c-price a{width: 13px;height: 10px;position: absolute;right: 0;}
+.max-the-Commodity .max-Price a{width: 13px;height: 10px;position: absolute;right: 0;}
+.max-the-Commodity span .max-c-plus{top: 9px;background: url(max_menber.png) no-repeat 0 -209px;}
+.max-the-Commodity span .max-c-minus{bottom: 6px;background: url(max_menber.png) no-repeat 0 -219px;}
+.max-the-Commodity .max-c-name a.max-fox1 img{padding: 10px 5px 0 5px;float:left;}
+.max-the-Commodity .max-c-name a{color:#666;}
+.max-Advice{clear: both;padding-left:133px;padding-top:5px;}
+.max-Advice input{margin:-2px 2px 0 0;}
+.max-Advice span{font:14px/36px simsun;color:#535353;}
+.max-Advice span em{font:12px/36px simsun;color:#ff6600;}
+.max-highest-bidder .max-the-con.last{padding-top:0;}
+.max-the-Intr ul li{overflow:hidden;width:880px;height:32px;margin:5px auto;border:1px white solid;}
+.max-the-Intr ul li:hover{background:#fffbe8;border:solid #ffc700 1px;box-shadow: 6px 6px 0px #f2f4f3;-moz-box-shadow: 6px 6px 0px #f2f4f3;-webkit-box-shadow: 6px 6px 0px #f2f4f3;}
+.max-the-Intr ul li span{width:118px;line-height:31px;float:left;text-align:right;}
+.max-the-Intr ul li label{line-height:32px;}
+.max-the-Intr ul li a{color:#1b6fd1;}
+.max-the-Intr ul li .max-li-mod{float:right;line-height:32px;padding-right:90px;display:none;}
+.max-the-Intr ul li:hover .max-li-mod{display:block;}
+.max-the-Contents .max-address.Rele li.max-selected label{width:752px;}
+.max-highest-bidder .max-the-con.setup{padding-top:15px;}
+.max-highest-bidder .max-the-con .max-r-but span {float:left;width:109px;height:26px;border:1px solid #d7d7d7;color:#666;line-height:26px;margin-top:3px;margin-right:10px;
+border-radius:6px;-webkit-border-radius: 6px;-moz-border-radius:6px;
+background-image: linear-gradient(#ffffff,#ededed);
+background-image: -webkit-linear-gradient(#ffffff,#ededed);
+background-image: -moz-linear-gradient(#ffffff,#ededed);
+background-image: linear-gradient(#ffffff,#ededed);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=true, gradientType=0, startColorstr='#FFffffff', endColorstr='#FFededed') \9;}
+.max-highest-bidder .max-the-con .max-r-por{padding:0;color:red;}
+
+/*=============按钮====共用=======*/
+.maxM-buttom{padding:26px 0 26px 35px;}
+.maxM-buttom .btn span{float:left;margin-right:10px;border:0;height:32px;font:16px/32px microsoft yahei;color:white;padding:0;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;}
+.maxM-buttom .btns span{width:126px;background:#ff6600;}
+.maxM-buttom .btnp span{width:83px;background:#ffa630;}
+.maxM-buttom .btnc span{width:83px;background:#c5c5c5;}
+.maxM-buttom .btnf span{width:83px;background:#ff6600;}
+.maxM-buttom .btnp-data span{width:70px;background:#ff6600;}
+.maxM-buttom .max-btnp-data{width:70px;height:32px;margin:0 auto;}
+.maxM-right .max-Number{width:40px;height:21px;line-height:21px;outline:medium;padding-left:20px;border:1px solid #ccc;background:white url(input-bg.png) 0 0;}
+
+/*=============会员中心我是供应商主体========*/
+.maxM-right.supers{width:1005px;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;background:none;}
+.max-Suppliers{display:block;background:white;overflow: hidden;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;}
+.max-sup-left{float:left;width:200px;padding:0 18px;}
+.max-sup-left a{display:block;text-align:center;color: black;}
+.max-sup-left a:hover{color:#ff6600;}
+.max-sup-left .max-pic{padding-top:13px;}
+.max-sup-left .max-pic img{border:solid 1px #e9e9e9;}
+.max-sup-left .max-s-name em{display:block;color:#999999;}
+.max-sup-left .max-bpic{overflow:hidden;}
+.max-sup-left .max-bpic a{float:left;padding: 4px 0 2px 18px;}
+.max-sup-center{float:left;width:480px;padding-top:1px;}
+.max-sup-center .max-entrance{float:left;width:233px;height:76px;border:solid #eaeaea 1px;margin:12px 10px 0 0;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;}
+.max-sup-center .max-entrance.item-2,.max-sup-center .max-entrance.item-4{margin-right:0px;}
+.max-sup-center .max-entrance h3{float:left;font:bold 16px/36px microsoft yahei;margin:20px 15px;color:#444444;padding-left:35px;background: url(max_menber.png) no-repeat 0 -326px;}
+.max-sup-center .max-entrance.item-2 h3{background-position:0 -378px;padding-left:32px;}
+.max-sup-center .max-entrance.item-3 h3{background-position:0 -435px;}
+.max-sup-center .max-entrance.item-4 h3{background-position:0 -494px;}
+.max-sup-center .max-entrance a{display:block;line-height:32px;padding: 18px 0 0px 0;line-height: 12px;}
+.max-sup-center .max-entrance a em{padding-left:5px;color:#ff6600;font-size: 14px;font-family: microsoft yahei;}
+.max-sup-right{float:right;width:255px;border:1px solid #eaeaea;margin:13px 18px 0 0;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;height: 166px;}
+.max-sup-right .max-r-Score{float:left;padding-left:27px;}
+.max-sup-right .max-r-match{float:left;padding-left:34px;}
+.max-sup-right h3{color:#444444;padding:20px 0;text-align: center;}
+.max-sup-right ul li{line-height:26px;font-family:microsoft yahei;}
+.max-sup-right .max-r-match li{color:#2f2f27;}
+.max-Infor-left{float:left;width:223px;height:266px;background:white;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;}
+.max-Infor-center{float:left;width:479px;height:266px;margin:0 14px;background:white;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;}
+.max-Infor-right{float:right;width:274px;height:266px;background:white;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;}
+.max-sup-Infor{width:1005px;height:266px;margin:15px 0;}
+.max-Infor-left ul{padding:13px 18px 13px 16px;overflow: hidden;}
+.max-Infor-left ul li{float:left;width:88px;height:56px;border-right:1px solid #ededed;border-bottom:1px solid #ededed;background:url(max_lcon.png) no-repeat 36px 0;}
+.max-Infor-left ul li.item-2{background-position:41px -66px;border-right:0;width:100px;}
+.max-Infor-left ul li.item-3{background-position:24px -124px;height:48px;border-bottom:0;}
+.max-Infor-left ul li.item-4{background-position:40px -199px;height:48px;border:0;width:100px;}
+.max-Infor-left ul li.item-5{background-position:28px -281px;width:89px;margin-top:15px;border-top: 1px solid #dddddd;padding-top:10px;border-right: 0;}
+.max-Infor-left ul li.item-6{background-position:39px -372px;margin-top:15px;border-top: 1px solid #dddddd;border-right:0;width:99px;padding-top:10px}
+.max-Infor-left ul li.item-7{background-position:34px -461px;height:48px;border-bottom:0;line-height:34px;}
+.max-Infor-left ul li.item-8{background-position:40px -562px;height:48px;width:100px;border:0;line-height:34px;}
+.max-Infor-left ul li a{display:block;text-align:center;padding-top:32px;}
+.max-Infor-left ul li.item-5 a{padding-bottom:6px;border-right:1px solid #ededed;}
+.max-Infor-left ul li.lvl a{line-height:32px;}
+.max-Infor-left ul li.lv-l a{font-weight:bold;color:#474747;}
+.max-Infor-left ul li.lv-l a:hover{color:#ff6600;}
+.max-Infor-center .max-custtitle{width:448px;height:43px;margin:0 auto;}
+.max-Infor-center .max-custtitle h2{float:left;padding-top:16px;font: bold 14px microsoft yahei;color:#ff6600;}
+.max-Infor-center .max-custtitle a{float:right;line-height:43px;padding-right:34px;margin-right:9px;background: url(max_lcon.png) no-repeat right -643px;}
+.max-Infor-center .max-Page-card{width:448px;margin:0 auto;}
+.max-Infor-center .max-card-ul{display:block;height:28px;background:#fafafa;border-top:#e8e8e8 solid 1px;border-bottom:#e8e8e8 solid 1px;}
+.max-Infor-center .max-card-ul li{float:left;line-height:28px;padding:0 13px;position:relative;cursor:pointer;}
+.max-Infor-center .max-card-ul li.Hover span{position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:#ff6600;}
+.max-Infor-center .max-p-card{display:none;}
+.max-Infor-center .max-p-card ul{padding:10px 0;}
+.max-Infor-center .max-p-card ul li{line-height:26px;color:#ff6600;padding-left:3px;}
+.max-Infor-center .max-p-card ul li a{color:#828282;}
+.max-Infor-center .max-p-card ul li a:hover{color:#ff6600;}
+.max-Infor-right .max-head-but{width:260px;height:44px;margin:0 auto;border-bottom:1px #ddd solid;}
+.max-Infor-right .max-head-but span{float:left;font:14px/44px microsoft yahei;width:100px;text-align:center;position:relative;cursor:pointer;color:#1c1c1c;}
+.max-Infor-right .max-head-but span.Hover{font-weight:bold;color:#ff6600;}
+.max-Infor-right .max-head-but span.Hover s{position:absolute;bottom:-1px;left:0;background:#ff6600;width:100px;height:2px}
+.max-Infor-right .max-In-news{display:none;clear: both;width:260px;height:44px;margin:19px auto;}
+.max-Infor-right .max-In-news li{line-height:30px;margin-left:18px;padding-left:10px;background: url(max_lcon.png) no-repeat 0 -707px;}
+.max-Tran-tracking{clear: both;background:white;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;padding: 0 35px 50px;}
+.max-Tran-tracking h2{height:62px;font: bold 14px/68px microsoft yahei;color:#ff6600;}
+.max-see-but{clear: both;width: 220px;height:95px;margin: 0 auto;padding-top: 20px;}
+.max-see-but button{margin-top:15px;height:34px}
+.max-see-but button.first{margin-right:22px;}
+.max-see-but button span{padding:6px 18px;color:#ff6600;border:solid #dadada 1px;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;}
+.max-see-but button.last span{padding: 6px 12px 6px 17px;}
+
+/*=============会员中心采购商主体========*/
+.maxM-right.purchase{background:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
+.maxM-details{width:930px;padding:0 35px;background:white;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;padding-bottom:60px;}
+.maxM-details1{width:930px;padding:0 35px;background:white;margin-top:45px;box-shadow: 0 0 10px #dedede;-moz-box-shadow: 0 0 10px #dedede;-webkit-box-shadow: 0 0 10px #dedede;padding-bottom:200px;}
+.maxM-right.purchase .max-menber-title h2{padding-left:0px;font: 18px/65px microsoft yahei;color:#333;}
+.max-details{overflow:hidden;}
+.max-details ul{float:left;}
+.max-details ul li{float:left;color:#999999;padding-right:20px;line-height:23px;}
+.max-details ul li label{color:#ff6600;font-family: simsun;}
+.max-details ul li.last label{color:#666;font-weight:bold;}
+.max-deda-but{float:right;}
+.max-deda-but span{background:#f6f6f6;width:92px;height:23px;border:1px solid #e9e9e9;float:left;line-height:23px;text-align:center;margin-right:10px;}
+.max-deda-but a{background:#f6f6f6;width:92px;height:23px;border:1px solid #e9e9e9;float:left;line-height:23px;text-align:center;color:#333;}
+.max-deda-but span.first{width:120px;height:25px;background:#ff6600;color:#fff;font-weight:bold;border:0;}
+.max-Prompt{height:38px;line-height:38px;}
+.max-Prompt i{float:left;width:28px;height:38px;background:url(max_deta.png) no-repeat 1px 10px;}
+.maxM-details1 .max-Prompt i{background:url(max_deta.png) no-repeat 1px -25px;width: 21px;}
+.max-Prompt label{color:#ff6600;}
+.max-process{border:1px solid #ececec;border-bottom:3px solid #ececea;border-right:3px solid #ececea;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px;}
+.max-process ul{width:850px;height:68px;padding-bottom:42px;overflow: visible;margin-left:38px;border-bottom:dashed 1px #e8e8e8;}
+.max-process ul li{float:left;width:170px;text-align:center;position:relative;}
+.max-process ul li span{font-weight:bold;color:#999999;line-height:68px;}
+.max-process ul li.active span{color:#ff6600;}
+.max-process ul li i{position:absolute;bottom:0;left:0;height:6px;width:100%;background: url(max_menber.png) 0 -193px;font-family:simsun;}
+.max-process ul li s{position:absolute;bottom:-9px;left:50%;margin-left:-12px;px;width:24px;height:24px;font: 12px/24px microsoft yahei;z-index:99;background: url(max_menber.png) 0 -146px;}
+.max-process ul li.active i{background:#ff6600;}
+.max-process ul li.active s{background: url(max_menber.png) no-repeat 0 -102px;color:white;}
+.max-process table{margin: 10px 0 15px 38px;}
+.max-process table tr th{color:#999999;font-weight:normal;line-height:22px;}
+.max-process table tr td{padding-left:10px;color:#999999;}
+.max-Bid-infor{width:930px;margin:0 auto;}
+.max-Bid-infor h2{padding-top:10px;border-bottom:dashed #e7e7e7 1px;color:#333;font: bold 14px/42px microsoft yahei;}
+.max-Bid-infor table{margin:10px 0 0;}
+.max-Bid-infor table tbody tr th{color:#999999;font-weight:normal;line-height:22px;text-align:right;}
+.max-Bid-infor table tbody tr td{color:#999999;line-height:22px;}
+.max-Bid-infor .max-method{display:block;height:42px;line-height:42px;}
+.max-Bid-infor .max-method span{color:#999999;}
+.max-Bid-infor .max-method label{color:#999999;}
+.max-Bid-infor .max-proof {overflow:hidden;}
+.max-Bid-infor .max-proof span{float:left;color:#999999;}
+.max-Bid-infor .max-proof .max-cred{overflow:hidden;float:left;position:relative;padding-right: 85px;}
+.max-Bid-infor .max-proof .max-cred img{float:left;}
+.max-Bid-infor .max-proof .max-cred a{position:absolute;bottom:0;right:0;padding-left:24px;background:url(max_deta.png) no-repeat 0 -70px;color:#007dbf;margin-left:10px;cursor:pointer;}
+.max-Bid-list tr{border:1px solid #e8e8e8;}
+.max-Bid-list tr:hover{background:#fffed5;}
+.max-Bid-infor .max-Bid-list tr td{height:37px;padding-left:27px;color:#666;font-family: simsun;}
+.max-Bid-infor.list h2{border-bottom:0}
+.max-Bid-infor.list table{margin:0;}
+
+/*=============会员中心资料完善主体========*/
+.max-menber-data{width:940px;margin:0 auto;}
+.max-menber-data h3{height:32px;background-color:#f7f7f7;font:14px/32px microsoft yahei;color:#484848;padding-left:15px;}
+.max-menber-data ul{padding:10px 0;overflow: hidden;}
+.max-menber-data ul li{padding:15px 0;overflow:hidden;}
+.max-menber-data ul li .max-data-left{float:left;width:265px;padding-right:10px;text-align:right;font:14px/34px microsoft yahei;color:#999999;}
+.max-menber-data ul li .max-data-left em{color:#ff6600;font: 14px/34px simsun;letter-spacing: 4px;}
+.max-menber-data ul li span{float:left;}
+.max-menber-data ul li .max-data-right{float:left;max-width:650px;}
+.max-menber-data ul li .maxUser{width:268px;height:32px;border:1px solid #ccc;}
+.max-menber-data .max-data-right span{line-height:34px;padding-right:25px;color:#333;}
+.max-menber-data .max-data-right span label{padding-left:2px;}
+.max-menber-data ul li .maxlocus{color:#999999;outline:medium;border: 1px solid #ccc;min-width:68px;}
+.max-menber-data ul li .max-data-left.Up{font:14px/50px microsoft yahei;}
+.max-data-right .max-button span{width:68px;height:50px;text-align:center;padding-right:0px;background-color:#f2f2f2;font:14px/50px microsoft yahei;color:#b1b1b1;}
+.max-data-right .max-button span em{font:bold 18px/50px microsoft yahei;letter-spacing:4px;}
+.max-data-right .maxNote{line-height:50px;color:red;padding-left:10px;}
+.max-data-right .maxCu span{width:74px;height:23px;font:12px/23px simsun;margin-top:4px;border:1px solid #e3e3e3;padding-right:0px;color:#999;}
+.max-data-right .maxCu span em{font: bold 16px/20px microsoft yahei;letter-spacing:4px;}
+.max-data-right .max-up-input{width:130px;height:32px;border:1px #ccc solid;padding-left:10px;color:#999;}
+.max-data-right .maxUpload{position:relative;width:68px;height:50px;border:1px solid #ff6600;margin-left: -1px;float:left;margin-right:25px;}
+.max-data-right .maxUpload img{padding:3px;}
+.max-menber-data .maxUpload span{position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:url(max_deta.png) no-repeat 0 -122px;padding-right:0px;cursor:pointer;}
+.max-menber-data.to2 ul{width:770px;margin:0 auto;}
+.max-menber-data.to2 ul li{float:left;padding:10px;}
+.max-menber-data.to2 ul li .maxUpload{padding:3px;border:solid #ff6600 1px;text-align:center;position:relative;}
+.max-menber-data.to2 ul li .maxUpload img{display:block;}
+.max-menber-data.to2 ul li .maxUpload label{height:27px;line-height:30px;}
+.max-menber-data.to2 button span{width:134px;height:128px;text-align:center;background-color:#f2f2f2;float:left;margin:10px;color:#c1c1c1;}
+.max-menber-data.to2 button span i{float:left;font:14px/128px simsun;}
+.max-menber-data.to2 button span em{float:left;padding-left:30px;font:bold 24px/126px simsun;letter-spacing:5px;}
+.max-menber-data.to3 .max-data-right span{width:152px;padding-right:0px;line-height:26px;color: #000;}
+.max-menber-data.to3 .max-data-right .maxUpload span{width:12px;}
+.max-menber-data.to3 .max-data-right .max-button span{width:70px;color:#c1c1c1;}
+.max-menber-data.to3 ul li .max-data-left{line-height:26px;}
+.max-menber-data.to3 ul li .max-data-left.Up{line-height:50px;}
+.max-menber-Pr{width:716px;height:248px;margin:0 auto;padding-top:25px;}
+.max-menber-Pr .max-Desc{width:716px;height:248px;}
+
+/*=============会员中心招标规则主体========*/
+.max-Pands-box {overflow:hidden;width:100%;height:100%;position: fixed;  top:0;  left:0;z-index: 1009;
+background: rgba(0,0,0,.4);filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#4c000000', EndColorStr='#4c000000');}
+.max-Pands-up{width:1062px;margin:50px auto;background:white;overflow: auto;height:90%;}
+.max-Close-up{width:100%;height:40px;display:block;}
+.max-Prompt-up{width:1000px;margin:0 auto;border:1px solid #e1ca96;background-color:#fffcf3;padding:5px 0;overflow:hidden;}
+.max-Prompt-up span{line-height:22px;float:left;color:#ff6600;}
+.max-Prompt-up .max-span{padding-left:15px;}
+.max-Prompt-up label{display:block;}
+.max-Price-up{width:1000px;margin:10px auto;}
+.max-Price-up h3{font:16px/40px microsoft yahei;color:#333;}
+.max-Price-up .max-c-price{padding:5px 0;}
+.max-Price-up .max-c-price .max-Number{width:52px;height: 21px;line-height: 21px;outline: medium;padding-left:10px;border: 1px solid #ccc;background: white url(input-bg.png) 0 0;}
+.max-Price-up .max-c-price span{position:relative;}
+.max-Price-up .max-c-price label{float:left;line-height:21px;}
+.max-Price-up .max-c-price .max-c-plus{top:-1px;background: url(max_menber.png) no-repeat 0 -209px;}
+.max-Price-up .max-c-price .max-c-minus{bottom:-5px;background: url(max_menber.png) no-repeat 0 -219px;}
+.max-Price-up  .max-c-price a{width: 13px;height: 10px;position: absolute;right: 0;}
+.max-Pricebox{padding-top:8px;border-top:dashed 1px #ccc;}
+.max-serve-up{width:1000px;margin:10px auto;}
+.max-serve-up h3{font:16px/40px microsoft yahei;color:#333;border-bottom:dashed 1px #ccc;}
+.max-text-up{padding:8px 0;}
+.max-text-up .max-i-right{padding-left:10px;position:relative;}
+.max-text-up .max-i-right input{width:166px;height:25px;padding-left:10px;border:1px solid #a9a9a9;color:#666;}
+.max-text-up .max-i-right .max-i-down {position: absolute;right: 0;top: 0;width: 13px;height: 20px;background: url(max_menber.png) no-repeat 0 -296px;}
+.max-Set-up {border: 1px solid #dbdbdb;margin-bottom: 30px;display: block;}
+.max-Set-up dl{padding:15px;}
+.max-Set-up dl dt{display:block;overflow:hidden;padding-bottom:15px;border-bottom:dashed 1px #ccc;}
+.max-Set-up dl dt span{float:left;padding-left:10px;}
+.max-Set-up dl dt span label{padding-left:5px;color:#ff6600;font-weight:bold;line-height:23px;}
+.max-Set-up dl dt .max-c-price{float:left;padding-left:22px;}
+.max-Set-up .max-c-price input{width:52px;height: 21px;line-height: 21px;outline: medium;padding-left:10px;border: 1px solid #ccc;background: white url(input-bg.png) 0 0;}
+.max-Set-up .max-c-price .max-c-plus{top:3px;background: url(max_menber.png) no-repeat 0 -209px;}
+.max-Set-up .max-c-price .max-c-minus{bottom:1px;background: url(max_menber.png) no-repeat 0 -219px;}
+.max-Set-up .max-c-price a{width: 13px;height: 10px;position: absolute;right: 0;}
+.max-c-price{position:relative;}
+.max-Set-up dl dd{padding-top:15px;}
+.max-Set-up dl dd li{overflow:hidden;padding:3px 0;}
+.max-Set-up dl dd li:hover{background-color:#fff6cd;}
+.max-Set-up dl dd li span{float:left;width:670px;padding-left:25px;}
+.max-Set-up dl dd li span label{text-indent:10px;line-height: 23px;}
+.max-Set-up dl dd li span.active label{font-weight:bold;color:#000;}
+.max-Set-up dl dd li .max-c-price{float:left;}
+.max-button-up{overflow:hidden;padding-top:10px;}
+.max-button-up .max-i-right{display:block;width: 150px;padding-left:45px;position:relative;}
+.max-button-up .max-i-right.to{float:left;}
+.max-button-up .max-i-right input{width:137px;height: 25px;padding-left: 10px;border: 1px solid #a9a9a9;color: #666;}
+.max-button-up .max-i-right .max-i-down {position: absolute;right: 0;top:6px;width: 13px;height: 20px;background: url(max_menber.png) no-repeat 0 -296px;}
+.max-button-up .maxCu{display:block;padding-left:45px;padding-top:10px;}
+.max-button-up .maxCu.to{float:left;padding-left:10px;padding-top:0px;}
+.max-button-up .maxCu span{display:block;width:105px;height:27px;line-height:27px;border:1px dashed #a1a1a1;color:#aeaeae;}
+.max-button-up .maxCu span em{font-weight:bold;font-size:15px;line-height: 30px;float: left;padding-left: 7px;}
+.max-button-up .maxCu span i{line-height:20px;}
+.max-Set-up dl dd li span.max-to{width:auto;}
+.max-Set-up dl dd li .max-c-price span{width:auto;padding-left:20px;}
+.max-Set-up dl dd li .max-c-price span input{width:auto;}
+.max-Set-up dl dd li .max-c-price span label{text-indent: 2px;}
+.max-Set-up.to1 dl dd li span{width:auto;line-height:26px;}
+.max-Set-up.to1 dl dd li .max-c-price span{padding-left:15px;}
+.max-serve-up .maxM-buttom{overflow:hidden;width:325px;margin:0 auto;padding:25px 0 50px 0;}
+.maxHeadw{z-index: 5;}

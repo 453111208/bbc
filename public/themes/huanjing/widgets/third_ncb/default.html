@@ -1,0 +1,7 @@
+<ul>
+    <{foreach from=$data.ncb_select item=item key=key}>
+        <li style="width:175px;height: 85px;text-align: center;line-height: 90px;" id="ncb_<{$key}>">
+           <a href="shopcenter.html?shop_id=<{$item.shop_id}>"><img style="height: 60px;width:120px;" src="<{$item.shop_logo}>" alt="" /></a> 
+        </li>
+    <{/foreach}>
+</ul>

@@ -1,0 +1,18 @@
+<div id="goods_exshow_config" class="tableform widgetconfig">
+  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+      <th>版块名称：</th>
+      <td><input type="text"  name="class_name" value="<{$setting.class_name|default:'今日特惠'}>"  /></td>
+    </tr>
+    <tr>
+      <th>版块描述：</th>
+      <td><input type="text"  name="class_detail" value="<{$setting.class_detail|default:'DAIL SALE'}>"  /></td>
+    </tr>
+    <tr>
+      <th>标签促销商品：</th>
+      <td>
+        <{input type="object" object="activity_item" app="syspromotion" filter="verify_status=agree" select=checkbox multiple="true" value=$setting.activity textcol="title" name="activity" breakpoint=0}>
+      </td>
+    </tr>
+  </table>
+</div>

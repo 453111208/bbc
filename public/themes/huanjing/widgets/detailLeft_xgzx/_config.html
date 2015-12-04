@@ -1,0 +1,17 @@
+<div class="tableform widgetconfig">
+        <p>请选择七个资讯展示:</p>
+        <{foreach from=$setting.articleList item=item}>
+	<input type="checkbox" name="articles[]" value="<{$item.article_id}>"  onClick="doCheck(this)"/>[<{$item.node_name}>] <{$item.title}><br>
+        <{/foreach}>
+</div>
+<script>
+	var c=0,limit=7; 
+	function doCheck(obj) { 
+		obj.checked?c++:c--; 
+		if(c>limit){ 
+		obj.checked=false; 
+		alert("只能选择7个"); 
+		c--; 
+		} 
+	} 
+</script>

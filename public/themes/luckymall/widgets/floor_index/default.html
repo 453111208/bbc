@@ -1,0 +1,76 @@
+<div class="floor clearfix">
+  <div class="module-hd"><i class="floor-num" style="background: <{$setting.color}>"><{$setting.block_name}></i><{$setting.name}><span><{$setting.desc}></span></div>
+  <div class="module-bd floor-container <{if $setting.selector == '0'}>floor-style-01<{else}>floor-style-02<{/if}>">
+    <div class="floor-left">
+      <div class="floor-category" style="background: <{$setting.color}>">
+        <ul>
+          <{foreach from=$setting.morelink item=link}>
+          <li><a href="<{$link.v}>"><{$link.k}></a></li>
+          <{/foreach}>
+        </ul>
+      </div>
+      <div class="floor-brand catagorycover <{if !$setting.slider_type}>slider-brands<{/if}>">
+        <div class="catagorycover-pic" data-toggle="switchable" data-switchable-config='{"effect": "scrollx","autoplay": false,"step": 1,"viewSize": [215,230],"lazyload": true,"circle": true,"hasFlips": true}'>
+          <span class="prev icon icon-arrow-left"></span>
+          <span class="next icon icon-arrow-right"></span>
+          <div class="scroller">
+            <div class="switchable-content">
+              <{if $setting.picData}>
+              <{foreach from=$setting.picData item=item}>
+              <div>
+                <{foreach from=$item item=row}>
+                <a href="<{$row.linktarget}>"><img src="<{$row.link}>" alt="<{$row.linkinfo}>"></a>
+                <{/foreach}>
+              </div>
+              <{/foreach}>
+              <{/if}>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="floor-recommend">
+        <a href="<{$setting.small_pic0_link}>"><img width="214" height="186" src="<{$setting.small_pic0}>" alt="<{$setting.small_pic0_txt}>"></a>
+      </div>
+    </div>
+
+    <{if $setting.selector == '0'}>
+    <div class="floor-center">
+      <a href="<{$setting.small_pic1_link}>"><img width="309" height="503" src="<{$setting.small_pic1}>" alt="<{$setting.small_pic1_txt}>"></a>
+    </div>
+    <div class="floor-right">
+      <div class="floor-pro-group group-b">
+        <ul>
+          <li><a href="<{$setting.small_pic2_link}>"><img width="221" height="313" src="<{$setting.small_pic2}>" alt="<{$setting.small_pic2_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic3_link}>"><img width="221" height="313" src="<{$setting.small_pic3}>" alt="<{$setting.small_pic3_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic4_link}>"><img width="221" height="313" src="<{$setting.small_pic4}>" alt="<{$setting.small_pic4_txt}>"></a></li>
+        </ul>
+      </div>
+      <div class="floor-pro-group">
+        <ul>
+          <li><a href="<{$setting.small_pic5_link}>"><img width="221" height="189" src="<{$setting.small_pic5}>" alt="<{$setting.small_pic5_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic6_link}>"><img width="221" height="189" src="<{$setting.small_pic6}>" alt="<{$setting.small_pic6_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic7_link}>"><img width="221" height="189" src="<{$setting.small_pic7}>" alt="<{$setting.small_pic7_txt}>"></a></li>
+        </ul>
+      </div>
+    </div>
+    <{else}>
+    <div class="floor-right">
+      <div class="floor-pro-group group-b">
+        <ul>
+          <li><a href="<{$setting.small_pic1_link}>"><img width="531" height="313" src="<{$setting.small_pic1}>" alt="<{$setting.small_pic1_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic2_link}>"><img width="221" height="313" src="<{$setting.small_pic2}>" alt="<{$setting.small_pic2_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic3_link}>"><img width="221" height="313" src="<{$setting.small_pic3}>" alt="<{$setting.small_pic3_txt}>"></a></li>
+        </ul>
+      </div>
+      <div class="floor-pro-group">
+        <ul>
+          <li><a href="<{$setting.small_pic4_link}>"><img width="309" height="189" src="<{$setting.small_pic4}>" alt="<{$setting.small_pic4_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic5_link}>"><img width="221" height="189" src="<{$setting.small_pic5}>" alt="<{$setting.small_pic5_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic6_link}>"><img width="221" height="189" src="<{$setting.small_pic6}>" alt="<{$setting.small_pic6_txt}>"></a></li>
+          <li><a href="<{$setting.small_pic7_link}>"><img width="221" height="189" src="<{$setting.small_pic7}>" alt="<{$setting.small_pic7_txt}>"></a></li>
+        </ul>
+      </div>
+    </div>
+    <{/if}>
+  </div>
+</div>

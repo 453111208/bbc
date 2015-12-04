@@ -1,0 +1,52 @@
+
+<!-- footer -->
+<footer class="footer">
+  <section class="gotop">
+    <span class="ui-btn ui-btn-tra" id="backtop">回到顶部</span>
+  </section>
+  <section class="link">
+    <ul>
+      <li>
+        <a href="<{url action=topm_ctl_member@index}>">
+          <i class="icon icon-member"></i>
+          会员
+        </a>
+      </li>
+      <li>
+        <a href="<{url action=topm_ctl_cart@index}>"> <i class="icon icon-cart"></i>
+          购物车
+        </a>
+      </li>
+    </ul>
+  </section>
+  <section class="edition">
+    <ul>
+      <li>
+        <a href="<{url route=topm}>">触屏版</a>
+      </li>
+      <li>
+        <a href="<{url route=siwtchToPc}>">电脑版</a>
+      </li>
+    </ul>
+  </section>
+  <section class="footer-edit">
+    修改本区域内容，请到商店管理后台>><br/>
+    站点>>站点配置 进行编辑    
+  </section>
+  <section class="footer-rights">
+    2015 All Rights reserved.  
+  </section>
+</footer>
+
+<script>
+  $('#backtop').backTop();
+
+  var winh = $(window).height();
+  var bodyh = $('body').height();
+  var fth  = $('footer').height();
+  if(winh>bodyh){
+    $('footer').prev('div').css('min-height',winh-fth);
+    $('footer').children('.gotop').hide();
+  }
+</script>
+<{wapfooter}>

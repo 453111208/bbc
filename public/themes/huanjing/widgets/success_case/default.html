@@ -1,0 +1,20 @@
+<ul>
+    <{foreach from=$data.case_select item=item key=key}>
+        <li class="case_<{$key}>">
+            <div class="max-pic">
+                <a href="<{url action=topc_ctl_plan@literary literaryid=$item.literary_id}>"><img src="<{$item.literary_logo}>" alt=""  style="width: 86px;height: 88px;"/></a>
+            </div>
+            <div class="max-info">
+                <h6><a href="<{url action=topc_ctl_plan@literary literaryid=$item.literary_id}>"><{$item.title}></a></h6>
+                <div class="item1 item">简介：<{$item.abstract}></div>
+                
+            </div>
+        </li>
+        <div id="success_case_<{$key}>" style="display:none">
+            <{$item.context}>
+        </div>
+    <{/foreach}>
+</ul>
+<script>
+// 
+</script>

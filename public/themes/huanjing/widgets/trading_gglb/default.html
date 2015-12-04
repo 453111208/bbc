@@ -1,0 +1,49 @@
+<ul class="clearfix">
+    <{foreach from=$data.sprodreleaseList item=item}>
+               <li class="active clearfix">
+               <div class="maxinfo clearfix">
+                      <div class="maxpreview">
+                       <div class="<{$item.notice_type_name}>" style="width: 220px;height: 205px;"><i></i><a href="#"><img style="width: 220px;height: 205px;" src="<{$item.image_default_id}>" alt="" /></a></div>
+                    </div>
+               <div class="max-left">
+               <div class="item item-1"><a id="gglb_<{$item.notice_id}>" >[<{$item.type_id}>]<{$item.notice_name}></a></div>
+               <div class="item item-2"></div>
+               <div class="item item-3"></div>
+               </div>
+               <div class="max-right">
+               	<div class="icon"></div>
+                    <div class="item item-3"><a id="ggan_<{$item.notice_id}>" title="">查看公告></a></div>
+                    <div class="maxtime">
+                      <span>发布时间：<{$item.notice_time|cdate:FDATE}></span>
+                    </div>
+               </div>
+               </div>
+               </li>
+	<div id="dialog_<{$item.notice_id}>" style="display:none">
+		<div style="text-align: center"><h3><{$item.notice_name}></h3></div><br>
+		<{$item.notice_content}>
+	</div>
+    <{/foreach}>
+</ul>
+    <{foreach from=$data.sprodreleaseList item=item}>
+	<script>
+	    $('#gglb_<{$item.notice_id}>').click(function (e) {
+	        $('#dialog_<{$item.notice_id}>').dialog({
+	            width: 890,
+	            height: 400,
+	            title:'公告',
+	            close: function(){
+	            }
+	        });
+	    });-
+	    $('#ggan_<{$item.notice_id}>').click(function (e) {
+	        $('#dialog_<{$item.notice_id}>').dialog({
+	            width: 890,
+	            height: 400,
+	            title:'公告',
+	            close: function(){
+	            }
+	        });
+	    });
+	</script>
+    <{/foreach}>	

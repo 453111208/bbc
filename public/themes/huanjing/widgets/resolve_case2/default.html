@@ -1,0 +1,23 @@
+<div class="maxcon">
+    <div class="max-top">
+         <{foreach from=$data.resolve_case2 item=item key=key}>
+     <{if $key==0}>
+          <a href="<{url action=topc_ctl_case@essay essayid=$item.data_id}>" ><{$item.data.title}></a>
+          <{/if}>
+          <{/foreach}>
+    </div>
+    <div class="max-body">
+        <ul class="clearfix">
+            <{foreach from=$data.resolve_case2 item=item key=key}>
+             <{if $key>0}>
+                <li id="context>">
+                     <a href="<{url action=topc_ctl_case@essay essayid=$item.data_id}>">
+                           <span>[<{$item.data.essaycat}>]</span><{$item.data.title}>
+                     </a>
+                </li>
+                     <{/if}>
+            <{/foreach}>
+        </ul> 
+    </div>
+</div>
+<script>

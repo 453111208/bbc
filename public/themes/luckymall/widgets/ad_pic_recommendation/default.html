@@ -1,0 +1,12 @@
+<div class="catagorycover-pic" data-toggle="switchable" data-switchable-config='{"effect": "scrollx","autoplay": false,"step": 1,"viewSize": [215,230],"lazyload": true,"circle": true,"hasFlips": true}'>
+  <span class="prev icon icon-arrow-left"></span>
+  <span class="next icon icon-arrow-right"></span>
+  <div class="scroller">
+    <div class="switchable-content">
+      <{foreach from=$data.pic item=item}>
+      <a href="<{$item.linktarget}>"><img width="215" height="230" src="<{$item.link}>" alt="<{$item.linkinfo}>"></a>
+      <{/foreach}>
+    </div>
+  </div>
+</div>
+

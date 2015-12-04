@@ -1,0 +1,768 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/brand.php:21
+msgid "品牌列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/brand.php:24
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/brand.php:25
+msgid "添加品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/brand.php:64
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:172
+msgid "保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/brand.php:68
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:168
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:119
+msgid "保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:31
+msgid "商品类别"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:31
+msgid "是"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:56
+msgid "三级分类('.$level1['cat_name'].'->'.$level2['cat_name']."
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:70
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:109
+msgid "----无----"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:162
+msgid "分类名称不能重复!"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:198
+msgid "已删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:211
+msgid "更新排序操作完成"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:278
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:373
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:446
+msgid "操作成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:419
+msgid "请为参数表中参数组添加参数名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:428
+msgid "请完成参数表中参数名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/cat.php:436
+msgid "请完成参数表中参数组名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:21
+msgid "属性列表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:24
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:25
+msgid "添加属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:29
+msgid "属性图片设置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:41
+msgid "全部"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:42
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:73
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:28
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:18
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:23
+msgid "销售属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:43
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:74
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:28
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:18
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:27
+msgid "自然属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//controller/admin/props.php:144
+msgid "删除成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:18
+msgid "品牌id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:23
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:28
+msgid "品牌名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:37
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:40
+msgid "品牌别名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:49
+msgid "品牌网址"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:52
+msgid "品牌网址(保留字段)"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:59
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:63
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:75
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_brand.php:30
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:44
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:103
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:23
+msgid "排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:71
+msgid "品牌介绍(保留字段)"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:77
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:79
+msgid "品牌图片标识"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:86
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:106
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:109
+msgid "更新时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:98
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:100
+msgid "失效"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/brand.php:124
+msgid "品牌表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:16
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:23
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_prop.php:23
+msgid "分类ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:30
+msgid "分类路径(从根至本结点的路径,逗号分隔,首部有逗号)"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:36
+msgid "一级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:37
+msgid "二级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:38
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:93
+msgid "三级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:41
+msgid "分类层级"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:50
+msgid "是否叶子结点（true：是；false：否）"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:59
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:22
+msgid "分类名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:69
+msgid "是否屏蔽（true：是；false：否）"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:83
+msgid "商品数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:90
+msgid "附加项"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:97
+msgid "子类别数量"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:102
+msgid "参数表结构(序列化) array(参数组名=>array(参数名1=>别名1|别名2,参数名2=>别名1|别名2))"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:115
+msgid "保证金"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:123
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:25
+msgid "平台使用费"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:131
+msgid "类目服务费率"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat.php:137
+msgid "类别属性值有限表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_brand.php:17
+msgid "商品分类ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_brand.php:25
+msgid "品牌ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_brand.php:34
+msgid "分类和品牌关联表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_prop.php:16
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:24
+msgid "属性ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/cat_rel_prop.php:32
+msgid "商品属性表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:17
+msgid "属性值ID"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:32
+msgid "属性值"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:38
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:53
+msgid "属性图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/prop_values.php:47
+msgid "属性值表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:16
+msgid "属性id"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:23
+msgid "属性名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:32
+msgid "展示类型"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:37
+msgid "搜索方式"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:45
+msgid "是否显示"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:51
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:55
+msgid "是否系统默认属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:59
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:36
+msgid "文字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:60
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:37
+msgid "图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:65
+msgid "类型"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:79
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:15
+msgid "属性类型"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:90
+msgid "属性备注"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//dbschema/props.php:124
+msgid "属性表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/brand.php:71
+msgid "品牌名称必填"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/brand.php:77
+msgid "品牌名称不能大于50个字符"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/brand.php:84
+msgid "品牌名称已存在，不能重复"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/brand.php:90
+msgid "排序必须为数字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:31
+msgid "属性名不能超过20个字符"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:48
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:94
+msgid "属性保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:53
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:100
+msgid "属性保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:69
+msgid "参数错误"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:116
+msgid "系统默认属性，不可删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:121
+msgid "属性已经与类目绑定，不可删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:140
+msgid "请添加属性值"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:149
+msgid "属性值不能为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:155
+msgid "属性值不能大于20个字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:165
+msgid "属性值{$propValue['prop_value']}重复"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:172
+msgid "属性值的条数不能大于30"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:179
+msgid "属性名称不能大于20个字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/data/props.php:185
+msgid "属性备注不能大于20个字"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/brand.php:8
+msgid "编辑品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/brand.php:9
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:16
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/props.php:7
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/props.php:7
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:78
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:79
+msgid "编辑"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:16
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:49
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:77
+msgid "编辑分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:17
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/props.php:12
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:26
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:52
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:36
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:61
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:84
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:85
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:74
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:162
+msgid "删除"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:29
+msgid "关联品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:29
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_brand.html:8
+msgid "品牌"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:30
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:8
+msgid "关联属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:30
+msgid "属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:31
+msgid "关联参数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//lib/finder/cat.php:31
+msgid "参数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//model/props.php:95
+msgid "属性值{$propValueRow['prop_value']}保存失败"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory//task.php:14
+msgid "商家用户系统"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/brand.html:7
+msgid "品牌名称："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/brand.html:11
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:39
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:11
+msgid "排序："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/brand.html:16
+msgid "品牌别名："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/brand.html:29
+msgid "请上传品牌logo图片"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/brand.html:37
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_brand.html:27
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:43
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:52
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:48
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/default_pic.html:18
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:45
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:84
+msgid "保存"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_brand.html:12
+msgid "关联品牌:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:8
+msgid "详细参数表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:10
+msgid "添加一个参数组"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:15
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:50
+msgid "删除此参数组"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:15
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:50
+msgid "参数组名称:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:20
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:52
+msgid "参数名："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:22
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:52
+msgid "别名："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:24
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_params.html:52
+msgid "用“|”分隔："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:11
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:66
+msgid "选择属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:14
+msgid "属性名"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:16
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:24
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:55
+msgid "操作"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:31
+msgid "向上"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:32
+msgid "向下"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:33
+msgid "属性删除后将会影响商品列表页显示效果，确认要删除吗？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/cat_rel/cat_rel_prop.html:42
+msgid "请点击下方按钮添加该类型所需属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:6
+msgid "分类名称："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:12
+msgid "上级分类："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:18
+msgid "店铺保证金："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:20
+msgid "店铺保证金"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:23
+msgid "平台使用费："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:30
+msgid "类目服务费率："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:32
+msgid "三级类目服务费率"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:41
+msgid "数字越小越靠前"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:51
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:53
+msgid "取消"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:82
+msgid "分类名称为不能为空."
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:84
+msgid "您刚才已经添加了分类:"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/info.html:84
+msgid "n要重复添加么?"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:3
+msgid "商品分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:5
+msgid "添加一级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:6
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:167
+msgid "编辑排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:7
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:172
+msgid "保存排序"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:8
+msgid "导出资费表"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:13
+msgid "收起分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:44
+msgid "收起子分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:45
+msgid "展开子分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:64
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:65
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:66
+msgid "添加二级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:70
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:71
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:72
+msgid "添加三级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:90
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:93
+msgid "查看二级分类下三级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:90
+msgid "查看三级分类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:97
+msgid "查看此分类下商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:97
+msgid "查看商品"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:100
+msgid "跳转前台查看该"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:100
+msgid "预览"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/category/map.html:120
+msgid "您确定要删除该分类？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/default_pic.html:4
+msgid "默认属性图片："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/default_pic.html:8
+msgid "属性图片高度："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/default_pic.html:12
+msgid "属性图片宽度："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:5
+msgid "请选择属性"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:7
+msgid "搜索属性..."
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:28
+msgid "属性预览区"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/prop/prop_select.html:32
+msgid "请在左侧列表选择属性！"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:7
+msgid "属性名称："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:15
+msgid "属性备注："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:19
+msgid "属性类型："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:33
+msgid "显示类型："
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:45
+msgid "添加属性值"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:51
+msgid "属性值名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:72
+msgid "向上移动"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:73
+msgid "向下移动"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:132
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:138
+msgid "删除不可恢复，确认删除本行吗？"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/syscategory/view/admin/props.html:168
+msgid "属性值不能超过30个"
+msgstr ""
+

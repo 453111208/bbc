@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+    <link rel="stylesheet" href="images/index.css">
+  </head>
+
+  <body>
+    <{require file="block/header.html"}>
+    <!-- 主内容区 -->
+    <div id="main" class="main module-mg-small">
+      <div class="wrap-lg">
+        <div class="section">
+          <{widgets id="keyword"}>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col-lg-3 sidebar">
+              <{widgets id="left1-1"}>
+            </div>
+            <div class="col-lg-10 box">
+              <{widgets id="main_focus"}>
+              <{widgets id="main_slider"}>
+            </div>
+            <div class="col-lg-3 box">
+              <{widgets id="banners"}>
+              <div class="notice">
+                <{widgets id="banners-1"}>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="row">
+            <div class="col-lg-3 box">
+              <{widgets id="left2-1"}>
+            </div>
+            <div class="col-lg-10 box">
+              <{widgets id="main1-1"}>
+            </div>
+            <div class="col-lg-3 box">
+              <div class="groupbuy groupbuy-small">
+                <{widgets id="right1-1"}>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="module module-fuchsia">
+            <div class="module-hd">
+              <em>
+                <{widgets id="left3-1"}>
+              </em>
+            </div>
+            <div class="row module-bd">
+              <div class="col-lg-3 goods goods-small" >
+                <{widgets id="left3-2"}>
+              </div>
+              <div class="col-lg-13 categorygoods">
+                <{widgets id="main3-1"}>
+              </div>
+            </div>
+          </div>
+          <div class="module module-fuchsia">
+            <div class="module-hd">
+              <em>
+                <{widgets id="left4-1"}>
+              </em>
+            </div>
+            <div class="row module-bd">
+              <div class="col-lg-3 goods goods-small" >
+                <{widgets id="left4-2"}>
+              </div>
+              <div class="col-lg-13 categorygoods">
+                <{widgets id="main4-1"}>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="module module-fuchsia">
+          <div class="module-hd">
+            <em>
+              <{widgets id="left5-1"}>
+            </em>
+          </div>
+          <div class="row module-bd">
+            <div class="col-lg-3 goods goods-small" >
+              <{widgets id="left5-2"}>
+            </div>
+            <div class="col-lg-13 categorygoods">
+              <{widgets id="main5-1"}>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <{require file="block/footer.html"}>
+  </body>
+</html>

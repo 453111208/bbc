@@ -1,0 +1,16 @@
+<div class="row">
+  <{foreach from=$data.pic item=item}>
+  <div class="col-lg-3 articalgoods">
+    <div class="articalgoods-pic">
+      <a href="<{url to=$item.linktarget}>">
+        <img width="215" height="230" src="<{$item.link}>" alt="<{$data.linktitle}>">
+      </a>
+    </div>
+    <div class="articalgoods-info">
+      <div class="articalgoods-title"><{$item.linktitle}></div>
+      <div class="articalgoods-intro"><{$item.linkinfo}></div>
+    </div>
+  </div>
+  <{/foreach}>
+</div>
+

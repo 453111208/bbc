@@ -1,0 +1,33 @@
+.maxmain{background:#fff;}
+/*logo==================================================*/
+.maxregister{border-bottom:2px solid #c69e46;background:#fff;}
+.maxlogo{width:990px;margin:auto;}
+/*登录=================================================*/
+.maxwrap{position:relative;margin:10px 0 0px;z-index:5}
+.maxbox{width:990px;margin:auto;background:url(maxad.jpg) no-repeat;overflow:hidden;min-height:460px;}
+.maxwrap .maxform{position:relative;z-index:4;top:40px;width:306px;margin-right:9px;background:#fff;padding:20px;float:right;-moz-box-shadow:0px 0px 15px #bbb;-webkit-box-shadow:0px 0px 15px #bbb;box-shadow:0px 0px 15px #bbb;}
+.maxform .maxin{width:306px;height:27px;}
+.maxform .maxin h1 {float:left;float:left;color: #666;font-size:18px;font-weight:normal;}
+.maxform .maxin .maxregist{float:right;color:#b61d1d;font-size:14px;}
+.maxform .maxin .maxregist a {color: #ff5541;}
+.maxform .maxin .maxregist a:hover{text-decoration:underline;}
+.maxform .maxin .maxregist b {display: inline-block;width: 16px;height: 16px;overflow: hidden;background: url(maxicons.png) -104px -75px no-repeat;vertical-align: middle;margin-right: 5px;}
+.maxform .maxprompt{margin:5px 0 30px;position:relative;background:#fff6d2;color:#666;border:1px solid #ffe57d;padding:3px 10px 3px 40px;}
+.maxform .maxprompt b{position: absolute;top: 50%;left: 10px;margin-top: -8px;width: 16px;height: 17px;background: url(maxicons.png) -104px -22px no-repeat;}
+.form .item{position:relative;margin-bottom:20px;z-index:1;}
+.form .item1,.form .item2{border:1px solid #bdbdbd;height:38px;width:304px}
+.form .item3{margin-top:50px;}
+.form .item .login-label{position:absolute;z-index:3;top:0;left:0;width:38px;height:38px;border-right:1px solid #bdbdbd;background:url(maxicons.png) no-repeat}
+.form .item .pwd-label{background-position:-48px 0}
+.form .txt{line-height:18px;height:18px;border:0;padding:10px 0 10px 50px;width:254px;overflow:hidden;font-size:14px;font-family:'\5b8b\4f53';}
+.form .txt1{font-family: Tahoma,Helvetica,Arial;}
+.form input::-webkit-input-placeholder{color:#999;font-size:14px;}
+.form .check{margin:0 3px 0 0;}
+.maxform .safe .pass{position:absolute;right:0;top:0;}
+.maxform .safe .pass a{color:#666;}
+.maxform .safe .pass a:hover{text-decoration:underline;color:#ff742f;}
+.maxform .btn a{display:block;width:305px;height:34px;line-height:34px;background:#ff742f;color:#fff;font-size:16px;font-family:"microsoft yahei";border-radius:3px;cursor:pointer;text-align:center;}
+
+
+
+

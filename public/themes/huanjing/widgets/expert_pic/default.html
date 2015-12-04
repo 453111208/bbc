@@ -1,0 +1,16 @@
+ <ul>
+ <{foreach from=$data.expertList item=item key=key}>
+          <li>
+            <div class="ref_photo"><a href="/index.php/expert-expert.html?expertid=<{$item.expert_id}>" title=""><img src="<{$item.image_logo}>" alt=""><i></i></a></div>
+            <div class="ref_name"> <{$item.name}> </div>
+            <div class="ref_office"> <{$item.nickname}> </div>
+          </li>
+<{/foreach}>
+ <{foreach from=$data.expertList item=item key=key}>
+          <li>
+            <div class="ref_photo"><a href="/index.php/expert-expert.html?expertid=<{$item.expert_id}>" title=""><img src="<{$item.image_logo}>" alt=""><i></i></a></div>
+            <div class="ref_name"> <{$item.name}> </div>
+            <div class="ref_office"> <{$item.nickname}> </div>
+          </li>
+<{/foreach}>
+        </ul>

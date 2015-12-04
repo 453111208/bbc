@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+      <link rel="stylesheet" href="images/max.css">
+  <link href="images/markets/market.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+      <div class="maxmain">
+        <div class="maxregister_ad"><{widgets id="ad_login"}></div>
+        <!--一楼-->
+        <div class="maxquotation">
+            <div class="maxad-pic"><{widgets id="little_ad"}></div>
+            <div class="maxcenter">
+                <div class="maxnews-list"><{widgets id="market_article"}></div>
+            </div>
+            <div class="maxquote">
+                <div class="max-Tabs-top">
+                    <ul class="clearfix">
+                        <li class="active"><span>最新报价</span></li>
+                        <li class=""><span>最新预测</span></li>
+                    </ul>
+                </div>
+                <div class="max-Tabs-body">
+                    <div class="maxcomon" style="display: block;"><{widgets id="new_offer"}></div>
+                    <div class="maxcomon" style="display: none;"><{widgets id="new_project"}></div>
+                </div>
+            </div>
+        </div>
+        <!--废金属-->
+        <div class="maxmetal">
+            <div class="maxmetal-title"><h3>废金属</h3></div>
+            <div class="maxmetal-content">
+                <div class="maxmetal-L">
+                    <div class="maxclass"><{widgets id="metals_sort"}></div>
+                    <div class="maxmarket">
+                        <div class="max-Tabs-top"><div class="maxspot"><span>现货金属行情</span></div></div>
+                        <div class="max-Tabs-body">
+                            <div class="maxcomon" style="display: block;"><{widgets id="metal_cash"}></div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="maxmetal-C">
+                    <div class="maxwaste">
+                        <div class="maxcon"><{widgets id="iron_first"}></div>
+                        <div class="maxcon"><{widgets id="iron_second"}></div>
+                        <div class="maxcon"><{widgets id="iron_third"}></div>
+                        <div class="maxcon"><{widgets id="iron_fourth"}></div>
+                    </div>
+                </div>
+                <div class="maxmetal-R">
+                    <div class="maxcon"><{widgets id="metalDayDiscuss"}></div>
+                    <div class="maxcon"><{widgets id="metalWeekDiscuss"}></div>
+                </div>
+            </div> 
+        </div>
+        <!--废塑料-->
+        <div class="maxmetal">
+            <div class="maxmetal-title"><h3>废塑料</h3></div>
+            <div class="maxmetal-content">
+                <div class="maxmetal-L">
+                    <div class="maxclass"><{widgets id="plastic_sort"}></div>
+                    <div class="maxmarket">
+                        <div class="max-Tabs-top"><div class="maxspot"><span>现货塑料行情</span></div></div>
+                        <div class="max-Tabs-body">
+                            <div class="maxcomon" style="display: block;"><{widgets id="plastic_cash"}></div>
+                        </div>
+                    </div>
+                </div> 
+            <div class="maxmetal-C">
+                <div class="maxwaste">
+                    <div class="maxcon"><{widgets id="plastic_home"}></div>
+                    <div class="maxcon"><{widgets id="plastic_internal"}></div>
+                    <div class="maxcon">
+                        <div class="max-top">
+                            <h3>油价报价</h3>
+                            <!--<a href="" title="">更多</a>-->
+                        </div>
+                        <div class="max-body maxtable"><{widgets id=" price_oil"}></div>
+                    </div>
+                    <div class="maxcon">
+                        <div class="max-top maxplastic">
+                            <h3>国内塑料综合价格指数</h3>
+                            <!--<a href="" title="">更多</a>-->
+                        </div>
+                        <div class="max-body maxtable"><{widgets id=" price_index"}></div>
+                    </div>
+                </div>
+            </div>
+            <div class="maxmetal-R">
+                <div class="maxcon"><{widgets id="plasticDayDiscuss"}></div>
+                <div class="maxcon"><{widgets id="plasticWeekDiscuss"}></div>
+            </div>
+        </div> 
+    </div>
+        <!--其他废料-->
+        <div class="maxmetal">
+            <div class="maxmetal-title"><h3>其他废料</h3></div>
+            <div class="maxmetal-content">
+                <div class="maxmetal-L">
+                    <div class="maxclass"><{widgets id="other_sort"}></div>
+                    <div class="maxmarket"><{widgets id="comprehensive_spot"}></div>
+                </div>
+            <div class="maxmetal-C">
+                <div class="maxwaste">
+                    <div class="maxcon"><{widgets id="paper"}></div>
+                    <div class="maxcon"><{widgets id="rubber"}></div>
+                    <div class="maxcon"><{widgets id="composite_waste"}></div>
+                    <div class="maxcon"><{widgets id="waste_trends"}></div>
+                </div>
+            </div>
+            <div class="maxmetal-R">
+                <div class="maxcon"><{widgets id="compositeDayDiscuss"}></div>
+                <div class="maxcon"><{widgets id="compositeWeekDiscuss"}></div>
+            </div>
+        </div> 
+    </div>
+     <!--废电子电器 -->
+        <div class="maxmetal">
+            <div class="maxmetal-title"><h3>废电子电器</h3></div>
+            <div class="maxmetal-content">
+                <div class="maxmetal-L">
+                    <div class="maxclass"><{widgets id="electron"}></div>
+                    <div class="maxmarket maxelectron">
+                        <div class="max-Tabs-top"><div class="maxspot"><span>废旧电子行情</span></div></div>
+                        <div class="max-Tabs-body">
+                            <div class="maxcomon" ><{widgets id="waste_market"}></div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="maxmetal-C">
+                    <div class="maxwaste">
+                        <div class="maxcon maxelec"><{widgets id="electron_market"}></div>
+                        <div class="maxcon maxform"><{widgets id="stores_offer"}></div>
+                    </div>
+                </div>
+                <div class="maxmetal-R">
+                    <div class="maxcon"><{widgets id="electronDayDiscuss"}></div>
+                    <div class="maxcon"><{widgets id="electronWeekDiscuss"}></div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <{require file="block/footer.html"}>
+    <!--   右侧悬浮客服 -->
+    <div class="maxkf"><{widgets id="right_service"}></div>
+    <script src="images/max.js"></script>
+    <script src="images/markets/market.js"></script>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+<h2 class="head-title">分类导购</h2>
+<div class="tableform clearfix">
+  <div class=" fl item" style="margin-left: 30px;">
+    <h5 style="margin-bottom:10px; margin-top: 20px;">第一步：选择页面布局</h5>
+    <div class="clearfix">
+      <div class="fl" style="width: 100px; text-align: center;">
+        <table class="gridlist" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 10px;">
+          <tbody>
+            <tr>
+              <td width="50%" style="height: 80px;">1</td>
+              <td width="50%">2</td>
+            </tr>
+          </tbody>
+        </table>
+        <input  id="panel-01" name="pic[1][tagname]" type="radio" checked value="one">
+        
+        <label for="">风格一</label>
+      </div>
+      <div class="fl" style="width: 100px; margin-left: 30px; text-align: center;">
+        <table class="gridlist" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 10px;">
+          <tbody>
+            <tr>
+              <td width="50%" colspan="2" style="height: 40px;">1</td>
+              <td width="50%" rowspan="2">4</td>
+            </tr>
+            <tr>
+              <td style="height: 40px;">2</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+        <input id="panel-02" type="radio" name="pic[1][tagname]" value="two">
+        <label for="panel-02">风格二</label>
+      </div>
+      <div class="fl" style="width: 100px; margin-left: 30px; text-align: center;">
+        <table class="gridlist" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 10px;">
+          <tbody>
+            <tr>
+              <td width="50%" rowspan="2" style="height: 80px;">1</td>
+              <td width="50%" style="height: 40px;" colspan="2">2</td>
+            </tr>
+            <tr>
+              <td style="height: 40px;">3</td>
+              <td>4</td>
+            </tr>
+          </tbody>
+        </table>
+        <input id="panel-03" type="radio" name="pic[1][tagname]" value="three">
+        <label for="panel-03">风格三</label>
+      </div>
+    </div>
+    <h5 style="margin-bottom:10px; margin-top: 20px;">第二步：设置导购栏目</h5>
+    <div class="piccontent">
+      <div class="firsttag">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <th>设置栏目名称: </th>
+              <td>
+                <input type='text' name="pic[first][tagname]" value="<{$setting.pic.first.tagname}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片1: </th>
+              <td>
+                <input type='text' name="pic[first][1][link]" class="imgsrc" id="pic[first][1][link]" value="<{$setting.pic.first.1.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[first][1][linktarget]" value="<{$setting.pic.first.1.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片2: </th>
+              <td>
+                <input type='text' name="pic[first][2][link]" class="imgsrc" id="pic[first][2][link]" value="<{$setting.pic.first.2.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[first][2][linktarget]" value="<{$setting.pic.first.2.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>更多链接: </th>
+              <td>
+                <input type='text' name="pic[first][more]" value="<{$setting.pic.first.more}>">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display: none;" class="secondtag">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <th>设置栏目名称: </th>
+              <td>
+                <input type="text" name="pic[second][tagname]" value="<{$setting.pic.second.tagname}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片1: </th>
+              <td>
+                <input type='text' name="pic[second][1][link]" class="imgsrc" id="pic[second][1][link]" value="<{$setting.pic.second.1.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[second][1][linktarget]" value="<{$setting.pic.second.1.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片2: </th>
+              <td>
+                <input type='text' name="pic[second][2][link]" class="imgsrc" id="pic[second][2][link]" value="<{$setting.pic.second.2.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[second][2][linktarget]" value="<{$setting.pic.second.2.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片3: </th>
+              <td>
+                <input type='text' name="pic[second][3][link]" class="imgsrc" id="pic[second][3][link]" value="<{$setting.pic.second.3.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[second][3][linktarget]" value="<{$setting.pic.second.3.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片4: </th>
+              <td>
+                <input type='text' name="pic[second][4][link]" class="imgsrc" id="pic[second][4][link]" value="<{$setting.pic.second.4.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[second][4][linktarget]" value="<{$setting.pic.second.4.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>更多链接: </th>
+              <td>
+                <input type='text' name="pic[second][more]" value="<{$setting.pic.second.more}>">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display: none;" class="thirdtag">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <th>设置栏目名称: </th>
+              <td>
+                <input type='text' name="pic[third][tagname]" value="<{$setting.pic.third.tagname}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片1: </th>
+              <td>
+                <input type='text' name="pic[third][1][link]" class="imgsrc" id="pic[third][1][link]" value="<{$setting.pic.third.1.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[third][1][linktarget]" value="<{$setting.pic.third.1.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片2: </th>
+              <td>
+                <input type='text' name="pic[third][2][link]" class="imgsrc" id="pic[third][2][link]" value="<{$setting.pic.third.2.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[third][2][linktarget]" value="<{$setting.pic.third.2.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片3: </th>
+              <td>
+                <input type='text' name="pic[third][3][link]" class="imgsrc" id="pic[third][3][link]" value="<{$setting.pic.third.3.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[third][3][linktarget]" value="<{$setting.pic.third.3.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>上传图片4: </th>
+              <td>
+                <input type='text' name="pic[third][4][link]" class="imgsrc" id="pic[third][4][link]" value="<{$setting.pic.third.4.link}>">
+                <input type="button" value="上传图片" class="uploadbtn">
+              </td>
+            </tr>
+            <tr>
+              <th>设置图片链接: </th>
+              <td>
+                <input type='text' name="pic[third][4][linktarget]" value="<{$setting.pic.third.4.linktarget}>">
+              </td>
+            </tr>
+            <tr>
+              <th>更多链接: </th>
+              <td>
+                <input type='text' name="pic[third][more]" value="<{$setting.pic.third.more}>">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  (function(){
+    $$("#panel-01").addEvent('click',function(e){
+      $$(".firsttag").setStyle('display', 'block');
+      $$(".secondtag").setStyle('display', 'none');
+      $$(".thirdtag").setStyle('display', 'none');
+      $$(".secondtag input[type=text]").set('value','');
+      $$(".thirdtag input[type=text]").set('value','');
+  });
+    $$("#panel-02").addEvent('click',function(e){
+      $$(".firsttag").setStyle('display', 'none');
+      $$(".secondtag").setStyle('display', 'block');
+      $$(".thirdtag").setStyle('display', 'none'); 
+      $$(".firsttag input[type=text]").set('value','');
+      $$(".thirdtag input[type=text]").set('value','');
+  });
+    $$("#panel-03").addEvent('click',function(e){
+      $$(".firsttag").setStyle('display', 'none');
+      $$(".secondtag").setStyle('display', 'none');
+      $$(".thirdtag").setStyle('display', 'block'); 
+      $$(".secondtag input[type=text]").set('value','');
+      $$(".firsttag input[type=text]").set('value','');
+  });
+
+    var tag_type='tr';
+    $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+    function bindevent(el){
+      var target=$(el).getParent(tag_type).getElement('.imgsrc');
+      var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+      var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;  
+      Ex_Loader('modedialog',function(){
+        return new imgDialog(url,{onCallback:function(image_id,image_src){
+          target.value=image_src;
+        }});
+      });
+    }
+  })();
+</script>

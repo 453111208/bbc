@@ -1,0 +1,27 @@
+  <h3 class="floor-hd">
+    <span class="tit">
+      <i class="icon icon-order"></i>
+      <{$setting.contenttag}>
+    </span>
+  </h3>
+  <div class="floor-bd floor-col-2">
+    <div class="article-show">
+
+      <{foreach from=$setting.data.articleList item=article}>
+      <div class="article-show-item"><{$article.articleList.article_id}>
+        <a href="<{url action=topm_ctl_content@getContentInfo article_id=$article.article_id}>">
+          <{if $article.article_logo}><img src="<{$article.article_logo}>" alt=""><{/if}>
+          <div class="txt">
+            <h3><{$article.title}></h3>
+          </div>
+        </a>
+      </div> 
+      <{/foreach}>
+
+    </div>
+  </div>
+  <div class="floor-more">
+    <a href="<{url action=topm_ctl_content@contentList node_id=$setting.data.nodeInfo.node_id}>">
+      <button class="ui-btn ui-btn-outlined ui-btn-warning">查看更多</button>
+    </a>
+  </div>

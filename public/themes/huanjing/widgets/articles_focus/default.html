@@ -1,0 +1,15 @@
+<ul>
+    <{foreach from=$data.articles_focus item=item key=key}>
+    <{if $key<3}>
+        <li class="maxrank">
+            <i class="focusKey" style="background-color: #ff6600"><{$key+1}></i>
+            <a href="<{url action=topc_ctl_expert@literary literaryid=$item.literaryId}>" target="_blank"><{$item.title}></a>
+        </li>
+    <{else}>
+        <li class="maxrank">
+            <i class="focusKey"><{$key+1}></i>
+            <a href="<{url action=topc_ctl_expert@literary literaryid=$item.literaryId}>" target="_blank"><{$item.title}></a>
+        </li>
+    <{/if}>
+    <{/foreach}>
+</ul>

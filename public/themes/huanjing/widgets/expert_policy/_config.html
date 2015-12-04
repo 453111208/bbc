@@ -1,0 +1,15 @@
+<div id="goods_exshow_config" class="tableform">
+    <div class="division">
+        <div class="goods-selector-handle clearfix">
+            <p>
+                <label for="">选择文章类型：</label>
+                <select name="sort">
+                    <option value="null">请选择类型</option>
+                    <{foreach from=$setting.literarycat item=option}>
+                    <option  value="<{$option.literarycat}>"><{$option.literarycat}></option>
+                    <{/foreach}>
+                </select>
+            </p>
+        </div>
+    </div>
+</div>

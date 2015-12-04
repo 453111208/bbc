@@ -1,0 +1,33 @@
+<div class="tableform widgetconfig">
+<div>
+        <p>请选择六个竞价展示:</p>
+        <{foreach from=$setting.biddingList item=item}>
+	<input type="checkbox" name="biddingList[]" value="<{$item.bidding_id}>"  onClick="doCheck(this)"/><{$item.trading_title}><br>
+        <{/foreach}>
+        <br><br><br>
+        <p>请选择六个招标展示:</p>
+        <{foreach from=$setting.tenderList item=item}>
+	<input type="checkbox" name="tenderlist[]" value="<{$item.tender_id}>"  onClick="doCheck2(this)"/><{$item.trading_title}><br>
+        <{/foreach}>        
+</div>
+</div>
+<script>
+	var c=0,d=0,limit=6; 
+	function doCheck(obj) { 
+		obj.checked?c++:c--; 
+		if(c>limit){ 
+		obj.checked=false; 
+		alert("只能选择6个"); 
+		c--; 
+		} 
+	} 
+	function doCheck2(obj) { 
+		obj.checked?d++:d--; 
+		if(d>limit){ 
+		obj.checked=false; 
+		alert("只能选择6个"); 
+		d--; 
+		} 
+	} 
+</script>
+

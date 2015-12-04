@@ -1,0 +1,20 @@
+<div class="tableform widgetconfig">
+<div>
+        <p>请选择六个公告展示:</p>
+        <{foreach from=$setting.jjzbList item=item}>
+	<input type="checkbox" name="jjzbggList[]" value="<{$item.bidorten_id}>"  onClick="doCheck(this)"/>[<{$item.bidorten_type_name}>]<{$item.trading_title}><br>
+        <{/foreach}>
+</div>
+</div>
+<script>
+	var c=0,limit=6; 
+	function doCheck(obj) { 
+		obj.checked?c++:c--; 
+		if(c>limit){ 
+		obj.checked=false; 
+		alert("只能选择6个"); 
+		c--; 
+		} 
+	} 
+</script>
+

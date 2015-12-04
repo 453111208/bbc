@@ -1,0 +1,28 @@
+<section class="hot floor" id="hotsale">
+  <h3 class="floor-hd">
+    <span class="tit">
+    <i class="icon icon-hot"></i>
+    <{$setting.block_name}>
+    </span>
+  </h3>
+  <div class="ui-slider" id="hotsale-slider">
+    <div class="ui-slider-group">
+      <{foreach from=$data.pic item=item}>
+      <div class="ui-slider-item">
+        <a href="<{$item.linktarget}>"  class="col-xs-4">
+          <img src="<{$item.link}>" alt="<{$item.title}>" >
+        </a> 
+      </div>
+      <{/foreach}>
+    </div>
+  </div>
+</section>
+
+<script>
+  // 多张图silder组件
+  var slider2 = new $.ui.Slider('#hotsale-slider',{
+    autoPlay:true,
+    viewNum:3,
+    travelSize:3
+  });
+</script>

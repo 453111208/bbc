@@ -1,0 +1,34 @@
+<div id='addurl' class="tableform widgetconfig">
+  <div class="navconfig">
+    <{foreach from=$setting.urls item=url key=key}>
+
+    <div class="division">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <th><{t app='topc'}>标题：<{/t}></th>
+          <td>
+            <input type='test' name='urls[<{$key}>][title]' value='<{$url.title}>' >
+          </td>
+          <th><{t app='topc'}>地址：<{/t}></th>
+          <td>
+            <input type='test' name='urls[<{$key}>][link]' value='<{$url.link}>' >
+          </td>
+          <td><span onclick="$(this).getParent('table').getParent().destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'topc' title=$___b2c="删除"|t:'topc' app="desktop"}></span></td>
+        </tr>
+      </table>
+    </div>
+    <{/foreach}>
+  </div>
+    <{button label=$___b2c="添加链接"|t:'topc' class="addurl" app="desktop" icon="btn_add.gif"}>
+</div>
+<script>
+  (function(){
+  document.getElement('.addurl').addEvent('click', function(){
+      var i=new Date().getTime();
+      var tpl = '<table width="100%" cellpadding="0" cellspacing="0"> <tr> <th><{t app="topc"}>标题：<{/t}></th> <td> <input type="test" name="urls[';
+      tpl = tpl + i + '][title]"> </td> <th><{t app="topc"}>地址：<{/t}></th> <td> <input type="test" name="urls[' + i + '][link]"> </td> </tr> </table>';
+      $('addurl').getElement('.navconfig').adopt(new Element('div',{'html':tpl,'class':'division'}));
+    })
+  })()
+</script>
+

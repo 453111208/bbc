@@ -1,0 +1,145 @@
+    <ul class="clearfix">
+      <{$item}>
+      <{foreach from=$data.list item=item key=parentId  name="slider"}>
+               <li class=" <{if $env.foreach.slider.first}>active<{/if}> clearfix">
+               <!-- 默认显示 -->
+                <div class="h6">
+                  <div class="item item-1" style="overflow: hidden;word-wrap: break-word;width:220px;height:40px"><a href="" title=""><em>【竞价】</em><span ><{$item.trading_title}></span></a></div>
+                  <div class="item item-2"><em>交货地：</em><span><{$item.jgdz}></span></div>
+                  <div class="item item-3"><em>当前价格：</em><span><i><{$item.b_price}></i>&nbsp;/&nbsp;吨</span></div>
+                </div>
+                <!-- 默认显示END -->
+                <!-- 选中显示 -->
+                <div class="maxinfo clearfix">
+                  <div class="maxpic"><a href="" title=""><img style="width:177px; height:118px;" src="<{$item.imgDefalut}>" alt="" /></a></div>
+                  <div class="max-left">
+                    <div class="item item-1"><a href="<{url action=topc_ctl_bidding@index bidding_id=$item.bidding_id}>" title=""><em>【竞价】</em><span><{$item.trading_title}></span></a></div>
+                    <div class="item item-2"><em>供应商：</em><span><{$item.shop_name}></span></div>
+                    <div class="item item-3"><em>供货地：</em><span><{$item.jgdz}></span></div>
+                    <div class="maxrz">
+                      <{foreach from=$item.imgList item=img }>
+                      <a class='a-item1' href="" title=""><img src="<{$img.image_default_id}>" /></a>
+                      <{/foreach}>
+                    </div>
+                  </div>
+                  <div class="max-right">
+                  <div class="icon"></div>
+                    <div class="item item-1"><em>当前价：</em><span><i><s>￥</s><{$item.b_price}></i></span></div>
+                    <div class="item item-2"><em>底&#12288;价：</em><span><s>￥</s><{$item.dj}>&nbsp;/&nbsp;<i><{$item.cjcount}></i>次出价</span></div>
+                    <div class="item item-3"><a href="<{url action=topc_ctl_bidding@index bidding_id=$item.bidding_id}>" title="">去出价></a></div>
+                    <div class="maxtime">
+                      <span><div style="float: left;">距结束：</div>
+                        <div style="float: left;" id="day_show1_<{$item.bidding_id}>"></div>
+                        <div style="float: left;" id="hour_show1_<{$item.bidding_id}>"></div>
+                        <div style="float: left;" id="minute_show1_<{$item.bidding_id}>"></div>
+                        <div style="float: left;" id="second_show1_<{$item.bidding_id}>"></div>
+      
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 选中显示END -->
+               </li>
+            <{/foreach}>
+             <{foreach from=$data.listTender item=item key=parentId  name="slider"}>
+               <li class="  clearfix">
+               <!-- 默认显示 -->
+                <div class="h6">
+                  <div class="item item-1" style="overflow: hidden;word-wrap: break-word;width:220px;height:40px"><a href="<{url action=topc_ctl_tender@index  tender_id=$item.tender_id}>" title=""><em>【招标】</em><span><{$item.trading_title}></span></a></div>
+                  <div class="item item-2"><em>交货地：</em><span>上海</span></div>
+        <!--           <div class="item item-3"><em>当前价格：</em><span><i><{$item.b_price}></i>&nbsp;/&nbsp;吨</span></div> -->
+                </div>
+                <!-- 默认显示END -->
+                <!-- 选中显示 -->
+                <div class="maxinfo clearfix">
+                  <div class="maxpic"><a href="" title=""><img style="width:177px; height:118px;" src="<{$item.imgDefalut}>" alt="" /></a></div>
+                  <div class="max-left">
+                    <div class="item item-1"><a href="<{url action=topc_ctl_tender@index  tender_id=$item.tender_id}>" title=""><em>【招标】</em><span><{$item.trading_title}></span></a></div>
+                    <div class="item item-2"><em>供应商：</em><span><{$item.shop_name}></span></div>
+                    <div class="item item-3"><em>供货地：</em><span>上海</span></div>
+                    <div class="maxrz">
+                      <{foreach from=$item.imgList item=img }>
+                      <a class='a-item1' href="" title=""><img src="<{$img.image_default_id}>" /></a>
+                      <{/foreach}>
+                    </div>
+                  </div>
+                  <div class="max-right">
+                  <div class="icon"></div>
+                <!--     <div class="item item-1"><em>当前价：</em><span><i><s>￥</s><{$item.b_price}></i>&nbsp;/&nbsp;吨</span></div> -->
+            <!--         <div class="item item-2"><em>底&#12288;价：</em><span><s>￥</s>54100&nbsp;/&nbsp;<i>15</i>次出价</span></div> -->
+                    <div class="item item-3"><a href="<{url action=topc_ctl_tender@index  tender_id=$item.tender_id}>" title="">去投标></a></div>
+                    <div class="maxtime">
+                      <span ><div style="float: left;">距结束：</div>
+                        <div style="float: left;" id="day_show2_<{$item.tender_id}>"></div>
+                      <div style="float: left;" id="hour_show2_<{$item.tender_id}>"></div>
+                      <div style="float: left;" id="minute_show2_<{$item.tender_id}>"></div>
+                      <div style="float: left;" id="second_show2_<{$item.tender_id}>"></div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- 选中显示END -->
+               </li>
+            <{/foreach}>
+            </ul>
+
+        <{foreach from=$data.list item=item key=parentId  name="slider"}>
+            <script >
+var intDiff1_<{$item.bidding_id}> = parseInt(<{$item.lasttime}>);//倒计时总秒数量
+function timer1_<{$item.bidding_id}>(intDiff){
+  window.setInterval(function(){
+  var day=0,
+    hour=0,
+    minute=0,
+    second=0;//时间默认值    
+  if(intDiff > 0){
+    day = Math.floor(intDiff / (60 * 60 * 24));
+    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+  }
+  if (minute <= 9) minute = '0' + minute;
+  if (second <= 9) second = '0' + second;
+  $('#day_show1_<{$item.bidding_id}>').html(day+"天");
+  $('#hour_show1_<{$item.bidding_id}>').html('<s id="h"></s>'+hour+'时');
+  $('#minute_show1_<{$item.bidding_id}>').html('<s></s>'+minute+'分');
+  $('#second_show1_<{$item.bidding_id}>').html('<s></s>'+second+'秒');
+  intDiff--;
+  }, 1000);
+}  
+$(function(){
+  timer1_<{$item.bidding_id}>(intDiff1_<{$item.bidding_id}>);
+});  
+</script>
+      <{/foreach}>
+
+
+         <{foreach from=$data.listTender item=item key=parentId  name="slider"}>
+            <script >
+var intDiff2_<{$item.tender_id}> = parseInt(<{$item.lasttime}>);//倒计时总秒数量
+function timer2_<{$item.tender_id}>(intDiff){
+  window.setInterval(function(){
+  var day=0,
+    hour=0,
+    minute=0,
+    second=0;//时间默认值    
+  if(intDiff > 0){
+    day = Math.floor(intDiff / (60 * 60 * 24));
+    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+  }
+  if (minute <= 9) minute = '0' + minute;
+  if (second <= 9) second = '0' + second;
+  $('#day_show2_<{$item.tender_id}>').html(day+"天");
+  $('#hour_show2_<{$item.tender_id}>').html('<s id="h"></s>'+hour+'时');
+  $('#minute_show2_<{$item.tender_id}>').html('<s></s>'+minute+'分');
+  $('#second_show2_<{$item.tender_id}>').html('<s></s>'+second+'秒');
+  intDiff--;
+  }, 1000);
+}  
+$(function(){
+  timer2_<{$item.tender_id}>(intDiff2_<{$item.tender_id}>);
+});  
+</script>
+      <{/foreach}>

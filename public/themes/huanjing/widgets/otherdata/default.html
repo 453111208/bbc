@@ -1,0 +1,36 @@
+<table id="Metals_table" cellspacing="1" cellpadding="0" align="center" border="0">
+    <colgroup>
+        <col class="col-1">
+        <col class="col-2">
+        <col class="col-3">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>品名</th>
+<!--            <th>价格区间（元/吨）</th>-->
+            <th>均价（元/吨）</th>
+            <th>涨跌幅</th>
+        </tr>
+    </thead>
+    <tbody>
+        <{foreach from=$data.data_select item=item key=key}>
+            <tr>
+                <td><{$item.data.market}></td>
+    <!--                <td><{$item.data.min_price}>-<{$item.data.max_price}></td>-->
+                <td><{$item.data.price}></td>
+                <td>
+                    <div class="">
+                        <{if $item.nums<0}>
+                        <i class="icon"><img src="images/x.png"></i>
+                        <{elseif $item.nums==0}>
+                        <i class="icon"><img src="images/z.png"></i>
+                        <{elseif $item.nums>0}>
+                        <i class="icon"><img src="images/s.png"></i>
+                        <{/if}>
+                        <{$item.data.price_run}>
+                    </div>
+                </td>
+            </tr>
+        <{/foreach}>
+    </tbody>
+</table>

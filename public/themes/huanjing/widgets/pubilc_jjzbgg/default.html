@@ -1,0 +1,31 @@
+          <div class="maxtitle-top ">
+          <h3>竞标价招标公告</h3>
+        <!-- 左侧链接 -->
+        <div class="maxMorelink">
+        </div>
+               </div>
+        <!-- 左侧链接END -->
+
+        <div class="max-Tabs-body">
+        <!-- 页卡切换 -->
+          <div class="maxcomon" style="display: block;">
+                <ul>
+              <{foreach from=$data.sprodreleaseList item=item key=key}>
+              <li class="<{if $key<1}>active<{else}><{/if}>">
+                <i><{$key+1}></i>
+                 <h3><a href="<{$item.linkAddress}>">[<{$item.bidorten_type_name}>]<{$item.trading_title}></a></h3>
+                <div class="maxinfo clearfix">
+                    <div class="item-pic" style="height: 76px;"><a href="<{$item.linkAddress}>" title=""><img src="<{$item.img_id}>" alt="" style="width:76px;height:76px"></a></div>
+                  <div class="maxleft l">
+                      <h6><a href="<{$item.linkAddress}>">[<{$item.bidorten_type_name}>]<{$item.trading_title}></a></h6>
+                    <div class="maxright r"><a href="<{$item.linkAddress}>">查看公告&gt;</a></div>
+                  </div>
+                </div>
+              </li>
+              <{/foreach}>
+            </ul>
+          </div>
+          <!-- 页卡切换END -->
+          <!-- 页卡切换2 -->
+          <!-- 页卡切换2END -->
+        </div>

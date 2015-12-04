@@ -1,0 +1,31 @@
+<ul class="clearfix">
+<{foreach from=$data.sprodreleaseList item=item key=key}>
+  <li class="<{if $key<1}>active<{/if}> clearfix"> 
+    <!-- 默认显示 -->
+    <div class="h6">
+      <div class="item item-1"><a href="<{$item.linkAddress}>" title=""><em>【<{$item.bidorten_type_name}>】</em><span><{$item.trading_title}></span></a></div>
+      <div class="item item-2"><em>交货地：</em><span><{$item.shop_area}></span></div>
+      <div class="item item-3"><em>交易价：</em><span><i><{$item.mbid}></i>&nbsp;/&nbsp;元</span></div>
+    </div>
+    <!-- 默认显示END --> 
+    <!-- 选中显示 -->
+    <div class="maxinfo clearfix">
+      <div class="maxpic"><a href="" title=""><img style="width:177px; height:118px;" src="<{$item.img_id}>" alt="" /></a></div>
+      <div class="max-left">
+        <div class="item item-1"><a href="<{$item.linkAddress}>" title=""><em>【<{$item.bidorten_type_name}>】</em><span><{$item.trading_title}></span></a></div>
+        <div class="item item-2"><em>供应商：</em><span><{$item.shop_name}></span></div>
+        <div class="item item-3"><em>供货地：</em><span><{$item.shop_area}></span></div>
+        <div class="maxrz"> <a class='a-item1' href="" title=""><img src="images/cx.jpg" /></a> <a class='a-item2' href="" title=""><img src="images/sd.jpg" /></a> </div>
+      </div>
+      <div class="max-right">
+        <div class="icon"></div>
+        <div class="item item-1"><em>交易价：</em><span><i><s>￥</s><{$item.mbid}></i>&nbsp;/&nbsp;元</span></div>
+        <div class="item item-2"><em>底价：</em><span><s>￥</s><{$item.net_price}>&nbsp;/&nbsp;<i><{$item.cbid}></i>次出价</span></div>
+        <div class="item item-3"><a href="<{$item.linkAddress}>" title="">查看明细></a></div>
+        <div class="maxtime"> <span>已结束</span> </div>
+      </div>
+    </div>
+    <!-- 选中显示END --> 
+  </li>
+<{/foreach}>  
+</ul>

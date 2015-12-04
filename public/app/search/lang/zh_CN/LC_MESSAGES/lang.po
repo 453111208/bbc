@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-30 18:59+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /Users/bryant/codes/bbc/app/search//controller/index.php:10
+msgid "请先在搜索引擎管理中开启一个搜索方式"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//controller/index.php:16
+msgid "索引管理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//controller/index.php:47
+#: /Users/bryant/codes/bbc/app/search//controller/policy.php:47
+msgid "保存成功"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//controller/policy.php:17
+msgid "搜索引擎管理"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//controller/policy.php:39
+msgid "连接异常，请先确认是否连接"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//dbschema/associate.php:23
+msgid "联想词"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//dbschema/associate.php:42
+#: /Users/bryant/codes/bbc/app/search//dbschema/delta.php:32
+msgid "更新时间"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//dbschema/delta.php:23
+#: /Users/bryant/codes/bbc/app/search//model/index.php:11
+msgid "索引名称"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/finder/index.php:17
+msgid "配置索引搜索参数"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/finder/index.php:17
+msgid "配置"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/finder/policy.php:36
+msgid "停用"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/finder/policy.php:40
+msgid "启用"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/policy/sphinx.php:40
+msgid "无法连接sphinx服务"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/policy/sphinx.php:250
+msgid "插入只支持实时索引"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/policy/sphinx.php:317
+msgid "删除只支持实时索引"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//lib/policy/sphinx.php:409
+msgid "索引名称为空"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//model/index.php:19
+msgid "索引类型"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search//model/policy.php:36
+msgid "搜索提供类"
+msgstr ""
+
+#: /Users/bryant/codes/bbc/app/search/view/config/default.html:30
+msgid "保存"
+msgstr ""
+

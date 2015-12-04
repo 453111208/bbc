@@ -1,0 +1,44 @@
+<div id="goods_exshow_config" class="tableform">
+    <div class="division">
+        <div class="goods-selector-handle clearfix">
+            <p>
+                <label for="">建议选择：</label>
+                <{input type="text" name="limit" value=$setting.limit size="3" disabled="true" }>个分类
+            </p>
+            <p>
+                <label for="">选择一级分类：</label>
+                <select name="first_sort">
+                    <option value="null">请选择类别</option>
+                    <{foreach from=$setting.first item=option}>
+                    <option value="<{$option.first_sort}>"><{$option.first_sort}></option>
+                    <{/foreach}>
+                </select>
+            </p>
+        </div>
+    </div>
+    <div class="division">
+        <div class="span-auto">
+            <label>选择二级分类：</label>
+        </div>
+        <div class="division goods-selector">
+            <{foreach from=$setting.selectList item=checkbox }>
+            <div class="secondsort">
+            <label><{$checkbox.first_sort}></label>----<input type="checkbox"  name="sort[]" value="<{$checkbox.second_sort}>" /><{$checkbox.second_sort}>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+</div>
+<script>
+$$('.secondsort').hide();
+$$('select').addEvent('change',function(){
+    var select  = this;
+    $$('.secondsort label').each(function(e){
+        if(e.get('text')!=select.value){
+            e.getParent().hide();
+            }else{
+            e.getParent().show();
+        }
+    });
+});
+</script>

@@ -1,0 +1,66 @@
+<!-- <div class="goods-shopmax-list">
+          <ul clabankss="clearfix">
+            <li class="item">
+              <div class="p">  <a href=""><img src="images/images/a9.jpg" alt="" /></a> </div>
+              <div class="i">
+                <ul class="clearfix">
+                  <li class="gel-price"><em>￥5900.00元</em></li>
+                  <li class="sales">已售：36</li>
+                </ul>
+                <h6>  <a href="/index.php/productdtl">不锈钢一体化清洗油墨废水设备</a> </h6>
+                <div class="gel-intro">广州市点金环保工程有限公司</div>
+              </div>
+            </li>
+            <li class="item">
+              <div class="p">  <a href=""><img src="images/images/a9.jpg" alt="" /></a> </div>
+              <div class="i">
+                <ul class="clearfix">
+                  <li class="gel-price"><em>￥5900.00元</em></li>
+                  <li class="sales">已售：36</li>
+                </ul>
+                <h6>  <a href="#">不锈钢一体化清洗油墨废水设备</a> </h6>
+                <div class="gel-intro">广州市点金环保工程有限公司</div>
+              </div>
+            </li>
+            <li class="item">
+              <div class="p">  <a href=""><img src="images/images/a9.jpg" alt="" /></a> </div>
+              <div class="i">
+                <ul class="clearfix">
+                  <li class="gel-price"><em>价格面议</em></li>
+                  <li class="sales">已售：36</li>
+                </ul>
+                <h6>  <a href="#">不锈钢一体化清洗油墨废水设备</a> </h6>
+                <div class="gel-intro">广州市点金环保工程有限公司</div>
+              </div>
+            </li>
+            
+            
+          </ul>
+        </div> -->
+<!-- <div class="switchable-container" data-toggle="switchable" 
+data-switchable-config='{"effect": "scrollx", "autoplay": true,"viewSize": [290,230], "interval": 2, "events": "click", "circle": true}'
+> -->
+
+
+    <ul clabankss="clearfix">
+      <{foreach from=$data.item item=item}>
+      <li class="item">
+      <div class="p">  
+            <a href="#">
+              <img width="200" heigth="200" src="" alt="">
+            </a>
+         </div>
+              <div class="i">
+                <ul class="clearfix">
+                   <li class="gel-price"><em><{$item.net_price|cur}></em></li>
+                  <li class="sales">已售：36</li>
+                  </ul>
+            <h6>  <a href="#"><{$item.title}></a> </h6>
+
+        </div>
+      </li>
+      <{/foreach}>
+    </ul>
+
+
+

@@ -1,0 +1,61 @@
+<html lang="en">
+    <head>
+        <{header}>
+        <title>资讯中心</title>
+        <link rel="stylesheet" href="images/max.css">
+        <link href="images/articles/article.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <{require file="block/header.html"}>
+        <{require file="block/main_header.html"}>
+        <div class="maxmain">
+            <div class="maxregister_ad"><{widgets id="ad_login"}></div>
+            <div class="maxleft">
+                <div class="maxmain_index">
+                    <div class="slider"><{widgets id="ad_turn"}></div>
+                    <div class="maxinformation">
+                        <div class="maxcontent"><{widgets id="info"}></div>
+                    </div>
+                </div>
+        <!-- 资讯中心关联解决方案挂件 -->
+                <div class="maxlist">
+                    <ul>
+                    <{widgets id="relation"}>
+                    </ul>
+                </div>
+                <div class="maxlist"></div>
+                <div class="maxsection">
+                    <div class="maxcategories"><{widgets id="main_info"}></div>
+                </div>
+            </div>
+            <div class="maxright">
+                <div class="maxhot"><{widgets id="hot_info"}></div>
+                <div class="maxhot"><{widgets id="expert_policy"}></div>
+                <div class="maxprow">
+                    <div class="maxPro-L maxhot">
+                        <div class="maxhot-title"><h2>热门交易</h2><a href="#">更多</a></div>
+                        <{widgets id="article_rmjy"}>
+                   </div>
+                </div>
+                <div class="maxhot maxking">
+                    <div class="max-Tabs-top">
+                        <ul class="clearfix">
+                            <li class="active"><span>热度排行</span></li>
+                        </ul>
+                    </div>
+                    <div class="max-Tabs-body">
+                        <div class="maxcomon" style="display:block;"><{widgets id="article_rmzx"}></div>
+                    </div>
+                </div>
+                <div class="maxad"><{widgets id="article_ad"}></div>
+            </div>
+        </div>
+        <{require file="block/footer.html"}>
+<!--   右侧悬浮客服 -->
+<div class="maxkf"><{widgets id="right_service"}></div>
+<script src="images/max.js"></script>
+<script src="images/articles/article.js"></script>
+</body>
+</html>
+
+   

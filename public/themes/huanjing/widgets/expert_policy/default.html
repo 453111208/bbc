@@ -1,0 +1,8 @@
+<div class="maxhot-title"><h2><{$data.literarycat}></h2><a href="/index.php/expert?literarycatid=<{$data.literarycatId}>">更多</a></div>
+<div class="maxhot-content"> 
+    <ul>
+        <{foreach from=$data.list item=item key=key}>
+            <li><a href="<{url action=topc_ctl_expert@literary literaryid=$item.literary_id}>" target="_blank"><{$item.title}></a></li>
+        <{/foreach}>
+    </ul>
+</div>

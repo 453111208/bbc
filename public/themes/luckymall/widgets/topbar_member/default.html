@@ -1,0 +1,25 @@
+<!--div id="login_<{$widgets_id}>" class="small-signin">
+  <{$setting.welcome}> <a href="<{url action=topc_ctl_passport@signin}>"><{t app='topc'}>登录<{/t}></a>
+  或<a href="<{url action=topc_ctl_passport@signup}>"><{t app='topc'}>免费注册<{/t}></a>
+</div-->
+<div id="login_<{$widgets_id}>" class="small-signin">
+  <a href="./"><img src="images/icon_home.png"> <{t app='topc'}>首页<{/t}></a> &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="<{url action=topc_ctl_passport@signin}>"><{t app='topc'}>登录<{/t}></a>
+  <a href="<{url action=topc_ctl_passport@signup}>"><{t app='topc'}>注册<{/t}></a>
+</div>
+<div id="member_<{$widgets_id}>" class="small-member" style="display:none;">
+  <{t app='topc'}>您好<{/t}><span id="uname_<{$widgets_id}>"></span>！
+  <a href="<{url action=topc_ctl_passport@logout}>"><{t app='topc'}>退出<{/t}></a>
+</div>
+<script>
+var name = decodeURIComponent($.cookie('UNAME') || '');
+if(name){
+    $("#uname_<{$widgets_id}>").html(name);
+    $("#member_<{$widgets_id}>").css('display','');
+    $("#login_<{$widgets_id}>").css('display','none');
+}
+else{
+    $("#login_<{$widgets_id}>").css('display','');
+    $("#member_<{$widgets_id}>").css('display','none');
+}
+</script>

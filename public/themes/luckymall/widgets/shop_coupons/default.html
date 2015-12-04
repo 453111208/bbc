@@ -1,0 +1,22 @@
+<div class="module-hd"><{$setting.class_name}><span><{$setting.class_detail}></span></div>
+<div class="module-bd">
+  <ul class="store-coupons">
+    <{foreach from=$setting.data item=item}>
+    <!--li class="zhe"-->
+    <li class="quan">
+      <div class="coupons-type"></div>
+      <div class="coupons-title">
+        <span><{$item.deduct_money}></span>
+      </div>
+      <div class="store-info clearfix">
+        <div class="store-logo"><a href="<{url action=topc_ctl_shopcenter@index shop_id=$item.shop_id}>"><img src="<{$item.shop_logo}>" width="32" height="32" alt=""></a></div>
+        <div class="info-txt">
+          <p><a href="#"><{$item.shop_name}></a></p>
+          <p><{$item.coupon_name}></p>
+        </div>
+      </div>
+      <a href="<{url action=topc_ctl_shopcenter@shopCouponList shop_id=$item.shop_id}>" class="get-coupons"><span>点击领取</span></a>
+    </li>
+    <{/foreach}>
+  </ul>
+</div>

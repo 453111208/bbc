@@ -1,0 +1,12 @@
+<div class="minicart" id="minicart_<{$widget_id}>">
+  <a href="<{url action=topc_ctl_cart@index}>" class="btn btn-simple btn-lg">
+    <span>
+      <span><i class="icon-cart-a"><b class="up-cat-number">0</b></i>去购物车结算<i class="icon-arrow-right-b"></i></span>
+    </span>
+  </a>
+</div>
+
+<script>
+//获取cookie，读取购物车现有商品数量
+updateCartNumber('#minicart_<{$widget_id}> .up-cat-number');
+</script>

@@ -1,0 +1,8 @@
+<div class="module-hd">商品推荐<span>COMMODITY</span></div>
+<div class="module-bd recommend-pro">
+  <ul>
+    <{foreach from=$setting.pic item=item}>
+      <li><a href="<{$item.linktarget}>"><img width="298" height="183" src="<{$item.link}>" alt="<{$item.linkinfo}>"></a></li>
+    <{/foreach}>
+  </ul>
+</div>

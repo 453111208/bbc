@@ -1,0 +1,115 @@
+body {color:#666; font:12px/150% Arial,Verdana,"宋体b8b\4f53";min-width:1200px;word-break:break-all;}
+ul, ol,p,h2{list-style: none;margin: 0;padding: 0;}
+a {text-decoration:none;color:#000; }
+a:hover{color:#f60; }
+/* 资讯中心 */
+.maxmain{ width:1200px; margin:10px auto 30px auto;overflow:hidden}
+
+/* 注册广告图 */
+.maxregister_ad{width:1200px; margin:0px auto 15px auto;}
+/* 左面板块*/
+.maxleft{float:left;width:848px;border-right:1px solid #ddd;}
+.maxmain_index{overflow:hidden;}
+/*  轮播图 */
+.slider {float:left;width:283px;position: relative;}
+.slider-pic {width:283px;height:283px;overflow: hidden;}
+.slider-pic ul li {width:283px;height: 283px;list-style: none;}
+.slider-pic .slider-switch {position: absolute;bottom:6px;right:6px;}
+.slider-pic .slider-switch li {float: left;width:16px;height:16px;line-height:16px;text-align: center;margin-left:3px;cursor: pointer;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:#fff;color:#ff6700;}
+.slider-pic .slider-switch li.active{background:#f60;color:#fff;}
+/* 资讯列表 */
+.maxinformation{float:left;width:530px;margin-left:18px;}
+.maxinformation .maxtitle{font-size:24px;font-weight:bold;font-family:microsoft yahei;color:#000;line-height:25px;}
+.maxinformation .maxcontent{margin-top:10px;}
+.maxinformation .maxcontent li{line-height:30px;font-size:14px;color:#dd4047;padding-left:15px;background: url(maxPoint.jpg) no-repeat left 50%;}
+.maxinformation .maxcontent li span{padding-right:10px;margin-right:10px;border-right:1px solid #000;}
+/* 资讯带图列表*/
+.maxlist{width:828px;margin-top:15px;overflow:hidden;margin-bottom:20px;}
+.maxlist li{overflow:hidden;padding:15px 0px;border-top:1px dotted #ddd;}
+.maxlist .maxpic{float:left;}
+.maxlist .maxpic img{width:120px;height:80px;}
+.maxlist .maxpic img:hover{opacity: 0.9;filter:alpha(opacity=80);}
+.maxlist .maxlist-content{float:left;width:530px;margin-left:16px;}
+.maxlist .maxlist-content .maxlist-title{height:30px;line-height:30px;overflow:hidden;font-size:22px;font-family:microsoft yahei;margin-bottom:3px;}
+.maxlist .maxlist-content li{height:22px;line-height:22px;color:#000;overflow:hidden;border:0px;padding:0px 0px 0px 10px;background: url(maxPoint.jpg) no-repeat left 50%;}
+.maxlist .maxicon{float:right;}
+.maxlist .maxicon i{float:left;}
+.maxlist .maxicon .maxicon-share{display:block;width:30px;height:20px;background:url(maxicon.png) no-repeat 0px -5px;cursor:pointer;}
+.maxlist .maxicon .maxicon-see{display:block;padding-left:20px;background:url(maxicon.png) no-repeat -45px -6px;}
+.maxlist .maxicon em{font-style: normal;color:#000;}
+/* 资讯类别页卡*/
+.maxsection{}
+.maxsection .maxcategories {width:832px;overflow:hidden;border-right:1px solid #ddd;border-top:1px solid #ddd;}
+.maxsection .maxcategories a{float:left;width:103px;height:37px;line-height:35px;text-align:center;font-size:16px;cursor: pointer;font-family:microsoft yahei;border-left:1px solid #ddd;border-bottom:2px solid #c69e45;}
+.maxsection .maxcategories .active a{color:#ff6600;height:35px;border-bottom:4px solid #ff6600;}
+.maxsection .maxlist{margin-top:0px;}
+.maxsection .maxlist li{border-top:0px;border-bottom:1px solid #ddd;}
+.maxsection .maxlist .maxlist-title{font-size:20px;}
+.maxsection .maxlist p{height:42px;overflow:hidden;line-height:22px}
+.maxsection .maxmore {height:40px;width: 828px;line-height:40px;background:url(maxback.png) no-repeat;text-align: center;cursor: pointer;}
+.maxsection .maxmore span{font-size: 16px;font-family:microsoft yahei;background:url(maxicon.png) no-repeat 83px -41px;padding-right:20px;}
+.maxsection .maxmore span:hover{color:#c69e45;}
+/* 右面板块*/
+.maxright{float:right;width:336px;}
+/*热门话题 专家解读*/
+.maxhot{background:#f9f9f9;padding-bottom:15px;border:1px solid #f5f5f5;margin-bottom:15px;}
+.maxhot .maxhot-title{overflow:hidden;border-top:2px solid #c69e45;padding:9px 8px 15px 8px;}
+.maxhot .maxhot-title h2{float:left;color: #444;background: url(maxicon.png) no-repeat 0px -109px;padding-left:15px;font:18px Microsoft YaHei;}
+.maxhot .maxhot-title a{float: right;color: #8f8f8f;background: url(maxicon.png) no-repeat 20px -75px;padding-right:20px;}
+.maxhot .maxhot-title a:hover{color: #f60;}
+.maxhot .maxhot-content{margin:0px 10px;}
+.maxhot .maxhot-content h3{font-size:14px;line-height:22px;margin-bottom:10px;font-family: microsoft yahei;}
+.maxhot .maxhot-maxpic{overflow:hidden;}
+.maxhot .maxhot-maxpic img {float: left;display: inline;}
+.maxhot .maxhot-maxpic .maxpaper{float:left;width:150px;margin-left:12px;line-height:20px;}
+.maxhot .maxhot-maxpic .maxpaper a{display:inline-block;}
+.maxhot .maxhot-content ul{margin-top:8px;}
+.maxhot .maxhot-content li{font-size:14px;line-height:26px;height:26px;overflow:hidden;background: url(maxPoint.jpg) no-repeat left 50%;padding-left:10px;}
+/*热门交易*/
+.maxPro-L .max-Tabs-body .item-pic{float:left;}
+.maxPro-L .max-Tabs-body .gel-price {padding-left:15px;line-height:20px;}
+.maxPro-L .max-Tabs-body .gel-price em{color: #f60;font-size:14px;}
+.maxPro-L .max-Tabs-body .maxcomon li.active h3{display:none;}
+.maxPro-L .max-Tabs-body .maxcomon li h3{font-size:14px;font-weight:normal;padding:0px 8px;height:30px;line-height:30px;overflow:hidden;}
+.maxPro-L .max-Tabs-body .maxcomon li h3 span{color:#c69e45;padding-right:5px;}
+.maxPro-L .max-Tabs-body .maxcomon li{height:30px;}
+.maxPro-L .max-Tabs-body .maxcomon li.active{height: 93px;}
+.maxPro-L .max-Tabs-body .maxcomon li.active h6{width:175px;height:23px;padding-left:10px;font-weight:normal;overflow:hidden;font-size: 14px;}
+.maxPro-L .max-Tabs-body .maxcomon li.active h6 span{color:#c69e45;padding-right:5px;}
+.maxPro-L .max-Tabs-body .maxcomon li .maxinfo{display:none;color: #999;padding-left:12px;line-height: 23px;}
+.maxPro-L .max-Tabs-body .maxcomon li.active .maxinfo{display:block;margin-top:5px;}
+.maxPro-L .max-Tabs-body .maxcomon li .bid{padding-top:12px;padding-left: 14px;}
+.maxPro-L .max-Tabs-body .maxcomon li .bid a{display:block;color:#f60;width:110px;height: 32px;line-height: 32px;text-align: center;background: url(maxicon.png) no-repeat 0 -148px;font-weight:bold;}
+/*排行*/
+.maxking .max-Tabs-top{border-top:2px solid #4e4e4e}
+.maxking .max-Tabs-top li{float:left;padding:5px 10px 0px 10px;cursor:pointer;}
+.maxking .max-Tabs-top li span{font-size:16px;color:#c69e45;line-height:35px;font-family: microsoft yahei;}
+.maxking .max-Tabs-top li.active{background:url(maxicon.png) no-repeat -2px -212px;border-top:2px solid #c69e45;position:relative;top:-2px;font-weight:bold;}
+.maxking .max-Tabs-body ul{padding:0px 10px;}
+.maxking .max-Tabs-body li{line-height:35px;}
+.maxking .max-Tabs-body li a{padding-left:10px;}
+.maxking .max-Tabs-body li i{float:left;display:block;height:18px;width:18px;line-height:18px;margin-top:8px;background-color:#f9f9f9;color:#333;text-align:center;border:1px solid #e5e5e5;}
+.maxking .max-Tabs-body li.maxrank i{background-color:#c69e45;color: #fff;border:0px;}
+
+/*资讯中心-list*/
+.maxPath{width:1200px;margin:10px auto 0px auto;overflow:hidden;min-height:20px;}
+.basic-ex-breadcrumbs{height:40px;line-height:40px;mfont-weight:normal;padding-left:0px;}
+.basic-ex-breadcrumbs .beb-current{font-weight:normal;color: #f60;padding:0 8px 0 0px;}
+.basic-ex-breadcrumbs a{padding:0 8px 0 0px;display:inline-block;}
+.basic-ex-breadcrumbs dt{padding:0 8px;padding-left: 0;float: left;}
+.basic-ex-breadcrumbs .beb-raquo{padding-right:5px;}
+/*分页*/
+#pageGro{width:500px;margin:0px auto; padding-top:30px;}
+#pageGro div,#pageGro div ul li{ font-size:12px; color:#666; line-height:30px; float:left; margin-left:8px;}
+#pageGro div ul li{ width:30px; text-align:center; border:1px solid #ddd;background:#f2f2f2; cursor:pointer;}
+#pageGro div ul li:hover{color:#fff; background:#c69e45;border:1px solid #c69e45;}
+#pageGro div ul li.on{ color:#fff; background:#c69e45; border:1px solid #c69e45;}
+#pageGro .pageUp,#pageGro .pageDown{ width:70px; border:1px solid #ddd; cursor:pointer;text-align:center;}
+#pageGro .pageDown:hover{color:#fff; background:#c69e45; border:1px solid #c69e45;}
+#pageGro .pageUp:hover{color:#fff; background:#c69e45; border:1px solid #c69e45;}
+
+
+.maxdetail .maxdetail-title h2{font-size:26px;font-weight:100;line-height:45px;color:#000;text-align:center;padding-top:10px;}
+.maxdetail .maxdetail-time{text-align:center;font-size:14px;line-height:30px;color:#666}
+.maxdetail .maxdetail-content{padding:20px;}
+.maxdetail .maxdetail-content p{font-size:16px;color:#333;font-family: microsoft yahei;line-height:28px;padding-bottom:20px;text-indent:28px;}

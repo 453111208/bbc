@@ -1,0 +1,840 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+
+    <link rel="stylesheet" href="images/max.css">
+  <link rel="stylesheet" href="images/gallery.css">
+  
+  </head>
+  <body>
+     <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+
+
+
+
+
+<!-- 面包屑 -->
+  <div class="maxPath">
+    <dl class="basic-ex-breadcrumbs clearfix">
+    
+      <dd>
+                  <a class="beb-nav" href="/index.php/gallery-191.html">
+          <span>供应信息</span>
+          </a>
+                  <span class="beb-raquo">></span>
+                  <a class="beb-nav" href="/index.php/gallery-197.html">
+                         <span>废金属</span>
+          </a>
+                  <span class="beb-raquo">></span>
+                  <span class="beb-current">有色金属</span>
+            </dd>
+    </dl>
+  </div>
+<!-- 面包屑END -->
+
+  <div id="main" class="maxmain clearfix">
+  <div class="wrap-lg">
+
+<!-- 筛选项 -->
+    <div id="filter_container" class="filter-container">
+      <div class="filter-title clearfix">
+        <h3>商品筛选</h3>
+        <div class="gallery-total-info">
+          (共
+          <b class="op-search-result">13</b>件商品)
+        </div>
+        <div class="filter-clean">
+          <a href="#">重置筛选项<i class="icon">></i></a>
+        </div>
+      </div>
+      <!-- 筛选条件 -->
+      <div id="gallery_filter" class="gallery-filter">
+        <div id="filter_selected" class="filter-selected clearfix">
+          <dl class="filter-selected-list clearfix">
+            <dt class="filter-selected-title">您已选择：</dt>
+            <dd class="filter-selected-values">
+            </dd>
+          </dl>
+        </div>
+        <div id="filter_lists" class="filter-lists-container">
+          <!-- 分类 -->
+          <dl class="filter-entries clearfix">
+            <dt class="filter-entries-label">分类：</dt>
+            <dd class="filter-entries-values">
+              <span class="filter-item active"><a href="#" class="handle action-select-unlimit">不限</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">洁面</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">化妆水/爽肤水</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">面霜/面乳</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">面膜</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">套装</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">防晒</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">眼部护理</a></span>
+            </dd>
+          </dl>
+          <!-- 地区 -->
+          <dl class="filter-entries clearfix" data-label="brand_id">
+            <dt class="filter-entries-label">所属地区：</dt>
+            <dd class="filter-entries-values">
+              <span class="filter-item active"><a href="#" class="handle action-select-unlimit">不限</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">北京</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">上海</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">天津</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">重庆</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item" ><a href="#" class="handle action-select-filter">内蒙古自治区</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item" ><a href="#" class="handle action-select-filter">吉林省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item" ><a href="#" class="handle action-select-filter">辽宁省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item" ><a href="#" class="handle action-select-filter">陕西省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">四川省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">海南省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">湖南省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">台湾省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">江西省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">浙江省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">山东省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">江苏省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">宁夏回族自治区</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item"><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+              <span class="filter-item "><a href="#" class="handle action-select-filter">甘肃省</a><a href="#" class="icon action-delete-filter">×</a></span>
+            </dd>
+          </dl>
+          <!-- 分类 -->
+          <dl class="filter-entries clearfix">
+            <dt class="filter-entries-label">产品交易：</dt>
+            <dd class="filter-entries-values">
+              <span class="filter-item active"><a href="#" class="handle action-select-unlimit">不限</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">供应</a></span>
+              <span class="filter-item"><a href="#" class="handle action-cat-filter">求购</a></span>
+            </dd>
+          </dl>
+        </div>
+        
+      </div>
+    </div>
+  
+<!-- 筛选项END -->
+
+   
+    <!-- main container -->
+    
+    <div class="mod-bottom">
+      <div class="row">
+    <!-- 左边版块 -->
+        <div class="col-lg-3 max-box-left">
+          <div class="side-box">
+            <div class="hd">展台内搜索</div>
+            <div class="bd">
+              <form action="http://bbc01.demo.shopex123.com/index.php/search.html" method="post">
+                <div class="searchbar-small has-figure">
+                  <input type="text" class="input-block input-sm" name="title" id="" placeholder="关键字">
+                  <input type="hidden" name="shop_id" value="16">
+                  <button type="submit" class="icon-search-a btn input-figure input-figure-sm">搜索</button>
+                </div>
+              </form>
+            </div>
+          </div>
+      <!-- 竞标价招标公告 -->
+      <div class="max-box-hot">
+       <div class="hd2">竞标价招标公告<i></i></div>
+       <div class="bd">
+        <div class="maxcomon" style="display: block;">
+            <ul class="clearfix">
+              <li class="active">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[招标]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                <div class="max-pic"><a href="" title=""><img src="images/a24.jpg" alt="" /></a></div>
+                  <div class="maxleft l">
+                    <div class="s">￥9800元\吨</div>
+                    <div class="x">15人投标</div>
+                    <div class="maxright r"><a href="#" title="">去投标&gt;</a></div>
+                  </div>
+                  
+                </div>
+              </li>
+              
+            </ul>
+          </div>
+      </div>
+      </div>
+      <!-- 竞标价招标公告END -->
+      <!-- 供需推荐 -->
+          <div class="max-box-xuqiu">
+            <div class="hd2">供需推荐
+        <a href="" title="">更多</a>
+      </div>
+      <div class="bd">
+        <div class="maxcomon" style="display: block;">
+            <ul class="clearfix">
+              <li class="active">
+                <h6><a href="" title=""><em>[供应]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="#" title="">去询价&gt;</a></div>
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[供应]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="#" title="">去询价&gt;</a></div>
+                </div>
+              </li> 
+              <li class="">
+                <h6><a href="" title=""><em>[供应]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="#" title="">去询价&gt;</a></div>
+                </div>
+              </li> 
+              <li class="">
+                <h6><a href="" title=""><em>[供应]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="#" title="">去询价&gt;</a></div>
+                </div>
+              </li>
+              <li class="">
+                <h6><a href="" title=""><em>[供应]</em>大量废铁废铜废钢管</a></h6>
+                <div class="maxinfo clearfix">
+                  <div class="maxleft l">
+                    <div class="s">交易地点：上海</div>
+                    <div class="x">价格：<i>￥999</i>&nbsp;/&nbsp;吨</div>
+                  </div>
+                  <div class="maxright r"><a href="#" title="">去询价&gt;</a></div>
+                </div>
+              </li> 
+            </ul>
+          </div>
+      </div>
+            
+            
+          </div>
+
+<!-- 供需推荐END -->
+<!-- 广告位 -->
+      <div class="max-AdvBanner"><a href="" title=""><img src="images/a23.jpg" alt="鍥剧墖璇存槑" /></a></div>
+<!-- 广告位END -->
+      <!-- 相关资讯 -->
+      <div class="max-consulting">
+        <div class="hd2">相关资讯</div>
+        <div class="bd">
+          <ul>
+            <li><a href="" title=""><em>[百科]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[百科]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[环保]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[百科]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[环保]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[百科]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[环保]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li><a href="" title=""><em>[百科]</em>实验显示洗手后用烘手机菌落数量</a></li>
+            <li style="border:0"><a href="" title=""><em>[环保]</em>实验显示洗手后用烘手机菌落数量</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <!-- 相关资讯END -->
+      <!-- 相关行情报价 -->
+      <div class="max-baojia">
+        <div class="hd2">相关行情报价<a href="" title="">更多</a></div>
+        <div class="bd">
+
+          <div class="n">
+                   
+            <a href="" title="">报废混合金属</a>
+            <a href="" title="">废钢铁</a>
+            <a href="" title="">边角料</a>
+            <a href="" title="">废锌</a>
+            <a href="" title="">废汞</a>
+            <a href="" title="">废锡</a>
+            <a href="" title="">废镁</a>
+            <a href="" title="">废铜</a>
+            <a href="" title="">废铝</a>
+            <a href="" title="">废铅</a>
+            <a href="" title="">焊丝焊条</a>
+            <a href="" title="">钛废料</a>
+            <a href="" title="">锆废料</a>
+            <a href="" title="">矾废料</a>
+          </div>
+        </div>
+      </div>
+      <!-- 相关行情报价END -->
+
+
+          <div class="side-box-history" id="">
+            <div class="hd2">最近浏览过的交易</div>
+            <div class="bd">
+        <ul>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li>
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+          <li style="border:0">
+            <div class="s">刚才浏览了</div>
+            <div class="x"><a href="" title=""><em>[供应]</em>出售大量可利用的钢材</a></div>
+          </li>
+
+        </ul>
+
+      </div>
+          </div>
+        </div>
+
+
+
+    <!-- 左边版块END -->
+    <!-- 右边版块 -->
+        <div class="col-lg-13 box max-box-right">
+      <div class="page-maincontent">
+        <ul>
+        <!-- 竞价商品 -->
+          <li class="item-jingjia clearfix">
+            <!-- 选中显示 -->
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><i><img src="images/jj.png" alt="" /></i><a href="#"><img style="width:285px;height:190px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地：</em><span>上海</span></div>
+                <div class="item item-4"><h2>废料清单</h2></div>
+                <div class="item item-5 maxton"><em>磷青铜带边角料</em><span>9.5吨</span></div>
+                <div class="item item-6 maxton"><em>废铁屑</em><span>3.5吨</span></div>
+                <div class="item item-7 maxton"><em>废钢管</em><span>8.5吨</span></div>
+                <div class="item item-8 maxton"><em>废铁棒</em><span>566吨</span></div>
+                <div class="item item-9">......</div>
+              </div>
+              <div class="max-right">
+              <div class="j-icon"></div>
+                <div class="item item-1"><em>当前价：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>底　价：</em><span><s>￥</s>54100&nbsp;/&nbsp;<i>15</i>次出价</span></div>
+                <div class="item item-3"><a href="" title="">去出价&gt;</a></div>
+                <div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div>
+                <div class="maxtime">
+                  <span>即将开始：2天15时44分15秒</span>
+                </div>
+              </div>
+            </div>
+          <!-- 选中显示END -->
+          </li>
+          <!-- 竞价商品END -->
+          <li class="item-goods clearfix">
+            <!-- 选中显示 -->
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+                
+              </div>
+              <div class="max-right">
+            
+                <div class="item item-1"><em>交易价格：</em><span>面议<span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+                
+                
+              </div>
+            </div>
+          <!-- 选中显示END -->
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[供应]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[供应]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[供应]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="item-goods clearfix" style="border:0">
+            <div class="maxinfo clearfix">
+                <div class="maxpreview">
+                 <div class="maxpic"><a href="#"><img style="width:165px;height:110px" src="tradings/maxp.jpg" alt=""></a></div>
+                </div>
+              <div class="max-left">
+                <div class="item item-1"><a href="#"><span><em>[求购]</em>销售磷青铜带边角料9.5吨</span></a>
+                </div>
+                <div class="item item-2"><div class="maxcompany"><em>供应商：</em><a href="#"><span>上海亿力速电子工业有限公司</span></a></div>
+                   <div class="maxrz">
+                  <a class="a-item1" href="" title=""><img src="images/cheng.png"></a>
+                  <a class="a-item2" href="" title=""><img src="images/dun.png"></a>
+                  </div>
+                </div>
+                <div class="item item-3"><em>供货地区：</em><span>上海</span></div>
+                <div class="item item-3"><em>供应总量：</em><span>60吨</span></div>
+              </div>
+              <div class="max-right">
+              
+                <div class="item item-1"><em>交易价格：</em><span><i><s>￥</s>59100</i>&nbsp;/&nbsp;吨</span></div>
+                <div class="item item-2"><em>收到询价：</em><span><i>15</i>次</span></div>
+                <div class="item item-3"><a class="btn" href="" title="">查看详情<o>&gt;</o></a><div class="item-favorite"><a href="" class="favorite-btn on"><i class="icon icon-heart"></i>收藏此商机</a></div></div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+        
+      </div>
+      <div class="pageview">
+        <span class="flip prev over">上一页</span>
+        <a href="" class="flip active">1</a>
+        <a href="" class="flip">2</a>
+        <a href="" class="flip next">下一页</a>
+      </div>
+    </div>
+    
+      <!-- 右边版块END -->
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    <{require file="block/footer.html"}>
+    <script src="images/max.js"></script>
+<script src="images/product.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<{wapheader}>
+<link rel="stylesheet" href="images/index.css">
+</head>
+
+<body>
+  <{require file="block/header.html"}>
+  <!-- header -->
+  <div class="home">
+    <header>
+      <div class="hd-logo">
+        <{widgets id="wap_logo"}>
+      </div>
+      <div class="hd-search">
+        <{widgets id="wap_search"}>
+      </div>
+      <div class="hd-menu">
+        <{widgets id="wap_catlist"}>
+      </div>
+    </header>
+
+    <!-- nav -->
+    <nav class="nav" id="nav">
+      <{widgets id="wap_nav"}>
+    </nav>
+
+    <div id="slider" class="ui-slider">
+      <{widgets id="wap_top_slider"}>
+    </div>
+
+    <div id="main" class="main">
+      <section class="floor half">
+        <{widgets id="wap_section-1"}>
+      </section>
+      <section class="floor">
+        <{widgets id="wap_section-2"}>
+      </section>
+      <section class="floor">
+        <{widgets id="wap_section-3"}>
+      </section>
+      <section class="hot floor" id="hotsale">
+        <{widgets id="wap_section-4"}>
+      </section>
+      <section class="hot floor" id="hotshop">
+        <{widgets id="wap_section-5"}>
+      </section>
+      <section class="floor" id="catalog">
+        <{widgets id="wap_section-6"}>
+      </section>
+    </div>
+    <div id="gotop"></div>
+  </div>
+  <{require file="block/footer.html"}>
+  
+</body>
+</html>

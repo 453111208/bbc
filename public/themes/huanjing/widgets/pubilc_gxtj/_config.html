@@ -1,0 +1,51 @@
+<div id="goods_exshow_config" class="tableform">
+  <div class="division">
+    <p>
+      <label for="">建议选择供应需求各</label>
+      <{input type="text" name="limit" value=$setting.limit size="3" disabled="true" }>个以保持页面美观
+    </p>
+  </div>
+  <div class="division">
+    <div class="goods-selector-handle clearfix">
+      <div class="span-auto">
+        <label>
+          <input type="radio"  name="selector" value="select" <{if $setting.selector=="select"}>checked<{/if}> />&nbsp;选择需求
+        </label>
+      </div>
+    </div>
+    <div class="division goods-selector">
+      <div data-extend = "select" <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+        <{input type="object" value=$setting.require_select object="requireInfo" app="sysspfb"  offset=2  name="require_select" select="checkbox" multiple="true" textcol="variety_name"}>
+      </div>
+    </div>
+  </div>
+
+  <div class="division">
+    <div class="goods-selector-handle clearfix">
+      <div class="span-auto">
+        <label>
+          <input type="radio"  name="selector" value="select" <{if $setting.selector=="select"}>checked<{/if}> />&nbsp;选择供应
+        </label>
+      </div>
+    </div>
+    <div class="division goods-selector">
+      <div data-extend = "select" <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+        <{input type="object" value=$setting.supply_select object="supplyInfo" app="sysspfb"  offset=2  name="supply_select" select="checkbox" multiple="true" textcol="variety_name"}>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  $$('#goods_exshow_config .goods-selector-handle input[type=radio]').addEvent('change',function(){
+    var radio  = this;
+    if(!radio.checked)return;
+    $$('#goods_exshow_config .goods-selector [data-extend]').each(function(item){
+      if(item.get('data-extend')!=radio.value){
+        item.hide();
+      }else{
+        item.show();
+      }
+    });
+  });
+</script>

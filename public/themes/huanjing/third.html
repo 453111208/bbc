@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <{header}>
+      <link rel="stylesheet" href="images/max.css">
+  <link href="images/service/service.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="images/topc/articles/article.css">
+  </head>
+  <body>
+     <{require file="block/header.html"}>
+    <{require file="block/main_header.html"}>
+
+    <div class="maxmain">
+  <{main}>
+<!-- 右面板块 -->
+     <div class="maxright">   
+      <div class="maxPro-L">
+      <!-- 认证 -->
+        <div class="max-certification">
+          <div class="max-top">其他第三方认证</div>
+          <div class="max-body">
+          <{widgets id="tpos1"}>
+            <!-- <ul>
+              <li><img src="images/service/l1.jpg" alt=""></li>
+              <li><img src="images/service/l2.jpg" alt=""></li>
+              <li><img src="images/service/l3.jpg" alt=""></li>
+            </ul>
+            <ul>
+              <li><img src="images/service/l4.jpg" alt=""></li>
+              <li><img src="images/service/l5.jpg" alt=""></li>
+              <li><img src="images/service/l6.jpg" alt=""></li>
+            </ul>
+             -->
+          </div>
+        </div>
+        <!-- 认证END -->
+        <!-- 服务 -->
+        <div class="max-service">
+          <div class="max-top">其他第三方服务</div>
+          <div class="max-body">
+          <{widgets id="thirdservice"}>
+            <!-- <a href="" title="">高分子材料分析</a>|
+            <a href="" title="" class="now">金属材料分析</a>
+            <a href="" title="">技术研发支持</a>|
+            <a href="" title="">产学研合作</a>
+            <a href="" title="" class="now">实验设备租赁</a>|
+            <a href="" title="">企业体系认证</a>
+            <a href="" title="">企业环评咨询</a>|
+            <a href="" title="">环境监测服务</a> -->
+          </div>
+        </div>
+        <!-- 服务END -->
+      </div>
+            
+            <!-- 推荐认证机构 -->
+      <div class="maxPro-C">
+        <div class="max-brand">
+          <div class="max-top">推荐认证机构</div>
+          <{widgets id="cnv"}>
+        </div>
+      </div>
+      <!-- 推荐认证机构END -->
+
+      <!-- 排行榜 -->
+            <div class="maxPro-R maxhot" style="width:266px;">
+                <div class="maxhot-title"><h2>成功案例</h2></div>
+          <div class="max-body">
+          <{widgets id="succcase"}>
+        </div>  
+      </div>
+<!-- end排行榜 -->
+         
+     </div>
+     </div>
+
+    <{require file="block/footer.html"}>
+
+<script src="images/max.js"></script>
+<script src="images/service/service.js"></script>
+<script src="images/topc/articles/article.js"></script>
+  </body>
+</html>

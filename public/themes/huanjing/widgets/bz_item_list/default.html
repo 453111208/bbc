@@ -1,0 +1,10 @@
+ <ul class="clearfix">
+          <{foreach from=$data.sprodreleaseList item=item key=parentId  name="slider"}>
+             <li class="item <{if $env.foreach.slider.first}>active<{/if}> ">
+              <div class="h6"><i><{$parentId+1}></i><a href="/index.php/standard?standard_id=<{$item.standard_id}>" title=""><{$item.title}></a></div>
+              <div class="gel-price"><{$item.net_price|cur}></div>
+              <div class="item-pic"><a href="/index.php/standard?standard_id=<{$item.standard_id}>" title=""><img style="width:182px;height:182px" src="<{$item.image_default_id}>" alt="" /></a></div>
+             </li>
+            <{/foreach}>
+          </ul>
+          

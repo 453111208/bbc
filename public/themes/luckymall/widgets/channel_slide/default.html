@@ -1,0 +1,51 @@
+<div class="full-slider">
+  <div id="slideFocus" class="slider" data-toggle="switchable">
+    <div class="slider-pic wrap-lg">
+      <div class="col-lg-3 sidebar"></div>
+      <div class="col-lg-10 box">
+        <ul class="switchable-content">
+          <{foreach from=$data.pic item=item}>
+          <li>
+            <a href="<{$item.linktarget}>">
+              <img width="760" height="480"src="<{$item.link}>" alt="<{$item.linkinfo}>">
+            </a>
+          </li>
+          <{/foreach}>
+        </ul>
+      </div>
+    </div>
+    <div class="slider-bg">
+      <ul class="desc-list">
+        <{foreach from=$data.pic item=item key=key}>
+        <li style="background:<{$item.bg_color}><{if $item.bg_img}> url('<{$item.bg_img}>') no-repeat center; background-size: cover;<{/if}>"></li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <div class="slider-switch switchable-nav">
+      <{assign var=countnum value="1"}>
+      <{foreach from=$data.pic item=parent key=parentId name="slider"}>
+      <a href="#" <{if $env.foreach.slider.first}>class="active"<{/if}>></a>
+      <{/foreach}>
+    </div>
+  </div>
+</div>
+<script>
+var autoplay = <{$setting.autoplay}>, effect = "<{$setting.effectWay}>";
+$('#slideFocus').data('switchableConfig', {
+    autoplay: autoplay,
+    effect: effect,
+    circle: true,
+    events: 'click',
+    interval: 3,
+    onBeforeSwitch: function(e, toIndex) {
+        $('.desc-list li').each(function(index, value) {
+          if(index==toIndex){
+            $(value).stop().animate({opacity: 1});
+          }else{
+            $(value).stop().animate({opacity: 0});
+          }
+            
+        });
+    }
+});
+</script>

@@ -1,0 +1,75 @@
+<{if $setting.pic.1.tagname=='one'}>
+<section class="floor half">
+  <h3 class="floor-hd">
+    <span class="tit"><{$setting.pic.first.tagname}></span>
+  </h3>
+  <div class="floor-bd floor-col-2">
+    <a href="<{$data.pic.first.1.linktarget}>"  class="col-xs-6 lf-up"><img style="background:url(<{$data.pic.first.1.link}>) no-repeat center center" alt=""></a>
+    <a href="<{$data.pic.first.2.linktarget}>"  class="col-xs-6 lf-up"><img  style="background:url(<{$data.pic.first.2.link}>) no-repeat center center" alt=""></a>
+  </div>
+  <div class="floor-more">
+    <a href="<{$setting.pic.first.more}>" target="_blank">
+      <button class="ui-btn ui-btn-outlined ui-btn-warning">查看更多</button>
+    </a>
+  </div>
+</section>
+<{/if}>
+<{if $setting.pic.1.tagname=='three'}>
+<section class="floor">
+  <h3 class="floor-hd">
+    <span class="tit"><{$setting.pic.third.tagname}></span>
+  </h3>
+  <div class="floor-bd floor-col-2">
+    <div class="col-xs-4">
+     <a href="<{$data.pic.third.1.linktarget}>" class="rt-half"><img style="background:url(<{$data.pic.third.1.link}>) no-repeat center center" alt=""></a>
+    </div>
+    <div class="col-xs-8">
+      <a href="<{$data.pic.third.2.linktarget}>" class="lf-up" >
+        <img style="background:url(<{$data.pic.third.2.link}>) no-repeat center center;" alt="">
+      </a>
+      <div class="floor-col-2">
+        <a href="<{$data.pic.third.3.linktarget}>" class="col-xs-6 lf-down">
+          <img style="background:url(<{$data.pic.third.3.link}>) no-repeat center center;" alt="">
+        </a>   
+        <a href="<{$data.pic.third.4.linktarget}>" class="col-xs-6 bfree lf-down">
+          <img style="background:url(<{$data.pic.third.4.link}>) no-repeat center center;" alt="">
+        </a> 
+      </div>
+    </div>
+  </div>
+  <div class="floor-more">
+    <a href="<{$setting.pic.third.more}>" target="_blank">
+      <button class="ui-btn ui-btn-outlined ui-btn-warning">查看更多</button>
+    </a>
+  </div>
+</section>
+<{/if}>
+
+<{if $setting.pic.1.tagname=='two'}>
+<section class="floor">
+  <h3 class="floor-hd">
+    <span class="tit"><{$setting.pic.second.tagname}></span>
+  </h3>
+  <div class="floor-bd floor-col-2">
+    <div class="col-xs-8">
+      <a href="<{$data.pic.second.1.linktarget}>" class="lf-up" >
+        <img style="background:url(<{$data.pic.second.1.link}>) no-repeat center center;" alt="">
+      </a>
+      <div class="floor-col-2">
+        <a href="<{$data.pic.second.2.linktarget}>" class="col-xs-6 lf-down">
+          <img style="background:url(<{$data.pic.second.2.link}>) no-repeat center center;" alt="">
+        </a>   
+        <a href="<{$data.pic.second.3.linktarget}>" class="col-xs-6 bfree lf-down"><img style="background:url(<{$data.pic.second.3.link}>) no-repeat center center;" alt=""></a> 
+      </div>
+    </div>
+    <div class="col-xs-4">
+     <a href="<{$data.pic.second.4.linktarget}>" class="rt-half"><img style="background:url(<{$data.pic.second.4.link}>) no-repeat center center" alt=""></a>
+    </div>
+  </div>
+  <div class="floor-more">
+    <a href="<{$setting.pic.second.more}>" target="_blank">
+      <button class="ui-btn ui-btn-outlined ui-btn-warning">查看更多</button>
+    </a>
+  </div>
+</section> 
+<{/if}>

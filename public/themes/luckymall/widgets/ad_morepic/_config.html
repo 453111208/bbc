@@ -1,0 +1,96 @@
+<div id="picAddress" class="tableform">
+  <div class="piccontent">
+    <table  width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t app="b2c"}>图片地址:<{/t}></th>
+        <td>
+          <input name='pic[1][link]' class="imgsrc" id="pic[1][link]"  value="<{$setting.pic.1.link}>">
+          <input type=button value=上传图片 class="uploadbtn">
+        </td>
+        <th><{t app="b2c"}>链接地址:<{/t}></th>
+        <td>
+          <input name="pic[1][linktarget]" value="<{$setting.pic.1.linktarget}>">
+        </td>
+      </tr>
+      <tr>
+        <th><{t app="b2c"}>标题:<{/t}></th>
+        <td>
+          <input name="pic[1][linktitle]" value="<{$setting.pic.1.linktitle}>">
+        </td>
+
+        <th><{t app="b2c"}>描述:<{/t}></th>
+        <td>
+          <input name="pic[1][linkinfo]" value="<{$setting.pic.1.linkinfo}>">
+        </td>
+      </tr>
+    </table>
+    <table  width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t app="b2c"}>图片地址:<{/t}></th>
+        <td>
+          <input name='pic[2][link]' class="imgsrc" id="pic[2][link]"  value="<{$setting.pic.2.link}>">
+          <input type=button value=上传图片 class="uploadbtn">
+        </td>
+        <th><{t app="b2c"}>链接地址:<{/t}></th>
+        <td>
+          <input name="pic[2][linktarget]" value="<{$setting.pic.2.linktarget}>">
+        </td>
+      </tr>
+      <tr>
+        <th><{t app="b2c"}>标题:<{/t}></th>
+        <td>
+          <input name="pic[2][linktitle]" value="<{$setting.pic.2.linktitle}>">
+        </td>
+        <th><{t app="b2c"}>描述:<{/t}></th>
+        <td>
+          <input name="pic[2][linkinfo]" value="<{$setting.pic.2.linkinfo}>">
+        </td>
+      </tr>
+    </table>
+    <table  width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <th><{t app="b2c"}>图片地址:<{/t}></th>
+        <td>
+          <input name='pic[3][link]' class="imgsrc" id="pic[3][link]"  value="<{$setting.pic.3.link}>">
+          <input type=button value=上传图片 class="uploadbtn">
+        </td>
+        <th><{t app="b2c"}>链接地址:<{/t}></th>
+        <td>
+          <input name="pic[3][linktarget]" value="<{$setting.pic.3.linktarget}>">
+        </td>
+      </tr>
+      <tr>
+        <th><{t app="b2c"}>标题:<{/t}></th>
+        <td>
+          <input name="pic[3][linktitle]" value="<{$setting.pic.3.linktitle}>">
+        </td>
+        <th><{t app="b2c"}>描述:<{/t}></th>
+        <td>
+          <input name="pic[3][linkinfo]" value="<{$setting.pic.3.linkinfo}>">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script>
+  (function(){
+    var tag_type='table',tag_class='pic_items';
+
+
+    $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+    $$(".small_piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+
+    function bindevent(el){
+      var target=$(el).getParent(tag_type).getElement('.imgsrc');
+      var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+      var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;  
+      Ex_Loader('modedialog',function(){
+        return new imgDialog(url,{onCallback:function(image_id,image_src){
+          target.value=image_src;
+        }});
+      });
+    }
+
+  })();
+</script>
+

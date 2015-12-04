@@ -1,0 +1,131 @@
+<div class="tableform">
+<table width="100%">
+  <tr>
+    <th>版块名称：</th>
+    <td><input type="text" name="block_name" value="<{$setting.block_name}>"/></td>
+    <th>版块说明：</th>
+    <td><input type="text" name="desc" value="<{$setting.desc}>"/></td>
+  </tr>
+</table>
+</div>
+<div class="tableform">
+  <h5>左右两侧推荐</h5>
+  <table width="100%">
+    <tr>
+      <th><{t app='topc'}>图片：<{/t}></th>
+      <td>
+        <input type="text" name='small_pic0' id="small_pic0" value="<{$setting.small_pic0}>" class="x-input">
+        <input type=button value="<{t app='topc'}>上传图片<{/t}>" onclick="addPic('small_pic0')">
+      </td>
+    </tr>
+    <tr>
+      <th><{t app='topc'}>图片描述：<{/t}></th>
+      <td><input type="text" name="small_pic0_txt" value="<{$setting.small_pic0_txt}>" class="x-input"></td>
+    </tr>
+    <tr>
+      <th><{t app='topc'}>图片链接：<{/t}></th>
+      <td><input type="text" name="small_pic0_link" value="<{$setting.small_pic0_link}>" class="x-input"></td>
+    </tr>
+    <tr>
+      <th><{t app='topc'}>图片：<{/t}></th>
+      <td>
+        <input type="text" name='small_pic1' id="small_pic1" value="<{$setting.small_pic1}>" class="x-input">
+        <input type=button value="<{t app='topc'}>上传图片<{/t}>" onclick="addPic('small_pic1')">
+      </td>
+    </tr>
+    <tr>
+      <th><{t app='topc'}>图片描述：<{/t}></th>
+      <td><input type="text" name="small_pic1_txt" value="<{$setting.small_pic1_txt}>" class="x-input"></td>
+    </tr>
+    <tr>
+      <th><{t app='topc'}>图片链接：<{/t}></th>
+      <td><input type="text" name="small_pic1_link" value="<{$setting.small_pic1_link}>" class="x-input"></td>
+    </tr>
+  </table>
+</div>
+<div id="picAddress" class="tableform">
+    <h5>品牌列表</h5>
+    <div class="piccontent">
+        <{foreach from=$setting.pic item=data key=key}>
+        <table  width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <th><{t app="b2c"}>图片地址:<{/t}></th>
+                <td>
+                    <input type=hidden name=pic[<{$data.id}>][id] value="<{$data.id}>">
+                    <input name='pic[<{$data.id}>][link]' class="imgsrc" id="pic[<{$data.id}>][link]"  value="<{$data.link}>">
+                    <input type=button value=上传图片 class="uploadbtn">
+                </td>
+                <th><{t app="b2c"}>链接地址:<{/t}></th>
+                <td>
+                    <input name="pic[<{$data.id}>][linktarget]" value="<{$data.linktarget}>">
+                </td>
+            </tr>
+            <tr>
+                <th><{t app="b2c"}>描述:<{/t}></th>
+                <td>
+                    <input name="pic[<{$data.id}>][linkinfo]" value="<{$data.linkinfo}>">
+                </td>
+                <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>
+                <td><span onclick="$(this).getParent('table').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c' app="desktop"}></span></td>
+            </tr>
+        </table>
+        <{/foreach}>
+    </div>
+    <table  width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <th></th>
+            <td><{button label=$___b2c="添加图片"|t:'b2c' class="addimage" app="desktop" icon="btn_add.gif"}></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function addPic(eleid){
+        var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+        var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;
+        Ex_Loader('modedialog',function(){
+          return new imgDialog(url,{onCallback:function(image_id,image_src){
+            $(eleid).value=image_src;
+          }})   ;
+        });
+    }
+    (function(){
+        var tag_type='table',tag_class='pic_items';
+
+        document.getElement(".addimage").addEvent('click',function(){
+
+            var i=new Date().getTime();
+
+            var tpl='\
+            <tr><th><{t app="b2c"}>图片地址:<{/t}></th>\
+                <td><input type=hidden name=pic['+i+'][id] value="'+i+'"><input name="pic['+i+'][link]" class="imgsrc">\
+                    <input type=button value=<{t app="b2c"}>上传图片<{/t}> class="uploadbtn" id="pic['+i+']"></td>\
+                <th><{t app="b2c"}>链接地址:<{/t}></th>\
+                <td><input name="pic['+i+'][linktarget]"></td></tr>\
+            <tr><th><{t app="b2c"}>描述:<{/t}></th>\
+                <td><input name="pic['+i+'][linkinfo]"></td>\
+                <th><{t app="b2c"}>删除该图片及描述:<{/t}></th>\
+                <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___b2c="删除"|t:'b2c' title=$___b2c="删除"|t:'b2c' app="desktop"}></span></td>\
+            </tr>';
+
+            $('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+            $('pic['+i+']').addEvent('click',function(e){bindevent(this)});
+        });
+
+        $$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+        $$(".small_piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+
+        function bindevent(el){
+            var target=$(el).getParent(tag_type).getElement('.imgsrc');
+            var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+            var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;
+            Ex_Loader('modedialog',function(){
+                return new imgDialog(url,{onCallback:function(image_id,image_src){
+                        target.value=image_src;
+                }});
+            });
+        }
+    })();
+</script>
+

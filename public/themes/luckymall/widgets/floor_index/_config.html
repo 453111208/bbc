@@ -1,0 +1,561 @@
+<style type="text/css">
+  .index-goods-config{background:#333333;border-collapse:separate;border-spacing:1px;}
+  .index-goods-config td{background:#FFFFFF;}
+  .choose-format {
+    margin-bottom: 15px;
+  }
+  .choose-format label {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  .floor-format {
+    float: left;
+    width: 282px;
+    margin: 5px 10px;
+  }
+  .floor-format h3 {
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #999;
+  }
+  .floor-format .thumbnail img {
+    width: 100%;
+  }
+  .floor-content {
+    margin-left: 300px;
+    overflow: auto;
+    height: 420px;
+  }
+  .floor-module > div {
+    float: left;
+  }
+  .floor-module .left {
+    margin-right: 1px;
+  }
+  .floor-module .left div {
+    width: 50px;
+    height: 45px;
+    background: #ddd;
+    margin-bottom: 1px;
+  }
+  .floor-module .left div:first-child {
+    height: 29px;
+  }
+  .floor-module .center {
+    width: 73px;
+    height: 121px;
+    background: #ddd;
+    margin-right: 1px;
+  }
+  .floor-module.floor-module-01 .right {
+    width: 157px;
+  }
+  .floor-module.floor-module-02 .right {
+    width: 230px;
+  }
+  .floor-module .top {
+    margin-bottom: 1px;
+  }
+  .floor-module .top div, .floor-module .foot div {
+    float: left;
+    margin-right: 1px;
+    background: #ddd;
+  }
+  .floor-module.floor-module-01 .top div, .floor-module.floor-module-01 .foot div{
+    width: 51px;
+  }
+  .floor-module.floor-module-02 .top div, .floor-module.floor-module-02 .foot div{
+    width: 51px;
+  }
+  .floor-module .top div:last-child, .floor-module .foot div:last-child {
+    margin-right: 0;
+  }
+  .floor-module.floor-module-02 .top div:first-child {
+    width: 125px;
+  }
+  .floor-module.floor-module-02 .foot div:first-child {
+    width: 73px;
+  }
+  .floor-module .top div {
+    height: 75px;
+    margin-bottom: 1px
+  }
+  .floor-module .foot div {
+    height: 45px;
+  }
+  .clear {
+    clear: both;
+  }
+  #featured tbody {
+    border-top: 1px solid #dfdfdf;
+  }
+</style>
+<div class="widgetconfig" >
+  <div class="tableform">
+    <table width="100%">
+      <tr>
+        <th>色彩风格：</th>
+        <td><input type="color" name="color" value="<{$setting.color}>"/></td>
+        <th>板块标题：</th>
+        <td><input type="text" name="block_name" value="<{$setting.block_name}>"/></td>
+      </tr>
+      <tr>
+        <th>版块名称：</th>
+        <td><input type="text" name="name" value="<{$setting.name}>"/></td>
+        <th>版块说明：</th>
+        <td><input type="text" name="desc" value="<{$setting.desc}>"/></td>
+      </tr>
+    </table>
+  </div>
+  <div class="floor-format">
+    <div class="choose-format">
+      <label><input type="radio" name="selector" value="0" <{if !$setting.selector}>checked<{/if}>> 楼层版式A</label>
+      <label><input type="radio" name="selector" value="1" <{if $setting.selector == '1'}>checked<{/if}> > 楼层版式B</label>
+    </div>
+    <div class="tab-con" <{if $setting.selector}>style="display: none;"<{/if}>>
+      <h3>区域示意</h3>
+      <div class="floor-module floor-module-01">
+        <div class="left">
+          <div class="select-area links-area"></div>
+          <div class="select-area slider-area"></div>
+          <div class="select-area star-area"></div>
+        </div>
+        <div class="center select-area featured-area-01">
+        </div>
+        <div class="right">
+          <div class="top">
+            <div class="featured-area-02 select-area"></div>
+            <div class="featured-area-03 select-area"></div>
+            <div class="featured-area-04 select-area"></div>
+          </div>
+          <div class="foot">
+            <div class="featured-area-05 select-area"></div>
+            <div class="featured-area-06 select-area"></div>
+            <div class="featured-area-07 select-area"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <h3>示例图</h3>
+      <div class="thumbnail"><img src="images/icon.jpg" alt=""></div>
+    </div>
+    <div class="tab-con" <{if !$setting.selector}>style="display: none;"<{/if}>>
+      <h3>区域示意</h3>
+      <div class="floor-module floor-module-02">
+        <div class="left">
+          <div class="select-area links-area"></div>
+          <div class="select-area slider-area"></div>
+          <div class="select-area star-area"></div>
+        </div>
+        <div class="right">
+          <div class="top">
+            <div class="featured-area-01 select-area"></div>
+            <div class="featured-area-02 select-area"></div>
+            <div class="featured-area-03 select-area"></div>
+          </div>
+          <div class="foot">
+            <div class="featured-area-04 select-area"></div>
+            <div class="featured-area-05 select-area"></div>
+            <div class="featured-area-06 select-area"></div>
+            <div class="featured-area-07 select-area"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <h3>示例图</h3>
+      <div class="thumbnail"><img src="images/icon1.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="floor-content">
+    <div id="links" class="tableform">
+      <h5>文字链接</h5>
+      <table width="100%">
+        <tr>
+          <th></th>
+          <td id="more_link">
+            <{button label=$___topc="添加文字链接"|t:'topc' id="add_more_link" app="desktop" icon="btn_add.gif"}>
+            <span>最多添加8个文字链接</span>
+            <{foreach from=$setting.morelink item=item key=key}>
+            <div class="more-item">
+              <label>文字:<input type="text" class="x-input" name="morelink[<{$key}>][k]" value="<{$item.k}>"></label>
+              <label>链接:<input type="text" class="x-input" name="morelink[<{$key}>][v]" value="<{$item.v}>"></label>
+              <span onclick="$(this).getParent('.more-item').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___topc="删除"|t:'topc' title=$___topc="删除"|t:'topc' app="desktop"}></span>
+            </div>
+            <{/foreach}>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="picAddress" class="tableform">
+      <h5>迷你轮播</h5>
+        <div class="">
+          <table width="100%">
+            <tr>
+              <th></th>
+              <td class="slider-type">
+                <label><input type="radio" name="slider_type" value="0" <{if !$setting.slider_type}>checked<{/if}>> 品牌</label>
+                <label><input type="radio" name="slider_type" value="1" <{if $setting.slider_type}>checked<{/if}>> 轮播图片</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <table width="100%">
+            <tr>
+              <th>自动播放：</th>
+              <td>
+                <select name="autoplay">
+                  <option value="true" <{if $setting.autoplay=="true"}>selected<{/if}>>是</option>
+                  <option value="false" <{if $setting.autoplay=="false"}>selected<{/if}>>否</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="slider-type-con "<{if $setting.slider_type}>style="display: none;"<{/if}>>
+          <table  width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <th></th>
+              <td><{input type="object" object="brand" app="syscategory" select=checkbox multiple="true" value=$setting.brand textcol="brand_name" name="brand" breakpoint=0}></td>
+            </tr>
+          </table>
+        </div>
+        <div class="slider-type-con" <{if !$setting.slider_type}>style="display: none;"<{/if}>>
+          <div class="piccontent">
+            <{foreach from=$setting.pic item=data key=key}>
+            <table  width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <th><{t app="desktop"}>图片地址:<{/t}></th>
+                <td>
+                  <input type=hidden name=pic[<{$data.id}>][id] value="<{$data.id}>">
+                  <input name='pic[<{$data.id}>][link]' class="imgsrc" id="pic[<{$data.id}>][link]"  value="<{$data.link}>">
+                  <input type=button value=上传图片 class="uploadbtn">
+                </td>
+              </tr>
+              <tr>
+                <th><{t app="desktop"}>链接地址:<{/t}></th>
+                <td>
+                  <input name="pic[<{$data.id}>][linktarget]" value="<{$data.linktarget}>">
+                </td>
+              </tr>
+              <tr>
+                <th><{t app="desktop"}>描述:<{/t}></th>
+                <td>
+                  <input name="pic[<{$data.id}>][linkinfo]" value="<{$data.linkinfo}>">
+                </td>
+              </tr>
+              <tr>
+                <th><{t app="desktop"}>删除该图片及描述:<{/t}></th>
+                <td><span onclick="$(this).getParent('table').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___desktop="删除"|t:'desktop' title=$___desktop="删除"|t:'desktop' app="desktop"}></span></td>
+              </tr>
+            </table>
+            <{/foreach}>
+          </div>
+          <table width="100%">
+            <tr>
+              <th></th>
+              <td>
+                <{button label=$___desktop="添加图片"|t:'desktop' class="addimage" app="desktop" icon="btn_add.gif"}>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+    <div class="tableform" id="star">
+      <h5>楼层明星</h5>
+      <table width="100%">
+        <tr>
+          <th><{t app='topc'}>图片：<{/t}></th>
+          <td>
+            <input type="text" name='small_pic0' id="small_pic0" value="<{$setting.small_pic0}>" class="x-input">
+            <input type=button value="<{t app='topc'}>上传图片<{/t}>" onclick="addPic('small_pic0')">
+          </td>
+        </tr>
+        <tr>
+          <th><{t app='topc'}>图片描述：<{/t}></th>
+          <td><input type="text" name="small_pic0_txt" value="<{$setting.small_pic0_txt}>" class="x-input"></td>
+        </tr>
+        <tr>
+          <th><{t app='topc'}>图片链接：<{/t}></th>
+          <td><input type="text" name="small_pic0_link" value="<{$setting.small_pic0_link}>" class="x-input"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="featured" class="tableform">
+      <h5>楼层主推列表</h5>
+      <table width="100%">
+        <tbody id="featured-01">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic1' id="small_pic1" value="<{$setting.small_pic1}>" class="x-input">
+              <input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic1')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic1_txt" value="<{$setting.small_pic1_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic1_link" value="<{$setting.small_pic1_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-02">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic2' id="small_pic2" value="<{$setting.small_pic2}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic2')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic2_txt" value="<{$setting.small_pic2_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic2_link" value="<{$setting.small_pic2_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-03">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic3' id="small_pic3" value="<{$setting.small_pic3}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic3')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic3_txt" value="<{$setting.small_pic3_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic3_link" value="<{$setting.small_pic3_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-04">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic4' id="small_pic4" value="<{$setting.small_pic4}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic4')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic4_txt" value="<{$setting.small_pic4_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic4_link" value="<{$setting.small_pic4_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-05">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic5' id="small_pic5" value="<{$setting.small_pic5}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic5')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic5_txt" value="<{$setting.small_pic5_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic5_link" value="<{$setting.small_pic5_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-06">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic6' id="small_pic6" value="<{$setting.small_pic6}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic6')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic6_txt" value="<{$setting.small_pic6_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic6_link" value="<{$setting.small_pic6_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+        <tbody id="featured-07">
+          <tr>
+            <th><{t app='topc'}>图片：<{/t}></th>
+            <td>
+              <input type="text" name='small_pic7' id="small_pic7" value="<{$setting.small_pic7}>" class="x-input"><input type=button value="<{t app='topc'}>上传图片<{/t}>" class="uploadbtn" onclick="addPic('small_pic7')">
+            </td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片描述：<{/t}></th>
+            <td><input type="text" name="small_pic7_txt" value="<{$setting.small_pic7_txt}>" class="x-input"></td>
+          </tr>
+          <tr>
+            <th><{t app='topc'}>图片链接：<{/t}></th>
+            <td><input type="text" name="small_pic7_link" value="<{$setting.small_pic7_link}>" class="x-input"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function addPic(eleid){
+    var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+    var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;
+    Ex_Loader('modedialog',function(){
+      return new imgDialog(url,{onCallback:function(image_id,image_src){
+        $(eleid).value=image_src;
+      }})	;
+    });
+
+  }
+$$('#goods_exshow_config .goods-selector-handle input[type=radio]').addEvent('change',function(){
+  var radio  = this;
+  if(!radio.checked)return;
+  $$('#goods_exshow_config .goods-selector [data-extend]').each(function(item){
+
+    if(item.get('data-extend')!=radio.value){
+      item.hide();
+    }else{
+      item.show();
+    }
+  });
+});
+
+$$('.choose-format input[type="radio"]').addEvent('click',function(){
+  var tab_val = this.get('value');
+  var tab_con = $$('.tab-con');
+  tab_con.each(function(el, index) {
+    if(tab_val==index){
+      el.setStyle('display','block');
+    }else{
+      el.setStyle('display','none');
+    }
+  });
+});
+
+$$('.slider-type input[type="radio"]').addEvent('click',function(){
+  var tab_val = this.get('value');
+  var tab_con = $$('.slider-type-con');
+  tab_con.each(function(el, index) {
+    if(tab_val==index){
+      el.setStyle('display','block');
+    }else{
+      el.setStyle('display','none');
+    }
+  });
+});
+
+function addMoreLink(){
+  var i=new Date().getTime();
+  var linkItem = new Element('div',{
+    'class':'more-item',
+      'html':'<label>文字:<input type="text" class="x-input" name="morelink['+i+'][k]" value=""/></label> <label>链接:<input type="text" class="x-input" name="morelink['+i+'][v]" value=""/></label><span onclick="$(this).getParent(\'.more-item\').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___desktop="删除"|t:'desktop' title=$___desktop="删除"|t:'desktop' app="desktop"}></span>'
+  });
+  linkItem.inject($('more_link'));
+}
+$('add_more_link').addEvent('click',function(){
+  addMoreLink();
+});
+
+var tag_type='table',tag_class='pic_items';
+var i = '<{$setting.pic|count}>' || 0;
+
+document.getElement(".addimage").addEvent('click',function(){
+
+  if(i > 5) {
+      alert('最多只能加6条。');
+      return;
+  }
+  var tpl='\
+  <tr><th><{t app="desktop"}>图片地址:<{/t}></th>\
+  <td><input type=hidden name=pic['+i+'][id] value="'+i+'"><input name="pic['+i+'][link]" class="imgsrc">\
+  <input type=button value=<{t app="desktop"}>上传图片<{/t}> class="uploadbtn" id="pic['+i+']"></td></tr>\
+  <tr><th><{t app="desktop"}>链接地址:<{/t}></th>\
+  <td><input name="pic['+i+'][linktarget]"></td></tr>\
+  <tr><th><{t app="desktop"}>描述:<{/t}></th>\
+  <td><input name="pic['+i+'][linkinfo]"></td></tr>\
+  <tr><th><{t app="desktop"}>删除该图片及描述:<{/t}></th>\
+  <td><span onclick="$(this).getParent(\'table\').destroy()"><{img src="bundle/delecate.gif" style="cursor:pointer;" alt=$___desktop="删除"|t:'desktop' title=$___desktop="删除"|t:'desktop' app="desktop"}></span></td>\
+  </tr>';
+
+$('picAddress').getElement('.piccontent').adopt(new Element(tag_type,{'html':tpl,'width':'100%','class':tag_class}));
+
+$('pic['+i+']').addEvent('click',function(e){bindevent(this)});
+i++;
+});
+
+$$(".piccontent .uploadbtn").addEvent('click',function(e){bindevent(this)});
+
+function bindevent(el){
+  var target=$(el).getParent(tag_type).getElement('.imgsrc');
+  var goto_url=encodeURIComponent('<{url route="shopadmin" app="image" ctl="admin_manage" act="image_broswer" type="big"}>');
+  var url='<{url route="shopadmin" app="desktop" act="alertpages" goto=""}>'+goto_url;
+  Ex_Loader('modedialog',function(){
+    return new imgDialog(url,{onCallback:function(image_id,image_src){
+      target.value=image_src;
+    }});
+  });
+}
+
+$('links').addEvent('click',function(){
+  resetArea();
+  selectArea('.links-area');
+})
+$('picAddress').addEvent('click',function(){
+  resetArea();
+  selectArea('.slider-area');
+})
+$('star').addEvent('click',function(){
+  resetArea();
+  selectArea('.star-area');
+})
+$('featured-01').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-01');
+})
+$('featured-02').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-02');
+})
+$('featured-03').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-03');
+})
+$('featured-04').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-04');
+})
+$('featured-05').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-05');
+})
+$('featured-06').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-06');
+})
+$('featured-07').addEvent('click',function(){
+  resetArea();
+  selectArea('.featured-area-07');
+})
+
+function resetArea(){
+  $$('.select-area').setStyle('background', '#ddd');
+}
+function selectArea(el){
+  $$(el).setStyle('background', '#e0457e');
+}
+
+$$('.floor-content .tableform').addEvent('click',function(){
+  $$('.floor-content .tableform').setStyle('border-color','#d9d9d9');
+  $(this).setStyle('border-color','#d15e82');
+})
+$$('#featured tbody').addEvent('click',function(){
+  $$('#featured tbody').setStyle('background','transparent');
+  $(this).setStyle('background','#fff');
+})
+</script>

@@ -1,0 +1,7 @@
+<{if $data.ad_pic_link}>
+	<a href="<{$data.ad_pic_link}>"  <{if $setting.target_blank}>target="_blank"<{/if}>>
+		 <img width="<{$data.ad_pic_width}>" height="<{$data.ad_pic_height}>" src="<{$data.ad_pic}>" alt="<{$data.ad_pic_txt}>">
+	</a>
+<{else}>
+		 <img width="<{$data.ad_pic_width}>" height="<{$data.ad_pic_height}>" src="<{$data.ad_pic}>" alt="<{$data.ad_pic_txt}>">
+<{/if}>

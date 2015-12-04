@@ -1,0 +1,23 @@
+<ul>
+    <{foreach from=$data.info_select item=item key=key}>
+        <li>
+            [公告]<a id="titles_<{$key}>"><{$item.title}></a>
+            <div id="contents_<{$key}>" style="display:none">
+                <{$item.content}>
+            </div>
+        </li>
+    <{/foreach}>
+</ul>
+<script>
+<{foreach from=$data.info_select item=item key=key}>
+    $('#titles_<{$key}>').click(function (e) {
+        $('#contents_<{$key}>').dialog({
+            width: 890,
+            height: 400,
+            title:'<{$item.title}>',
+            close: function(){
+            }
+        });
+    });
+<{/foreach}>
+</script>

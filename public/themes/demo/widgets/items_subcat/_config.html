@@ -1,0 +1,14 @@
+<div class="tableform widgetconfig" >
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <th><{t app='content'}>选择类目:<{/t}> </th>
+      <td>
+        <select name="lv1_cat_id">
+          <{foreach from=$setting.selectmaps key=key item=value}>
+          <option value="<{$key}>" <{if $setting.lv1_cat_id == $key}>selected="selected"<{/if}> ><{$value}></option>
+          <{/foreach}>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>

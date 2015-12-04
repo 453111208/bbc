@@ -1,0 +1,65 @@
+<ul class="clearfix">
+<{foreach from=$data.sprodreleaseList item=item key=key}>
+
+               <li class="<{if $key < 1}>active<{/if}> clearfix">
+                <div class="h6">
+                  <div class="item item-1"><a href="<{$item.linkAddress}>" title=""><em>【<{$item.bidorten_type_name}>】</em><span><{$item.trading_title}></span></a></div>
+                  <div class="item item-2"><em>交货地：</em><span>上海</span></div>
+                  <div class="item item-3"><em>保证金：</em><span><i><{$item.ensurence}></i>&nbsp;/&nbsp;元</span></div>
+                </div>
+                <div class="maxinfo clearfix">
+                  <div class="maxpic"><img style="width:177px; height:118px;" src="<{$item.img_id}>" alt="" /></div>
+                  <div class="max-left">
+                    <div class="item item-1"><a href="<{$item.linkAddress}>" title=""><em>【<{$item.bidorten_type_name}>】</em><span><{$item.trading_title}></span></a></div>
+                    <div class="item item-2"><em>供应商：</em><span><{$item.shop_name}></span></div>
+                    <div class="item item-3"><em>供货地：</em><span><{$item.shop_area}></span></div>
+                    <div class="maxrz">
+                      <a class='a-item1' href="javascript:void()" title=""><img src="images/cx.jpg" /></a>
+                      <a class='a-item2' href="javascript:void()" title=""><img src="images/sd.jpg" /></a>
+                    </div>
+                  </div>
+                  <div class="max-right">
+                  <div class="icon"></div>
+                    <div class="item item-1"><em>保证金：</em><span><i><s>￥</s><{$item.ensurence}></i>&nbsp;/&nbsp;元</span></div>
+                    <div class="item item-2"><em></em><span><s></s>&nbsp;/&nbsp;<i></i></span></div>
+                    <div class="item item-3"><a href="<{$item.linkAddress}>" title="">即将开始</a></div>
+                    <div class="maxtime"><span><div style="float: left;">距开始：</div>
+          <div style="float: left;" id="day_show_<{$item.bidorten_id}>"></div>
+          <div style="float: left;" id="hour_show_<{$item.bidorten_id}>"></div>
+          <div style="float: left;" id="minute_show_<{$item.bidorten_id}>"></div>
+          <div style="float: left;" id="second_show_<{$item.bidorten_id}>"></div></span>
+                    </div>
+                  </div>
+                </div>
+               </li>
+<{/foreach}>
+<{foreach from=$data.sprodreleaseList item=item key=key}>
+<script >
+var intDiff_<{$item.bidorten_id}> = parseInt(<{$item.interval_time}>);//倒计时总秒数量
+function timer_<{$item.bidorten_id}>(intDiff){
+  window.setInterval(function(){
+  var day=0,
+    hour=0,
+    minute=0,
+    second=0;//时间默认值    
+  if(intDiff > 0){
+    day = Math.floor(intDiff / (60 * 60 * 24));
+    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+  }
+  if (minute <= 9) minute = '0' + minute;
+  if (second <= 9) second = '0' + second;
+  $('#day_show_<{$item.bidorten_id}>').html(day+"天");
+  $('#hour_show_<{$item.bidorten_id}>').html('<s id="h"></s>'+hour+'时');
+  $('#minute_show_<{$item.bidorten_id}>').html('<s></s>'+minute+'分');
+  $('#second_show_<{$item.bidorten_id}>').html('<s></s>'+second+'秒');
+  intDiff--;
+  }, 1000);
+}  
+$(function(){
+  timer_<{$item.bidorten_id}>(intDiff_<{$item.bidorten_id}>);
+});  
+</script>
+<{/foreach}>
+</ul>

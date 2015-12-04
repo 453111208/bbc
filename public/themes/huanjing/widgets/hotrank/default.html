@@ -1,0 +1,18 @@
+<div class="rank">
+  <div class="rank-title"><{$data.block_name}></div>
+  <div class="rank-list">
+    <{foreach from=$data.item item=item key=key}>
+    <div class="rank-item">
+      <div class="num num-1"><{$key+1}></div>
+      <div class="pic">
+        <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>">
+          <img width="30" height="30" src="<{$item.image_default_id|default:$data.defaultImg.S.default_image|storager:'s'}>" alt="<{$item.title}>">
+        </a>
+      </div>
+      <div class="name">
+        <a href="<{url action=topc_ctl_item@index item_id=$item.item_id}>"><{$item.title}></a>
+      </div>
+    </div>
+    <{/foreach}>
+  </div>
+</div>
